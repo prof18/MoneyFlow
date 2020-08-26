@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
     id("org.jetbrains.kotlin.native.cocoapods")
+    id("com.squareup.sqldelight")
 }
 group = "com.prof18"
 version = "1.0-SNAPSHOT"
@@ -30,7 +31,21 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+
+        all {
+            languageSettings.apply {
+                useExperimentalAnnotation("kotlin.RequiresOptIn")
+                useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            }
+        }
+
+        val commonMain by getting {
+            dependencies {
+                implementation(Deps.SqlDelight.runtime)
+                implementation(Deps.Coroutines.common)
+                implementation(Deps.stately)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -40,16 +55,22 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.2.0")
+                implementation(Deps.SqlDelight.driverAndroid)
             }
         }
         val androidTest by getting
         val iosMain by getting {
-//            dependencies {
-//                implementation("io.ktor:ktor-client-cio:${Versions.ktor}")
-//            }
+            dependencies {
+                implementation(Deps.SqlDelight.driverIos)
+            }
         }
         val iosTest by getting
-        val macOSMain by getting
+        val macOSMain by getting {
+            dependencies {
+                implementation(Deps.SqlDelight.driverMacOs)
+                implementation(Deps.SqlDelight.runtimeMacOs)
+            }
+        }
     }
 }
 android {
@@ -66,6 +87,14 @@ android {
         }
     }
 }
+
+sqldelight {
+    database("MoneyFlowDB") {
+        packageName = "com.prof18.moneyflow.db"
+        schemaOutputDirectory = file("src/main/sqldelight/databases")
+    }
+}
+
 //val packForXcode by tasks.creating(Sync::class) {
 //    group = "build"
 //    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
