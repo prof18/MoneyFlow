@@ -13,6 +13,9 @@ object Versions {
 
 object Deps {
 
+    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+
+
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
 
     object Compose {

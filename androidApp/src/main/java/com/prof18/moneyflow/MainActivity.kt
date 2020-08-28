@@ -1,4 +1,4 @@
-package com.prof18.androidApp
+package com.prof18.moneyflow
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
