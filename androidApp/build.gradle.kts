@@ -46,12 +46,21 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
-    implementation(Deps.Compose.ui)
-    implementation(Deps.Compose.uiGraphics)
-    implementation(Deps.Compose.uiTooling)
-    implementation(Deps.Compose.foundationLayout)
+
+    implementation("com.google.android.material:material:1.1.0")
+
+    implementation(Deps.Compose.core)
+    implementation(Deps.Compose.foundation)
+    implementation(Deps.Compose.layout)
     implementation(Deps.Compose.material)
+    implementation(Deps.Compose.materialIconsExtended)
+    implementation(Deps.Compose.runtime)
+    implementation(Deps.Compose.runtimeLivedata)
+    implementation(Deps.Compose.tooling)
     implementation(Deps.Compose.runtimeLiveData)
+
+    androidTestImplementation(Deps.Compose.test)
+    androidTestImplementation(Deps.Compose.uiTest)
 
 
 }

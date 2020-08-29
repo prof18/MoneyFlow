@@ -19,11 +19,17 @@ object Deps {
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
 
     object Compose {
-        const val ui = "androidx.compose.ui:ui:${Versions.compose}"
-        const val uiGraphics = "androidx.compose.ui:ui-graphics:${Versions.compose}"
-        const val uiTooling = "androidx.ui:ui-tooling:${Versions.compose}"
-        const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
+
+        const val core = "androidx.compose.ui:ui:${Versions.compose}"
+        const val foundation = "androidx.compose.foundation:foundation:${Versions.compose}"
+        const val layout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
         const val material = "androidx.compose.material:material:${Versions.compose}"
+        const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
+        const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
+        const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+        const val tooling = "androidx.ui:ui-tooling:${Versions.compose}"
+        const val test = "androidx.compose.test:test-core:${Versions.compose}"
+        const val uiTest = "androidx.ui:ui-test:${Versions.compose}"
         const val runtimeLiveData =  "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     }
 
