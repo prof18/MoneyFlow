@@ -45,9 +45,15 @@ fun MoneyFlowTheme(
 ) {
     Log.d("AAAA", "Dark theme: $darkTheme")
 
+    val colors = if (darkTheme) {
+        DarkThemeColors
+    } else {
+        LightThemeColors
+    }
+
 
     MaterialTheme(
-        colors = if (darkTheme) darkColors() else lightColors(),
+        colors = colors,
         typography = MoneyFlowTypography,
         shapes = MoneyFlowShapes,
         content = content
