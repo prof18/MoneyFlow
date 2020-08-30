@@ -9,32 +9,39 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-val Red200 = Color(0xfff297a2)
-val Red300 = Color(0xffea6d7e)
-val Red700 = Color(0xffdd0d00)
-val Red800 = Color(0xffd00036)
-val Red900 = Color(0xffc20029)
-
-
 // TODO: add later on
 private val LightThemeColors = lightColors(
-    primary = Red700,
-    primaryVariant = Red900,
-    onPrimary = Color.White,
-    secondary = Red700,
-    secondaryVariant = Red900,
-    onSecondary = Color.White,
-    error = Red800
+    primary = AppColors.blue700,
+    primaryVariant = AppColors.black800,
+    secondary = AppColors.orange500,
+    secondaryVariant = AppColors.orange400,
+
+    background = AppColors.blue50,
+    surface = AppColors.white50,
+    error = AppColors.red400,
+
+    onPrimary = AppColors.white50,
+    onSecondary = AppColors.black900,
+    onBackground = AppColors.black900,
+    onSurface = AppColors.black900,
+    onError = AppColors.black900,
 )
 
 // TODO: add later on
 private val DarkThemeColors = darkColors(
-    primary = Red300,
-    primaryVariant = Red700,
-    onPrimary = Color.Black,
-    secondary = Red300,
-    onSecondary = Color.White,
-    error = Red200
+    primary = AppColors.blue200,
+    primaryVariant = AppColors.blue300,
+    secondary = AppColors.orange300,
+
+    background = AppColors.black900,
+    surface = AppColors.black800,
+    error = AppColors.red200,
+
+    onPrimary = AppColors.black900,
+    onSecondary = AppColors.black900,
+    onBackground = AppColors.white50,
+    onSurface = AppColors.white50,
+    onError = AppColors.black900,
 )
 
 
@@ -43,17 +50,8 @@ fun MoneyFlowTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    Log.d("AAAA", "Dark theme: $darkTheme")
-
-    val colors = if (darkTheme) {
-        DarkThemeColors
-    } else {
-        LightThemeColors
-    }
-
-
     MaterialTheme(
-        colors = colors,
+        colors =  if (darkTheme) DarkThemeColors else LightThemeColors,
         typography = MoneyFlowTypography,
         shapes = MoneyFlowShapes,
         content = content

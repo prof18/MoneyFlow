@@ -1,16 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    <style name="Theme.MoneyFlow" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <!--Color-->
+        <item name="colorPrimary">@color/reply_blue_200</item>
+        <item name="colorPrimaryVariant">@color/reply_blue_300</item>
+        <item name="colorSecondary">@color/reply_orange_300</item>
+        <item name="colorSecondaryVariant">@color/reply_orange_300</item>
+
+        <item name="android:colorBackground">@color/reply_black_900</item>
+        <item name="colorSurface">@color/reply_black_800</item>
+<!--        <item name="colorPrimarySurfaceVariant">?attr/colorSurface</item>-->
+        <item name="colorError">@color/reply_red_200</item>
+
+        <item name="colorOnPrimary">@color/reply_black_900</item>
+        <item name="colorOnSecondary">@color/reply_black_900</item>
+        <item name="colorOnBackground">@color/reply_white_50</item>
+        <item name="colorOnSurface">@color/reply_white_50</item>
+        <item name="colorOnError">@color/reply_black_900</item>
+
+        <item name="scrimBackground">@color/reply_black_900_alpha_087</item>
+        <item name="android:statusBarColor">@color/reply_black_900_alpha_060</item>
+
+        <item name="elevationOverlayEnabled">true</item>
+
+        <!--System/Platform attributes-->
+
+
         <!-- Customize your theme here. -->
     </style>
 </resources>

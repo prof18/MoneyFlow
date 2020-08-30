@@ -4,9 +4,8 @@ import androidx.compose.foundation.Box
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.RowScope.weight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -20,7 +19,6 @@ import com.prof18.moneyflow.R
 import com.prof18.moneyflow.style.AppColors
 import com.prof18.moneyflow.style.AppMargins
 import com.prof18.moneyflow.style.MoneyFlowTheme
-import com.prof18.moneyflow.style.MoneyFlowTypography
 
 
 // TODO: pass real data
@@ -33,52 +31,69 @@ fun TransactionCard(
     Card(
         backgroundColor = AppColors.lightGrey,
         elevation = 8.dp,
-        modifier = Modifier.clickable(
-            onClick = {
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+            start = AppMargins.regular,
+            end = AppMargins.regular,
+            top = AppMargins.small,
+            bottom = AppMargins.small,
+        )
+            .clickable(
+                onClick = {
 
-                // TODO: handle click
+                    // TODO: handle click
 
-            },
-        ),
+                },
+            ),
     ) {
 
-        Row {
-            Box(
-                modifier = Modifier
-                    .padding(AppMargins.regular,
+        Row(horizontalArrangement = Arrangement.SpaceBetween) {
+
+            Row(modifier = Modifier.weight(8f)) {
+
+                Box(
+                    modifier = Modifier
+                        .gravity(Alignment.CenterVertically)
+                        .padding(
+                            AppMargins.regular,
+                        ),
+                    backgroundColor = AppColors.darkGrey,
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Icon(
+                        asset = vectorResource(id = R.drawable.ic_hamburger),
+                        modifier = Modifier.gravity(Alignment.CenterVertically)
+                            .padding(AppMargins.small)
+                    )
+                }
+
+                Column(
+                    modifier = Modifier.gravity(Alignment.CenterVertically).padding(
+                        top = AppMargins.regular,
+                        bottom = AppMargins.regular,
+                        end = AppMargins.regular,
                     ),
-                backgroundColor = AppColors.darkGrey,
-                shape = RoundedCornerShape(8.dp),
-            ) {
-                Icon(
-                    asset = vectorResource(id = R.drawable.ic_hamburger),
-                    modifier = Modifier.gravity(Alignment.CenterVertically).padding(AppMargins.small)
-                )
-            }
+                ) {
 
-            Column(
-                modifier = Modifier.gravity(Alignment.CenterVertically).padding(
-                    top = AppMargins.regular,
-                    bottom = AppMargins.regular,
-                    end = AppMargins.regular,
-                ),
-            ) {
+                    Text(
+                        text = "Dinner with friends in a very special Pellentesque habitant morbi tristique senectus et netus.",
+                        style = MaterialTheme.typography.subtitle1
+                    )
 
-                Text(
-                    text = "Dinner with friends",
-                    style = MaterialTheme.typography.subtitle1
-                )
-
-                Text(
-                    text = "21 Jan 2020",
-                    style = MaterialTheme.typography.caption
-                )
+                    Text(
+                        text = "21 Jan 2020",
+                        style = MaterialTheme.typography.caption
+                    )
+                }
             }
 
             Text(
-                text = "-20 €",
+                text = "-1500 €",
                 style = MaterialTheme.typography.body1,
-                modifier = Modifier.gravity(Alignment.CenterVertically).padding(
+                modifier = Modifier
+                    .weight(2f)
+                    .gravity(Alignment.CenterVertically).padding(
                     top = AppMargins.regular,
                     bottom = AppMargins.regular,
                     end = AppMargins.regular,

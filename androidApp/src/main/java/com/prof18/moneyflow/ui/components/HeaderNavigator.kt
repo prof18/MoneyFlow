@@ -24,7 +24,6 @@ fun HeaderNavigator(
     onClick: () -> Unit = {}
 ) {
 
-
     Row(
         verticalGravity = Alignment.CenterVertically,
         modifier = Modifier
