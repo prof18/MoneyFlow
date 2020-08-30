@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		0380F1DD645D82B1EF32EDE7 /* Pods_iosApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */; };
 		3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */; };
+		A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */; };
+		A9D269DA24FC28F900D2B4AE /* HeaderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */; };
+		A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */; };
+		A9D269DD24FC2E5000D2B4AE /* HomeRecap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */; };
+		A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */; };
+		A9D269E124FC311D00D2B4AE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */; };
+		A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269E224FC35CA00D2B4AE /* HideRowSeparatorModifier.swift */; };
+		A9D269E424FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269E224FC35CA00D2B4AE /* HideRowSeparatorModifier.swift */; };
 		A9D8985A24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */; };
 		A9D8985B24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */; };
 		A9D8985C24FBF060007771A1 /* Poppins-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985724FBF060007771A1 /* Poppins-Semibold.ttf */; };
@@ -61,6 +69,10 @@
 		31E5B551E04C0146160D17BD /* Pods-iosApp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (iOS).release.xcconfig"; path = "Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4618554838A84A2CDCD563E1 /* Pods-iosApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNavigator.swift; sourceTree = "<group>"; };
+		A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecap.swift; sourceTree = "<group>"; };
+		A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		A9D269E224FC35CA00D2B4AE /* HideRowSeparatorModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideRowSeparatorModifier.swift; sourceTree = "<group>"; };
 		A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		A9D8985724FBF060007771A1 /* Poppins-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Semibold.ttf"; sourceTree = "<group>"; };
 		A9D8985824FBF060007771A1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -123,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9D269DE24FC310F00D2B4AE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		A9D8985224FBEF7C007771A1 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				A9D8987224FBF92F007771A1 /* Components */,
+				A9D269E224FC35CA00D2B4AE /* HideRowSeparatorModifier.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -174,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				A9D8987324FBFA4A007771A1 /* TransactionCard.swift */,
+				A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */,
+				A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -196,6 +219,7 @@
 		A9F674F424F59E2500F486FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A9D269DE24FC310F00D2B4AE /* Home */,
 				A9D8986E24FBF8A6007771A1 /* Utils */,
 				A9D8985324FBEF8A007771A1 /* UI */,
 				A9D8985224FBEF7C007771A1 /* Style */,
@@ -527,6 +551,10 @@
 				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
 				A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */,
+				A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
+				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
+				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */,
@@ -541,6 +569,10 @@
 				A9D8987124FBF8C4007771A1 /* Extensions.swift in Sources */,
 				A9D8986A24FBF196007771A1 /* AppMargins.swift in Sources */,
 				A9D8987524FBFA4A007771A1 /* TransactionCard.swift in Sources */,
+				A9D269DA24FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
+				A9D269DD24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
+				A9D269E424FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				A9D269E124FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9D8986724FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752124F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751F24F59E2700F486FE /* moneyFlowApp.swift in Sources */,

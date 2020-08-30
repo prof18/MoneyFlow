@@ -15,31 +15,39 @@ struct TransactionCard: View {
                 .padding(AppMargins.regular)
                 .background(Color.darkGrey)
                 .cornerRadius(AppMargins.regularCornerRadius)
+                .padding(AppMargins.regular)
             
             
             VStack(alignment: .leading) {
                 
-                Text("self.news.title")
-                    .font(.system(size: 18))
+                Text("Dinner with friends")
+                    .font(AppFonts.subtitle1)
+                    .padding(.top, AppMargins.regular)
                 
-                Spacer()
-                    .frame(height: 9)
                 
-                Text("self.news.getStringTime()")
-                    .font(.system(size: 14))
-                    .italic()
+                Text("21 Jan 2020")
+                    .font(AppFonts.caption)
+                    .padding(.bottom, AppMargins.regular)
+
             }
     
             Spacer()
             
-            Text("self.")
-                .font(.system(size: 14))
-                .italic()
+            Text("-1500 €")
+                .font(AppFonts.body1)
+                .padding(.bottom, AppMargins.regular)
+                .padding(.top, AppMargins.regular)
+                .padding(.trailing, AppMargins.regular)
+
+
         }
-        .padding()
+        
         .background(Color.white)
-        .cornerRadius(15)
+        .cornerRadius(AppMargins.mediumCornerRadius)
         .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
+        .padding(.vertical, AppMargins.xSmall)
+        .padding(.horizontal, AppMargins.regular)
+
         .onTapGesture {
             // TODO
         }

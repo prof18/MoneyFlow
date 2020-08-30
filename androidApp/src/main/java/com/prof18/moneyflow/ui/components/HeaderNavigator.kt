@@ -33,6 +33,7 @@ fun HeaderNavigator(
             })
     ) {
         Text(
+            // TODO: localize
             text = "Latest Transactions",
             style = MaterialTheme.typography.h6,
 //            color = JetsnackTheme.colors.brand,
@@ -43,6 +44,7 @@ fun HeaderNavigator(
         )
 
         Text(
+            // TODO: localize
             text = "See All",
             style = MaterialTheme.typography.subtitle1
         )

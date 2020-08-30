@@ -74,10 +74,10 @@ fun HomeRecapPreview() {
     }
 }
 
-//@Preview
-//@Composable
-//fun HomeRecapDarkPreview() {
-//    MoneyFlowTheme(darkTheme = true) {
-//        HomeRecap()
-//    }
-//}
+@Preview
+@Composable
+fun HomeRecapDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        HomeRecap()
+    }
+}

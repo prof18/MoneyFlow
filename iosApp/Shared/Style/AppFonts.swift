@@ -10,20 +10,43 @@ import SwiftUI
 enum PoppinsFontType: String {
     
     case semibold = "Poppins-Semibold"
-    case bold = "Poppins-ExtraLight"
+    case extraLight = "Poppins-ExtraLight"
     case light = "Poppins-Light"
     case regular = "Poppins-Regular"
     
 }
 
-extension Font {
+struct AppFonts {
     
-//    /// Heading 1
-//    /// Font size           : 27pt     -     1.96em
-//    /// Font weight       : ExtraBold
-//    static var wHeading1: Font {
-//        return Font.custom(PublicSansFontType.extraBold.rawValue, size: 27)
-//    }
+    static var h3: Font {
+        return Font.custom(PoppinsFontType.regular.rawValue, size: 48)
+    }
+    
+    
+    static var h5: Font {
+        return Font.custom(PoppinsFontType.regular.rawValue, size: 24)
+    }
+    
+    static var h6: Font {
+        return Font.custom(PoppinsFontType.semibold.rawValue, size: 20)
+    }
+    
+    static var subtitle1: Font {
+        return Font.custom(PoppinsFontType.semibold.rawValue, size: 16)
+    }
+    
+    static var subtitle2: Font {
+        return Font.custom(PoppinsFontType.light.rawValue, size: 16)
+    }
+
+    static var caption: Font {
+        return Font.custom(PoppinsFontType.extraLight.rawValue, size: 12)
+    }
+    
+    static var body1: Font {
+        return Font.custom(PoppinsFontType.regular.rawValue, size: 16)
+    }
+    
 
 
 }
