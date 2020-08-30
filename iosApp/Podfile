@@ -2,7 +2,7 @@
 
 target 'iosApp (iOS)' do
   # Comment the next line if you don't want to use dynamic frameworks
-  # use_frameworks!
+  use_frameworks!
   platform :ios, '14.0'
 
   # Pods for iosApp (iOS)
@@ -12,7 +12,7 @@ end
 
 target 'iosApp (macOS)' do
   # Comment the next line if you don't want to use dynamic frameworks
-  # use_frameworks!
+  use_frameworks!
   platform :macos, '11.0'
 
 

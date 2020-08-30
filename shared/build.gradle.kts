@@ -23,6 +23,11 @@ kotlin {
     macosX64("macOS")
     android()
 
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+            isStatic = false
+        }
+    }
 
     cocoapods {
         // Configure fields required by CocoaPods.

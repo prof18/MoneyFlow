@@ -3,20 +3,40 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F0E76EF2129F55FB4244E0B /* libPods-iosApp (iOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF6A3FA837AAB076F1D755F /* libPods-iosApp (iOS).a */; };
-		13530757FBC50737AC2FF7F1 /* libPods-iosApp (macOS).a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF97F602EBFD0132FF45F89 /* libPods-iosApp (macOS).a */; };
+		0380F1DD645D82B1EF32EDE7 /* Pods_iosApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */; };
+		3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */; };
+		A9D8985A24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */; };
+		A9D8985B24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */; };
+		A9D8985C24FBF060007771A1 /* Poppins-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985724FBF060007771A1 /* Poppins-Semibold.ttf */; };
+		A9D8985D24FBF060007771A1 /* Poppins-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985724FBF060007771A1 /* Poppins-Semibold.ttf */; };
+		A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985824FBF060007771A1 /* Poppins-Regular.ttf */; };
+		A9D8985F24FBF060007771A1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985824FBF060007771A1 /* Poppins-Regular.ttf */; };
+		A9D8986024FBF060007771A1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985924FBF060007771A1 /* Poppins-Light.ttf */; };
+		A9D8986124FBF060007771A1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9D8985924FBF060007771A1 /* Poppins-Light.ttf */; };
+		A9D8986324FBF12A007771A1 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986224FBF12A007771A1 /* AppFonts.swift */; };
+		A9D8986424FBF12A007771A1 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986224FBF12A007771A1 /* AppFonts.swift */; };
+		A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986524FBF18B007771A1 /* AppColors.swift */; };
+		A9D8986724FBF18B007771A1 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986524FBF18B007771A1 /* AppColors.swift */; };
+		A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986824FBF196007771A1 /* AppMargins.swift */; };
+		A9D8986A24FBF196007771A1 /* AppMargins.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986824FBF196007771A1 /* AppMargins.swift */; };
+		A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9D8986B24FBF22F007771A1 /* Colors.xcassets */; };
+		A9D8986D24FBF22F007771A1 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9D8986B24FBF22F007771A1 /* Colors.xcassets */; };
+		A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986F24FBF8C4007771A1 /* Extensions.swift */; };
+		A9D8987124FBF8C4007771A1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986F24FBF8C4007771A1 /* Extensions.swift */; };
+		A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8987324FBFA4A007771A1 /* TransactionCard.swift */; };
+		A9D8987524FBFA4A007771A1 /* TransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8987324FBFA4A007771A1 /* TransactionCard.swift */; };
 		A9F6751124F59E2700F486FE /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F6751024F59E2700F486FE /* Tests_iOS.swift */; };
 		A9F6751C24F59E2700F486FE /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F6751B24F59E2700F486FE /* Tests_macOS.swift */; };
-		A9F6751E24F59E2700F486FE /* iosAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F524F59E2500F486FE /* iosAppApp.swift */; };
-		A9F6751F24F59E2700F486FE /* iosAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F524F59E2500F486FE /* iosAppApp.swift */; };
+		A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F524F59E2500F486FE /* moneyFlowApp.swift */; };
+		A9F6751F24F59E2700F486FE /* moneyFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F524F59E2500F486FE /* moneyFlowApp.swift */; };
 		A9F6752024F59E2700F486FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F624F59E2500F486FE /* ContentView.swift */; };
 		A9F6752124F59E2700F486FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F624F59E2500F486FE /* ContentView.swift */; };
-		A9F6752224F59E2700F486FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Assets.xcassets */; };
-		A9F6752324F59E2700F486FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Assets.xcassets */; };
+		A9F6752224F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
+		A9F6752324F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,14 +57,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0EF97F602EBFD0132FF45F89 /* libPods-iosApp (macOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp (macOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6591506997A9B675A8CD31 /* Pods-iosApp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		31E5B551E04C0146160D17BD /* Pods-iosApp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (iOS).release.xcconfig"; path = "Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4618554838A84A2CDCD563E1 /* Pods-iosApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
-		5DF6A3FA837AAB076F1D755F /* libPods-iosApp (iOS).a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosApp (iOS).a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9F674F524F59E2500F486FE /* iosAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosAppApp.swift; sourceTree = "<group>"; };
+		A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		A9D8985724FBF060007771A1 /* Poppins-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Semibold.ttf"; sourceTree = "<group>"; };
+		A9D8985824FBF060007771A1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		A9D8985924FBF060007771A1 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		A9D8986224FBF12A007771A1 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		A9D8986524FBF18B007771A1 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		A9D8986824FBF196007771A1 /* AppMargins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMargins.swift; sourceTree = "<group>"; };
+		A9D8986B24FBF22F007771A1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A9D8986F24FBF8C4007771A1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A9D8987324FBFA4A007771A1 /* TransactionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCard.swift; sourceTree = "<group>"; };
+		A9F674F524F59E2500F486FE /* moneyFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moneyFlowApp.swift; sourceTree = "<group>"; };
 		A9F674F624F59E2500F486FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A9F674F724F59E2600F486FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9F674F724F59E2600F486FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A9F674FC24F59E2700F486FE /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F674FF24F59E2700F486FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9F6750424F59E2700F486FE /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +85,7 @@
 		A9F6751724F59E2700F486FE /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F6751B24F59E2700F486FE /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A9F6751D24F59E2700F486FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97CB1356AFA05FFD5597164 /* Pods-iosApp (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).release.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F0E76EF2129F55FB4244E0B /* libPods-iosApp (iOS).a in Frameworks */,
+				3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13530757FBC50737AC2FF7F1 /* libPods-iosApp (macOS).a in Frameworks */,
+				0380F1DD645D82B1EF32EDE7 /* Pods_iosApp__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +123,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9D8985224FBEF7C007771A1 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8986224FBF12A007771A1 /* AppFonts.swift */,
+				A9D8986524FBF18B007771A1 /* AppColors.swift */,
+				A9D8986824FBF196007771A1 /* AppMargins.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		A9D8985324FBEF8A007771A1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8987224FBF92F007771A1 /* Components */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A9D8985424FBEFF8007771A1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A9F674F724F59E2600F486FE /* Images.xcassets */,
+				A9D8986B24FBF22F007771A1 /* Colors.xcassets */,
+				A9D8985524FBEFFF007771A1 /* Font */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		A9D8985524FBEFFF007771A1 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8985724FBF060007771A1 /* Poppins-Semibold.ttf */,
+				A9D8985624FBF060007771A1 /* Poppins-ExtraLight.ttf */,
+				A9D8985924FBF060007771A1 /* Poppins-Light.ttf */,
+				A9D8985824FBF060007771A1 /* Poppins-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		A9D8986E24FBF8A6007771A1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8986F24FBF8C4007771A1 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A9D8987224FBF92F007771A1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A9D8987324FBFA4A007771A1 /* TransactionCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A9F674EF24F59E2500F486FE = {
 			isa = PBXGroup;
 			children = (
+				A9D8985424FBEFF8007771A1 /* Assets */,
 				A9F674F424F59E2500F486FE /* Shared */,
 				A9F674FE24F59E2700F486FE /* iOS */,
 				A9F6750524F59E2700F486FE /* macOS */,
@@ -110,9 +196,11 @@
 		A9F674F424F59E2500F486FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A9F674F524F59E2500F486FE /* iosAppApp.swift */,
+				A9D8986E24FBF8A6007771A1 /* Utils */,
+				A9D8985324FBEF8A007771A1 /* UI */,
+				A9D8985224FBEF7C007771A1 /* Style */,
+				A9F674F524F59E2500F486FE /* moneyFlowApp.swift */,
 				A9F674F624F59E2500F486FE /* ContentView.swift */,
-				A9F674F724F59E2600F486FE /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -166,8 +254,8 @@
 		BE9418FEF43514EEA53F6186 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5DF6A3FA837AAB076F1D755F /* libPods-iosApp (iOS).a */,
-				0EF97F602EBFD0132FF45F89 /* libPods-iosApp (macOS).a */,
+				41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */,
+				AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -180,7 +268,6 @@
 				4618554838A84A2CDCD563E1 /* Pods-iosApp (macOS).debug.xcconfig */,
 				D97CB1356AFA05FFD5597164 /* Pods-iosApp (macOS).release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -195,6 +282,7 @@
 				A9F674F824F59E2700F486FE /* Sources */,
 				A9F674F924F59E2700F486FE /* Frameworks */,
 				A9F674FA24F59E2700F486FE /* Resources */,
+				71D883D3C92049BBC444B233 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,6 +301,7 @@
 				A9F6750024F59E2700F486FE /* Sources */,
 				A9F6750124F59E2700F486FE /* Frameworks */,
 				A9F6750224F59E2700F486FE /* Resources */,
+				753EB4E90D0A5743A5612216 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -310,7 +399,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9F6752224F59E2700F486FE /* Assets.xcassets in Resources */,
+				A9D8985C24FBF060007771A1 /* Poppins-Semibold.ttf in Resources */,
+				A9D8986024FBF060007771A1 /* Poppins-Light.ttf in Resources */,
+				A9D8985A24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */,
+				A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */,
+				A9F6752224F59E2700F486FE /* Images.xcassets in Resources */,
+				A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +412,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9F6752324F59E2700F486FE /* Assets.xcassets in Resources */,
+				A9D8985D24FBF060007771A1 /* Poppins-Semibold.ttf in Resources */,
+				A9D8986124FBF060007771A1 /* Poppins-Light.ttf in Resources */,
+				A9D8985B24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */,
+				A9D8986D24FBF22F007771A1 /* Colors.xcassets in Resources */,
+				A9F6752324F59E2700F486FE /* Images.xcassets in Resources */,
+				A9D8985F24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +460,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		71D883D3C92049BBC444B233 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		753EB4E90D0A5743A5612216 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D686182553DEEF33E30D5CFA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -390,8 +523,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D8986324FBF12A007771A1 /* AppFonts.swift in Sources */,
+				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
+				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
+				A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */,
+				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,
-				A9F6751E24F59E2700F486FE /* iosAppApp.swift in Sources */,
+				A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,8 +537,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9D8986424FBF12A007771A1 /* AppFonts.swift in Sources */,
+				A9D8987124FBF8C4007771A1 /* Extensions.swift in Sources */,
+				A9D8986A24FBF196007771A1 /* AppMargins.swift in Sources */,
+				A9D8987524FBFA4A007771A1 /* TransactionCard.swift in Sources */,
+				A9D8986724FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752124F59E2700F486FE /* ContentView.swift in Sources */,
-				A9F6751F24F59E2700F486FE /* iosAppApp.swift in Sources */,
+				A9F6751F24F59E2700F486FE /* moneyFlowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,12 +699,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2LS7B6UW98;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.iosApp;
 				PRODUCT_NAME = iosApp;
 				SDKROOT = iphoneos;
@@ -579,12 +720,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2LS7B6UW98;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.iosApp;
 				PRODUCT_NAME = iosApp;
 				SDKROOT = iphoneos;

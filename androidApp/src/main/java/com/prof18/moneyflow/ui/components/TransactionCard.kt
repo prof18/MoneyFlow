@@ -29,7 +29,6 @@ fun TransactionCard(
 ) {
 
     Card(
-        backgroundColor = AppColors.lightGrey,
         elevation = 8.dp,
         modifier = Modifier
             .fillMaxWidth()
@@ -58,8 +57,9 @@ fun TransactionCard(
                         .padding(
                             AppMargins.regular,
                         ),
+                    // TODO: find a better color for the dark mode
                     backgroundColor = AppColors.darkGrey,
-                    shape = RoundedCornerShape(8.dp),
+                    shape = RoundedCornerShape(AppMargins.regularCornerRadius),
                 ) {
                     Icon(
                         asset = vectorResource(id = R.drawable.ic_hamburger),
