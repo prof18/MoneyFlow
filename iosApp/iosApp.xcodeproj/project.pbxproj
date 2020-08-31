@@ -735,7 +735,7 @@
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
 				PRODUCT_NAME = iosApp;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -756,7 +756,7 @@
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.iosApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
 				PRODUCT_NAME = iosApp;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

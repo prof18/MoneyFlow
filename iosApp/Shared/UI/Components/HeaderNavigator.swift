@@ -18,7 +18,7 @@ struct HeaderNavigator: View {
                 // TODO: localize
                 Text("See All")
                     .font(AppFonts.subtitle1)
-                Image("angle-right")
+                Image(systemName: "chevron.right")
             }
         }
         .onTapGesture(perform: {

@@ -12,9 +12,9 @@ struct TransactionCard: View {
         HStack() {
             
             Image("hamburger")
-                .padding(AppMargins.regular)
+                .padding(AppMargins.small)
                 .background(Color.darkGrey)
-                .cornerRadius(AppMargins.regularCornerRadius)
+                .cornerRadius(AppMargins.regular)
                 .padding(AppMargins.regular)
             
             
@@ -42,12 +42,6 @@ struct TransactionCard: View {
 
         }
         
-        .background(Color.white)
-        .cornerRadius(AppMargins.mediumCornerRadius)
-        .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)
-        .padding(.vertical, AppMargins.xSmall)
-        .padding(.horizontal, AppMargins.regular)
-
         .onTapGesture {
             // TODO
         }

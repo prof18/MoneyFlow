@@ -18,28 +18,23 @@ struct HomeScreen: View {
                 HomeRecap()
                 HeaderNavigator()
                 
-                ScrollView {
-                    LazyVStack {
-                        ForEach(0...5, id: \.self) { _ in
-                            TransactionCard()
-                        }
+                List {
+                    ForEach(0...5, id: \.self) { _ in
+                        TransactionCard()
+                            .listRowInsets(EdgeInsets())
                     }
                 }
+                .listStyle(PlainListStyle())
+                
             }
             .navigationBarTitle(Text("Wallet"), displayMode: .automatic)
             .navigationBarItems(trailing: Button(action: {
                 print("tapped")
             }) {
-                Image(systemName: "plus.circle.fill")
-                    .foregroundColor(Color.primary)
+                Text("Add transaction")
                 
             })
-            
-            
-            
         }
-        
-        
     }
 }
 
