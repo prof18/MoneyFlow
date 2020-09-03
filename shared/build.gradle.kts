@@ -49,12 +49,14 @@ kotlin {
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.Coroutines.common)
                 implementation(Deps.stately)
+                implementation(Deps.koinCore)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(Deps.koinTest)
             }
         }
         val androidMain by getting {

@@ -2,6 +2,7 @@ package com.prof18.moneyflow.ui.home
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.ScrollableColumn
+import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -11,6 +12,8 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.style.AppMargins
@@ -18,22 +21,28 @@ import com.prof18.moneyflow.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.components.HeaderNavigator
 import com.prof18.moneyflow.ui.components.HomeRecap
 import com.prof18.moneyflow.ui.components.TransactionCard
+import presentation.home.HomeModel
+import presentation.home.HomePresenter
+
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(homePresenter: HomePresenter) {
+
+    val homeState by homePresenter.observeHomeModel().collectAsState(initial = HomeModel.Loading)
 
     Scaffold(
         bodyContent = { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding)) {
-                HomeRecap()
-                HeaderNavigator()
-
-                ScrollableColumn() {
-                    for (i in 0..5) {
-                        TransactionCard()
-                        Divider()
-                    }
-                }
+                Text(text = homeState.toString())
+//                HomeRecap()
+//                HeaderNavigator()
+//
+//                ScrollableColumn() {
+//                    for (i in 0..5) {
+//                        TransactionCard()
+//                        Divider()
+//                    }
+//                }
             }
         },
 
@@ -112,20 +121,20 @@ fun HomeScreen() {
 
  */
 
-
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    MoneyFlowTheme {
-        HomeScreen()
-    }
-}
-
-@Preview
-@Composable
-fun HomeScreenDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        HomeScreen()
-    }
-}
+//
+//@Preview
+//@Composable
+//fun HomeScreenPreview() {
+//    MoneyFlowTheme {
+//        HomeScreen()
+//    }
+//}
+//
+//@Preview
+//@Composable
+//fun HomeScreenDarkPreview() {
+//    MoneyFlowTheme(darkTheme = true) {
+//        HomeScreen()
+//    }
+//}
 

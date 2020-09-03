@@ -17,6 +17,14 @@ class MoneyRepositoryFake : MoneyRepository {
                 monthlyExpenses = 200
             )
         )
+        kotlinx.coroutines.delay(5000)
+        emit(
+            BalanceRecap(
+                totalBalance = 1518888888,
+                monthlyIncome = 300,
+                monthlyExpenses = 200
+            )
+        )
     }
 
     override fun getLatestTransactions(): Flow<List<Transaction>> = flow {

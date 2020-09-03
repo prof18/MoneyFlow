@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import shared
 
-struct HomeScreen: View {
+struct HomeScreen: View, HomeView {
     
     var body: some View {
         

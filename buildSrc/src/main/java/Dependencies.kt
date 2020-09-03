@@ -1,10 +1,10 @@
 object Versions {
     const val kotlin = "1.4.0"
     const val kotlinCoroutines = "1.3.9-native-mt"
-    const val koin = "3.0.0-alpha-2"
+    const val koin = "3.0.1-alpha-2"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-alpha01"
+    const val compose = "1.0.0-alpha02"
     const val junit = "4.12"
     const val coroutines = "1.3.9-native-mt"
     const val sqlDelight = "1.4.1"
@@ -14,7 +14,8 @@ object Versions {
 object Deps {
 
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-
+    const val koinCore = "org.koin:koin-core:${Versions.koin}"
+    const val koinTest = "org.koin:koin-test:${Versions.koin}"
 
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
 
