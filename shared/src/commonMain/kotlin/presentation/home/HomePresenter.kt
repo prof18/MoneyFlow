@@ -18,8 +18,6 @@ class HomePresenter(
     private val coroutineScope: CoroutineScope = MainScope() // we provide a default value for iOs.
 ) : BasePresenter<HomeView>() {
 
-    //     private val favorites = MutableStateFlow<Set<String>>(setOf())
-
     private val homeModel = MutableStateFlow<HomeModel>(HomeModel.Loading)
 
     fun observeHomeModel(): Flow<HomeModel> = homeModel
@@ -30,12 +28,7 @@ class HomePresenter(
     }
 
     //    @InternalCoroutinesApi
-    fun compute() {
-
-//        moneyRepository.getBalanceRecap()
-
-        // TOD
-
+    fun computeHomeData() {
         val latestTransactionFlow = moneyRepository.getLatestTransactions()
         val balanceRecapFlow = moneyRepository.getBalanceRecap()
         coroutineScope.launch {
@@ -48,14 +41,11 @@ class HomePresenter(
                 homeModel.value = it
             }
         }
-
     }
-
 
     override fun onViewDetached() {
         super.onViewDetached()
         coroutineScope.cancel()
     }
-
 }
 

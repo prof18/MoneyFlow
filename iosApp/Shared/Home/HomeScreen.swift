@@ -19,6 +19,7 @@ struct HomeScreen: View, HomeView {
                 HomeRecap()
                 HeaderNavigator()
                 
+                // TODO: add lazy list
                 List {
                     ForEach(0...5, id: \.self) { _ in
                         TransactionCard()
