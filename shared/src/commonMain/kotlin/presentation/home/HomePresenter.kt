@@ -27,7 +27,6 @@ class HomePresenter(
         // TODO: start some action?
     }
 
-    //    @InternalCoroutinesApi
     fun computeHomeData() {
         val latestTransactionFlow = moneyRepository.getLatestTransactions()
         val balanceRecapFlow = moneyRepository.getBalanceRecap()
