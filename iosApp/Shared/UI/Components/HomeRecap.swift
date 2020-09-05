@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import shared
 
 struct HomeRecap: View {
+    
+    var balanceRecap: BalanceRecap
+    
     var body: some View {
         VStack {
             // TODO: localize
@@ -19,7 +23,7 @@ struct HomeRecap: View {
                 Text("€")
                     .font(AppFonts.h5)
                 
-                Text("1234")
+                Text("\(balanceRecap.totalBalance)")
                     .font(AppFonts.h3)
                 
             }
@@ -30,7 +34,7 @@ struct HomeRecap: View {
             HStack {
                 
                 VStack(alignment: .leading) {
-                    Text("-350 €")
+                    Text("-\(balanceRecap.monthlyExpenses) €")
                         .font(AppFonts.h5)
                     
                     Text("Expenses")
@@ -40,7 +44,7 @@ struct HomeRecap: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text("+1300 €")
+                    Text("+\(balanceRecap.monthlyIncome) €")
                         .font(AppFonts.h5)
                     
                     Text("Income")
@@ -55,8 +59,9 @@ struct HomeRecap: View {
     }
 }
 
-struct HomeRecap_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeRecap()
-    }
-}
+// TODO: restore preview
+//struct HomeRecap_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeRecap()
+//    }
+//}

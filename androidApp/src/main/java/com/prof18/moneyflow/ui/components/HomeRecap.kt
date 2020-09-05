@@ -9,9 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.style.AppMargins
 import com.prof18.moneyflow.style.MoneyFlowTheme
+import domain.model.BalanceRecap
 
 @Composable
-fun HomeRecap() {
+fun HomeRecap(
+    balanceRecap: BalanceRecap
+) {
+
+    // TODO: fix string handling
 
     Column(
         modifier = Modifier.fillMaxWidth()
@@ -36,7 +41,7 @@ fun HomeRecap() {
             Spacer(Modifier.preferredWidth(AppMargins.small))
 
             Text(
-                text = "1230",
+                text = balanceRecap.totalBalance.toString(),
                 style = MaterialTheme.typography.h3
             )
         }
@@ -48,11 +53,11 @@ fun HomeRecap() {
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Column() {
-                Text(text = "-350 €", style = MaterialTheme.typography.h5)
+                Text(text = "-${balanceRecap.monthlyExpenses} €", style = MaterialTheme.typography.h5)
                 Text(text = "Expense", style = MaterialTheme.typography.subtitle2)
             }
             Column() {
-                Text(text = "+1300 €", style = MaterialTheme.typography.h5)
+                Text(text = "+${balanceRecap.monthlyIncome} €", style = MaterialTheme.typography.h5)
                 Text(
                     text = "Income",
                     style = MaterialTheme.typography.subtitle2,
@@ -65,19 +70,20 @@ fun HomeRecap() {
 
 }
 
-
-@Preview
-@Composable
-fun HomeRecapPreview() {
-    MoneyFlowTheme {
-        HomeRecap()
-    }
-}
-
-@Preview
-@Composable
-fun HomeRecapDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        HomeRecap()
-    }
-}
+// TODO: restore preview
+//
+//@Preview
+//@Composable
+//fun HomeRecapPreview() {
+//    MoneyFlowTheme {
+//        HomeRecap()
+//    }
+//}
+//
+//@Preview
+//@Composable
+//fun HomeRecapDarkPreview() {
+//    MoneyFlowTheme(darkTheme = true) {
+//        HomeRecap()
+//    }
+//}

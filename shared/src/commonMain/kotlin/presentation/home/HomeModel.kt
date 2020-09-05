@@ -15,6 +15,4 @@ sealed class HomeModel {
             is HomeState -> "Home State, $this"
         }
     }
-
-
 }

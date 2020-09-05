@@ -37,6 +37,10 @@
 		A9D8987124FBF8C4007771A1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986F24FBF8C4007771A1 /* Extensions.swift */; };
 		A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8987324FBFA4A007771A1 /* TransactionCard.swift */; };
 		A9D8987524FBFA4A007771A1 /* TransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8987324FBFA4A007771A1 /* TransactionCard.swift */; };
+		A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E68AB225037D4F00851990 /* HomeViewModel.swift */; };
+		A9E68AB425037D4F00851990 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E68AB225037D4F00851990 /* HomeViewModel.swift */; };
+		A9E68AB62503B2AA00851990 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E68AB52503B2AA00851990 /* Loader.swift */; };
+		A9E68AB72503B2AA00851990 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E68AB52503B2AA00851990 /* Loader.swift */; };
 		A9F6751124F59E2700F486FE /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F6751024F59E2700F486FE /* Tests_iOS.swift */; };
 		A9F6751C24F59E2700F486FE /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F6751B24F59E2700F486FE /* Tests_macOS.swift */; };
 		A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F524F59E2500F486FE /* moneyFlowApp.swift */; };
@@ -83,6 +87,8 @@
 		A9D8986B24FBF22F007771A1 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A9D8986F24FBF8C4007771A1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A9D8987324FBFA4A007771A1 /* TransactionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCard.swift; sourceTree = "<group>"; };
+		A9E68AB225037D4F00851990 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A9E68AB52503B2AA00851990 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A9F674F524F59E2500F486FE /* moneyFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moneyFlowApp.swift; sourceTree = "<group>"; };
 		A9F674F624F59E2500F486FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A9F674F724F59E2600F486FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */,
+				A9E68AB225037D4F00851990 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 				A9D8987324FBFA4A007771A1 /* TransactionCard.swift */,
 				A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */,
 				A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */,
+				A9E68AB52503B2AA00851990 /* Loader.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -554,7 +562,9 @@
 				A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
 				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
+				A9E68AB62503B2AA00851990 /* Loader.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */,
@@ -572,7 +582,9 @@
 				A9D269DA24FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
 				A9D269DD24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
 				A9D269E424FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				A9E68AB425037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A9D269E124FC311D00D2B4AE /* HomeScreen.swift in Sources */,
+				A9E68AB72503B2AA00851990 /* Loader.swift in Sources */,
 				A9D8986724FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752124F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751F24F59E2700F486FE /* moneyFlowApp.swift in Sources */,

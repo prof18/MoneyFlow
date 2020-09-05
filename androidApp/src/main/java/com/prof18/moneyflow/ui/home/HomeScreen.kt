@@ -5,6 +5,7 @@ import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -13,36 +14,44 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.viewinterop.viewModel
 import com.prof18.moneyflow.style.AppMargins
-import com.prof18.moneyflow.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.HomeViewModel
 import com.prof18.moneyflow.ui.components.HeaderNavigator
 import com.prof18.moneyflow.ui.components.HomeRecap
 import com.prof18.moneyflow.ui.components.TransactionCard
 import presentation.home.HomeModel
-import presentation.home.HomePresenter
-
 
 @Composable
-fun HomeScreen(homePresenter: HomePresenter) {
+fun HomeScreen() {
 
-    val homeState by homePresenter.observeHomeModel().collectAsState(initial = HomeModel.Loading)
+    val viewModel: HomeViewModel = viewModel()
+
+    val homeModel by viewModel.homeLiveData.observeAsState()
 
     Scaffold(
         bodyContent = { innerPadding ->
-            Column(modifier = Modifier.padding(innerPadding)) {
-                Text(text = homeState.toString())
-//                HomeRecap()
-//                HeaderNavigator()
-//
-//                ScrollableColumn() {
-//                    for (i in 0..5) {
-//                        TransactionCard()
-//                        Divider()
-//                    }
-//                }
+
+            when (homeModel) {
+                is HomeModel.Loading -> CircularProgressIndicator()
+                is HomeModel.HomeState -> {
+
+                    val homeState = (homeModel as HomeModel.HomeState)
+
+                    Column(modifier = Modifier.padding(innerPadding)) {
+
+                        HomeRecap(homeState.balanceRecap)
+                        HeaderNavigator()
+
+                        LazyColumnFor(items = homeState.latestTransactions) {
+                            TransactionCard(it)
+                            Divider()
+                        }
+                    }
+                }
+                is HomeModel.Error -> Text("Something wrong here!")
             }
         },
 

@@ -19,13 +19,11 @@ import com.prof18.moneyflow.R
 import com.prof18.moneyflow.style.AppColors
 import com.prof18.moneyflow.style.AppMargins
 import com.prof18.moneyflow.style.MoneyFlowTheme
-
-
-// TODO: pass real data
+import domain.model.Transaction
 
 @Composable
 fun TransactionCard(
-
+    transaction: Transaction
 ) {
 
     Row(
@@ -63,19 +61,20 @@ fun TransactionCard(
             ) {
 
                 Text(
-                    text = "Dinner with friends in a very special Pellentesque habitant morbi tristique senectus et netus.",
+                    text = transaction.title,
                     style = MaterialTheme.typography.subtitle1
                 )
 
                 Text(
-                    text = "21 Jan 2020",
+                    text = transaction.formattedDate,
                     style = MaterialTheme.typography.caption
                 )
             }
         }
 
         Text(
-            text = "-1500 €",
+            // TODO: fix this
+            text = "-${transaction.amount} €",
             style = MaterialTheme.typography.body1,
             modifier = Modifier
                 .weight(2f)
@@ -90,19 +89,19 @@ fun TransactionCard(
 
 }
 
-
-@Preview
-@Composable
-fun TransactionPreview() {
-    MoneyFlowTheme {
-        TransactionCard()
-    }
-}
-
-@Preview
-@Composable
-fun TransactionDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        TransactionCard()
-    }
-}
+// TODO: restore preview
+//@Preview
+//@Composable
+//fun TransactionPreview() {
+//    MoneyFlowTheme {
+//        TransactionCard()
+//    }
+//}
+//
+//@Preview
+//@Composable
+//fun TransactionDarkPreview() {
+//    MoneyFlowTheme(darkTheme = true) {
+//        TransactionCard()
+//    }
+//}

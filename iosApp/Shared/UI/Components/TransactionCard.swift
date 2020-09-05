@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import shared
 
 struct TransactionCard: View {
+    
+    var transaction: shared.Transaction
+    
     var body: some View {
         HStack() {
             
@@ -20,12 +24,12 @@ struct TransactionCard: View {
             
             VStack(alignment: .leading) {
                 
-                Text("Dinner with friends")
+                Text(transaction.title)
                     .font(AppFonts.subtitle1)
                     .padding(.top, AppMargins.regular)
                 
                 
-                Text("21 Jan 2020")
+                Text(transaction.formattedDate)
                     .font(AppFonts.caption)
                     .padding(.bottom, AppMargins.regular)
 
@@ -33,7 +37,8 @@ struct TransactionCard: View {
     
             Spacer()
             
-            Text("-1500 €")
+            // TODO: fix this
+            Text("-\(transaction.amount) €")
                 .font(AppFonts.body1)
                 .padding(.bottom, AppMargins.regular)
                 .padding(.top, AppMargins.regular)
@@ -48,8 +53,9 @@ struct TransactionCard: View {
     }
 }
 
-struct TransactionCard_Previews: PreviewProvider {
-    static var previews: some View {
-        TransactionCard()
-    }
-}
+// TODO: restore preview
+//struct TransactionCard_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TransactionCard()
+//    }
+//}

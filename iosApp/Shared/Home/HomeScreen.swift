@@ -8,7 +8,9 @@
 import SwiftUI
 import shared
 
-struct HomeScreen: View, HomeView {
+struct HomeScreen: View {
+    
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     
     var body: some View {
         
@@ -16,18 +18,21 @@ struct HomeScreen: View, HomeView {
             
             VStack {
                 
-                HomeRecap()
-                HeaderNavigator()
-                
-                // TODO: add lazy list
-                List {
-                    ForEach(0...5, id: \.self) { _ in
-                        TransactionCard()
-                            .listRowInsets(EdgeInsets())
+                if (viewModel.homeModel is HomeModel.Loading) {
+                    Loader().edgesIgnoringSafeArea(.all)
+                } else if (viewModel.homeModel is HomeModel.HomeState) {
+                    
+                    HomeRecap(balanceRecap: (viewModel.homeModel as! HomeModel.HomeState).balanceRecap)
+                    HeaderNavigator()
+                    
+                    List {
+                        ForEach((viewModel.homeModel as! HomeModel.HomeState).latestTransactions, id: \.self) { transaction in
+                            TransactionCard(transaction: transaction)
+                                 .listRowInsets(EdgeInsets())
+                        }
                     }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
-                
             }
             .navigationBarTitle(Text("Wallet"), displayMode: .automatic)
             .navigationBarItems(trailing: Button(action: {
@@ -36,6 +41,11 @@ struct HomeScreen: View, HomeView {
                 Text("Add transaction")
                 
             })
+            .onAppear {
+                self.viewModel.startObserving()
+            }.onDisappear {
+                self.viewModel.stopObserving()
+            }
         }
     }
 }
