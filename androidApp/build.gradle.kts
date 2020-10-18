@@ -36,7 +36,7 @@ android {
     }
 
     buildFeatures { compose = true }
-    buildToolsVersion = "30.0.1"
+    buildToolsVersion = "30.0.2"
 }
 
 dependencies {

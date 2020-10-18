@@ -17,6 +17,26 @@ repositories {
     jcenter()
     mavenCentral()
 }
+
+android {
+    compileSdkVersion(30)
+    defaultConfig {
+        minSdkVersion(23)
+        targetSdkVersion(30)
+        versionCode = 1
+        versionName = "1.0"
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
 kotlin {
     ios()
 
@@ -80,24 +100,7 @@ kotlin {
         }
     }
 }
-android {
-    compileSdkVersion(29)
-    defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-}
+
 
 sqldelight {
     database("MoneyFlowDB") {

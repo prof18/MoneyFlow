@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0380F1DD645D82B1EF32EDE7 /* Pods_iosApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */; };
 		3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */; };
+		A930B87F253B800500CB92DF /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B87E253B800500CB92DF /* Koin.swift */; };
+		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */; };
 		A9D269DA24FC28F900D2B4AE /* HeaderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */; };
 		A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */; };
@@ -49,6 +51,7 @@
 		A9F6752124F59E2700F486FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F624F59E2500F486FE /* ContentView.swift */; };
 		A9F6752224F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
 		A9F6752324F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
+		A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FEB378253CCAD6002DEB65 /* FilePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,8 @@
 		31E5B551E04C0146160D17BD /* Pods-iosApp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (iOS).release.xcconfig"; path = "Target Support Files/Pods-iosApp (iOS)/Pods-iosApp (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4618554838A84A2CDCD563E1 /* Pods-iosApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
+		A930B87E253B800500CB92DF /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
+		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNavigator.swift; sourceTree = "<group>"; };
 		A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecap.swift; sourceTree = "<group>"; };
 		A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -103,6 +108,7 @@
 		A9F6751724F59E2700F486FE /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9F6751B24F59E2700F486FE /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A9F6751D24F59E2700F486FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9FEB378253CCAD6002DEB65 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
 		AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97CB1356AFA05FFD5597164 /* Pods-iosApp (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).release.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +147,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A930B879253B7FFB00CB92DF /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				A930B87E253B800500CB92DF /* Koin.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		A9D269DE24FC310F00D2B4AE /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +219,8 @@
 				A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */,
 				A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */,
 				A9E68AB52503B2AA00851990 /* Loader.swift */,
+				A930B884253B8EED00CB92DF /* ShareSheet.swift */,
+				A9FEB378253CCAD6002DEB65 /* FilePicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -227,6 +243,7 @@
 		A9F674F424F59E2500F486FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A930B879253B7FFB00CB92DF /* DI */,
 				A9D269DE24FC310F00D2B4AE /* Home */,
 				A9D8986E24FBF8A6007771A1 /* Utils */,
 				A9D8985324FBEF8A007771A1 /* UI */,
@@ -556,7 +573,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9D8986324FBF12A007771A1 /* AppFonts.swift in Sources */,
+				A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */,
 				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
+				A930B87F253B800500CB92DF /* Koin.swift in Sources */,
+				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
 				A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */,
 				A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,

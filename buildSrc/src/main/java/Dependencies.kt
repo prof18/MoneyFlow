@@ -1,13 +1,13 @@
 object Versions {
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.4.10"
     const val kotlinCoroutines = "1.3.9-native-mt"
     const val koin = "3.0.1-alpha-2"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-alpha02"
+    const val compose = "1.0.0-alpha04"
     const val junit = "4.12"
     const val coroutines = "1.3.9-native-mt"
-    const val sqlDelight = "1.4.1"
+    const val sqlDelight = "1.4.4"
     const val stately = "1.1.0"
 }
 

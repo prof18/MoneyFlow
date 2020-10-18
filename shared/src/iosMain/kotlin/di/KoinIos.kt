@@ -1,5 +1,7 @@
 package di
 
+import com.prof18.moneyflow.db.MoneyFlowDB
+import com.squareup.sqldelight.db.SqlDriver
 import di.initKoin
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.getOriginalKotlinClass
@@ -9,6 +11,9 @@ import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 import platform.Foundation.NSUserDefaults
+import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
+import org.koin.core.context.stopKoin
+import org.koin.core.qualifier.named
 
 fun initKoinIos(
 //    userDefaults: NSUserDefaults,
@@ -24,10 +29,18 @@ fun initKoinIos(
 actual val platformModule = module {
 
     // TODO: add platform specific stuff
+//    scope(named("database")) {
+//        scoped<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
+//    }
 
-//    single<SqlDriver> { NativeSqliteDriver(KaMPKitDb.Schema, "KampkitDb") }
-
+    scope(named<SqlDriver>()) {
+        scoped<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
     }
+
+//    single<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
+//
+//    }
+}
 
 fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?, parameter: Any): Any {
     val kClazz = getOriginalKotlinClass(objCClass)!!
@@ -44,3 +57,8 @@ fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?): Any {
     return get(kClazz, qualifier, null)
 }
 
+fun Koin.getFromScope(objCClass: ObjCClass, scopeID: String): Any {
+    val kClazz = getOriginalKotlinClass(objCClass)!!
+    val scope = getScope(scopeID)
+    return scope.get(kClazz)
+}
