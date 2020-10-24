@@ -11,7 +11,7 @@ import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 import platform.Foundation.NSUserDefaults
-import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
+import database.DatabaseHelper
 import org.koin.core.context.stopKoin
 import org.koin.core.qualifier.named
 
@@ -24,8 +24,9 @@ fun initKoinIos(
 )
 
 actual val platformModule = module {
-    scope(named<SqlDriver>()) {
-        scoped<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
+    single<MoneyFlowDB> {
+        DatabaseHelper.setupDatabase()
+        DatabaseHelper.instance
     }
 }
 

@@ -10,7 +10,7 @@ import shared
 
 struct TransactionCard: View {
     
-    var transaction: shared.Transaction
+    var transaction: MoneyTransaction
     
     var body: some View {
         HStack() {

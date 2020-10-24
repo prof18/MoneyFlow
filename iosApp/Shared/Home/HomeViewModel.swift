@@ -12,9 +12,9 @@ class HomeViewModel: ObservableObject {
     
     @Published var homeModel: HomeModel = HomeModel.Loading()
     
-    lazy var useCase = HomeUseCaseImpl(moneyRepository: MoneyRepositoryFake(), viewUpdate: { [weak self] model in
-        self?.homeModel = model
-    })
+
+    
+    var useCase: HomeUseCaseImpl?
     
     lazy var applicationDocumentsDirectory: URL = {
             // The directory the application uses to store the Core Data store file. This code uses a directory named "com.appcoda.CoreDataDemo" in the application's documents Application Support directory.
@@ -53,10 +53,14 @@ class HomeViewModel: ObservableObject {
     
     func replaceDB(url: URL) {
         
-        var databaseSource = koin.getFromScope(objCClass: DatabaseSource.self, scopeID: "databaseScope") as! DatabaseSource
-        databaseSource.close()
+        var databaseSource = koin.get(objCClass: DatabaseSource.self, parameter: "HomeViewModel") as! DatabaseSource
+//        databaseSource.close()
         
-        koin.recreateDatabaseScope()
+        let databaseHelper = DatabaseHelper()
+        
+        databaseHelper.dbClear()
+        
+
         
         
         let fileURL = try! FileManager.default
@@ -68,7 +72,9 @@ class HomeViewModel: ObservableObject {
         print("here")
         
 
-        databaseSource = koin.getFromScope(objCClass: DatabaseSource.self, scopeID: "databaseScope") as! DatabaseSource
+        
+        databaseHelper.setupDatabase()
+        databaseSource.dbRef = databaseHelper.instance
     
         let items = databaseSource.getData()
     
@@ -84,6 +90,8 @@ class HomeViewModel: ObservableObject {
         
         print(" ")
         
+        self.useCase?.computeData()
+        
         
         
         
@@ -93,9 +101,14 @@ class HomeViewModel: ObservableObject {
     
     func startObserving() {
         
-//        let databaseSource = koin.get(objCClass: DatabaseSource.self, parameter: "HomeViewModel") as! DatabaseSource
+        let databaseSource = koin.get(objCClass: DatabaseSource.self, parameter: "HomeViewModel") as! DatabaseSource
+
+        useCase = HomeUseCaseImpl(moneyRepository: MoneyRepositoryImpl(dbSource: databaseSource), viewUpdate: { [weak self] model in
+            self?.homeModel = model
+        })
+        
     
-        let databaseSource = koin.getFromScope(objCClass: DatabaseSource.self, scopeID: "databaseScope") as! DatabaseSource
+//        let databaseSource = koin.getFromScope(objCClass: DatabaseSource.self, scopeID: "databaseScope") as! DatabaseSource
 
         let items = databaseSource.getData()
     
@@ -115,10 +128,10 @@ class HomeViewModel: ObservableObject {
         print(applicationDocumentsDirectory.path)
 
         
-        self.useCase.computeData()
+        self.useCase?.computeData()
     }
     
     func stopObserving() {
-        self.useCase.onDestroy()
+        self.useCase?.onDestroy()
     }
 }

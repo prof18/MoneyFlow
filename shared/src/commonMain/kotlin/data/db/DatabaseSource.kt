@@ -12,11 +12,14 @@ import mapToList
 // TODO: will change to internal
 
 class DatabaseSource (
-    private val sqlDriver: SqlDriver,
+    // not private and mutable to close and reopen the database at runtime
+    var dbRef: MoneyFlowDB,
     private val backgroundDispatcher: CoroutineDispatcher
 ) {
 
-    private var dbRef: MoneyFlowDB = createQueryWrapper(sqlDriver)
+
+
+//    private var dbRef: MoneyFlowDB = createQueryWrapper(sqlDriver)
 
     fun selectAllTransaction(): Flow<List<Transactions>> =
         dbRef.transactionQueries
@@ -48,12 +51,10 @@ class DatabaseSource (
      */
 
     // TODO: delete and change to flow
-//    fun getData(): List<Breed> {
-//        return dbRef.tableQueries.selectAll().executeAsList()
-//    }
-
-
-    fun close() {
-        sqlDriver.close()
+    fun getData(): List<Transactions> {
+        return dbRef.transactionQueries.selectAll().executeAsList()
     }
+
+
+
 }

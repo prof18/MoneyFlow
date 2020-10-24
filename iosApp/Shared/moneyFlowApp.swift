@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import shared
 
 @main
 struct moneyFlowApp: App {
