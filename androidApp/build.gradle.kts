@@ -61,6 +61,8 @@ dependencies {
     implementation(Deps.Compose.runtimeLivedata)
     implementation(Deps.Compose.tooling)
     implementation(Deps.Compose.runtimeLiveData)
+    implementation(Deps.koinCore)
+    implementation(Deps.koinAndroidViewModel)
 
     androidTestImplementation(Deps.Compose.test)
     androidTestImplementation(Deps.Compose.uiTest)

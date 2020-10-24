@@ -25,9 +25,9 @@ fun HeaderNavigator(
 ) {
 
     Row(
-        verticalGravity = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .preferredHeightIn(minHeight = 56.dp)
+            .preferredHeightIn(min = 56.dp)
             .clickable(onClick = {
                 onClick()
             })

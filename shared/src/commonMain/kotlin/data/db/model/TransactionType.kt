@@ -1,6 +1,6 @@
-package domain.model
+package data.db.model
 
 enum class TransactionType {
     INCOME,
-    EXPENSE
+    OUTCOME
 }

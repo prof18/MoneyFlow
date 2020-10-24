@@ -1,0 +1,8 @@
+import data.db.model.Currency;
+
+CREATE TABLE Account (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    currency TEXT AS Currency NOT NULL,
+    amount REAL NOT NULL
+);

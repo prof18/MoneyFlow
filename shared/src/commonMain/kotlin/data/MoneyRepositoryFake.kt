@@ -1,12 +1,13 @@
 package data
 
 import domain.model.BalanceRecap
-import domain.model.Transaction
-import domain.model.TransactionType
+import domain.model.MoneyTransaction
+import domain.model.TransactionTypeUI
 import domain.repository.MoneyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+/*
 class MoneyRepositoryFake : MoneyRepository {
 
     override fun getBalanceRecap(): Flow<BalanceRecap> = flow {
@@ -27,38 +28,38 @@ class MoneyRepositoryFake : MoneyRepository {
         )
     }
 
-    override fun getLatestTransactions(): Flow<List<Transaction>> = flow {
+    override fun getLatestTransactions(): Flow<List<MoneyTransaction>> = flow {
         emit(
             listOf(
-                Transaction(
+                MoneyTransaction(
                     id = "gajkhgkagv",
                     title = "Dinner with Friends",
                     amount = 20,
-                    type = TransactionType.EXPENSE,
+                    type = TransactionTypeUI.EXPENSE,
                     formattedDate = "21 Jan 2020"
                 ),
-                Transaction(
+                MoneyTransaction(
                     id = "gajkhgkagv",
                     title = "Salary",
                     amount = 1000,
-                    type = TransactionType.INCOME,
+                    type = TransactionTypeUI.INCOME,
                     formattedDate = "21 Jan 2020"
                 ),
-                Transaction(
+                MoneyTransaction(
                     id = "gajkhgkagv",
                     title = "Keyboard",
                     amount = 100,
-                    type = TransactionType.EXPENSE,
+                    type = TransactionTypeUI.EXPENSE,
                     formattedDate = "21 Jan 2020"
                 ),
-                Transaction(
+                MoneyTransaction(
                     id = "gajkhgkagv",
                     title = "Dinner with Friends",
                     amount = 30,
-                    type = TransactionType.EXPENSE,
+                    type = TransactionTypeUI.EXPENSE,
                     formattedDate = "21 Jan 2020"
                 ),
             )
         )
     }
-}
+}*/

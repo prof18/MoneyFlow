@@ -14,16 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
-import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.style.AppColors
 import com.prof18.moneyflow.style.AppMargins
-import com.prof18.moneyflow.style.MoneyFlowTheme
-import domain.model.Transaction
+import domain.model.MoneyTransaction
 
 @Composable
 fun TransactionCard(
-    transaction: Transaction
+    transaction: MoneyTransaction
 ) {
 
     Row(

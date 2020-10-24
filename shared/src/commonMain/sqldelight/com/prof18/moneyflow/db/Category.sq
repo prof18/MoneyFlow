@@ -1,0 +1,8 @@
+import data.db.model.TransactionType;
+
+CREATE TABLE Category (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT AS TransactionType NOT NULL,
+    iconName TEXT NOT NULL
+);

@@ -16,30 +16,17 @@ import org.koin.core.context.stopKoin
 import org.koin.core.qualifier.named
 
 fun initKoinIos(
-//    userDefaults: NSUserDefaults,
     doOnStartup: () -> Unit
 ): KoinApplication = initKoin(
     module {
-//        single<Settings> { AppleSettings(userDefaults) }
-//        single { appInfo }
         single { doOnStartup }
     }
 )
 
 actual val platformModule = module {
-
-    // TODO: add platform specific stuff
-//    scope(named("database")) {
-//        scoped<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
-//    }
-
     scope(named<SqlDriver>()) {
         scoped<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
     }
-
-//    single<SqlDriver> { NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB") }
-//
-//    }
 }
 
 fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?, parameter: Any): Any {

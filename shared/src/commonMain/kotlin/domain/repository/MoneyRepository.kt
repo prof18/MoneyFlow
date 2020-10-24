@@ -1,13 +1,15 @@
 package domain.repository
 
 import domain.model.BalanceRecap
-import domain.model.Transaction
+import domain.model.MoneyTransaction
 import kotlinx.coroutines.flow.Flow
 
 interface MoneyRepository {
 
-    fun getBalanceRecap(): Flow<BalanceRecap>
+    suspend fun refreshData()
 
-    fun getLatestTransactions(): Flow<List<Transaction>>
+    suspend fun getBalanceRecap(): Flow<BalanceRecap>
+
+    suspend fun getLatestTransactions(): Flow<List<MoneyTransaction>>
 
 }

@@ -16,20 +16,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.prof18.moneyflow.style.AppMargins
 import com.prof18.moneyflow.ui.HomeViewModel
 import com.prof18.moneyflow.ui.components.HeaderNavigator
 import com.prof18.moneyflow.ui.components.HomeRecap
 import com.prof18.moneyflow.ui.components.TransactionCard
+import data.db.DatabaseSource
+import di.recreateDatabaseScope
+import org.koin.android.ext.android.getKoin
+import org.koin.java.KoinJavaComponent.get
+import org.koin.java.KoinJavaComponent.getKoin
 import presentation.home.HomeModel
 
 @Composable
-fun HomeScreen() {
-
-    val viewModel: HomeViewModel = viewModel()
+fun HomeScreen(viewModel: HomeViewModel) {
 
     val homeModel by viewModel.homeLiveData.observeAsState()
+
+
 
     Scaffold(
         bodyContent = { innerPadding ->
@@ -94,7 +99,7 @@ fun HomeScreen() {
             FloatingActionButton(
                 shape = CircleShape,
                 onClick = {
-                    // TODO: handle click
+                    viewModel.refreshData()
                 },
             ) {
                 Icon(asset = Icons.Default.Add)

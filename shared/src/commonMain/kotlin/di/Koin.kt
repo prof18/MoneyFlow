@@ -1,18 +1,20 @@
 package di
 
-import com.prof18.moneyflow.db.MoneyFlowDB
 import com.squareup.sqldelight.db.SqlDriver
+import data.MoneyRepositoryImpl
 import data.db.DatabaseSource
+import domain.repository.MoneyRepository
+import kotlinx.coroutines.Dispatchers
 import org.koin.core.Koin
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 import org.koin.core.module.Module
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
-import org.koin.ext.getOrCreateScope
+import presentation.home.HomeUseCase
+import presentation.home.HomeUseCaseImpl
 
 fun initKoin(appModule: Module): KoinApplication {
     val koinApplication = startKoin {
@@ -26,10 +28,6 @@ fun initKoin(appModule: Module): KoinApplication {
     val koin = koinApplication.koin
 
     koin.createScope<DatabaseSource>("databaseScope")
-
-    val doOnStartup =
-        koin.get<() -> Unit>() // doOnStartup is a lambda which is implemented in Swift on iOS side
-    doOnStartup.invoke()
 
     return koinApplication
 }
@@ -48,38 +46,35 @@ private val coreModule = module {
     // TODO: add database helper, repository, etc
 
 
-    scope(named<DatabaseSource>()) {
+    // If we want to don't want to use scopes
+/*    single<DatabaseSource> {
+        DatabaseSource(get(), Dispatchers.Default)
+    }
 
-//        val scope = getOrCreateScope("databaseScopeID")
+    single<MoneyRepository> {
+        MoneyRepositoryImpl(get())
+    }
+
+    single<HomeUseCase> {
+        HomeUseCaseImpl(get())
+    }*/
+
+    // For closing the database at runtime
+    scope(named<DatabaseSource>()) {
 
         scoped<DatabaseSource> {
             val driverScope = getKoin().getOrCreateScope<SqlDriver>("driverScope")
-            DatabaseSource(driverScope.get()) }
+            DatabaseSource(driverScope.get(), Dispatchers.Default)
+        }
+
+        scoped<MoneyRepository> {
+            MoneyRepositoryImpl(get())
+        }
+
+        scoped<HomeUseCase> {
+            HomeUseCaseImpl(get())
+        }
     }
-
-
-//    single {
-//
-//
-////
-////        val scopeForA = getKoin().createScope<SqlDriver>("databaseScopre")
-////
-//////        val scope = getKoin().getScope(named<SqlDriver>().value)
-////
-////        val driver = scopeForA.get<SqlDriver>()
-//
-//        DatabaseSource(get())
-//    }
-//    single<KtorApi> {
-//        DogApiImpl(
-//            getWith("DogApiImpl")
-//        )
-//    }
-}
-
-
-internal inline fun <reified T> Scope.getWith(vararg params: Any?): T {
-    return get(parameters = { parametersOf(*params) })
 }
 
 expect val platformModule: Module

@@ -1,0 +1,14 @@
+import data.db.model.TransactionType;
+
+CREATE TABLE Transactions (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    dateMillis INTEGER NOT NULL,
+    amount REAL NOT NULL,
+    description TEXT,
+    categoryId INTEGER NOT NULL,
+    type TEXT AS TransactionType NOT NULL
+);
+
+selectAll:
+SELECT * FROM Transactions
+ORDER BY dateMillis DESC;

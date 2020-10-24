@@ -1,12 +1,12 @@
 package presentation.home
 
 import domain.model.BalanceRecap
-import domain.model.Transaction
+import domain.model.MoneyTransaction
 
 sealed class HomeModel {
     object Loading: HomeModel()
     data class Error(val message: String): HomeModel()
-    data class HomeState(val balanceRecap: BalanceRecap, val latestTransactions: List<Transaction>): HomeModel()
+    data class HomeState(val balanceRecap: BalanceRecap, val latestTransactions: List<MoneyTransaction>): HomeModel()
 
     override fun toString(): String {
         return when(this) {
