@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_fort_awesome.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

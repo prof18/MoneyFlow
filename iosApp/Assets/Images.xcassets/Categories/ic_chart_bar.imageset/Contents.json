@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_chart_bar.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

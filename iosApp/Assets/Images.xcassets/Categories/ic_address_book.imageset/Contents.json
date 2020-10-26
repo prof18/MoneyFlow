@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_address_book.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

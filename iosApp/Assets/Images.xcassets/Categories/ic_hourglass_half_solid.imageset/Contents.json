@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_hourglass_half_solid.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

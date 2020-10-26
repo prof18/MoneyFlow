@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_prescription_bottle_solid.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

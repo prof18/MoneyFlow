@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_itunes_note.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
