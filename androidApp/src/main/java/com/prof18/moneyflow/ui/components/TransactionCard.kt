@@ -44,14 +44,14 @@ fun TransactionCard(
                 shape = RoundedCornerShape(AppMargins.regularCornerRadius),
             ) {
                 Icon(
-                    asset = vectorResource(id = R.drawable.ic_hamburger),
+                    asset = vectorResource(id = R.drawable.ic_hamburger_solid),
                     modifier = Modifier.gravity(Alignment.CenterVertically)
                         .padding(AppMargins.small)
                 )
             }
 
             Column(
-                modifier = Modifier.gravity(Alignment.CenterVertically).padding(
+                modifier = Modifier.align(Alignment.CenterVertically).padding(
                     top = AppMargins.regular,
                     bottom = AppMargins.regular,
                     end = AppMargins.regular,

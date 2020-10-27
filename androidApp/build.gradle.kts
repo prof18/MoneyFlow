@@ -64,7 +64,7 @@ dependencies {
     implementation(Deps.koinCore)
     implementation(Deps.koinAndroidViewModel)
 
-    androidTestImplementation(Deps.Compose.test)
+//    androidTestImplementation(Deps.Compose.test)
     androidTestImplementation(Deps.Compose.uiTest)
 
 

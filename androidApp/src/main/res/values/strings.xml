@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="transaction_type_income">Income</string>
+    <string name="transaction_type_outcome">Expense</string>
 </resources>
