@@ -1,6 +1,5 @@
-package com.prof18.moneyflow.ui.addtransaction
+package com.prof18.moneyflow.features.addtransaction
 
-import android.util.Log
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -9,18 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.style.AppMargins
-import com.prof18.moneyflow.ui.addtransaction.components.AddTransactionTopBar
-import com.prof18.moneyflow.ui.addtransaction.components.IconTextClickableRow
-import com.prof18.moneyflow.ui.addtransaction.components.MFTextInput
-import com.prof18.moneyflow.ui.addtransaction.components.TransactionTypeChooser
-import com.prof18.moneyflow.ui.addtransaction.data.TransactionTypeRadioItem
+import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.features.addtransaction.components.AddTransactionTopBar
+import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
+import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
+import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeChooser
+import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
 
 @Composable
 fun AddTransactionScreen(
-
+    navController: NavController
 ) {
     // TODO: pass data from the viewModel
     Scaffold(
@@ -29,8 +28,7 @@ fun AddTransactionScreen(
                 topAppBarText = "Add transaction",
                 actionTitle = "Save",
                 onBackPressed = {
-                    // TODO
-                    Log.d("", "")
+                    navController.popBackStack()
                 },
                 onSavePressed = {
                     // TODO
@@ -133,8 +131,8 @@ val currentEditItem: TodoItem?
 
  */
 
-@Preview
-@Composable
-fun AddTransactionScreenPreview() {
-    return AddTransactionScreen()
-}
+//@Preview
+//@Composable
+//fun AddTransactionScreenPreview() {
+//    return AddTransactionScreen()
+//}

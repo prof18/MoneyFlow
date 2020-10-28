@@ -1,13 +1,10 @@
-package com.prof18.moneyflow.style
+package com.prof18.moneyflow.ui.style
 
-import android.util.Log
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 // TODO: add later on
 private val LightThemeColors = lightColors(

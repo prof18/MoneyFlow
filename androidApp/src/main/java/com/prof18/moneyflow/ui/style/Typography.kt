@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.style
+package com.prof18.moneyflow.ui.style
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

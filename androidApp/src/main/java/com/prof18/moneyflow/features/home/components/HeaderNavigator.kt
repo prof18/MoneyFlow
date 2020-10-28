@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.components
+package com.prof18.moneyflow.features.home.components
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.prof18.moneyflow.style.AppMargins
-import com.prof18.moneyflow.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 fun HeaderNavigator(
@@ -36,7 +36,6 @@ fun HeaderNavigator(
             // TODO: localize
             text = "Latest Transactions",
             style = MaterialTheme.typography.h6,
-//            color = JetsnackTheme.colors.brand,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f)

@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.style
+package com.prof18.moneyflow.ui.style
 
 import androidx.compose.ui.unit.dp
 

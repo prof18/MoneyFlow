@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.addtransaction.components
+package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text

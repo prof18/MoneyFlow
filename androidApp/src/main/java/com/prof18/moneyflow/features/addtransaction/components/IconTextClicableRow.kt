@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.addtransaction.components
+package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.style.AppMargins
+import com.prof18.moneyflow.ui.style.AppMargins
 
 
 @Composable

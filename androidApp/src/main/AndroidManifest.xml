@@ -3,10 +3,10 @@
     package="com.prof18.moneyflow">
 
     <application
+        android:name=".MoneyFlowApp"
         android:allowBackup="true"
         android:label="Money Flow"
         android:supportsRtl="true"
-        android:name=".MoneyFlowApp"
         android:theme="@style/Theme.MoneyFlow">
         <activity android:name="com.prof18.moneyflow.MainActivity">
             <intent-filter>

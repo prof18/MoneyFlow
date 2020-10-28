@@ -4,21 +4,28 @@ object Versions {
     const val koin = "3.0.0-alpha-4"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-alpha05"
+    const val compose = "1.0.0-alpha06"
     const val junit = "4.12"
     const val coroutines = "1.3.9-native-mt"
     const val sqlDelight = "1.4.4"
     const val stately = "1.1.0"
+    const val navComposeVersion = "1.0.0-alpha01"
 }
 
 object Deps {
 
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-    const val koinCore = "org.koin:koin-core:${Versions.koin}"
-    const val koinAndroidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-    const val koinTest = "org.koin:koin-test:${Versions.koin}"
+
 
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
+
+    object Koin {
+        const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
+        const val core = "org.koin:koin-core:${Versions.koin}"
+        const val coreMultiplatform = "org.koin:koin-core:${Versions.koin}"
+        const val androidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+        const val test = "org.koin:koin-test:${Versions.koin}"
+    }
 
     object Compose {
 
@@ -33,6 +40,7 @@ object Deps {
 //        const val test = "androidx.compose.test:test-core:${Versions.compose}"
         const val uiTest = "androidx.ui:ui-test:${Versions.compose}"
         const val runtimeLiveData =  "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+        const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
     }
 
     object KotlinTest {

@@ -1,7 +1,6 @@
-package com.prof18.moneyflow.ui.home
+package com.prof18.moneyflow.features.home
 
 import androidx.compose.foundation.Icon
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,24 +15,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import com.prof18.moneyflow.style.AppMargins
-import com.prof18.moneyflow.ui.HomeViewModel
-import com.prof18.moneyflow.ui.components.HeaderNavigator
-import com.prof18.moneyflow.ui.components.HomeRecap
+import androidx.compose.ui.viewinterop.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
+import com.prof18.moneyflow.Screen
+import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.features.home.components.HeaderNavigator
+import com.prof18.moneyflow.features.home.components.HomeRecap
 import com.prof18.moneyflow.ui.components.TransactionCard
-import data.db.DatabaseSource
-import di.recreateDatabaseScope
-import org.koin.android.ext.android.getKoin
-import org.koin.java.KoinJavaComponent.get
-import org.koin.java.KoinJavaComponent.getKoin
 import presentation.home.HomeModel
 
+
 @Composable
-fun HomeScreen(viewModel: HomeViewModel) {
+fun HomeScreen(navController: NavController) {
 
-    val homeModel by viewModel.homeLiveData.observeAsState()
+    val homeViewModel = viewModel<HomeViewModel>(
+        factory = HomeViewModelFactory()
+    )
 
+    val homeModel by homeViewModel.homeLiveData.observeAsState()
 
 
     Scaffold(
@@ -99,7 +99,7 @@ fun HomeScreen(viewModel: HomeViewModel) {
             FloatingActionButton(
                 shape = CircleShape,
                 onClick = {
-                    viewModel.refreshData()
+                    navController.navigate(Screen.AddTransactionScreen.name)
                 },
             ) {
                 Icon(asset = Icons.Default.Add)

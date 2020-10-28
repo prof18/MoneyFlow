@@ -1,9 +1,6 @@
-package com.prof18.moneyflow.ui
+package com.prof18.moneyflow.features.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import data.db.DatabaseSource
 import di.recreateDatabaseScope
 import kotlinx.coroutines.flow.collect
@@ -11,7 +8,6 @@ import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.getKoin
 import presentation.home.HomeModel
 import presentation.home.HomeUseCase
-import presentation.home.HomeUseCaseImpl
 
 class HomeViewModel(
     private var useCase: HomeUseCase
@@ -49,5 +45,14 @@ class HomeViewModel(
             useCase.refreshData()
         }
     }
+}
 
+class HomeViewModelFactory : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
+            return HomeViewModel(getKoin().get()) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

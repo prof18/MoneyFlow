@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.components
+package com.prof18.moneyflow.features.home.components
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
@@ -6,9 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
-import com.prof18.moneyflow.style.AppMargins
-import com.prof18.moneyflow.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.style.AppMargins
 import domain.model.BalanceRecap
 
 @Composable

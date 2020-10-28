@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.addtransaction.components
+package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.compose.foundation.Text
 import androidx.compose.material.MaterialTheme
@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import com.prof18.moneyflow.style.AppColors
 
 @Composable
 fun MFTextInput(

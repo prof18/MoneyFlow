@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.addtransaction.data
+package com.prof18.moneyflow.features.addtransaction.data
 
 import androidx.annotation.StringRes
 

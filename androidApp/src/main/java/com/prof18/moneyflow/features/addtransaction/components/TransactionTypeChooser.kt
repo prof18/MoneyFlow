@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.ui.addtransaction.components
+package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.addtransaction.data.TransactionTypeRadioItem
+import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
 
 @Composable
 fun TransactionTypeChooser(
@@ -62,9 +62,7 @@ fun TransactionTypeChooser(
                 RadioButton(
                     selected = optionSelected,
                     onClick = onClickHandle,
-                    color = RadioButtonConstants.animateDefaultColor(
-                        selected = optionSelected,
-                        enabled = true,
+                    colors = RadioButtonConstants.defaultColors(
                         selectedColor = MaterialTheme.colors.primary
                     )
                 )
