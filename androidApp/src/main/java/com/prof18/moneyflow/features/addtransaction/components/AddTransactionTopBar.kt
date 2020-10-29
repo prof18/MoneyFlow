@@ -46,7 +46,7 @@ fun AddTransactionTopBar(
                 )
             }
         },
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.background,
         elevation = 0.dp
     )
 }

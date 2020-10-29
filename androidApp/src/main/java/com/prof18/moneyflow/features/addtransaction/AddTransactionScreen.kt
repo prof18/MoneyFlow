@@ -1,26 +1,31 @@
 package com.prof18.moneyflow.features.addtransaction
 
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.AppMargins
-import com.prof18.moneyflow.features.addtransaction.components.AddTransactionTopBar
-import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
-import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
-import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeChooser
+import com.prof18.moneyflow.features.addtransaction.components.*
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
+import com.prof18.moneyflow.ui.style.AppMargins
+import java.util.*
 
 @Composable
 fun AddTransactionScreen(
     navController: NavController
 ) {
+
+    val (showDialog, setShowedDialog) = remember { mutableStateOf(false) }
+
     // TODO: pass data from the viewModel
     Scaffold(
         topBar = {
@@ -39,7 +44,7 @@ fun AddTransactionScreen(
         },
         bodyContent = {
             Column() {
-
+                DatePickerDialog(showDialog, setShowedDialog)
                 TransactionTypeChooser(
                     possibleAnswerStringId = listOf(
                         TransactionTypeRadioItem(R.string.transaction_type_income),
@@ -101,6 +106,10 @@ fun AddTransactionScreen(
                 IconTextClickableRow(
                     onClick = {
                         // TODO
+
+                        setShowedDialog(true)
+
+
                     },
                     text = "Today",
                     iconId = R.drawable.ic_calendar,
@@ -115,8 +124,9 @@ fun AddTransactionScreen(
             }
         }
     )
-
 }
+
+
 
 /*
 
