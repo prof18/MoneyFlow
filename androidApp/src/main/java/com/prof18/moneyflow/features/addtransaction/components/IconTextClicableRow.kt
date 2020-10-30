@@ -1,10 +1,10 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,9 +28,7 @@ fun IconTextClickableRow(
 
         Row {
 
-            Icon(
-                asset = vectorResource(id = iconId),
-            )
+            Icon(vectorResource(id = iconId))
 
             Spacer(Modifier.preferredWidth(AppMargins.small))
 

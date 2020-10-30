@@ -1,6 +1,6 @@
 import data.db.model.TransactionType;
 
-CREATE TABLE Category (
+CREATE TABLE CategoryTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     type TEXT AS TransactionType NOT NULL,

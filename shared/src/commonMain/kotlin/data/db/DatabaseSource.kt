@@ -2,7 +2,7 @@ package data.db
 
 import asFlow
 import com.prof18.moneyflow.db.MoneyFlowDB
-import com.prof18.moneyflow.db.Transactions
+import com.prof18.moneyflow.db.TransactionTable
 import com.squareup.sqldelight.db.SqlDriver
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -21,14 +21,14 @@ class DatabaseSource (
 
 //    private var dbRef: MoneyFlowDB = createQueryWrapper(sqlDriver)
 
-    fun selectAllTransaction(): Flow<List<Transactions>> =
-        dbRef.transactionQueries
+    fun selectAllTransaction(): Flow<List<TransactionTable>> =
+        dbRef.transactionTableQueries
             .selectAll()
             .asFlow()
             .mapToList()
             .flowOn(backgroundDispatcher)
 
-    suspend fun insertTransaction(transaction: Transactions) {
+    suspend fun insertTransaction(transaction: TransactionTable) {
 //        log.d { "Inserting ${breedNames.size} breeds into database" }
 //        dbRef.transactionWithContext(backgroundDispatcher) {
 //            breedNames.forEach { name ->
@@ -51,8 +51,8 @@ class DatabaseSource (
      */
 
     // TODO: delete and change to flow
-    fun getData(): List<Transactions> {
-        return dbRef.transactionQueries.selectAll().executeAsList()
+    fun getData(): List<TransactionTable> {
+        return dbRef.transactionTableQueries.selectAll().executeAsList()
     }
 
 

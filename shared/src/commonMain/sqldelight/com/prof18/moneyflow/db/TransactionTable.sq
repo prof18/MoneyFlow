@@ -1,6 +1,6 @@
 import data.db.model.TransactionType;
 
-CREATE TABLE Transactions (
+CREATE TABLE TransactionTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     dateMillis INTEGER NOT NULL,
     amount REAL NOT NULL,
@@ -10,5 +10,5 @@ CREATE TABLE Transactions (
 );
 
 selectAll:
-SELECT * FROM Transactions
+SELECT * FROM TransactionTable
 ORDER BY dateMillis DESC;

@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction
 
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -9,33 +8,40 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
 import com.prof18.moneyflow.R
+import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.addtransaction.components.*
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
+import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
-import java.util.*
 
 @Composable
 fun AddTransactionScreen(
-    navController: NavController
+    navController: NavController,
+    categoryName: String?,
+    categoryId: Long?
 ) {
+
+    val viewModel = viewModel<AddTransactionViewModel>(
+        factory = AddTransactionViewModelFactory()
+    )
 
     val (showDialog, setShowedDialog) = remember { mutableStateOf(false) }
 
     // TODO: pass data from the viewModel
     Scaffold(
         topBar = {
-            AddTransactionTopBar(
+            MFTopBar(
                 topAppBarText = "Add transaction",
                 actionTitle = "Save",
                 onBackPressed = {
                     navController.popBackStack()
                 },
-                onSavePressed = {
+                onActionClicked = {
                     // TODO
                 },
                 // TODO
@@ -43,7 +49,7 @@ fun AddTransactionScreen(
             )
         },
         bodyContent = {
-            Column() {
+            Column {
                 DatePickerDialog(showDialog, setShowedDialog)
                 TransactionTypeChooser(
                     possibleAnswerStringId = listOf(
@@ -92,8 +98,9 @@ fun AddTransactionScreen(
                 IconTextClickableRow(
                     onClick = {
                         // TODO
+                        navController.navigate("${Screen.CategoriesScreen.name}/true")
                     },
-                    text = "Select Category",
+                    text = categoryName ?: "Select Category",
                     iconId = R.drawable.ic_question_circle,
                     isSomethingSelected = false,
                     modifier = Modifier.padding(

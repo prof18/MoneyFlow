@@ -68,27 +68,23 @@ fun HomeScreen(navController: NavController) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Icon(
-                        asset = Icons.Default.Search,
-                        modifier = Modifier
-                            .clickable(
-                                onClick = {
-                                    // TODO: handle click
-                                },
-                            )
-                            .padding(AppMargins.regular),
-                    )
+                    Modifier
+                        .clickable(
+                            onClick = {
+                                // TODO: handle click
+                            },
+                        )
+                        .padding(AppMargins.regular)
+                    Icon(asset = Icons.Default.Search)
 
-                    Icon(
-                        asset = Icons.Default.Settings,
-                        modifier = Modifier
-                            .clickable(
-                                onClick = {
-                                    // TODO: handle click
-                                },
-                            )
-                            .padding(AppMargins.regular),
-                    )
+                    Modifier
+                        .clickable(
+                            onClick = {
+                                // TODO: handle click
+                            },
+                        )
+                        .padding(AppMargins.regular)
+                    Icon(asset = Icons.Default.Settings)
                 }
             }
         },

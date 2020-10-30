@@ -1,6 +1,6 @@
 import data.db.model.Currency;
 
-CREATE TABLE Account (
+CREATE TABLE AccountTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     currency TEXT AS Currency NOT NULL,

@@ -1,11 +1,11 @@
 package com.prof18.moneyflow.features.home.components
 
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeightIn
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
@@ -53,7 +53,7 @@ fun HeaderNavigator(
             modifier = Modifier.gravity(Alignment.CenterVertically)
         ) {
             Icon(
-                asset = Icons.Outlined.KeyboardArrowRight,
+                Icons.Outlined.KeyboardArrowRight
 //                tint = JetsnackTheme.colors.brand
             )
         }

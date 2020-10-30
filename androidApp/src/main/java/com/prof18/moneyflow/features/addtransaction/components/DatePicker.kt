@@ -4,15 +4,14 @@ import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.AppMargins
 import java.util.*
 
 fun getYearList() = (2015..2023).map { it.toString() }
@@ -44,7 +43,7 @@ fun DatePickerDialog(
                         }
                     )
 
-                    Spacer(modifier = Modifier.width(AppMargins.regular))
+                    Spacer(modifier = Modifier.width(16.dp))
 
                     DatePickerItemDropdownMenu(
                         initialText = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString(),
@@ -54,7 +53,7 @@ fun DatePickerDialog(
                         }
                     )
 
-                    Spacer(modifier = Modifier.width(AppMargins.regular))
+                    Spacer(modifier = Modifier.width(16.dp))
 
                     DatePickerItemDropdownMenu(
                         initialText = Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString(),
@@ -108,7 +107,7 @@ private fun DatePickerItemDropdownMenu(
                 Spacer(Modifier.width(4.dp))
                 Icon(
                     modifier = Modifier.size(16.dp),
-                    asset = vectorResource(id = R.drawable.ic_angle_down_solid)
+                    asset = Icons.Filled.KeyboardArrowDown
                 )
             }
         },

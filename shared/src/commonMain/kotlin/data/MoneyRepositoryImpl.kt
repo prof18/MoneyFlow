@@ -1,7 +1,7 @@
 package data
 
 import co.touchlab.stately.ensureNeverFrozen
-import com.prof18.moneyflow.db.Transactions
+import com.prof18.moneyflow.db.TransactionTable
 import data.db.DatabaseSource
 import domain.model.BalanceRecap
 import domain.model.MoneyTransaction
@@ -13,7 +13,7 @@ import org.koin.core.inject
 
 class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository {
 
-    private var allTransactions: Flow<List<Transactions>> = emptyFlow()
+    private var allTransactions: Flow<List<TransactionTable>> = emptyFlow()
 
     init {
         ensureNeverFrozen()

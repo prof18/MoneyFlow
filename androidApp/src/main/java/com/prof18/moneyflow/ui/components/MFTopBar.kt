@@ -1,13 +1,10 @@
-package com.prof18.moneyflow.features.addtransaction.components
+package com.prof18.moneyflow.ui.components
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.preferredWidth
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TextButton
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
@@ -18,12 +15,12 @@ import androidx.ui.tooling.preview.Preview
 import java.util.*
 
 @Composable
-fun AddTransactionTopBar(
+fun MFTopBar(
     topAppBarText: String,
     actionTitle: String,
     onBackPressed: () -> Unit,
-    onSavePressed: () -> Unit,
-    actionEnabled: Boolean
+    onActionClicked: () -> Unit,
+    actionEnabled: Boolean,
 ) {
     TopAppBar(
         title = {
@@ -39,7 +36,7 @@ fun AddTransactionTopBar(
         },
         actions = {
             Spacer(modifier = Modifier.preferredWidth(68.dp))
-            TextButton(onClick = onSavePressed, enabled = actionEnabled) {
+            TextButton(onClick = onActionClicked, enabled = actionEnabled) {
                 Text(
                     actionTitle.toUpperCase(Locale.getDefault()),
                     style = MaterialTheme.typography.subtitle2
@@ -54,11 +51,11 @@ fun AddTransactionTopBar(
 @Preview
 @Composable
 fun AddTransactionTopBarPreview() {
-    return AddTransactionTopBar(
+    return MFTopBar(
         topAppBarText = "Title",
         actionTitle = "Save",
         onBackPressed = {},
-        onSavePressed = {},
+        onActionClicked = {},
         actionEnabled = false
     )
 }

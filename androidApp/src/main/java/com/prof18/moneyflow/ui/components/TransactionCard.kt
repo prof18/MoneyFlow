@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.ui.components
 
 import androidx.compose.foundation.Box
-import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -43,11 +43,9 @@ fun TransactionCard(
                 backgroundColor = AppColors.darkGrey,
                 shape = RoundedCornerShape(AppMargins.regularCornerRadius),
             ) {
-                Icon(
-                    asset = vectorResource(id = R.drawable.ic_hamburger_solid),
-                    modifier = Modifier.gravity(Alignment.CenterVertically)
-                        .padding(AppMargins.small)
-                )
+                Modifier.gravity(Alignment.CenterVertically)
+                    .padding(AppMargins.small)
+                Icon(vectorResource(id = R.drawable.ic_hamburger_solid))
             }
 
             Column(

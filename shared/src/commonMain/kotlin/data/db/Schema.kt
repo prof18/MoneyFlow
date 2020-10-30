@@ -1,22 +1,19 @@
 package data.db
 
-import com.prof18.moneyflow.db.Account
-import com.prof18.moneyflow.db.Category
-import com.prof18.moneyflow.db.MoneyFlowDB
-import com.prof18.moneyflow.db.Transactions
+import com.prof18.moneyflow.db.*
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.db.SqlDriver
 
 fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
     return MoneyFlowDB(
         driver,
-        CategoryAdapter = Category.Adapter(
+        CategoryTableAdapter = CategoryTable.Adapter(
             typeAdapter = EnumColumnAdapter()
         ),
-        TransactionsAdapter = Transactions.Adapter(
+        TransactionTableAdapter = TransactionTable.Adapter(
             typeAdapter = EnumColumnAdapter()
         ),
-        AccountAdapter = Account.Adapter(
+        AccountTableAdapter = AccountTable.Adapter(
             currencyAdapter = EnumColumnAdapter()
         )
     )
