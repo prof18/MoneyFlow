@@ -15,6 +15,14 @@ struct moneyFlowApp: App {
     
     init() {
         startKoin()
+        
+        #if DEBUG
+        // Debug build
+        
+        // init napier
+        LoggerKt.debugBuild()
+        #endif
+        
     }
     
     var body: some Scene {
@@ -22,16 +30,16 @@ struct moneyFlowApp: App {
             ContentView()
         }
         .onChange(of: scenePhase) { newScenePhase in
-          switch newScenePhase {
-          case .active:
-            print("App is active")
-          case .inactive:
-            print("App is inactive")
-          case .background:
-            print("App is in background")
-          @unknown default:
-            print("Oh - interesting: I received an unexpected new value.")
-          }
+            switch newScenePhase {
+            case .active:
+                print("App is active")
+            case .inactive:
+                print("App is inactive")
+            case .background:
+                print("App is in background")
+            @unknown default:
+                print("Oh - interesting: I received an unexpected new value.")
+            }
         }
     }
     

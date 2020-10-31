@@ -73,6 +73,7 @@ kotlin {
                 implementation(Deps.Coroutines.common)
                 implementation(Deps.stately)
                 implementation(Deps.Koin.coreMultiplatform)
+                implementation(Deps.napier)
             }
         }
         val commonTest by getting {

@@ -10,6 +10,7 @@ object Versions {
     const val sqlDelight = "1.4.4"
     const val stately = "1.1.0"
     const val navComposeVersion = "1.0.0-alpha01"
+    const val napier = "1.4.1"
 }
 
 object Deps {
@@ -18,6 +19,8 @@ object Deps {
 
 
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
+
+    const val napier = "com.github.aakira:napier:${Versions.napier}"
 
     object Koin {
         const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"

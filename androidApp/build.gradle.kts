@@ -66,6 +66,9 @@ dependencies {
     implementation(Deps.Koin.androidViewModel)
 //    implementation(Deps.Koin.compose)
 
+    implementation(Deps.napier)
+
+
 //    androidTestImplementation(Deps.Compose.test)
     androidTestImplementation(Deps.Compose.uiTest)
 
