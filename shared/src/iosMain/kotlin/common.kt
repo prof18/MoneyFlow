@@ -5,3 +5,7 @@ actual fun debugLog(tag: String, message: String) {
         NSLog("%s: %s", tag, message)
     }
 }
+
+actual fun printThrowable(t: Throwable) {
+    t.printStackTrace()
+}

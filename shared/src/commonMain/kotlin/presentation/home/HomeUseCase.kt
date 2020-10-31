@@ -6,5 +6,4 @@ interface HomeUseCase {
     fun observeHomeModel(): StateFlow<HomeModel>
     fun computeData()
     suspend fun computeHomeDataSuspendable()
-    suspend fun refreshData()
 }

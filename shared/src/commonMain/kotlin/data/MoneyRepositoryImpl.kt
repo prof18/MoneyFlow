@@ -2,28 +2,26 @@ package data
 
 import InsertTransactionDTO
 import co.touchlab.stately.ensureNeverFrozen
+import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.TransactionTable
 import data.db.DatabaseSource
 import domain.model.BalanceRecap
+import domain.model.Category
 import domain.model.MoneyTransaction
 import domain.model.TransactionTypeUI
 import domain.repository.MoneyRepository
 import kotlinx.coroutines.flow.*
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import presentation.CategoryIcon
 
 class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository {
 
     private var allTransactions: Flow<List<TransactionTable>> = emptyFlow()
+    private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
 
     init {
         ensureNeverFrozen()
         allTransactions = dbSource.selectAllTransaction()
-    }
-
-    override suspend fun refreshData() {
-        allTransactions = dbSource.selectAllTransaction()
-        val x = ""
+        allCategories = dbSource.selectAllCategories()
     }
 
     // TODO: fix this
@@ -57,14 +55,23 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository
                     formattedDate = "10/10/20"
                 )
             }
-        }.catch {
-//            return@catch listOf()
-            // TODO: some error handling?
         }
     }
 
     override suspend fun insertTransaction(transactionDTO: InsertTransactionDTO) {
         dbSource.insertTransaction(transactionDTO)
+    }
+
+    override suspend fun getCategories(): Flow<List<Category>> {
+        return allCategories.map {
+            it.map {category ->
+                Category(
+                    id = category.id,
+                    name = category.name,
+                    icon = CategoryIcon.fromValue(category.iconName)
+                )
+            }
+        }
     }
 }
 

@@ -3,9 +3,10 @@ package database
 import co.touchlab.stately.freeze
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.squareup.sqldelight.db.SqlDriver
+import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
+import data.db.Schema
 import data.db.createQueryWrapper
 import kotlin.native.concurrent.AtomicReference
-import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 
 
 object DatabaseHelper {
@@ -14,7 +15,7 @@ object DatabaseHelper {
     private val loggingEnabled = AtomicReference(true)
 
     fun setupDatabase() {
-        val databaseDriver = NativeSqliteDriver(MoneyFlowDB.Schema, "MoneyFlowDB")
+        val databaseDriver = NativeSqliteDriver(Schema, "MoneyFlowDB")
         val db = createQueryWrapper(databaseDriver)
         driverRef.value = databaseDriver.freeze()
         dbRef.value = db.freeze()

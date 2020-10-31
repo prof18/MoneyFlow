@@ -12,6 +12,8 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import presentation.addtransaction.AddTransactionUseCase
 import presentation.addtransaction.AddTransactionUseCaseImpl
+import presentation.categories.CategoriesUseCase
+import presentation.categories.CategoriesUseCaseImpl
 import presentation.home.HomeUseCase
 import presentation.home.HomeUseCaseImpl
 
@@ -41,6 +43,10 @@ private val coreModule = module {
 
     factory<AddTransactionUseCase> {
         AddTransactionUseCaseImpl(get())
+    }
+
+    factory<CategoriesUseCase> {
+        CategoriesUseCaseImpl(get())
     }
 }
 

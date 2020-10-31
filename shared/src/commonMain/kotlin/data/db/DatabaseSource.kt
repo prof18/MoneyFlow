@@ -2,6 +2,7 @@ package data.db
 
 import InsertTransactionDTO
 import asFlow
+import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.prof18.moneyflow.db.TransactionTable
 import com.squareup.sqldelight.db.SqlDriver
@@ -13,5 +14,6 @@ import transactionWithContext
 
 interface DatabaseSource {
     fun selectAllTransaction(): Flow<List<TransactionTable>>
+    fun selectAllCategories(): Flow<List<CategoryTable>>
     suspend fun insertTransaction(insertTransaction: InsertTransactionDTO)
 }

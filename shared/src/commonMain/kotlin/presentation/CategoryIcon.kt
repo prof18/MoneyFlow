@@ -252,6 +252,7 @@ enum class CategoryIcon(val iconName: String) {
     IC_POUND_SIGN_SOLID("ic_pound_sign_solid"),
     IC_PRESCRIPTION_BOTTLE_SOLID("ic_prescription_bottle_solid"),
     IC_PRINT_SOLID("ic_print_solid"),
+    IC_QUESTION_CIRCLE("ic_question_circle"),
     IC_README("ic_readme"),
     IC_RECYCLE_SOLID("ic_recycle_solid"),
     IC_RESTROOM_SOLID("ic_restroom_solid"),
@@ -329,5 +330,12 @@ enum class CategoryIcon(val iconName: String) {
     IC_WALLET_SOLID("ic_wallet_solid"),
     IC_WINE_GLASS_SOLID("ic_wine_glass_solid"),
     IC_WRENCH_SOLID("ic_wrench_solid"),
-    IC_YEN_SIGN_SOLID("ic_yen_sign_solid")
+    IC_YEN_SIGN_SOLID("ic_yen_sign_solid");
+
+    companion object {
+
+        fun fromValue(value: String): CategoryIcon = value
+            .let { values().firstOrNull { v -> v.iconName == value } ?: IC_QUESTION_CIRCLE }
+
+    }
 }

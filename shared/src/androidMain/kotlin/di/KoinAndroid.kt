@@ -21,7 +21,7 @@ actual val platformModule: Module = module {
 //        }
 //    }
 //
-    single<MoneyFlowDB> {
+    single {
         DatabaseHelper.setupDatabase()
        DatabaseHelper.instance
     }

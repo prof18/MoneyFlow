@@ -1,12 +1,9 @@
 package com.prof18.moneyflow.ui.components
 
-import androidx.compose.foundation.Box
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -15,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
 import com.prof18.moneyflow.R
+import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppColors
 import com.prof18.moneyflow.ui.style.AppMargins
 import domain.model.MoneyTransaction
@@ -35,17 +33,21 @@ fun TransactionCard(
 
             Box(
                 modifier = Modifier
-                    .gravity(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically)
                     .padding(
                         AppMargins.regular,
-                    ),
-                // TODO: find a better color for the dark mode
-                backgroundColor = AppColors.darkGrey,
-                shape = RoundedCornerShape(AppMargins.regularCornerRadius),
+                    )
+                    // TODO: find a better color for the dark mode
+                    .background(
+                        AppColors.darkGrey,
+                        shape = RoundedCornerShape(AppMargins.regularCornerRadius)
+                    )
             ) {
-                Modifier.gravity(Alignment.CenterVertically)
-                    .padding(AppMargins.small)
-                Icon(vectorResource(id = R.drawable.ic_hamburger_solid))
+                Icon(
+                    // TODO: add correct icon
+                    vectorResource(id = R.drawable.ic_id_card),
+                    modifier = Modifier.padding(AppMargins.small)
+                )
             }
 
             Column(

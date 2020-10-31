@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -26,7 +27,8 @@ import data.db.model.TransactionType
 fun AddTransactionScreen(
     navController: NavController,
     categoryName: String?,
-    categoryId: Long?
+    categoryId: Long?,
+    @DrawableRes categoryIcon: Int?
 ) {
 
     val viewModel = viewModel<AddTransactionViewModel>(
@@ -145,7 +147,7 @@ fun AddTransactionScreen(
                         navController.navigate("${Screen.CategoriesScreen.name}/true")
                     },
                     text = categoryName ?: stringResource(id = R.string.select_category),
-                    iconId = R.drawable.ic_question_circle,
+                    iconId = categoryIcon ?: R.drawable.ic_question_circle,
                     isSomethingSelected = categoryName != null,
                     modifier = Modifier.padding(
                         start = AppMargins.regular,

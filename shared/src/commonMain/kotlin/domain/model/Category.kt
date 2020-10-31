@@ -1,7 +1,9 @@
 package domain.model
 
+import presentation.CategoryIcon
+
 data class Category(
     val id: Long,
-    val name: String
-    // TODO: add icon representation
+    val name: String,
+    val icon: CategoryIcon
 )

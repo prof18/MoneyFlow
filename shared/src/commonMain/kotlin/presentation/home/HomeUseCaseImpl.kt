@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import printThrowable
 
 class HomeUseCaseImpl(
     private val moneyRepository: MoneyRepository,
@@ -44,6 +45,8 @@ class HomeUseCaseImpl(
                 latestTransactions = transactions
             )
         }.catch { cause: Throwable ->
+            printThrowable(cause)
+            // TODO: move to error Code
             val error = HomeModel.Error("Something wrong")
             homeModel.value = error
             viewUpdate?.invoke(error)
@@ -51,10 +54,6 @@ class HomeUseCaseImpl(
             homeModel.value = it
             viewUpdate?.invoke(it)
         }
-    }
-
-    override suspend fun refreshData() {
-        moneyRepository.refreshData()
     }
 
     // iOs only

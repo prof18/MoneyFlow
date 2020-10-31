@@ -255,6 +255,7 @@ fun CategoryIcon.mapToAndroidIcon(): Int {
         CategoryIcon.IC_PLUG_SOLID -> R.drawable.ic_plug_solid
         CategoryIcon.IC_POUND_SIGN_SOLID -> R.drawable.ic_pound_sign_solid
         CategoryIcon.IC_PRESCRIPTION_BOTTLE_SOLID -> R.drawable.ic_prescription_bottle_solid
+        CategoryIcon.IC_QUESTION_CIRCLE -> R.drawable.ic_question_circle
         CategoryIcon.IC_PRINT_SOLID -> R.drawable.ic_print_solid
         CategoryIcon.IC_README -> R.drawable.ic_readme
         CategoryIcon.IC_RECYCLE_SOLID -> R.drawable.ic_recycle_solid

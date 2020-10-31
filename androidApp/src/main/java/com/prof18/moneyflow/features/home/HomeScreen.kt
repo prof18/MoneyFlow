@@ -22,6 +22,7 @@ import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
+import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import presentation.home.HomeModel
 
@@ -40,7 +41,7 @@ fun HomeScreen(navController: NavController) {
         bodyContent = { innerPadding ->
 
             when (homeModel) {
-                is HomeModel.Loading -> CircularProgressIndicator()
+                is HomeModel.Loading -> Loader()
                 is HomeModel.HomeState -> {
 
                     val homeState = (homeModel as HomeModel.HomeState)

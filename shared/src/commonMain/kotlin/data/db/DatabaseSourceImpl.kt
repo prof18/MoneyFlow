@@ -2,6 +2,7 @@ package data.db
 
 import InsertTransactionDTO
 import asFlow
+import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.prof18.moneyflow.db.TransactionTable
 import kotlinx.coroutines.CoroutineDispatcher
@@ -36,6 +37,12 @@ class DatabaseSourceImpl (
         }
     }
 
+    override fun selectAllCategories(): Flow<List<CategoryTable>> =
+        dbRef.categoryTableQueries
+            .selectAll()
+            .asFlow()
+            .mapToList()
+            .flowOn(backgroundDispatcher)
 
     /*
 

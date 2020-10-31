@@ -1,17 +1,19 @@
 package com.prof18.moneyflow.features.categories.data
 
 import android.os.Parcelable
+import androidx.annotation.DrawableRes
 import domain.model.Category
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class CategoryUIData(
     val id: Long,
-    val name: String
-    // TODO: add icon
+    val name: String,
+    @DrawableRes val icon: Int
 ) : Parcelable
 
 fun Category.toCategoryUIData() = CategoryUIData(
     id = this.id,
-    name = this.name
+    name = this.name,
+    icon = this.icon.mapToAndroidIcon()
 )

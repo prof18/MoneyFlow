@@ -32,7 +32,8 @@ fun AppContainer() {
                 AddTransactionScreen(
                     navController = navController,
                     categoryName = category.value?.name,
-                    categoryId = category.value?.id
+                    categoryId = category.value?.id,
+                    categoryIcon = category.value?.icon
                 )
             }
 

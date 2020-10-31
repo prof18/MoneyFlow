@@ -7,6 +7,9 @@ CREATE TABLE CategoryTable (
     iconName TEXT NOT NULL
 );
 
+selectAll:
+SELECT * FROM CategoryTable;
+
 insertCategory:
 INSERT INTO CategoryTable (name, type, iconName)
 VALUES (?,?,?);

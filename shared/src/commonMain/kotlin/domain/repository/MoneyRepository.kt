@@ -2,12 +2,11 @@ package domain.repository
 
 import InsertTransactionDTO
 import domain.model.BalanceRecap
+import domain.model.Category
 import domain.model.MoneyTransaction
 import kotlinx.coroutines.flow.Flow
 
 interface MoneyRepository {
-
-    suspend fun refreshData()
 
     @Throws(Exception::class)
     suspend fun getBalanceRecap(): Flow<BalanceRecap>
@@ -17,5 +16,8 @@ interface MoneyRepository {
 
     @Throws(Exception::class)
     suspend fun insertTransaction(transactionDTO: InsertTransactionDTO)
+
+    @Throws(Exception::class)
+    suspend fun getCategories(): Flow<List<Category>>
 
 }
