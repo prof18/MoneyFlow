@@ -6,3 +6,7 @@ CREATE TABLE CategoryTable (
     type TEXT AS TransactionType NOT NULL,
     iconName TEXT NOT NULL
 );
+
+insertCategory:
+INSERT INTO CategoryTable (name, type, iconName)
+VALUES (?,?,?);
