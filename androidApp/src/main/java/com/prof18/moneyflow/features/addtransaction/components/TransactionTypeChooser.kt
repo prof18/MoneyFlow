@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
+import data.db.model.TransactionType
 
 @Composable
 fun TransactionTypeChooser(
@@ -27,12 +28,12 @@ fun TransactionTypeChooser(
     onAnswerSelected: (TransactionTypeRadioItem) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val options = possibleAnswerStringId.associateBy { stringResource(id = it.transactionType) }
+    val options = possibleAnswerStringId.associateBy { stringResource(id = it.transactionTypeLabel) }
 
     val radioOptions = options.keys.toList()
 
     val selected = if (answer != null) {
-        stringResource(id = answer.transactionType)
+        stringResource(id = answer.transactionTypeLabel)
     } else {
         null
     }
@@ -82,8 +83,8 @@ fun TransactionTypeChooser(
 fun TransactionTypeChooserPreview() {
     return TransactionTypeChooser(
         possibleAnswerStringId = listOf(
-            TransactionTypeRadioItem(R.string.transaction_type_income),
-            TransactionTypeRadioItem(R.string.transaction_type_outcome)
+            TransactionTypeRadioItem(R.string.transaction_type_income, TransactionType.INCOME),
+            TransactionTypeRadioItem(R.string.transaction_type_outcome, TransactionType.OUTCOME)
         ),
         answer = null,
         onAnswerSelected = {},

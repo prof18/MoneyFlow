@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.navigation.NavController
@@ -18,6 +19,7 @@ import com.prof18.moneyflow.features.addtransaction.components.*
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
+import data.db.model.TransactionType
 
 @Composable
 fun AddTransactionScreen(
@@ -30,7 +32,7 @@ fun AddTransactionScreen(
         factory = AddTransactionViewModelFactory()
     )
 
-    val (showDialog, setShowedDialog) = remember { mutableStateOf(false) }
+    val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
     // TODO: pass data from the viewModel
     Scaffold(
@@ -43,6 +45,7 @@ fun AddTransactionScreen(
                 },
                 onActionClicked = {
                     // TODO
+                    //  send category
                 },
                 // TODO
                 actionEnabled = false
@@ -50,15 +53,37 @@ fun AddTransactionScreen(
         },
         bodyContent = {
             Column {
-                DatePickerDialog(showDialog, setShowedDialog)
+                DatePickerDialog(
+                    showDatePickerDialog,
+                    setShowedDatePickerDialog,
+                    onYearSelected = {
+                        viewModel.setYearNumber(it)
+                    },
+                    onMonthSelected = {
+                        viewModel.setMonthNumber(it)
+                    },
+                    onDaySelected = {
+                        viewModel.setDayNumber(it)
+                    },
+                    onSave = {
+                        viewModel.saveDate()
+                    },
+
+                    )
                 TransactionTypeChooser(
                     possibleAnswerStringId = listOf(
-                        TransactionTypeRadioItem(R.string.transaction_type_income),
-                        TransactionTypeRadioItem(R.string.transaction_type_outcome)
+                        TransactionTypeRadioItem(
+                            R.string.transaction_type_income,
+                            TransactionType.INCOME
+                        ),
+                        TransactionTypeRadioItem(
+                            R.string.transaction_type_outcome,
+                            TransactionType.OUTCOME
+                        )
                     ),
-                    answer = TransactionTypeRadioItem(R.string.transaction_type_outcome),
+                    answer = viewModel.selectedTransactionType,
                     onAnswerSelected = {
-                        // TODO
+                        viewModel.selectedTransactionType = it
                     },
                     modifier = Modifier.padding(
                         start = AppMargins.regular,
@@ -77,6 +102,7 @@ fun AddTransactionScreen(
 
                 ) {
                     Text(
+                        // TODO: get the type of currency from the settings
                         "€",
                         style = MaterialTheme.typography.h4,
                     )
@@ -84,11 +110,11 @@ fun AddTransactionScreen(
                     Spacer(Modifier.preferredWidth(AppMargins.small))
 
                     MFTextInput(
-                        text = "test",
+                        text = viewModel.amountText,
                         textStyle = MaterialTheme.typography.h3,
                         label = "0.00",
                         onTextChange = {
-                            // TODO
+                            viewModel.amountText = it
                         },
                         keyboardType = KeyboardType.Number,
                         modifier = Modifier.fillMaxWidth()
@@ -97,10 +123,9 @@ fun AddTransactionScreen(
 
                 IconTextClickableRow(
                     onClick = {
-                        // TODO
                         navController.navigate("${Screen.CategoriesScreen.name}/true")
                     },
-                    text = categoryName ?: "Select Category",
+                    text = categoryName ?: stringResource(id = R.string.select_category),
                     iconId = R.drawable.ic_question_circle,
                     isSomethingSelected = false,
                     modifier = Modifier.padding(
@@ -112,13 +137,9 @@ fun AddTransactionScreen(
 
                 IconTextClickableRow(
                     onClick = {
-                        // TODO
-
-                        setShowedDialog(true)
-
-
+                        setShowedDatePickerDialog(true)
                     },
-                    text = "Today",
+                    text = viewModel.dateLabel ?: stringResource(id = R.string.today),
                     iconId = R.drawable.ic_calendar,
                     modifier = Modifier.padding(
                         start = AppMargins.regular,
@@ -127,7 +148,6 @@ fun AddTransactionScreen(
                         bottom = AppMargins.regular
                     )
                 )
-
             }
         }
     )

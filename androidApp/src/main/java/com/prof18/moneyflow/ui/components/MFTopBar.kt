@@ -20,7 +20,7 @@ fun MFTopBar(
     actionTitle: String,
     onBackPressed: () -> Unit,
     onActionClicked: () -> Unit,
-    actionEnabled: Boolean,
+    actionEnabled: Boolean = true,
 ) {
     TopAppBar(
         title = {

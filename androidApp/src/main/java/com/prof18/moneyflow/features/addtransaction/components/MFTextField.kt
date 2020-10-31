@@ -22,15 +22,11 @@ fun MFTextInput(
     textStyle: TextStyle
 ) {
 
-    // TODO: remove and move to external
-    val (text1, updateText) = remember { mutableStateOf("") }
-
-
     TextField(
-        value = text1,
+        value = text,
         textStyle = textStyle,
         activeColor = MaterialTheme.colors.onSurface,
-        onValueChange = { /*onTextChange(it)*/ updateText(it) },
+        onValueChange = { onTextChange(it) },
         placeholder = {
             if (label != null) {
                 Text(

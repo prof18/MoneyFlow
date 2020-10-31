@@ -11,7 +11,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.prof18.moneyflow.R
 import java.util.*
 
 fun getYearList() = (2015..2023).map { it.toString() }
@@ -21,7 +23,11 @@ fun getDayList() = (1..31).map { it.toString() }
 @Composable
 fun DatePickerDialog(
     showDialog: Boolean,
-    setDialogVisible: (Boolean) -> Unit
+    setDialogVisible: (Boolean) -> Unit,
+    onYearSelected: (Int) -> Unit,
+    onMonthSelected: (Int) -> Unit,
+    onDaySelected: (Int) -> Unit,
+    onSave: () -> Unit,
 ) {
     if (showDialog) {
         AlertDialog(
@@ -29,7 +35,7 @@ fun DatePickerDialog(
                 setDialogVisible(false)
             },
             title = {
-                Text(text = "Select a date")
+                Text(text = stringResource(id = R.string.select_date))
             },
             text = {
                 Row(
@@ -39,7 +45,7 @@ fun DatePickerDialog(
                         initialText = Calendar.getInstance().get(Calendar.YEAR).toString(),
                         itemList = getYearList(),
                         onItemSelected = {
-                            // TODO: send data to view model
+                            onYearSelected(it.toInt())
                         }
                     )
 
@@ -49,7 +55,7 @@ fun DatePickerDialog(
                         initialText = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString(),
                         itemList = getMonthList(),
                         onItemSelected = {
-                            // TODO: send data to view model
+                            onMonthSelected(it.toInt())
                         }
                     )
 
@@ -59,24 +65,24 @@ fun DatePickerDialog(
                         initialText = Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString(),
                         itemList = getDayList(),
                         onItemSelected = {
-                            // TODO: send data to view model
+                            onDaySelected(it.toInt())
                         }
                     )
                 }
             },
             confirmButton = {
                 Button(onClick = {
-                    // TODO: send info to viewModel
+                    onSave()
                     setDialogVisible(false)
                 }) {
-                    Text("Confirm")
+                    Text(stringResource(id = R.string.confirm))
                 }
             },
             dismissButton = {
                 Button(onClick = {
                     setDialogVisible(false)
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(id = R.string.cancel))
                 }
             }
         )

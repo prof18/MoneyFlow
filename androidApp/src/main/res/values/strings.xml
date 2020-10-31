@@ -2,4 +2,9 @@
     <string name="app_name">My Application</string>
     <string name="transaction_type_income">Income</string>
     <string name="transaction_type_outcome">Expense</string>
+    <string name="select_category">Select Category</string>
+    <string name="select_date">Select a date</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="today">Today</string>
 </resources>
