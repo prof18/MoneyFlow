@@ -1,3 +1,5 @@
-actual fun platformName(): String {
-    return "Return From android"
+import android.util.Log
+
+actual fun debugLog(tag: String, message: String) {
+    Log.d(tag, message)
 }

@@ -1,3 +1,7 @@
-actual fun platformName(): String {
-    return "Hello From MacOS"
+import platform.Foundation.NSLog
+
+actual fun debugLog(tag: String, message: String) {
+    if (Platform.isDebugBinary) {
+        NSLog("%s: %s", tag, message)
+    }
 }

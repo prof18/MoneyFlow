@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.navigation.NavController
@@ -34,7 +35,6 @@ fun AddTransactionScreen(
 
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
-    // TODO: pass data from the viewModel
     Scaffold(
         topBar = {
             MFTopBar(
@@ -44,11 +44,10 @@ fun AddTransactionScreen(
                     navController.popBackStack()
                 },
                 onActionClicked = {
-                    // TODO
-                    //  send category
+                    viewModel.addTransaction(categoryId!!)
+                    navController.popBackStack()
                 },
-                // TODO
-                actionEnabled = false
+                actionEnabled = categoryId != null && viewModel.amountText.isNotEmpty()
             )
         },
         bodyContent = {
@@ -121,13 +120,33 @@ fun AddTransactionScreen(
                     )
                 }
 
+                MFTextInput(
+                    text = viewModel.descriptionText,
+                    textStyle = MaterialTheme.typography.body1,
+                    label = stringResource(id = R.string.description),
+                    leadingIcon = {
+                        Icon(vectorResource(id = R.drawable.ic_edit))
+                    },
+                    onTextChange = {
+                        viewModel.descriptionText = it
+                    },
+                    keyboardType = KeyboardType.Text,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                        start = AppMargins.regular,
+                        end = AppMargins.regular,
+                        top = AppMargins.medium
+                    )
+                )
+
                 IconTextClickableRow(
                     onClick = {
                         navController.navigate("${Screen.CategoriesScreen.name}/true")
                     },
                     text = categoryName ?: stringResource(id = R.string.select_category),
                     iconId = R.drawable.ic_question_circle,
-                    isSomethingSelected = false,
+                    isSomethingSelected = categoryName != null,
                     modifier = Modifier.padding(
                         start = AppMargins.regular,
                         end = AppMargins.regular,
@@ -152,24 +171,3 @@ fun AddTransactionScreen(
         }
     )
 }
-
-
-
-/*
-
-TODO: Add a view model
-
-val currentEditItem: TodoItem?
-        get() = todoItems.getOrNull(currentEditPosition)
-
-
-    var todoItems: List<TodoItem> by mutableStateOf(listOf())
-        private set
-
- */
-
-//@Preview
-//@Composable
-//fun AddTransactionScreenPreview() {
-//    return AddTransactionScreen()
-//}

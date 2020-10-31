@@ -1,5 +1,6 @@
 package data
 
+import InsertTransactionDTO
 import co.touchlab.stately.ensureNeverFrozen
 import com.prof18.moneyflow.db.TransactionTable
 import data.db.DatabaseSource
@@ -60,6 +61,10 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository
 //            return@catch listOf()
             // TODO: some error handling?
         }
+    }
+
+    override suspend fun insertTransaction(transactionDTO: InsertTransactionDTO) {
+        dbSource.insertTransaction(transactionDTO)
     }
 }
 

@@ -19,13 +19,15 @@ fun MFTextInput(
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     keyboardType: KeyboardType,
-    textStyle: TextStyle
+    textStyle: TextStyle,
+    leadingIcon: @Composable (() -> Unit)? = null
 ) {
 
     TextField(
         value = text,
         textStyle = textStyle,
         activeColor = MaterialTheme.colors.onSurface,
+        leadingIcon = leadingIcon,
         onValueChange = { onTextChange(it) },
         placeholder = {
             if (label != null) {

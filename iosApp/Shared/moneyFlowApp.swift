@@ -15,14 +15,6 @@ struct moneyFlowApp: App {
     
     init() {
         startKoin()
-        
-        #if DEBUG
-        // Debug build
-        
-        // init napier
-        LoggerKt.debugBuild()
-        #endif
-        
     }
     
     var body: some Scene {

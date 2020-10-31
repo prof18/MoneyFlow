@@ -1,5 +1,6 @@
 package presentation.home
 
+import debugLog
 import domain.model.BalanceRecap
 import domain.model.MoneyTransaction
 import domain.repository.MoneyRepository
@@ -10,7 +11,6 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import com.github.aakira.napier.Napier
 
 class HomeUseCaseImpl(
     private val moneyRepository: MoneyRepository,
@@ -33,7 +33,7 @@ class HomeUseCaseImpl(
 
     override suspend fun computeHomeDataSuspendable() {
 
-        Napier.d("Calling compute home data")
+        debugLog("computeHomeDataSuspendable", "Called computeHomeDataSuspendable")
 
         val latestTransactionFlow = moneyRepository.getLatestTransactions()
         val balanceRecapFlow = moneyRepository.getBalanceRecap()

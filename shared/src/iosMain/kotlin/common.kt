@@ -1,7 +1,7 @@
-import platform.UIKit.UIDevice
+import platform.Foundation.NSLog
 
-actual fun platformName(): String {
-    return UIDevice.currentDevice.systemName() +
-            " " +
-            UIDevice.currentDevice.systemVersion
+actual fun debugLog(tag: String, message: String) {
+    if (Platform.isDebugBinary) {
+        NSLog("%s: %s", tag, message)
+    }
 }

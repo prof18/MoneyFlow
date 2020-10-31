@@ -1,17 +1,24 @@
 package com.prof18.moneyflow.features.addtransaction
 
+import InsertTransactionDTO
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
 import data.db.model.TransactionType
+import kotlinx.coroutines.launch
+import org.koin.java.KoinJavaComponent.getKoin
+import presentation.addtransaction.AddTransactionUseCase
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddTransactionViewModel : ViewModel() {
+class AddTransactionViewModel(
+    private val addTransactionUseCase: AddTransactionUseCase
+) : ViewModel() {
 
     // States
     var selectedTransactionType: TransactionTypeRadioItem by mutableStateOf(
@@ -21,6 +28,7 @@ class AddTransactionViewModel : ViewModel() {
         )
     )
     var amountText: String by mutableStateOf("")
+    var descriptionText: String by mutableStateOf("")
     var dateLabel: String? by mutableStateOf(null)
 
     // Private variables
@@ -56,15 +64,37 @@ class AddTransactionViewModel : ViewModel() {
 
     fun addTransaction(categoryId: Long) {
         // TODO: perform adding
-    }
 
+        val amount = amountText.toDoubleOrNull()
+        if (amount == null) {
+            // TODO: show error
+            return
+        }
+
+       viewModelScope.launch {
+           try {
+               addTransactionUseCase.insertTransaction(
+                   InsertTransactionDTO(
+                       dateMillis = selectedDate.timeInMillis,
+                       amount = amount,
+                       description = descriptionText,
+                       categoryId = categoryId,
+                       transactionType = selectedTransactionType.transactionType
+                   )
+               )
+           } catch (e: Exception) {
+               e.printStackTrace()
+               // TODO: show something in UI
+           }
+       }
+    }
 }
 
 class AddTransactionViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AddTransactionViewModel::class.java)) {
-            return AddTransactionViewModel() as T
+            return AddTransactionViewModel(getKoin().get()) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

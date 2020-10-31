@@ -31,7 +31,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.0"
+        kotlinCompilerVersion = "1.4.10"
         kotlinCompilerExtensionVersion = Versions.compose
     }
 
@@ -66,7 +66,6 @@ dependencies {
     implementation(Deps.Koin.androidViewModel)
 //    implementation(Deps.Koin.compose)
 
-    implementation(Deps.napier)
 
 
 //    androidTestImplementation(Deps.Compose.test)

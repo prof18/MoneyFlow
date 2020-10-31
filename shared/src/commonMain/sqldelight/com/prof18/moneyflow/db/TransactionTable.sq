@@ -12,3 +12,7 @@ CREATE TABLE TransactionTable (
 selectAll:
 SELECT * FROM TransactionTable
 ORDER BY dateMillis DESC;
+
+insertTransaction:
+INSERT INTO TransactionTable (dateMillis, amount, description, categoryId, type)
+VALUES (?,?,?,?,?);

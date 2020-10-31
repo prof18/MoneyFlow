@@ -2,7 +2,6 @@ package com.prof18.moneyflow.features.home
 
 import androidx.lifecycle.*
 import data.db.DatabaseSource
-import di.recreateDatabaseScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.getKoin
@@ -35,16 +34,7 @@ class HomeViewModel(
         }
     }
 
-    fun refreshData() {
-        viewModelScope.launch {
 
-            getKoin().recreateDatabaseScope()
-            val driverScope = getKoin().getOrCreateScope<DatabaseSource>("databaseScope")
-            useCase = driverScope.get()
-
-            useCase.refreshData()
-        }
-    }
 }
 
 class HomeViewModelFactory : ViewModelProvider.Factory {
