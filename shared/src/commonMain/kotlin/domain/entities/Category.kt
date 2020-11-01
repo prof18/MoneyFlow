@@ -1,4 +1,4 @@
-package domain.model
+package domain.entities
 
 import presentation.CategoryIcon
 

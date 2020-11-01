@@ -1,7 +1,7 @@
 package presentation.home
 
-import domain.model.BalanceRecap
-import domain.model.MoneyTransaction
+import domain.entities.BalanceRecap
+import domain.entities.MoneyTransaction
 
 sealed class HomeModel {
     object Loading: HomeModel()

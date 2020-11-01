@@ -12,10 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.vectorResource
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppColors
 import com.prof18.moneyflow.ui.style.AppMargins
-import domain.model.MoneyTransaction
+import domain.entities.MoneyTransaction
 
 @Composable
 fun TransactionCard(

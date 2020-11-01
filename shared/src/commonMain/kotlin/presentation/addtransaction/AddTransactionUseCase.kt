@@ -1,14 +1,12 @@
 package presentation.addtransaction
 
-import InsertTransactionDTO
-
 
 interface AddTransactionUseCase {
 
     @Throws(Exception::class)
-    fun insertTransaction(insertTransactionDTO: InsertTransactionDTO)
+    fun insertTransaction(transactionToSave: TransactionToSave)
 
     @Throws(Exception::class)
-    suspend fun insertTransactionSuspendable(insertTransactionDTO: InsertTransactionDTO)
+    suspend fun insertTransactionSuspendable(transactionToSave: TransactionToSave)
 
 }

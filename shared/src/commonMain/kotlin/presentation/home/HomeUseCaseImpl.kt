@@ -1,16 +1,14 @@
 package presentation.home
 
 import debugLog
-import domain.model.BalanceRecap
-import domain.model.MoneyTransaction
+import domain.entities.BalanceRecap
+import domain.entities.MoneyTransaction
 import domain.repository.MoneyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 import printThrowable
 
 class HomeUseCaseImpl(

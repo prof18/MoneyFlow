@@ -1,25 +1,17 @@
 package com.prof18.moneyflow.features.categories
 
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumnFor
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.navigation.NavController
 import com.prof18.moneyflow.NavigationArguments
-import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
-import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModelFactory
 import com.prof18.moneyflow.features.categories.components.CategoryCard
 import com.prof18.moneyflow.features.categories.data.toCategoryUIData
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
-import domain.model.Category
 import presentation.categories.CategoryModel
 
 

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.prof18.moneyflow.ui.style.AppMargins
-import domain.model.BalanceRecap
+import domain.entities.BalanceRecap
 
 @Composable
 fun HomeRecap(

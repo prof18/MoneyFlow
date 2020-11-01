@@ -1,4 +1,4 @@
-package domain.model
+package domain.entities
 
 enum class TransactionTypeUI {
     INCOME,

@@ -1,0 +1,24 @@
+CREATE TABLE MonthlyRecapTable (
+    -- the id will be the millis of the first day of the month
+    id INTEGER NOT NULL PRIMARY KEY,
+    incomeAmount REAL NOT NULL DEFAULT 0,
+    outcomeAmount REAL NOT NULL DEFAULT 0
+);
+
+insertMonthRecap:
+INSERT OR IGNORE INTO MonthlyRecapTable (id, incomeAmount, outcomeAmount)
+VALUES (?,?,?);
+
+selectMonthlyRecap:
+SELECT * FROM MonthlyRecapTable;
+
+updateIncome:
+UPDATE MonthlyRecapTable
+SET incomeAmount = :income
+WHERE id = :id;
+
+updateOutcome:
+UPDATE MonthlyRecapTable
+SET outcomeAmount = :outcome
+WHERE id = :id;
+

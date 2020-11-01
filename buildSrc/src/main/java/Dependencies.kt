@@ -10,12 +10,15 @@ object Versions {
     const val sqlDelight = "1.4.4"
     const val stately = "1.1.0"
     const val navComposeVersion = "1.0.0-alpha01"
+    const val kotlinDateTime = "0.1.0"
 }
 
 object Deps {
 
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
+    const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTime}"
+
 
     object Koin {
         const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"

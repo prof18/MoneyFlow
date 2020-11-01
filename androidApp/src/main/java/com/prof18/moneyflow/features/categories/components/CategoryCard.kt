@@ -11,14 +11,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppColors
 import com.prof18.moneyflow.ui.style.AppMargins
-import domain.model.Category
+import domain.entities.Category
 import presentation.CategoryIcon
 
 @Composable

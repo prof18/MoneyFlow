@@ -1,6 +1,6 @@
 package presentation.categories
 
-import domain.model.Category
+import domain.entities.Category
 
 sealed class CategoryModel {
     object Loading: CategoryModel()

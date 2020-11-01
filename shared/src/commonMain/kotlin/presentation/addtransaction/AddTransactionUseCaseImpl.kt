@@ -1,6 +1,5 @@
 package presentation.addtransaction
 
-import InsertTransactionDTO
 import domain.repository.MoneyRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -14,14 +13,14 @@ class AddTransactionUseCaseImpl(
     // Used only on iOs
     private val coroutineScope: CoroutineScope = MainScope()
 
-    override fun insertTransaction(insertTransactionDTO: InsertTransactionDTO) {
+    override fun insertTransaction(transactionToSave: TransactionToSave) {
         coroutineScope.launch {
-            insertTransactionSuspendable(insertTransactionDTO)
+            insertTransactionSuspendable(transactionToSave)
         }
     }
 
-    override suspend fun insertTransactionSuspendable(insertTransactionDTO: InsertTransactionDTO) {
-        moneyRepository.insertTransaction(insertTransactionDTO)
+    override suspend fun insertTransactionSuspendable(transactionToSave: TransactionToSave) {
+        moneyRepository.insertTransaction(transactionToSave)
     }
 
     fun onDestroy() {

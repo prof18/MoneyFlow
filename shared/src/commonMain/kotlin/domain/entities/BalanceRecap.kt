@@ -1,4 +1,4 @@
-package domain.model
+package domain.entities
 
 data class BalanceRecap(
     val totalBalance: Int,

@@ -1,17 +1,20 @@
 package data
 
-import InsertTransactionDTO
 import co.touchlab.stately.ensureNeverFrozen
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.TransactionTable
 import data.db.DatabaseSource
-import domain.model.BalanceRecap
-import domain.model.Category
-import domain.model.MoneyTransaction
-import domain.model.TransactionTypeUI
+import data.db.model.InsertTransactionDTO
+import data.db.model.TransactionType
+import domain.entities.BalanceRecap
+import domain.entities.Category
+import domain.entities.MoneyTransaction
+import domain.entities.TransactionTypeUI
+import domain.mapper.mapToInsertTransactionDTO
 import domain.repository.MoneyRepository
 import kotlinx.coroutines.flow.*
 import presentation.CategoryIcon
+import presentation.addtransaction.TransactionToSave
 
 class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository {
 
@@ -58,8 +61,8 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository
         }
     }
 
-    override suspend fun insertTransaction(transactionDTO: InsertTransactionDTO) {
-        dbSource.insertTransaction(transactionDTO)
+    override suspend fun insertTransaction(transactionToSave: TransactionToSave) {
+        dbSource.insertTransaction(transactionToSave.mapToInsertTransactionDTO())
     }
 
     override suspend fun getCategories(): Flow<List<Category>> {

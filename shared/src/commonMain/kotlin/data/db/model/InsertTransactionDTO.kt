@@ -1,9 +1,13 @@
-import data.db.model.TransactionType;
+package data.db.model
+
+import utils.CurrentMonthID
+import utils.MillisSinceEpoch
 
 data class InsertTransactionDTO(
-    val dateMillis: Long,
+    val dateMillis: MillisSinceEpoch,
     val amount: Double,
     val description: String?,
     val categoryId: Long,
-    val transactionType: TransactionType
+    val transactionType: TransactionType,
+    val currentMonthId: CurrentMonthID
 )

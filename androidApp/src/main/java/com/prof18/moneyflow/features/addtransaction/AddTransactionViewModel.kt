@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.features.addtransaction
 
-import InsertTransactionDTO
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,6 +12,7 @@ import data.db.model.TransactionType
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.getKoin
 import presentation.addtransaction.AddTransactionUseCase
+import presentation.addtransaction.TransactionToSave
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -71,22 +71,22 @@ class AddTransactionViewModel(
             return
         }
 
-       viewModelScope.launch {
-           try {
-               addTransactionUseCase.insertTransaction(
-                   InsertTransactionDTO(
+        viewModelScope.launch {
+            try {
+                addTransactionUseCase.insertTransaction(
+                   TransactionToSave(
                        dateMillis = selectedDate.timeInMillis,
                        amount = amount,
                        description = descriptionText,
                        categoryId = categoryId,
                        transactionType = selectedTransactionType.transactionType
                    )
-               )
-           } catch (e: Exception) {
-               e.printStackTrace()
-               // TODO: show something in UI
-           }
-       }
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // TODO: show something in UI
+            }
+        }
     }
 }
 

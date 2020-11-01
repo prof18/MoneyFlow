@@ -6,3 +6,15 @@ CREATE TABLE AccountTable (
     currency TEXT AS Currency NOT NULL,
     amount REAL NOT NULL
 );
+
+getAccount:
+SELECT * FROM AccountTable;
+
+insertAccount:
+INSERT INTO AccountTable (name, currency, amount)
+VALUES (?,?,?);
+
+updateAmount:
+UPDATE AccountTable
+SET amount = amount + :newTransaction
+WHERE id = ?;
