@@ -1,7 +1,9 @@
 package data
 
 import co.touchlab.stately.ensureNeverFrozen
+import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
+import com.prof18.moneyflow.db.MonthlyRecapTable
 import com.prof18.moneyflow.db.TransactionTable
 import data.db.DatabaseSource
 import data.db.model.InsertTransactionDTO
@@ -15,47 +17,48 @@ import domain.repository.MoneyRepository
 import kotlinx.coroutines.flow.*
 import presentation.CategoryIcon
 import presentation.addtransaction.TransactionToSave
+import utils.Utils.formatDate
 
 class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository {
 
     private var allTransactions: Flow<List<TransactionTable>> = emptyFlow()
     private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
+    private var monthlyRecap: Flow<MonthlyRecapTable> = emptyFlow()
+    private var account: Flow<AccountTable> = emptyFlow()
 
     init {
         ensureNeverFrozen()
         allTransactions = dbSource.selectAllTransaction()
         allCategories = dbSource.selectAllCategories()
+        monthlyRecap = dbSource.selectCurrentMonthlyRecap()
+        account = dbSource.selectCurrentAccount()
     }
 
-    // TODO: fix this
-    override suspend fun getBalanceRecap(): Flow<BalanceRecap> = flow {
-        emit(
+    override suspend fun getBalanceRecap(): Flow<BalanceRecap> {
+        return monthlyRecap.combine(account) { monthlyRecap: MonthlyRecapTable, account: AccountTable ->
             BalanceRecap(
-                totalBalance = 1518,
-                monthlyIncome = 300,
-                monthlyExpenses = 200
+                totalBalance = account.amount,
+                monthlyIncome = monthlyRecap.incomeAmount,
+                monthlyExpenses = monthlyRecap.outcomeAmount
             )
-        )
-        kotlinx.coroutines.delay(5000)
-        emit(
-            BalanceRecap(
-                totalBalance = 1518888888,
-                monthlyIncome = 300,
-                monthlyExpenses = 200
-            )
-        )
+        }
     }
 
     override suspend fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
-        // TODO: map data correctly
         return allTransactions.map {
             it.map {transaction ->
+
+                val transactionTypeUI = when (transaction.type) {
+                    TransactionType.INCOME -> TransactionTypeUI.INCOME
+                    TransactionType.OUTCOME -> TransactionTypeUI.EXPENSE
+                }
+
                 MoneyTransaction(
                     id = transaction.id,
                     title = transaction.description ?: "",
                     amount = transaction.amount,
-                    type = TransactionTypeUI.EXPENSE,
-                    formattedDate = "10/10/20"
+                    type = transactionTypeUI,
+                    formattedDate = transaction.dateMillis.formatDate()
                 )
             }
         }

@@ -12,4 +12,11 @@ object Utils {
         val id = "${dateTime.year}${dateTime.monthNumber}${dateTime.dayOfMonth}"
         return id.toLong()
     }
+
+    fun MillisSinceEpoch.formatDate(): String {
+        val instant = Instant.fromEpochMilliseconds(this)
+        val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
+        return "${dateTime.dayOfMonth}/${dateTime.monthNumber}/${dateTime.year}"
+    }
+
 }

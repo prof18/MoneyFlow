@@ -2,15 +2,18 @@ package data.db
 
 import data.db.model.InsertTransactionDTO
 import asFlow
-import com.prof18.moneyflow.db.CategoryTable
-import com.prof18.moneyflow.db.MoneyFlowDB
-import com.prof18.moneyflow.db.MonthlyRecapTable
-import com.prof18.moneyflow.db.TransactionTable
+import com.prof18.moneyflow.db.*
+import data.db.model.Currency
 import data.db.model.TransactionType
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import mapToList
+import mapToOneOrDefault
 import transactionWithContext
 import kotlin.math.abs
 
@@ -43,7 +46,7 @@ class DatabaseSourceImpl (
             dbRef.accountTableQueries.updateAmount(newTransaction = insertTransaction.amount, id = 1)
 
             // Monthly recap
-            var recap = dbRef.monthlyRecapTableQueries.selectMonthlyRecap().executeAsList().firstOrNull()
+            var recap = dbRef.monthlyRecapTableQueries.selectCurrentMonthlyRecap(insertTransaction.currentMonthId).executeAsList().firstOrNull()
             if (recap == null) {
                 dbRef.monthlyRecapTableQueries.insertMonthRecap(
                     id = insertTransaction.currentMonthId,
@@ -80,19 +83,24 @@ class DatabaseSourceImpl (
             .mapToList()
             .flowOn(backgroundDispatcher)
 
-    /*
 
-    For pagination:
-        suspend fun selectById(id: Long): Flow<List<Breed>> =
-        dbRef.tableQueries
-            .selectById(id)
+    override fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable> {
+        val current = Clock.System.now()
+        val dateTime: LocalDateTime = current.toLocalDateTime(TimeZone.currentSystemDefault())
+        val id = "${dateTime.year}${dateTime.monthNumber}${dateTime.dayOfMonth}".toLong()
+
+        return  dbRef.monthlyRecapTableQueries
+            .selectCurrentMonthlyRecap(id)
             .asFlow()
-            .mapToList()
+            .mapToOneOrDefault(MonthlyRecapTable(id = id, incomeAmount = 0.0, outcomeAmount = 0.0))
             .flowOn(backgroundDispatcher)
-
-     */
-
+    }
 
 
-
+    override fun selectCurrentAccount(): Flow<AccountTable> =
+        dbRef.accountTableQueries
+            .getAccount()
+            .asFlow()
+            .mapToOneOrDefault(AccountTable(id = 1, name = "Default Account", currency = Currency.EURO, amount = 0.0))
+            .flowOn(backgroundDispatcher)
 }

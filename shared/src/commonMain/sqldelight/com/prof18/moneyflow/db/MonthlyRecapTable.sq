@@ -9,8 +9,9 @@ insertMonthRecap:
 INSERT OR IGNORE INTO MonthlyRecapTable (id, incomeAmount, outcomeAmount)
 VALUES (?,?,?);
 
-selectMonthlyRecap:
-SELECT * FROM MonthlyRecapTable;
+selectCurrentMonthlyRecap:
+SELECT * FROM MonthlyRecapTable
+WHERE id = :id;
 
 updateIncome:
 UPDATE MonthlyRecapTable

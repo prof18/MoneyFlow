@@ -74,15 +74,15 @@ class HomeViewModel: ObservableObject {
 
         
         databaseHelper.setupDatabase()
-        databaseSource.dbRef = databaseHelper.instance
-    
-        let items = databaseSource.getData()
-    
-        for item in items {
-            print(item.description())
-        }
+//        databaseSource.dbRef = databaseHelper.instance
+//
+//        let items = databaseSource.getData()
+//
+//        for item in items {
+//            print(item.description())
+//        }
         
-        print("List is empty: \(items.isEmpty)")
+//        print("List is empty: \(items.isEmpty)")
         
         
         
@@ -101,22 +101,22 @@ class HomeViewModel: ObservableObject {
     
     func startObserving() {
         
-        let databaseSource = koin.get(objCClass: DatabaseSource.self, parameter: "HomeViewModel") as! DatabaseSource
-
-        useCase = HomeUseCaseImpl(moneyRepository: MoneyRepositoryImpl(dbSource: databaseSource), viewUpdate: { [weak self] model in
-            self?.homeModel = model
-        })
+//        let databaseSource = koin.get(objCClass: DatabaseSource.self, parameter: "HomeViewModel") as! DatabaseSource
+//
+//        useCase = HomeUseCaseImpl(moneyRepository: MoneyRepositoryImpl(dbSource: databaseSource), viewUpdate: { [weak self] model in
+//            self?.homeModel = model
+//        })
         
     
 //        let databaseSource = koin.getFromScope(objCClass: DatabaseSource.self, scopeID: "databaseScope") as! DatabaseSource
 
-        let items = databaseSource.getData()
-    
-        for item in items {
-            print(item.description())
-        }
+//        let items = databaseSource.getData()
+//
+//        for item in items {
+//            print(item.description())
+//        }
         
-        print("List is empty: \(items.isEmpty)")
+//        print("List is empty: \(items.isEmpty)")
         
         
         let fileURL = try! FileManager.default
