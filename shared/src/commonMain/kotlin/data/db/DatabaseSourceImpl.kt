@@ -6,6 +6,7 @@ import com.prof18.moneyflow.db.*
 import data.db.model.Currency
 import data.db.model.TransactionType
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.datetime.Clock
@@ -21,8 +22,11 @@ import kotlin.math.abs
 class DatabaseSourceImpl (
     // not private and mutable to close and reopen the database at runtime
     var dbRef: MoneyFlowDB,
-    private val backgroundDispatcher: CoroutineDispatcher
+    dispatcher: CoroutineDispatcher?
 ) : DatabaseSource {
+
+
+    private val backgroundDispatcher = dispatcher ?: Dispatchers.Main
 
     override fun selectAllTransaction(): Flow<List<TransactionTable>> =
         dbRef.transactionTableQueries

@@ -24,7 +24,6 @@ struct FilePickerController: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
         print("Making the picker")
-//        let controller = UIDocumentPickerViewController(documentTypes: [String(kUTTypeText)], in: .open)
         
         let supportedTypes: [UTType] = [UTType.item]
         let controller = UIDocumentPickerViewController(forOpeningContentTypes: supportedTypes, asCopy: true)
@@ -41,8 +40,6 @@ struct FilePickerController: UIViewControllerRepresentable {
         
         init(_ pickerController: FilePickerController) {
             self.parent = pickerController
-            print("Setup a parent")
-            print("Callback: \(parent.callback)")
         }
        
 //        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -51,8 +48,6 @@ struct FilePickerController: UIViewControllerRepresentable {
 //        }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            print("her")
-            print(urls[0])
             self.parent.callback(urls[0])
         }
         

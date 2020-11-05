@@ -15,10 +15,6 @@ struct HomeScreen: View {
     @State private var showingSheet = false
     @State private var showingFilePicker = false
     
-
-
-
-    
     var body: some View {
         
         NavigationView {
@@ -41,18 +37,11 @@ struct HomeScreen: View {
                     .listStyle(PlainListStyle())
                 }
             }
-            .navigationBarTitle(Text("Wallet"), displayMode: .automatic)
-            .navigationBarItems(leading: Button(action: {
+            .navigationBarTitle(Text("Money Flow"), displayMode: .automatic)
+            .navigationBarItems(trailing: Button(action: {
                 print("tapped")
-                showingSheet.toggle()
             }) {
-                Text("Export db")
-                
-            }, trailing: Button(action: {
-                print("tapped")
-                showingFilePicker.toggle()
-            }) {
-                Text("Import db")
+                Text("Add Transaction")
                 
             })
             .onAppear {
@@ -60,13 +49,6 @@ struct HomeScreen: View {
             }.onDisappear {
                 self.viewModel.stopObserving()
             }
-//            .sheet(isPresented: $showingSheet,
-//                     content: {
-//                        ActivityView(activityItems: [viewModel.getDBURL()] as [Any], applicationActivities: nil) })
-            .sheet(isPresented: $showingFilePicker, content: { FilePickerController { url in
-                print("Selected: \(url)")
-                self.viewModel.replaceDB(url: url)
-            }})
         }
     }
 }

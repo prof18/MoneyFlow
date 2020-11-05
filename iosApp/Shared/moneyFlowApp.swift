@@ -13,9 +13,9 @@ struct moneyFlowApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     
-    init() {
-        startKoin()
-    }
+//    init() {
+//        startKoin()
+//    }
     
     var body: some Scene {
         WindowGroup {
