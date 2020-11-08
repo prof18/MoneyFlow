@@ -13,6 +13,11 @@
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DIContainer.swift */; };
 		A947AF252554A7D500633BD3 /* DatabaseExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF242554A7D500633BD3 /* DatabaseExporter.swift */; };
+		A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */; };
+		A9A8A9DA2557EA9B00C0ED89 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D92557EA9B00C0ED89 /* BudgetScreen.swift */; };
+		A9A8A9E02557EAB900C0ED89 /* RecapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9DF2557EAB900C0ED89 /* RecapScreen.swift */; };
+		A9A8A9ED2557ECC100C0ED89 /* AppTabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */; };
+		A9A8A9F32557F0F600C0ED89 /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9F22557F0F600C0ED89 /* AppSidebarNavigation.swift */; };
 		A9D1B2CA2553E8E100931B2B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = A9D1B2C92553E8E100931B2B /* shared */; };
 		A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */; };
 		A9D269DA24FC28F900D2B4AE /* HeaderNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */; };
@@ -83,6 +88,11 @@
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A947AF1E2554991600633BD3 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		A947AF242554A7D500633BD3 /* DatabaseExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExporter.swift; sourceTree = "<group>"; };
+		A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
+		A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A9A8A9D92557EA9B00C0ED89 /* BudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
+		A9A8A9DF2557EAB900C0ED89 /* RecapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapScreen.swift; sourceTree = "<group>"; };
+		A9A8A9F22557F0F600C0ED89 /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
 		A9D1B2C92553E8E100931B2B /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
 		A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNavigator.swift; sourceTree = "<group>"; };
 		A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecap.swift; sourceTree = "<group>"; };
@@ -160,6 +170,41 @@
 				A947AF1E2554991600633BD3 /* DIContainer.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		A9A8A9CF2557E9FB00C0ED89 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A9A8A9D22557EA1F00C0ED89 /* Settings */,
+				A9A8A9D12557EA1700C0ED89 /* Budget */,
+				A9A8A9D02557EA0900C0ED89 /* Recap */,
+				A9D269DE24FC310F00D2B4AE /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A9A8A9D02557EA0900C0ED89 /* Recap */ = {
+			isa = PBXGroup;
+			children = (
+				A9A8A9DF2557EAB900C0ED89 /* RecapScreen.swift */,
+			);
+			path = Recap;
+			sourceTree = "<group>";
+		};
+		A9A8A9D12557EA1700C0ED89 /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				A9A8A9D92557EA9B00C0ED89 /* BudgetScreen.swift */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		A9A8A9D22557EA1F00C0ED89 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A9D269DE24FC310F00D2B4AE /* Home */ = {
@@ -252,13 +297,14 @@
 		A9F674F424F59E2500F486FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				A9A8A9CF2557E9FB00C0ED89 /* Features */,
 				A930B879253B7FFB00CB92DF /* DI */,
-				A9D269DE24FC310F00D2B4AE /* Home */,
 				A9D8986E24FBF8A6007771A1 /* Utils */,
 				A9D8985324FBEF8A007771A1 /* UI */,
 				A9D8985224FBEF7C007771A1 /* Style */,
 				A9F674F524F59E2500F486FE /* moneyFlowApp.swift */,
 				A9F674F624F59E2500F486FE /* ContentView.swift */,
+				A9A8A9F22557F0F600C0ED89 /* AppSidebarNavigation.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -278,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				A9F674FF24F59E2700F486FE /* Info.plist */,
+				A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -582,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A8A9F32557F0F600C0ED89 /* AppSidebarNavigation.swift in Sources */,
 				A9D8986324FBF12A007771A1 /* AppFonts.swift in Sources */,
 				A947AF252554A7D500633BD3 /* DatabaseExporter.swift in Sources */,
 				A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */,
@@ -590,9 +638,13 @@
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
+				A9A8A9E02557EAB900C0ED89 /* RecapScreen.swift in Sources */,
+				A9A8A9ED2557ECC100C0ED89 /* AppTabNavigation.swift in Sources */,
+				A9A8A9DA2557EA9B00C0ED89 /* BudgetScreen.swift in Sources */,
 				A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */,
 				A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
 				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
+				A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,

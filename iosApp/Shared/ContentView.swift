@@ -9,8 +9,20 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    #endif
+    
     var body: some View {
-        HomeScreen()
+        #if os(iOS)
+        if horizontalSizeClass == .compact {
+            AppTabNavigation()
+        } else {
+            AppSidebarNavigation()
+        }
+        #else
+//        AppSidebarNavigation()
+        #endif
     }
 }
 
