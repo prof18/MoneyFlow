@@ -8,4 +8,10 @@
     <string name="cancel">Cancel</string>
     <string name="today">Today</string>
     <string name="description">Description</string>
+    <string name="home_screen">Home</string>
+    <string name="recap_screen">Recap</string>
+    <string name="budget_screen">Budget</string>
+    <string name="settings_screen">Settings</string>
+    <string name="add_transaction_screen">Add Transaction</string>
+    <string name="categories_screen">Categories</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.prof18.moneyflow.features.addtransaction
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Text
+import androidx.compose.material.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable

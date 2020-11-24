@@ -6,6 +6,7 @@ object AppColors {
 
     val yellowAccent = hexColor("#FFC700")
     val darkGrey = hexColor("#C4C4C4")
+    val darkerGrey = hexColor("#848383")
     val lightGrey = hexColor("#F8F5F5")
 
     // Primary

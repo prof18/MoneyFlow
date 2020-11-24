@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.features.categories
 
-import androidx.compose.foundation.Text
+import androidx.compose.material.Text
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
