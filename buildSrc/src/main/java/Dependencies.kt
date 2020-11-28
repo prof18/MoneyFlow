@@ -5,11 +5,14 @@ object Versions {
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-alpha07"
     const val junit = "4.12"
-    const val coroutines = "1.3.9-native-mt"
+    const val coroutinesMt = "1.4.1-native-mt"
     const val sqlDelight = "1.4.4"
     const val stately = "1.1.0"
     const val navComposeVersion = "1.0.0-alpha02"
     const val kotlinDateTime = "0.1.0"
+    const val androidXTest = "1.3.0"
+    const val androidXTestExt = "1.1.2"
+    const val turbine = "0.3.0"
 }
 
 object Deps {
@@ -17,7 +20,7 @@ object Deps {
     const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTime}"
-
+    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
 
     object Koin {
         const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
@@ -54,15 +57,24 @@ object Deps {
         const val junit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
 
+    object AndroidXTest {
+        const val core = "androidx.test:core:${Versions.androidXTest}"
+        const val junit = "androidx.test.ext:junit:${Versions.androidXTestExt}"
+        const val runner = "androidx.test:runner:${Versions.androidXTest}"
+        const val rules = "androidx.test:rules:${Versions.androidXTest}"
+    }
+
     object Coroutines {
-        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
-        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesMt}"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesMt}"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesMt}"
     }
 
     object SqlDelight {
         const val gradle = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+        const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+        const val driver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
         const val runtimeJdk = "com.squareup.sqldelight:runtime-jvm:${Versions.sqlDelight}"
         const val driverIos = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         const val driverAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"

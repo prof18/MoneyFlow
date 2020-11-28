@@ -22,6 +22,7 @@ android {
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         getByName("release") {
@@ -38,6 +39,13 @@ android {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
+}
+
+kotlin.sourceSets.matching {
+    it.name.endsWith("Test")
+}.configureEach {
+    languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
+    languageSettings.useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
 }
 
 kotlin {
@@ -70,7 +78,10 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Deps.SqlDelight.runtime)
-                implementation(Deps.Coroutines.common)
+                implementation(Deps.SqlDelight.coroutineExtensions)
+                implementation(Deps.Coroutines.common) {
+                    isForce = true
+                }
                 implementation(Deps.stately)
                 implementation(Deps.Koin.coreMultiplatform)
                 implementation(Deps.kotlinDateTime)
@@ -81,6 +92,8 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(Deps.Koin.test)
+                implementation(Deps.Coroutines.test)
+                implementation(Deps.turbine)
             }
         }
         val androidMain by getting {
@@ -89,18 +102,39 @@ kotlin {
                 implementation(Deps.SqlDelight.driverAndroid)
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(Deps.SqlDelight.driver)
+
+                implementation(Deps.KotlinTest.jvm)
+                implementation(Deps.KotlinTest.junit)
+                implementation(Deps.AndroidXTest.core)
+                implementation(Deps.AndroidXTest.junit)
+                implementation(Deps.AndroidXTest.runner)
+                implementation(Deps.AndroidXTest.rules)
+                implementation(Deps.Coroutines.test)
+
+            }
+        }
         val iosMain by getting {
             dependencies {
                 implementation(Deps.SqlDelight.driverIos)
             }
         }
-        val iosTest by getting
+        val iosTest by getting {
+            dependencies {
+                implementation(Deps.SqlDelight.driverIos)
+            }
+        }
         val macOSMain by getting {
             dependencies {
                 implementation(Deps.SqlDelight.driverMacOs)
                 implementation(Deps.SqlDelight.runtimeMacOs)
             }
+        }
+        val macOSTest by getting {
+
         }
     }
 }
@@ -112,26 +146,3 @@ sqldelight {
         schemaOutputDirectory = file("src/main/sqldelight/databases")
     }
 }
-
-//val packForXcode by tasks.creating(Sync::class) {
-//    group = "build"
-//    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-//    val framework = kotlin.targets.getByName<KotlinNativeTarget>("ios").binaries.getFramework(mode)
-//    inputs.property("mode", mode)
-//    dependsOn(framework.linkTask)
-//    val targetDir = File(buildDir, "xcode-frameworks")
-//    from({ framework.outputDirectory })
-//    into(targetDir)
-//}
-//tasks.getByName("build").dependsOn(packForXcode)
-//dependencies {
-//    implementation(kotlin("stdlib-jdk8"))
-//}
-//val compileKotlin: KotlinCompile by tasks
-//compileKotlin.kotlinOptions {
-//    jvmTarget = "1.8"
-//}
-//val compileTestKotlin: KotlinCompile by tasks
-//compileTestKotlin.kotlinOptions {
-//    jvmTarget = "1.8"
-//}

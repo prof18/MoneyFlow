@@ -12,8 +12,8 @@ object DatabaseHelper {
     private var driverRef: SqlDriver? = null
     private var dbRef: MoneyFlowDB? = null
 
-    fun setupDatabase() {
-        val driverRef = AndroidSqliteDriver(
+    fun setupDatabase(driver: SqlDriver? = null ) {
+        val driverRef = driver ?: AndroidSqliteDriver(
             Schema,
             getKoin().get(),
             "MoneyFlowDB"

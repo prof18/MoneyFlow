@@ -15,8 +15,8 @@ object DatabaseHelper {
     private val dbRef = AtomicReference<MoneyFlowDB?>(null)
     private val loggingEnabled = AtomicReference(true)
 
-    fun setupDatabase() {
-        val databaseDriver = NativeSqliteDriver(Schema, "MoneyFlowDB")
+    fun setupDatabase(driver: SqlDriver? = null ) {
+        val databaseDriver = driver ?: NativeSqliteDriver(Schema, "MoneyFlowDB")
         val db = createQueryWrapper(databaseDriver)
         driverRef.value = databaseDriver.freeze()
         dbRef.value = db.freeze()
