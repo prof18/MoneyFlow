@@ -14,6 +14,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.textColor
 
 @Composable
 fun IconTextClickableRow(
@@ -30,7 +31,7 @@ fun IconTextClickableRow(
             Icon(
                 vectorResource(id = iconId),
                 modifier = Modifier.padding(start = AppMargins.horizontalIconPadding),
-                tint = MaterialTheme.colors.onSurface.copy(alpha = 0.54f)
+                tint = textColor()
             )
 
             Spacer(Modifier.preferredWidth(AppMargins.textFieldPadding))
@@ -38,7 +39,7 @@ fun IconTextClickableRow(
             Text(
                 text,
                 style = MaterialTheme.typography.body1,
-                color = if (isSomethingSelected) Color.Black else Color.Black.copy(alpha = 0.5f),
+                color = if (isSomethingSelected) textColor() else textColor().copy(alpha = 0.5f),
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
             )

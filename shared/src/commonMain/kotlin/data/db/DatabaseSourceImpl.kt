@@ -28,9 +28,9 @@ class DatabaseSourceImpl (
 
     private val backgroundDispatcher = dispatcher ?: Dispatchers.Main
 
-    override fun selectAllTransaction(): Flow<List<TransactionTable>> =
+    override fun selectAllTransaction(): Flow<List<SelectAllTransactions>> =
         dbRef.transactionTableQueries
-            .selectAll()
+            .selectAllTransactions()
             .asFlow()
             .mapToList()
             .flowOn(backgroundDispatcher)

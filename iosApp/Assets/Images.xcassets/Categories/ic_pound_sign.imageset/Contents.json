@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_pound_sign.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

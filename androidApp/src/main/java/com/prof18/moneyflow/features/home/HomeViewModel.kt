@@ -12,9 +12,6 @@ class HomeViewModel(
     private var useCase: HomeUseCase
 ) : ViewModel() {
 
-    // move to constructor when introducing koin
-//    private val useCase: HomeUseCase = HomeUseCaseImpl()
-
     private val _homeLiveData = MutableLiveData<HomeModel>()
     val homeLiveData: LiveData<HomeModel>
         get() = _homeLiveData
@@ -33,8 +30,6 @@ class HomeViewModel(
             }
         }
     }
-
-
 }
 
 class HomeViewModelFactory : ViewModelProvider.Factory {

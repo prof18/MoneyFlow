@@ -28,7 +28,7 @@ class AddTransactionViewModel(
         )
     )
     var amountText: String by mutableStateOf("")
-    var descriptionText: String by mutableStateOf("")
+    var descriptionText: String? by mutableStateOf(null)
     var dateLabel: String? by mutableStateOf(null)
 
     // Private variables

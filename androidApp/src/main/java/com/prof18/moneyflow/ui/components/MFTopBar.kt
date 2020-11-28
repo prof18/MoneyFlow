@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.ui.components
 
-import androidx.compose.foundation.Icon
 import androidx.compose.material.Text
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.preferredWidth

@@ -1,10 +1,7 @@
 package data
 
 import co.touchlab.stately.ensureNeverFrozen
-import com.prof18.moneyflow.db.AccountTable
-import com.prof18.moneyflow.db.CategoryTable
-import com.prof18.moneyflow.db.MonthlyRecapTable
-import com.prof18.moneyflow.db.TransactionTable
+import com.prof18.moneyflow.db.*
 import data.db.DatabaseSource
 import data.db.model.InsertTransactionDTO
 import data.db.model.TransactionType
@@ -21,7 +18,7 @@ import utils.Utils.formatDate
 
 class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository {
 
-    private var allTransactions: Flow<List<TransactionTable>> = emptyFlow()
+    private var allTransactions: Flow<List<SelectAllTransactions>> = emptyFlow()
     private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
     private var monthlyRecap: Flow<MonthlyRecapTable> = emptyFlow()
     private var account: Flow<AccountTable> = emptyFlow()
@@ -53,9 +50,16 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource): MoneyRepository
                     TransactionType.OUTCOME -> TransactionTypeUI.EXPENSE
                 }
 
+                val transactionTitle = if (transaction.description.isNullOrEmpty()) {
+                    transaction.categoryName
+                } else {
+                    transaction.description
+                }
+
                 MoneyTransaction(
                     id = transaction.id,
-                    title = transaction.description ?: "",
+                    title = transactionTitle,
+                    icon = CategoryIcon.fromValue(transaction.iconName),
                     amount = transaction.amount,
                     type = transactionTypeUI,
                     formattedDate = transaction.dateMillis.formatDate()

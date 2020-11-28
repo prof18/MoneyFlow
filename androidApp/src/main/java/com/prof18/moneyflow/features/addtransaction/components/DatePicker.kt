@@ -71,7 +71,7 @@ fun DatePickerDialog(
                 }
             },
             confirmButton = {
-                Button(onClick = {
+                TextButton(onClick = {
                     onSave()
                     setDialogVisible(false)
                 }) {
@@ -79,7 +79,7 @@ fun DatePickerDialog(
                 }
             },
             dismissButton = {
-                Button(onClick = {
+                TextButton(onClick = {
                     setDialogVisible(false)
                 }) {
                     Text(stringResource(id = R.string.cancel))

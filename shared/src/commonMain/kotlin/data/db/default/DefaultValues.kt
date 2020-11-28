@@ -157,7 +157,7 @@ val defaultCategories = listOf(
         id = 21,
         name = "Other",
         type = TransactionType.OUTCOME,
-        iconName = CategoryIcon.IC_DOLLAR_SIGN_SOLID.iconName,
+        iconName = CategoryIcon.IC_DOLLAR_SIGN.iconName,
     ),
 
     CategoryTable(

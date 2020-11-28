@@ -3,6 +3,7 @@ package com.prof18.moneyflow.ui.components
 import androidx.compose.material.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -10,10 +11,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.vectorResource
 import com.prof18.moneyflow.R
+import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppColors
 import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.containerColor
 import domain.entities.MoneyTransaction
 
 @Composable
@@ -23,12 +27,14 @@ fun TransactionCard(
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.clickable(onClick = {
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = {
             // TODO
         })
     ) {
 
-        Row(modifier = Modifier.weight(8f)) {
+        Row {
 
             Box(
                 modifier = Modifier
@@ -36,15 +42,13 @@ fun TransactionCard(
                     .padding(
                         AppMargins.regular,
                     )
-                    // TODO: find a better color for the dark mode
                     .background(
-                        AppColors.darkGrey,
+                        containerColor(),
                         shape = RoundedCornerShape(AppMargins.regularCornerRadius)
                     )
             ) {
                 Icon(
-                    // TODO: add correct icon
-                    vectorResource(id = R.drawable.ic_id_card),
+                    vectorResource(id = transaction.icon.mapToAndroidIcon()),
                     modifier = Modifier.padding(AppMargins.small)
                 )
             }
@@ -71,11 +75,11 @@ fun TransactionCard(
 
         Text(
             // TODO: fix this
-            text = "-${transaction.amount} €",
+            text = "${transaction.amount} €",
             style = MaterialTheme.typography.body1,
             modifier = Modifier
-                .weight(2f)
-                .gravity(Alignment.CenterVertically).padding(
+                .align(Alignment.CenterVertically)
+                .padding(
                     top = AppMargins.regular,
                     bottom = AppMargins.regular,
                     end = AppMargins.regular,

@@ -6,9 +6,11 @@ import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.navigation.NavController
@@ -40,10 +42,12 @@ fun HomeScreen(navController: NavController) {
 
             Column(modifier = Modifier.padding(AppMargins.small)) {
 
-                Button(onClick = {
+                TextButton(
+                    modifier = Modifier.align(Alignment.End),
+                    onClick = {
                     navController.navigate(Screen.AddTransactionScreen.name)
                 } ) {
-                    Text("Click")
+                    Text("Add transaction")
                 }
                 HomeRecap(homeState.balanceRecap)
                 HeaderNavigator()

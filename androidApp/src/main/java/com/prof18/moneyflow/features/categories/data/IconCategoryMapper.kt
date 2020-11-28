@@ -129,7 +129,7 @@ fun CategoryIcon.mapToAndroidIcon(): Int {
         CategoryIcon.IC_DICE_D6_SOLID -> R.drawable.ic_dice_d6_solid
         CategoryIcon.IC_DNA_SOLID -> R.drawable.ic_dna_solid
         CategoryIcon.IC_DOG_SOLID -> R.drawable.ic_dog_solid
-        CategoryIcon.IC_DOLLAR_SIGN_SOLID -> R.drawable.ic_dollar_sign_solid
+        CategoryIcon.IC_DOLLAR_SIGN -> R.drawable.ic_dollar_sign_solid
         CategoryIcon.IC_DOLLY_FLATBED_SOLID -> R.drawable.ic_dolly_flatbed_solid
         CategoryIcon.IC_DOLLY_SOLID -> R.drawable.ic_dolly_solid
         CategoryIcon.IC_DONATE_SOLID -> R.drawable.ic_donate_solid
@@ -143,7 +143,7 @@ fun CategoryIcon.mapToAndroidIcon(): Int {
         CategoryIcon.IC_ENVELOPE -> R.drawable.ic_envelope
         CategoryIcon.IC_ENVELOPE_OPEN -> R.drawable.ic_envelope_open
         CategoryIcon.IC_ERASER_SOLID -> R.drawable.ic_eraser_solid
-        CategoryIcon.IC_EURO_SIGN_SOLID -> R.drawable.ic_euro_sign_solid
+        CategoryIcon.IC_EURO_SIGN -> R.drawable.ic_euro_sign_solid
         CategoryIcon.IC_EXCHANGE_ALT_SOLID -> R.drawable.ic_exchange_alt_solid
         CategoryIcon.IC_EXCLAMATION_CIRCLE_SOLID -> R.drawable.ic_exclamation_circle_solid
         CategoryIcon.IC_EXCLAMATION_TRIANGLE_SOLID -> R.drawable.ic_exclamation_triangle_solid

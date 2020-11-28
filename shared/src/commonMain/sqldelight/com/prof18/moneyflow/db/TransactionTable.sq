@@ -9,9 +9,12 @@ CREATE TABLE TransactionTable (
     type TEXT AS TransactionType NOT NULL
 );
 
-selectAll:
-SELECT * FROM TransactionTable
-ORDER BY dateMillis DESC;
+selectAllTransactions:
+SELECT T.id, T.dateMillis, T.amount, T.description, T.type, C.name AS categoryName, C.iconName
+FROM TransactionTable T
+INNER JOIN CategoryTable AS C
+ON T.categoryId = C.id;
+
 
 insertTransaction:
 INSERT INTO TransactionTable (dateMillis, amount, description, categoryId, type)

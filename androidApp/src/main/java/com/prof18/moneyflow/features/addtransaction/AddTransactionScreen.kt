@@ -1,9 +1,11 @@
 package com.prof18.moneyflow.features.addtransaction
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material.Text
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,10 +19,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
-import com.prof18.moneyflow.features.addtransaction.components.*
+import com.prof18.moneyflow.features.addtransaction.components.DatePickerDialog
+import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
+import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
+import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeChooser
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.bigTextColor
+import com.prof18.moneyflow.ui.style.textColor
 import data.db.model.TransactionType
 
 @Composable
@@ -102,18 +109,21 @@ fun AddTransactionScreen(
                     )
 
                 ) {
-                    Text(
-                        // TODO: get the type of currency from the settings
-                        "€",
-                        style = MaterialTheme.typography.h4,
-                    )
+
 
                     Spacer(Modifier.preferredWidth(AppMargins.small))
 
                     MFTextInput(
                         text = viewModel.amountText,
-                        textStyle = MaterialTheme.typography.h3,
+                        textStyle = MaterialTheme.typography.h3.copy(color = bigTextColor()),
                         label = "0.00",
+                        leadingIcon = {
+                            // TODO: change based on the currency
+                            Icon(
+                                vectorResource(id = R.drawable.ic_euro_sign),
+                                tint = textColor()
+                            )
+                        },
                         onTextChange = {
                             viewModel.amountText = it
                         },
@@ -123,11 +133,14 @@ fun AddTransactionScreen(
                 }
 
                 MFTextInput(
-                    text = viewModel.descriptionText,
-                    textStyle = MaterialTheme.typography.body1,
+                    text = viewModel.descriptionText ?: "",
+                    textStyle = MaterialTheme.typography.body1.copy(color = textColor()),
                     label = stringResource(id = R.string.description),
                     leadingIcon = {
-                        Icon(vectorResource(id = R.drawable.ic_edit))
+                        Icon(
+                            vectorResource(id = R.drawable.ic_edit),
+                            tint = textColor()
+                        )
                     },
                     onTextChange = {
                         viewModel.descriptionText = it
@@ -136,10 +149,10 @@ fun AddTransactionScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
-                        start = AppMargins.regular,
-                        end = AppMargins.regular,
-                        top = AppMargins.medium
-                    )
+                            start = AppMargins.regular,
+                            end = AppMargins.regular,
+                            top = AppMargins.medium
+                        )
                 )
 
                 IconTextClickableRow(

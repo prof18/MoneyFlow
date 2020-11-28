@@ -1,10 +1,12 @@
 package com.prof18.moneyflow.ui.style
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 // TODO: add later on
 private val LightThemeColors = lightColors(
@@ -36,11 +38,19 @@ private val DarkThemeColors = darkColors(
 
     onPrimary = AppColors.black900,
     onSecondary = AppColors.black900,
-    onBackground = AppColors.white50,
+    onBackground = AppColors.darkGrey,
     onSurface = AppColors.white50,
     onError = AppColors.black900,
 )
 
+@Composable
+fun containerColor(): Color = if (isSystemInDarkTheme()) AppColors.blue600 else AppColors.darkGrey
+
+@Composable
+fun textColor(): Color = if (isSystemInDarkTheme()) AppColors.darkGrey else Color.Black
+
+@Composable
+fun bigTextColor(): Color = if (isSystemInDarkTheme()) AppColors.darkGrey else Color.Black.copy(alpha = 0.7f)
 
 @Composable
 fun MoneyFlowTheme(

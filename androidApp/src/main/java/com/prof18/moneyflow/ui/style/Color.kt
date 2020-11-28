@@ -36,6 +36,8 @@ object AppColors {
     val red200 = hexColor("#cf7779")
     val red400 = hexColor("#ff4c5d")
 
+
+
     private fun hexColor(colorString: String): Color {
         return Color(android.graphics.Color.parseColor(colorString))
     }

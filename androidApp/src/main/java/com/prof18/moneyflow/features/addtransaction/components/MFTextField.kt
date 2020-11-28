@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import com.prof18.moneyflow.ui.style.textColor
 
 
 @Composable
@@ -32,8 +33,7 @@ fun MFTextInput(
             if (label != null) {
                 Text(
                     text = label,
-                    style = textStyle,
-                    color = Color.Black.copy(alpha = 0.5f)
+                    style = textStyle.copy(color = textStyle.color.copy(alpha = 0.8f))
                 )
             }
         },
@@ -48,7 +48,7 @@ fun MFTextInput(
                 softKeyboardController?.hideSoftwareKeyboard()
             }
         },
-        activeColor = MaterialTheme.colors.onSurface,
+        activeColor = textColor(),
         backgroundColor = Color.Transparent,
     )
 }
