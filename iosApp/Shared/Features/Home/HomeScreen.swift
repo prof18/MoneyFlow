@@ -12,8 +12,7 @@ struct HomeScreen: View {
     
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     
-    @State private var showingSheet = false
-    @State private var showingFilePicker = false
+    @State private var showAddTransaction = false
     
     var body: some View {
         
@@ -37,16 +36,21 @@ struct HomeScreen: View {
         }
         .navigationTitle("Money Flow")
         .navigationBarItems(trailing: Button(action: {
-            print("tapped")
+            self.showAddTransaction.toggle()
         }) {
+            // TODO: localize
             Text("Add Transaction")
             
         })
+        .sheet(isPresented: self.$showAddTransaction) {
+            AddTransactionScreen(showSheet: self.$showAddTransaction)
+        }
         .onAppear {
             self.viewModel.startObserving()
         }.onDisappear {
             self.viewModel.stopObserving()
         }
+        
     }
 }
 

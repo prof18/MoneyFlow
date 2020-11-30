@@ -11,6 +11,11 @@
 		3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */; };
 		A930B87F253B800500CB92DF /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B87E253B800500CB92DF /* Koin.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
+		A9471EBF257594E300C5D3AF /* AddTransactionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */; };
+		A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471EC5257595D800C5D3AF /* CategoriesScreen.swift */; };
+		A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */; };
+		A9471ED325759ACA00C5D3AF /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED225759ACA00C5D3AF /* CategoryCard.swift */; };
+		A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */; };
 		A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DIContainer.swift */; };
 		A947AF252554A7D500633BD3 /* DatabaseExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF242554A7D500633BD3 /* DatabaseExporter.swift */; };
 		A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */; };
@@ -86,6 +91,11 @@
 		4618554838A84A2CDCD563E1 /* Pods-iosApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		A930B87E253B800500CB92DF /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionScreen.swift; sourceTree = "<group>"; };
+		A9471EC5257595D800C5D3AF /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
+		A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		A9471ED225759ACA00C5D3AF /* CategoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCard.swift; sourceTree = "<group>"; };
+		A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionState.swift; sourceTree = "<group>"; };
 		A947AF1E2554991600633BD3 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		A947AF242554A7D500633BD3 /* DatabaseExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExporter.swift; sourceTree = "<group>"; };
 		A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
@@ -172,9 +182,46 @@
 			path = DI;
 			sourceTree = "<group>";
 		};
+		A9471EAF257594BC00C5D3AF /* AddTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				A9471ED825759D9F00C5D3AF /* Data */,
+				A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */,
+			);
+			path = AddTransaction;
+			sourceTree = "<group>";
+		};
+		A9471EC4257595BC00C5D3AF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A9471ED125759ABA00C5D3AF /* Components */,
+				A9471EC5257595D800C5D3AF /* CategoriesScreen.swift */,
+				A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		A9471ED125759ABA00C5D3AF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A9471ED225759ACA00C5D3AF /* CategoryCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A9471ED825759D9F00C5D3AF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		A9A8A9CF2557E9FB00C0ED89 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A9471EC4257595BC00C5D3AF /* Categories */,
+				A9471EAF257594BC00C5D3AF /* AddTransaction */,
 				A9A8A9D22557EA1F00C0ED89 /* Settings */,
 				A9A8A9D12557EA1700C0ED89 /* Budget */,
 				A9A8A9D02557EA0900C0ED89 /* Recap */,
@@ -632,6 +679,7 @@
 				A9A8A9F32557F0F600C0ED89 /* AppSidebarNavigation.swift in Sources */,
 				A9D8986324FBF12A007771A1 /* AppFonts.swift in Sources */,
 				A947AF252554A7D500633BD3 /* DatabaseExporter.swift in Sources */,
+				A9471ED325759ACA00C5D3AF /* CategoryCard.swift in Sources */,
 				A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */,
 				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
 				A930B87F253B800500CB92DF /* Koin.swift in Sources */,
@@ -641,14 +689,18 @@
 				A9A8A9E02557EAB900C0ED89 /* RecapScreen.swift in Sources */,
 				A9A8A9ED2557ECC100C0ED89 /* AppTabNavigation.swift in Sources */,
 				A9A8A9DA2557EA9B00C0ED89 /* BudgetScreen.swift in Sources */,
+				A9471EBF257594E300C5D3AF /* AddTransactionScreen.swift in Sources */,
 				A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */,
 				A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
+				A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */,
 				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
 				A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9E68AB62503B2AA00851990 /* Loader.swift in Sources */,
+				A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */,

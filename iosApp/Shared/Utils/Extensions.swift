@@ -40,3 +40,10 @@ extension Color {
     }
     
 }
+
+extension Double {
+    func formatTwoDigit() -> String {
+        return String(format: "%\(".2")f", self)
+    }
+}
+

@@ -19,7 +19,7 @@ class DIContainer {
     
     func getDatabaseSource() -> DatabaseSource {
         if self.databaseSource == nil {
-            DatabaseHelper().setupDatabase()
+            DatabaseHelper().setupDatabase(driver: nil)
             databaseSource = DatabaseSourceImpl(dbRef: DatabaseHelper().instance, dispatcher: nil)
         }
         return self.databaseSource!
@@ -27,7 +27,7 @@ class DIContainer {
     
     func reloadDatabaseRef() {
         DatabaseHelper().dbClear()
-        DatabaseHelper().setupDatabase()
+        DatabaseHelper().setupDatabase(driver: nil)
         (databaseSource as! DatabaseSourceImpl).dbRef = DatabaseHelper().instance
         self.moneyRepository = nil 
     }

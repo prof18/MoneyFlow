@@ -23,7 +23,7 @@ struct HomeRecap: View {
                 Text("€")
                     .font(AppFonts.h5)
                 
-                Text("\(balanceRecap.totalBalance)")
+                Text("\(balanceRecap.totalBalance.formatTwoDigit())")
                     .font(AppFonts.h3)
                 
             }
@@ -34,7 +34,7 @@ struct HomeRecap: View {
             HStack {
                 
                 VStack(alignment: .leading) {
-                    Text("-\(balanceRecap.monthlyExpenses) €")
+                    Text("-\(balanceRecap.monthlyExpenses.formatTwoDigit()) €")
                         .font(AppFonts.h5)
                     
                     Text("Expenses")
@@ -44,7 +44,7 @@ struct HomeRecap: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text("+\(balanceRecap.monthlyIncome) €")
+                    Text("+\(balanceRecap.monthlyIncome.formatTwoDigit()) €")
                         .font(AppFonts.h5)
                     
                     Text("Income")

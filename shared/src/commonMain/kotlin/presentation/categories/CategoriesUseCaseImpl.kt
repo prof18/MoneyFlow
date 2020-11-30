@@ -47,7 +47,7 @@ class CategoriesUseCaseImpl(
     }
 
     // iOs only
-    fun onDestroy() {
+    override fun onDestroy() {
         coroutineScope.cancel()
     }
 

@@ -6,4 +6,5 @@ interface CategoriesUseCase {
     fun observeCategories(): StateFlow<CategoryModel>
     fun getCategories()
     suspend fun getCategoriesSuspendable()
+    fun onDestroy()
 }
