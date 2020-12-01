@@ -5,12 +5,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
+@RunWith(AndroidJUnit4::class)
 actual abstract class BaseTest {
     @get:Rule
-    val coroutineTestRule = CoroutineTestRule()
+    var coroutineTestRule = CoroutineTestRule()
 
     actual fun <T> runTest(block: suspend CoroutineScope.() -> T) {
         runBlocking { block() }

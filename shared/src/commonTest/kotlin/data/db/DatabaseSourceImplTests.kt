@@ -1,5 +1,6 @@
 package data.db
 
+import app.cash.turbine.test
 import com.prof18.moneyflow.db.MoneyFlowDB
 import kotlinx.coroutines.Dispatchers
 import utilities.closeDriver
@@ -9,6 +10,7 @@ import utilities.BaseTest
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class DatabaseSourceImplTests: BaseTest()  {
 
@@ -33,7 +35,8 @@ class DatabaseSourceImplTests: BaseTest()  {
 
 //        databaseSource.inser
 
-        databaseSource.selectAllTransaction.test {
+        databaseSource.selectAllTransaction().test {
+            print(this)
             assertEquals(true, true)
         }
 

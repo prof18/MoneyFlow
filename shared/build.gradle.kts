@@ -1,7 +1,6 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("kotlin-android-extensions")
     id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
 }
@@ -79,9 +78,7 @@ kotlin {
             dependencies {
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutineExtensions)
-                implementation(Deps.Coroutines.common) {
-                    isForce = true
-                }
+                implementation(Deps.Coroutines.common)
                 implementation(Deps.stately)
                 implementation(Deps.Koin.coreMultiplatform)
                 implementation(Deps.kotlinDateTime)
@@ -92,7 +89,6 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation(Deps.Koin.test)
-                implementation(Deps.Coroutines.test)
                 implementation(Deps.turbine)
             }
         }
@@ -113,7 +109,9 @@ kotlin {
                 implementation(Deps.AndroidXTest.junit)
                 implementation(Deps.AndroidXTest.runner)
                 implementation(Deps.AndroidXTest.rules)
-                implementation(Deps.Coroutines.test)
+                implementation(Deps.Coroutines.test)  {
+                    isForce = true
+                }
 
             }
         }

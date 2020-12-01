@@ -5,7 +5,8 @@ object Versions {
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-alpha07"
     const val junit = "4.12"
-    const val coroutinesMt = "1.4.1-native-mt"
+    const val coroutinesMt = "1.4.2-native-mt"
+    const val coroutines = "1.4.2"
     const val sqlDelight = "1.4.4"
     const val stately = "1.1.0"
     const val navComposeVersion = "1.0.0-alpha02"
@@ -67,7 +68,7 @@ object Deps {
     object Coroutines {
         const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesMt}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesMt}"
-        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesMt}"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 
     object SqlDelight {

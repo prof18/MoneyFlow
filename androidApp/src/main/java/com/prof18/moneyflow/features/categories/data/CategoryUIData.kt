@@ -3,7 +3,7 @@ package com.prof18.moneyflow.features.categories.data
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
 import domain.entities.Category
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CategoryUIData(
