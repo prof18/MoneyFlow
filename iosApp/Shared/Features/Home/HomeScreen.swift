@@ -17,9 +17,8 @@ struct HomeScreen: View {
     var body: some View {
         
         VStack {
-            
             if (viewModel.homeModel is HomeModel.Loading) {
-                Loader().edgesIgnoringSafeArea(.all)
+                Loader()
             } else if (viewModel.homeModel is HomeModel.HomeState) {
                 
                 HomeRecap(balanceRecap: (viewModel.homeModel as! HomeModel.HomeState).balanceRecap)
@@ -46,6 +45,7 @@ struct HomeScreen: View {
             AddTransactionScreen(showSheet: self.$showAddTransaction)
         }
         .onAppear {
+            print("Called onAppear")
             self.viewModel.startObserving()
         }.onDisappear {
             self.viewModel.stopObserving()

@@ -6,32 +6,94 @@
 //
 
 import SwiftUI
+import shared
 
 struct AddTransactionScreen: View {
     
     @Binding var showSheet: Bool
     @StateObject var addTransactionState = AddTransactionState()
+    @State var showsDatePicker = false
+    
+    @ObservedObject var viewModel = AddTransactionViewModel()
+    
+    let dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        return df
+    }()
+    
     
     var body: some View {
         NavigationView {
             VStack {
                 
-                Text("Selected Category: \(addTransactionState.categoryTitle ?? "Not yet selected")")
-                
-                NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
-                    Text("Categories")
+                Form {
+                    
+                    Picker("Transaction Type", selection: $viewModel.transactionTypeUI) {
+                        ForEach(viewModel.transactions) {
+                            Text($0.name).tag($0 as TransactionTypeRadioItem)
+                        }
+                    }
+                    
+                    HStack {
+                        DMImage("ic_euro_sign")
+                        TextField("0.00", text: $viewModel.amountTextField)
+                            .keyboardType(.numberPad)
+                    }
+                    
+                    HStack {
+                        DMImage("ic_edit")
+                        TextField("Description", text: $viewModel.descriptionTextField)
+                    }
+                    
+                    NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
+                        HStack {
+                            DMImage(addTransactionState.categoryIcon ?? "ic_question_circle")
+                            Text(addTransactionState.categoryTitle ?? "Select Category")
+                        }
+                    }
+                    
+                    HStack {
+                        DMImage("ic_calendar")
+                        Text("\(dateFormatter.string(from: viewModel.transactionDate))")
+                            .onTapGesture {
+                                self.showsDatePicker.toggle()
+                            }                            
+                    }
+                    
+                    if showsDatePicker {
+                        VStack {
+                            DatePicker("", selection: $viewModel.transactionDate, displayedComponents: .date)
+                                .datePickerStyle(WheelDatePickerStyle())
+                            Button("Ok") {
+                                self.showsDatePicker.toggle()
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle(Text("Add transaction"))
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Button(action: {
+                self.showSheet.toggle()
+            }) {
+                // TODO: localize
+                Text("Close")
+                
+            }, trailing: Button(  action: {
+                self.viewModel.addTransaction()
                 self.showSheet.toggle()
             }) {
                 // TODO: localize
                 Text("Save")
                 
-            })
+            }
+                .disabled(viewModel.saveDisabled)
+            )
+            .onReceive(addTransactionState.$categoryId) { value in
+                self.viewModel.categoryId = value
+            }
         }
-       
+        
     }
 }
 

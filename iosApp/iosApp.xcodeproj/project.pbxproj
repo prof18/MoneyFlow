@@ -18,6 +18,12 @@
 		A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */; };
 		A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DIContainer.swift */; };
 		A947AF252554A7D500633BD3 /* DatabaseExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF242554A7D500633BD3 /* DatabaseExporter.swift */; };
+		A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B761257D675B00F6113A /* AddTransactionViewModel.swift */; };
+		A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B767257D6A2A00F6113A /* RadioButton.swift */; };
+		A988B76E257D6AA600F6113A /* ColorInverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B76D257D6AA600F6113A /* ColorInverter.swift */; };
+		A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B774257D6BA300F6113A /* RadioButtonGroup.swift */; };
+		A988B77F257D763900F6113A /* DMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B77E257D763900F6113A /* DMImage.swift */; };
+		A988B785257D7D5100F6113A /* TransactionTypeRadioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */; };
 		A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */; };
 		A9A8A9DA2557EA9B00C0ED89 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D92557EA9B00C0ED89 /* BudgetScreen.swift */; };
 		A9A8A9E02557EAB900C0ED89 /* RecapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9DF2557EAB900C0ED89 /* RecapScreen.swift */; };
@@ -98,6 +104,12 @@
 		A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionState.swift; sourceTree = "<group>"; };
 		A947AF1E2554991600633BD3 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		A947AF242554A7D500633BD3 /* DatabaseExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseExporter.swift; sourceTree = "<group>"; };
+		A988B761257D675B00F6113A /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
+		A988B767257D6A2A00F6113A /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		A988B76D257D6AA600F6113A /* ColorInverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInverter.swift; sourceTree = "<group>"; };
+		A988B774257D6BA300F6113A /* RadioButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonGroup.swift; sourceTree = "<group>"; };
+		A988B77E257D763900F6113A /* DMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMImage.swift; sourceTree = "<group>"; };
+		A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTypeRadioItem.swift; sourceTree = "<group>"; };
 		A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
 		A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		A9A8A9D92557EA9B00C0ED89 /* BudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
@@ -187,6 +199,7 @@
 			children = (
 				A9471ED825759D9F00C5D3AF /* Data */,
 				A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */,
+				A988B761257D675B00F6113A /* AddTransactionViewModel.swift */,
 			);
 			path = AddTransaction;
 			sourceTree = "<group>";
@@ -213,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */,
+				A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -321,6 +335,10 @@
 				A9E68AB52503B2AA00851990 /* Loader.swift */,
 				A930B884253B8EED00CB92DF /* ShareSheet.swift */,
 				A9FEB378253CCAD6002DEB65 /* FilePicker.swift */,
+				A988B767257D6A2A00F6113A /* RadioButton.swift */,
+				A988B76D257D6AA600F6113A /* ColorInverter.swift */,
+				A988B774257D6BA300F6113A /* RadioButtonGroup.swift */,
+				A988B77E257D763900F6113A /* DMImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -685,6 +703,7 @@
 				A930B87F253B800500CB92DF /* Koin.swift in Sources */,
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */,
+				A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
 				A9A8A9E02557EAB900C0ED89 /* RecapScreen.swift in Sources */,
 				A9A8A9ED2557ECC100C0ED89 /* AppTabNavigation.swift in Sources */,
@@ -692,18 +711,23 @@
 				A9471EBF257594E300C5D3AF /* AddTransactionScreen.swift in Sources */,
 				A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */,
 				A9D269D924FC28F900D2B4AE /* HeaderNavigator.swift in Sources */,
+				A988B76E257D6AA600F6113A /* ColorInverter.swift in Sources */,
 				A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */,
 				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
 				A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
 				A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
+				A988B77F257D763900F6113A /* DMImage.swift in Sources */,
+				A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9E68AB62503B2AA00851990 /* Loader.swift in Sources */,
 				A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
+				A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751E24F59E2700F486FE /* moneyFlowApp.swift in Sources */,
+				A988B785257D7D5100F6113A /* TransactionTypeRadioItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

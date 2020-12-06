@@ -22,16 +22,12 @@ struct CategoryCard: View {
                 .cornerRadius(AppMargins.regular)
                 .padding(AppMargins.regular)
             
-            
             Text(category.name)
                 .font(AppFonts.subtitle1)
-                
-    
+            
             Spacer()
-
-
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .contentShape(Rectangle())
         .onTapGesture {
             onItemClick()
         }

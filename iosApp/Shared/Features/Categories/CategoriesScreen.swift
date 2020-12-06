@@ -15,7 +15,6 @@ struct CategoriesScreen: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    
     var body: some View {
         VStack {
             if (viewModel.categoriesModel is CategoryModel.Loading) {
@@ -24,14 +23,13 @@ struct CategoriesScreen: View {
                 
                 List {
                     ForEach((viewModel.categoriesModel as! CategoryModel.CategoryState).categories, id: \.self) { category in
-                        // TODO: add card
                         CategoryCard(category: category, onItemClick: {
                             
                             addTransactionState.categoryId = category.id
                             addTransactionState.categoryTitle = category.name
+                            addTransactionState.categoryIcon = category.icon.iconName
                             
                             self.presentationMode.wrappedValue.dismiss()
-
                             
                         })
                             .listRowInsets(EdgeInsets())
