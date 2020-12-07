@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BudgetScreen: View {
     var body: some View {
-        Text("Coming Soon")
+        Text("Budget Screen")
     }
 }
 

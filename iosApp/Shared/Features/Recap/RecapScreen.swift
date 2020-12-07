@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecapScreen: View {
     var body: some View {
-        Text("Coming Soon")
+        Text("Recap Screen")
     }
 }
 
