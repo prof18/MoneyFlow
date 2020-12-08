@@ -3,13 +3,12 @@ package data
 import co.touchlab.stately.ensureNeverFrozen
 import com.prof18.moneyflow.db.*
 import data.db.DatabaseSource
-import data.db.model.InsertTransactionDTO
 import data.db.model.TransactionType
 import domain.entities.BalanceRecap
 import domain.entities.Category
 import domain.entities.MoneyTransaction
 import domain.entities.TransactionTypeUI
-import domain.mapper.mapToInsertTransactionDTO
+import data.mapper.mapToInsertTransactionDTO
 import domain.repository.MoneyRepository
 import kotlinx.coroutines.flow.*
 import presentation.CategoryIcon

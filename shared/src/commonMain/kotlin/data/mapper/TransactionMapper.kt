@@ -1,4 +1,4 @@
-package domain.mapper
+package data.mapper
 
 import data.db.model.InsertTransactionDTO
 import data.db.model.TransactionType
