@@ -26,7 +26,6 @@ class DIContainer {
     }
     
     func reloadDatabaseRef() {
-        DatabaseHelper().dbClear()
         DatabaseHelper().setupDatabase(driver: nil)
         (databaseSource as! DatabaseSourceImpl).dbRef = DatabaseHelper().instance
         self.moneyRepository = nil 

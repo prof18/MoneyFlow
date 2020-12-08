@@ -1,0 +1,42 @@
+//
+//  DatabaseExporter.swift
+//  iosApp (iOS)
+//
+//  Created by Marco Gomiero on 05/11/2020.
+//
+
+import Foundation
+import shared
+
+class DatabaseImportExport {
+    
+    static func getDatabaseURL() -> URL? {
+        do {            
+            let fileURL = try FileManager.default
+                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingPathComponent("databases/MoneyFlowDB")
+            return fileURL
+        } catch {
+            return nil
+        }
+    }
+    
+    static func replaceDatabase(url: URL) {
+        do {
+            DatabaseHelper().dbClear()
+            
+            let fileURL = try FileManager.default
+                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .appendingPathComponent("databases/MoneyFlowDB")
+            
+            try FileManager.default.replaceItemAt(fileURL, withItemAt: url, backupItemName: "MoneyFlowDB.old", options: .usingNewMetadataOnly)
+            
+            DIContainer.instance.reloadDatabaseRef()
+            
+        } catch let error {
+            print(error.localizedDescription)
+            print("Something wrong during replace of the database")
+            DIContainer.instance.reloadDatabaseRef()
+        }
+    }
+}

@@ -7,18 +7,24 @@
 
 import SwiftUI
 
-struct ActivityView: UIViewControllerRepresentable {
-
+struct ShareSheet: UIViewControllerRepresentable {
+    
+    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+    
     let activityItems: [Any]
     let applicationActivities: [UIActivity]?
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityView>) -> UIActivityViewController {
-        return UIActivityViewController(activityItems: activityItems,
-                                        applicationActivities: applicationActivities)
+    let onSelectedCallback: Callback?
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheet>) -> UIActivityViewController {
+        
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        controller.completionWithItemsHandler = onSelectedCallback
+        return controller
+        
+        
     }
-
+    
     func updateUIViewController(_ uiViewController: UIActivityViewController,
-                                context: UIViewControllerRepresentableContext<ActivityView>) {
-
+                                context: UIViewControllerRepresentableContext<ShareSheet>) {
     }
 }

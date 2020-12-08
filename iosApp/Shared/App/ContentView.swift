@@ -9,6 +9,9 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
+    
+    @EnvironmentObject var appState: AppState
+    
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     #endif

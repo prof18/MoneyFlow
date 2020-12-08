@@ -10,8 +10,8 @@ import shared
 
 struct HomeScreen: View {
     
+    @EnvironmentObject var appState: AppState
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
-    
     @State private var showAddTransaction = false
     
     var body: some View {
@@ -70,6 +70,12 @@ struct HomeScreen: View {
             self.viewModel.startObserving()
         }.onDisappear {
             self.viewModel.stopObserving()
+        }.onReceive(self.appState.$reloadDatabase) { value in
+            if value {
+                self.viewModel.stopObserving()
+                self.viewModel.startObserving()
+                self.appState.reloadDatabase = false
+            }
         }
         
     }
