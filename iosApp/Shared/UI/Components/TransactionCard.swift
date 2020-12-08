@@ -15,9 +15,9 @@ struct TransactionCard: View {
     var body: some View {
         HStack() {
             
-            Image("hamburger")
+            DMImage(transaction.icon.iconName)
                 .padding(AppMargins.small)
-                .background(Color.darkGrey)
+                .background(Color.containerColor)
                 .cornerRadius(AppMargins.regular)
                 .padding(AppMargins.regular)
             
@@ -38,7 +38,7 @@ struct TransactionCard: View {
             Spacer()
             
             // TODO: fix this
-            Text("-\(transaction.amount) €")
+            Text("\(transaction.amount.formatTwoDigit()) €")
                 .font(AppFonts.body1)
                 .padding(.bottom, AppMargins.regular)
                 .padding(.top, AppMargins.regular)

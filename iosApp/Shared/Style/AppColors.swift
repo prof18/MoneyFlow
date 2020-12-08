@@ -18,4 +18,5 @@ extension Color {
     static let colorOnBackground = Color("ColorOnBackground")
     static let backgroundColor = Color("BackgroundColor")
     static let darkGrey = Color("DarkGrey")
+    static let containerColor = Color("ContainerColor")
 }

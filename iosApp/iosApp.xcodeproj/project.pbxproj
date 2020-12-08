@@ -189,6 +189,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A92ADAB3257FA88100214846 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A930B879253B7FFB00CB92DF /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +303,7 @@
 		A9D269DE24FC310F00D2B4AE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A92ADAB3257FA88100214846 /* Components */,
 				A9D269DF24FC311D00D2B4AE /* HomeScreen.swift */,
 				A9E68AB225037D4F00851990 /* HomeViewModel.swift */,
 			);
@@ -355,7 +364,6 @@
 			children = (
 				A9D8987324FBFA4A007771A1 /* TransactionCard.swift */,
 				A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */,
-				A9D269DB24FC2E5000D2B4AE /* HomeRecap.swift */,
 				A9E68AB52503B2AA00851990 /* Loader.swift */,
 				A930B884253B8EED00CB92DF /* ShareSheet.swift */,
 				A9FEB378253CCAD6002DEB65 /* FilePicker.swift */,

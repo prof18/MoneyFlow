@@ -23,18 +23,18 @@ struct moneyFlowApp: App {
         WindowGroup {
             ContentView()
         }
-        .onChange(of: scenePhase) { newScenePhase in
-            switch newScenePhase {
-            case .active:
-                print("App is active")
-            case .inactive:
-                print("App is inactive")
-            case .background:
-                print("App is in background")
-            @unknown default:
-                print("Oh - interesting: I received an unexpected new value.")
-            }
-        }
+//        .onChange(of: scenePhase) { newScenePhase in
+//            switch newScenePhase {
+//            case .active:
+//                print("App is active")
+//            case .inactive:
+//                print("App is inactive")
+//            case .background:
+//                print("App is in background")
+//            @unknown default:
+//                print("Oh - interesting: I received an unexpected new value.")
+//            }
+//        }
     }
     
 }

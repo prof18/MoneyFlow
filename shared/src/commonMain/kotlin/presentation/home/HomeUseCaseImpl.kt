@@ -31,9 +31,7 @@ class HomeUseCaseImpl(
     }
 
     override suspend fun computeHomeDataSuspendable() {
-
-        debugLog("computeHomeDataSuspendable", "Called computeHomeDataSuspendable")
-
+        
         val latestTransactionFlow = moneyRepository.getLatestTransactions()
         val balanceRecapFlow = moneyRepository.getBalanceRecap()
 

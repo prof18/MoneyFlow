@@ -21,16 +21,38 @@ struct HomeScreen: View {
                 Loader()
             } else if (viewModel.homeModel is HomeModel.HomeState) {
                 
-                HomeRecap(balanceRecap: (viewModel.homeModel as! HomeModel.HomeState).balanceRecap)
+                let homeState = (viewModel.homeModel as! HomeModel.HomeState)
+                
+                HomeRecap(balanceRecap: homeState.balanceRecap)
                 HeaderNavigator()
                 
-                List {
-                    ForEach((viewModel.homeModel as! HomeModel.HomeState).latestTransactions, id: \.self) { transaction in
-                        TransactionCard(transaction: transaction)
-                            .listRowInsets(EdgeInsets())
+                if homeState.latestTransactions.isEmpty {
+                    Spacer()
+                    VStack {
+                        Text("¯\\_(ツ)_/¯")
+                            .padding(.bottom, AppMargins.small)
+                        Text("Your wallet is empty")
                     }
+                    Spacer()
+                } else {
+                    
+                    List {
+                        ForEach(homeState.latestTransactions, id: \.self) { transaction in
+                            TransactionCard(transaction: transaction)
+                                .listRowInsets(EdgeInsets())
+                                .contextMenu {
+                                    Button(action: {
+                                        // change country setting
+                                        viewModel.deleteTransaction(transactionId: transaction.id)
+                                    }) {
+                                        Text("Delete")
+                                        Image(systemName: "trash")
+                                    }
+                                }
+                        }
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
             }
         }
         .navigationTitle("Home")
@@ -45,7 +67,6 @@ struct HomeScreen: View {
             AddTransactionScreen(showSheet: self.$showAddTransaction)
         }
         .onAppear {
-            print("Called onAppear")
             self.viewModel.startObserving()
         }.onDisappear {
             self.viewModel.stopObserving()

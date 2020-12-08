@@ -21,6 +21,10 @@ class HomeViewModel: ObservableObject {
         self.useCase?.computeData()
     }
     
+    func deleteTransaction(transactionId: Int64) {
+        
+    }
+    
     func stopObserving() {
         self.useCase?.onDestroy()
     }
