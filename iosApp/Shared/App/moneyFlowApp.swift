@@ -13,9 +13,11 @@ struct moneyFlowApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     
-//    init() {
-//        startKoin()
-//    }
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [
+            .foregroundColor: UIColor(named: "ColorOnBackground")! as UIColor,
+            .font : UIFont(name:"Poppins-Regular", size: 32)!]
+    }
     
     var body: some Scene {
         WindowGroup {

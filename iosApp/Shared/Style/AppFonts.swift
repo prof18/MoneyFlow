@@ -27,6 +27,10 @@ struct AppFonts {
         return Font.custom(PoppinsFontType.regular.rawValue, size: 24)
     }
     
+    static var sidebarFont: Font {
+        return Font.custom(PoppinsFontType.regular.rawValue, size: 20)
+    }
+    
     static var h6: Font {
         return Font.custom(PoppinsFontType.semibold.rawValue, size: 20)
     }

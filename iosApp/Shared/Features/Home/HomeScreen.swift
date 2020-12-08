@@ -33,7 +33,7 @@ struct HomeScreen: View {
                 .listStyle(PlainListStyle())
             }
         }
-        .navigationTitle("Money Flow")
+        .navigationTitle("Home")
         .navigationBarItems(trailing: Button(action: {
             self.showAddTransaction.toggle()
         }) {

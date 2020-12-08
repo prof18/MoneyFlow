@@ -10,6 +10,7 @@ import SwiftUI
 struct BudgetScreen: View {
     var body: some View {
         Text("Budget Screen")
+            .navigationTitle("Budget")
     }
 }
 

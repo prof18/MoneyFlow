@@ -20,13 +20,15 @@ struct SidebarMenuItem: View {
     var body: some View {
         HStack {
             Image(systemName: imageName)
-//                .font(.rSidebarMenu)
+                .font(AppFonts.sidebarFont)
                 .foregroundColor(.blue)
-                .padding(.leading, 8)
-                .padding(.trailing, 12)
+                .padding(.leading, AppMargins.small)
+                .frame(width: 40, height: 40)
+
             Text(textString)
-//                .font(.rSidebarMenu)
-                .foregroundColor(.black)
+                .padding(.leading, AppMargins.small)
+                .font(AppFonts.sidebarFont)
+                .foregroundColor(.colorOnBackground)
         }
         .frame(minWidth: 0,
                maxWidth: .infinity,
@@ -35,7 +37,7 @@ struct SidebarMenuItem: View {
                alignment: .leading
         )
         .contentShape(Rectangle())
-        .background(currentSelection == itemSelection ? Color.black.opacity(0.1) : Color.clear)
+        .background(currentSelection == itemSelection ? Color.primary.opacity(0.2) : Color.clear)
         .cornerRadius(8)
         .padding(.horizontal, 16)
     }

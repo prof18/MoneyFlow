@@ -57,7 +57,6 @@ struct AddTransactionScreen: View {
                         Text("\(dateFormatter.string(from: viewModel.transactionDate))")
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .leading)
-
                     .contentShape(Rectangle())
                     .onTapGesture {
                         self.showsDatePicker.toggle()
@@ -91,7 +90,7 @@ struct AddTransactionScreen: View {
                 self.viewModel.categoryId = value
             }
         }
-        
+
     }
 }
 

@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct SettingsScreen: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text("Settings Screen")
+        VStack {
+            Text("Settings Screen")
+            Button("Close") {
+                self.presentationMode.wrappedValue.dismiss()
+
+            }
+        }
     }
 }
 

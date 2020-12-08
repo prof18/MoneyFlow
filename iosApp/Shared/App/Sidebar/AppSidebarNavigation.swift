@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct AppSidebarNavigation: View {
-
+    
     @State private var selection: SidebarNavigationItem? = .home
+    @State var showSettingsSheet: Bool = false
     
     var sidebar: some View {
         
         VStack {
-
+            
             NavigationLink(
                 destination: HomeScreen(),
                 tag: SidebarNavigationItem.home,
@@ -26,7 +27,7 @@ struct AppSidebarNavigation: View {
                                     itemSelection: .home)
                 })
                 .buttonStyle(PlainButtonStyle())
-
+            
             NavigationLink(
                 destination: RecapScreen(),
                 tag: SidebarNavigationItem.recap,
@@ -38,7 +39,7 @@ struct AppSidebarNavigation: View {
                                     itemSelection: .recap)
                 })
                 .buttonStyle(PlainButtonStyle())
-
+            
             NavigationLink(
                 destination: BudgetScreen(),
                 tag: SidebarNavigationItem.budget,
@@ -54,20 +55,20 @@ struct AppSidebarNavigation: View {
             Spacer()
             
             // TODO: show a modal sheet!
-            NavigationLink(
-                destination: SettingsScreen(),
-                tag: SidebarNavigationItem.settings,
-                selection: $selection,
-                label: {
-                    SidebarMenuItem(currentSelection: $selection,
-                                    imageName: "gear",
-                                    textString: "Settings",
-                                    itemSelection: .settings)
-                })
-                .buttonStyle(PlainButtonStyle())
-
+            Divider()
+            SidebarMenuItem(currentSelection: $selection, imageName: "gear", textString: "Settings", itemSelection: .settings)
+                .onTapGesture {
+                    self.showSettingsSheet.toggle()
+                }
         }
-        .navigationBarTitle("Money Flow")
+        .padding(.top, AppMargins.regular)
+        .sheet(isPresented: self.$showSettingsSheet) {
+            SettingsScreen()
+        }
+        .navigationBarTitle(
+            Text("Money Flow")
+            
+        )
     }
     
     var body: some View {
