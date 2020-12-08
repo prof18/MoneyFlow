@@ -21,7 +21,7 @@ struct ContentView: View {
             AppSidebarNavigation()
         }
         #else
-//        AppSidebarNavigation()
+        AppSidebarNavigation()
         #endif
     }
 }

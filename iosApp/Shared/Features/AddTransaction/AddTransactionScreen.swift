@@ -22,7 +22,6 @@ struct AddTransactionScreen: View {
         return df
     }()
     
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -38,7 +37,7 @@ struct AddTransactionScreen: View {
                     HStack {
                         DMImage("ic_euro_sign")
                         TextField("0.00", text: $viewModel.amountTextField)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.decimalPad)
                     }
                     
                     HStack {
@@ -56,19 +55,18 @@ struct AddTransactionScreen: View {
                     HStack {
                         DMImage("ic_calendar")
                         Text("\(dateFormatter.string(from: viewModel.transactionDate))")
-                            .onTapGesture {
-                                self.showsDatePicker.toggle()
-                            }                            
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .leading)
+
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        self.showsDatePicker.toggle()
                     }
                     
                     if showsDatePicker {
-                        VStack {
-                            DatePicker("", selection: $viewModel.transactionDate, displayedComponents: .date)
-                                .datePickerStyle(WheelDatePickerStyle())
-                            Button("Ok") {
-                                self.showsDatePicker.toggle()
-                            }
-                        }
+                        DatePicker("", selection: $viewModel.transactionDate, displayedComponents: .date)
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .padding(20)
                     }
                 }
             }

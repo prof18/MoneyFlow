@@ -7,16 +7,8 @@
 
 import SwiftUI
 
-enum SidebarNavigationItem {
-    case home
-    case recap
-    case budget
-    case settings
-}
-
 struct AppSidebarNavigation: View {
 
-    
     @State private var selection: SidebarNavigationItem? = .home
     
     var sidebar: some View {
