@@ -11,13 +11,14 @@ struct AppSidebarNavigation: View {
     
     @State private var selection: SidebarNavigationItem? = .home
     @State var showSettingsSheet: Bool = false
+    @EnvironmentObject var appState: AppState
     
     var sidebar: some View {
         
         VStack {
             
             NavigationLink(
-                destination: HomeScreen(),
+                destination: HomeScreen().environmentObject(appState),
                 tag: SidebarNavigationItem.home,
                 selection: $selection,
                 label: {
@@ -29,7 +30,7 @@ struct AppSidebarNavigation: View {
                 .buttonStyle(PlainButtonStyle())
             
             NavigationLink(
-                destination: RecapScreen(),
+                destination: RecapScreen().environmentObject(appState),
                 tag: SidebarNavigationItem.recap,
                 selection: $selection,
                 label: {
@@ -41,7 +42,7 @@ struct AppSidebarNavigation: View {
                 .buttonStyle(PlainButtonStyle())
             
             NavigationLink(
-                destination: BudgetScreen(),
+                destination: BudgetScreen().environmentObject(appState),
                 tag: SidebarNavigationItem.budget,
                 selection: $selection,
                 label: {
@@ -63,7 +64,7 @@ struct AppSidebarNavigation: View {
         }
         .padding(.top, AppMargins.regular)
         .sheet(isPresented: self.$showSettingsSheet) {
-            SettingsScreen()
+            SettingsScreen().environmentObject(appState)
         }
         .navigationBarTitle(
             Text("Money Flow")

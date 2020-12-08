@@ -11,11 +11,12 @@ import SwiftUI
 
 struct AppTabNavigation: View {
     @State private var selection: Tab = .home
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
-                HomeScreen()
+                HomeScreen().environmentObject(appState)
             }
             .tabItem {
                 Label("Home", systemImage: "house")
@@ -25,7 +26,7 @@ struct AppTabNavigation: View {
             
             
             NavigationView {
-                RecapScreen()
+                RecapScreen().environmentObject(appState)
             }
             .tabItem {
                 Label("Recap", systemImage: "chart.pie")
@@ -34,7 +35,7 @@ struct AppTabNavigation: View {
             .tag(Tab.recap)
             
             NavigationView {
-                BudgetScreen()
+                BudgetScreen().environmentObject(appState)
             }
             .tabItem {
                 Label("Budget", systemImage: "banknote")
@@ -43,7 +44,7 @@ struct AppTabNavigation: View {
             .tag(Tab.budget)
             
             NavigationView {
-                SettingsScreen()
+                SettingsScreen().environmentObject(appState)
             }
             .tabItem {
                 Label("Settings", systemImage: "gear")

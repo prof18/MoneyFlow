@@ -10,7 +10,7 @@ import shared
 
 struct ContentView: View {
     
-    @EnvironmentObject var appState: AppState
+    @StateObject var appState: AppState = AppState()
     
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -19,9 +19,9 @@ struct ContentView: View {
     var body: some View {
         #if os(iOS)
         if horizontalSizeClass == .compact {
-            AppTabNavigation()
+            AppTabNavigation().environmentObject(appState)
         } else {
-            AppSidebarNavigation()
+            AppSidebarNavigation().environmentObject(appState)
         }
         #else
         AppSidebarNavigation()
