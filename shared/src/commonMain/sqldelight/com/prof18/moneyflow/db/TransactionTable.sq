@@ -19,3 +19,12 @@ ON T.categoryId = C.id;
 insertTransaction:
 INSERT INTO TransactionTable (dateMillis, amount, description, categoryId, type)
 VALUES (?,?,?,?,?);
+
+selectTransaction:
+SELECT *
+FROM TransactionTable
+WHERE id = :transactionId;
+
+deleteTransaction:
+DELETE FROM TransactionTable
+WHERE id = :transactionId;

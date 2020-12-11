@@ -30,6 +30,10 @@ class HomeViewModel(
             }
         }
     }
+
+    fun deleteTransaction(id: Long) {
+        useCase.deleteTransaction(id)
+    }
 }
 
 class HomeViewModelFactory : ViewModelProvider.Factory {

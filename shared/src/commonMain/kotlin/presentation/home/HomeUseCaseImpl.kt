@@ -52,6 +52,16 @@ class HomeUseCaseImpl(
         }
     }
 
+    override fun deleteTransaction(transactionId: Long) {
+        coroutineScope.launch {
+            moneyRepository.deleteTransaction(transactionId)
+        }
+    }
+
+    override suspend fun deleteTransactionSuspendable(transactionId: Long) {
+        moneyRepository.deleteTransaction(transactionId)
+    }
+
     // iOs only
     fun onDestroy() {
         coroutineScope.cancel()

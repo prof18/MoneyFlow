@@ -42,7 +42,6 @@ struct HomeScreen: View {
                                 .listRowInsets(EdgeInsets())
                                 .contextMenu {
                                     Button(action: {
-                                        // change country setting
                                         viewModel.deleteTransaction(transactionId: transaction.id)
                                     }) {
                                         Text("Delete")

@@ -22,7 +22,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func deleteTransaction(transactionId: Int64) {
-        
+        self.useCase?.deleteTransaction(transactionId: transactionId)
     }
     
     func stopObserving() {

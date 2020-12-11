@@ -187,7 +187,78 @@ class MoneyRepositoryImplTest : BaseTest() {
         }
     }
 
-    // TODO: test delete transaction
+    @Test
+    fun deleteTransaction_updatesBalanceCorrectlyWhenRemovingOutcome() = runTest {
 
+        // Setup
+        moneyRepository.insertTransaction(
+            TransactionToSave(
+                dateMillis = Clock.System.now().toEpochMilliseconds(),
+                amount = 10.0,
+                description = null,
+                categoryId = 0,
+                transactionType = TransactionType.OUTCOME
+            )
+        )
 
+        moneyRepository.insertTransaction(
+            TransactionToSave(
+                dateMillis = Clock.System.now().toEpochMilliseconds(),
+                amount = 10.0,
+                description = null,
+                categoryId = 0,
+                transactionType = TransactionType.INCOME
+            )
+        )
+
+        moneyRepository.deleteTransaction(1)
+
+        moneyRepository.getBalanceRecap().test {
+            val balance = expectItem()
+            assertEquals(10.0, balance.totalBalance)
+            assertEquals(0.0, balance.monthlyExpenses)
+            assertEquals(10.0, balance.monthlyIncome)
+        }
+    }
+
+    @Test
+    fun deleteTransaction_updatesBalanceCorrectlyWhenRemovingIncome() = runTest {
+
+        // Setup
+        moneyRepository.insertTransaction(
+            TransactionToSave(
+                dateMillis = Clock.System.now().toEpochMilliseconds(),
+                amount = 10.0,
+                description = null,
+                categoryId = 0,
+                transactionType = TransactionType.OUTCOME
+            )
+        )
+
+        moneyRepository.insertTransaction(
+            TransactionToSave(
+                dateMillis = Clock.System.now().toEpochMilliseconds(),
+                amount = 10.0,
+                description = null,
+                categoryId = 0,
+                transactionType = TransactionType.INCOME
+            )
+        )
+
+        moneyRepository.getBalanceRecap().test {
+            val balance = expectItem()
+            assertEquals(0.0, balance.totalBalance)
+            assertEquals(10.0, balance.monthlyExpenses)
+            assertEquals(10.0, balance.monthlyIncome)
+        }
+
+        moneyRepository.deleteTransaction(2)
+
+        moneyRepository.getBalanceRecap().test {
+            val balance = expectItem()
+            assertEquals(-10.0, balance.totalBalance)
+            assertEquals(10.0, balance.monthlyExpenses)
+            assertEquals(0.0, balance.monthlyIncome)
+        }
+    }
 }

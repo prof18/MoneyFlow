@@ -1,17 +1,22 @@
 package com.prof18.moneyflow.features.home
 
+import android.graphics.Color.BLACK
+import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
-import androidx.compose.material.Button
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Position
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
@@ -45,16 +50,43 @@ fun HomeScreen(navController: NavController) {
                 TextButton(
                     modifier = Modifier.align(Alignment.End),
                     onClick = {
-                    navController.navigate(Screen.AddTransactionScreen.name)
-                } ) {
+                        navController.navigate(Screen.AddTransactionScreen.name)
+                    }) {
                     Text("Add transaction")
                 }
                 HomeRecap(homeState.balanceRecap)
                 HeaderNavigator()
 
-                LazyColumnFor(items = homeState.latestTransactions) {
-                    TransactionCard(it)
-                    Divider()
+                LazyColumnFor(items = homeState.latestTransactions) { transaction ->
+
+                    val (showTransactionMenu, setShowTransactionMenu) = remember {
+                        mutableStateOf(
+                            false
+                        )
+                    }
+
+                    DropdownMenu(
+                        toggle = {
+                            TransactionCard(
+                                transaction = transaction,
+                                onClick = {
+                                    Log.d("TAG", "onClick")
+                                },
+                                onLongPress = {
+                                    setShowTransactionMenu(true)
+                                })
+                            Divider()
+                        },
+                        expanded = showTransactionMenu,
+                        onDismissRequest = { setShowTransactionMenu(false) },
+                    ) {
+                        DropdownMenuItem(onClick = {
+                            homeViewModel.deleteTransaction(transaction.id)
+                            setShowTransactionMenu(false)
+                        }) {
+                            Text("Delete")
+                        }
+                    }
                 }
             }
         }

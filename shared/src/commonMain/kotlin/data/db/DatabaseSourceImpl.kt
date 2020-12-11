@@ -5,7 +5,6 @@ import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.squareup.sqldelight.runtime.coroutines.mapToOneOrDefault
 import data.db.model.Currency
-import data.db.model.InsertTransactionDTO
 import data.db.model.TransactionType
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -16,8 +15,8 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import kotlin.math.abs
-
+import utils.CurrentMonthID
+import utils.MillisSinceEpoch
 
 class DatabaseSourceImpl(
     // not private and mutable to close and reopen the database at runtime
@@ -33,58 +32,6 @@ class DatabaseSourceImpl(
             .asFlow()
             .mapToList()
             .flowOn(backgroundDispatcher)
-
-    override suspend fun insertTransaction(insertTransaction: InsertTransactionDTO) {
-        withContext(backgroundDispatcher) {
-            dbRef.transaction {
-                dbRef.transactionTableQueries.insertTransaction(
-                    dateMillis = insertTransaction.dateMillis,
-                    amount = insertTransaction.amount,
-                    description = insertTransaction.description,
-                    categoryId = insertTransaction.categoryId,
-                    type = insertTransaction.transactionType
-                )
-
-                // Account recap
-                // The id is zero because for the time being there is no multi-account support
-                dbRef.accountTableQueries.updateAmount(
-                    newTransaction = insertTransaction.amount,
-                    id = 1
-                )
-
-                // Monthly recap
-                var recap =
-                    dbRef.monthlyRecapTableQueries.selectCurrentMonthlyRecap(insertTransaction.currentMonthId)
-                        .executeAsList().firstOrNull()
-                if (recap == null) {
-                    dbRef.monthlyRecapTableQueries.insertMonthRecap(
-                        id = insertTransaction.currentMonthId,
-                        incomeAmount = 0.0,
-                        outcomeAmount = 0.0
-                    )
-                    recap = MonthlyRecapTable(insertTransaction.currentMonthId, 0.0, 0.0)
-                }
-
-                when (insertTransaction.transactionType) {
-                    TransactionType.INCOME -> {
-                        val income = recap.incomeAmount + insertTransaction.amount
-                        dbRef.monthlyRecapTableQueries.updateIncome(
-                            income = income,
-                            id = insertTransaction.currentMonthId
-                        )
-                    }
-                    TransactionType.OUTCOME -> {
-                        // We keep the count positive. We know that it is an outcome
-                        val outcome = recap.outcomeAmount + abs(insertTransaction.amount)
-                        dbRef.monthlyRecapTableQueries.updateOutcome(
-                            outcome = outcome,
-                            id = insertTransaction.currentMonthId
-                        )
-                    }
-                }
-            }
-        }
-    }
 
     override fun selectAllCategories(): Flow<List<CategoryTable>> =
         dbRef.categoryTableQueries
@@ -126,4 +73,106 @@ class DatabaseSourceImpl(
                 )
             )
             .flowOn(backgroundDispatcher)
+
+    override suspend fun insertTransaction(
+        dateMillis: MillisSinceEpoch,
+        amount: Double,
+        description: String?,
+        categoryId: Long,
+        transactionType: TransactionType,
+        monthId: Long,
+        monthlyIncomeAmount: Double,
+        monthlyOutcomeAmount: Double
+    ) {
+        withContext(backgroundDispatcher) {
+            dbRef.transaction {
+                dbRef.transactionTableQueries.insertTransaction(
+                    dateMillis = dateMillis,
+                    amount = amount,
+                    description = description,
+                    categoryId = categoryId,
+                    type = transactionType
+                )
+
+                dbRef.accountTableQueries.updateAmount(
+                    newTransaction = amount,
+                    id = 1 // no multi-account support for now
+                )
+
+                when (transactionType) {
+                    TransactionType.INCOME -> {
+                        dbRef.monthlyRecapTableQueries.updateIncome(
+                            income = monthlyIncomeAmount,
+                            id = monthId
+                        )
+                    }
+                    TransactionType.OUTCOME -> {
+                        dbRef.monthlyRecapTableQueries.updateOutcome(
+                            outcome = monthlyOutcomeAmount,
+                            id = monthId
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    override suspend fun deleteTransaction(
+        transactionId: Long,
+        transactionType: TransactionType,
+        transactionAmountToUpdate: Double,
+        monthId: Long,
+        monthlyIncomeAmount: Double,
+        monthlyOutcomeAmount: Double
+    ) {
+        withContext(backgroundDispatcher) {
+            dbRef.transaction {
+                dbRef.transactionTableQueries.deleteTransaction(transactionId)
+
+                dbRef.accountTableQueries.updateAmount(
+                    newTransaction = transactionAmountToUpdate,
+                    id = 1 // No multi-account support
+                )
+
+                when (transactionType) {
+                    TransactionType.INCOME -> {
+                        dbRef.monthlyRecapTableQueries.updateIncome(
+                            income = monthlyIncomeAmount,
+                            id = monthId
+                        )
+                    }
+                    TransactionType.OUTCOME -> {
+                        dbRef.monthlyRecapTableQueries.updateOutcome(
+                            outcome = monthlyOutcomeAmount,
+                            id = monthId
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    override suspend fun getMonthlyRecap(currentMonthID: CurrentMonthID): MonthlyRecapTable =
+        withContext(backgroundDispatcher) {
+
+            var recap = dbRef.monthlyRecapTableQueries.selectCurrentMonthlyRecap(currentMonthID)
+                .executeAsList().firstOrNull()
+            if (recap == null) {
+                dbRef.monthlyRecapTableQueries.insertMonthRecap(
+                    id = currentMonthID,
+                    incomeAmount = 0.0,
+                    outcomeAmount = 0.0
+                )
+                recap = MonthlyRecapTable(currentMonthID, 0.0, 0.0)
+            }
+            return@withContext recap
+        }
+
+
+    override suspend fun getTransaction(transactionId: Long): TransactionTable? =
+        withContext(backgroundDispatcher) {
+            return@withContext dbRef.transactionTableQueries.selectTransaction(transactionId)
+                .executeAsOneOrNull()
+        }
+
 }

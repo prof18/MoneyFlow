@@ -1,37 +1,39 @@
 package com.prof18.moneyflow.ui.components
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.gesture.longPressGestureFilter
 import androidx.compose.ui.res.vectorResource
-import com.prof18.moneyflow.R
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
-import com.prof18.moneyflow.ui.style.AppColors
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.containerColor
 import domain.entities.MoneyTransaction
 
 @Composable
 fun TransactionCard(
-    transaction: MoneyTransaction
-) {
+    transaction: MoneyTransaction,
+    onLongPress: () -> Unit,
+    onClick: () -> Unit
 
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = {
-            // TODO
-        })
+                onClick()
+            })
+            .longPressGestureFilter {
+                onLongPress()
+            }
     ) {
 
         Row {

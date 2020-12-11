@@ -20,4 +20,7 @@ interface MoneyRepository {
     @Throws(Exception::class)
     suspend fun getCategories(): Flow<List<Category>>
 
+    @Throws(Exception::class)
+    suspend fun deleteTransaction(transactionId: Long)
+
 }
