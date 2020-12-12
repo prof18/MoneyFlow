@@ -27,6 +27,7 @@ import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
 import presentation.home.HomeModel
+import timber.log.Timber
 
 
 @Composable
@@ -70,7 +71,7 @@ fun HomeScreen(navController: NavController) {
                             TransactionCard(
                                 transaction = transaction,
                                 onClick = {
-                                    Log.d("TAG", "onClick")
+                                    Timber.d("onClick")
                                 },
                                 onLongPress = {
                                     setShowTransactionMenu(true)

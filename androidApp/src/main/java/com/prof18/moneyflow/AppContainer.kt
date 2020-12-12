@@ -79,10 +79,6 @@ fun AppContainer() {
 
                 composable(Screen.AddTransactionScreen.name) {
 
-                    onCommit(navBackStackEntry) {
-                        Log.d("", ">>>> on commit")
-                    }
-
                     // Get back the category
                     val category =
                         it.savedStateHandle.getLiveData<CategoryUIData>(NavigationArguments.CATEGORY)

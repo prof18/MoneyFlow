@@ -42,7 +42,7 @@ val MoneyFlowTypography = Typography(
         letterSpacing = 0.sp
     ),
     h6 = TextStyle(
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp
     ),

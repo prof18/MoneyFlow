@@ -14,6 +14,9 @@ object Versions {
     const val androidXTest = "1.3.0"
     const val androidXTestExt = "1.1.2"
     const val turbine = "0.3.0"
+    const val timber = "4.7.1"
+    const val koinCompose = "2.2.1"
+    const val activityKTX = "1.1.0"
 }
 
 object Deps {
@@ -22,9 +25,12 @@ object Deps {
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTime}"
     const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val activityKTX = "androidx.activity:activity-ktx:${Versions.activityKTX}"
+
 
     object Koin {
-        const val compose = "org.koin:koin-androidx-compose:${Versions.koin}"
+        const val compose = "org.koin:koin-androidx-compose:${Versions.koinCompose}"
         const val core = "org.koin:koin-core:${Versions.koin}"
         const val coreMultiplatform = "org.koin:koin-core:${Versions.koin}"
         const val androidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"

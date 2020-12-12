@@ -64,7 +64,9 @@ dependencies {
     implementation(Deps.Compose.composeNavigation)
     implementation(Deps.Koin.core)
     implementation(Deps.Koin.androidViewModel)
-//    implementation(Deps.Koin.compose)
+    implementation(Deps.Koin.compose)
+    implementation(Deps.timber)
+    implementation(Deps.activityKTX)
 
 
 

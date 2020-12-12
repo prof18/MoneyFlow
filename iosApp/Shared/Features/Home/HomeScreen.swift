@@ -11,7 +11,7 @@ import shared
 struct HomeScreen: View {
     
     @EnvironmentObject var appState: AppState
-    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @StateObject var viewModel: HomeViewModel = HomeViewModel()
     @State private var showAddTransaction = false
     
     var body: some View {

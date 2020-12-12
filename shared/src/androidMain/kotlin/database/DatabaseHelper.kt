@@ -11,18 +11,19 @@ object DatabaseHelper {
 
     private var driverRef: SqlDriver? = null
     private var dbRef: MoneyFlowDB? = null
+    const val DATABASE_NAME = "MoneyFlowDB"
 
     fun setupDatabase(driver: SqlDriver? = null ) {
         val driverRef = driver ?: AndroidSqliteDriver(
             Schema,
             getKoin().get(),
-            "MoneyFlowDB"
+            DATABASE_NAME
         )
         this.driverRef = driverRef
         dbRef = createQueryWrapper(driverRef)
     }
 
-    internal fun dbClear() {
+     fun dbClear() {
         driverRef!!.close()
         dbRef = null
         driverRef = null

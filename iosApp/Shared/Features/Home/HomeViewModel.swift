@@ -9,7 +9,11 @@ import shared
 
 class HomeViewModel: ObservableObject {
     
-    @Published var homeModel: HomeModel = HomeModel.Loading()
+    @Published var homeModel: HomeModel = HomeModel.Loading() {
+        willSet {
+            debugPrint(homeModel)
+        }
+    }
     
     var useCase: HomeUseCaseImpl?
     
