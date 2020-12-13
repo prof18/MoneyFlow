@@ -29,8 +29,8 @@ android {
             properties.load(propertiesFile.inputStream())
         }
 
-        buildConfigField("String", "DROPBOX_APP_KEY", properties.getProperty("dropbox.app_key"))
-        resValue("string", "dropbox_app_key_schema", properties.getProperty("dropbox.app_key_schema"))
+        buildConfigField("String", "DROPBOX_APP_KEY", properties.getProperty("dropbox.app_key") ?: "\"\"")
+        resValue("string", "dropbox_app_key_schema", properties.getProperty("dropbox.app_key_schema") ?: "\"\"")
 
 //        resValue "string", "dropbox_app_key_schema", gradle.ext.appProperties.getProperty("dropbox.app_key_schema", '')
 
