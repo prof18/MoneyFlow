@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.settings
 
+import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.viewModel
+import com.dropbox.core.android.Auth
+import com.prof18.moneyflow.BuildConfig
+import com.prof18.moneyflow.MainActivity
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.utils.registerForActivityResult
 
@@ -79,6 +83,17 @@ fun SettingsScreen() {
                         .fillMaxWidth()
                         .clickable(onClick = {
                             createFileAction.launch("MoneyFlowDB.db")
+                        })
+                        .padding(AppMargins.regular)
+                )
+                Divider()
+                Text(
+                    "Setup Dropbox",
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = {
+                            context.startActivity(Intent(context, DropboxLoginActivity::class.java))
                         })
                         .padding(AppMargins.regular)
                 )

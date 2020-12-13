@@ -4,10 +4,10 @@
 
     <application
         android:name=".MoneyFlowApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:fullBackupOnly="false"
         android:label="Money Flow"
         android:supportsRtl="true"
-        android:fullBackupOnly="true"
         android:theme="@style/Theme.MoneyFlow">
         <activity android:name="com.prof18.moneyflow.MainActivity">
             <intent-filter>
@@ -16,6 +16,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.dropbox.core.android.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <data android:scheme="@string/dropbox_app_key_schema"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".features.settings.DropboxLoginActivity" />
+
     </application>
+
+
+
+
 
 </manifest>

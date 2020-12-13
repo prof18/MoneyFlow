@@ -44,6 +44,12 @@ object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
                     iconName = category.iconName
                 )
             }
+
+            dropboxSyncTableQueries.insertDropboxSync(
+                id = 1,
+                accessToken = null,
+                lastRefresh = null
+            )
         }
 
     }

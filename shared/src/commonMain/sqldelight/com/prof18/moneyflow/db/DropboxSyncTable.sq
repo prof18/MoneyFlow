@@ -1,0 +1,30 @@
+CREATE TABLE DropboxSyncTable (
+    id INTEGER NOT NULL PRIMARY KEY,
+    accessToken TEXT,
+    lastRefresh INTEGER
+);
+
+getAccessToken:
+SELECT accessToken
+FROM DropboxSyncTable;
+
+getLastRefresh:
+SELECT lastRefresh
+FROM DropboxSyncTable;
+
+deleteAll:
+DELETE FROM DropboxSyncTable;
+
+insertDropboxSync:
+INSERT INTO DropboxSyncTable (id, accessToken, lastRefresh)
+VALUES (?,?,?);
+
+updateLastRefresh:
+UPDATE DropboxSyncTable
+SET lastRefresh = :lastRefresh
+WHERE id = :id;
+
+updateAccessToken:
+UPDATE DropboxSyncTable
+SET accessToken = :accessToken
+WHERE id = :id;

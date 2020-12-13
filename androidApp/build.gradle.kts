@@ -1,9 +1,16 @@
+import java.util.*
+
 plugins {
     id("com.android.application")
     kotlin("android")
 //    id("kotlin-parcelize")
 }
 
+val propertiesFile = file("local.properties")
+val properties = Properties()
+if (propertiesFile.exists()) {
+    properties.load(propertiesFile.inputStream())
+}
 
 android {
     compileSdkVersion(30)
@@ -13,6 +20,20 @@ android {
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
+
+//        buildConfigField , , )
+
+        val propertiesFile = file("local.properties")
+        val properties = Properties()
+        if (propertiesFile.exists()) {
+            properties.load(propertiesFile.inputStream())
+        }
+
+        buildConfigField("String", "DROPBOX_APP_KEY", properties.getProperty("dropbox.app_key"))
+        resValue("string", "dropbox_app_key_schema", properties.getProperty("dropbox.app_key_schema"))
+
+//        resValue "string", "dropbox_app_key_schema", gradle.ext.appProperties.getProperty("dropbox.app_key_schema", '')
+
     }
     buildTypes {
         getByName("release") {
@@ -36,7 +57,7 @@ android {
     }
 
     buildFeatures { compose = true }
-    buildToolsVersion = "30.0.2"
+    buildToolsVersion = "30.0.3"
 }
 
 dependencies {
@@ -67,7 +88,7 @@ dependencies {
     implementation(Deps.Koin.compose)
     implementation(Deps.timber)
     implementation(Deps.activityKTX)
-
+    implementation(Deps.dropboxCore)
 
 
 //    androidTestImplementation(Deps.Compose.test)

@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import presentation.CategoryIcon
 import presentation.addtransaction.TransactionToSave
-import utils.Utils.formatDate
+import utils.Utils.formatDateDayMonthYear
 import utils.Utils.generateCurrentMonthId
 import kotlin.math.abs
 
@@ -68,7 +68,7 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource) : MoneyRepositor
                     icon = CategoryIcon.fromValue(transaction.iconName),
                     amount = transaction.amount,
                     type = transactionTypeUI,
-                    formattedDate = transaction.dateMillis.formatDate()
+                    formattedDate = transaction.dateMillis.formatDateDayMonthYear()
                 )
             }
         }

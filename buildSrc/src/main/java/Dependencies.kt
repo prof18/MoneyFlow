@@ -17,6 +17,7 @@ object Versions {
     const val timber = "4.7.1"
     const val koinCompose = "2.2.1"
     const val activityKTX = "1.1.0"
+    const val dropboxCore = "3.1.5"
 }
 
 object Deps {
@@ -27,6 +28,7 @@ object Deps {
     const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val activityKTX = "androidx.activity:activity-ktx:${Versions.activityKTX}"
+    const val dropboxCore = "com.dropbox.core:dropbox-core-sdk:${Versions.dropboxCore}"
 
 
     object Koin {

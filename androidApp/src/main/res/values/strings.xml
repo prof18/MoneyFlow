@@ -14,4 +14,6 @@
     <string name="settings_screen">Settings</string>
     <string name="add_transaction_screen">Add Transaction</string>
     <string name="categories_screen">Categories</string>
+    <string name="dropbox_not_sync_yet">Not yet synced</string>
+    <string name="dropbox_last_refresh">Last refresh:</string>
 </resources>

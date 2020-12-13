@@ -3,7 +3,9 @@ package com.prof18.moneyflow.features.home
 import android.graphics.Color.BLACK
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.*
@@ -58,34 +60,58 @@ fun HomeScreen(navController: NavController) {
                 HomeRecap(homeState.balanceRecap)
                 HeaderNavigator()
 
-                LazyColumnFor(items = homeState.latestTransactions) { transaction ->
+                if (homeState.latestTransactions.isEmpty()) {
 
-                    val (showTransactionMenu, setShowTransactionMenu) = remember {
-                        mutableStateOf(
-                            false
-                        )
-                    }
-
-                    DropdownMenu(
-                        toggle = {
-                            TransactionCard(
-                                transaction = transaction,
-                                onClick = {
-                                    Timber.d("onClick")
-                                },
-                                onLongPress = {
-                                    setShowTransactionMenu(true)
-                                })
-                            Divider()
-                        },
-                        expanded = showTransactionMenu,
-                        onDismissRequest = { setShowTransactionMenu(false) },
+                    Box(
+                        alignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize()
                     ) {
-                        DropdownMenuItem(onClick = {
-                            homeViewModel.deleteTransaction(transaction.id)
-                            setShowTransactionMenu(false)
-                        }) {
-                            Text("Delete")
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                "¯\\_(ツ)_/¯",
+                                modifier = Modifier
+                                    .padding(bottom = AppMargins.small),
+                                style = MaterialTheme.typography.h6
+                            )
+
+                            Text(
+                                "Your wallet is empty",
+                                style = MaterialTheme.typography.h6
+                            )
+                        }
+                    }
+                } else {
+                    LazyColumnFor(items = homeState.latestTransactions) { transaction ->
+
+                        val (showTransactionMenu, setShowTransactionMenu) = remember {
+                            mutableStateOf(
+                                false
+                            )
+                        }
+
+                        DropdownMenu(
+                            toggle = {
+                                TransactionCard(
+                                    transaction = transaction,
+                                    onClick = {
+                                        Timber.d("onClick")
+                                    },
+                                    onLongPress = {
+                                        setShowTransactionMenu(true)
+                                    })
+                                Divider()
+                            },
+                            expanded = showTransactionMenu,
+                            onDismissRequest = { setShowTransactionMenu(false) },
+                        ) {
+                            DropdownMenuItem(onClick = {
+                                homeViewModel.deleteTransaction(transaction.id)
+                                setShowTransactionMenu(false)
+                            }) {
+                                Text("Delete")
+                            }
                         }
                     }
                 }
