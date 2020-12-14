@@ -6,11 +6,11 @@ plugins {
 //    id("kotlin-parcelize")
 }
 
-val propertiesFile = file("local.properties")
-val properties = Properties()
-if (propertiesFile.exists()) {
-    properties.load(propertiesFile.inputStream())
-}
+//val propertiesFile = file("local.properties")
+//val properties = Properties()
+//if (propertiesFile.exists()) {
+//    properties.load(propertiesFile.inputStream())
+//}
 
 android {
     compileSdkVersion(30)
@@ -42,8 +42,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
@@ -52,7 +52,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.10"
+        kotlinCompilerVersion = "1.4.21"
         kotlinCompilerExtensionVersion = Versions.compose
     }
 
@@ -63,15 +63,15 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(Deps.stdlib)
-    implementation("androidx.core:core-ktx:1.2.0")
-    implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
 
 
-    implementation("com.google.android.material:material:1.1.0")
+    implementation("com.google.android.material:material:1.2.1")
 
     implementation(Deps.Compose.core)
     implementation(Deps.Compose.foundation)

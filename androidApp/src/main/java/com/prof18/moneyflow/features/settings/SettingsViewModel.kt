@@ -11,11 +11,11 @@ class SettingsViewModel(
 ) : ViewModel() {
 
     fun performBackup(uri: Uri) {
-        databaseImportExport.export(uri)
+        databaseImportExport.exportToMemory(uri)
     }
 
     fun performRestore(uri: Uri) {
-        databaseImportExport.import(uri)
+        databaseImportExport.importFromMemory(uri)
     }
 }
 

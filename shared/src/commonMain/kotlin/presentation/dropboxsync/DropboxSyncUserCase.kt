@@ -12,4 +12,7 @@ interface DropboxSyncUserCase {
 
     fun saveAccessToken(token: String)
     suspend fun saveAccessTokenSuspendable(token: String)
+
+    fun updateLastRefresh(lastRefreshMillis: Long)
+    suspend fun updateLastRefreshSuspendable(lastRefreshMillis: Long)
 }

@@ -1,10 +1,12 @@
 package com.prof18.moneyflow.features.settings
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dropbox.core.android.Auth
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.java.KoinJavaComponent
 import presentation.dropboxsync.DropboxSyncUserCase
 import timber.log.Timber
 
@@ -29,6 +31,7 @@ class DropboxLoginViewModel(
 
         viewModelScope.launch {
             dropboxSyncUserCase.observeLastRefresh().collect {
+                Timber.d("Got last refresh: $it")
                 _lastRefreshLiveData.value = it
             }
         }
@@ -59,5 +62,11 @@ class DropboxLoginViewModel(
 
     fun unlinkDropbox() {
 
+    }
+
+    fun backup() {
+        viewModelScope.launch {
+            dropboxClient.upload()
+        }
     }
 }

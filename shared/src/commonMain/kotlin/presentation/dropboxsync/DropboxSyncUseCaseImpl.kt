@@ -63,6 +63,16 @@ class DropboxSyncUseCaseImpl(
         dropboxSyncRepository.saveAccessToken(token)
     }
 
+    override fun updateLastRefresh(lastRefreshMillis: Long) {
+        coroutineScope.launch {
+            updateLastRefreshSuspendable(lastRefreshMillis)
+        }
+    }
+
+    override suspend fun updateLastRefreshSuspendable(lastRefreshMillis: Long) {
+        dropboxSyncRepository.saveLastRefresh(lastRefreshMillis)
+    }
+
     // iOs only
     fun onDestroy() {
         coroutineScope.cancel()

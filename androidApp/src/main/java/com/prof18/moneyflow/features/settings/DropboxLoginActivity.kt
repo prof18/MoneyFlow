@@ -79,12 +79,23 @@ class DropboxLoginActivity : AppCompatActivity() {
 
 
                                 Text(
-                                    "Perform Sync",
+                                    "Backup to Dropbox",
                                     style = MaterialTheme.typography.h6,
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable(onClick = {
-
+                                            viewModel.backup()
+                                        })
+                                        .padding(AppMargins.regular)
+                                )
+                                Divider()
+                                Text(
+                                    "Restore from Dropbox",
+                                    style = MaterialTheme.typography.h6,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable(onClick = {
+                                            viewModel.backup()
                                         })
                                         .padding(AppMargins.regular)
                                 )
@@ -130,6 +141,7 @@ class DropboxLoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Timber.d("onResum")
         if (hasPerformLogin) {
             viewModel.saveAccessToken()
             hasPerformLogin = false

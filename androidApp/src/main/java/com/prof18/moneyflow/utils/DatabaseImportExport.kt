@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.utils
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.net.Uri
 import database.DatabaseHelper
 import timber.log.Timber
@@ -14,7 +15,36 @@ class DatabaseImportExport(
     private val context: Context
 ) {
 
-    fun export(uri: Uri) {
+    fun generateDatabaseFile(): File? {
+        val inFileName: String = context.getDatabasePath(DatabaseHelper.DATABASE_NAME).toString()
+        try {
+            val dbFile = File(inFileName)
+            val fis = FileInputStream(dbFile)
+            context.openFileOutput("MoneyFlow.db", MODE_PRIVATE)!!.use { output ->
+                // Transfer bytes from the input file to the output file
+                val buffer = ByteArray(1024)
+                var length: Int
+                while (fis.read(buffer).also { length = it } > 0) {
+                    output.write(buffer, 0, length)
+                }
+
+                // Close the streams
+                output.flush()
+                output.close()
+                fis.close()
+                Timber.d("Backup Completed")
+
+                return context.getFileStreamPath("MoneyFlow.db")
+            }
+
+        } catch (e: Exception) {
+            Timber.e("Error during the database export")
+            e.printStackTrace()
+            return null
+        }
+    }
+
+    fun exportToMemory(uri: Uri) {
 
         //database path
         val inFileName: String = context.getDatabasePath(DatabaseHelper.DATABASE_NAME).toString()
@@ -51,7 +81,7 @@ class DatabaseImportExport(
         }
     }
 
-    fun import(uri: Uri) {
+    fun importFromMemory(uri: Uri) {
         val outFileName: String = context.getDatabasePath(DatabaseHelper.DATABASE_NAME).toString()
         try {
             context.contentResolver.openInputStream(uri)!!.use { fis ->

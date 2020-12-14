@@ -23,7 +23,7 @@ class MoneyFlowApp : Application() {
             module {
                 single<Context> { this@MoneyFlowApp }
                 single { DatabaseImportExport(applicationContext) }
-                single { DropboxClient(get()) }
+                single { DropboxClient(get(), get()) }
                 viewModel {
                     // We can use it with Compose ViewModels when the koin compose artifact
                     // will be available also to the kmp artifacts

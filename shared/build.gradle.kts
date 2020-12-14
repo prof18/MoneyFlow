@@ -29,13 +29,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
 }
@@ -109,9 +109,7 @@ kotlin {
                 implementation(Deps.AndroidXTest.junit)
                 implementation(Deps.AndroidXTest.runner)
                 implementation(Deps.AndroidXTest.rules)
-                implementation(Deps.Coroutines.test)  {
-                    isForce = true
-                }
+                implementation(Deps.Coroutines.test)
 
             }
         }
