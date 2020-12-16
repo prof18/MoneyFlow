@@ -63,7 +63,7 @@ fun HomeScreen(navController: NavController) {
                 if (homeState.latestTransactions.isEmpty()) {
 
                     Box(
-                        alignment = Alignment.Center,
+                        contentAlignment = Alignment.Center,
                         modifier = Modifier.fillMaxSize()
                     ) {
                         Column(

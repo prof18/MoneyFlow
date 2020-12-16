@@ -52,7 +52,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.21"
+        kotlinCompilerVersion = "1.4.20"
         kotlinCompilerExtensionVersion = Versions.compose
     }
 
@@ -78,6 +78,7 @@ dependencies {
     implementation(Deps.Compose.layout)
     implementation(Deps.Compose.material)
     implementation(Deps.Compose.materialIconsExtended)
+    implementation(Deps.Compose.materialIconsCore)
     implementation(Deps.Compose.runtime)
     implementation(Deps.Compose.runtimeLivedata)
     implementation(Deps.Compose.tooling)

@@ -14,8 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
@@ -50,7 +50,7 @@ fun HeaderNavigator(
 
         IconButton(
             onClick = { /* todo */ },
-            modifier = Modifier.gravity(Alignment.CenterVertically)
+            modifier = Modifier.align(Alignment.CenterVertically)
         ) {
             Icon(
                 Icons.Outlined.KeyboardArrowRight

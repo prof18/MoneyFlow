@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun RecapScreen() {
     Box(
-        alignment = Alignment.Center,
+        contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         Text("Coming Soon")

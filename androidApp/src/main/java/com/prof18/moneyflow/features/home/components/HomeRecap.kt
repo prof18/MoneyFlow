@@ -25,16 +25,16 @@ fun HomeRecap(
         Text(
             text = "Total Balance",
             style = MaterialTheme.typography.subtitle2,
-            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         )
 
         Row(
-            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         ) {
             Text(
                 text = "€",
                 style = MaterialTheme.typography.h5,
-                modifier = Modifier.gravity(Alignment.CenterVertically),
+                modifier = Modifier.align(Alignment.CenterVertically),
             )
 
             Spacer(Modifier.preferredWidth(AppMargins.small))
@@ -60,7 +60,7 @@ fun HomeRecap(
                 Text(
                     text = "Income",
                     style = MaterialTheme.typography.subtitle2,
-                    modifier = Modifier.gravity(Alignment.End),
+                    modifier = Modifier.align(Alignment.End),
                 )
             }
         }

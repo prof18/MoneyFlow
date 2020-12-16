@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun BudgetScreen() {
     Box(
-        alignment = Alignment.Center,
+        contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         Text("Coming Soon")

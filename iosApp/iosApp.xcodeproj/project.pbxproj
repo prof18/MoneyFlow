@@ -24,6 +24,7 @@
 		A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B774257D6BA300F6113A /* RadioButtonGroup.swift */; };
 		A988B77F257D763900F6113A /* DMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B77E257D763900F6113A /* DMImage.swift */; };
 		A988B785257D7D5100F6113A /* TransactionTypeRadioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */; };
+		A98B5CE0258AA7F40020C5C5 /* DropboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CDF258AA7F30020C5C5 /* DropboxController.swift */; };
 		A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B356B257EE89900B626ED /* SidebarMenuItem.swift */; };
 		A99B3574257F7ABF00B626ED /* SidebarNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B3573257F7ABF00B626ED /* SidebarNavigationItem.swift */; };
 		A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */; };
@@ -117,6 +118,7 @@
 		A988B77E257D763900F6113A /* DMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMImage.swift; sourceTree = "<group>"; };
 		A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTypeRadioItem.swift; sourceTree = "<group>"; };
 		A98B5CBE258A949E0020C5C5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A98B5CDF258AA7F30020C5C5 /* DropboxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxController.swift; sourceTree = "<group>"; };
 		A99B356B257EE89900B626ED /* SidebarMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenuItem.swift; sourceTree = "<group>"; };
 		A99B3573257F7ABF00B626ED /* SidebarNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationItem.swift; sourceTree = "<group>"; };
 		A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				A9B3D775257FC95C00E65F1A /* Data */,
 				A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */,
+				A98B5CDF258AA7F30020C5C5 /* DropboxController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */,
 				A9B3D76F257FC68600E65F1A /* AppState.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
+				A98B5CE0258AA7F40020C5C5 /* DropboxController.swift in Sources */,
 				A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */,
 				A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,

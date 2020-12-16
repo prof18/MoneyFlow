@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -113,7 +112,7 @@ private fun DatePickerItemDropdownMenu(
                 Spacer(Modifier.width(4.dp))
                 Icon(
                     modifier = Modifier.size(16.dp),
-                    asset = Icons.Filled.KeyboardArrowDown
+                    imageVector = Icons.Filled.KeyboardArrowDown
                 )
             }
         },
