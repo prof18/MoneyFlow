@@ -9,7 +9,7 @@
   "authors": "",
   "license": "",
   "summary": "Some description for a Kotlin/Native module",
-  "static_framework": false,
+  "static_framework": true,
   "vendored_frameworks": "build/cocoapods/framework/shared.framework",
   "libraries": "c++",
   "module_name": "shared_umbrella",
