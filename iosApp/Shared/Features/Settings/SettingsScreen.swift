@@ -54,7 +54,7 @@ struct SettingsScreen: View {
             }
             
             NavigationLink(destination: DropboxScreen()) {
-                Button("Setup Dropbox") {}
+                Button("Dropbox Sync") {}
             }
             
         }

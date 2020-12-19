@@ -29,7 +29,7 @@ class DatabaseImportExport {
                 .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 .appendingPathComponent("databases/MoneyFlowDB")
             
-            try FileManager.default.replaceItemAt(fileURL, withItemAt: url, backupItemName: "MoneyFlowDB.old", options: .usingNewMetadataOnly)
+            _ = try FileManager.default.replaceItemAt(fileURL, withItemAt: url, backupItemName: "MoneyFlowDB.old", options: .usingNewMetadataOnly)
             
             DIContainer.instance.reloadDatabaseRef()
             

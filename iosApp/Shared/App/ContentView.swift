@@ -10,7 +10,7 @@ import shared
 
 struct ContentView: View {
     
-    @StateObject var appState: AppState = AppState()
+    @EnvironmentObject var appState: AppState
     
     #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass

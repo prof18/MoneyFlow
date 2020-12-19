@@ -17,7 +17,7 @@ struct DropboxScreen: View {
             .navigationTitle(Text("Dropbox Sync"))
             .onReceive(NotificationCenter.default.publisher(for: .didDropboxSuccess)) { _ in
                 print("Dropbox Success Notification")
-                self.dropboxViewModel.checkIfConnected()
+                self.dropboxViewModel.setupDropboxClientManager()
             }
             .onReceive(NotificationCenter.default.publisher(for: .didDropboxCancel)) { _ in
                 print("Dropbox Cancel Notification")
@@ -40,11 +40,11 @@ struct DropboxScreen: View {
                         Text("Connected")
                         
                         Button("Backup to Dropbox") {
-                            
+                            dropboxViewModel.backup()
                         }
                         
                         Button("Restore from Dropbox") {
-                            
+                            dropboxViewModel.restore()
                         }
                         
                         Button("Unlink") {
@@ -61,7 +61,7 @@ struct DropboxScreen: View {
                     Button("Link") {
                         self.showDropboxConnectScreen.toggle()
                     }
-                    DropboxView(isShown: self.$showDropboxConnectScreen)
+                    DropboxLoginView(isShown: self.$showDropboxConnectScreen)
                 }.padding(AppMargins.regular)
             )
         }

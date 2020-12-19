@@ -10,19 +10,33 @@ import SwiftyDropbox
 
 class DropboxViewModel: ObservableObject {
     
+    let dropboxClientManager = DropboxClientManager.instance
     @Published var isDropboxConnected: Bool = false
     
     
     // Method to observe the client status
+    func backup() {
+        self.dropboxClientManager.backup()
+    }
     
     func checkIfConnected() {
-        self.isDropboxConnected = DropboxClientsManager.authorizedClient != nil
+        self.isDropboxConnected = dropboxClientManager.isConnected()
+    }
+    
+    func setupDropboxClientManager() {
+        self.dropboxClientManager.setup()
+        self.checkIfConnected()
     }
 
     func unlink() {
-        DropboxClientsManager.resetClients()
+        self.dropboxClientManager.unlink()
         self.isDropboxConnected = false
     }
+    
+    func restore() {
+        self.dropboxClientManager.restore()
+    }
+    
     
     
 }

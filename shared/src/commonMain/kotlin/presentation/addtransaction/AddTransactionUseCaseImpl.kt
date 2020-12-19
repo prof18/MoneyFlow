@@ -8,7 +8,8 @@ import kotlinx.coroutines.launch
 
 class AddTransactionUseCaseImpl(
     private val moneyRepository: MoneyRepository,
-): AddTransactionUseCase {
+    private val onInsertDone: (() -> Unit)? = null, // Called on iOs only
+) : AddTransactionUseCase {
 
     // Used only on iOs
     private val coroutineScope: CoroutineScope = MainScope()
@@ -16,6 +17,7 @@ class AddTransactionUseCaseImpl(
     override fun insertTransaction(transactionToSave: TransactionToSave) {
         coroutineScope.launch {
             insertTransactionSuspendable(transactionToSave)
+            onInsertDone?.invoke()
         }
     }
 

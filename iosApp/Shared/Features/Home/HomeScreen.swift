@@ -55,13 +55,14 @@ struct HomeScreen: View {
             }
         }
         .navigationTitle("Home")
-        .navigationBarItems(trailing: Button(action: {
+        .navigationBarItems(leading: refreshButton, trailing: Button(action: {
             self.showAddTransaction.toggle()
         }) {
             // TODO: localize
             Text("Add Transaction")
             
-        })
+        }
+        )
         .sheet(isPresented: self.$showAddTransaction) {
             AddTransactionScreen(showSheet: self.$showAddTransaction)
         }
@@ -78,6 +79,22 @@ struct HomeScreen: View {
         }
         
     }
+    
+    var refreshButton: AnyView {
+        if true {
+            return AnyView(
+                Button(action: {
+                    // TODO:
+                }) {
+                    // TODO: localize
+                    Image(systemName: "arrow.clockwise")
+                }
+            )
+        } else {
+            return AnyView(EmptyView())
+        }
+    }
+    
 }
 
 //struct HomeScreen_Previews: PreviewProvider {

@@ -32,7 +32,11 @@ class AddTransactionViewModel: ObservableObject {
     let addTransactionUseCase: AddTransactionUseCase
     
     init() {
-        addTransactionUseCase = AddTransactionUseCaseImpl(moneyRepository: DIContainer.instance.getMoneyRepository())
+        addTransactionUseCase = AddTransactionUseCaseImpl(moneyRepository: DIContainer.instance.getMoneyRepository(), onInsertDone: {
+            
+            // TODO: save to dropbox
+            
+        })
     }
     
     private func updateSaveButtonStatus() {
@@ -66,6 +70,6 @@ class AddTransactionViewModel: ObservableObject {
             print(error.localizedDescription)
         }
         
-       
+        
     }
 }
