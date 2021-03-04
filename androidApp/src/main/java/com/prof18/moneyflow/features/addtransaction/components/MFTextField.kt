@@ -1,9 +1,10 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +27,9 @@ fun MFTextInput(
 
     TextField(
         value = text,
-        onValueChange = { onTextChange(it) },
+        onValueChange = {
+            onTextChange(it)
+        },
         modifier = modifier,
         textStyle = textStyle,
         placeholder = {
@@ -42,13 +45,24 @@ fun MFTextInput(
             keyboardType = keyboardType,
             imeAction = ImeAction.Done
         ),
-        onImeActionPerformed = { action, softKeyboardController ->
+        keyboardActions = KeyboardActions(
+            onDone = {
+                onTextChange(text)
+//                softKeyboardController?.hideSoftwareKeyboard()
+            }
+        ),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color.Transparent,
+            textColor = textColor()
+        )
+
+       /* onImeActionPerformed = { action, softKeyboardController ->
             if (action == ImeAction.Done) {
                 onTextChange(text)
                 softKeyboardController?.hideSoftwareKeyboard()
             }
-        },
-        activeColor = textColor(),
-        backgroundColor = Color.Transparent,
+        },*/
+//        activeColor = textColor(),
+//        backgroundColor = Color.Transparent,
     )
 }

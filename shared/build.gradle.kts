@@ -7,13 +7,7 @@ plugins {
 group = "com.prof18"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    gradlePluginPortal()
-    google()
-    jcenter()
-    mavenCentral()
-}
-
+// Workaround to solve https://youtrack.jetbrains.com/issue/KT-43944
 android {
     compileSdkVersion(30)
     defaultConfig {
@@ -38,6 +32,15 @@ android {
             jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
+
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
+    }
 }
 
 kotlin.sourceSets.matching {
@@ -48,10 +51,12 @@ kotlin.sourceSets.matching {
 }
 
 kotlin {
+
+    android()
+
     ios()
 
     macosX64("macOS")
-    android()
 
     targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
         binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
@@ -133,6 +138,13 @@ kotlin {
 
         }
     }
+}
+
+kotlin.sourceSets.matching {
+    it.name.endsWith("Test")
+}.configureEach {
+    languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
+    languageSettings.useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
 }
 
 

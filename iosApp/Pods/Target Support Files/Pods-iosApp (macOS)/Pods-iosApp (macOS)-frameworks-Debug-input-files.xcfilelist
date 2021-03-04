@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SwiftyDropbox-macOS/SwiftyDropbox.framework
 ${PODS_ROOT}/../../shared/build/cocoapods/framework/shared.framework

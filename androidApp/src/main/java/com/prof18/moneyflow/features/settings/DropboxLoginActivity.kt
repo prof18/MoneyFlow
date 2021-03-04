@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.features.settings
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.res.stringResource
 import com.dropbox.core.android.Auth
 import com.prof18.moneyflow.BuildConfig
@@ -59,7 +59,7 @@ class DropboxLoginActivity : AppCompatActivity() {
                             )
                         }
                     },
-                    bodyContent = {
+                    content = {
 
                         val isConnected by viewModel.isDropboxConnected.observeAsState(false)
 

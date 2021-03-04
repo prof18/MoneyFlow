@@ -2,6 +2,7 @@ package com.prof18.moneyflow.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -10,8 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.gesture.longPressGestureFilter
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.painterResource
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.containerColor
@@ -31,8 +32,12 @@ fun TransactionCard(
             .clickable(onClick = {
                 onClick()
             })
-            .longPressGestureFilter {
-                onLongPress()
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onLongPress = {
+                        onLongPress()
+                    }
+                )
             }
     ) {
 
@@ -50,7 +55,8 @@ fun TransactionCard(
                     )
             ) {
                 Icon(
-                    vectorResource(id = transaction.icon.mapToAndroidIcon()),
+                    painter = painterResource(id = transaction.icon.mapToAndroidIcon()),
+                    contentDescription = null,
                     modifier = Modifier.padding(AppMargins.small)
                 )
             }

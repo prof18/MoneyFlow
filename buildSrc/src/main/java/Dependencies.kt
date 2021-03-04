@@ -1,21 +1,21 @@
 object Versions {
-    const val kotlin = "1.4.20"
-    const val koin = "3.0.0-alpha-4"
+    const val kotlin = "1.4.30"
+    const val koin = "3.0.1-alpha-6"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
-    const val compose = "1.0.0-alpha08"
+    const val compose = "1.0.0-beta01"
     const val junit = "4.12"
     const val coroutinesMt = "1.4.2-native-mt"
     const val coroutines = "1.4.2"
     const val sqlDelight = "1.4.4"
-    const val stately = "1.1.1"
-    const val navComposeVersion = "1.0.0-alpha03"
+    const val stately = "1.1.4"
+    const val navComposeVersion = "1.0.0-alpha08"
+    const val activityComposeVersion = "1.3.0-alpha03"
     const val kotlinDateTime = "0.1.1"
     const val androidXTest = "1.3.0"
     const val androidXTestExt = "1.1.2"
     const val turbine = "0.3.0"
     const val timber = "4.7.1"
-    const val koinCompose = "2.2.1"
     const val activityKTX = "1.1.0"
     const val dropboxCore = "3.1.5"
 }
@@ -32,11 +32,12 @@ object Deps {
 
 
     object Koin {
-        const val compose = "org.koin:koin-androidx-compose:${Versions.koinCompose}"
-        const val core = "org.koin:koin-core:${Versions.koin}"
-        const val coreMultiplatform = "org.koin:koin-core:${Versions.koin}"
-        const val androidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-        const val test = "org.koin:koin-test:${Versions.koin}"
+        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+        const val core = "io.insert-koin:koin-core:${Versions.koin}"
+        const val coreMultiplatform = "io.insert-koin:koin-core:${Versions.koin}"
+        const val androidViewModel = "io.insert-koin:koin-android:${Versions.koin}"
+//        const val androidViewModel = "io.insert-koin:koin-android:3.0.0-alpha-4"
+        const val test = "io.insert-koin:koin-test:${Versions.koin}"
     }
 
     object Compose {
@@ -58,6 +59,7 @@ object Deps {
         const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
         const val composeNavigation =
             "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
+        const val activityCompose = "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
     }
 
     object KotlinTest {

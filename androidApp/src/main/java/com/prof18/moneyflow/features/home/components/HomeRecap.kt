@@ -37,7 +37,7 @@ fun HomeRecap(
                 modifier = Modifier.align(Alignment.CenterVertically),
             )
 
-            Spacer(Modifier.preferredWidth(AppMargins.small))
+            Spacer(Modifier.width(AppMargins.small))
 
             Text(
                 text = balanceRecap.totalBalance.toString(),
@@ -45,7 +45,7 @@ fun HomeRecap(
             )
         }
 
-        Spacer(Modifier.preferredHeight(AppMargins.medium))
+        Spacer(Modifier.height(AppMargins.medium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),

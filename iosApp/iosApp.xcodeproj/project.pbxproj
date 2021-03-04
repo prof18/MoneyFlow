@@ -81,6 +81,7 @@
 		A9F6752124F59E2700F486FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F624F59E2500F486FE /* ContentView.swift */; };
 		A9F6752224F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
 		A9F6752324F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
+		A9F6B2BC259A844E0070ED8E /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DIContainer.swift */; };
 		A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FEB378253CCAD6002DEB65 /* FilePicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -827,6 +828,7 @@
 				A9D269E124FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9B3D770257FC68600E65F1A /* AppState.swift in Sources */,
 				A9E68AB72503B2AA00851990 /* Loader.swift in Sources */,
+				A9F6B2BC259A844E0070ED8E /* DIContainer.swift in Sources */,
 				A9D8986724FBF18B007771A1 /* AppColors.swift in Sources */,
 				A9F6752124F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751F24F59E2700F486FE /* MoneyFlowApp.swift in Sources */,

@@ -1,15 +1,13 @@
 package com.prof18.moneyflow
 
-import android.util.Log
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.onCommit
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavType
@@ -44,13 +42,14 @@ fun AppContainer() {
                             BottomNavigationItem(
                                 icon = {
                                     Icon(
-                                        vectorResource(id = tabBarItem.drawableResId),
+                                        painter = painterResource(id = tabBarItem.drawableResId),
+                                        contentDescription = null,
                                         modifier = Modifier.size(26.dp)
                                     )
                                 },
                                 label = { Text(stringResource(tabBarItem.titleResId)) },
                                 selected = currentRoute == tabBarItem.screen.name,
-                                selectedContentColor = AmbientContentColor.current,
+                                selectedContentColor = LocalContentColor.current,
                                 unselectedContentColor = AppColors.darkerGrey,
                                 onClick = {
                                     // This is the equivalent to popUpTo the start destination

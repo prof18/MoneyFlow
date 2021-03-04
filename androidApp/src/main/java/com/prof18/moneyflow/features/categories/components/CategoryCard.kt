@@ -13,7 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppMargins
@@ -48,7 +48,8 @@ fun CategoryCard(
                     )
             ) {
                 Icon(
-                    vectorResource(id = category.icon.mapToAndroidIcon()),
+                    painter = painterResource(id = category.icon.mapToAndroidIcon()),
+                    contentDescription = null,
                     modifier = Modifier.padding(AppMargins.small)
                 )
             }

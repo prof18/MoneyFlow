@@ -1,11 +1,12 @@
 package com.prof18.moneyflow.features.categories
 
-import androidx.compose.material.Text
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.viewinterop.viewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.prof18.moneyflow.NavigationArguments
 import com.prof18.moneyflow.features.categories.components.CategoryCard
@@ -40,27 +41,31 @@ fun CategoriesScreen(
                 actionEnabled = true
             )
         },
-        bodyContent = {
+        content = {
             when (viewModel.categoryModel) {
                 CategoryModel.Loading -> Loader()
                 is CategoryModel.Error -> {
                     Text((viewModel.categoryModel as CategoryModel.Error).message)
                 }
                 is CategoryModel.CategoryState -> {
-                    LazyColumnFor(items = (viewModel.categoryModel as CategoryModel.CategoryState).categories) {
-                        CategoryCard(
-                            category = it,
-                            onClick = { category ->
-                                if (isFromAddTransaction) {
-                                    navController.previousBackStackEntry?.savedStateHandle?.set(
-                                        NavigationArguments.CATEGORY,
-                                        category.toCategoryUIData()
-                                    )
-                                    navController.popBackStack()
+
+                    LazyColumn {
+
+                        items((viewModel.categoryModel as CategoryModel.CategoryState).categories) {
+                            CategoryCard(
+                                category = it,
+                                onClick = { category ->
+                                    if (isFromAddTransaction) {
+                                        navController.previousBackStackEntry?.savedStateHandle?.set(
+                                            NavigationArguments.CATEGORY,
+                                            category.toCategoryUIData()
+                                        )
+                                        navController.popBackStack()
+                                    }
                                 }
-                            }
-                        )
-                        Divider()
+                            )
+                            Divider()
+                        }
                     }
                 }
             }

@@ -14,10 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.AmbientContext
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.viewModel
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dropbox.core.android.Auth
 import com.prof18.moneyflow.BuildConfig
 import com.prof18.moneyflow.MainActivity
@@ -31,7 +29,7 @@ fun SettingsScreen() {
         factory = SettingsViewModelFactory()
     )
 
-    val context = AmbientContext.current
+    val context = LocalContext.current
 
     val createFileURI = remember { mutableStateOf<Uri?>(null) }
     val createFileAction = registerForActivityResult(ActivityResultContracts.CreateDocument()) {
@@ -61,7 +59,7 @@ fun SettingsScreen() {
                     .padding(top = AppMargins.regular)
             )
         },
-        bodyContent = {
+        content = {
             Column(
                 modifier = Modifier
                     .padding(top = AppMargins.regular)

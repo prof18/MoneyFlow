@@ -1,8 +1,7 @@
 package com.prof18.moneyflow.ui.components
 
-import androidx.compose.material.Text
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.preferredWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -30,11 +29,11 @@ fun MFTopBar(
         },
         navigationIcon = {
             IconButton(onClick = onBackPressed) {
-                Icon(Icons.Filled.Close)
+                Icon(Icons.Filled.Close, contentDescription = null)
             }
         },
         actions = {
-            Spacer(modifier = Modifier.preferredWidth(68.dp))
+            Spacer(modifier = Modifier.width(68.dp))
             TextButton(onClick = onActionClicked, enabled = actionEnabled) {
                 Text(
                     actionTitle.toUpperCase(Locale.getDefault()),

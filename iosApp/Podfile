@@ -19,5 +19,5 @@ target 'iosApp (macOS)' do
 
   # Pods for iosApp (macOS)
   pod 'shared', :path => '../shared'
-
+  pod 'SwiftyDropbox'
 end

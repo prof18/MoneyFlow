@@ -47,12 +47,11 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
         useIR = true
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.20"
         kotlinCompilerExtensionVersion = Versions.compose
     }
 
@@ -84,6 +83,7 @@ dependencies {
     implementation(Deps.Compose.tooling)
     implementation(Deps.Compose.runtimeLiveData)
     implementation(Deps.Compose.composeNavigation)
+    implementation(Deps.Compose.activityCompose)
     implementation(Deps.Koin.core)
     implementation(Deps.Koin.androidViewModel)
     implementation(Deps.Koin.compose)
