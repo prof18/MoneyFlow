@@ -1,8 +1,8 @@
 package com.prof18.moneyflow.features.settings
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +23,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class DropboxLoginActivity : AppCompatActivity() {
+class DropboxLoginActivity : ComponentActivity() {
 
     private val viewModel: DropboxLoginViewModel by viewModel()
     private var hasPerformLogin = false

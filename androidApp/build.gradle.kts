@@ -61,16 +61,16 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(Deps.stdlib)
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+//    implementation(Deps.stdlib)
+//    implementation("androidx.core:core-ktx:1.3.2")
+//    implementation("androidx.appcompat:appcompat:1.2.0")
+//    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+//
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
 
-
-    implementation("com.google.android.material:material:1.2.1")
+//    implementation("com.google.android.material:material:1.2.1")
 
     implementation(Deps.Compose.core)
     implementation(Deps.Compose.foundation)
@@ -88,7 +88,7 @@ dependencies {
     implementation(Deps.Koin.androidViewModel)
     implementation(Deps.Koin.compose)
     implementation(Deps.timber)
-    implementation(Deps.activityKTX)
+//    implementation(Deps.activityKTX)
     implementation(Deps.dropboxCore)
 
 

@@ -1,56 +1,55 @@
 package com.prof18.moneyflow.ui.style
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// TODO: add later on
 private val LightThemeColors = lightColors(
-    primary = AppColors.blue700,
-    primaryVariant = AppColors.black800,
-    secondary = AppColors.orange500,
-    secondaryVariant = AppColors.orange400,
+    primary = LightAppColors.green1,
+    primaryVariant = LightAppColors.green2,
+    secondary = LightAppColors.yellow1,
+    secondaryVariant = LightAppColors.yellow2,
 
-    background = AppColors.blue50,
-    surface = AppColors.white50,
-    error = AppColors.red400,
+    background = LightAppColors.background,
+    surface = LightAppColors.gray4,
+    error = LightAppColors.red1,
 
-    onPrimary = AppColors.white50,
-    onSecondary = AppColors.black900,
-    onBackground = AppColors.black900,
-    onSurface = AppColors.black900,
-    onError = AppColors.black900,
+    onPrimary = DarkAppColors.gray4,
+    onSecondary = DarkAppColors.gray4,
+    onBackground = DarkAppColors.gray4,
+    onSurface = DarkAppColors.gray4,
+    onError = DarkAppColors.gray4,
 )
 
-// TODO: add later on
 private val DarkThemeColors = darkColors(
-    primary = AppColors.blue200,
-    primaryVariant = AppColors.blue300,
-    secondary = AppColors.orange300,
+    primary = DarkAppColors.green1,
+    primaryVariant = DarkAppColors.green2,
+    secondary = DarkAppColors.yellow1,
+    secondaryVariant = DarkAppColors.yellow2,
 
-    background = AppColors.black900,
-    surface = AppColors.black800,
-    error = AppColors.red200,
+    background = DarkAppColors.background,
+    surface = DarkAppColors.gray4,
+    error = DarkAppColors.red1,
 
-    onPrimary = AppColors.black900,
-    onSecondary = AppColors.black900,
-    onBackground = AppColors.darkGrey,
-    onSurface = AppColors.white50,
-    onError = AppColors.black900,
+    onPrimary = LightAppColors.gray4,
+    onSecondary = LightAppColors.gray4,
+    onBackground = LightAppColors.gray4,
+    onSurface = LightAppColors.gray4,
+    onError = LightAppColors.gray4,
 )
 
+// TODO: check this colors
 @Composable
-fun containerColor(): Color = if (isSystemInDarkTheme()) AppColors.blue600 else AppColors.darkGrey
+fun containerColor(): Color = if (isSystemInDarkTheme()) LightAppColors.blue1 else DarkAppColors.blue1
 
 @Composable
-fun textColor(): Color = if (isSystemInDarkTheme()) AppColors.darkGrey else Color.Black
+fun textColor(): Color = if (isSystemInDarkTheme()) LightAppColors.gray1 else Color.Black
 
 @Composable
-fun bigTextColor(): Color = if (isSystemInDarkTheme()) AppColors.darkGrey else Color.Black.copy(alpha = 0.7f)
+fun bigTextColor(): Color = if (isSystemInDarkTheme()) LightAppColors.gray1 else Color.Black.copy(alpha = 0.7f)
 
 @Composable
 fun MoneyFlowTheme(

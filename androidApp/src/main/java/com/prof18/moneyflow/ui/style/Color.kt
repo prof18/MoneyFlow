@@ -2,44 +2,68 @@ package com.prof18.moneyflow.ui.style
 
 import androidx.compose.ui.graphics.Color
 
-object AppColors {
+object LightAppColors {
+    val red1 = Color(0xFFFF464F)
+    val red2 = Color(0xFFFF575F)
+    val red3 = Color(0xFFFFE5E7)
 
-    val yellowAccent = hexColor("#FFC700")
-    val darkGrey = hexColor("#C4C4C4")
-    val darkerGrey = hexColor("#848383")
-    val lightGrey = hexColor("#F8F5F5")
+    val orange1 = Color(0xFFFF8A34)
+    val orange2 = Color(0xFFFF974A)
+    val orange3 = Color(0xFFFFEFE3)
 
-    // Primary
-    val cyan900 = hexColor("#F8F5F5")
-    val cyanLight = hexColor("#428e92")
-    val cyanDark = hexColor("#00363a")
+    val yellow1 = Color(0xFFFFBC25)
+    val yellow2 = Color(0xFFFFC542)
+    val yellow3 = Color(0xFFFEF3D9)
 
-    // Secondary
-    val lightGreen600 = hexColor("#7cb342")
-    val lightGreenLight = hexColor("#aee571")
-    val lightGreenDark = hexColor("#4b830d")
+    val green1 = Color(0xFF25C685)
+    val green2 = Color(0xFF3DD598)
+    val green3 = Color(0xFFD4F5E9)
 
+    val blue1 = Color(0xFF005DF2)
+    val blue2 = Color(0xFF0062FF)
+    val blue3 = Color(0xFFE3EEFF)
 
-    val white50 = hexColor("#ffffff")
-    val black800 = hexColor("#121212")
-    val black900 = hexColor("#000000")
-    val blue50 = hexColor("#eef0f2")
-    val blue100 = hexColor("#d2dbe0")
-    val blue200 = hexColor("#adbbc4")
-    val blue300 = hexColor("#8ca2ae")
-    val blue600 = hexColor("#4a6572")
-    val blue700 = hexColor("#344955")
-    val blue800 = hexColor("#232f34")
-    val orange300 = hexColor("#fbd790")
-    val orange400 = hexColor("#f9be64")
-    val orange500 = hexColor("#f9aa33")
-    val red200 = hexColor("#cf7779")
-    val red400 = hexColor("#ff4c5d")
+    val purple1 = Color(0xFF6952DC)
+    val purple2 = Color(0xFF755FE2)
+    val purple3 = Color(0xFFEDEAFD)
 
+    val gray1 = Color(0xFF1A3B34)
+    val gray2 = Color(0xFF899A96)
+    val gray3 = Color(0xFFE4E9F3)
+    val gray4 = Color(0xFFEDF1FA)
 
+    val background = Color(0xFFFFFFFF)
+}
 
-    private fun hexColor(colorString: String): Color {
-        return Color(android.graphics.Color.parseColor(colorString))
-    }
+object DarkAppColors {
+    val red1 = Color(0xFFFF464F)
+    val red2 = Color(0xFFFF575F)
+    val red3 = Color(0xFF623A42)
 
+    val orange1 = Color(0xFFFF8A34)
+    val orange2 = Color(0xFFFF974A)
+    val orange3 = Color(0xFF624D3B)
+
+    val yellow1 = Color(0xFFFFBC25)
+    val yellow2 = Color(0xFFFFC542)
+    val yellow3 = Color(0xFF625B39)
+
+    val green1 = Color(0xFF25C685)
+    val green2 = Color(0xFF3DD598)
+    val green3 = Color(0xFF286053)
+
+    val blue1 = Color(0xFF005DF2)
+    val blue2 = Color(0xFF0062FF)
+    val blue3 = Color(0xFF163E72)
+
+    val purple1 = Color(0xFF6952DC)
+    val purple2 = Color(0xFF755FE2)
+    val purple3 = Color(0xFF393D69)
+
+    val gray1 = Color(0xFFFFFFFF)
+    val gray2 = Color(0xFF96A7AF)
+    val gray3 = Color(0xFF475E69)
+    val gray4 = Color(0xFF30444E)
+
+    val background = Color(0xFF1F2E35)
 }

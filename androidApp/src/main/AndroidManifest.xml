@@ -10,7 +10,7 @@
         android:fullBackupOnly="false"
         android:label="Money Flow"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MoneyFlow">
+        android:theme="@style/Theme.MoneyFlow.Home">
         <activity android:name="com.prof18.moneyflow.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

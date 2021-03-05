@@ -1,6 +1,6 @@
 object Versions {
     const val kotlin = "1.4.30"
-    const val koin = "3.0.1-alpha-6"
+    const val koin = "3.0.1-beta-1"
     const val ktx = "1.0.1"
     const val lifecycle = "2.2.0-alpha01"
     const val compose = "1.0.0-beta01"
@@ -22,12 +22,12 @@ object Versions {
 
 object Deps {
 
-    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+//    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTime}"
     const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
-    const val activityKTX = "androidx.activity:activity-ktx:${Versions.activityKTX}"
+//    const val activityKTX = "androidx.activity:activity-ktx:${Versions.activityKTX}"
     const val dropboxCore = "com.dropbox.core:dropbox-core-sdk:${Versions.dropboxCore}"
 
 
@@ -98,11 +98,5 @@ object Deps {
 
 }
 
-
-//object Koin {
-//    val core = "org.koin:koin-core:${Versions.koin}"
-//    val android = "org.koin:koin-android:${Versions.koin}"
-//    val androidViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
-//}
 
 

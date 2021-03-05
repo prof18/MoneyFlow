@@ -1,33 +1,36 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MoneyFlow" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Platform.Theme.MoneyFlow" parent="android:Theme.Material.Light" />
 
-
-        <!--Color-->
-        <item name="colorPrimary">@color/reply_blue_700</item>
-        <item name="colorPrimaryVariant">@color/reply_blue_800</item>
-        <item name="colorSecondary">@color/reply_orange_500</item>
-        <item name="colorSecondaryVariant">@color/reply_orange_400</item>
-
-        <item name="android:colorBackground">@color/reply_blue_50</item>
-        <item name="colorSurface">@color/reply_white_50</item>
-<!--        <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>-->
-        <item name="colorError">@color/reply_red_400</item>
-
-        <item name="colorOnPrimary">@color/reply_white_50</item>
-        <item name="colorOnSecondary">@color/reply_black_900</item>
-        <item name="colorOnBackground">@color/reply_black_900</item>
-        <item name="colorOnSurface">@color/reply_black_900</item>
-        <item name="colorOnError">@color/reply_black_900</item>
-
-        <item name="scrimBackground">@color/reply_white_50_alpha_060</item>
-        <item name="android:statusBarColor">@color/reply_blue_50_alpha_060</item>
-
-        <!--System/Platform attributes-->
-        <item name="android:windowBackground">?android:colorBackground</item>
-        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
-
-
+    <style name="Base.Theme.MoneyFlow" parent="Platform.Theme.MoneyFlow">
+        <item name="android:windowActionModeOverlay">true</item>
     </style>
 
+    <style name="Theme.MoneyFlow" parent="Base.Theme.MoneyFlow">
+        <!--        <item name="colorPrimary">@color/MoneyFlow_slate_700</item>-->
+        <!--        <item name="colorOnPrimary">#FFFFFF</item>-->
+
+        <!--        <item name="colorPrimaryVariant">@color/MoneyFlow_slate_600</item>-->
+        <!--        <item name="colorPrimaryDark">@color/MoneyFlow_slate_800</item>-->
+
+        <!--        <item name="colorSecondary">@color/MoneyFlow_mtrl_orange_700</item>-->
+        <!--        <item name="colorSecondaryVariant">@color/MoneyFlow_mtrl_orange_500</item>-->
+        <!--        <item name="colorOnSecondary">#000000</item>-->
+    </style>
+
+    <style name="Theme.MoneyFlow.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MoneyFlow.Immerse" parent="Theme.MoneyFlow.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+<!--        <item name="android:navigationBarColor">@color/nav_bar_scrim</item>-->
+<!--        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">@bool/use_light_nav_bar</item>-->
+    </style>
+
+    <style name="Theme.MoneyFlow.Home" parent="Theme.MoneyFlow.Immerse">
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 </resources>

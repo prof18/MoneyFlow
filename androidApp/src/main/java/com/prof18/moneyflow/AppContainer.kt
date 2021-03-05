@@ -19,7 +19,7 @@ import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreen
 import com.prof18.moneyflow.features.recap.RecapScreen
 import com.prof18.moneyflow.features.settings.SettingsScreen
-import com.prof18.moneyflow.ui.style.AppColors
+import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -50,7 +50,7 @@ fun AppContainer() {
                                 label = { Text(stringResource(tabBarItem.titleResId)) },
                                 selected = currentRoute == tabBarItem.screen.name,
                                 selectedContentColor = LocalContentColor.current,
-                                unselectedContentColor = AppColors.darkerGrey,
+                                unselectedContentColor = LightAppColors.gray2,
                                 onClick = {
                                     // This is the equivalent to popUpTo the start destination
                                 navController.popBackStack(
