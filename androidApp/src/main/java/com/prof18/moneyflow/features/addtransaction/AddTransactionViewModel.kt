@@ -21,12 +21,7 @@ class AddTransactionViewModel(
 ) : ViewModel() {
 
     // States
-    var selectedTransactionType: TransactionTypeRadioItem by mutableStateOf(
-        TransactionTypeRadioItem(
-            R.string.transaction_type_outcome,
-            TransactionType.OUTCOME
-        )
-    )
+    var selectedTransactionType: TransactionType by mutableStateOf(TransactionType.INCOME)
     var amountText: String by mutableStateOf("")
     var descriptionText: String? by mutableStateOf(null)
     var dateLabel: String? by mutableStateOf(null)
@@ -79,7 +74,7 @@ class AddTransactionViewModel(
                        amount = amount,
                        description = descriptionText,
                        categoryId = categoryId,
-                       transactionType = selectedTransactionType.transactionType
+                       transactionType = selectedTransactionType
                    )
                 )
             } catch (e: Exception) {

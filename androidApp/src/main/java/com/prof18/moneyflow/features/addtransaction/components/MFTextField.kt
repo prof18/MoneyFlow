@@ -2,6 +2,7 @@ package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -25,7 +26,7 @@ fun MFTextInput(
     leadingIcon: @Composable (() -> Unit)? = null
 ) {
 
-    TextField(
+    OutlinedTextField(
         value = text,
         onValueChange = {
             onTextChange(it)

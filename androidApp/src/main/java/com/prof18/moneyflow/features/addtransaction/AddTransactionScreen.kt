@@ -1,31 +1,34 @@
 package com.prof18.moneyflow.features.addtransaction
 
 import androidx.annotation.DrawableRes
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
-import com.prof18.moneyflow.features.addtransaction.components.DatePickerDialog
-import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
-import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
-import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeChooser
+import com.prof18.moneyflow.features.addtransaction.components.*
 import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
+import com.prof18.moneyflow.ui.components.ArrowCircleIcon
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
-import com.prof18.moneyflow.ui.style.bigTextColor
+import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.ui.style.textColor
 import data.db.model.TransactionType
 
@@ -77,60 +80,41 @@ fun AddTransactionScreen(
                     },
 
                     )
-                TransactionTypeChooser(
-                    possibleAnswerStringId = listOf(
-                        TransactionTypeRadioItem(
-                            R.string.transaction_type_income,
-                            TransactionType.INCOME
-                        ),
-                        TransactionTypeRadioItem(
-                            R.string.transaction_type_outcome,
-                            TransactionType.OUTCOME
-                        )
-                    ),
-                    answer = viewModel.selectedTransactionType,
-                    onAnswerSelected = {
+
+                TransactionTypeTabBar(
+                    transactionType = viewModel.selectedTransactionType,
+                    onTabSelected = {
                         viewModel.selectedTransactionType = it
                     },
-                    modifier = Modifier.padding(
-                        start = AppMargins.regular,
-                        end = AppMargins.regular,
-                        top = AppMargins.regular
-                    )
+                    modifier = Modifier
+                        .padding(AppMargins.regular)
                 )
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(
-                        start = AppMargins.regular,
-                        end = AppMargins.regular,
-                        top = AppMargins.regular
-                    )
+                MFTextInput(
+                    text = viewModel.amountText,
+                    textStyle = MaterialTheme.typography.body1.copy(color = textColor()),
+                    label = "0.00 EUR",
+                    leadingIcon = {
+                        // TODO: change based on the currency
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_money_bill_wave),
+                            contentDescription = null,
+                            tint = textColor()
+                        )
+                    },
+                    onTextChange = {
+                        viewModel.amountText = it
+                    },
+                    keyboardType = KeyboardType.Number,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            start = AppMargins.regular,
+                            end = AppMargins.regular,
+                            top = AppMargins.small
+                        )
 
-                ) {
-
-
-                    Spacer(Modifier.width(AppMargins.small))
-
-                    MFTextInput(
-                        text = viewModel.amountText,
-                        textStyle = MaterialTheme.typography.h3.copy(color = bigTextColor()),
-                        label = "0.00",
-                        leadingIcon = {
-                            // TODO: change based on the currency
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_euro_sign),
-                                contentDescription = null,
-                                tint = textColor()
-                            )
-                        },
-                        onTextChange = {
-                            viewModel.amountText = it
-                        },
-                        keyboardType = KeyboardType.Number,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
+                )
 
                 MFTextInput(
                     text = viewModel.descriptionText ?: "",
@@ -152,7 +136,7 @@ fun AddTransactionScreen(
                         .padding(
                             start = AppMargins.regular,
                             end = AppMargins.regular,
-                            top = AppMargins.medium
+                            top = AppMargins.regular
                         )
                 )
 
@@ -187,3 +171,4 @@ fun AddTransactionScreen(
         }
     )
 }
+

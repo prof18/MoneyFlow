@@ -47,7 +47,7 @@ fun HeaderNavigator(
             onClick = { /* todo */ },
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(top = AppMargins.small)        ) {
+                .padding(vertical = AppMargins.small)        ) {
             Icon(
                 Icons.Outlined.KeyboardArrowRight,
                 contentDescription = null

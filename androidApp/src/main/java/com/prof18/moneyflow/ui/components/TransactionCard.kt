@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -70,11 +69,13 @@ fun TransactionCard(
             }
 
             Column(
-                modifier = Modifier.align(Alignment.CenterVertically).padding(
-                    top = AppMargins.regular,
-                    bottom = AppMargins.regular,
-                    end = AppMargins.regular,
-                ),
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .padding(
+                        top = AppMargins.regular,
+                        bottom = AppMargins.regular,
+                        end = AppMargins.regular,
+                    ),
             ) {
 
                 Text(
@@ -102,24 +103,14 @@ fun TransactionCard(
         Row(
             modifier = Modifier.align(Alignment.CenterVertically)
         ) {
-            Box(
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(end = AppMargins.regular)
-                    .background(
-                        boxColor,
-                        shape = CircleShape
-                    )
-            ) {
-                Icon(
-                    painter = painterResource(id = vectorId),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(AppMargins.small)
-                        .size(18.dp),
-                    tint = arrowColor
-                )
-            }
+
+            ArrowCircleIcon(
+                boxColor = boxColor,
+                iconID = vectorId,
+                arrowColor = arrowColor,
+                iconSize = 18.dp,
+                modifier = Modifier.align(Alignment.CenterVertically)
+            )
 
             Text(
                 // TODO: fix this
@@ -141,6 +132,7 @@ fun TransactionCard(
 
 
 }
+
 
 // TODO: restore preview
 @Preview

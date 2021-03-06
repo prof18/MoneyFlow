@@ -19,7 +19,7 @@ import presentation.categories.CategoryModel
 @Composable
 fun CategoriesScreen(
     navController: NavController,
-    isFromAddTransaction: Boolean
+    isFromAddTransaction: Boolean,
 ) {
 
     val viewModel = viewModel<CategoriesViewModel>(
