@@ -1,9 +1,7 @@
 package com.prof18.moneyflow.features.home.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -25,9 +23,11 @@ fun HeaderNavigator(
 ) {
 
     Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .heightIn(min = 56.dp)
+            .fillMaxWidth()
+            .padding(top = AppMargins.regular, bottom = AppMargins.small)
             .clickable(onClick = {
                 onClick()
             })
@@ -35,23 +35,19 @@ fun HeaderNavigator(
         Text(
             // TODO: localize
             text = "Latest Transactions",
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h5,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f)
                 .padding(start = AppMargins.regular)
         )
 
-        Text(
-            // TODO: localize
-            text = "See All",
-            style = MaterialTheme.typography.subtitle1
-        )
 
         IconButton(
             onClick = { /* todo */ },
-            modifier = Modifier.align(Alignment.CenterVertically)
-        ) {
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(top = AppMargins.small)        ) {
             Icon(
                 Icons.Outlined.KeyboardArrowRight,
                 contentDescription = null

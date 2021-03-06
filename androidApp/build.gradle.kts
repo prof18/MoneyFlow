@@ -95,5 +95,9 @@ dependencies {
 //    androidTestImplementation(Deps.Compose.test)
     androidTestImplementation(Deps.Compose.uiTest)
 
+    // TODO: move
+    debugImplementation("androidx.compose.ui:ui-tooling:1.0.0-beta01")
+    debugImplementation("org.jetbrains.kotlin:kotlin-reflect:1.4.30")
+
 
 }

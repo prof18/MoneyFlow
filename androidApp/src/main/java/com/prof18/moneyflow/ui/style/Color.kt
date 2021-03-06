@@ -65,5 +65,10 @@ object DarkAppColors {
     val gray3 = Color(0xFF475E69)
     val gray4 = Color(0xFF30444E)
 
-    val background = Color(0xFF1F2E35)
+    val background = Color(0xFF12191B)
+
+
+//        private fun hexColor(colorString: String): Color {
+//        return Color(android.graphics.Color.parseColor(colorString))
+//    }
 }

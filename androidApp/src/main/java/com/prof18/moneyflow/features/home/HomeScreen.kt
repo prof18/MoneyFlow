@@ -1,12 +1,15 @@
 package com.prof18.moneyflow.features.home
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import android.graphics.Color
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.PlusOne
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -21,6 +24,7 @@ import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
 import com.prof18.moneyflow.ui.components.Loader
+import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
 import presentation.home.HomeModel
@@ -45,13 +49,34 @@ fun HomeScreen(navController: NavController) {
 
             Column(modifier = Modifier.padding(AppMargins.small)) {
 
-                TextButton(
-                    modifier = Modifier.align(Alignment.End),
-                    onClick = {
-                        navController.navigate(Screen.AddTransactionScreen.name)
-                    }) {
-                    Text("Add transaction")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = "My Wallet",
+                        style = MaterialTheme.typography.h4,
+                        modifier = Modifier
+                            .padding(horizontal = AppMargins.regular)
+                            .padding(top = AppMargins.regular)
+                    )
+
+                    IconButton(
+                        onClick = {
+                            navController.navigate(Screen.AddTransactionScreen.name)
+                        },
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(top = AppMargins.small)
+                    ) {
+                        Icon(
+                            Icons.Filled.Add,
+                            contentDescription = null,
+                        )
+                    }
                 }
+
                 HomeRecap(homeState.balanceRecap)
                 HeaderNavigator()
 
@@ -88,29 +113,31 @@ fun HomeScreen(navController: NavController) {
                                 )
                             }
                             // TODO: fix dropdown menu
-/*
-                            DropdownMenu(
-                                toggle = {
-                                    TransactionCard(
-                                        transaction = transaction,
-                                        onClick = {
-                                            Timber.d("onClick")
-                                        },
-                                        onLongPress = {
-                                            setShowTransactionMenu(true)
-                                        })
-                                    Divider()
-                                },
-                                expanded = showTransactionMenu,
-                                onDismissRequest = { setShowTransactionMenu(false) },
-                            ) {
-                                DropdownMenuItem(onClick = {
-                                    homeViewModel.deleteTransaction(transaction.id)
-                                    setShowTransactionMenu(false)
-                                }) {
-                                    Text("Delete")
+
+                            Box(modifier = Modifier
+                                .fillMaxSize()
+                                .wrapContentSize(Alignment.TopStart)) {
+                                TransactionCard(
+                                    transaction = transaction,
+                                    onClick = {
+                                        Timber.d("onClick")
+                                    },
+                                    onLongPress = {
+                                        setShowTransactionMenu(true)
+                                    })
+                                DropdownMenu(
+                                    expanded = showTransactionMenu,
+                                    onDismissRequest = { setShowTransactionMenu(false) }
+                                ) {
+                                    DropdownMenuItem(onClick = {
+                                        homeViewModel.deleteTransaction(transaction.id)
+                                        setShowTransactionMenu(false)
+                                    }) {
+                                        Text("Delete")
+                                    }
                                 }
-                            }*/
+                            }
+                            Divider()
                         }
                     }
                 }

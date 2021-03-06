@@ -1,13 +1,22 @@
 package com.prof18.moneyflow.features.home.components
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.LightAppColors
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import domain.entities.BalanceRecap
 
 @Composable
@@ -18,15 +27,11 @@ fun HomeRecap(
     // TODO: fix string handling
 
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(AppMargins.regular)
     ) {
 
-        Text(
-            text = "Total Balance",
-            style = MaterialTheme.typography.subtitle2,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-        )
 
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -45,40 +50,112 @@ fun HomeRecap(
             )
         }
 
+        Text(
+            text = "Total Balance",
+            style = MaterialTheme.typography.subtitle2,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+        )
+
+
+
         Spacer(Modifier.height(AppMargins.medium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Column() {
-                Text(text = "-${balanceRecap.monthlyExpenses} €", style = MaterialTheme.typography.h5)
-                Text(text = "Expense", style = MaterialTheme.typography.subtitle2)
+
+            Row {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(end = AppMargins.regular)
+                        .background(
+                            LightAppColors.green3,
+                            shape = CircleShape
+                        )
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_up_rotate),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(AppMargins.small)
+                            .size(24.dp),
+                        tint = LightAppColors.green1
+                    )
+                }
+
+                Column() {
+                    Text(
+                        text = "+${balanceRecap.monthlyIncome} €",
+                        style = MaterialTheme.typography.h5
+                    )
+                    Text(
+                        text = "Income",
+                        style = MaterialTheme.typography.subtitle2,
+                    )
+                }
+
+
             }
-            Column() {
-                Text(text = "+${balanceRecap.monthlyIncome} €", style = MaterialTheme.typography.h5)
-                Text(
-                    text = "Income",
-                    style = MaterialTheme.typography.subtitle2,
-                    modifier = Modifier.align(Alignment.End),
-                )
+
+            Row {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(end = AppMargins.regular, start = AppMargins.medium)
+                        .background(
+                            LightAppColors.red3,
+                            shape = CircleShape
+                        )
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_arrow_down_rotate),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(AppMargins.small)
+                            .size(24.dp),
+                        tint = LightAppColors.red1
+                    )
+                }
+
+                Column() {
+                    Text(
+                        text = "-${balanceRecap.monthlyExpenses} €",
+                        style = MaterialTheme.typography.h5
+                    )
+                    Text(
+                        text = "Expense",
+                        style = MaterialTheme.typography.subtitle2,
+                        modifier = Modifier.align(Alignment.End),
+                    )
+                }
+
+
             }
+
+
         }
 
     }
 
 }
 
-// TODO: restore preview
-//
-//@Preview
-//@Composable
-//fun HomeRecapPreview() {
-//    MoneyFlowTheme {
-//        HomeRecap()
-//    }
-//}
-//
+
+@Preview
+@Composable
+fun HomeRecapPreview() {
+    MoneyFlowTheme {
+        HomeRecap(
+            balanceRecap = BalanceRecap(
+                totalBalance = 1200.0,
+                monthlyIncome = 150.0,
+                monthlyExpenses = 200.0
+            )
+        )
+    }
+}
+
 //@Preview
 //@Composable
 //fun HomeRecapDarkPreview() {

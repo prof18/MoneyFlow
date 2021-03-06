@@ -31,7 +31,7 @@ private val DarkThemeColors = darkColors(
     secondaryVariant = DarkAppColors.yellow2,
 
     background = DarkAppColors.background,
-    surface = DarkAppColors.gray4,
+//    surface = DarkAppColors.gray4,
     error = DarkAppColors.red1,
 
     onPrimary = LightAppColors.gray4,
@@ -57,7 +57,7 @@ fun MoneyFlowTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors =  if (darkTheme) DarkThemeColors else LightThemeColors,
+//        colors =  if (darkTheme) DarkThemeColors else LightThemeColors, // TODO: choose proper colors
         typography = MoneyFlowTypography,
         shapes = MoneyFlowShapes,
         content = content

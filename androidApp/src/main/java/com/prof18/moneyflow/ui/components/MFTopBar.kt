@@ -15,9 +15,9 @@ import java.util.*
 @Composable
 fun MFTopBar(
     topAppBarText: String,
-    actionTitle: String,
-    onBackPressed: () -> Unit,
-    onActionClicked: () -> Unit,
+    actionTitle: String? = null,
+    onBackPressed: (() -> Unit)? = null,
+    onActionClicked: (() -> Unit)? = null ,
     actionEnabled: Boolean = true,
 ) {
     TopAppBar(
@@ -27,18 +27,27 @@ fun MFTopBar(
                 style = MaterialTheme.typography.h5.copy(fontSize = 20.sp)
             )
         },
-        navigationIcon = {
-            IconButton(onClick = onBackPressed) {
-                Icon(Icons.Filled.Close, contentDescription = null)
+        navigationIcon = if (onBackPressed != null) {
+            {
+                IconButton(onClick = onBackPressed) {
+                    Icon(
+                        Icons.Filled.Close,
+                        contentDescription = null
+                    )
+                }
             }
+        } else {
+            null
         },
         actions = {
-            Spacer(modifier = Modifier.width(68.dp))
-            TextButton(onClick = onActionClicked, enabled = actionEnabled) {
-                Text(
-                    actionTitle.toUpperCase(Locale.getDefault()),
-                    style = MaterialTheme.typography.subtitle2
-                )
+            if (onActionClicked != null) {
+                Spacer(modifier = Modifier.width(68.dp))
+                TextButton(onClick = onActionClicked, enabled = actionEnabled) {
+                    Text(
+                        actionTitle!!.toUpperCase(Locale.getDefault()),
+                        style = MaterialTheme.typography.subtitle2
+                    )
+                }
             }
         },
         backgroundColor = MaterialTheme.colors.background,
@@ -52,8 +61,8 @@ fun AddTransactionTopBarPreview() {
     return MFTopBar(
         topAppBarText = "Title",
         actionTitle = "Save",
-        onBackPressed = {},
-        onActionClicked = {},
+        onBackPressed = {  },
+        onActionClicked = {  },
         actionEnabled = false
     )
 }
