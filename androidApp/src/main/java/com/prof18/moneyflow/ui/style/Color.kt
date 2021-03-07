@@ -3,6 +3,11 @@ package com.prof18.moneyflow.ui.style
 import androidx.compose.ui.graphics.Color
 
 object LightAppColors {
+
+    val primary = Color(0XFF3E6275)
+    val lightGrey = Color(0XFFF8F5F5)
+    val background = Color(0xFFFAFAFA)
+
     val red1 = Color(0xFFFF464F)
     val red2 = Color(0xFFFF575F)
     val red3 = Color(0xFFFFE5E7)
@@ -32,10 +37,13 @@ object LightAppColors {
     val gray3 = Color(0xFFE4E9F3)
     val gray4 = Color(0xFFEDF1FA)
 
-    val background = Color(0xFFFFFFFF)
 }
 
 object DarkAppColors {
+
+    val primary = Color(0xFF2C4653)
+    val backgroundColor = Color(0XFF303030)
+
     val red1 = Color(0xFFFF464F)
     val red2 = Color(0xFFFF575F)
     val red3 = Color(0xFF623A42)
@@ -64,11 +72,4 @@ object DarkAppColors {
     val gray2 = Color(0xFF96A7AF)
     val gray3 = Color(0xFF475E69)
     val gray4 = Color(0xFF30444E)
-
-    val background = Color(0xFF12191B)
-
-
-//        private fun hexColor(colorString: String): Color {
-//        return Color(android.graphics.Color.parseColor(colorString))
-//    }
 }

@@ -29,6 +29,7 @@ object Deps {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 //    const val activityKTX = "androidx.activity:activity-ktx:${Versions.activityKTX}"
     const val dropboxCore = "com.dropbox.core:dropbox-core-sdk:${Versions.dropboxCore}"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
 
 
     object Koin {

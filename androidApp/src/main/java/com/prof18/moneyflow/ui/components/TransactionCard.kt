@@ -17,9 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
-import com.prof18.moneyflow.ui.style.AppMargins
-import com.prof18.moneyflow.ui.style.LightAppColors
-import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.style.*
 import domain.entities.MoneyTransaction
 import domain.entities.TransactionTypeUI
 import presentation.CategoryIcon
@@ -56,15 +54,17 @@ fun TransactionCard(
                         AppMargins.regular,
                     )
                     .background(
-                        LightAppColors.blue1,
+                        MaterialTheme.colors.primary,
                         shape = RoundedCornerShape(AppMargins.regularCornerRadius)
                     )
             ) {
                 Icon(
                     painter = painterResource(id = transaction.icon.mapToAndroidIcon()),
                     contentDescription = null,
-                    modifier = Modifier.padding(AppMargins.small),
-                    tint = LightAppColors.gray4 // TODO: change
+                    modifier = Modifier
+                        .padding(AppMargins.small)
+                        .size(28.dp),
+                    tint = MaterialTheme.colors.onPrimary // TODO: change
                 )
             }
 
@@ -90,13 +90,13 @@ fun TransactionCard(
             }
         }
 
-        var boxColor = LightAppColors.green3
-        var arrowColor = LightAppColors.green1
+        var boxColor = upArrowCircleColor()
+        var arrowColor = upArrowColor()
         var vectorId = R.drawable.ic_arrow_up_rotate
 
         if (transaction.type == TransactionTypeUI.EXPENSE) {
-            boxColor = LightAppColors.red3
-            arrowColor = LightAppColors.red1
+            boxColor = downArrowCircleColor()
+            arrowColor = downArrowColor()
             vectorId = R.drawable.ic_arrow_down_rotate
         }
 
@@ -113,7 +113,7 @@ fun TransactionCard(
             )
 
             Text(
-                // TODO: fix this
+                // TODO: Inject correct currency
                 text = "${transaction.amount} €",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier
@@ -134,7 +134,6 @@ fun TransactionCard(
 }
 
 
-// TODO: restore preview
 @Preview
 @Composable
 fun TransactionPreview() {

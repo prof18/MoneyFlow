@@ -112,7 +112,6 @@ fun HomeScreen(navController: NavController) {
                                     false
                                 )
                             }
-                            // TODO: fix dropdown menu
 
                             Box(modifier = Modifier
                                 .fillMaxSize()

@@ -37,7 +37,6 @@ fun CategoriesScreen(
                 onActionClicked = {
                     // TODO
                 },
-                // TODO
                 actionEnabled = true
             )
         },

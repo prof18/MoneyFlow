@@ -29,7 +29,6 @@ import com.prof18.moneyflow.ui.components.ArrowCircleIcon
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.LightAppColors
-import com.prof18.moneyflow.ui.style.textColor
 import data.db.model.TransactionType
 
 @Composable
@@ -92,14 +91,13 @@ fun AddTransactionScreen(
 
                 MFTextInput(
                     text = viewModel.amountText,
-                    textStyle = MaterialTheme.typography.body1.copy(color = textColor()),
+                    textStyle = MaterialTheme.typography.body1,
+                    // TODO: change based on the currency
                     label = "0.00 EUR",
                     leadingIcon = {
-                        // TODO: change based on the currency
                         Icon(
                             painter = painterResource(id = R.drawable.ic_money_bill_wave),
                             contentDescription = null,
-                            tint = textColor()
                         )
                     },
                     onTextChange = {
@@ -118,13 +116,12 @@ fun AddTransactionScreen(
 
                 MFTextInput(
                     text = viewModel.descriptionText ?: "",
-                    textStyle = MaterialTheme.typography.body1.copy(color = textColor()),
+                    textStyle = MaterialTheme.typography.body1,
                     label = stringResource(id = R.string.description),
                     leadingIcon = {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_edit),
                             contentDescription = null,
-                            tint = textColor()
                         )
                     },
                     onTextChange = {

@@ -2,5 +2,12 @@
     <!-- Base application theme. -->
     <style name="Platform.Theme.MoneyFlow" parent="android:Theme.Material" />
 
-    <style name="Theme.MoneyFlow" parent="Base.Theme.MoneyFlow" />
+
+    <style name="Theme.MoneyFlow" parent="Base.Theme.MoneyFlow">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">#121212</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
 </resources>

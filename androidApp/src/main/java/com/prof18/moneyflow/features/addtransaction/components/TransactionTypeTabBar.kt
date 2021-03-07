@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.annotation.DrawableRes
-import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.BorderStroke
@@ -21,7 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
-import com.prof18.moneyflow.ui.style.LightAppColors
+import com.prof18.moneyflow.ui.style.downArrowCircleColor
+import com.prof18.moneyflow.ui.style.downArrowColor
+import com.prof18.moneyflow.ui.style.upArrowCircleColor
+import com.prof18.moneyflow.ui.style.upArrowColor
 import data.db.model.TransactionType
 
 @Composable
@@ -37,19 +39,20 @@ fun TransactionTypeTabBar(
         indicator = { tabPositions ->
             TransactionTabIndicator(tabPositions, transactionType)
         },
-        divider = {  }
+        divider = { }
     ) {
         TransactionTab(
-            boxColor = LightAppColors.green3,
-            arrowColor = LightAppColors.green1,
+            boxColor = upArrowCircleColor(),
+            arrowColor = upArrowColor(),
             iconId = R.drawable.ic_arrow_up_rotate,
             title = "Income",
             onClick = { onTabSelected(TransactionType.INCOME) },
         )
         TransactionTab(
-            boxColor = LightAppColors.red3,
-            arrowColor = LightAppColors.red1,
-            iconId = R.drawable.ic_arrow_down_rotate,            title = "Expense",
+            boxColor = downArrowCircleColor(),
+            arrowColor = downArrowColor(),
+            iconId = R.drawable.ic_arrow_down_rotate,
+            title = "Expense",
             onClick = { onTabSelected(TransactionType.OUTCOME) }
         )
     }

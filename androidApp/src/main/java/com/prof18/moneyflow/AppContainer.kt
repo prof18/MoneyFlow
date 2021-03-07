@@ -19,8 +19,7 @@ import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreen
 import com.prof18.moneyflow.features.recap.RecapScreen
 import com.prof18.moneyflow.features.settings.SettingsScreen
-import com.prof18.moneyflow.ui.style.LightAppColors
-import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.style.*
 
 @Composable
 fun AppContainer() {
@@ -44,13 +43,13 @@ fun AppContainer() {
                                     Icon(
                                         painter = painterResource(id = tabBarItem.drawableResId),
                                         contentDescription = null,
-                                        modifier = Modifier.size(26.dp)
+                                        modifier = Modifier.size(22.dp)
                                     )
                                 },
                                 label = { Text(stringResource(tabBarItem.titleResId)) },
                                 selected = currentRoute == tabBarItem.screen.name,
-                                selectedContentColor = LocalContentColor.current,
-                                unselectedContentColor = LightAppColors.gray2,
+//                                selectedContentColor = LocalContentColor.current,
+                                unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                                 onClick = {
                                     // This is the equivalent to popUpTo the start destination
                                 navController.popBackStack(

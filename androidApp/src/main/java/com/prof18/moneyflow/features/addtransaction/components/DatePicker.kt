@@ -14,7 +14,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.textColor
 import java.util.*
 
 fun getYearList() = (2015..2023).map { it.toString() }
@@ -121,8 +120,25 @@ private fun DatePickerItemDropdownMenu(
         }
     }*/
 
-    // TODO: fix it
-    DropdownMenu(
+    Box(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.clickable(onClick = {
+                setMenuExpanded(true)
+            })
+        ) {
+            Text(
+                text = dropdownText,
+                style = MaterialTheme.typography.body1
+            )
+            Spacer(Modifier.width(4.dp))
+            Icon(
+                Icons.Filled.KeyboardArrowDown,
+                contentDescription = null,
+                modifier = Modifier.size(16.dp)
+            )
+        }
+        DropdownMenu(
 /*        toggle = {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -142,23 +158,27 @@ private fun DatePickerItemDropdownMenu(
                 )
             }
         },*/
-        expanded = isMenuExpanded,
-        onDismissRequest = {
-            setMenuExpanded(false)
-        }
-    ) {
-        itemList.forEach {
-            DropdownMenuItem(onClick = {
-                setDropdownText(it)
+            expanded = isMenuExpanded,
+            onDismissRequest = {
                 setMenuExpanded(false)
-                onItemSelected(it)
-            }) {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.body1,
-                )
+            }
+        ) {
+            itemList.forEach {
+                DropdownMenuItem(onClick = {
+                    setDropdownText(it)
+                    setMenuExpanded(false)
+                    onItemSelected(it)
+                }) {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.body1,
+                    )
+                }
             }
         }
     }
+
+    // TODO: fix it
+
 }
 

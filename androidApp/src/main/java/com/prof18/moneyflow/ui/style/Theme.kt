@@ -8,16 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val LightThemeColors = lightColors(
-    primary = LightAppColors.green1,
-    primaryVariant = LightAppColors.green2,
-    secondary = LightAppColors.yellow1,
-    secondaryVariant = LightAppColors.yellow2,
+    primary = LightAppColors.primary,
+//    primaryVariant = LightAppColors.green2,
+//    secondary = LightAppColors.yellow1,
+//    secondaryVariant = LightAppColors.yellow2,
 
     background = LightAppColors.background,
-    surface = LightAppColors.gray4,
+//    surface = LightAppColors.gray4,
     error = LightAppColors.red1,
 
-    onPrimary = DarkAppColors.gray4,
+    onPrimary = LightAppColors.lightGrey,
     onSecondary = DarkAppColors.gray4,
     onBackground = DarkAppColors.gray4,
     onSurface = DarkAppColors.gray4,
@@ -25,13 +25,13 @@ private val LightThemeColors = lightColors(
 )
 
 private val DarkThemeColors = darkColors(
-    primary = DarkAppColors.green1,
-    primaryVariant = DarkAppColors.green2,
-    secondary = DarkAppColors.yellow1,
-    secondaryVariant = DarkAppColors.yellow2,
+    primary = DarkAppColors.primary,
+//    primaryVariant = DarkAppColors.green2,
+//    secondary = DarkAppColors.yellow1,
+//    secondaryVariant = DarkAppColors.yellow2,
 
-    background = DarkAppColors.background,
-//    surface = DarkAppColors.gray4,
+//    background = backgroundColorDark,
+//    surface = primaryBlueDark, // It's for example for the bottom bar
     error = DarkAppColors.red1,
 
     onPrimary = LightAppColors.gray4,
@@ -41,15 +41,17 @@ private val DarkThemeColors = darkColors(
     onError = LightAppColors.gray4,
 )
 
-// TODO: check this colors
 @Composable
-fun containerColor(): Color = if (isSystemInDarkTheme()) LightAppColors.blue1 else DarkAppColors.blue1
+fun upArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.green3 else LightAppColors.green3
 
 @Composable
-fun textColor(): Color = if (isSystemInDarkTheme()) LightAppColors.gray1 else Color.Black
+fun upArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.green3 else LightAppColors.green1
 
 @Composable
-fun bigTextColor(): Color = if (isSystemInDarkTheme()) LightAppColors.gray1 else Color.Black.copy(alpha = 0.7f)
+fun downArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.red3 else LightAppColors.red3
+
+@Composable
+fun downArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.red3 else LightAppColors.red1
 
 @Composable
 fun MoneyFlowTheme(
@@ -57,7 +59,7 @@ fun MoneyFlowTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-//        colors =  if (darkTheme) DarkThemeColors else LightThemeColors, // TODO: choose proper colors
+        colors =  if (darkTheme) DarkThemeColors else LightThemeColors,
         typography = MoneyFlowTypography,
         shapes = MoneyFlowShapes,
         content = content

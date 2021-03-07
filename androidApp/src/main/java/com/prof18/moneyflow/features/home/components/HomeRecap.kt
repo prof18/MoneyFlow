@@ -14,9 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.AppMargins
-import com.prof18.moneyflow.ui.style.LightAppColors
-import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.style.*
 import domain.entities.BalanceRecap
 
 @Composable
@@ -72,10 +70,7 @@ fun HomeRecap(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(end = AppMargins.regular)
-                        .background(
-                            LightAppColors.green3,
-                            shape = CircleShape
-                        )
+                        .background(upArrowCircleColor(), shape = CircleShape)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_up_rotate),
@@ -83,7 +78,7 @@ fun HomeRecap(
                         modifier = Modifier
                             .padding(AppMargins.small)
                             .size(24.dp),
-                        tint = LightAppColors.green1
+                        tint = upArrowColor()
                     )
                 }
 
@@ -106,10 +101,7 @@ fun HomeRecap(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(end = AppMargins.regular, start = AppMargins.medium)
-                        .background(
-                            LightAppColors.red3,
-                            shape = CircleShape
-                        )
+                        .background(downArrowCircleColor(), shape = CircleShape)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_down_rotate),
@@ -117,7 +109,7 @@ fun HomeRecap(
                         modifier = Modifier
                             .padding(AppMargins.small)
                             .size(24.dp),
-                        tint = LightAppColors.red1
+                        tint = downArrowColor()
                     )
                 }
 

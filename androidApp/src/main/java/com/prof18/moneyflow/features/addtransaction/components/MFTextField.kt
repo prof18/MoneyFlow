@@ -2,17 +2,16 @@ package com.prof18.moneyflow.features.addtransaction.components
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import com.prof18.moneyflow.ui.style.textColor
 
 
 @Composable
@@ -26,6 +25,9 @@ fun MFTextInput(
     leadingIcon: @Composable (() -> Unit)? = null
 ) {
 
+    val focusManager = LocalFocusManager.current
+
+
     OutlinedTextField(
         value = text,
         onValueChange = {
@@ -37,7 +39,8 @@ fun MFTextInput(
             if (label != null) {
                 Text(
                     text = label,
-                    style = textStyle.copy(color = textStyle.color.copy(alpha = 0.8f))
+                    modifier = Modifier.alpha(0.5f),
+                    style= textStyle
                 )
             }
         },
@@ -49,13 +52,16 @@ fun MFTextInput(
         keyboardActions = KeyboardActions(
             onDone = {
                 onTextChange(text)
+                focusManager.clearFocus()
+//                focusManager.moveFocus(FocusDirection.Down)
 //                softKeyboardController?.hideSoftwareKeyboard()
-            }
+            },
+//
         ),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
-            textColor = textColor()
-        )
+//        colors = TextFieldDefaults.textFieldColors(
+//            backgroundColor = Color.Transparent,
+//            textColor = textColor()
+//        )
 
        /* onImeActionPerformed = { action, softKeyboardController ->
             if (action == ImeAction.Done) {
