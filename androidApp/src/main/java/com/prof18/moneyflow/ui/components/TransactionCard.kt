@@ -64,7 +64,7 @@ fun TransactionCard(
                     modifier = Modifier
                         .padding(AppMargins.small)
                         .size(28.dp),
-                    tint = MaterialTheme.colors.onPrimary // TODO: change
+                    tint = MaterialTheme.colors.onPrimary
                 )
             }
 

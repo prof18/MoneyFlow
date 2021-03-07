@@ -5,12 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
@@ -96,35 +93,14 @@ private fun DatePickerItemDropdownMenu(
     onItemSelected: (String) -> Unit,
 ) {
     val (dropdownText, setDropdownText) = remember { mutableStateOf(initialText) }
-    val (isMenuExpanded, setMenuExpanded) = remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
 
-
-    /*Box(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)) {
-        IconButton(onClick = {  setMenuExpanded(true) }) {
-            Icon(Icons.Default.MoreVert, contentDescription = "Localized description")
-        }
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            DropdownMenuItem(onClick = { *//* Handle refresh! *//* }) {
-                Text("Refresh")
-            }
-            DropdownMenuItem(onClick = { *//* Handle settings! *//* }) {
-                Text("Settings")
-            }
-            Divider()
-            DropdownMenuItem(onClick = { *//* Handle send feedback! *//* }) {
-                Text("Send Feedback")
-            }
-        }
-    }*/
-
-    Box(modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)) {
+    Box {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.clickable(onClick = {
-                setMenuExpanded(true)
+            modifier = Modifier
+                .clickable(onClick = {
+                expanded = true
             })
         ) {
             Text(
@@ -139,34 +115,15 @@ private fun DatePickerItemDropdownMenu(
             )
         }
         DropdownMenu(
-/*        toggle = {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.clickable(onClick = {
-                    setMenuExpanded(true)
-                })
-            ) {
-                Text(
-                    text = dropdownText,
-                    style = MaterialTheme.typography.body1
-                )
-                Spacer(Modifier.width(4.dp))
-                Icon(
-                    Icons.Filled.KeyboardArrowDown,
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp)
-                )
-            }
-        },*/
-            expanded = isMenuExpanded,
+            expanded = expanded,
             onDismissRequest = {
-                setMenuExpanded(false)
+                expanded = false
             }
         ) {
             itemList.forEach {
                 DropdownMenuItem(onClick = {
                     setDropdownText(it)
-                    setMenuExpanded(false)
+                    expanded = false
                     onItemSelected(it)
                 }) {
                     Text(
@@ -177,8 +134,5 @@ private fun DatePickerItemDropdownMenu(
             }
         }
     }
-
-    // TODO: fix it
-
 }
 
