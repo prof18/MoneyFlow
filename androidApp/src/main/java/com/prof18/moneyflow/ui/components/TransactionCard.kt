@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.*
-import domain.entities.MoneyTransaction
-import domain.entities.TransactionTypeUI
-import presentation.CategoryIcon
+import com.prof18.moneyflow.domain.entities.MoneyTransaction
+import com.prof18.moneyflow.domain.entities.TransactionTypeUI
+import com.prof18.moneyflow.presentation.CategoryIcon
 
 @Composable
 fun TransactionCard(

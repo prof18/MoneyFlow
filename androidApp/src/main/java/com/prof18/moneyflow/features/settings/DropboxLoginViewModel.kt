@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dropbox.core.android.Auth
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import presentation.dropboxsync.DropboxSyncUserCase
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
 import timber.log.Timber
 
 class DropboxLoginViewModel(
@@ -39,7 +39,7 @@ class DropboxLoginViewModel(
         // In the same viewModel scope is not working
         viewModelScope.launch {
             dropboxClient.observeClientStatus().collect {
-                Timber.d("Got Client Status data: $it")
+                Timber.d("Got Client Status com.prof18.moneyflow.data: $it")
                 _isDropboxConnected.value = when (it) {
                     DropboxClientStatus.LINKED -> true
                     DropboxClientStatus.NOT_LINKED -> false

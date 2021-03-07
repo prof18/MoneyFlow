@@ -13,7 +13,7 @@ import com.prof18.moneyflow.features.categories.components.CategoryCard
 import com.prof18.moneyflow.features.categories.data.toCategoryUIData
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
-import presentation.categories.CategoryModel
+import com.prof18.moneyflow.presentation.categories.CategoryModel
 
 
 @Composable

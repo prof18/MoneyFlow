@@ -152,7 +152,7 @@ open class TeamLog {
     open class AccountCaptureChangeAvailabilityDetails: CustomStringConvertible {
         /// New account capture availabilty value.
         public let newValue: TeamLog.AccountCaptureAvailability
-        /// Previous account capture availabilty value. Might be missing due to historical data gap.
+        /// Previous account capture availabilty value. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.AccountCaptureAvailability?
         public init(newValue: TeamLog.AccountCaptureAvailability, previousValue: TeamLog.AccountCaptureAvailability? = nil) {
             self.newValue = newValue
@@ -214,11 +214,11 @@ open class TeamLog {
         }
     }
 
-    /// Changed account capture setting on team domain.
+    /// Changed account capture setting on team com.prof18.moneyflow.domain.
     open class AccountCaptureChangePolicyDetails: CustomStringConvertible {
         /// New account capture policy.
         public let newValue: TeamLog.AccountCapturePolicy
-        /// Previous account capture policy. Might be missing due to historical data gap.
+        /// Previous account capture policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.AccountCapturePolicy?
         public init(newValue: TeamLog.AccountCapturePolicy, previousValue: TeamLog.AccountCapturePolicy? = nil) {
             self.newValue = newValue
@@ -1187,9 +1187,9 @@ open class TeamLog {
 
     /// App's logged information.
     open class AppLogInfo: CustomStringConvertible {
-        /// App unique ID. Might be missing due to historical data gap.
+        /// App unique ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let appId: String?
-        /// App display name. Might be missing due to historical data gap.
+        /// App display name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
         public init(appId: String? = nil, displayName: String? = nil) {
             nullableValidator(stringValidator())(appId)
@@ -2810,7 +2810,7 @@ open class TeamLog {
         }
     }
 
-    /// Set restrictions on data center locations where team data resides.
+    /// Set restrictions on com.prof18.moneyflow.data center locations where team com.prof18.moneyflow.data resides.
     open class DataPlacementRestrictionChangePolicyDetails: CustomStringConvertible {
         /// Previous placement restriction.
         public let previousValue: TeamLog.PlacementRestriction
@@ -2876,7 +2876,7 @@ open class TeamLog {
         }
     }
 
-    /// Completed restrictions on data center locations where team data resides.
+    /// Completed restrictions on com.prof18.moneyflow.data center locations where team com.prof18.moneyflow.data resides.
     open class DataPlacementRestrictionSatisfyPolicyDetails: CustomStringConvertible {
         /// Placement restriction.
         public let placementRestriction: TeamLog.PlacementRestriction
@@ -3001,11 +3001,11 @@ open class TeamLog {
 
     /// Device's session logged information.
     open class DeviceSessionLogInfo: CustomStringConvertible {
-        /// The IP address of the last activity from this session. Might be missing due to historical data gap.
+        /// The IP address of the last activity from this session. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let ipAddress: String?
-        /// The time this session was created. Might be missing due to historical data gap.
+        /// The time this session was created. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let created: Date?
-        /// The time of the last activity from this session. Might be missing due to historical data gap.
+        /// The time of the last activity from this session. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let updated: Date?
         public init(ipAddress: String? = nil, created: Date? = nil, updated: Date? = nil) {
             nullableValidator(stringValidator())(ipAddress)
@@ -3077,7 +3077,7 @@ open class TeamLog {
 
     /// Information about linked Dropbox desktop client sessions
     open class DesktopDeviceSessionLogInfo: TeamLog.DeviceSessionLogInfo {
-        /// Desktop session unique id. Might be missing due to historical data gap.
+        /// Desktop session unique id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionInfo: TeamLog.DesktopSessionLogInfo?
         /// Name of the hosting desktop.
         public let hostName: String
@@ -3142,7 +3142,7 @@ open class TeamLog {
 
     /// Session's logged information.
     open class SessionLogInfo: CustomStringConvertible {
-        /// Session ID. Might be missing due to historical data gap.
+        /// Session ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionId: String?
         public init(sessionId: String? = nil) {
             nullableValidator(stringValidator())(sessionId)
@@ -3281,9 +3281,9 @@ open class TeamLog {
 
     /// Set/removed limit on number of computers member can link to team Dropbox account.
     open class DeviceApprovalsChangeDesktopPolicyDetails: CustomStringConvertible {
-        /// New desktop device approvals policy. Might be missing due to historical data gap.
+        /// New desktop device approvals policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: TeamLog.DeviceApprovalsPolicy?
-        /// Previous desktop device approvals policy. Might be missing due to historical data gap.
+        /// Previous desktop device approvals policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.DeviceApprovalsPolicy?
         public init(newValue: TeamLog.DeviceApprovalsPolicy? = nil, previousValue: TeamLog.DeviceApprovalsPolicy? = nil) {
             self.newValue = newValue
@@ -3347,9 +3347,9 @@ open class TeamLog {
 
     /// Set/removed limit on number of mobile devices member can link to team Dropbox account.
     open class DeviceApprovalsChangeMobilePolicyDetails: CustomStringConvertible {
-        /// New mobile device approvals policy. Might be missing due to historical data gap.
+        /// New mobile device approvals policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: TeamLog.DeviceApprovalsPolicy?
-        /// Previous mobile device approvals policy. Might be missing due to historical data gap.
+        /// Previous mobile device approvals policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.DeviceApprovalsPolicy?
         public init(newValue: TeamLog.DeviceApprovalsPolicy? = nil, previousValue: TeamLog.DeviceApprovalsPolicy? = nil) {
             self.newValue = newValue
@@ -3413,9 +3413,9 @@ open class TeamLog {
 
     /// Changed device approvals setting when member is over limit.
     open class DeviceApprovalsChangeOverageActionDetails: CustomStringConvertible {
-        /// New over the limits policy. Might be missing due to historical data gap.
+        /// New over the limits policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: TeamPolicies.RolloutMethod?
-        /// Previous over the limit policy. Might be missing due to historical data gap.
+        /// Previous over the limit policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.RolloutMethod?
         public init(newValue: TeamPolicies.RolloutMethod? = nil, previousValue: TeamPolicies.RolloutMethod? = nil) {
             self.newValue = newValue
@@ -3479,9 +3479,9 @@ open class TeamLog {
 
     /// Changed device approvals setting when member unlinks approved device.
     open class DeviceApprovalsChangeUnlinkActionDetails: CustomStringConvertible {
-        /// New device unlink policy. Might be missing due to historical data gap.
+        /// New device unlink policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: TeamLog.DeviceUnlinkPolicy?
-        /// Previous device unlink policy. Might be missing due to historical data gap.
+        /// Previous device unlink policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.DeviceUnlinkPolicy?
         public init(newValue: TeamLog.DeviceUnlinkPolicy? = nil, previousValue: TeamLog.DeviceUnlinkPolicy? = nil) {
             self.newValue = newValue
@@ -3835,9 +3835,9 @@ open class TeamLog {
 
     /// Failed to delete all files from unlinked device.
     open class DeviceDeleteOnUnlinkFailDetails: CustomStringConvertible {
-        /// Session unique id. Might be missing due to historical data gap.
+        /// Session unique id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionInfo: TeamLog.SessionLogInfo?
-        /// The device name. Might be missing due to historical data gap.
+        /// The device name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
         /// The number of times that remote file deletion failed.
         public let numFailures: Int64
@@ -3908,9 +3908,9 @@ open class TeamLog {
 
     /// Deleted all files from unlinked device.
     open class DeviceDeleteOnUnlinkSuccessDetails: CustomStringConvertible {
-        /// Session unique id. Might be missing due to historical data gap.
+        /// Session unique id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionInfo: TeamLog.SessionLogInfo?
-        /// The device name. Might be missing due to historical data gap.
+        /// The device name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
         public init(sessionInfo: TeamLog.SessionLogInfo? = nil, displayName: String? = nil) {
             self.sessionInfo = sessionInfo
@@ -3975,7 +3975,7 @@ open class TeamLog {
 
     /// Failed to link device.
     open class DeviceLinkFailDetails: CustomStringConvertible {
-        /// IP address. Might be missing due to historical data gap.
+        /// IP address. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let ipAddress: String?
         /// A description of the device used while user approval blocked.
         public let deviceType: TeamLog.DeviceType
@@ -4266,9 +4266,9 @@ open class TeamLog {
     open class DeviceUnlinkDetails: CustomStringConvertible {
         /// Session unique id.
         public let sessionInfo: TeamLog.SessionLogInfo?
-        /// The device name. Might be missing due to historical data gap.
+        /// The device name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
-        /// True if the user requested to delete data after device unlink, false otherwise.
+        /// True if the user requested to delete com.prof18.moneyflow.data after device unlink, false otherwise.
         public let deleteData: Bool
         public init(deleteData: Bool, sessionInfo: TeamLog.SessionLogInfo? = nil, displayName: String? = nil) {
             self.sessionInfo = sessionInfo
@@ -4495,7 +4495,7 @@ open class TeamLog {
         }
     }
 
-    /// Disabled domain invites.
+    /// Disabled com.prof18.moneyflow.domain invites.
     open class DisabledDomainInvitesDetails: CustomStringConvertible {
         public init() {
         }
@@ -4660,7 +4660,7 @@ open class TeamLog {
         }
     }
 
-    /// Sent domain invites to existing domain accounts.
+    /// Sent com.prof18.moneyflow.domain invites to existing com.prof18.moneyflow.domain accounts.
     open class DomainInvitesEmailExistingUsersDetails: CustomStringConvertible {
         /// Domain names.
         public let domainName: String
@@ -4893,11 +4893,11 @@ open class TeamLog {
         }
     }
 
-    /// Failed to verify team domain.
+    /// Failed to verify team com.prof18.moneyflow.domain.
     open class DomainVerificationAddDomainFailDetails: CustomStringConvertible {
         /// Domain name.
         public let domainName: String
-        /// Domain name verification method. Might be missing due to historical data gap.
+        /// Domain name verification method. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let verificationMethod: String?
         public init(domainName: String, verificationMethod: String? = nil) {
             stringValidator()(domainName)
@@ -4961,11 +4961,11 @@ open class TeamLog {
         }
     }
 
-    /// Verified team domain.
+    /// Verified team com.prof18.moneyflow.domain.
     open class DomainVerificationAddDomainSuccessDetails: CustomStringConvertible {
         /// Domain names.
         public let domainNames: Array<String>
-        /// Domain name verification method. Might be missing due to historical data gap.
+        /// Domain name verification method. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let verificationMethod: String?
         public init(domainNames: Array<String>, verificationMethod: String? = nil) {
             arrayValidator(itemValidator: stringValidator())(domainNames)
@@ -5029,7 +5029,7 @@ open class TeamLog {
         }
     }
 
-    /// Removed domain from list of verified team domains.
+    /// Removed com.prof18.moneyflow.domain from list of verified team domains.
     open class DomainVerificationRemoveDomainDetails: CustomStringConvertible {
         /// Domain names.
         public let domainNames: Array<String>
@@ -5237,7 +5237,7 @@ open class TeamLog {
     open class EmmChangePolicyDetails: CustomStringConvertible {
         /// New enterprise mobility management policy.
         public let newValue: TeamPolicies.EmmState
-        /// Previous enterprise mobility management policy. Might be missing due to historical data gap.
+        /// Previous enterprise mobility management policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.EmmState?
         public init(newValue: TeamPolicies.EmmState, previousValue: TeamPolicies.EmmState? = nil) {
             self.newValue = newValue
@@ -5580,7 +5580,7 @@ open class TeamLog {
         }
     }
 
-    /// Enabled domain invites.
+    /// Enabled com.prof18.moneyflow.domain invites.
     open class EnabledDomainInvitesDetails: CustomStringConvertible {
         public init() {
         }
@@ -5839,7 +5839,7 @@ open class TeamLog {
         case comments
         /// Events that apply to linked devices on mobile, desktop and Web platforms.
         case devices
-        /// Events that involve domain management feature: domain verification, invite enforcement and account capture.
+        /// Events that involve com.prof18.moneyflow.domain management feature: com.prof18.moneyflow.domain verification, invite enforcement and account capture.
         case domains
         /// Events that have to do with filesystem operations on files and folders: copy, move, delete, etc.
         case fileOperations
@@ -9992,13 +9992,13 @@ open class TeamLog {
         case accountCaptureNotificationEmailsSent(TeamLog.AccountCaptureNotificationEmailsSentType)
         /// (domains) Account-captured user changed account email to personal email
         case accountCaptureRelinquishAccount(TeamLog.AccountCaptureRelinquishAccountType)
-        /// (domains) Disabled domain invites (deprecated, no longer logged)
+        /// (domains) Disabled com.prof18.moneyflow.domain invites (deprecated, no longer logged)
         case disabledDomainInvites(TeamLog.DisabledDomainInvitesType)
         /// (domains) Approved user's request to join team
         case domainInvitesApproveRequestToJoinTeam(TeamLog.DomainInvitesApproveRequestToJoinTeamType)
         /// (domains) Declined user's request to join team
         case domainInvitesDeclineRequestToJoinTeam(TeamLog.DomainInvitesDeclineRequestToJoinTeamType)
-        /// (domains) Sent domain invites to existing domain accounts (deprecated, no longer logged)
+        /// (domains) Sent com.prof18.moneyflow.domain invites to existing com.prof18.moneyflow.domain accounts (deprecated, no longer logged)
         case domainInvitesEmailExistingUsers(TeamLog.DomainInvitesEmailExistingUsersType)
         /// (domains) Requested to join team
         case domainInvitesRequestToJoinTeam(TeamLog.DomainInvitesRequestToJoinTeamType)
@@ -10006,13 +10006,13 @@ open class TeamLog {
         case domainInvitesSetInviteNewUserPrefToNo(TeamLog.DomainInvitesSetInviteNewUserPrefToNoType)
         /// (domains) Enabled "Automatically invite new users" (deprecated, no longer logged)
         case domainInvitesSetInviteNewUserPrefToYes(TeamLog.DomainInvitesSetInviteNewUserPrefToYesType)
-        /// (domains) Failed to verify team domain
+        /// (domains) Failed to verify team com.prof18.moneyflow.domain
         case domainVerificationAddDomainFail(TeamLog.DomainVerificationAddDomainFailType)
-        /// (domains) Verified team domain
+        /// (domains) Verified team com.prof18.moneyflow.domain
         case domainVerificationAddDomainSuccess(TeamLog.DomainVerificationAddDomainSuccessType)
-        /// (domains) Removed domain from list of verified team domains
+        /// (domains) Removed com.prof18.moneyflow.domain from list of verified team domains
         case domainVerificationRemoveDomain(TeamLog.DomainVerificationRemoveDomainType)
-        /// (domains) Enabled domain invites (deprecated, no longer logged)
+        /// (domains) Enabled com.prof18.moneyflow.domain invites (deprecated, no longer logged)
         case enabledDomainInvites(TeamLog.EnabledDomainInvitesType)
         /// (file_operations) Created folders (deprecated, no longer logged)
         case createFolder(TeamLog.CreateFolderType)
@@ -10294,9 +10294,9 @@ open class TeamLog {
         case emmCreateExceptionsReport(TeamLog.EmmCreateExceptionsReportType)
         /// (reports) Created EMM mobile app usage report
         case emmCreateUsageReport(TeamLog.EmmCreateUsageReportType)
-        /// (reports) Created member data report
+        /// (reports) Created member com.prof18.moneyflow.data report
         case exportMembersReport(TeamLog.ExportMembersReportType)
-        /// (reports) Failed to create members data report
+        /// (reports) Failed to create members com.prof18.moneyflow.data report
         case exportMembersReportFail(TeamLog.ExportMembersReportFailType)
         /// (reports) Report created: Data shared outside the team
         case externalSharingCreateReport(TeamLog.ExternalSharingCreateReportType)
@@ -10568,7 +10568,7 @@ open class TeamLog {
         case teamFolderRename(TeamLog.TeamFolderRenameType)
         /// (team_folders) Changed sync default
         case teamSelectiveSyncSettingsChanged(TeamLog.TeamSelectiveSyncSettingsChangedType)
-        /// (team_policies) Changed account capture setting on team domain
+        /// (team_policies) Changed account capture setting on team com.prof18.moneyflow.domain
         case accountCaptureChangePolicy(TeamLog.AccountCaptureChangePolicyType)
         /// (team_policies) Disabled downloads (deprecated, no longer logged)
         case allowDownloadDisabled(TeamLog.AllowDownloadDisabledType)
@@ -10578,9 +10578,9 @@ open class TeamLog {
         case cameraUploadsPolicyChanged(TeamLog.CameraUploadsPolicyChangedType)
         /// (team_policies) Changed content management setting
         case contentAdministrationPolicyChanged(TeamLog.ContentAdministrationPolicyChangedType)
-        /// (team_policies) Set restrictions on data center locations where team data resides
+        /// (team_policies) Set restrictions on com.prof18.moneyflow.data center locations where team com.prof18.moneyflow.data resides
         case dataPlacementRestrictionChangePolicy(TeamLog.DataPlacementRestrictionChangePolicyType)
-        /// (team_policies) Completed restrictions on data center locations where team data resides
+        /// (team_policies) Completed restrictions on com.prof18.moneyflow.data center locations where team com.prof18.moneyflow.data resides
         case dataPlacementRestrictionSatisfyPolicy(TeamLog.DataPlacementRestrictionSatisfyPolicyType)
         /// (team_policies) Added members to device approvals exception list
         case deviceApprovalsAddException(TeamLog.DeviceApprovalsAddExceptionType)
@@ -13887,13 +13887,13 @@ open class TeamLog {
         case accountCaptureNotificationEmailsSent
         /// (domains) Account-captured user changed account email to personal email
         case accountCaptureRelinquishAccount
-        /// (domains) Disabled domain invites (deprecated, no longer logged)
+        /// (domains) Disabled com.prof18.moneyflow.domain invites (deprecated, no longer logged)
         case disabledDomainInvites
         /// (domains) Approved user's request to join team
         case domainInvitesApproveRequestToJoinTeam
         /// (domains) Declined user's request to join team
         case domainInvitesDeclineRequestToJoinTeam
-        /// (domains) Sent domain invites to existing domain accounts (deprecated, no longer logged)
+        /// (domains) Sent com.prof18.moneyflow.domain invites to existing com.prof18.moneyflow.domain accounts (deprecated, no longer logged)
         case domainInvitesEmailExistingUsers
         /// (domains) Requested to join team
         case domainInvitesRequestToJoinTeam
@@ -13901,13 +13901,13 @@ open class TeamLog {
         case domainInvitesSetInviteNewUserPrefToNo
         /// (domains) Enabled "Automatically invite new users" (deprecated, no longer logged)
         case domainInvitesSetInviteNewUserPrefToYes
-        /// (domains) Failed to verify team domain
+        /// (domains) Failed to verify team com.prof18.moneyflow.domain
         case domainVerificationAddDomainFail
-        /// (domains) Verified team domain
+        /// (domains) Verified team com.prof18.moneyflow.domain
         case domainVerificationAddDomainSuccess
-        /// (domains) Removed domain from list of verified team domains
+        /// (domains) Removed com.prof18.moneyflow.domain from list of verified team domains
         case domainVerificationRemoveDomain
-        /// (domains) Enabled domain invites (deprecated, no longer logged)
+        /// (domains) Enabled com.prof18.moneyflow.domain invites (deprecated, no longer logged)
         case enabledDomainInvites
         /// (file_operations) Created folders (deprecated, no longer logged)
         case createFolder
@@ -14189,9 +14189,9 @@ open class TeamLog {
         case emmCreateExceptionsReport
         /// (reports) Created EMM mobile app usage report
         case emmCreateUsageReport
-        /// (reports) Created member data report
+        /// (reports) Created member com.prof18.moneyflow.data report
         case exportMembersReport
-        /// (reports) Failed to create members data report
+        /// (reports) Failed to create members com.prof18.moneyflow.data report
         case exportMembersReportFail
         /// (reports) Report created: Data shared outside the team
         case externalSharingCreateReport
@@ -14463,7 +14463,7 @@ open class TeamLog {
         case teamFolderRename
         /// (team_folders) Changed sync default
         case teamSelectiveSyncSettingsChanged
-        /// (team_policies) Changed account capture setting on team domain
+        /// (team_policies) Changed account capture setting on team com.prof18.moneyflow.domain
         case accountCaptureChangePolicy
         /// (team_policies) Disabled downloads (deprecated, no longer logged)
         case allowDownloadDisabled
@@ -14473,9 +14473,9 @@ open class TeamLog {
         case cameraUploadsPolicyChanged
         /// (team_policies) Changed content management setting
         case contentAdministrationPolicyChanged
-        /// (team_policies) Set restrictions on data center locations where team data resides
+        /// (team_policies) Set restrictions on com.prof18.moneyflow.data center locations where team com.prof18.moneyflow.data resides
         case dataPlacementRestrictionChangePolicy
-        /// (team_policies) Completed restrictions on data center locations where team data resides
+        /// (team_policies) Completed restrictions on com.prof18.moneyflow.data center locations where team com.prof18.moneyflow.data resides
         case dataPlacementRestrictionSatisfyPolicy
         /// (team_policies) Added members to device approvals exception list
         case deviceApprovalsAddException
@@ -17294,7 +17294,7 @@ open class TeamLog {
         }
     }
 
-    /// Created member data report.
+    /// Created member com.prof18.moneyflow.data report.
     open class ExportMembersReportDetails: CustomStringConvertible {
         public init() {
         }
@@ -17318,7 +17318,7 @@ open class TeamLog {
         }
     }
 
-    /// Failed to create members data report.
+    /// Failed to create members com.prof18.moneyflow.data report.
     open class ExportMembersReportFailDetails: CustomStringConvertible {
         /// Failure reason.
         public let failureReason: Team.TeamReportFailureReason
@@ -17414,7 +17414,7 @@ open class TeamLog {
     open class ExtendedVersionHistoryChangePolicyDetails: CustomStringConvertible {
         /// New extended version history policy.
         public let newValue: TeamLog.ExtendedVersionHistoryPolicy
-        /// Previous extended version history policy. Might be missing due to historical data gap.
+        /// Previous extended version history policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.ExtendedVersionHistoryPolicy?
         public init(newValue: TeamLog.ExtendedVersionHistoryPolicy, previousValue: TeamLog.ExtendedVersionHistoryPolicy? = nil) {
             self.newValue = newValue
@@ -17697,7 +17697,7 @@ open class TeamLog {
 
     /// Provides details about a failure
     open class FailureDetailsLogInfo: CustomStringConvertible {
-        /// A user friendly explanation of the error. Might be missing due to historical data gap.
+        /// A user friendly explanation of the error. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let userFriendlyMessage: String?
         /// A technical explanation of the error. This is relevant for some errors.
         public let technicalErrorMessage: String?
@@ -17983,7 +17983,7 @@ open class TeamLog {
 
     /// Added file comment.
     open class FileAddCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(commentText: String? = nil) {
             nullableValidator(stringValidator())(commentText)
@@ -18102,7 +18102,7 @@ open class TeamLog {
     open class FileChangeCommentSubscriptionDetails: CustomStringConvertible {
         /// New file comment subscription.
         public let newValue: TeamLog.FileCommentNotificationPolicy
-        /// Previous file comment subscription. Might be missing due to historical data gap.
+        /// Previous file comment subscription. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.FileCommentNotificationPolicy?
         public init(newValue: TeamLog.FileCommentNotificationPolicy, previousValue: TeamLog.FileCommentNotificationPolicy? = nil) {
             self.newValue = newValue
@@ -18219,7 +18219,7 @@ open class TeamLog {
     open class FileCommentsChangePolicyDetails: CustomStringConvertible {
         /// New commenting on team files policy.
         public let newValue: TeamLog.FileCommentsPolicy
-        /// Previous commenting on team files policy. Might be missing due to historical data gap.
+        /// Previous commenting on team files policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.FileCommentsPolicy?
         public init(newValue: TeamLog.FileCommentsPolicy, previousValue: TeamLog.FileCommentsPolicy? = nil) {
             self.newValue = newValue
@@ -18395,7 +18395,7 @@ open class TeamLog {
 
     /// Deleted file comment.
     open class FileDeleteCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(commentText: String? = nil) {
             nullableValidator(stringValidator())(commentText)
@@ -18567,7 +18567,7 @@ open class TeamLog {
 
     /// Edited file comment.
     open class FileEditCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         /// Previous comment text.
         public let previousCommentText: String
@@ -18745,7 +18745,7 @@ open class TeamLog {
 
     /// Liked file comment.
     open class FileLikeCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(commentText: String? = nil) {
             nullableValidator(stringValidator())(commentText)
@@ -18941,9 +18941,9 @@ open class TeamLog {
     open class FileOrFolderLogInfo: CustomStringConvertible {
         /// Path relative to event context.
         public let path: TeamLog.PathLogInfo
-        /// Display name. Might be missing due to historical data gap.
+        /// Display name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
-        /// Unique ID. Might be missing due to historical data gap.
+        /// Unique ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileId: String?
         /// File or folder size in bytes.
         public let fileSize: UInt64?
@@ -19250,9 +19250,9 @@ open class TeamLog {
 
     /// Changed file request.
     open class FileRequestChangeDetails: CustomStringConvertible {
-        /// File request id. Might be missing due to historical data gap.
+        /// File request id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileRequestId: String?
-        /// Previous file request details. Might be missing due to historical data gap.
+        /// Previous file request details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousDetails: TeamLog.FileRequestDetails?
         /// New file request details.
         public let newDetails: TeamLog.FileRequestDetails
@@ -19322,9 +19322,9 @@ open class TeamLog {
 
     /// Closed file request.
     open class FileRequestCloseDetails: CustomStringConvertible {
-        /// File request id. Might be missing due to historical data gap.
+        /// File request id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileRequestId: String?
-        /// Previous file request details. Might be missing due to historical data gap.
+        /// Previous file request details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousDetails: TeamLog.FileRequestDetails?
         public init(fileRequestId: String? = nil, previousDetails: TeamLog.FileRequestDetails? = nil) {
             nullableValidator(stringValidator(minLength: 1, pattern: "[-_0-9a-zA-Z]+"))(fileRequestId)
@@ -19389,9 +19389,9 @@ open class TeamLog {
 
     /// Created file request.
     open class FileRequestCreateDetails: CustomStringConvertible {
-        /// File request id. Might be missing due to historical data gap.
+        /// File request id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileRequestId: String?
-        /// File request details. Might be missing due to historical data gap.
+        /// File request details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let requestDetails: TeamLog.FileRequestDetails?
         public init(fileRequestId: String? = nil, requestDetails: TeamLog.FileRequestDetails? = nil) {
             nullableValidator(stringValidator(minLength: 1, pattern: "[-_0-9a-zA-Z]+"))(fileRequestId)
@@ -19456,9 +19456,9 @@ open class TeamLog {
 
     /// File request deadline
     open class FileRequestDeadline: CustomStringConvertible {
-        /// The deadline for this file request. Might be missing due to historical data gap.
+        /// The deadline for this file request. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let deadline: Date?
-        /// If set, allow uploads after the deadline has passed. Might be missing due to historical data gap.
+        /// If set, allow uploads after the deadline has passed. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let allowLateUploads: String?
         public init(deadline: Date? = nil, allowLateUploads: String? = nil) {
             self.deadline = deadline
@@ -19492,9 +19492,9 @@ open class TeamLog {
 
     /// Delete file request.
     open class FileRequestDeleteDetails: CustomStringConvertible {
-        /// File request id. Might be missing due to historical data gap.
+        /// File request id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileRequestId: String?
-        /// Previous file request details. Might be missing due to historical data gap.
+        /// Previous file request details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousDetails: TeamLog.FileRequestDetails?
         public init(fileRequestId: String? = nil, previousDetails: TeamLog.FileRequestDetails? = nil) {
             nullableValidator(stringValidator(minLength: 1, pattern: "[-_0-9a-zA-Z]+"))(fileRequestId)
@@ -19561,7 +19561,7 @@ open class TeamLog {
     open class FileRequestDetails: CustomStringConvertible {
         /// Asset position in the Assets list.
         public let assetIndex: UInt64
-        /// File request deadline. Might be missing due to historical data gap.
+        /// File request deadline. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let deadline: TeamLog.FileRequestDeadline?
         public init(assetIndex: UInt64, deadline: TeamLog.FileRequestDeadline? = nil) {
             comparableValidator()(assetIndex)
@@ -19595,15 +19595,15 @@ open class TeamLog {
 
     /// Received files for file request.
     open class FileRequestReceiveFileDetails: CustomStringConvertible {
-        /// File request id. Might be missing due to historical data gap.
+        /// File request id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileRequestId: String?
-        /// File request details. Might be missing due to historical data gap.
+        /// File request details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let fileRequestDetails: TeamLog.FileRequestDetails?
         /// Submitted file names.
         public let submittedFileNames: Array<String>
-        /// The name as provided by the submitter. Might be missing due to historical data gap.
+        /// The name as provided by the submitter. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let submitterName: String?
-        /// The email as provided by the submitter. Might be missing due to historical data gap.
+        /// The email as provided by the submitter. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let submitterEmail: String?
         public init(submittedFileNames: Array<String>, fileRequestId: String? = nil, fileRequestDetails: TeamLog.FileRequestDetails? = nil, submitterName: String? = nil, submitterEmail: String? = nil) {
             nullableValidator(stringValidator(minLength: 1, pattern: "[-_0-9a-zA-Z]+"))(fileRequestId)
@@ -19682,7 +19682,7 @@ open class TeamLog {
     open class FileRequestsChangePolicyDetails: CustomStringConvertible {
         /// New file requests policy.
         public let newValue: TeamLog.FileRequestsPolicy
-        /// Previous file requests policy. Might be missing due to historical data gap.
+        /// Previous file requests policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.FileRequestsPolicy?
         public init(newValue: TeamLog.FileRequestsPolicy, previousValue: TeamLog.FileRequestsPolicy? = nil) {
             self.newValue = newValue
@@ -19907,7 +19907,7 @@ open class TeamLog {
 
     /// Resolved file comment.
     open class FileResolveCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(commentText: String? = nil) {
             nullableValidator(stringValidator())(commentText)
@@ -20622,7 +20622,7 @@ open class TeamLog {
 
     /// Unliked file comment.
     open class FileUnlikeCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(commentText: String? = nil) {
             nullableValidator(stringValidator())(commentText)
@@ -20684,7 +20684,7 @@ open class TeamLog {
 
     /// Unresolved file comment.
     open class FileUnresolveCommentDetails: CustomStringConvertible {
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(commentText: String? = nil) {
             nullableValidator(stringValidator())(commentText)
@@ -21283,7 +21283,7 @@ open class TeamLog {
     open class GoogleSsoChangePolicyDetails: CustomStringConvertible {
         /// New Google single sign-on policy.
         public let newValue: TeamLog.GoogleSsoPolicy
-        /// Previous Google single sign-on policy. Might be missing due to historical data gap.
+        /// Previous Google single sign-on policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.GoogleSsoPolicy?
         public init(newValue: TeamLog.GoogleSsoPolicy, previousValue: TeamLog.GoogleSsoPolicy? = nil) {
             self.newValue = newValue
@@ -21591,7 +21591,7 @@ open class TeamLog {
     open class GroupChangeManagementTypeDetails: CustomStringConvertible {
         /// New group management type.
         public let newValue: TeamCommon.GroupManagementType
-        /// Previous group management type. Might be missing due to historical data gap.
+        /// Previous group management type. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamCommon.GroupManagementType?
         public init(newValue: TeamCommon.GroupManagementType, previousValue: TeamCommon.GroupManagementType? = nil) {
             self.newValue = newValue
@@ -21716,7 +21716,7 @@ open class TeamLog {
 
     /// Created group.
     open class GroupCreateDetails: CustomStringConvertible {
-        /// Is company managed group. Might be missing due to historical data gap.
+        /// Is company managed group. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isCompanyManaged: Bool?
         /// Group join policy.
         public let joinPolicy: TeamLog.GroupJoinPolicy?
@@ -21782,7 +21782,7 @@ open class TeamLog {
 
     /// Deleted group.
     open class GroupDeleteDetails: CustomStringConvertible {
-        /// Is company managed group. Might be missing due to historical data gap.
+        /// Is company managed group. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isCompanyManaged: Bool?
         public init(isCompanyManaged: Bool? = nil) {
             self.isCompanyManaged = isCompanyManaged
@@ -21949,7 +21949,7 @@ open class TeamLog {
 
     /// Updated group join policy.
     open class GroupJoinPolicyUpdatedDetails: CustomStringConvertible {
-        /// Is company managed group. Might be missing due to historical data gap.
+        /// Is company managed group. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isCompanyManaged: Bool?
         /// Group join policy.
         public let joinPolicy: TeamLog.GroupJoinPolicy?
@@ -22015,11 +22015,11 @@ open class TeamLog {
 
     /// Group's logged information.
     open class GroupLogInfo: CustomStringConvertible {
-        /// The unique id of this group. Might be missing due to historical data gap.
+        /// The unique id of this group. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let groupId: String?
         /// The name of this group.
         public let displayName: String
-        /// External group ID. Might be missing due to historical data gap.
+        /// External group ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let externalId: String?
         public init(displayName: String, groupId: String? = nil, externalId: String? = nil) {
             nullableValidator(stringValidator())(groupId)
@@ -22300,7 +22300,7 @@ open class TeamLog {
     open class GroupUserManagementChangePolicyDetails: CustomStringConvertible {
         /// New group users management policy.
         public let newValue: TeamPolicies.GroupCreation
-        /// Previous group users management policy. Might be missing due to historical data gap.
+        /// Previous group users management policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.GroupCreation?
         public init(newValue: TeamPolicies.GroupCreation, previousValue: TeamPolicies.GroupCreation? = nil) {
             self.newValue = newValue
@@ -23015,23 +23015,23 @@ open class TeamLog {
 
     /// Information on sessions, in legacy format
     open class LegacyDeviceSessionLogInfo: TeamLog.DeviceSessionLogInfo {
-        /// Session unique id. Might be missing due to historical data gap.
+        /// Session unique id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionInfo: TeamLog.SessionLogInfo?
-        /// The device name. Might be missing due to historical data gap.
+        /// The device name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
-        /// Is device managed by emm. Might be missing due to historical data gap.
+        /// Is device managed by emm. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isEmmManaged: Bool?
-        /// Information on the hosting platform. Might be missing due to historical data gap.
+        /// Information on the hosting platform. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let platform: String?
-        /// The mac address of the last activity from this session. Might be missing due to historical data gap.
+        /// The mac address of the last activity from this session. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let macAddress: String?
-        /// The hosting OS version. Might be missing due to historical data gap.
+        /// The hosting OS version. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let osVersion: String?
-        /// Information on the hosting device type. Might be missing due to historical data gap.
+        /// Information on the hosting device type. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let deviceType: String?
-        /// The Dropbox client version. Might be missing due to historical data gap.
+        /// The Dropbox client version. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let clientVersion: String?
-        /// Alternative unique device session id, instead of session id field. Might be missing due to historical data
+        /// Alternative unique device session id, instead of session id field. Might be missing due to historical com.prof18.moneyflow.data
         /// gap.
         public let legacyUniqId: String?
         public init(ipAddress: String? = nil, created: Date? = nil, updated: Date? = nil, sessionInfo: TeamLog.SessionLogInfo? = nil, displayName: String? = nil, isEmmManaged: Bool? = nil, platform: String? = nil, macAddress: String? = nil, osVersion: String? = nil, deviceType: String? = nil, clientVersion: String? = nil, legacyUniqId: String? = nil) {
@@ -24034,7 +24034,7 @@ open class TeamLog {
 
     /// Failed to sign in.
     open class LoginFailDetails: CustomStringConvertible {
-        /// Tells if the login device is EMM managed. Might be missing due to historical data gap.
+        /// Tells if the login device is EMM managed. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isEmmManaged: Bool?
         /// Login method.
         public let loginMethod: TeamLog.LoginMethod
@@ -24204,7 +24204,7 @@ open class TeamLog {
 
     /// Signed in.
     open class LoginSuccessDetails: CustomStringConvertible {
-        /// Tells if the login device is EMM managed. Might be missing due to historical data gap.
+        /// Tells if the login device is EMM managed. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isEmmManaged: Bool?
         /// Login method.
         public let loginMethod: TeamLog.LoginMethod
@@ -24518,7 +24518,7 @@ open class TeamLog {
     open class MemberChangeEmailDetails: CustomStringConvertible {
         /// New email.
         public let newValue: String
-        /// Previous email. Might be missing due to historical data gap.
+        /// Previous email. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: String?
         public init(newValue: String, previousValue: String? = nil) {
             stringValidator(maxLength: 255)(newValue)
@@ -24720,7 +24720,7 @@ open class TeamLog {
     open class MemberChangeNameDetails: CustomStringConvertible {
         /// New user's name.
         public let newValue: TeamLog.UserNameLogInfo
-        /// Previous user's name. Might be missing due to historical data gap.
+        /// Previous user's name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.UserNameLogInfo?
         public init(newValue: TeamLog.UserNameLogInfo, previousValue: TeamLog.UserNameLogInfo? = nil) {
             self.newValue = newValue
@@ -24784,7 +24784,7 @@ open class TeamLog {
 
     /// Changed member status (invited, joined, suspended, etc.).
     open class MemberChangeStatusDetails: CustomStringConvertible {
-        /// Previous member status. Might be missing due to historical data gap.
+        /// Previous member status. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.MemberStatus?
         /// New member status.
         public let newValue: TeamLog.MemberStatus
@@ -25163,7 +25163,7 @@ open class TeamLog {
     open class MemberRequestsChangePolicyDetails: CustomStringConvertible {
         /// New member change requests policy.
         public let newValue: TeamLog.MemberRequestsPolicy
-        /// Previous member change requests policy. Might be missing due to historical data gap.
+        /// Previous member change requests policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.MemberRequestsPolicy?
         public init(newValue: TeamLog.MemberRequestsPolicy, previousValue: TeamLog.MemberRequestsPolicy? = nil) {
             self.newValue = newValue
@@ -25717,9 +25717,9 @@ open class TeamLog {
 
     /// Changed team default member space limit.
     open class MemberSpaceLimitsChangePolicyDetails: CustomStringConvertible {
-        /// Previous team default limit value in bytes. Might be missing due to historical data gap.
+        /// Previous team default limit value in bytes. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: UInt64?
-        /// New team default limit value in bytes. Might be missing due to historical data gap.
+        /// New team default limit value in bytes. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: UInt64?
         public init(previousValue: UInt64? = nil, newValue: UInt64? = nil) {
             nullableValidator(comparableValidator())(previousValue)
@@ -26108,7 +26108,7 @@ open class TeamLog {
     open class MemberSuggestionsChangePolicyDetails: CustomStringConvertible {
         /// New team member suggestions policy.
         public let newValue: TeamLog.MemberSuggestionsPolicy
-        /// Previous team member suggestions policy. Might be missing due to historical data gap.
+        /// Previous team member suggestions policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.MemberSuggestionsPolicy?
         public init(newValue: TeamLog.MemberSuggestionsPolicy, previousValue: TeamLog.MemberSuggestionsPolicy? = nil) {
             self.newValue = newValue
@@ -26280,7 +26280,7 @@ open class TeamLog {
     open class MicrosoftOfficeAddinChangePolicyDetails: CustomStringConvertible {
         /// New Microsoft Office addin policy.
         public let newValue: TeamLog.MicrosoftOfficeAddinPolicy
-        /// Previous Microsoft Office addin policy. Might be missing due to historical data gap.
+        /// Previous Microsoft Office addin policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.MicrosoftOfficeAddinPolicy?
         public init(newValue: TeamLog.MicrosoftOfficeAddinPolicy, previousValue: TeamLog.MicrosoftOfficeAddinPolicy? = nil) {
             self.newValue = newValue
@@ -26396,7 +26396,7 @@ open class TeamLog {
     /// An indication that an error occurred while retrieving the event. Some attributes of the event may be omitted as
     /// a result.
     open class MissingDetails: CustomStringConvertible {
-        /// All the data that could be retrieved and converted from the source event.
+        /// All the com.prof18.moneyflow.data that could be retrieved and converted from the source event.
         public let sourceEventFields: String?
         public init(sourceEventFields: String? = nil) {
             nullableValidator(stringValidator())(sourceEventFields)
@@ -26427,7 +26427,7 @@ open class TeamLog {
 
     /// Information about linked Dropbox mobile client sessions
     open class MobileDeviceSessionLogInfo: TeamLog.DeviceSessionLogInfo {
-        /// Mobile session unique id. Might be missing due to historical data gap.
+        /// Mobile session unique id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionInfo: TeamLog.MobileSessionLogInfo?
         /// The device name.
         public let deviceName: String
@@ -26518,11 +26518,11 @@ open class TeamLog {
 
     /// Namespace relative path details.
     open class NamespaceRelativePathLogInfo: CustomStringConvertible {
-        /// Namespace ID. Might be missing due to historical data gap.
+        /// Namespace ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let nsId: String?
-        /// A path relative to the specified namespace ID. Might be missing due to historical data gap.
+        /// A path relative to the specified namespace ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let relativePath: String?
-        /// True if the namespace is shared. Might be missing due to historical data gap.
+        /// True if the namespace is shared. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let isSharedNamespace: Bool?
         public init(nsId: String? = nil, relativePath: String? = nil, isSharedNamespace: Bool? = nil) {
             nullableValidator(stringValidator())(nsId)
@@ -26562,7 +26562,7 @@ open class TeamLog {
     open class NetworkControlChangePolicyDetails: CustomStringConvertible {
         /// New network control policy.
         public let newValue: TeamLog.NetworkControlPolicy
-        /// Previous network control policy. Might be missing due to historical data gap.
+        /// Previous network control policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.NetworkControlPolicy?
         public init(newValue: TeamLog.NetworkControlPolicy, previousValue: TeamLog.NetworkControlPolicy? = nil) {
             self.newValue = newValue
@@ -27058,11 +27058,11 @@ open class TeamLog {
 
     /// User's logged information.
     open class UserLogInfo: CustomStringConvertible {
-        /// User unique ID. Might be missing due to historical data gap.
+        /// User unique ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let accountId: String?
-        /// User display name. Might be missing due to historical data gap.
+        /// User display name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let displayName: String?
-        /// User email address. Might be missing due to historical data gap.
+        /// User email address. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let email: String?
         public init(accountId: String? = nil, displayName: String? = nil, email: String? = nil) {
             nullableValidator(stringValidator(minLength: 40, maxLength: 40))(accountId)
@@ -27859,7 +27859,7 @@ open class TeamLog {
     open class PaperChangeDeploymentPolicyDetails: CustomStringConvertible {
         /// New Dropbox Paper deployment policy.
         public let newValue: TeamPolicies.PaperDeploymentPolicy
-        /// Previous Dropbox Paper deployment policy. Might be missing due to historical data gap.
+        /// Previous Dropbox Paper deployment policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.PaperDeploymentPolicy?
         public init(newValue: TeamPolicies.PaperDeploymentPolicy, previousValue: TeamPolicies.PaperDeploymentPolicy? = nil) {
             self.newValue = newValue
@@ -27987,7 +27987,7 @@ open class TeamLog {
     open class PaperChangeMemberPolicyDetails: CustomStringConvertible {
         /// New paper external accessibility policy.
         public let newValue: TeamLog.PaperMemberPolicy
-        /// Previous paper external accessibility policy. Might be missing due to historical data gap.
+        /// Previous paper external accessibility policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.PaperMemberPolicy?
         public init(newValue: TeamLog.PaperMemberPolicy, previousValue: TeamLog.PaperMemberPolicy? = nil) {
             self.newValue = newValue
@@ -28053,7 +28053,7 @@ open class TeamLog {
     open class PaperChangePolicyDetails: CustomStringConvertible {
         /// New Dropbox Paper policy.
         public let newValue: TeamPolicies.PaperEnabledPolicy
-        /// Previous Dropbox Paper policy. Might be missing due to historical data gap.
+        /// Previous Dropbox Paper policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.PaperEnabledPolicy?
         public init(newValue: TeamPolicies.PaperEnabledPolicy, previousValue: TeamPolicies.PaperEnabledPolicy? = nil) {
             self.newValue = newValue
@@ -28935,7 +28935,7 @@ open class TeamLog {
     open class PaperDocAddCommentDetails: CustomStringConvertible {
         /// Event unique identifier.
         public let eventUuid: String
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(eventUuid: String, commentText: String? = nil) {
             stringValidator()(eventUuid)
@@ -29070,9 +29070,9 @@ open class TeamLog {
     open class PaperDocChangeSharingPolicyDetails: CustomStringConvertible {
         /// Event unique identifier.
         public let eventUuid: String
-        /// Sharing policy with external users. Might be missing due to historical data gap.
+        /// Sharing policy with external users. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let publicSharingPolicy: String?
-        /// Sharing policy with team. Might be missing due to historical data gap.
+        /// Sharing policy with team. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let teamSharingPolicy: String?
         public init(eventUuid: String, publicSharingPolicy: String? = nil, teamSharingPolicy: String? = nil) {
             stringValidator()(eventUuid)
@@ -29146,7 +29146,7 @@ open class TeamLog {
         public let eventUuid: String
         /// New doc subscription level.
         public let newSubscriptionLevel: String
-        /// Previous doc subscription level. Might be missing due to historical data gap.
+        /// Previous doc subscription level. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousSubscriptionLevel: String?
         public init(eventUuid: String, newSubscriptionLevel: String, previousSubscriptionLevel: String? = nil) {
             stringValidator()(eventUuid)
@@ -29218,7 +29218,7 @@ open class TeamLog {
     open class PaperDocDeleteCommentDetails: CustomStringConvertible {
         /// Event unique identifier.
         public let eventUuid: String
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(eventUuid: String, commentText: String? = nil) {
             stringValidator()(eventUuid)
@@ -29415,7 +29415,7 @@ open class TeamLog {
     open class PaperDocEditCommentDetails: CustomStringConvertible {
         /// Event unique identifier.
         public let eventUuid: String
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(eventUuid: String, commentText: String? = nil) {
             stringValidator()(eventUuid)
@@ -29805,7 +29805,7 @@ open class TeamLog {
     open class PaperDocResolveCommentDetails: CustomStringConvertible {
         /// Event unique identifier.
         public let eventUuid: String
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(eventUuid: String, commentText: String? = nil) {
             stringValidator()(eventUuid)
@@ -30121,7 +30121,7 @@ open class TeamLog {
     open class PaperDocUnresolveCommentDetails: CustomStringConvertible {
         /// Event unique identifier.
         public let eventUuid: String
-        /// Comment text. Might be missing due to historical data gap.
+        /// Comment text. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let commentText: String?
         public init(eventUuid: String, commentText: String? = nil) {
             stringValidator()(eventUuid)
@@ -30715,7 +30715,7 @@ open class TeamLog {
         public let eventUuid: String
         /// New folder subscription level.
         public let newSubscriptionLevel: String
-        /// Previous folder subscription level. Might be missing due to historical data gap.
+        /// Previous folder subscription level. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousSubscriptionLevel: String?
         public init(eventUuid: String, newSubscriptionLevel: String, previousSubscriptionLevel: String? = nil) {
             stringValidator()(eventUuid)
@@ -31670,7 +31670,7 @@ open class TeamLog {
 
     /// Path's details.
     open class PathLogInfo: CustomStringConvertible {
-        /// Fully qualified path relative to event's context. Might be missing due to historical data gap.
+        /// Fully qualified path relative to event's context. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let contextual: String?
         /// Path relative to the namespace containing the content.
         public let namespaceRelative: TeamLog.NamespaceRelativePathLogInfo
@@ -31770,7 +31770,7 @@ open class TeamLog {
     open class PermanentDeleteChangePolicyDetails: CustomStringConvertible {
         /// New permanent delete content policy.
         public let newValue: TeamLog.ContentPermanentDeletePolicy
-        /// Previous permanent delete content policy. Might be missing due to historical data gap.
+        /// Previous permanent delete content policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.ContentPermanentDeletePolicy?
         public init(newValue: TeamLog.ContentPermanentDeletePolicy, previousValue: TeamLog.ContentPermanentDeletePolicy? = nil) {
             self.newValue = newValue
@@ -33109,7 +33109,7 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// Sharing permission. Might be missing due to historical data gap.
+        /// Sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharingPermission: String?
         /// Team name.
         public let teamName: String
@@ -33189,7 +33189,7 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// Shared folder type. Might be missing due to historical data gap.
+        /// Shared folder type. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedFolderType: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, sharedFolderType: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -33263,9 +33263,9 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// New sharing permission. Might be missing due to historical data gap.
+        /// New sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newSharingPermission: String?
-        /// Previous sharing permission. Might be missing due to historical data gap.
+        /// Previous sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousSharingPermission: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, newSharingPermission: String? = nil, previousSharingPermission: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -33343,9 +33343,9 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// Previous sharing permission. Might be missing due to historical data gap.
+        /// Previous sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousSharingPermission: String?
-        /// New sharing permission. Might be missing due to historical data gap.
+        /// New sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newSharingPermission: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, previousSharingPermission: String? = nil, newSharingPermission: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -33423,7 +33423,7 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// Sharing permission. Might be missing due to historical data gap.
+        /// Sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharingPermission: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, sharingPermission: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -33695,9 +33695,9 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// New sharing permission. Might be missing due to historical data gap.
+        /// New sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newSharingPermission: String?
-        /// Previous sharing permission. Might be missing due to historical data gap.
+        /// Previous sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousSharingPermission: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, newSharingPermission: String? = nil, previousSharingPermission: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -33775,7 +33775,7 @@ open class TeamLog {
         public let targetAssetIndex: UInt64
         /// Original shared folder name.
         public let originalFolderName: String
-        /// Sharing permission. Might be missing due to historical data gap.
+        /// Sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharingPermission: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, sharingPermission: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -33888,7 +33888,7 @@ open class TeamLog {
         public let originalFolderName: String
         /// Shared link token key.
         public let tokenKey: String?
-        /// Sharing permission. Might be missing due to historical data gap.
+        /// Sharing permission. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharingPermission: String?
         public init(targetAssetIndex: UInt64, originalFolderName: String, tokenKey: String? = nil, sharingPermission: String? = nil) {
             comparableValidator()(targetAssetIndex)
@@ -34128,7 +34128,7 @@ open class TeamLog {
 
     /// Added expiration date to link for shared file/folder.
     open class SharedContentAddLinkExpiryDetails: CustomStringConvertible {
-        /// New shared content link expiration date. Might be missing due to historical data gap.
+        /// New shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: Date?
         public init(newValue: Date? = nil) {
             self.newValue = newValue
@@ -34307,7 +34307,7 @@ open class TeamLog {
     open class SharedContentChangeDownloadsPolicyDetails: CustomStringConvertible {
         /// New downloads policy.
         public let newValue: TeamLog.DownloadPolicyType
-        /// Previous downloads policy. Might be missing due to historical data gap.
+        /// Previous downloads policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.DownloadPolicyType?
         public init(newValue: TeamLog.DownloadPolicyType, previousValue: TeamLog.DownloadPolicyType? = nil) {
             self.newValue = newValue
@@ -34371,7 +34371,7 @@ open class TeamLog {
 
     /// Changed access type of invitee to shared file/folder before invite was accepted.
     open class SharedContentChangeInviteeRoleDetails: CustomStringConvertible {
-        /// Previous access level. Might be missing due to historical data gap.
+        /// Previous access level. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousAccessLevel: Sharing.AccessLevel?
         /// New access level.
         public let newAccessLevel: Sharing.AccessLevel
@@ -34509,9 +34509,9 @@ open class TeamLog {
 
     /// Changed link expiration of shared file/folder.
     open class SharedContentChangeLinkExpiryDetails: CustomStringConvertible {
-        /// New shared content link expiration date. Might be missing due to historical data gap.
+        /// New shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: Date?
-        /// Previous shared content link expiration date. Might be missing due to historical data gap.
+        /// Previous shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Date?
         public init(newValue: Date? = nil, previousValue: Date? = nil) {
             self.newValue = newValue
@@ -34630,7 +34630,7 @@ open class TeamLog {
 
     /// Changed access type of shared file/folder member.
     open class SharedContentChangeMemberRoleDetails: CustomStringConvertible {
-        /// Previous access level. Might be missing due to historical data gap.
+        /// Previous access level. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousAccessLevel: Sharing.AccessLevel?
         /// New access level.
         public let newAccessLevel: Sharing.AccessLevel
@@ -34698,7 +34698,7 @@ open class TeamLog {
     open class SharedContentChangeViewerInfoPolicyDetails: CustomStringConvertible {
         /// New viewer info policy.
         public let newValue: Sharing.ViewerInfoPolicy
-        /// Previous view info policy. Might be missing due to historical data gap.
+        /// Previous view info policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Sharing.ViewerInfoPolicy?
         public init(newValue: Sharing.ViewerInfoPolicy, previousValue: Sharing.ViewerInfoPolicy? = nil) {
             self.newValue = newValue
@@ -35091,7 +35091,7 @@ open class TeamLog {
 
     /// Removed link expiration date of shared file/folder.
     open class SharedContentRemoveLinkExpiryDetails: CustomStringConvertible {
-        /// Previous shared content link expiration date. Might be missing due to historical data gap.
+        /// Previous shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Date?
         public init(previousValue: Date? = nil) {
             self.previousValue = previousValue
@@ -35587,7 +35587,7 @@ open class TeamLog {
     open class SharedFolderChangeLinkPolicyDetails: CustomStringConvertible {
         /// New shared folder link policy.
         public let newValue: Sharing.SharedLinkPolicy
-        /// Previous shared folder link policy. Might be missing due to historical data gap.
+        /// Previous shared folder link policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Sharing.SharedLinkPolicy?
         public init(newValue: Sharing.SharedLinkPolicy, previousValue: Sharing.SharedLinkPolicy? = nil) {
             self.newValue = newValue
@@ -35653,7 +35653,7 @@ open class TeamLog {
     open class SharedFolderChangeMembersInheritancePolicyDetails: CustomStringConvertible {
         /// New member inheritance policy.
         public let newValue: TeamLog.SharedFolderMembersInheritancePolicy
-        /// Previous member inheritance policy. Might be missing due to historical data gap.
+        /// Previous member inheritance policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.SharedFolderMembersInheritancePolicy?
         public init(newValue: TeamLog.SharedFolderMembersInheritancePolicy, previousValue: TeamLog.SharedFolderMembersInheritancePolicy? = nil) {
             self.newValue = newValue
@@ -35719,7 +35719,7 @@ open class TeamLog {
     open class SharedFolderChangeMembersManagementPolicyDetails: CustomStringConvertible {
         /// New members management policy.
         public let newValue: Sharing.AclUpdatePolicy
-        /// Previous members management policy. Might be missing due to historical data gap.
+        /// Previous members management policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Sharing.AclUpdatePolicy?
         public init(newValue: Sharing.AclUpdatePolicy, previousValue: Sharing.AclUpdatePolicy? = nil) {
             self.newValue = newValue
@@ -35785,7 +35785,7 @@ open class TeamLog {
     open class SharedFolderChangeMembersPolicyDetails: CustomStringConvertible {
         /// New external invite policy.
         public let newValue: Sharing.MemberPolicy
-        /// Previous external invite policy. Might be missing due to historical data gap.
+        /// Previous external invite policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Sharing.MemberPolicy?
         public init(newValue: Sharing.MemberPolicy, previousValue: Sharing.MemberPolicy? = nil) {
             self.newValue = newValue
@@ -35849,7 +35849,7 @@ open class TeamLog {
 
     /// Created shared folder.
     open class SharedFolderCreateDetails: CustomStringConvertible {
-        /// Target namespace ID. Might be missing due to historical data gap.
+        /// Target namespace ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let targetNsId: String?
         public init(targetNsId: String? = nil) {
             nullableValidator(stringValidator())(targetNsId)
@@ -36072,13 +36072,13 @@ open class TeamLog {
 
     /// Changed parent of shared folder.
     open class SharedFolderNestDetails: CustomStringConvertible {
-        /// Previous parent namespace ID. Might be missing due to historical data gap.
+        /// Previous parent namespace ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousParentNsId: String?
-        /// New parent namespace ID. Might be missing due to historical data gap.
+        /// New parent namespace ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newParentNsId: String?
-        /// Previous namespace path. Might be missing due to historical data gap.
+        /// Previous namespace path. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousNsPath: String?
-        /// New namespace path. Might be missing due to historical data gap.
+        /// New namespace path. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newNsPath: String?
         public init(previousParentNsId: String? = nil, newParentNsId: String? = nil, previousNsPath: String? = nil, newNsPath: String? = nil) {
             nullableValidator(stringValidator())(previousParentNsId)
@@ -36395,9 +36395,9 @@ open class TeamLog {
 
     /// Changed shared link expiration date.
     open class SharedLinkChangeExpiryDetails: CustomStringConvertible {
-        /// New shared link expiration date. Might be missing due to historical data gap.
+        /// New shared link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: Date?
-        /// Previous shared link expiration date. Might be missing due to historical data gap.
+        /// Previous shared link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Date?
         public init(newValue: Date? = nil, previousValue: Date? = nil) {
             self.newValue = newValue
@@ -36463,7 +36463,7 @@ open class TeamLog {
     open class SharedLinkChangeVisibilityDetails: CustomStringConvertible {
         /// New shared link visibility.
         public let newValue: TeamLog.SharedLinkVisibility
-        /// Previous shared link visibility. Might be missing due to historical data gap.
+        /// Previous shared link visibility. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.SharedLinkVisibility?
         public init(newValue: TeamLog.SharedLinkVisibility, previousValue: TeamLog.SharedLinkVisibility? = nil) {
             self.newValue = newValue
@@ -36527,7 +36527,7 @@ open class TeamLog {
 
     /// Added file/folder to Dropbox from shared link.
     open class SharedLinkCopyDetails: CustomStringConvertible {
-        /// Shared link owner details. Might be missing due to historical data gap.
+        /// Shared link owner details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedLinkOwner: TeamLog.UserLogInfo?
         public init(sharedLinkOwner: TeamLog.UserLogInfo? = nil) {
             self.sharedLinkOwner = sharedLinkOwner
@@ -36588,7 +36588,7 @@ open class TeamLog {
 
     /// Created shared link.
     open class SharedLinkCreateDetails: CustomStringConvertible {
-        /// Defines who can access the shared link. Might be missing due to historical data gap.
+        /// Defines who can access the shared link. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedLinkAccessLevel: TeamLog.SharedLinkAccessLevel?
         public init(sharedLinkAccessLevel: TeamLog.SharedLinkAccessLevel? = nil) {
             self.sharedLinkAccessLevel = sharedLinkAccessLevel
@@ -36649,7 +36649,7 @@ open class TeamLog {
 
     /// Removed shared link.
     open class SharedLinkDisableDetails: CustomStringConvertible {
-        /// Shared link owner details. Might be missing due to historical data gap.
+        /// Shared link owner details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedLinkOwner: TeamLog.UserLogInfo?
         public init(sharedLinkOwner: TeamLog.UserLogInfo? = nil) {
             self.sharedLinkOwner = sharedLinkOwner
@@ -36710,7 +36710,7 @@ open class TeamLog {
 
     /// Downloaded file/folder from shared link.
     open class SharedLinkDownloadDetails: CustomStringConvertible {
-        /// Shared link owner details. Might be missing due to historical data gap.
+        /// Shared link owner details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedLinkOwner: TeamLog.UserLogInfo?
         public init(sharedLinkOwner: TeamLog.UserLogInfo? = nil) {
             self.sharedLinkOwner = sharedLinkOwner
@@ -36771,7 +36771,7 @@ open class TeamLog {
 
     /// Removed shared link expiration date.
     open class SharedLinkRemoveExpiryDetails: CustomStringConvertible {
-        /// Previous shared link expiration date. Might be missing due to historical data gap.
+        /// Previous shared link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Date?
         public init(previousValue: Date? = nil) {
             self.previousValue = previousValue
@@ -36836,7 +36836,7 @@ open class TeamLog {
         public let sharedContentAccessLevel: Sharing.AccessLevel
         /// Shared content link.
         public let sharedContentLink: String?
-        /// New shared content link expiration date. Might be missing due to historical data gap.
+        /// New shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: Date?
         public init(sharedContentAccessLevel: Sharing.AccessLevel, sharedContentLink: String? = nil, newValue: Date? = nil) {
             self.sharedContentAccessLevel = sharedContentAccessLevel
@@ -37186,9 +37186,9 @@ open class TeamLog {
         public let sharedContentAccessLevel: Sharing.AccessLevel
         /// Shared content link.
         public let sharedContentLink: String?
-        /// New shared content link expiration date. Might be missing due to historical data gap.
+        /// New shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: Date?
-        /// Previous shared content link expiration date. Might be missing due to historical data gap.
+        /// Previous shared content link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Date?
         public init(sharedContentAccessLevel: Sharing.AccessLevel, sharedContentLink: String? = nil, newValue: Date? = nil, previousValue: Date? = nil) {
             self.sharedContentAccessLevel = sharedContentAccessLevel
@@ -37330,7 +37330,7 @@ open class TeamLog {
         public let sharedContentAccessLevel: Sharing.AccessLevel
         /// Shared content link.
         public let sharedContentLink: String?
-        /// Previous shared link expiration date. Might be missing due to historical data gap.
+        /// Previous shared link expiration date. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Date?
         public init(sharedContentAccessLevel: Sharing.AccessLevel, sharedContentLink: String? = nil, previousValue: Date? = nil) {
             self.sharedContentAccessLevel = sharedContentAccessLevel
@@ -37465,7 +37465,7 @@ open class TeamLog {
 
     /// Added members as audience of shared link.
     open class SharedLinkShareDetails: CustomStringConvertible {
-        /// Shared link owner details. Might be missing due to historical data gap.
+        /// Shared link owner details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedLinkOwner: TeamLog.UserLogInfo?
         /// Users without a Dropbox account that were added as shared link audience.
         public let externalUsers: Array<TeamLog.ExternalUserLogInfo>?
@@ -37531,7 +37531,7 @@ open class TeamLog {
 
     /// Opened shared link.
     open class SharedLinkViewDetails: CustomStringConvertible {
-        /// Shared link owner details. Might be missing due to historical data gap.
+        /// Shared link owner details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sharedLinkOwner: TeamLog.UserLogInfo?
         public init(sharedLinkOwner: TeamLog.UserLogInfo? = nil) {
             self.sharedLinkOwner = sharedLinkOwner
@@ -37716,7 +37716,7 @@ open class TeamLog {
     open class SharingChangeFolderJoinPolicyDetails: CustomStringConvertible {
         /// New external join policy.
         public let newValue: TeamLog.SharingFolderJoinPolicy
-        /// Previous external join policy. Might be missing due to historical data gap.
+        /// Previous external join policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.SharingFolderJoinPolicy?
         public init(newValue: TeamLog.SharingFolderJoinPolicy, previousValue: TeamLog.SharingFolderJoinPolicy? = nil) {
             self.newValue = newValue
@@ -37783,7 +37783,7 @@ open class TeamLog {
     open class SharingChangeLinkPolicyDetails: CustomStringConvertible {
         /// New external link accessibility policy.
         public let newValue: TeamLog.SharingLinkPolicy
-        /// Previous external link accessibility policy. Might be missing due to historical data gap.
+        /// Previous external link accessibility policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.SharingLinkPolicy?
         public init(newValue: TeamLog.SharingLinkPolicy, previousValue: TeamLog.SharingLinkPolicy? = nil) {
             self.newValue = newValue
@@ -37849,7 +37849,7 @@ open class TeamLog {
     open class SharingChangeMemberPolicyDetails: CustomStringConvertible {
         /// New external invite policy.
         public let newValue: TeamLog.SharingMemberPolicy
-        /// Previous external invite policy. Might be missing due to historical data gap.
+        /// Previous external invite policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.SharingMemberPolicy?
         public init(newValue: TeamLog.SharingMemberPolicy, previousValue: TeamLog.SharingMemberPolicy? = nil) {
             self.newValue = newValue
@@ -40770,7 +40770,7 @@ open class TeamLog {
 
     /// Added sign-out URL for SSO.
     open class SsoAddLogoutUrlDetails: CustomStringConvertible {
-        /// New single sign-on logout URL. Might be missing due to historical data gap.
+        /// New single sign-on logout URL. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: String?
         public init(newValue: String? = nil) {
             nullableValidator(stringValidator())(newValue)
@@ -40832,7 +40832,7 @@ open class TeamLog {
 
     /// Changed X.509 certificate for SSO.
     open class SsoChangeCertDetails: CustomStringConvertible {
-        /// Previous SSO certificate details. Might be missing due to historical data gap.
+        /// Previous SSO certificate details. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousCertificateDetails: TeamLog.Certificate?
         /// New SSO certificate details.
         public let newCertificateDetails: TeamLog.Certificate
@@ -40966,9 +40966,9 @@ open class TeamLog {
 
     /// Changed sign-out URL for SSO.
     open class SsoChangeLogoutUrlDetails: CustomStringConvertible {
-        /// Previous single sign-on logout URL. Might be missing due to historical data gap.
+        /// Previous single sign-on logout URL. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: String?
-        /// New single sign-on logout URL. Might be missing due to historical data gap.
+        /// New single sign-on logout URL. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: String?
         public init(previousValue: String? = nil, newValue: String? = nil) {
             nullableValidator(stringValidator())(previousValue)
@@ -41036,7 +41036,7 @@ open class TeamLog {
     open class SsoChangePolicyDetails: CustomStringConvertible {
         /// New single sign-on policy.
         public let newValue: TeamPolicies.SsoPolicy
-        /// Previous single sign-on policy. Might be missing due to historical data gap.
+        /// Previous single sign-on policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.SsoPolicy?
         public init(newValue: TeamPolicies.SsoPolicy, previousValue: TeamPolicies.SsoPolicy? = nil) {
             self.newValue = newValue
@@ -41631,15 +41631,15 @@ open class TeamLog {
         public let timestamp_: Date
         /// The category that this type of action belongs to.
         public let eventCategory: TeamLog.EventCategory
-        /// The entity who actually performed the action. Might be missing due to historical data gap.
+        /// The entity who actually performed the action. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let actor: TeamLog.ActorLogInfo?
         /// The origin from which the actor performed the action including information about host, ip address, location,
         /// session, etc. If the action was performed programmatically via the API the origin represents the API client.
         public let origin: TeamLog.OriginLogInfo?
         /// True if the action involved a non team member either as the actor or as one of the affected users. Might be
-        /// missing due to historical data gap.
+        /// missing due to historical com.prof18.moneyflow.data gap.
         public let involveNonTeamMember: Bool?
-        /// The user or team on whose behalf the actor performed the action. Might be missing due to historical data
+        /// The user or team on whose behalf the actor performed the action. Might be missing due to historical com.prof18.moneyflow.data
         /// gap.
         public let context: TeamLog.ContextLogInfo?
         /// Zero or more users and/or groups that are affected by the action. Note that this list doesn't include any
@@ -41827,7 +41827,7 @@ open class TeamLog {
     open class TeamFolderChangeStatusDetails: CustomStringConvertible {
         /// New team folder status.
         public let newValue: Team.TeamFolderStatus
-        /// Previous team folder status. Might be missing due to historical data gap.
+        /// Previous team folder status. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: Team.TeamFolderStatus?
         public init(newValue: Team.TeamFolderStatus, previousValue: Team.TeamFolderStatus? = nil) {
             self.newValue = newValue
@@ -42219,7 +42219,7 @@ open class TeamLog {
 
     /// Team member's logged information.
     open class TeamMemberLogInfo: TeamLog.UserLogInfo {
-        /// Team member ID. Might be missing due to historical data gap.
+        /// Team member ID. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let teamMemberId: String?
         /// Team member external ID.
         public let memberExternalId: String?
@@ -44030,7 +44030,7 @@ open class TeamLog {
 
     /// Changed team name.
     open class TeamProfileChangeNameDetails: CustomStringConvertible {
-        /// Previous teams name. Might be missing due to historical data gap.
+        /// Previous teams name. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.TeamName?
         /// New team name.
         public let newValue: TeamLog.TeamName
@@ -44624,7 +44624,7 @@ open class TeamLog {
     open class TfaChangePolicyDetails: CustomStringConvertible {
         /// New change policy.
         public let newValue: TeamPolicies.TwoStepVerificationPolicy
-        /// Previous change policy. Might be missing due to historical data gap.
+        /// Previous change policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamPolicies.TwoStepVerificationPolicy?
         public init(newValue: TeamPolicies.TwoStepVerificationPolicy, previousValue: TeamPolicies.TwoStepVerificationPolicy? = nil) {
             self.newValue = newValue
@@ -44690,7 +44690,7 @@ open class TeamLog {
     open class TfaChangeStatusDetails: CustomStringConvertible {
         /// The new two factor authentication configuration.
         public let newValue: TeamLog.TfaConfiguration
-        /// The previous two factor authentication configuration. Might be missing due to historical data gap.
+        /// The previous two factor authentication configuration. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.TfaConfiguration?
         /// Used two factor authentication rescue code. This flag is relevant when the two factor authentication
         /// configuration is disabled.
@@ -45375,7 +45375,7 @@ open class TeamLog {
     open class TwoAccountChangePolicyDetails: CustomStringConvertible {
         /// New two account policy.
         public let newValue: TeamLog.TwoAccountPolicy
-        /// Previous two account policy. Might be missing due to historical data gap.
+        /// Previous two account policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.TwoAccountPolicy?
         public init(newValue: TeamLog.TwoAccountPolicy, previousValue: TeamLog.TwoAccountPolicy? = nil) {
             self.newValue = newValue
@@ -45521,7 +45521,7 @@ open class TeamLog {
         public let givenName: String
         /// Surname.
         public let surname: String
-        /// Locale. Might be missing due to historical data gap.
+        /// Locale. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let locale: String?
         public init(givenName: String, surname: String, locale: String? = nil) {
             stringValidator()(givenName)
@@ -45558,7 +45558,7 @@ open class TeamLog {
         }
     }
 
-    /// User or team linked app. Used when linked type is missing due to historical data gap.
+    /// User or team linked app. Used when linked type is missing due to historical com.prof18.moneyflow.data gap.
     open class UserOrTeamLinkedAppLogInfo: TeamLog.AppLogInfo {
         open override var description: String {
             return "\(SerializeUtil.prepareJSONForSerialization(UserOrTeamLinkedAppLogInfoSerializer().serialize(self)))"
@@ -45770,7 +45770,7 @@ open class TeamLog {
 
     /// Information on active web sessions
     open class WebDeviceSessionLogInfo: TeamLog.DeviceSessionLogInfo {
-        /// Web session unique id. Might be missing due to historical data gap.
+        /// Web session unique id. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let sessionInfo: TeamLog.WebSessionLogInfo?
         /// Information on the hosting device.
         public let userAgent: String
@@ -45918,9 +45918,9 @@ open class TeamLog {
 
     /// Changed how long members can stay signed in to Dropbox.com.
     open class WebSessionsChangeFixedLengthPolicyDetails: CustomStringConvertible {
-        /// New session length policy. Might be missing due to historical data gap.
+        /// New session length policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: TeamLog.WebSessionsFixedLengthPolicy?
-        /// Previous session length policy. Might be missing due to historical data gap.
+        /// Previous session length policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.WebSessionsFixedLengthPolicy?
         public init(newValue: TeamLog.WebSessionsFixedLengthPolicy? = nil, previousValue: TeamLog.WebSessionsFixedLengthPolicy? = nil) {
             self.newValue = newValue
@@ -45984,9 +45984,9 @@ open class TeamLog {
 
     /// Changed how long team members can be idle while signed in to Dropbox.com.
     open class WebSessionsChangeIdleLengthPolicyDetails: CustomStringConvertible {
-        /// New idle length policy. Might be missing due to historical data gap.
+        /// New idle length policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let newValue: TeamLog.WebSessionsIdleLengthPolicy?
-        /// Previous idle length policy. Might be missing due to historical data gap.
+        /// Previous idle length policy. Might be missing due to historical com.prof18.moneyflow.data gap.
         public let previousValue: TeamLog.WebSessionsIdleLengthPolicy?
         public init(newValue: TeamLog.WebSessionsIdleLengthPolicy? = nil, previousValue: TeamLog.WebSessionsIdleLengthPolicy? = nil) {
             self.newValue = newValue

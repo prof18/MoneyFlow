@@ -18,7 +18,7 @@ public typealias BatchUploadResponseBlock = ([URL: Files.UploadSessionFinishBatc
 public typealias ProgressBlock = (Progress) -> Void
 
 ///
-/// Stores data for a particular batch upload attempt.
+/// Stores com.prof18.moneyflow.data for a particular batch upload attempt.
 ///
 open class BatchUploadData {
     /// The queue on which most response handling is performed.
@@ -38,7 +38,7 @@ open class BatchUploadData {
     let progressBlock: ProgressBlock?
     /// The response block that is executed once all file uploads and the final batch commit is complete.
     let responseBlock: BatchUploadResponseBlock
-    /// The total size of all the files to upload. Used to return progress data to the client.
+    /// The total size of all the files to upload. Used to return progress com.prof18.moneyflow.data to the client.
     var totalUploadProgress: Progress?
     /// The flag that determines whether upload continues or not.
     var cancel: Bool = false
@@ -48,7 +48,7 @@ open class BatchUploadData {
     public init(fileCommitInfo fileUrlsToCommitInfo: [URL: Files.CommitInfo], progressBlock: ProgressBlock?, responseBlock: @escaping BatchUploadResponseBlock, queue: DispatchQueue) {
         // we specifiy a custom queue so that the main thread is not blocked
         self.queue = queue
-        // we want to make sure all of our file data has been uploaded
+        // we want to make sure all of our file com.prof18.moneyflow.data has been uploaded
         // before we make our final batch commit call to `/upload_session/finish_batch`,
         // but we also don't want to wait for each response before making a
         // succeeding upload call, so we used dispatch groups to wait for all upload

@@ -185,7 +185,7 @@ extension FilesRoutes {
                         let errorMessage: String = "Result polling took > \(timeoutInSec) seconds. Timing out."
                         var userInfo = [String: Any]()
                         userInfo[NSUnderlyingErrorKey] = errorMessage
-                        let timeoutError = NSError(domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: userInfo)
+                        let timeoutError = NSError(com.prof18.moneyflow.domain: NSURLErrorDomain, code: NSURLErrorTimedOut, userInfo: userInfo)
                         uploadData.queue.async {
                             uploadData.responseBlock(nil, .clientError(timeoutError), uploadData.fileUrlsToRequestErrors)
                         }

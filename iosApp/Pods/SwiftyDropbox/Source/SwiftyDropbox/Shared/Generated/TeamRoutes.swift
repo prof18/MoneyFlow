@@ -673,7 +673,7 @@ open class TeamRoutes {
     /// - parameter transferAdminId: If provided, errors during the transfer process will be sent via email to this
     /// user. If the transfer_dest_id argument was provided, then this argument must be provided as well.
     /// - parameter keepAccount: Downgrade the member to a Basic account. The user will retain the email address
-    /// associated with their Dropbox  account and data in their account that is not restricted to team members. In
+    /// associated with their Dropbox  account and com.prof18.moneyflow.data in their account that is not restricted to team members. In
     /// order to keep the account the argument wipeData should be set to false.
     /// - parameter retainTeamShares: If provided, allows removed users to keep access to Dropbox folders (not Dropbox
     /// Paper folders) already explicitly shared with them (not via a group) when they are downgraded to a Basic
@@ -703,7 +703,7 @@ open class TeamRoutes {
     }
 
     /// Add secondary emails to users. Permission : Team member management. Emails that are on verified domains will be
-    /// verified automatically. For each email address not on a verified domain a verification email will be sent.
+    /// verified automatically. For each email address not on a verified com.prof18.moneyflow.domain a verification email will be sent.
     ///
     /// - parameter newSecondaryEmails: List of users and secondary emails to add.
     ///
@@ -802,7 +802,7 @@ open class TeamRoutes {
     /// Suspend a member from a team. Permission : Team member management Exactly one of team_member_id, email, or
     /// external_id must be provided to identify the user account.
     ///
-    /// - parameter wipeData: If provided, controls if the user's data will be deleted on their linked devices.
+    /// - parameter wipeData: If provided, controls if the user's com.prof18.moneyflow.data will be deleted on their linked devices.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Void` object on success or a
     /// `Team.MembersSuspendError` object on failure.
@@ -907,7 +907,7 @@ open class TeamRoutes {
         return client.request(route, serverArgs: serverArgs)
     }
 
-    /// Retrieves reporting data about a team's user activity.
+    /// Retrieves reporting com.prof18.moneyflow.data about a team's user activity.
     ///
     /// - parameter startDate: Optional starting date (inclusive). If start_date is None or too long ago, this field
     /// will  be set to 6 months ago.
@@ -921,7 +921,7 @@ open class TeamRoutes {
         return client.request(route, serverArgs: serverArgs)
     }
 
-    /// Retrieves reporting data about a team's linked devices.
+    /// Retrieves reporting com.prof18.moneyflow.data about a team's linked devices.
     ///
     /// - parameter startDate: Optional starting date (inclusive). If start_date is None or too long ago, this field
     /// will  be set to 6 months ago.
@@ -935,7 +935,7 @@ open class TeamRoutes {
         return client.request(route, serverArgs: serverArgs)
     }
 
-    /// Retrieves reporting data about a team's membership.
+    /// Retrieves reporting com.prof18.moneyflow.data about a team's membership.
     ///
     /// - parameter startDate: Optional starting date (inclusive). If start_date is None or too long ago, this field
     /// will  be set to 6 months ago.
@@ -949,7 +949,7 @@ open class TeamRoutes {
         return client.request(route, serverArgs: serverArgs)
     }
 
-    /// Retrieves reporting data about a team's storage usage.
+    /// Retrieves reporting com.prof18.moneyflow.data about a team's storage usage.
     ///
     /// - parameter startDate: Optional starting date (inclusive). If start_date is None or too long ago, this field
     /// will  be set to 6 months ago.

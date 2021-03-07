@@ -6,13 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.prof18.moneyflow.R
-import com.prof18.moneyflow.features.addtransaction.data.TransactionTypeRadioItem
-import data.db.model.TransactionType
+import com.prof18.moneyflow.data.db.model.TransactionType
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.getKoin
-import presentation.addtransaction.AddTransactionUseCase
-import presentation.addtransaction.TransactionToSave
+import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
+import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import java.text.SimpleDateFormat
 import java.util.*
 

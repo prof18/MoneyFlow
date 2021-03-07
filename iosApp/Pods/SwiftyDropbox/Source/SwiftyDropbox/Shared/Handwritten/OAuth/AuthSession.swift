@@ -46,11 +46,11 @@ public struct ScopeRequest {
 
 // MARK: Internal
 
-/// Object that contains all the necessary data of an OAuth 2 Authorization Code Flow with PKCE.s
+/// Object that contains all the necessary com.prof18.moneyflow.data of an OAuth 2 Authorization Code Flow with PKCE.s
 struct OAuthPKCESession {
     // The scope request for this auth session.
     let scopeRequest: ScopeRequest?
-    // PKCE data generated for this auth session.
+    // PKCE com.prof18.moneyflow.data generated for this auth session.
     let pkceData: PkceData
     // A string of colon-delimited options/state - used primarily to indicate if the token type to be returned.
     let state: String
@@ -81,7 +81,7 @@ struct OAuthPKCESession {
     }
 }
 
-/// PKCE data for OAuth 2 Authorization Code Flow.
+/// PKCE com.prof18.moneyflow.data for OAuth 2 Authorization Code Flow.
 struct PkceData {
     // A random string generated for each code flow.
     let codeVerifier = Self.randomStringOfLength(128)
@@ -100,10 +100,10 @@ struct PkceData {
     }
 
     private static func codeChallengeFromCodeVerifier(_ codeVerifier: String) -> String {
-        guard let data = codeVerifier.data(using: .ascii) else { fatalError("Failed to create code challenge.") }
+        guard let com.prof18.moneyflow.data = codeVerifier.com.prof18.moneyflow.data(using: .ascii) else { fatalError("Failed to create code challenge.") }
         var digest = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
-        _ = data.withUnsafeBytes {
-            CC_SHA256($0.baseAddress, UInt32(data.count), &digest)
+        _ = com.prof18.moneyflow.data.withUnsafeBytes {
+            CC_SHA256($0.baseAddress, UInt32(com.prof18.moneyflow.data.count), &digest)
         }
         /// Replace these characters to make the string safe to use in a URL.
         return Data(digest).base64EncodedString()

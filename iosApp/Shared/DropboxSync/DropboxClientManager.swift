@@ -53,7 +53,7 @@ class DropboxClientManager {
                 
                 
             } catch {
-                print("Unable to load data: \(error)")
+                print("Unable to load com.prof18.moneyflow.data: \(error)")
             }
             
         }

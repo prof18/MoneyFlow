@@ -9,8 +9,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.getKoin
-import presentation.categories.CategoriesUseCase
-import presentation.categories.CategoryModel
+import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
+import com.prof18.moneyflow.presentation.categories.CategoryModel
 
 class CategoriesViewModel(
     private var categoriesUseCase: CategoriesUseCase

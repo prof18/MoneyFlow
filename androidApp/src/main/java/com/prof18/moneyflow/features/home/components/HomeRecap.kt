@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.style.*
-import domain.entities.BalanceRecap
+import com.prof18.moneyflow.domain.entities.BalanceRecap
 
 @Composable
 fun HomeRecap(

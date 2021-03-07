@@ -305,8 +305,8 @@ open class DropboxTransportClient {
 
         let request: Alamofire.UploadRequest
         switch input {
-        case let .data(data):
-            request = manager.upload(data, to: url, method: .post, headers: headers)
+        case let .com.prof18.moneyflow.data(com.prof18.moneyflow.data):
+            request = manager.upload(com.prof18.moneyflow.data, to: url, method: .post, headers: headers)
         case let .file(file):
             request = backgroundManager.upload(file, to: url, method: .post, headers: headers)
         case let .stream(stream):
@@ -435,8 +435,8 @@ public enum CallError<EType>: CustomStringConvertible {
     }
 }
 
-func utf8Decode(_ data: Data) -> String {
-    return NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+func utf8Decode(_ com.prof18.moneyflow.data: Data) -> String {
+    return NSString(com.prof18.moneyflow.data: com.prof18.moneyflow.data, encoding: String.Encoding.utf8.rawValue)! as String
 }
 
 func asciiEscape(_ s: String) -> String {
@@ -463,7 +463,7 @@ public enum RouteStyle: String {
 }
 
 public enum UploadBody {
-    case data(Data)
+    case com.prof18.moneyflow.data(Data)
     case file(URL)
     case stream(InputStream)
 }
@@ -480,24 +480,24 @@ open class Request<RSerial: JSONSerializer, ESerial: JSONSerializer> {
         self.responseSerializer = responseSerializer
     }
 
-    func handleResponseError(_ response: HTTPURLResponse?, data: Data?, error: Error?) -> CallError<ESerial.ValueType> {
+    func handleResponseError(_ response: HTTPURLResponse?, com.prof18.moneyflow.data: Data?, error: Error?) -> CallError<ESerial.ValueType> {
         let requestId = response?.allHeaderFields["X-Dropbox-Request-Id"] as? String
         if let code = response?.statusCode {
             switch code {
             case 500...599:
                 var message = ""
-                if let d = data {
+                if let d = com.prof18.moneyflow.data {
                     message = utf8Decode(d)
                 }
                 return .internalServerError(code, message, requestId)
             case 400:
                 var message = ""
-                if let d = data {
+                if let d = com.prof18.moneyflow.data {
                     message = utf8Decode(d)
                 }
                 return .badInputError(message, requestId)
             case 401:
-                let json = SerializeUtil.parseJSON(data!)
+                let json = SerializeUtil.parseJSON(com.prof18.moneyflow.data!)
                 switch json {
                 case .dictionary(let d):
                     return .authError(Auth.AuthErrorSerializer().deserialize(d["error"]!), getStringFromJson(json: d, key: "user_message"), getStringFromJson(json: d, key: "error_summary"), requestId)
@@ -505,7 +505,7 @@ open class Request<RSerial: JSONSerializer, ESerial: JSONSerializer> {
                     fatalError("Failed to parse error type")
                 }
             case 403:
-                let json = SerializeUtil.parseJSON(data!)
+                let json = SerializeUtil.parseJSON(com.prof18.moneyflow.data!)
                 switch json {
                 case .dictionary(let d):
                     return .accessError(Auth.AccessErrorSerializer().deserialize(d["error"]!), getStringFromJson(json: d, key: "user_message"), getStringFromJson(json: d, key: "error_summary"),requestId)
@@ -513,7 +513,7 @@ open class Request<RSerial: JSONSerializer, ESerial: JSONSerializer> {
                     fatalError("Failed to parse error type")
                 }
             case 409:
-                let json = SerializeUtil.parseJSON(data!)
+                let json = SerializeUtil.parseJSON(com.prof18.moneyflow.data!)
                 switch json {
                 case .dictionary(let d):
                     return .routeError(Box(self.errorSerializer.deserialize(d["error"]!)), getStringFromJson(json: d, key: "user_message"), getStringFromJson(json: d, key: "error_summary"), requestId)
@@ -521,7 +521,7 @@ open class Request<RSerial: JSONSerializer, ESerial: JSONSerializer> {
                     fatalError("Failed to parse error type")
                 }
             case 429:
-                let json = SerializeUtil.parseJSON(data!)
+                let json = SerializeUtil.parseJSON(com.prof18.moneyflow.data!)
                 switch json {
                 case .dictionary(let d):
                     return .rateLimitError(Auth.RateLimitErrorSerializer().deserialize(d["error"]!), getStringFromJson(json: d, key: "user_message"), getStringFromJson(json: d, key: "error_summary"), requestId)
@@ -537,7 +537,7 @@ open class Request<RSerial: JSONSerializer, ESerial: JSONSerializer> {
             return .clientError(error)
         } else {
             var message = ""
-            if let d = data {
+            if let d = com.prof18.moneyflow.data {
                 message = utf8Decode(d)
             }
             return .httpError(nil, message, requestId)
@@ -578,9 +578,9 @@ open class RpcRequest<RSerial: JSONSerializer, ESerial: JSONSerializer>: Request
     ) -> Self {
         request.setCompletionHandler(queue: queue, completionHandler: .dataCompletionHandler({ response in
             if let error = response.error {
-                completionHandler(nil, self.handleResponseError(response.response, data: response.data, error: error))
+                completionHandler(nil, self.handleResponseError(response.response, com.prof18.moneyflow.data: response.com.prof18.moneyflow.data, error: error))
             } else {
-                completionHandler(self.responseSerializer.deserialize(SerializeUtil.parseJSON(response.data!)), nil)
+                completionHandler(self.responseSerializer.deserialize(SerializeUtil.parseJSON(response.com.prof18.moneyflow.data!)), nil)
             }
         }))
         return self
@@ -613,9 +613,9 @@ open class UploadRequest<RSerial: JSONSerializer, ESerial: JSONSerializer>: Requ
     ) -> Self {
         request.setCompletionHandler(queue: queue, completionHandler: .dataCompletionHandler({ response in
             if let error = response.error {
-                completionHandler(nil, self.handleResponseError(response.response, data: response.data, error: error))
+                completionHandler(nil, self.handleResponseError(response.response, com.prof18.moneyflow.data: response.com.prof18.moneyflow.data, error: error))
             } else {
-                completionHandler(self.responseSerializer.deserialize(SerializeUtil.parseJSON(response.data!)), nil)
+                completionHandler(self.responseSerializer.deserialize(SerializeUtil.parseJSON(response.com.prof18.moneyflow.data!)), nil)
             }
         }))
         return self
@@ -654,12 +654,12 @@ open class DownloadRequestFile<RSerial: JSONSerializer, ESerial: JSONSerializer>
         request.setCompletionHandler(queue: queue, completionHandler: .downloadFileCompletionHandler({ response in
             if let error = response.error {
                 completionHandler(
-                    nil, self.handleResponseError(response.response, data: self.errorMessage, error: error)
+                    nil, self.handleResponseError(response.response, com.prof18.moneyflow.data: self.errorMessage, error: error)
                 )
             } else {
                 let headerFields: [AnyHashable : Any] = response.response!.allHeaderFields
                 let result = caseInsensitiveLookup("Dropbox-Api-Result", dictionary: headerFields)!
-                let resultData = result.data(using: .utf8, allowLossyConversion: false)
+                let resultData = result.com.prof18.moneyflow.data(using: .utf8, allowLossyConversion: false)
                 let resultObject = self.responseSerializer.deserialize(SerializeUtil.parseJSON(resultData!))
 
                 completionHandler((resultObject, self.urlPath!), nil)
@@ -695,14 +695,14 @@ open class DownloadRequestMemory<RSerial: JSONSerializer, ESerial: JSONSerialize
     ) -> Self {
         request.setCompletionHandler(queue: queue, completionHandler: .dataCompletionHandler({ response in
             if let error = response.error {
-                completionHandler(nil, self.handleResponseError(response.response, data: response.data, error: error))
+                completionHandler(nil, self.handleResponseError(response.response, com.prof18.moneyflow.data: response.com.prof18.moneyflow.data, error: error))
             } else {
                 let headerFields: [AnyHashable : Any] = response.response!.allHeaderFields
                 let result = caseInsensitiveLookup("Dropbox-Api-Result", dictionary: headerFields)!
-                let resultData = result.data(using: .utf8, allowLossyConversion: false)
+                let resultData = result.com.prof18.moneyflow.data(using: .utf8, allowLossyConversion: false)
                 let resultObject = self.responseSerializer.deserialize(SerializeUtil.parseJSON(resultData!))
 
-                completionHandler((resultObject, response.data!), nil)
+                completionHandler((resultObject, response.com.prof18.moneyflow.data!), nil)
             }
         }))
         return self

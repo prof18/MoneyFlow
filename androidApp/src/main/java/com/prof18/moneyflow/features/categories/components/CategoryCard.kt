@@ -15,8 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppMargins
-import domain.entities.Category
-import presentation.CategoryIcon
+import com.prof18.moneyflow.domain.entities.Category
+import com.prof18.moneyflow.presentation.CategoryIcon
 
 @Composable
 fun CategoryCard(

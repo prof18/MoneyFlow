@@ -62,12 +62,12 @@ public enum AFError: Error {
     ///                                         threw an error.
     /// - bodyPartInputStreamCreationFailed:    An `InputStream` could not be created for the provided `fileURL`.
     /// - outputStreamCreationFailed:           An `OutputStream` could not be created when attempting to write the
-    ///                                         encoded data to disk.
-    /// - outputStreamFileAlreadyExists:        The encoded body data could not be writtent disk because a file
+    ///                                         encoded com.prof18.moneyflow.data to disk.
+    /// - outputStreamFileAlreadyExists:        The encoded body com.prof18.moneyflow.data could not be writtent disk because a file
     ///                                         already exists at the provided `fileURL`.
-    /// - outputStreamURLInvalid:               The `fileURL` provided for writing the encoded body data to disk is
+    /// - outputStreamURLInvalid:               The `fileURL` provided for writing the encoded body com.prof18.moneyflow.data to disk is
     ///                                         not a file URL.
-    /// - outputStreamWriteFailed:              The attempt to write the encoded body data to disk failed with an
+    /// - outputStreamWriteFailed:              The attempt to write the encoded body com.prof18.moneyflow.data to disk failed with an
     ///                                         underlying error.
     /// - inputStreamReadFailed:                The attempt to read an encoded body part `InputStream` failed with
     ///                                         underlying system error.
@@ -91,8 +91,8 @@ public enum AFError: Error {
 
     /// The underlying reason the response validation error occurred.
     ///
-    /// - dataFileNil:             The data file containing the server response did not exist.
-    /// - dataFileReadFailed:      The data file containing the server response could not be read.
+    /// - dataFileNil:             The com.prof18.moneyflow.data file containing the server response did not exist.
+    /// - dataFileReadFailed:      The com.prof18.moneyflow.data file containing the server response could not be read.
     /// - missingContentType:      The response did not contain a `Content-Type` and the `acceptableContentTypes`
     ///                            provided did not contain wildcard type.
     /// - unacceptableContentType: The response `Content-Type` did not match any type in the provided
@@ -108,8 +108,8 @@ public enum AFError: Error {
 
     /// The underlying reason the response serialization error occurred.
     ///
-    /// - inputDataNil:                    The server response contained no data.
-    /// - inputDataNilOrZeroLength:        The server response contained no data or the data was zero length.
+    /// - inputDataNil:                    The server response contained no com.prof18.moneyflow.data.
+    /// - inputDataNilOrZeroLength:        The server response contained no com.prof18.moneyflow.data or the com.prof18.moneyflow.data was zero length.
     /// - inputFileNil:                    The file containing the server response did not exist.
     /// - inputFileReadFailed:             The file containing the server response could not be read.
     /// - stringSerializationFailed:       String serialization failed using the provided `String.Encoding`.
@@ -419,9 +419,9 @@ extension AFError.ResponseSerializationFailureReason {
     var localizedDescription: String {
         switch self {
         case .inputDataNil:
-            return "Response could not be serialized, input data was nil."
+            return "Response could not be serialized, input com.prof18.moneyflow.data was nil."
         case .inputDataNilOrZeroLength:
-            return "Response could not be serialized, input data was nil or zero length."
+            return "Response could not be serialized, input com.prof18.moneyflow.data was nil or zero length."
         case .inputFileNil:
             return "Response could not be serialized, input file was nil."
         case .inputFileReadFailed(let url):
@@ -440,9 +440,9 @@ extension AFError.ResponseValidationFailureReason {
     var localizedDescription: String {
         switch self {
         case .dataFileNil:
-            return "Response could not be validated, data file was nil."
+            return "Response could not be validated, com.prof18.moneyflow.data file was nil."
         case .dataFileReadFailed(let url):
-            return "Response could not be validated, data file could not be read: \(url)."
+            return "Response could not be validated, com.prof18.moneyflow.data file could not be read: \(url)."
         case .missingContentType(let types):
             return (
                 "Response Content-Type was missing and acceptable content types " +

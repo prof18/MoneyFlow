@@ -1,12 +1,11 @@
 package com.prof18.moneyflow.features.home
 
 import androidx.lifecycle.*
-import data.db.DatabaseSource
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.java.KoinJavaComponent.getKoin
-import presentation.home.HomeModel
-import presentation.home.HomeUseCase
+import com.prof18.moneyflow.presentation.home.HomeModel
+import com.prof18.moneyflow.presentation.home.HomeUseCase
 
 class HomeViewModel(
     private var useCase: HomeUseCase

@@ -1,15 +1,11 @@
 package com.prof18.moneyflow.features.home
 
-import android.graphics.Color
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.PlusOne
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -24,10 +20,9 @@ import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
 import com.prof18.moneyflow.ui.components.Loader
-import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
-import presentation.home.HomeModel
+import com.prof18.moneyflow.presentation.home.HomeModel
 import timber.log.Timber
 
 

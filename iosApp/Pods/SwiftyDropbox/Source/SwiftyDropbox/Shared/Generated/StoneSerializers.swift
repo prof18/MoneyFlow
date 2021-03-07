@@ -65,19 +65,19 @@ open class SerializeUtil {
     open class func dumpJSON(_ json: JSON) -> Data? {
         switch json {
         case .null:
-            return "null".data(using: String.Encoding.utf8, allowLossyConversion: false)
+            return "null".com.prof18.moneyflow.data(using: String.Encoding.utf8, allowLossyConversion: false)
         default:
             let obj: AnyObject = prepareJSONForSerialization(json)
             if JSONSerialization.isValidJSONObject(obj) {
-                return try! JSONSerialization.data(withJSONObject: obj, options: JSONSerialization.WritingOptions())
+                return try! JSONSerialization.com.prof18.moneyflow.data(withJSONObject: obj, options: JSONSerialization.WritingOptions())
             } else {
                 fatalError("Invalid JSON toplevel type")
             }
         }
     }
 
-    open class func parseJSON(_ data: Data) -> JSON {
-        let obj: AnyObject = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as AnyObject
+    open class func parseJSON(_ com.prof18.moneyflow.data: Data) -> JSON {
+        let obj: AnyObject = try! JSONSerialization.jsonObject(with: com.prof18.moneyflow.data, options: JSONSerialization.ReadingOptions.allowFragments) as AnyObject
         return objectToJSON(obj)
     }
 }

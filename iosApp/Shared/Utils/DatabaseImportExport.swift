@@ -35,7 +35,7 @@ class DatabaseImportExport {
             
         } catch let error {
             print(error.localizedDescription)
-            print("Something wrong during replace of the database")
+            print("Something wrong during replace of the com.prof18.moneyflow.database")
             DIContainer.instance.reloadDatabaseRef()
         }
     }

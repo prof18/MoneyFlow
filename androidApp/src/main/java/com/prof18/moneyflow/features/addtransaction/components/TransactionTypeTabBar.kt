@@ -24,7 +24,7 @@ import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
-import data.db.model.TransactionType
+import com.prof18.moneyflow.data.db.model.TransactionType
 
 @Composable
 fun TransactionTypeTabBar(

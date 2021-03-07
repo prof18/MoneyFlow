@@ -1,4 +1,4 @@
-import data.db.model.Currency;
+import com.prof18.moneyflow.data.db.model.Currency;
 
 CREATE TABLE AccountTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

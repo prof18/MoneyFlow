@@ -20,7 +20,7 @@ open class Files {
         /// If true, the results will include a flag for each file indicating whether or not  that file has any explicit
         /// members.
         public let includeHasExplicitSharedMembers: Bool
-        /// If set to a valid list of template IDs, propertyGroups in FileMetadata is set if there exists property data
+        /// If set to a valid list of template IDs, propertyGroups in FileMetadata is set if there exists property com.prof18.moneyflow.data
         /// associated with the file and each of the listed templates.
         public let includePropertyGroups: FileProperties.TemplateFilterBase?
         public init(path: String, includeMediaInfo: Bool = false, includeDeleted: Bool = false, includeHasExplicitSharedMembers: Bool = false, includePropertyGroups: FileProperties.TemplateFilterBase? = nil) {
@@ -1758,7 +1758,7 @@ open class Files {
         public let name: String
         /// The file size in bytes.
         public let size: UInt64
-        /// A hash based on the exported file content. This field can be used to verify data integrity. Similar to
+        /// A hash based on the exported file content. This field can be used to verify com.prof18.moneyflow.data integrity. Similar to
         /// content hash. For more information see our Content hash
         /// https://www.dropbox.com/developers/reference/content-hash page.
         public let exportHash: String?
@@ -1843,7 +1843,7 @@ open class Files {
         /// xlsx, xls, csv, and more.
         case spreadsheet
         /// ppt, pptx, key, and more.
-        case presentation
+        case com.prof18.moneyflow.presentation
         /// mp3, wav, mid, and more.
         case audio
         /// mov, wmv, mp4, and more.
@@ -1881,9 +1881,9 @@ open class Files {
                     var d = [String: JSON]()
                     d[".tag"] = .str("spreadsheet")
                     return .dictionary(d)
-                case .presentation:
+                case .com.prof18.moneyflow.presentation:
                     var d = [String: JSON]()
-                    d[".tag"] = .str("presentation")
+                    d[".tag"] = .str("com.prof18.moneyflow.presentation")
                     return .dictionary(d)
                 case .audio:
                     var d = [String: JSON]()
@@ -1924,8 +1924,8 @@ open class Files {
                             return FileCategory.pdf
                         case "spreadsheet":
                             return FileCategory.spreadsheet
-                        case "presentation":
-                            return FileCategory.presentation
+                        case "com.prof18.moneyflow.presentation":
+                            return FileCategory.com.prof18.moneyflow.presentation
                         case "audio":
                             return FileCategory.audio
                         case "video":
@@ -2111,7 +2111,7 @@ open class Files {
         /// from sharing_info in that this could be true  in the case where a file has explicit members but is not
         /// contained within  a shared folder.
         public let hasExplicitSharedMembers: Bool?
-        /// A hash of the file content. This field can be used to verify data integrity. For more information see our
+        /// A hash of the file content. This field can be used to verify com.prof18.moneyflow.data integrity. For more information see our
         /// Content hash https://www.dropbox.com/developers/reference/content-hash page.
         public let contentHash: String?
         /// If present, the metadata associated with the file's current lock.
@@ -2844,7 +2844,7 @@ open class Files {
     open class GetThumbnailBatchResultData: CustomStringConvertible {
         /// (no description)
         public let metadata: Files.FileMetadata
-        /// A string containing the base64-encoded thumbnail data for this file.
+        /// A string containing the base64-encoded thumbnail com.prof18.moneyflow.data for this file.
         public let thumbnail: String
         public init(metadata: Files.FileMetadata, thumbnail: String) {
             self.metadata = metadata
@@ -3027,7 +3027,7 @@ open class Files {
         /// this field is present, path in ListFolderArg will be relative to root of the shared link. Only non-recursive
         /// mode is supported for shared link.
         public let sharedLink: Files.SharedLink?
-        /// If set to a valid list of template IDs, propertyGroups in FileMetadata is set if there exists property data
+        /// If set to a valid list of template IDs, propertyGroups in FileMetadata is set if there exists property com.prof18.moneyflow.data
         /// associated with the file and each of the listed templates.
         public let includePropertyGroups: FileProperties.TemplateFilterBase?
         /// If true, include files that are not downloadable, i.e. Google Docs.
@@ -7336,7 +7336,7 @@ open class Files {
     open class UploadSessionCursor: CustomStringConvertible {
         /// The upload session ID (returned by uploadSessionStart).
         public let sessionId: String
-        /// The amount of data that has been uploaded so far. We use this to make sure upload data isn't lost or
+        /// The amount of com.prof18.moneyflow.data that has been uploaded so far. We use this to make sure upload com.prof18.moneyflow.data isn't lost or
         /// duplicated in the event of a network error.
         public let offset: UInt64
         public init(sessionId: String, offset: UInt64) {
@@ -7615,7 +7615,7 @@ open class Files {
         /// The session arguments are incorrect; the value explains the reason.
         case lookupFailed(Files.UploadSessionLookupError)
         /// Unable to save the uploaded contents to a file. Data has already been appended to the upload session. Please
-        /// retry with empty data body and updated offset.
+        /// retry with empty com.prof18.moneyflow.data body and updated offset.
         case path(Files.WriteError)
         /// The supplied property group is invalid. The file has uploaded without property groups.
         case propertiesError(FileProperties.InvalidPropertyGroupError)
@@ -7698,7 +7698,7 @@ open class Files {
         /// previous request was received and processed successfully but the client did not receive the response, e.g.
         /// due to a network error.
         case incorrectOffset(Files.UploadSessionOffsetError)
-        /// You are attempting to append data to an upload session that has already been closed (i.e. committed).
+        /// You are attempting to append com.prof18.moneyflow.data to an upload session that has already been closed (i.e. committed).
         case closed
         /// The session must be closed before calling upload_session/finish_batch.
         case notClosed
@@ -7771,7 +7771,7 @@ open class Files {
 
     /// The UploadSessionOffsetError struct
     open class UploadSessionOffsetError: CustomStringConvertible {
-        /// The offset up to which data has been collected.
+        /// The offset up to which com.prof18.moneyflow.data has been collected.
         public let correctOffset: UInt64
         public init(correctOffset: UInt64) {
             comparableValidator()(correctOffset)
@@ -7866,7 +7866,7 @@ open class Files {
     open class UploadWriteFailed: CustomStringConvertible {
         /// The reason why the file couldn't be saved.
         public let reason: Files.WriteError
-        /// The upload session ID; data has already been uploaded to the corresponding upload session and this ID may be
+        /// The upload session ID; com.prof18.moneyflow.data has already been uploaded to the corresponding upload session and this ID may be
         /// used to retry the commit with uploadSessionFinish.
         public let uploadSessionId: String
         public init(reason: Files.WriteError, uploadSessionId: String) {
@@ -8005,7 +8005,7 @@ open class Files {
         case conflict(Files.WriteConflictError)
         /// The user doesn't have permissions to write to the target location.
         case noWritePermission
-        /// The user doesn't have enough available space (bytes) to write more data.
+        /// The user doesn't have enough available space (bytes) to write more com.prof18.moneyflow.data.
         case insufficientSpace
         /// Dropbox will not save the file or folder because of its name.
         case disallowedName

@@ -38,7 +38,7 @@ public protocol AccessTokenRefreshing {
 /// Protocol for handling loading status during auth flow.
 /// Implementing class could show custom UX to reflect loading status.
 public protocol LoadingStatusDelegate: class {
-    // Called when auth flow is loading/waiting for some data. e.g. Waiting for a network request to finish.
+    // Called when auth flow is loading/waiting for some com.prof18.moneyflow.data. e.g. Waiting for a network request to finish.
     func showLoading()
     // Called when auth flow finishes loading/waiting. e.g. A network request finished.
     func dismissLoading()
@@ -59,7 +59,7 @@ open class DropboxOAuthManager: AccessTokenRefreshing {
     let redirectURL: URL
     let host: String
     var urls: Array<URL>
-    /// Session data for OAuth2 code flow with PKCE.
+    /// Session com.prof18.moneyflow.data for OAuth2 code flow with PKCE.
     /// nil if we are in the legacy token flow.
     var authSession: OAuthPKCESession?
     weak var sharedApplication: SharedApplication?
@@ -395,8 +395,8 @@ open class DropboxOAuthManager: AccessTokenRefreshing {
     open func storeAccessToken(_ token: DropboxAccessToken) -> Bool {
         do {
             let jsonEncoder = JSONEncoder()
-            let data = try jsonEncoder.encode(token)
-            return Keychain.set(token.uid, value: data)
+            let com.prof18.moneyflow.data = try jsonEncoder.encode(token)
+            return Keychain.set(token.uid, value: com.prof18.moneyflow.data)
         } catch {
             return false
         }
@@ -596,8 +596,8 @@ class Keychain {
     }
 
     class func set(_ key: String, value: String) -> Bool {
-        if let data = value.data(using: String.Encoding.utf8) {
-            return set(key, value: data)
+        if let com.prof18.moneyflow.data = value.com.prof18.moneyflow.data(using: String.Encoding.utf8) {
+            return set(key, value: com.prof18.moneyflow.data)
         } else {
             return false
         }
@@ -649,13 +649,13 @@ class Keychain {
     }
 
     class func get(_ key: String) -> DropboxAccessToken? {
-        if let data = getAsData(key) {
+        if let com.prof18.moneyflow.data = getAsData(key) {
             do {
                 let jsonDecoder = JSONDecoder()
-                return try jsonDecoder.decode(DropboxAccessToken.self, from: data)
+                return try jsonDecoder.decode(DropboxAccessToken.self, from: com.prof18.moneyflow.data)
             } catch {
                 // The token might be stored as a string by a previous version of SDK.
-                if let accessTokenString = String(data: data, encoding: .utf8) {
+                if let accessTokenString = String(com.prof18.moneyflow.data: com.prof18.moneyflow.data, encoding: .utf8) {
                     return DropboxAccessToken(accessToken: accessTokenString, uid: key)
                 } else {
                     return nil

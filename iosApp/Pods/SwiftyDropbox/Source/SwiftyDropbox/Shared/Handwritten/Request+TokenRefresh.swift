@@ -7,7 +7,7 @@ import Alamofire
 
 /// Completion handler for ApiRequest.
 enum RequestCompletionHandler {
-    /// Handler for data requests whose results are in memory.
+    /// Handler for com.prof18.moneyflow.data requests whose results are in memory.
     case dataCompletionHandler((DefaultDataResponse) -> Void)
     /// Handler for download request which stores download result into a file.
     case downloadFileCompletionHandler((DefaultDownloadResponse) -> Void)
@@ -142,7 +142,7 @@ class RequestWithTokenRefresh: ApiRequest {
         (responseQueue ?? DispatchQueue.main).async {
             switch completionHandler  {
             case .dataCompletionHandler(let handler):
-                let dataResponse = DefaultDataResponse(request: nil, response: nil, data: nil, error: error)
+                let dataResponse = DefaultDataResponse(request: nil, response: nil, com.prof18.moneyflow.data: nil, error: error)
                 handler(dataResponse)
             case .downloadFileCompletionHandler(let handler):
                 let downloadResponse = DefaultDownloadResponse(

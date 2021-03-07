@@ -39,7 +39,7 @@ open class PaperRoutes {
     ///
     /// - parameter parentFolderId: The Paper folder ID where the Paper document should be created. The API user has to
     /// have write access to this folder or error is thrown.
-    /// - parameter importFormat: The format of provided data.
+    /// - parameter importFormat: The format of provided com.prof18.moneyflow.data.
     /// - parameter input: The file to upload, as an Data object.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Paper.PaperDocCreateUpdateResult` object
@@ -48,7 +48,7 @@ open class PaperRoutes {
     @discardableResult open func docsCreate(importFormat: Paper.ImportFormat, parentFolderId: String? = nil, input: Data) -> UploadRequest<Paper.PaperDocCreateUpdateResultSerializer, Paper.PaperDocCreateErrorSerializer> {
         let route = Paper.docsCreate
         let serverArgs = Paper.PaperDocCreateArgs(importFormat: importFormat, parentFolderId: parentFolderId)
-        return client.request(route, serverArgs: serverArgs, input: .data(input))
+        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
     }
 
     /// Creates a new Paper doc with the provided content. Note that this endpoint will continue to work for content
@@ -59,7 +59,7 @@ open class PaperRoutes {
     ///
     /// - parameter parentFolderId: The Paper folder ID where the Paper document should be created. The API user has to
     /// have write access to this folder or error is thrown.
-    /// - parameter importFormat: The format of provided data.
+    /// - parameter importFormat: The format of provided com.prof18.moneyflow.data.
     /// - parameter input: The file to upload, as an URL object.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Paper.PaperDocCreateUpdateResult` object
@@ -79,7 +79,7 @@ open class PaperRoutes {
     ///
     /// - parameter parentFolderId: The Paper folder ID where the Paper document should be created. The API user has to
     /// have write access to this folder or error is thrown.
-    /// - parameter importFormat: The format of provided data.
+    /// - parameter importFormat: The format of provided com.prof18.moneyflow.data.
     /// - parameter input: The file to upload, as an InputStream object.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Paper.PaperDocCreateUpdateResult` object
@@ -286,7 +286,7 @@ open class PaperRoutes {
     /// - parameter docUpdatePolicy: The policy used for the current update call.
     /// - parameter revision: The latest doc revision. This value must match the head revision or an error code will be
     /// returned. This is to prevent colliding writes.
-    /// - parameter importFormat: The format of provided data.
+    /// - parameter importFormat: The format of provided com.prof18.moneyflow.data.
     /// - parameter input: The file to upload, as an Data object.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Paper.PaperDocCreateUpdateResult` object
@@ -295,7 +295,7 @@ open class PaperRoutes {
     @discardableResult open func docsUpdate(docId: String, docUpdatePolicy: Paper.PaperDocUpdatePolicy, revision: Int64, importFormat: Paper.ImportFormat, input: Data) -> UploadRequest<Paper.PaperDocCreateUpdateResultSerializer, Paper.PaperDocUpdateErrorSerializer> {
         let route = Paper.docsUpdate
         let serverArgs = Paper.PaperDocUpdateArgs(docId: docId, docUpdatePolicy: docUpdatePolicy, revision: revision, importFormat: importFormat)
-        return client.request(route, serverArgs: serverArgs, input: .data(input))
+        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
     }
 
     /// Updates an existing Paper doc with the provided content. Note that this endpoint will continue to work for
@@ -307,7 +307,7 @@ open class PaperRoutes {
     /// - parameter docUpdatePolicy: The policy used for the current update call.
     /// - parameter revision: The latest doc revision. This value must match the head revision or an error code will be
     /// returned. This is to prevent colliding writes.
-    /// - parameter importFormat: The format of provided data.
+    /// - parameter importFormat: The format of provided com.prof18.moneyflow.data.
     /// - parameter input: The file to upload, as an URL object.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Paper.PaperDocCreateUpdateResult` object
@@ -328,7 +328,7 @@ open class PaperRoutes {
     /// - parameter docUpdatePolicy: The policy used for the current update call.
     /// - parameter revision: The latest doc revision. This value must match the head revision or an error code will be
     /// returned. This is to prevent colliding writes.
-    /// - parameter importFormat: The format of provided data.
+    /// - parameter importFormat: The format of provided com.prof18.moneyflow.data.
     /// - parameter input: The file to upload, as an InputStream object.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Paper.PaperDocCreateUpdateResult` object

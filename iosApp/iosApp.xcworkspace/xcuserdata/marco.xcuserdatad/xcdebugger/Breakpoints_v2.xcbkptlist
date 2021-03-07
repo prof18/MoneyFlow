@@ -11,7 +11,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../shared/src/iosMain/kotlin/di/KoinIos.kt"
+            filePath = "../shared/src/iosMain/kotlin/com.prof18.moneyflow.di/KoinIos.kt"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"

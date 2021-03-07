@@ -5,7 +5,7 @@ import android.content.Context
 import com.prof18.moneyflow.features.settings.DropboxClient
 import com.prof18.moneyflow.features.settings.DropboxLoginViewModel
 import com.prof18.moneyflow.utils.DatabaseImportExport
-import di.initKoin
+import com.prof18.moneyflow.di.initKoin
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import timber.log.Timber

@@ -3,7 +3,7 @@ package com.prof18.moneyflow.utils
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.net.Uri
-import database.DatabaseHelper
+import com.prof18.moneyflow.database.DatabaseHelper
 import timber.log.Timber
 import java.io.File
 import java.io.FileInputStream
@@ -38,7 +38,7 @@ class DatabaseImportExport(
             }
 
         } catch (e: Exception) {
-            Timber.e("Error during the database export")
+            Timber.e("Error during the com.prof18.moneyflow.database export")
             e.printStackTrace()
             return null
         }
@@ -46,7 +46,7 @@ class DatabaseImportExport(
 
     fun exportToMemory(uri: Uri) {
 
-        //database path
+        //com.prof18.moneyflow.database path
         val inFileName: String = context.getDatabasePath(DatabaseHelper.DATABASE_NAME).toString()
         try {
             val dbFile = File(inFileName)
@@ -76,7 +76,7 @@ class DatabaseImportExport(
                 Timber.d("Backup Completed")
             }
         } catch (e: Exception) {
-            Timber.e("Error during the database export")
+            Timber.e("Error during the com.prof18.moneyflow.database export")
             e.printStackTrace()
         }
     }
@@ -102,7 +102,7 @@ class DatabaseImportExport(
                 Timber.d("Database import completed")
             }
         } catch (e: Exception) {
-            Timber.e("Unable to import database")
+            Timber.e("Unable to import com.prof18.moneyflow.database")
             e.printStackTrace()
         }
     }

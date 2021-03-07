@@ -1,7 +1,7 @@
 package com.prof18.moneyflow.features.categories.data
 
 import com.prof18.moneyflow.R
-import presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.CategoryIcon
 
 fun CategoryIcon.mapToAndroidIcon(): Int {
     return when (this) {

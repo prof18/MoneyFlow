@@ -224,12 +224,12 @@ public func download(
 ///
 /// On the latest release of all the Apple platforms (iOS 10, macOS 10.12, tvOS 10, watchOS 3), `resumeData` is broken
 /// on background URL session configurations. There's an underlying bug in the `resumeData` generation logic where the
-/// data is written incorrectly and will always fail to resume the download. For more information about the bug and
+/// com.prof18.moneyflow.data is written incorrectly and will always fail to resume the download. For more information about the bug and
 /// possible workarounds, please refer to the following Stack Overflow post:
 ///
 ///    - http://stackoverflow.com/a/39347461/1342462
 ///
-/// - parameter resumeData:  The resume data. This is an opaque data blob produced by `URLSessionDownloadTask`
+/// - parameter resumeData:  The resume com.prof18.moneyflow.data. This is an opaque com.prof18.moneyflow.data blob produced by `URLSessionDownloadTask`
 ///                          when a task is cancelled. See `URLSession -downloadTask(withResumeData:)` for additional
 ///                          information.
 /// - parameter destination: The closure used to determine the destination of the downloaded file. `nil` by default.
@@ -283,9 +283,9 @@ public func upload(_ fileURL: URL, with urlRequest: URLRequestConvertible) -> Up
 // MARK: Data
 
 /// Creates an `UploadRequest` using the default `SessionManager` from the specified `url`, `method` and `headers`
-/// for uploading the `data`.
+/// for uploading the `com.prof18.moneyflow.data`.
 ///
-/// - parameter data:    The data to upload.
+/// - parameter com.prof18.moneyflow.data:    The com.prof18.moneyflow.data to upload.
 /// - parameter url:     The URL.
 /// - parameter method:  The HTTP method. `.post` by default.
 /// - parameter headers: The HTTP headers. `nil` by default.
@@ -293,25 +293,25 @@ public func upload(_ fileURL: URL, with urlRequest: URLRequestConvertible) -> Up
 /// - returns: The created `UploadRequest`.
 @discardableResult
 public func upload(
-    _ data: Data,
+    _ com.prof18.moneyflow.data: Data,
     to url: URLConvertible,
     method: HTTPMethod = .post,
     headers: HTTPHeaders? = nil)
     -> UploadRequest
 {
-    return SessionManager.default.upload(data, to: url, method: method, headers: headers)
+    return SessionManager.default.upload(com.prof18.moneyflow.data, to: url, method: method, headers: headers)
 }
 
 /// Creates an `UploadRequest` using the default `SessionManager` from the specified `urlRequest` for
-/// uploading the `data`.
+/// uploading the `com.prof18.moneyflow.data`.
 ///
-/// - parameter data:       The data to upload.
+/// - parameter com.prof18.moneyflow.data:       The com.prof18.moneyflow.data to upload.
 /// - parameter urlRequest: The URL request.
 ///
 /// - returns: The created `UploadRequest`.
 @discardableResult
-public func upload(_ data: Data, with urlRequest: URLRequestConvertible) -> UploadRequest {
-    return SessionManager.default.upload(data, with: urlRequest)
+public func upload(_ com.prof18.moneyflow.data: Data, with urlRequest: URLRequestConvertible) -> UploadRequest {
+    return SessionManager.default.upload(com.prof18.moneyflow.data, with: urlRequest)
 }
 
 // MARK: InputStream
@@ -354,16 +354,16 @@ public func upload(_ stream: InputStream, with urlRequest: URLRequestConvertible
 /// `encodingCompletion` with new `UploadRequest` using the `url`, `method` and `headers`.
 ///
 /// It is important to understand the memory implications of uploading `MultipartFormData`. If the cummulative
-/// payload is small, encoding the data in-memory and directly uploading to a server is the by far the most
-/// efficient approach. However, if the payload is too large, encoding the data in-memory could cause your app to
+/// payload is small, encoding the com.prof18.moneyflow.data in-memory and directly uploading to a server is the by far the most
+/// efficient approach. However, if the payload is too large, encoding the com.prof18.moneyflow.data in-memory could cause your app to
 /// be terminated. Larger payloads must first be written to disk using input and output streams to keep the memory
-/// footprint low, then the data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
+/// footprint low, then the com.prof18.moneyflow.data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
 /// used for larger payloads such as video content.
 ///
 /// The `encodingMemoryThreshold` parameter allows Alamofire to automatically determine whether to encode in-memory
 /// or stream from disk. If the content length of the `MultipartFormData` is below the `encodingMemoryThreshold`,
-/// encoding takes place in-memory. If the content length exceeds the threshold, the data is streamed to disk
-/// during the encoding process. Then the result is uploaded as data or as a stream depending on which encoding
+/// encoding takes place in-memory. If the content length exceeds the threshold, the com.prof18.moneyflow.data is streamed to disk
+/// during the encoding process. Then the result is uploaded as com.prof18.moneyflow.data or as a stream depending on which encoding
 /// technique was used.
 ///
 /// - parameter multipartFormData:       The closure used to append body parts to the `MultipartFormData`.
@@ -395,16 +395,16 @@ public func upload(
 /// calls `encodingCompletion` with new `UploadRequest` using the `urlRequest`.
 ///
 /// It is important to understand the memory implications of uploading `MultipartFormData`. If the cummulative
-/// payload is small, encoding the data in-memory and directly uploading to a server is the by far the most
-/// efficient approach. However, if the payload is too large, encoding the data in-memory could cause your app to
+/// payload is small, encoding the com.prof18.moneyflow.data in-memory and directly uploading to a server is the by far the most
+/// efficient approach. However, if the payload is too large, encoding the com.prof18.moneyflow.data in-memory could cause your app to
 /// be terminated. Larger payloads must first be written to disk using input and output streams to keep the memory
-/// footprint low, then the data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
+/// footprint low, then the com.prof18.moneyflow.data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
 /// used for larger payloads such as video content.
 ///
 /// The `encodingMemoryThreshold` parameter allows Alamofire to automatically determine whether to encode in-memory
 /// or stream from disk. If the content length of the `MultipartFormData` is below the `encodingMemoryThreshold`,
-/// encoding takes place in-memory. If the content length exceeds the threshold, the data is streamed to disk
-/// during the encoding process. Then the result is uploaded as data or as a stream depending on which encoding
+/// encoding takes place in-memory. If the content length exceeds the threshold, the com.prof18.moneyflow.data is streamed to disk
+/// during the encoding process. Then the result is uploaded as com.prof18.moneyflow.data or as a stream depending on which encoding
 /// technique was used.
 ///
 /// - parameter multipartFormData:       The closure used to append body parts to the `MultipartFormData`.
