@@ -29,7 +29,7 @@ import Foundation
 /// - success: The request and all post processing operations were successful resulting in the serialization of the
 ///            provided associated value.
 ///
-/// - failure: The request encountered an error resulting in a failure. The associated values are the original com.prof18.moneyflow.data
+/// - failure: The request encountered an error resulting in a failure. The associated values are the original data
 ///            provided by the server as well as the error that caused the failure.
 public enum Result<Value> {
     case success(Value)

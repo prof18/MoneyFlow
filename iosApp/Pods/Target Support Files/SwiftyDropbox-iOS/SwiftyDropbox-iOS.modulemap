@@ -1,6 +1,0 @@
-framework module SwiftyDropbox {
-  umbrella header "SwiftyDropbox-iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

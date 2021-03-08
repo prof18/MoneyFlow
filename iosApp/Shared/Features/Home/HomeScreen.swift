@@ -54,12 +54,12 @@ struct HomeScreen: View {
                 }
             }
         }
-        .navigationTitle("Home")
+        .navigationTitle("My Wallet")
         .navigationBarItems(leading: refreshButton, trailing: Button(action: {
             self.showAddTransaction.toggle()
         }) {
             // TODO: localize
-            Text("Add Transaction")
+            Image(systemName: "plus")
             
         }
         )

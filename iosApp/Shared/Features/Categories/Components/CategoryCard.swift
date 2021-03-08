@@ -18,7 +18,7 @@ struct CategoryCard: View {
             
             Image(category.icon.iconName)
                 .padding(AppMargins.small)
-                .background(Color.darkGrey)
+                .background(Color.primary)
                 .cornerRadius(AppMargins.regular)
                 .padding(AppMargins.regular)
             

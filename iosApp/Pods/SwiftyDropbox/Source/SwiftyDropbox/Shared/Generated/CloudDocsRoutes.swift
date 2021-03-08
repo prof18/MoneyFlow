@@ -110,7 +110,7 @@ open class CloudDocsRoutes {
     @discardableResult open func updateContent(fileId: String, actorTokens: Array<String>, additionalContents: Array<CloudDocs.Content>? = nil, input: Data) -> UploadRequest<CloudDocs.UpdateContentResultSerializer, CloudDocs.UpdateContentErrorSerializer> {
         let route = CloudDocs.updateContent
         let serverArgs = CloudDocs.UpdateContentArg(fileId: fileId, actorTokens: actorTokens, additionalContents: additionalContents)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
     /// Update the contents of a Cloud Doc. This should be called for files with a max size of 150MB. This route

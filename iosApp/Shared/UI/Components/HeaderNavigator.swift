@@ -15,9 +15,6 @@ struct HeaderNavigator: View {
                 .font(AppFonts.h6)
             Spacer()
             HStack {
-                // TODO: localize
-                Text("See All")
-                    .font(AppFonts.subtitle1)
                 Image(systemName: "chevron.right")
             }
         }

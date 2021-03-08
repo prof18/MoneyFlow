@@ -10,7 +10,7 @@ import Foundation
 open class Account {
     /// The PhotoSourceArg union
     public enum PhotoSourceArg: CustomStringConvertible {
-        /// Image com.prof18.moneyflow.data in base64-encoded bytes.
+        /// Image data in base64-encoded bytes.
         case base64Data(String)
         /// An unspecified error.
         case other

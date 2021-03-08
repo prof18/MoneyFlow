@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0380F1DD645D82B1EF32EDE7 /* Pods_iosApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */; };
-		3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */; };
+		254828F013A7AF1B3C375B0B /* Pods_iosApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C4D3239DE664E78D2CD832 /* Pods_iosApp__iOS_.framework */; };
+		9DD367CED83E33C5980BD01D /* Pods_iosApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */; };
 		A930B87F253B800500CB92DF /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B87E253B800500CB92DF /* Koin.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A9471EBF257594E300C5D3AF /* AddTransactionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */; };
@@ -178,7 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3574C76EEE2C53C23AF707A8 /* Pods_iosApp__iOS_.framework in Frameworks */,
+				254828F013A7AF1B3C375B0B /* Pods_iosApp__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0380F1DD645D82B1EF32EDE7 /* Pods_iosApp__macOS_.framework in Frameworks */,
+				9DD367CED83E33C5980BD01D /* Pods_iosApp__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,7 +543,6 @@
 				A9F6750024F59E2700F486FE /* Sources */,
 				A9F6750124F59E2700F486FE /* Frameworks */,
 				A9F6750224F59E2700F486FE /* Resources */,
-				EF9770E70F7BB64E2459BB5C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -740,23 +739,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF9770E70F7BB64E2459BB5C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS)-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

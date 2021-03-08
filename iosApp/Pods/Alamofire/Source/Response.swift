@@ -24,7 +24,7 @@
 
 import Foundation
 
-/// Used to store all com.prof18.moneyflow.data associated with an non-serialized response of a com.prof18.moneyflow.data or upload request.
+/// Used to store all data associated with an non-serialized response of a data or upload request.
 public struct DefaultDataResponse {
     /// The URL request sent to the server.
     public let request: URLRequest?
@@ -32,8 +32,8 @@ public struct DefaultDataResponse {
     /// The server's response to the URL request.
     public let response: HTTPURLResponse?
 
-    /// The com.prof18.moneyflow.data returned by the server.
-    public let com.prof18.moneyflow.data: Data?
+    /// The data returned by the server.
+    public let data: Data?
 
     /// The error encountered while executing or validating the request.
     public let error: Error?
@@ -48,21 +48,21 @@ public struct DefaultDataResponse {
     /// - Parameters:
     ///   - request:  The URL request sent to the server.
     ///   - response: The server's response to the URL request.
-    ///   - com.prof18.moneyflow.data:     The com.prof18.moneyflow.data returned by the server.
+    ///   - data:     The data returned by the server.
     ///   - error:    The error encountered while executing or validating the request.
     ///   - timeline: The timeline of the complete lifecycle of the request. `Timeline()` by default.
     ///   - metrics:  The task metrics containing the request / response statistics. `nil` by default.
     public init(
         request: URLRequest?,
         response: HTTPURLResponse?,
-        com.prof18.moneyflow.data: Data?,
+        data: Data?,
         error: Error?,
         timeline: Timeline = Timeline(),
         metrics: AnyObject? = nil)
     {
         self.request = request
         self.response = response
-        self.com.prof18.moneyflow.data = com.prof18.moneyflow.data
+        self.data = data
         self.error = error
         self.timeline = timeline
     }
@@ -70,7 +70,7 @@ public struct DefaultDataResponse {
 
 // MARK: -
 
-/// Used to store all com.prof18.moneyflow.data associated with a serialized response of a com.prof18.moneyflow.data or upload request.
+/// Used to store all data associated with a serialized response of a data or upload request.
 public struct DataResponse<Value> {
     /// The URL request sent to the server.
     public let request: URLRequest?
@@ -78,8 +78,8 @@ public struct DataResponse<Value> {
     /// The server's response to the URL request.
     public let response: HTTPURLResponse?
 
-    /// The com.prof18.moneyflow.data returned by the server.
-    public let com.prof18.moneyflow.data: Data?
+    /// The data returned by the server.
+    public let data: Data?
 
     /// The result of response serialization.
     public let result: Result<Value>
@@ -99,7 +99,7 @@ public struct DataResponse<Value> {
     ///
     /// - parameter request:  The URL request sent to the server.
     /// - parameter response: The server's response to the URL request.
-    /// - parameter com.prof18.moneyflow.data:     The com.prof18.moneyflow.data returned by the server.
+    /// - parameter data:     The data returned by the server.
     /// - parameter result:   The result of response serialization.
     /// - parameter timeline: The timeline of the complete lifecycle of the `Request`. Defaults to `Timeline()`.
     ///
@@ -107,13 +107,13 @@ public struct DataResponse<Value> {
     public init(
         request: URLRequest?,
         response: HTTPURLResponse?,
-        com.prof18.moneyflow.data: Data?,
+        data: Data?,
         result: Result<Value>,
         timeline: Timeline = Timeline())
     {
         self.request = request
         self.response = response
-        self.com.prof18.moneyflow.data = com.prof18.moneyflow.data
+        self.data = data
         self.result = result
         self.timeline = timeline
     }
@@ -129,13 +129,13 @@ extension DataResponse: CustomStringConvertible, CustomDebugStringConvertible {
     }
 
     /// The debug textual representation used when written to an output stream, which includes the URL request, the URL
-    /// response, the server com.prof18.moneyflow.data, the response serialization result and the timeline.
+    /// response, the server data, the response serialization result and the timeline.
     public var debugDescription: String {
         var output: [String] = []
 
         output.append(request != nil ? "[Request]: \(request!.httpMethod ?? "GET") \(request!)" : "[Request]: nil")
         output.append(response != nil ? "[Response]: \(response!)" : "[Response]: nil")
-        output.append("[Data]: \(com.prof18.moneyflow.data?.count ?? 0) bytes")
+        output.append("[Data]: \(data?.count ?? 0) bytes")
         output.append("[Result]: \(result.debugDescription)")
         output.append("[Timeline]: \(timeline.debugDescription)")
 
@@ -162,7 +162,7 @@ extension DataResponse {
         var response = DataResponse<T>(
             request: request,
             response: self.response,
-            com.prof18.moneyflow.data: com.prof18.moneyflow.data,
+            data: data,
             result: result.map(transform),
             timeline: timeline
         )
@@ -190,7 +190,7 @@ extension DataResponse {
         var response = DataResponse<T>(
             request: request,
             response: self.response,
-            com.prof18.moneyflow.data: com.prof18.moneyflow.data,
+            data: data,
             result: result.flatMap(transform),
             timeline: timeline
         )
@@ -213,7 +213,7 @@ extension DataResponse {
         var response = DataResponse(
             request: request,
             response: self.response,
-            com.prof18.moneyflow.data: com.prof18.moneyflow.data,
+            data: data,
             result: result.mapError(transform),
             timeline: timeline
         )
@@ -239,7 +239,7 @@ extension DataResponse {
         var response = DataResponse(
             request: request,
             response: self.response,
-            com.prof18.moneyflow.data: com.prof18.moneyflow.data,
+            data: data,
             result: result.flatMapError(transform),
             timeline: timeline
         )
@@ -252,7 +252,7 @@ extension DataResponse {
 
 // MARK: -
 
-/// Used to store all com.prof18.moneyflow.data associated with an non-serialized response of a download request.
+/// Used to store all data associated with an non-serialized response of a download request.
 public struct DefaultDownloadResponse {
     /// The URL request sent to the server.
     public let request: URLRequest?
@@ -260,13 +260,13 @@ public struct DefaultDownloadResponse {
     /// The server's response to the URL request.
     public let response: HTTPURLResponse?
 
-    /// The temporary destination URL of the com.prof18.moneyflow.data returned from the server.
+    /// The temporary destination URL of the data returned from the server.
     public let temporaryURL: URL?
 
-    /// The final destination URL of the com.prof18.moneyflow.data returned from the server if it was moved.
+    /// The final destination URL of the data returned from the server if it was moved.
     public let destinationURL: URL?
 
-    /// The resume com.prof18.moneyflow.data generated if the request was cancelled.
+    /// The resume data generated if the request was cancelled.
     public let resumeData: Data?
 
     /// The error encountered while executing or validating the request.
@@ -282,9 +282,9 @@ public struct DefaultDownloadResponse {
     /// - Parameters:
     ///   - request:        The URL request sent to the server.
     ///   - response:       The server's response to the URL request.
-    ///   - temporaryURL:   The temporary destination URL of the com.prof18.moneyflow.data returned from the server.
-    ///   - destinationURL: The final destination URL of the com.prof18.moneyflow.data returned from the server if it was moved.
-    ///   - resumeData:     The resume com.prof18.moneyflow.data generated if the request was cancelled.
+    ///   - temporaryURL:   The temporary destination URL of the data returned from the server.
+    ///   - destinationURL: The final destination URL of the data returned from the server if it was moved.
+    ///   - resumeData:     The resume data generated if the request was cancelled.
     ///   - error:          The error encountered while executing or validating the request.
     ///   - timeline:       The timeline of the complete lifecycle of the request. `Timeline()` by default.
     ///   - metrics:        The task metrics containing the request / response statistics. `nil` by default.
@@ -310,7 +310,7 @@ public struct DefaultDownloadResponse {
 
 // MARK: -
 
-/// Used to store all com.prof18.moneyflow.data associated with a serialized response of a download request.
+/// Used to store all data associated with a serialized response of a download request.
 public struct DownloadResponse<Value> {
     /// The URL request sent to the server.
     public let request: URLRequest?
@@ -318,13 +318,13 @@ public struct DownloadResponse<Value> {
     /// The server's response to the URL request.
     public let response: HTTPURLResponse?
 
-    /// The temporary destination URL of the com.prof18.moneyflow.data returned from the server.
+    /// The temporary destination URL of the data returned from the server.
     public let temporaryURL: URL?
 
-    /// The final destination URL of the com.prof18.moneyflow.data returned from the server if it was moved.
+    /// The final destination URL of the data returned from the server if it was moved.
     public let destinationURL: URL?
 
-    /// The resume com.prof18.moneyflow.data generated if the request was cancelled.
+    /// The resume data generated if the request was cancelled.
     public let resumeData: Data?
 
     /// The result of response serialization.
@@ -345,9 +345,9 @@ public struct DownloadResponse<Value> {
     ///
     /// - parameter request:        The URL request sent to the server.
     /// - parameter response:       The server's response to the URL request.
-    /// - parameter temporaryURL:   The temporary destination URL of the com.prof18.moneyflow.data returned from the server.
-    /// - parameter destinationURL: The final destination URL of the com.prof18.moneyflow.data returned from the server if it was moved.
-    /// - parameter resumeData:     The resume com.prof18.moneyflow.data generated if the request was cancelled.
+    /// - parameter temporaryURL:   The temporary destination URL of the data returned from the server.
+    /// - parameter destinationURL: The final destination URL of the data returned from the server if it was moved.
+    /// - parameter resumeData:     The resume data generated if the request was cancelled.
     /// - parameter result:         The result of response serialization.
     /// - parameter timeline:       The timeline of the complete lifecycle of the `Request`. Defaults to `Timeline()`.
     ///
@@ -381,7 +381,7 @@ extension DownloadResponse: CustomStringConvertible, CustomDebugStringConvertibl
     }
 
     /// The debug textual representation used when written to an output stream, which includes the URL request, the URL
-    /// response, the temporary and destination URLs, the resume com.prof18.moneyflow.data, the response serialization result and the
+    /// response, the temporary and destination URLs, the resume data, the response serialization result and the
     /// timeline.
     public var debugDescription: String {
         var output: [String] = []

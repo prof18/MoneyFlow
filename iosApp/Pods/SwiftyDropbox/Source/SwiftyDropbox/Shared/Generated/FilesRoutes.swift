@@ -40,7 +40,7 @@ open class FilesRoutes {
     @discardableResult open func alphaUpload(path: String, mode: Files.WriteMode = .add, autorename: Bool = false, clientModified: Date? = nil, mute: Bool = false, propertyGroups: Array<FileProperties.PropertyGroup>? = nil, strictConflict: Bool = false, input: Data) -> UploadRequest<Files.FileMetadataSerializer, Files.UploadErrorWithPropertiesSerializer> {
         let route = Files.alphaUpload
         let serverArgs = Files.CommitInfoWithProperties(path: path, mode: mode, autorename: autorename, clientModified: clientModified, mute: mute, propertyGroups: propertyGroups, strictConflict: strictConflict)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
     /// Create a new file with the contents provided in the request. Note that this endpoint is part of the properties
@@ -436,7 +436,7 @@ open class FilesRoutes {
     /// - parameter includeHasExplicitSharedMembers: If true, the results will include a flag for each file indicating
     /// whether or not  that file has any explicit members.
     /// - parameter includePropertyGroups: If set to a valid list of template IDs, propertyGroups in FileMetadata is set
-    /// if there exists property com.prof18.moneyflow.data associated with the file and each of the listed templates.
+    /// if there exists property data associated with the file and each of the listed templates.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Files.Metadata` object on success or a
     /// `Files.GetMetadataError` object on failure.
@@ -498,7 +498,7 @@ open class FilesRoutes {
     }
 
     /// Get a one-time use temporary upload link to upload a file to a Dropbox location.  This endpoint acts as a
-    /// delayed upload. The returned temporary upload link may be used to make a POST request with the com.prof18.moneyflow.data to be
+    /// delayed upload. The returned temporary upload link may be used to make a POST request with the data to be
     /// uploaded. The upload will then be perfomed with the CommitInfo previously provided to getTemporaryUploadLink but
     /// evaluated only upon consumption. Hence, errors stemming from invalid CommitInfo with respect to the state of the
     /// user's Dropbox will only be communicated at consumption time. Additionally, these errors are surfaced as generic
@@ -507,8 +507,8 @@ open class FilesRoutes {
     /// specific upload path at any given time.  The POST request on the temporary upload link must have its
     /// Content-Type set to "application/octet-stream".  Example temporary upload link consumption request:  curl -X
     /// POST https://content.dropboxapi.com/apitul/1/bNi2uIYF51cVBND --header "Content-Type: application/octet-stream"
-    /// --com.prof18.moneyflow.data-binary @local_file.txt  A successful temporary upload link consumption request returns the content hash
-    /// of the uploaded com.prof18.moneyflow.data in JSON format.  Example succesful temporary upload link consumption response:
+    /// --data-binary @local_file.txt  A successful temporary upload link consumption request returns the content hash
+    /// of the uploaded data in JSON format.  Example succesful temporary upload link consumption response:
     /// {"content-hash": "599d71033d700ac892a0e48fa61b125d2f5994"}  An unsuccessful temporary upload link consumption
     /// request returns any of the following status codes:  HTTP 400 Bad Request: Content-Type is not one of
     /// application/octet-stream and text/plain or request is invalid. HTTP 409 Conflict: The temporary upload link does
@@ -653,7 +653,7 @@ open class FilesRoutes {
     /// must be provided. If this field is present, path in ListFolderArg will be relative to root of the shared link.
     /// Only non-recursive mode is supported for shared link.
     /// - parameter includePropertyGroups: If set to a valid list of template IDs, propertyGroups in FileMetadata is set
-    /// if there exists property com.prof18.moneyflow.data associated with the file and each of the listed templates.
+    /// if there exists property data associated with the file and each of the listed templates.
     /// - parameter includeNonDownloadableFiles: If true, include files that are not downloadable, i.e. Google Docs.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Files.ListFolderResult` object on success
@@ -698,7 +698,7 @@ open class FilesRoutes {
     /// must be provided. If this field is present, path in ListFolderArg will be relative to root of the shared link.
     /// Only non-recursive mode is supported for shared link.
     /// - parameter includePropertyGroups: If set to a valid list of template IDs, propertyGroups in FileMetadata is set
-    /// if there exists property com.prof18.moneyflow.data associated with the file and each of the listed templates.
+    /// if there exists property data associated with the file and each of the listed templates.
     /// - parameter includeNonDownloadableFiles: If true, include files that are not downloadable, i.e. Google Docs.
     ///
     ///  - returns: Through the response callback, the caller will receive a `Files.ListFolderGetLatestCursorResult`
@@ -974,7 +974,7 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs)
     }
 
-    /// Save the com.prof18.moneyflow.data from a specified URL into a file in user's Dropbox. Note that the transfer from the URL must
+    /// Save the data from a specified URL into a file in user's Dropbox. Note that the transfer from the URL must
     /// complete within 5 minutes, or the operation will time out and the job will fail. If the given path already
     /// exists, the file will be renamed to avoid the conflict (e.g. myfile (1).txt).
     ///
@@ -1072,10 +1072,10 @@ open class FilesRoutes {
     }
 
     /// Create a new file with the contents provided in the request. Do not use this to upload a file larger than 150
-    /// MB. Instead, create an upload session with uploadSessionStart. Calls to this endpoint will count as com.prof18.moneyflow.data
-    /// transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per
+    /// MB. Instead, create an upload session with uploadSessionStart. Calls to this endpoint will count as data
+    /// transport calls for any Dropbox Business teams with a limit on the number of data transport calls allowed per
     /// month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter path: Path in the user's Dropbox to save the file.
     /// - parameter mode: Selects what to do if the file already exists.
@@ -1099,14 +1099,14 @@ open class FilesRoutes {
     @discardableResult open func upload(path: String, mode: Files.WriteMode = .add, autorename: Bool = false, clientModified: Date? = nil, mute: Bool = false, propertyGroups: Array<FileProperties.PropertyGroup>? = nil, strictConflict: Bool = false, input: Data) -> UploadRequest<Files.FileMetadataSerializer, Files.UploadErrorSerializer> {
         let route = Files.upload
         let serverArgs = Files.CommitInfo(path: path, mode: mode, autorename: autorename, clientModified: clientModified, mute: mute, propertyGroups: propertyGroups, strictConflict: strictConflict)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
     /// Create a new file with the contents provided in the request. Do not use this to upload a file larger than 150
-    /// MB. Instead, create an upload session with uploadSessionStart. Calls to this endpoint will count as com.prof18.moneyflow.data
-    /// transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per
+    /// MB. Instead, create an upload session with uploadSessionStart. Calls to this endpoint will count as data
+    /// transport calls for any Dropbox Business teams with a limit on the number of data transport calls allowed per
     /// month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter path: Path in the user's Dropbox to save the file.
     /// - parameter mode: Selects what to do if the file already exists.
@@ -1134,10 +1134,10 @@ open class FilesRoutes {
     }
 
     /// Create a new file with the contents provided in the request. Do not use this to upload a file larger than 150
-    /// MB. Instead, create an upload session with uploadSessionStart. Calls to this endpoint will count as com.prof18.moneyflow.data
-    /// transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per
+    /// MB. Instead, create an upload session with uploadSessionStart. Calls to this endpoint will count as data
+    /// transport calls for any Dropbox Business teams with a limit on the number of data transport calls allowed per
     /// month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter path: Path in the user's Dropbox to save the file.
     /// - parameter mode: Selects what to do if the file already exists.
@@ -1164,11 +1164,11 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs, input: .stream(input))
     }
 
-    /// Append more com.prof18.moneyflow.data to an upload session. When the parameter close is set, this call will close the session. A
+    /// Append more data to an upload session. When the parameter close is set, this call will close the session. A
     /// single request should not upload more than 150 MB. The maximum size of a file one can upload to an upload
-    /// session is 350 GB. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with
-    /// a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more information, see the Data transport
-    /// limit page https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// session is 350 GB. Calls to this endpoint will count as data transport calls for any Dropbox Business teams with
+    /// a limit on the number of data transport calls allowed per month. For more information, see the Data transport
+    /// limit page https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter cursor: Contains the upload session ID and the offset.
     /// - parameter close: If true, the current session will be closed, at which point you won't be able to call
@@ -1180,14 +1180,14 @@ open class FilesRoutes {
     @discardableResult open func uploadSessionAppendV2(cursor: Files.UploadSessionCursor, close: Bool = false, input: Data) -> UploadRequest<VoidSerializer, Files.UploadSessionLookupErrorSerializer> {
         let route = Files.uploadSessionAppendV2
         let serverArgs = Files.UploadSessionAppendArg(cursor: cursor, close: close)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
-    /// Append more com.prof18.moneyflow.data to an upload session. When the parameter close is set, this call will close the session. A
+    /// Append more data to an upload session. When the parameter close is set, this call will close the session. A
     /// single request should not upload more than 150 MB. The maximum size of a file one can upload to an upload
-    /// session is 350 GB. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with
-    /// a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more information, see the Data transport
-    /// limit page https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// session is 350 GB. Calls to this endpoint will count as data transport calls for any Dropbox Business teams with
+    /// a limit on the number of data transport calls allowed per month. For more information, see the Data transport
+    /// limit page https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter cursor: Contains the upload session ID and the offset.
     /// - parameter close: If true, the current session will be closed, at which point you won't be able to call
@@ -1202,11 +1202,11 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs, input: .file(input))
     }
 
-    /// Append more com.prof18.moneyflow.data to an upload session. When the parameter close is set, this call will close the session. A
+    /// Append more data to an upload session. When the parameter close is set, this call will close the session. A
     /// single request should not upload more than 150 MB. The maximum size of a file one can upload to an upload
-    /// session is 350 GB. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with
-    /// a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more information, see the Data transport
-    /// limit page https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// session is 350 GB. Calls to this endpoint will count as data transport calls for any Dropbox Business teams with
+    /// a limit on the number of data transport calls allowed per month. For more information, see the Data transport
+    /// limit page https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter cursor: Contains the upload session ID and the offset.
     /// - parameter close: If true, the current session will be closed, at which point you won't be able to call
@@ -1221,14 +1221,14 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs, input: .stream(input))
     }
 
-    /// Append more com.prof18.moneyflow.data to an upload session. A single request should not upload more than 150 MB. The maximum size of
-    /// a file one can upload to an upload session is 350 GB. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls
-    /// for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more
+    /// Append more data to an upload session. A single request should not upload more than 150 MB. The maximum size of
+    /// a file one can upload to an upload session is 350 GB. Calls to this endpoint will count as data transport calls
+    /// for any Dropbox Business teams with a limit on the number of data transport calls allowed per month. For more
     /// information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter sessionId: The upload session ID (returned by uploadSessionStart).
-    /// - parameter offset: The amount of com.prof18.moneyflow.data that has been uploaded so far. We use this to make sure upload com.prof18.moneyflow.data isn't
+    /// - parameter offset: The amount of data that has been uploaded so far. We use this to make sure upload data isn't
     /// lost or duplicated in the event of a network error.
     /// - parameter input: The file to upload, as an Data object.
     ///
@@ -1238,17 +1238,17 @@ open class FilesRoutes {
     @discardableResult open func uploadSessionAppend(sessionId: String, offset: UInt64, input: Data) -> UploadRequest<VoidSerializer, Files.UploadSessionLookupErrorSerializer> {
         let route = Files.uploadSessionAppend
         let serverArgs = Files.UploadSessionCursor(sessionId: sessionId, offset: offset)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
-    /// Append more com.prof18.moneyflow.data to an upload session. A single request should not upload more than 150 MB. The maximum size of
-    /// a file one can upload to an upload session is 350 GB. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls
-    /// for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more
+    /// Append more data to an upload session. A single request should not upload more than 150 MB. The maximum size of
+    /// a file one can upload to an upload session is 350 GB. Calls to this endpoint will count as data transport calls
+    /// for any Dropbox Business teams with a limit on the number of data transport calls allowed per month. For more
     /// information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter sessionId: The upload session ID (returned by uploadSessionStart).
-    /// - parameter offset: The amount of com.prof18.moneyflow.data that has been uploaded so far. We use this to make sure upload com.prof18.moneyflow.data isn't
+    /// - parameter offset: The amount of data that has been uploaded so far. We use this to make sure upload data isn't
     /// lost or duplicated in the event of a network error.
     /// - parameter input: The file to upload, as an URL object.
     ///
@@ -1261,14 +1261,14 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs, input: .file(input))
     }
 
-    /// Append more com.prof18.moneyflow.data to an upload session. A single request should not upload more than 150 MB. The maximum size of
-    /// a file one can upload to an upload session is 350 GB. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls
-    /// for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more
+    /// Append more data to an upload session. A single request should not upload more than 150 MB. The maximum size of
+    /// a file one can upload to an upload session is 350 GB. Calls to this endpoint will count as data transport calls
+    /// for any Dropbox Business teams with a limit on the number of data transport calls allowed per month. For more
     /// information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter sessionId: The upload session ID (returned by uploadSessionStart).
-    /// - parameter offset: The amount of com.prof18.moneyflow.data that has been uploaded so far. We use this to make sure upload com.prof18.moneyflow.data isn't
+    /// - parameter offset: The amount of data that has been uploaded so far. We use this to make sure upload data isn't
     /// lost or duplicated in the event of a network error.
     /// - parameter input: The file to upload, as an InputStream object.
     ///
@@ -1281,11 +1281,11 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs, input: .stream(input))
     }
 
-    /// Finish an upload session and save the uploaded com.prof18.moneyflow.data to the given file path. A single request should not upload
+    /// Finish an upload session and save the uploaded data to the given file path. A single request should not upload
     /// more than 150 MB. The maximum size of a file one can upload to an upload session is 350 GB. Calls to this
-    /// endpoint will count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data
+    /// endpoint will count as data transport calls for any Dropbox Business teams with a limit on the number of data
     /// transport calls allowed per month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter cursor: Contains the upload session ID and the offset.
     /// - parameter commit: Contains the path and other optional modifiers for the commit.
@@ -1296,14 +1296,14 @@ open class FilesRoutes {
     @discardableResult open func uploadSessionFinish(cursor: Files.UploadSessionCursor, commit: Files.CommitInfo, input: Data) -> UploadRequest<Files.FileMetadataSerializer, Files.UploadSessionFinishErrorSerializer> {
         let route = Files.uploadSessionFinish
         let serverArgs = Files.UploadSessionFinishArg(cursor: cursor, commit: commit)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
-    /// Finish an upload session and save the uploaded com.prof18.moneyflow.data to the given file path. A single request should not upload
+    /// Finish an upload session and save the uploaded data to the given file path. A single request should not upload
     /// more than 150 MB. The maximum size of a file one can upload to an upload session is 350 GB. Calls to this
-    /// endpoint will count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data
+    /// endpoint will count as data transport calls for any Dropbox Business teams with a limit on the number of data
     /// transport calls allowed per month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter cursor: Contains the upload session ID and the offset.
     /// - parameter commit: Contains the path and other optional modifiers for the commit.
@@ -1317,11 +1317,11 @@ open class FilesRoutes {
         return client.request(route, serverArgs: serverArgs, input: .file(input))
     }
 
-    /// Finish an upload session and save the uploaded com.prof18.moneyflow.data to the given file path. A single request should not upload
+    /// Finish an upload session and save the uploaded data to the given file path. A single request should not upload
     /// more than 150 MB. The maximum size of a file one can upload to an upload session is 350 GB. Calls to this
-    /// endpoint will count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data
+    /// endpoint will count as data transport calls for any Dropbox Business teams with a limit on the number of data
     /// transport calls allowed per month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter cursor: Contains the upload session ID and the offset.
     /// - parameter commit: Contains the path and other optional modifiers for the commit.
@@ -1344,9 +1344,9 @@ open class FilesRoutes {
     /// immediately and do the async commit job in background. Use uploadSessionFinishBatchCheck to check the job
     /// status. For the same account, this route should be executed serially. That means you should not start the next
     /// job before current job finishes. We allow up to 1000 entries in a single request. Calls to this endpoint will
-    /// count as com.prof18.moneyflow.data transport calls for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls
+    /// count as data transport calls for any Dropbox Business teams with a limit on the number of data transport calls
     /// allowed per month. For more information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter entries: Commit information for each file in the batch.
     ///
@@ -1373,15 +1373,15 @@ open class FilesRoutes {
     }
 
     /// Upload sessions allow you to upload a single file in one or more requests, for example where the size of the
-    /// file is greater than 150 MB.  This call starts a new upload session with the given com.prof18.moneyflow.data. You can then use
-    /// uploadSessionAppendV2 to add more com.prof18.moneyflow.data and uploadSessionFinish to save all the com.prof18.moneyflow.data to a file in Dropbox. A
+    /// file is greater than 150 MB.  This call starts a new upload session with the given data. You can then use
+    /// uploadSessionAppendV2 to add more data and uploadSessionFinish to save all the data to a file in Dropbox. A
     /// single request should not upload more than 150 MB. The maximum size of a file one can upload to an upload
     /// session is 350 GB. An upload session can be used for a maximum of 48 hours. Attempting to use an sessionId in
     /// UploadSessionStartResult with uploadSessionAppendV2 or uploadSessionFinish more than 48 hours after its creation
-    /// will return a notFound in UploadSessionLookupError. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls
-    /// for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more
+    /// will return a notFound in UploadSessionLookupError. Calls to this endpoint will count as data transport calls
+    /// for any Dropbox Business teams with a limit on the number of data transport calls allowed per month. For more
     /// information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter close: If true, the current session will be closed, at which point you won't be able to call
     /// uploadSessionAppendV2 anymore with the current session.
@@ -1392,19 +1392,19 @@ open class FilesRoutes {
     @discardableResult open func uploadSessionStart(close: Bool = false, input: Data) -> UploadRequest<Files.UploadSessionStartResultSerializer, VoidSerializer> {
         let route = Files.uploadSessionStart
         let serverArgs = Files.UploadSessionStartArg(close: close)
-        return client.request(route, serverArgs: serverArgs, input: .com.prof18.moneyflow.data(input))
+        return client.request(route, serverArgs: serverArgs, input: .data(input))
     }
 
     /// Upload sessions allow you to upload a single file in one or more requests, for example where the size of the
-    /// file is greater than 150 MB.  This call starts a new upload session with the given com.prof18.moneyflow.data. You can then use
-    /// uploadSessionAppendV2 to add more com.prof18.moneyflow.data and uploadSessionFinish to save all the com.prof18.moneyflow.data to a file in Dropbox. A
+    /// file is greater than 150 MB.  This call starts a new upload session with the given data. You can then use
+    /// uploadSessionAppendV2 to add more data and uploadSessionFinish to save all the data to a file in Dropbox. A
     /// single request should not upload more than 150 MB. The maximum size of a file one can upload to an upload
     /// session is 350 GB. An upload session can be used for a maximum of 48 hours. Attempting to use an sessionId in
     /// UploadSessionStartResult with uploadSessionAppendV2 or uploadSessionFinish more than 48 hours after its creation
-    /// will return a notFound in UploadSessionLookupError. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls
-    /// for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more
+    /// will return a notFound in UploadSessionLookupError. Calls to this endpoint will count as data transport calls
+    /// for any Dropbox Business teams with a limit on the number of data transport calls allowed per month. For more
     /// information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter close: If true, the current session will be closed, at which point you won't be able to call
     /// uploadSessionAppendV2 anymore with the current session.
@@ -1419,15 +1419,15 @@ open class FilesRoutes {
     }
 
     /// Upload sessions allow you to upload a single file in one or more requests, for example where the size of the
-    /// file is greater than 150 MB.  This call starts a new upload session with the given com.prof18.moneyflow.data. You can then use
-    /// uploadSessionAppendV2 to add more com.prof18.moneyflow.data and uploadSessionFinish to save all the com.prof18.moneyflow.data to a file in Dropbox. A
+    /// file is greater than 150 MB.  This call starts a new upload session with the given data. You can then use
+    /// uploadSessionAppendV2 to add more data and uploadSessionFinish to save all the data to a file in Dropbox. A
     /// single request should not upload more than 150 MB. The maximum size of a file one can upload to an upload
     /// session is 350 GB. An upload session can be used for a maximum of 48 hours. Attempting to use an sessionId in
     /// UploadSessionStartResult with uploadSessionAppendV2 or uploadSessionFinish more than 48 hours after its creation
-    /// will return a notFound in UploadSessionLookupError. Calls to this endpoint will count as com.prof18.moneyflow.data transport calls
-    /// for any Dropbox Business teams with a limit on the number of com.prof18.moneyflow.data transport calls allowed per month. For more
+    /// will return a notFound in UploadSessionLookupError. Calls to this endpoint will count as data transport calls
+    /// for any Dropbox Business teams with a limit on the number of data transport calls allowed per month. For more
     /// information, see the Data transport limit page
-    /// https://www.dropbox.com/developers/reference/com.prof18.moneyflow.data-transport-limit.
+    /// https://www.dropbox.com/developers/reference/data-transport-limit.
     ///
     /// - parameter close: If true, the current session will be closed, at which point you won't be able to call
     /// uploadSessionAppendV2 anymore with the current session.

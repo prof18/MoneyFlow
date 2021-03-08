@@ -165,7 +165,7 @@ open class Paper {
         case dailyLimitReached
         /// Owner's permissions cannot be changed.
         case userIsOwner
-        /// User com.prof18.moneyflow.data could not be retrieved. Clients should retry.
+        /// User data could not be retrieved. Clients should retry.
         case failedUserDataRetrieval
         /// This user already has the correct permission to the Paper doc.
         case permissionAlreadyGranted
@@ -670,14 +670,14 @@ open class Paper {
         }
     }
 
-    /// The import format of the incoming com.prof18.moneyflow.data.
+    /// The import format of the incoming data.
     public enum ImportFormat: CustomStringConvertible {
-        /// The provided com.prof18.moneyflow.data is interpreted as standard HTML.
+        /// The provided data is interpreted as standard HTML.
         case html
-        /// The provided com.prof18.moneyflow.data is interpreted as markdown. The first line of the provided document will be used as the
+        /// The provided data is interpreted as markdown. The first line of the provided document will be used as the
         /// doc title.
         case markdown
-        /// The provided com.prof18.moneyflow.data is interpreted as plain text. The first line of the provided document will be used as the
+        /// The provided data is interpreted as plain text. The first line of the provided document will be used as the
         /// doc title.
         case plainText
         /// An unspecified error.
@@ -1472,7 +1472,7 @@ open class Paper {
         /// The Paper folder ID where the Paper document should be created. The API user has to have write access to
         /// this folder or error is thrown.
         public let parentFolderId: String?
-        /// The format of provided com.prof18.moneyflow.data.
+        /// The format of provided data.
         public let importFormat: Paper.ImportFormat
         public init(importFormat: Paper.ImportFormat, parentFolderId: String? = nil) {
             nullableValidator(stringValidator())(parentFolderId)
@@ -1519,7 +1519,7 @@ open class Paper {
         /// The newly created Paper doc would be too large. Please split the content into multiple docs.
         case docLengthExceeded
         /// The imported document contains an image that is too large. The current limit is 1MB. This only applies to
-        /// HTML with com.prof18.moneyflow.data URI.
+        /// HTML with data URI.
         case imageSizeExceeded
 
         public var description: String {
@@ -1798,7 +1798,7 @@ open class Paper {
         /// The latest doc revision. This value must match the head revision or an error code will be returned. This is
         /// to prevent colliding writes.
         public let revision: Int64
-        /// The format of provided com.prof18.moneyflow.data.
+        /// The format of provided data.
         public let importFormat: Paper.ImportFormat
         public init(docId: String, docUpdatePolicy: Paper.PaperDocUpdatePolicy, revision: Int64, importFormat: Paper.ImportFormat) {
             self.docUpdatePolicy = docUpdatePolicy
@@ -1853,7 +1853,7 @@ open class Paper {
         /// The newly created Paper doc would be too large, split the content into multiple docs.
         case docLengthExceeded
         /// The imported document contains an image that is too large. The current limit is 1MB. This only applies to
-        /// HTML with com.prof18.moneyflow.data URI.
+        /// HTML with data URI.
         case imageSizeExceeded
         /// This operation is not allowed on archived Paper docs.
         case docArchived

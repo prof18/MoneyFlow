@@ -68,7 +68,7 @@ public typealias HTTPHeaders = [String: String]
 
 // MARK: -
 
-/// Responsible for sending a request and receiving the response and associated com.prof18.moneyflow.data from the server, as well as
+/// Responsible for sending a request and receiving the response and associated data from the server, as well as
 /// managing its underlying `URLSessionTask`.
 open class Request {
 
@@ -78,7 +78,7 @@ open class Request {
     public typealias ProgressHandler = (Progress) -> Void
 
     enum RequestTask {
-        case com.prof18.moneyflow.data(TaskConvertible?, URLSessionTask?)
+        case data(TaskConvertible?, URLSessionTask?)
         case download(TaskConvertible?, URLSessionTask?)
         case upload(TaskConvertible?, URLSessionTask?)
         case stream(TaskConvertible?, URLSessionTask?)
@@ -129,7 +129,7 @@ open class Request {
         self.session = session
 
         switch requestTask {
-        case .com.prof18.moneyflow.data(let originalTask, let task):
+        case .data(let originalTask, let task):
             taskDelegate = DataTaskDelegate(task: task)
             self.originalTask = originalTask
         case .download(let originalTask, let task):
@@ -185,9 +185,9 @@ open class Request {
     ///
     /// - returns: A tuple with Authorization header and credential value if encoding succeeds, `nil` otherwise.
     open class func authorizationHeader(user: String, password: String) -> (key: String, value: String)? {
-        guard let com.prof18.moneyflow.data = "\(user):\(password)".com.prof18.moneyflow.data(using: .utf8) else { return nil }
+        guard let data = "\(user):\(password)".data(using: .utf8) else { return nil }
 
-        let credential = com.prof18.moneyflow.data.base64EncodedString(options: [])
+        let credential = data.base64EncodedString(options: [])
 
         return (key: "Authorization", value: "Basic \(credential)")
     }
@@ -332,7 +332,7 @@ extension Request: CustomDebugStringConvertible {
             return "-H \"\($0.key): \(escapedValue)\""
         }
 
-        if let httpBodyData = request.httpBody, let httpBody = String(com.prof18.moneyflow.data: httpBodyData, encoding: .utf8) {
+        if let httpBodyData = request.httpBody, let httpBody = String(data: httpBodyData, encoding: .utf8) {
             var escapedBody = httpBody.replacingOccurrences(of: "\\\"", with: "\\\\\"")
             escapedBody = escapedBody.replacingOccurrences(of: "\"", with: "\\\"")
 
@@ -375,18 +375,18 @@ open class DataRequest: Request {
         return nil
     }
 
-    /// The progress of fetching the response com.prof18.moneyflow.data from the server for the request.
+    /// The progress of fetching the response data from the server for the request.
     open var progress: Progress { return dataDelegate.progress }
 
     var dataDelegate: DataTaskDelegate { return delegate as! DataTaskDelegate }
 
     // MARK: Stream
 
-    /// Sets a closure to be called periodically during the lifecycle of the request as com.prof18.moneyflow.data is read from the server.
+    /// Sets a closure to be called periodically during the lifecycle of the request as data is read from the server.
     ///
-    /// This closure returns the bytes most recently received from the server, not including com.prof18.moneyflow.data from previous calls.
-    /// If this closure is set, com.prof18.moneyflow.data will only be available within this closure, and will not be saved elsewhere. It is
-    /// also important to note that the server com.prof18.moneyflow.data in any `Response` object will be `nil`.
+    /// This closure returns the bytes most recently received from the server, not including data from previous calls.
+    /// If this closure is set, data will only be available within this closure, and will not be saved elsewhere. It is
+    /// also important to note that the server data in any `Response` object will be `nil`.
     ///
     /// - parameter closure: The code to be executed periodically during the lifecycle of the request.
     ///
@@ -399,10 +399,10 @@ open class DataRequest: Request {
 
     // MARK: Progress
 
-    /// Sets a closure to be called periodically during the lifecycle of the `Request` as com.prof18.moneyflow.data is read from the server.
+    /// Sets a closure to be called periodically during the lifecycle of the `Request` as data is read from the server.
     ///
     /// - parameter queue:   The dispatch queue to execute the closure on.
-    /// - parameter closure: The code to be executed periodically as com.prof18.moneyflow.data is read from the server.
+    /// - parameter closure: The code to be executed periodically as data is read from the server.
     ///
     /// - returns: The request.
     @discardableResult
@@ -486,10 +486,10 @@ open class DownloadRequest: Request {
         return nil
     }
 
-    /// The resume com.prof18.moneyflow.data of the underlying download task if available after a failure.
+    /// The resume data of the underlying download task if available after a failure.
     open var resumeData: Data? { return downloadDelegate.resumeData }
 
-    /// The progress of downloading the response com.prof18.moneyflow.data from the server for the request.
+    /// The progress of downloading the response data from the server for the request.
     open var progress: Progress { return downloadDelegate.progress }
 
     var downloadDelegate: DownloadTaskDelegate { return delegate as! DownloadTaskDelegate }
@@ -509,10 +509,10 @@ open class DownloadRequest: Request {
 
     // MARK: Progress
 
-    /// Sets a closure to be called periodically during the lifecycle of the `Request` as com.prof18.moneyflow.data is read from the server.
+    /// Sets a closure to be called periodically during the lifecycle of the `Request` as data is read from the server.
     ///
     /// - parameter queue:   The dispatch queue to execute the closure on.
-    /// - parameter closure: The code to be executed periodically as com.prof18.moneyflow.data is read from the server.
+    /// - parameter closure: The code to be executed periodically as data is read from the server.
     ///
     /// - returns: The request.
     @discardableResult
@@ -524,19 +524,19 @@ open class DownloadRequest: Request {
     // MARK: Destination
 
     /// Creates a download file destination closure which uses the default file manager to move the temporary file to a
-    /// file URL in the first available directory with the specified search path directory and search path com.prof18.moneyflow.domain mask.
+    /// file URL in the first available directory with the specified search path directory and search path domain mask.
     ///
     /// - parameter directory: The search path directory. `.DocumentDirectory` by default.
-    /// - parameter com.prof18.moneyflow.domain:    The search path com.prof18.moneyflow.domain mask. `.UserDomainMask` by default.
+    /// - parameter domain:    The search path domain mask. `.UserDomainMask` by default.
     ///
     /// - returns: A download file destination closure.
     open class func suggestedDownloadDestination(
         for directory: FileManager.SearchPathDirectory = .documentDirectory,
-        in com.prof18.moneyflow.domain: FileManager.SearchPathDomainMask = .userDomainMask)
+        in domain: FileManager.SearchPathDomainMask = .userDomainMask)
         -> DownloadFileDestination
     {
         return { temporaryURL, response in
-            let directoryURLs = FileManager.default.urls(for: directory, in: com.prof18.moneyflow.domain)
+            let directoryURLs = FileManager.default.urls(for: directory, in: domain)
 
             if !directoryURLs.isEmpty {
                 return (directoryURLs[0].appendingPathComponent(response.suggestedFilename!), [])
@@ -555,7 +555,7 @@ open class UploadRequest: DataRequest {
     // MARK: Helper Types
 
     enum Uploadable: TaskConvertible {
-        case com.prof18.moneyflow.data(Data, URLRequest)
+        case data(Data, URLRequest)
         case file(URL, URLRequest)
         case stream(InputStream, URLRequest)
 
@@ -564,9 +564,9 @@ open class UploadRequest: DataRequest {
                 let task: URLSessionTask
 
                 switch self {
-                case let .com.prof18.moneyflow.data(com.prof18.moneyflow.data, urlRequest):
+                case let .data(data, urlRequest):
                     let urlRequest = try urlRequest.adapt(using: adapter)
-                    task = queue.sync { session.uploadTask(with: urlRequest, from: com.prof18.moneyflow.data) }
+                    task = queue.sync { session.uploadTask(with: urlRequest, from: data) }
                 case let .file(url, urlRequest):
                     let urlRequest = try urlRequest.adapt(using: adapter)
                     task = queue.sync { session.uploadTask(with: urlRequest, fromFile: url) }
@@ -591,7 +591,7 @@ open class UploadRequest: DataRequest {
         guard let uploadable = originalTask as? Uploadable else { return nil }
 
         switch uploadable {
-        case .com.prof18.moneyflow.data(_, let urlRequest), .file(_, let urlRequest), .stream(_, let urlRequest):
+        case .data(_, let urlRequest), .file(_, let urlRequest), .stream(_, let urlRequest):
             return urlRequest
         }
     }
@@ -603,14 +603,14 @@ open class UploadRequest: DataRequest {
 
     // MARK: Upload Progress
 
-    /// Sets a closure to be called periodically during the lifecycle of the `UploadRequest` as com.prof18.moneyflow.data is sent to
+    /// Sets a closure to be called periodically during the lifecycle of the `UploadRequest` as data is sent to
     /// the server.
     ///
-    /// After the com.prof18.moneyflow.data is sent to the server, the `progress(queue:closure:)` APIs can be used to monitor the progress
-    /// of com.prof18.moneyflow.data being read from the server.
+    /// After the data is sent to the server, the `progress(queue:closure:)` APIs can be used to monitor the progress
+    /// of data being read from the server.
     ///
     /// - parameter queue:   The dispatch queue to execute the closure on.
-    /// - parameter closure: The code to be executed periodically as com.prof18.moneyflow.data is sent to the server.
+    /// - parameter closure: The code to be executed periodically as data is sent to the server.
     ///
     /// - returns: The request.
     @discardableResult

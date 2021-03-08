@@ -33,8 +33,8 @@ open class TaskDelegate: NSObject {
     /// The serial operation queue used to execute all operations after the task completes.
     public let queue: OperationQueue
 
-    /// The com.prof18.moneyflow.data returned by the server.
-    public var com.prof18.moneyflow.data: Data? { return nil }
+    /// The data returned by the server.
+    public var data: Data? { return nil }
 
     /// The error generated throughout the lifecyle of the task.
     public var error: Error?
@@ -190,7 +190,7 @@ class DataTaskDelegate: TaskDelegate, URLSessionDataDelegate {
 
     var dataTask: URLSessionDataTask { return task as! URLSessionDataTask }
 
-    override var com.prof18.moneyflow.data: Data? {
+    override var data: Data? {
         if dataStream != nil {
             return nil
         } else {
@@ -201,7 +201,7 @@ class DataTaskDelegate: TaskDelegate, URLSessionDataDelegate {
     var progress: Progress
     var progressHandler: (closure: Request.ProgressHandler, queue: DispatchQueue)?
 
-    var dataStream: ((_ com.prof18.moneyflow.data: Data) -> Void)?
+    var dataStream: ((_ data: Data) -> Void)?
 
     private var totalBytesReceived: Int64 = 0
     private var mutableData: Data
@@ -258,19 +258,19 @@ class DataTaskDelegate: TaskDelegate, URLSessionDataDelegate {
         dataTaskDidBecomeDownloadTask?(session, dataTask, downloadTask)
     }
 
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive com.prof18.moneyflow.data: Data) {
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         if initialResponseTime == nil { initialResponseTime = CFAbsoluteTimeGetCurrent() }
 
         if let dataTaskDidReceiveData = dataTaskDidReceiveData {
-            dataTaskDidReceiveData(session, dataTask, com.prof18.moneyflow.data)
+            dataTaskDidReceiveData(session, dataTask, data)
         } else {
             if let dataStream = dataStream {
-                dataStream(com.prof18.moneyflow.data)
+                dataStream(data)
             } else {
-                mutableData.append(com.prof18.moneyflow.data)
+                mutableData.append(data)
             }
 
-            let bytesReceived = Int64(com.prof18.moneyflow.data.count)
+            let bytesReceived = Int64(data.count)
             totalBytesReceived += bytesReceived
             let totalBytesExpected = dataTask.response?.expectedContentLength ?? NSURLSessionTransferSizeUnknown
 
@@ -311,7 +311,7 @@ class DownloadTaskDelegate: TaskDelegate, URLSessionDownloadDelegate {
     var progressHandler: (closure: Request.ProgressHandler, queue: DispatchQueue)?
 
     var resumeData: Data?
-    override var com.prof18.moneyflow.data: Data? { return resumeData }
+    override var data: Data? { return resumeData }
 
     var destination: DownloadRequest.DownloadFileDestination?
 

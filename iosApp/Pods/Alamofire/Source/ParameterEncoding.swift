@@ -191,7 +191,7 @@ public struct URLEncoding: ParameterEncoding {
                 urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
             }
 
-            urlRequest.httpBody = query(parameters).com.prof18.moneyflow.data(using: .utf8, allowLossyConversion: false)
+            urlRequest.httpBody = query(parameters).data(using: .utf8, allowLossyConversion: false)
         }
 
         return urlRequest
@@ -328,14 +328,14 @@ public struct JSONEncoding: ParameterEncoding {
     /// Returns a `JSONEncoding` instance with `.prettyPrinted` writing options.
     public static var prettyPrinted: JSONEncoding { return JSONEncoding(options: .prettyPrinted) }
 
-    /// The options for writing the parameters as JSON com.prof18.moneyflow.data.
+    /// The options for writing the parameters as JSON data.
     public let options: JSONSerialization.WritingOptions
 
     // MARK: Initialization
 
     /// Creates a `JSONEncoding` instance using the specified options.
     ///
-    /// - parameter options: The options for writing the parameters as JSON com.prof18.moneyflow.data.
+    /// - parameter options: The options for writing the parameters as JSON data.
     ///
     /// - returns: The new `JSONEncoding` instance.
     public init(options: JSONSerialization.WritingOptions = []) {
@@ -358,13 +358,13 @@ public struct JSONEncoding: ParameterEncoding {
         guard let parameters = parameters else { return urlRequest }
 
         do {
-            let com.prof18.moneyflow.data = try JSONSerialization.com.prof18.moneyflow.data(withJSONObject: parameters, options: options)
+            let data = try JSONSerialization.data(withJSONObject: parameters, options: options)
 
             if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             }
 
-            urlRequest.httpBody = com.prof18.moneyflow.data
+            urlRequest.httpBody = data
         } catch {
             throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
         }
@@ -372,7 +372,7 @@ public struct JSONEncoding: ParameterEncoding {
         return urlRequest
     }
 
-    /// Creates a URL request by encoding the JSON object and setting the resulting com.prof18.moneyflow.data on the HTTP body.
+    /// Creates a URL request by encoding the JSON object and setting the resulting data on the HTTP body.
     ///
     /// - parameter urlRequest: The request to apply the JSON object to.
     /// - parameter jsonObject: The JSON object to apply to the request.
@@ -386,13 +386,13 @@ public struct JSONEncoding: ParameterEncoding {
         guard let jsonObject = jsonObject else { return urlRequest }
 
         do {
-            let com.prof18.moneyflow.data = try JSONSerialization.com.prof18.moneyflow.data(withJSONObject: jsonObject, options: options)
+            let data = try JSONSerialization.data(withJSONObject: jsonObject, options: options)
 
             if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
                 urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             }
 
-            urlRequest.httpBody = com.prof18.moneyflow.data
+            urlRequest.httpBody = data
         } catch {
             throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
         }
@@ -422,7 +422,7 @@ public struct PropertyListEncoding: ParameterEncoding {
     /// The property list serialization format.
     public let format: PropertyListSerialization.PropertyListFormat
 
-    /// The options for writing the parameters as plist com.prof18.moneyflow.data.
+    /// The options for writing the parameters as plist data.
     public let options: PropertyListSerialization.WriteOptions
 
     // MARK: Initialization
@@ -430,7 +430,7 @@ public struct PropertyListEncoding: ParameterEncoding {
     /// Creates a `PropertyListEncoding` instance using the specified format and options.
     ///
     /// - parameter format:  The property list serialization format.
-    /// - parameter options: The options for writing the parameters as plist com.prof18.moneyflow.data.
+    /// - parameter options: The options for writing the parameters as plist data.
     ///
     /// - returns: The new `PropertyListEncoding` instance.
     public init(
@@ -457,7 +457,7 @@ public struct PropertyListEncoding: ParameterEncoding {
         guard let parameters = parameters else { return urlRequest }
 
         do {
-            let com.prof18.moneyflow.data = try PropertyListSerialization.com.prof18.moneyflow.data(
+            let data = try PropertyListSerialization.data(
                 fromPropertyList: parameters,
                 format: format,
                 options: options
@@ -467,7 +467,7 @@ public struct PropertyListEncoding: ParameterEncoding {
                 urlRequest.setValue("application/x-plist", forHTTPHeaderField: "Content-Type")
             }
 
-            urlRequest.httpBody = com.prof18.moneyflow.data
+            urlRequest.httpBody = data
         } catch {
             throw AFError.parameterEncodingFailed(reason: .propertyListEncodingFailed(error: error))
         }

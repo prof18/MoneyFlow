@@ -1,8 +1,8 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire-iOS" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyDropbox-iOS" "${PODS_ROOT}/../../shared/build/cocoapods/framework"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyDropbox" "${PODS_ROOT}/../../shared/build/cocoapods/framework"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire-iOS/Alamofire.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyDropbox-iOS/SwiftyDropbox.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyDropbox/SwiftyDropbox.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
 OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -framework "Alamofire" -framework "Foundation" -framework "SwiftyDropbox" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -framework "shared"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS

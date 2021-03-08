@@ -253,8 +253,8 @@ After you've made the above changes, your application's `.plist` file should loo
 There are three methods to programmatically retrieve an OAuth 2.0 access token:
 
 * **Direct auth** (iOS only): This launches the official Dropbox iOS app (if installed), authenticates via the official app, then redirects back into the SDK
-* **Safari view controller auth** (iOS only): This launches a `SFSafariViewController` to facillitate the auth flow. This is desirable because it is safer for the end-user, and pre-existing session com.prof18.moneyflow.data can be used to avoid requiring the user to re-enter their Dropbox credentials.
-* **Redirect to external browser** (macOS only): This launches the user's default browser to facillitate the auth flow. This is also desirable because it is safer for the end-user, and pre-existing session com.prof18.moneyflow.data can be used to avoid requiring the user to re-enter their Dropbox credentials.
+* **Safari view controller auth** (iOS only): This launches a `SFSafariViewController` to facillitate the auth flow. This is desirable because it is safer for the end-user, and pre-existing session data can be used to avoid requiring the user to re-enter their Dropbox credentials.
+* **Redirect to external browser** (macOS only): This launches the user's default browser to facillitate the auth flow. This is also desirable because it is safer for the end-user, and pre-existing session data can be used to avoid requiring the user to re-enter their Dropbox credentials.
 
 To facilitate the above authorization flows, you should take the following steps:
 
@@ -496,7 +496,7 @@ client.files.createFolder(path: "/test/path/in/Dropbox/account").response { resp
 
 #### Upload-style request
 ```Swift
-let fileData = "testing com.prof18.moneyflow.data example".com.prof18.moneyflow.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+let fileData = "testing data example".data(using: String.Encoding.utf8, allowLossyConversion: false)!
 
 let request = client.files.upload(path: "/test/path/in/Dropbox/account", input: fileData)
     .response { response, error in
@@ -561,7 +561,7 @@ client.files.download(path: "/test/path/in/Dropbox/account")
 
 ### Handling responses and errors
 
-Dropbox API v2 deals largely with two com.prof18.moneyflow.data types: **structs** and **unions**. Broadly speaking, most route **arguments** are struct types and most route **errors** are union types.
+Dropbox API v2 deals largely with two data types: **structs** and **unions**. Broadly speaking, most route **arguments** are struct types and most route **errors** are union types.
 
 **NOTE:** In this context, "structs" and "unions" are terms specific to the Dropbox API, and not to any of the languages that are used to query the API, so you should avoid thinking of them in terms of their Swift definitions.
 
@@ -825,7 +825,7 @@ The `DropboxClient` (or `DropboxTeamClient`) is then used to make all of the des
 
 ## Stone
 
-All of our routes and com.prof18.moneyflow.data types are auto-generated using a framework called [Stone](https://github.com/dropbox/stone).
+All of our routes and data types are auto-generated using a framework called [Stone](https://github.com/dropbox/stone).
 
 The `stone` repo contains all of the Swift specific generation logic, and the `spec` repo contains the language-neutral API endpoint specifications which serve
 as input to the language-specific generators.

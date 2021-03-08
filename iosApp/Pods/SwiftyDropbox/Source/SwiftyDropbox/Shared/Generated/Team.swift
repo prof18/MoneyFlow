@@ -1042,7 +1042,7 @@ open class Team {
     }
 
     /// Each of the items is an array of values, one value per day. The value is the number of devices active within a
-    /// time window, ending with that day. If there is no com.prof18.moneyflow.data for a day, then the value will be None.
+    /// time window, ending with that day. If there is no data for a day, then the value will be None.
     open class DevicesActive: CustomStringConvertible {
         /// Array of number of linked windows (desktop) clients with activity.
         public let windows: Array<UInt64?>
@@ -1697,7 +1697,7 @@ open class Team {
     }
 
     /// Activity Report Result. Each of the items in the storage report is an array of values, one value per day. If
-    /// there is no com.prof18.moneyflow.data for a day, then the value will be None.
+    /// there is no data for a day, then the value will be None.
     open class GetActivityReport: Team.BaseDfbReport {
         /// Array of total number of adds by team members.
         public let adds: Array<UInt64?>
@@ -1811,7 +1811,7 @@ open class Team {
     }
 
     /// Devices Report Result. Contains subsections for different time ranges of activity. Each of the items in each
-    /// subsection of the storage report is an array of values, one value per day. If there is no com.prof18.moneyflow.data for a day, then
+    /// subsection of the storage report is an array of values, one value per day. If there is no data for a day, then
     /// the value will be None.
     open class GetDevicesReport: Team.BaseDfbReport {
         /// Report of the number of devices active in the last day.
@@ -1856,7 +1856,7 @@ open class Team {
     }
 
     /// Membership Report Result. Each of the items in the storage report is an array of values, one value per day. If
-    /// there is no com.prof18.moneyflow.data for a day, then the value will be None.
+    /// there is no data for a day, then the value will be None.
     open class GetMembershipReport: Team.BaseDfbReport {
         /// Team size, for each day.
         public let teamSize: Array<UInt64?>
@@ -1915,7 +1915,7 @@ open class Team {
     }
 
     /// Storage Report Result. Each of the items in the storage report is an array of values, one value per day. If
-    /// there is no com.prof18.moneyflow.data for a day, then the value will be None.
+    /// there is no data for a day, then the value will be None.
     open class GetStorageReport: Team.BaseDfbReport {
         /// Sum of the shared, unshared, and datastore usages, for each day.
         public let totalUsage: Array<UInt64?>
@@ -1927,7 +1927,7 @@ open class Team {
         public let sharedFolders: Array<UInt64?>
         /// Array of storage summaries of team members' account sizes. Each storage summary is an array of key, value
         /// pairs, where each pair describes a storage bucket. The key indicates the upper bound of the bucket and the
-        /// value is the number of users in that bucket. There is one such summary per day. If there is no com.prof18.moneyflow.data for a
+        /// value is the number of users in that bucket. There is one such summary per day. If there is no data for a
         /// day, the storage summary will be empty.
         public let memberStorageMap: Array<Array<Team.StorageBucket>>
         public init(startDate: String, totalUsage: Array<UInt64?>, sharedUsage: Array<UInt64?>, unsharedUsage: Array<UInt64?>, sharedFolders: Array<UInt64?>, memberStorageMap: Array<Array<Team.StorageBucket>>) {
@@ -3816,7 +3816,7 @@ open class Team {
         public let fileType: String
         /// The file size in bytes.
         public let size: UInt64
-        /// A hash of the file content. This field can be used to verify com.prof18.moneyflow.data integrity. For more information see our
+        /// A hash of the file content. This field can be used to verify data integrity. For more information see our
         /// Content hash https://www.dropbox.com/developers/reference/content-hash page.
         public let contentHash: String
         public init(newFilename: String, originalRevisionId: String, originalFilePath: String, serverModified: Date, authorMemberId: String, authorMemberStatus: Team.TeamMemberStatus, authorEmail: String, fileType: String, size: UInt64, contentHash: String) {
@@ -6414,7 +6414,7 @@ open class Team {
 
     /// The MembersDeactivateArg struct
     open class MembersDeactivateArg: Team.MembersDeactivateBaseArg {
-        /// If provided, controls if the user's com.prof18.moneyflow.data will be deleted on their linked devices.
+        /// If provided, controls if the user's data will be deleted on their linked devices.
         public let wipeData: Bool
         public init(user: Team.UserSelectorArg, wipeData: Bool = true) {
             self.wipeData = wipeData
@@ -7025,7 +7025,7 @@ open class Team {
         /// argument was provided, then this argument must be provided as well.
         public let transferAdminId: Team.UserSelectorArg?
         /// Downgrade the member to a Basic account. The user will retain the email address associated with their
-        /// Dropbox  account and com.prof18.moneyflow.data in their account that is not restricted to team members. In order to keep the
+        /// Dropbox  account and data in their account that is not restricted to team members. In order to keep the
         /// account the argument wipeData should be set to false.
         public let keepAccount: Bool
         /// If provided, allows removed users to keep access to Dropbox folders (not Dropbox Paper folders) already
@@ -7224,16 +7224,16 @@ open class Team {
         case recipientNotVerified
         /// The user is the last admin of the team, so it cannot be removed from it.
         case removeLastAdmin
-        /// Cannot keep account and transfer the com.prof18.moneyflow.data to another user at the same time.
+        /// Cannot keep account and transfer the data to another user at the same time.
         case cannotKeepAccountAndTransfer
-        /// Cannot keep account and delete the com.prof18.moneyflow.data at the same time. To keep the account the argument wipe_data should
+        /// Cannot keep account and delete the data at the same time. To keep the account the argument wipe_data should
         /// be set to false.
         case cannotKeepAccountAndDeleteData
         /// The email address of the user is too long to be disabled.
         case emailAddressTooLongToBeDisabled
         /// Cannot keep account of an invited user.
         case cannotKeepInvitedUserAccount
-        /// Cannot retain team shares when the user's com.prof18.moneyflow.data is marked for deletion on their linked devices. The argument
+        /// Cannot retain team shares when the user's data is marked for deletion on their linked devices. The argument
         /// wipe_data should be set to false.
         case cannotRetainSharesWhenDataWiped
         /// The user's account must be kept in order to retain team shares. The argument keep_account should be set to
@@ -8004,13 +8004,13 @@ open class Team {
         case transferAdminIsNotAdmin
         /// The recipient user's email is not verified.
         case recipientNotVerified
-        /// The user's com.prof18.moneyflow.data is being transferred. Please wait some time before retrying.
+        /// The user's data is being transferred. Please wait some time before retrying.
         case userDataIsBeingTransferred
         /// No matching removed user found for the argument user.
         case userNotRemoved
         /// User files aren't transferable anymore.
         case userDataCannotBeTransferred
-        /// User's com.prof18.moneyflow.data has already been transferred to another user.
+        /// User's data has already been transferred to another user.
         case userDataAlreadyTransferred
 
         public var description: String {
@@ -10990,7 +10990,7 @@ open class Team {
         case temporaryError
         /// Too many other reports are being created right now. Try creating this report again once the others finish.
         case manyReportsAtOnce
-        /// We couldn't create the report. Try creating the report again with less com.prof18.moneyflow.data.
+        /// We couldn't create the report. Try creating the report again with less data.
         case tooMuchData
         /// An unspecified error.
         case other

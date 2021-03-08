@@ -3349,7 +3349,7 @@ open class Sharing {
         /// The current visibility of the link after considering the shared links policies of the the team (in case the
         /// link's owner is part of a team) and the shared folder (in case the linked file is part of a shared folder).
         /// This field is shown only if the caller has access to this info (the link's owner always has access to this
-        /// com.prof18.moneyflow.data). For some links, an effective_audience value is returned instead.
+        /// data). For some links, an effective_audience value is returned instead.
         public let resolvedVisibility: Sharing.ResolvedVisibility?
         /// The shared link's requested visibility. This can be overridden by the team and shared folder policies. The
         /// final visibility, after considering these policies, can be found in resolvedVisibility. This is shown only

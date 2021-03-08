@@ -128,7 +128,7 @@ class OAuthTokenRequest {
                     oauthResult = .error(.unknown, "Invalid response.")
                 }
             case .failure:
-                oauthResult = Self.resultFromErrorData(response.com.prof18.moneyflow.data)
+                oauthResult = Self.resultFromErrorData(response.data)
             }
             self?.retainSelf = nil
             queue.async { completion(oauthResult) }
@@ -147,10 +147,10 @@ class OAuthTokenRequest {
     }
 
     /// Converts error to OAuth2Error as per [RFC6749 5.2](https://tools.ietf.org/html/rfc6749#section-5.2)
-    private static func resultFromErrorData(_ com.prof18.moneyflow.data: Data?) -> DropboxOAuthResult {
+    private static func resultFromErrorData(_ data: Data?) -> DropboxOAuthResult {
         guard
-            let com.prof18.moneyflow.data = com.prof18.moneyflow.data,
-            let error = (try? JSONSerialization.jsonObject(with: com.prof18.moneyflow.data, options: .mutableLeaves)) as? [String: String],
+            let data = data,
+            let error = (try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves)) as? [String: String],
             let code = error["error"],
             let message = error["error_description"]
         else {

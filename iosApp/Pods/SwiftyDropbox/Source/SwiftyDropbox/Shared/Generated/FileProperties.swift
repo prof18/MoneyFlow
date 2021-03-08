@@ -1160,7 +1160,7 @@ open class FileProperties {
         }
     }
 
-    /// Raw key/value com.prof18.moneyflow.data to be associated with a Dropbox file. Property fields are added to Dropbox files as a
+    /// Raw key/value data to be associated with a Dropbox file. Property fields are added to Dropbox files as a
     /// PropertyGroup.
     open class PropertyField: CustomStringConvertible {
         /// Key of the property field associated with a file and template. Keys can be up to 256 bytes.

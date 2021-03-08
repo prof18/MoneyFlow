@@ -80,7 +80,7 @@ extension URLSession {
 /// with a given set of criteria to determine whether the server trust is valid and the connection should be made.
 ///
 /// Using pinned certificates or public keys for evaluation helps prevent man-in-the-middle (MITM) attacks and other
-/// vulnerabilities. Applications dealing with sensitive customer com.prof18.moneyflow.data or financial information are strongly encouraged
+/// vulnerabilities. Applications dealing with sensitive customer data or financial information are strongly encouraged
 /// to route all communication over an HTTPS connection with pinning enabled.
 ///
 /// - performDefaultEvaluation: Uses the default server trust evaluation while allowing you to control whether to

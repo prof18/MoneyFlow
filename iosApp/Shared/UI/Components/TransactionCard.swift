@@ -17,7 +17,7 @@ struct TransactionCard: View {
             
             DMImage(transaction.icon.iconName)
                 .padding(AppMargins.small)
-                .background(Color.containerColor)
+                .background(Color.primary)
                 .cornerRadius(AppMargins.regular)
                 .padding(AppMargins.regular)
             

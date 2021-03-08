@@ -258,7 +258,7 @@ open class SessionManager {
             let originalTask = DataRequest.Requestable(urlRequest: originalRequest!)
 
             let task = try originalTask.task(session: session, adapter: adapter, queue: queue)
-            let request = DataRequest(session: session, requestTask: .com.prof18.moneyflow.data(originalTask, task))
+            let request = DataRequest(session: session, requestTask: .data(originalTask, task))
 
             delegate[task] = request
 
@@ -273,11 +273,11 @@ open class SessionManager {
     // MARK: Private - Request Implementation
 
     private func request(_ urlRequest: URLRequest?, failedWith error: Error) -> DataRequest {
-        var requestTask: Request.RequestTask = .com.prof18.moneyflow.data(nil, nil)
+        var requestTask: Request.RequestTask = .data(nil, nil)
 
         if let urlRequest = urlRequest {
             let originalTask = DataRequest.Requestable(urlRequest: urlRequest)
-            requestTask = .com.prof18.moneyflow.data(originalTask, nil)
+            requestTask = .data(originalTask, nil)
         }
 
         let underlyingError = error.underlyingAdaptError ?? error
@@ -369,12 +369,12 @@ open class SessionManager {
     ///
     /// On the latest release of all the Apple platforms (iOS 10, macOS 10.12, tvOS 10, watchOS 3), `resumeData` is broken
     /// on background URL session configurations. There's an underlying bug in the `resumeData` generation logic where the
-    /// com.prof18.moneyflow.data is written incorrectly and will always fail to resume the download. For more information about the bug and
+    /// data is written incorrectly and will always fail to resume the download. For more information about the bug and
     /// possible workarounds, please refer to the following Stack Overflow post:
     ///
     ///    - http://stackoverflow.com/a/39347461/1342462
     ///
-    /// - parameter resumeData:  The resume com.prof18.moneyflow.data. This is an opaque com.prof18.moneyflow.data blob produced by `URLSessionDownloadTask`
+    /// - parameter resumeData:  The resume data. This is an opaque data blob produced by `URLSessionDownloadTask`
     ///                          when a task is cancelled. See `URLSession -downloadTask(withResumeData:)` for
     ///                          additional information.
     /// - parameter destination: The closure used to determine the destination of the downloaded file. `nil` by default.
@@ -488,11 +488,11 @@ open class SessionManager {
 
     // MARK: Data
 
-    /// Creates an `UploadRequest` from the specified `url`, `method` and `headers` for uploading the `com.prof18.moneyflow.data`.
+    /// Creates an `UploadRequest` from the specified `url`, `method` and `headers` for uploading the `data`.
     ///
     /// If `startRequestsImmediately` is `true`, the request will have `resume()` called before being returned.
     ///
-    /// - parameter com.prof18.moneyflow.data:    The com.prof18.moneyflow.data to upload.
+    /// - parameter data:    The data to upload.
     /// - parameter url:     The URL.
     /// - parameter method:  The HTTP method. `.post` by default.
     /// - parameter headers: The HTTP headers. `nil` by default.
@@ -500,7 +500,7 @@ open class SessionManager {
     /// - returns: The created `UploadRequest`.
     @discardableResult
     open func upload(
-        _ com.prof18.moneyflow.data: Data,
+        _ data: Data,
         to url: URLConvertible,
         method: HTTPMethod = .post,
         headers: HTTPHeaders? = nil)
@@ -508,25 +508,25 @@ open class SessionManager {
     {
         do {
             let urlRequest = try URLRequest(url: url, method: method, headers: headers)
-            return upload(com.prof18.moneyflow.data, with: urlRequest)
+            return upload(data, with: urlRequest)
         } catch {
             return upload(nil, failedWith: error)
         }
     }
 
-    /// Creates an `UploadRequest` from the specified `urlRequest` for uploading the `com.prof18.moneyflow.data`.
+    /// Creates an `UploadRequest` from the specified `urlRequest` for uploading the `data`.
     ///
     /// If `startRequestsImmediately` is `true`, the request will have `resume()` called before being returned.
     ///
-    /// - parameter com.prof18.moneyflow.data:       The com.prof18.moneyflow.data to upload.
+    /// - parameter data:       The data to upload.
     /// - parameter urlRequest: The URL request.
     ///
     /// - returns: The created `UploadRequest`.
     @discardableResult
-    open func upload(_ com.prof18.moneyflow.data: Data, with urlRequest: URLRequestConvertible) -> UploadRequest {
+    open func upload(_ data: Data, with urlRequest: URLRequestConvertible) -> UploadRequest {
         do {
             let urlRequest = try urlRequest.asURLRequest()
-            return upload(.com.prof18.moneyflow.data(com.prof18.moneyflow.data, urlRequest))
+            return upload(.data(data, urlRequest))
         } catch {
             return upload(nil, failedWith: error)
         }
@@ -584,16 +584,16 @@ open class SessionManager {
     /// `UploadRequest` using the `url`, `method` and `headers`.
     ///
     /// It is important to understand the memory implications of uploading `MultipartFormData`. If the cummulative
-    /// payload is small, encoding the com.prof18.moneyflow.data in-memory and directly uploading to a server is the by far the most
-    /// efficient approach. However, if the payload is too large, encoding the com.prof18.moneyflow.data in-memory could cause your app to
+    /// payload is small, encoding the data in-memory and directly uploading to a server is the by far the most
+    /// efficient approach. However, if the payload is too large, encoding the data in-memory could cause your app to
     /// be terminated. Larger payloads must first be written to disk using input and output streams to keep the memory
-    /// footprint low, then the com.prof18.moneyflow.data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
+    /// footprint low, then the data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
     /// used for larger payloads such as video content.
     ///
     /// The `encodingMemoryThreshold` parameter allows Alamofire to automatically determine whether to encode in-memory
     /// or stream from disk. If the content length of the `MultipartFormData` is below the `encodingMemoryThreshold`,
-    /// encoding takes place in-memory. If the content length exceeds the threshold, the com.prof18.moneyflow.data is streamed to disk
-    /// during the encoding process. Then the result is uploaded as com.prof18.moneyflow.data or as a stream depending on which encoding
+    /// encoding takes place in-memory. If the content length exceeds the threshold, the data is streamed to disk
+    /// during the encoding process. Then the result is uploaded as data or as a stream depending on which encoding
     /// technique was used.
     ///
     /// If `startRequestsImmediately` is `true`, the request will have `resume()` called before being returned.
@@ -633,16 +633,16 @@ open class SessionManager {
     /// `UploadRequest` using the `urlRequest`.
     ///
     /// It is important to understand the memory implications of uploading `MultipartFormData`. If the cummulative
-    /// payload is small, encoding the com.prof18.moneyflow.data in-memory and directly uploading to a server is the by far the most
-    /// efficient approach. However, if the payload is too large, encoding the com.prof18.moneyflow.data in-memory could cause your app to
+    /// payload is small, encoding the data in-memory and directly uploading to a server is the by far the most
+    /// efficient approach. However, if the payload is too large, encoding the data in-memory could cause your app to
     /// be terminated. Larger payloads must first be written to disk using input and output streams to keep the memory
-    /// footprint low, then the com.prof18.moneyflow.data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
+    /// footprint low, then the data can be uploaded as a stream from the resulting file. Streaming from disk MUST be
     /// used for larger payloads such as video content.
     ///
     /// The `encodingMemoryThreshold` parameter allows Alamofire to automatically determine whether to encode in-memory
     /// or stream from disk. If the content length of the `MultipartFormData` is below the `encodingMemoryThreshold`,
-    /// encoding takes place in-memory. If the content length exceeds the threshold, the com.prof18.moneyflow.data is streamed to disk
-    /// during the encoding process. Then the result is uploaded as com.prof18.moneyflow.data or as a stream depending on which encoding
+    /// encoding takes place in-memory. If the content length exceeds the threshold, the data is streamed to disk
+    /// during the encoding process. Then the result is uploaded as data or as a stream depending on which encoding
     /// technique was used.
     ///
     /// If `startRequestsImmediately` is `true`, the request will have `resume()` called before being returned.
@@ -672,10 +672,10 @@ open class SessionManager {
                 let isBackgroundSession = self.session.configuration.identifier != nil
 
                 if formData.contentLength < encodingMemoryThreshold && !isBackgroundSession {
-                    let com.prof18.moneyflow.data = try formData.encode()
+                    let data = try formData.encode()
 
                     let encodingResult = MultipartFormDataEncodingResult.success(
-                        request: self.upload(com.prof18.moneyflow.data, with: urlRequestWithContentType),
+                        request: self.upload(data, with: urlRequestWithContentType),
                         streamingFromDisk: false,
                         streamFileURL: nil
                     )
@@ -684,7 +684,7 @@ open class SessionManager {
                 } else {
                     let fileManager = FileManager.default
                     let tempDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory())
-                    let directoryURL = tempDirectoryURL.appendingPathComponent("org.alamofire.manager/multipart.form.com.prof18.moneyflow.data")
+                    let directoryURL = tempDirectoryURL.appendingPathComponent("org.alamofire.manager/multipart.form.data")
                     let fileName = UUID().uuidString
                     let fileURL = directoryURL.appendingPathComponent(fileName)
 
@@ -727,7 +727,7 @@ open class SessionManager {
                     }
                 }
             } catch {
-                // Cleanup the temp file in the event that the multipart form com.prof18.moneyflow.data encoding failed
+                // Cleanup the temp file in the event that the multipart form data encoding failed
                 if let tempFileURL = tempFileURL {
                     do {
                         try FileManager.default.removeItem(at: tempFileURL)
@@ -855,7 +855,7 @@ open class SessionManager {
                 delegate[originalTask] = nil // removes the old request to avoid endless growth
             }
 
-            request.delegate.task = task // resets all task delegate com.prof18.moneyflow.data
+            request.delegate.task = task // resets all task delegate data
 
             request.retryCount += 1
             request.startTime = CFAbsoluteTimeGetCurrent()

@@ -36,7 +36,7 @@ class ChunkInputStream: InputStream, StreamDelegate {
         self.startBytes = start
         self.totalBytesToRead = end - start
         self.totalBytesRead = 0
-        super.init(com.prof18.moneyflow.data: Data())
+        super.init(data: Data())
         self.internalStream?.delegate = self
         self.delegate = self
     }
