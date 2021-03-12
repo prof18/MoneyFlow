@@ -61,7 +61,9 @@ struct SettingsScreen: View {
         .navigationTitle(Text("Settings"))
         
         .navigationBarItems(leading: showNavigation() ? AnyView(closeButton) : AnyView(EmptyView()))
-        .sheet(item: $sheetToShow) { item in
+        .sheet(item: $sheetToShow, onDismiss: {
+            // TODO: reload here the database
+        }) { item in
             
             switch item {
             

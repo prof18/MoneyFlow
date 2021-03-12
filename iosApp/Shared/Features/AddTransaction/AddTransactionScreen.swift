@@ -35,25 +35,25 @@ struct AddTransactionScreen: View {
                     }
                     
                     HStack {
-                        DMImage("ic_euro_sign")
+                        DMImage(imageName: "ic_euro_sign", color: Color.colorOnBackground)
                         TextField("0.00", text: $viewModel.amountTextField)
                             .keyboardType(.decimalPad)
                     }
                     
                     HStack {
-                        DMImage("ic_edit")
+                        DMImage(imageName: "ic_edit", color: Color.colorOnBackground)
                         TextField("Description", text: $viewModel.descriptionTextField)
                     }
                     
                     NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
                         HStack {
-                            DMImage(addTransactionState.categoryIcon ?? "ic_question_circle")
+                            DMImage(imageName: addTransactionState.categoryIcon ?? "ic_question_circle", color: Color.colorOnBackground)
                             Text(addTransactionState.categoryTitle ?? "Select Category")
                         }
                     }
                     
                     HStack {
-                        DMImage("ic_calendar")
+                        DMImage(imageName: "ic_calendar", color: Color.colorOnBackground)
                         Text("\(dateFormatter.string(from: viewModel.transactionDate))")
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .leading)

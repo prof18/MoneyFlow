@@ -55,7 +55,7 @@ struct HomeScreen: View {
             }
         }
         .navigationTitle("My Wallet")
-        .navigationBarItems(leading: refreshButton, trailing: Button(action: {
+        .navigationBarItems(/*leading: refreshButton,*/ trailing: Button(action: {
             self.showAddTransaction.toggle()
         }) {
             // TODO: localize
@@ -80,20 +80,20 @@ struct HomeScreen: View {
         
     }
     
-    var refreshButton: AnyView {
-        if true {
-            return AnyView(
-                Button(action: {
-                    // TODO:
-                }) {
-                    // TODO: localize
-                    Image(systemName: "arrow.clockwise")
-                }
-            )
-        } else {
-            return AnyView(EmptyView())
-        }
-    }
+//    var refreshButton: AnyView {
+//        if true {
+//            return AnyView(
+//                Button(action: {
+//                    // TODO:
+//                }) {
+//                    // TODO: localize
+//                    Image(systemName: "arrow.clockwise")
+//                }
+//            )
+//        } else {
+//            return AnyView(EmptyView())
+//        }
+//    }
     
 }
 

@@ -21,8 +21,7 @@ struct HeaderNavigator: View {
         .onTapGesture(perform: {
             // TODO
         })
-        .padding(.horizontal, AppMargins.regular)
-        .padding(.top, AppMargins.regular)
+        .padding(AppMargins.regular)
     }
 }
 

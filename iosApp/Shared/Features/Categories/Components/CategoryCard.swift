@@ -16,10 +16,10 @@ struct CategoryCard: View {
     var body: some View {
         HStack(alignment: .center) {
             
-            Image(category.icon.iconName)
+            DMImage(imageName: category.icon.iconName)
                 .padding(AppMargins.small)
                 .background(Color.primary)
-                .cornerRadius(AppMargins.regular)
+                .cornerRadius(AppMargins.regularCornerRadius)
                 .padding(AppMargins.regular)
             
             Text(category.name)

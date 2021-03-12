@@ -13,6 +13,6 @@ struct AppMargins {
     static var regular: CGFloat = 16.0
     static var medium: CGFloat = 24.0
     
-    static var regularCornerRadius: CGFloat = 8.0
+    static var regularCornerRadius: CGFloat = 12.0
     static var mediumCornerRadius: CGFloat = 16.0
 }

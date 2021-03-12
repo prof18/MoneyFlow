@@ -16,4 +16,5 @@ extension Color {
     static let upArrowCircleColor = Color("UpArrowCircleColor")
     static let upArrowColor = Color("UpArrowColor")
     static let colorOnBackground = Color("ColorOnBackground")
+    static let onPrimary = Color("OnPrimary")
 }

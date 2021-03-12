@@ -15,9 +15,6 @@ struct HomeRecap: View {
     var body: some View {
         VStack {
             // TODO: localize
-            Text("Total Balance")
-                .font(AppFonts.subtitle2)
-            
             HStack {
                 
                 Text("€")
@@ -28,29 +25,50 @@ struct HomeRecap: View {
                 
             }
             
+            Text("Total Balance")
+                .font(AppFonts.subtitle2)
+            
             Spacer()
                 .frame(height: AppMargins.medium)
                         
             HStack {
                 
-                VStack(alignment: .leading) {
-                    Text("-\(balanceRecap.monthlyExpenses.formatTwoDigit()) €")
-                        .font(AppFonts.h5)
+                HStack {
                     
-                    Text("Expenses")
-                        .font(AppFonts.subtitle2)
+                    UpArrowCircleIcon(size: 28)
+                        .padding(.trailing, AppMargins.small)
+                    
+                    VStack(alignment: .leading) {
+                        Text("+\(balanceRecap.monthlyIncome.formatTwoDigit()) €")
+                            .font(AppFonts.h5)
+                        
+                        Text("Income")
+                            .font(AppFonts.subtitle2)
+                        
+                    }
+                    
                 }
                 
                 Spacer()
                 
-                VStack(alignment: .trailing) {
-                    Text("+\(balanceRecap.monthlyIncome.formatTwoDigit()) €")
-                        .font(AppFonts.h5)
+                HStack {
                     
-                    Text("Income")
-                        .font(AppFonts.subtitle2)
+                    DownArrowCircleIcon(size: 28)
+                        .padding(.trailing, AppMargins.small)
+                    
+                    VStack(alignment: .trailing) {
+                        Text("-\(balanceRecap.monthlyExpenses.formatTwoDigit()) €")
+                            .font(AppFonts.h5)
+                        
+                        Text("Expenses")
+                            .font(AppFonts.subtitle2)
+                    }
                     
                 }
+                
+                
+                
+                
                 
             }
             

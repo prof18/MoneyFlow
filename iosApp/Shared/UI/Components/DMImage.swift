@@ -9,22 +9,13 @@ import SwiftUI
 struct DMImage: View {
     
     var imageName: String
+    var color: Color = Color.onPrimary
     @Environment(\.colorScheme) var colorScheme
     
-    init(_ imageName: String) {
-        self.imageName = imageName
-    }
-    
     var body: some View {
-        if colorScheme == .dark {
-            Image(imageName)
-                .renderingMode(.template)
-                .foregroundColor(.white)
-        } else {
-            Image(imageName)
-                .renderingMode(.template)
-                .foregroundColor(.black)
-        }
+        Image(imageName)
+            .renderingMode(.template)
+            .foregroundColor(color)
     }
     
 }

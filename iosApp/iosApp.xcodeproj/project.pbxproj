@@ -36,6 +36,10 @@
 		A9A8A9E02557EAB900C0ED89 /* RecapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9DF2557EAB900C0ED89 /* RecapScreen.swift */; };
 		A9A8A9ED2557ECC100C0ED89 /* AppTabNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */; };
 		A9A8A9F32557F0F600C0ED89 /* AppSidebarNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9F22557F0F600C0ED89 /* AppSidebarNavigation.swift */; };
+		A9B3C52D25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */; };
+		A9B3C52E25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */; };
+		A9B3C53425FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */; };
+		A9B3C53525FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */; };
 		A9B3D76F257FC68600E65F1A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3D76E257FC68600E65F1A /* AppState.swift */; };
 		A9B3D770257FC68600E65F1A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3D76E257FC68600E65F1A /* AppState.swift */; };
 		A9B3D777257FC96A00E65F1A /* SheetToShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B3D776257FC96A00E65F1A /* SheetToShow.swift */; };
@@ -135,6 +139,8 @@
 		A9A8A9D92557EA9B00C0ED89 /* BudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
 		A9A8A9DF2557EAB900C0ED89 /* RecapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapScreen.swift; sourceTree = "<group>"; };
 		A9A8A9F22557F0F600C0ED89 /* AppSidebarNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSidebarNavigation.swift; sourceTree = "<group>"; };
+		A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpArrowCircleIcon.swift; sourceTree = "<group>"; };
+		A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownArrowCircleIcon.swift; sourceTree = "<group>"; };
 		A9B3D76E257FC68600E65F1A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A9B3D776257FC96A00E65F1A /* SheetToShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetToShow.swift; sourceTree = "<group>"; };
 		A9D1B2C92553E8E100931B2B /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
@@ -411,6 +417,8 @@
 				A988B76D257D6AA600F6113A /* ColorInverter.swift */,
 				A988B774257D6BA300F6113A /* RadioButtonGroup.swift */,
 				A988B77E257D763900F6113A /* DMImage.swift */,
+				A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */,
+				A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -757,6 +765,7 @@
 				A98B5D04258D44D00020C5C5 /* DropboxClientManager.swift in Sources */,
 				A930B87F253B800500CB92DF /* Koin.swift in Sources */,
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
+				A9B3C52D25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */,
 				A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */,
 				A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
@@ -785,6 +794,7 @@
 				A9B3D76F257FC68600E65F1A /* AppState.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
 				A98B5CF4258BF2660020C5C5 /* DropboxNotifications.swift in Sources */,
+				A9B3C53425FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */,
 				A98B5CE0258AA7F40020C5C5 /* DropboxLoginView.swift in Sources */,
 				A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */,
 				A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */,
@@ -800,6 +810,7 @@
 			files = (
 				A9D8986424FBF12A007771A1 /* AppFonts.swift in Sources */,
 				A9D8987124FBF8C4007771A1 /* Extensions.swift in Sources */,
+				A9B3C53525FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */,
 				A9B3D778257FC96A00E65F1A /* SheetToShow.swift in Sources */,
 				A9D8986A24FBF196007771A1 /* AppMargins.swift in Sources */,
 				A9D8987524FBFA4A007771A1 /* TransactionCard.swift in Sources */,
@@ -809,6 +820,7 @@
 				A9E68AB425037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A9D269E124FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9B3D770257FC68600E65F1A /* AppState.swift in Sources */,
+				A9B3C52E25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */,
 				A9E68AB72503B2AA00851990 /* Loader.swift in Sources */,
 				A9F6B2BC259A844E0070ED8E /* DIContainer.swift in Sources */,
 				A9D8986724FBF18B007771A1 /* AppColors.swift in Sources */,

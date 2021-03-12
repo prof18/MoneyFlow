@@ -15,11 +15,12 @@ struct TransactionCard: View {
     var body: some View {
         HStack() {
             
-            DMImage(transaction.icon.iconName)
+            DMImage(imageName: transaction.icon.iconName)
                 .padding(AppMargins.small)
                 .background(Color.primary)
-                .cornerRadius(AppMargins.regular)
-                .padding(AppMargins.regular)
+                .cornerRadius(AppMargins.regularCornerRadius)
+                .padding(.vertical, AppMargins.regular)
+                .padding(.trailing, AppMargins.regular)
             
             
             VStack(alignment: .leading) {
@@ -37,12 +38,20 @@ struct TransactionCard: View {
     
             Spacer()
             
+            if transaction.type == .income {
+                UpArrowCircleIcon(size: 22)
+                    .padding(.trailing, AppMargins.small)
+            } else {
+                DownArrowCircleIcon(size: 22)
+                    .padding(.trailing, AppMargins.small)
+            }
+            
             // TODO: fix this
             Text("\(transaction.amount.formatTwoDigit()) €")
                 .font(AppFonts.body1)
                 .padding(.bottom, AppMargins.regular)
                 .padding(.top, AppMargins.regular)
-                .padding(.trailing, AppMargins.regular)
+//                .padding(.trailing, AppMargins.regular)
 
 
         }
