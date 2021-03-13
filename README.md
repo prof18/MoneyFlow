@@ -26,13 +26,9 @@ Currently th
 - 🏗 Sync data with Dropbox
 
 Legend:
-✅ Implemented
-💭 Not yet implemented, still in my mind!
-🏗 Working on it
-
-## Tech Stack
-
-
+- ✅ Implemented
+- 💭 Not yet implemented, still in my mind!
+- 🏗 Working on it
 
 ## Further Readings
 
