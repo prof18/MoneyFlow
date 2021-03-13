@@ -5,3 +5,8 @@ A money management app wrote with Kotlin Multiplatform, Jetpack Compose and Swif
 
 I'm currently working on this application.
 It is still in its early stages of development, so things can be "ugly" and can heavily change!
+
+
+<div align="center">
+  <img src="image/money-flow-light.png">
+</div>
