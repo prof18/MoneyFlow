@@ -15,8 +15,7 @@ MoneyFlow comes also in dark 🌃:
 
 ## Features roadmap 
 
-🚧 This project is a work in progress, some features are missing and they will arrive in the future. 
-Currently th
+🚧 This project is a work in progress, some features are missing and they will arrive in the future.
 
 - ✅ Transaction Entry
 - 🏗 Transaction List 
