@@ -19,7 +19,8 @@ import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreen
 import com.prof18.moneyflow.features.recap.RecapScreen
 import com.prof18.moneyflow.features.settings.SettingsScreen
-import com.prof18.moneyflow.ui.style.*
+import com.prof18.moneyflow.ui.style.LightAppColors
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 fun AppContainer() {
@@ -52,10 +53,10 @@ fun AppContainer() {
                                 unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                                 onClick = {
                                     // This is the equivalent to popUpTo the start destination
-                                navController.popBackStack(
-                                    navController.graph.startDestination,
-                                    false
-                                )
+                                    navController.popBackStack(
+                                        navController.graph.startDestination,
+                                        false
+                                    )
 
                                     // This if check gives us a "singleTop" behavior where we do not create a
                                     // second instance of the composable if we are already on that destination
@@ -68,11 +69,11 @@ fun AppContainer() {
                     }
                 }
             }
-        ) {
+        ) { paddingValues ->
 
             NavHost(navController, startDestination = Screen.HomeScreen.name) {
                 composable(Screen.HomeScreen.name) {
-                    HomeScreen(navController)
+                    HomeScreen(navController, paddingValues)
                 }
 
                 composable(Screen.AddTransactionScreen.name) {

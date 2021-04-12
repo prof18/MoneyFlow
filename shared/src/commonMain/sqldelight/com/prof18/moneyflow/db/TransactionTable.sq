@@ -13,8 +13,8 @@ selectAllTransactions:
 SELECT T.id, T.dateMillis, T.amount, T.description, T.type, C.name AS categoryName, C.iconName
 FROM TransactionTable T
 INNER JOIN CategoryTable AS C
-ON T.categoryId = C.id;
-
+ON T.categoryId = C.id
+ORDER BY T.dateMillis DESC;
 
 insertTransaction:
 INSERT INTO TransactionTable (dateMillis, amount, description, categoryId, type)

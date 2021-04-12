@@ -18,6 +18,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import com.prof18.moneyflow.utils.CurrentMonthID
 import com.prof18.moneyflow.utils.MillisSinceEpoch
+import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
 
 class DatabaseSourceImpl(
     // not private and mutable to close and reopen the com.prof18.moneyflow.database at runtime
@@ -45,7 +46,8 @@ class DatabaseSourceImpl(
     override fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable> {
         val current = Clock.System.now()
         val dateTime: LocalDateTime = current.toLocalDateTime(TimeZone.currentSystemDefault())
-        val id = "${dateTime.year}${dateTime.monthNumber}${dateTime.dayOfMonth}".toLong()
+//        val id = "${dateTime.year}${dateTime.monthNumber}${dateTime.dayOfMonth}".toLong()
+        val id = current.toEpochMilliseconds().generateCurrentMonthId()
 
         return dbRef.monthlyRecapTableQueries
             .selectCurrentMonthlyRecap(id)

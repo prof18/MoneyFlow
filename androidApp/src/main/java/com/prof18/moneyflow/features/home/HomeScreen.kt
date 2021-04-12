@@ -27,8 +27,9 @@ import timber.log.Timber
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
 
+    // TODO: create with koin
     val homeViewModel = viewModel<HomeViewModel>(
         factory = HomeViewModelFactory()
     )
@@ -100,7 +101,10 @@ fun HomeScreen(navController: NavController) {
                 } else {
 
 
-                    LazyColumn {
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(bottom = paddingValues.calculateBottomPadding())
+                    ) {
                         items(homeState.latestTransactions) { transaction ->
                             val (showTransactionMenu, setShowTransactionMenu) = remember {
                                 mutableStateOf(

@@ -49,7 +49,7 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource) : MoneyRepositor
 
     override suspend fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
         return allTransactions.map {
-            it.map { transaction ->
+            it.take(10).map { transaction ->
 
                 val transactionTypeUI = when (transaction.type) {
                     TransactionType.INCOME -> TransactionTypeUI.INCOME

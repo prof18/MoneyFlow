@@ -10,4 +10,6 @@ object DataFactory {
         )
     }
 
+    val dayMillis: Long = 86400
+
 }

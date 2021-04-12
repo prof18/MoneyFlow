@@ -69,7 +69,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         // Setup
         moneyRepository.insertTransaction(
             TransactionToSave(
-                dateMillis = Clock.System.now().toEpochMilliseconds(),
+                dateMillis = Clock.System.now().toEpochMilliseconds() - DataFactory.dayMillis,
                 amount = 10.0,
                 description = null,
                 categoryId = 0,

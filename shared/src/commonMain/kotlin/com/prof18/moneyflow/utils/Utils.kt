@@ -9,7 +9,7 @@ object Utils {
     fun MillisSinceEpoch.generateCurrentMonthId(): CurrentMonthID {
         val instant = Instant.fromEpochMilliseconds(this)
         val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-        val id = "${dateTime.year}${dateTime.monthNumber}${dateTime.dayOfMonth}"
+        val id = "${dateTime.year}${dateTime.monthNumber}"
         return id.toLong()
     }
 
