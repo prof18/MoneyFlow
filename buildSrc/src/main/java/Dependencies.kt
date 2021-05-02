@@ -40,12 +40,9 @@ object Deps {
     val androidCrypto = "androidx.security:security-crypto:${Versions.androidCrypto}"
 
     object Koin {
-        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
-        const val coreMultiplatform = "io.insert-koin:koin-core:${Versions.koin}"
-        const val androidViewModel = "io.insert-koin:koin-android:${Versions.koin}"
-
-        //        const val androidViewModel = "io.insert-koin:koin-android:3.0.0-alpha-4"
+        const val android = "io.insert-koin:koin-android:${Versions.koin}"
+        const val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
         const val test = "io.insert-koin:koin-test:${Versions.koin}"
     }
 

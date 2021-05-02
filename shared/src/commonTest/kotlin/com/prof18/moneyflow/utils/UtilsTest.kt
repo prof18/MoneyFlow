@@ -14,7 +14,7 @@ class UtilsTest {
         val millis: MillisSinceEpoch = 1604264274888L
         val monthID = millis.generateCurrentMonthId()
 
-        assertEquals(monthID, 2020111)
+        assertEquals(monthID, 202011)
     }
 
 }

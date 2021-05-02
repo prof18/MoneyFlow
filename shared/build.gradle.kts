@@ -86,7 +86,7 @@ kotlin {
                 implementation(Deps.SqlDelight.coroutineExtensions)
                 implementation(Deps.Coroutines.common)
                 implementation(Deps.stately)
-                implementation(Deps.Koin.coreMultiplatform)
+                implementation(Deps.Koin.core)
                 implementation(Deps.kotlinDateTime)
                 implementation(Deps.multiplatformSettings)
 

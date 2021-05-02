@@ -20,57 +20,29 @@ import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCaseImpl
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
 import com.prof18.moneyflow.presentation.home.HomeUseCase
 import com.prof18.moneyflow.presentation.home.HomeUseCaseImpl
+import org.koin.dsl.KoinAppDeclaration
 
-fun initKoin(appModule: Module): KoinApplication {
-    return startKoin {
-        modules(
-            appModule,
-            platformModule,
-            coreModule
-        )
+fun initKoin(appDeclaration: KoinAppDeclaration = {}){
+    startKoin {
+        appDeclaration()
+        modules(platformModule, coreModule)
     }
 }
 
 private val coreModule = module {
 
-    single<DatabaseSource> {
-        DatabaseSourceImpl(get(), Dispatchers.Main)
-    }
-
-    single {
-        SettingsSource(get())
-    }
-
-    single<DropboxSyncRepository> {
-        DropboxSyncRepositoryImpl(get())
-    }
+    single<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Main) }
+    single { SettingsSource(get()) }
 
     // Repository
-
-    single<MoneyRepository> {
-        MoneyRepositoryImpl(get())
-    }
-
+    single<DropboxSyncRepository> { DropboxSyncRepositoryImpl(get()) }
+    single<MoneyRepository> { MoneyRepositoryImpl(get()) }
 
     // Use Cases
-
-    factory<HomeUseCase> {
-        HomeUseCaseImpl(get())
-    }
-
-    factory<AddTransactionUseCase> {
-        AddTransactionUseCaseImpl(get())
-    }
-
-    factory<CategoriesUseCase> {
-        CategoriesUseCaseImpl(get())
-    }
-
-    factory<DropboxSyncUserCase> {
-        DropboxSyncUseCaseImpl(get())
-    }
-
-
+    factory<HomeUseCase> { HomeUseCaseImpl(get()) }
+    factory<AddTransactionUseCase> { AddTransactionUseCaseImpl(get()) }
+    factory<CategoriesUseCase> { CategoriesUseCaseImpl(get()) }
+    factory<DropboxSyncUserCase> { DropboxSyncUseCaseImpl(get()) }
 }
 
 expect val platformModule: Module

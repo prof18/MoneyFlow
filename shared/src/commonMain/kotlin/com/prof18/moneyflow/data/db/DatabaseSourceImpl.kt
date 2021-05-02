@@ -45,8 +45,6 @@ class DatabaseSourceImpl(
 
     override fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable> {
         val current = Clock.System.now()
-        val dateTime: LocalDateTime = current.toLocalDateTime(TimeZone.currentSystemDefault())
-//        val id = "${dateTime.year}${dateTime.monthNumber}${dateTime.dayOfMonth}".toLong()
         val id = current.toEpochMilliseconds().generateCurrentMonthId()
 
         return dbRef.monthlyRecapTableQueries

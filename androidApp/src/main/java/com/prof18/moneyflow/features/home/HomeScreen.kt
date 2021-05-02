@@ -23,19 +23,16 @@ import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.presentation.home.HomeModel
+import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
 
 @Composable
 fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
 
-    // TODO: create with koin
-    val homeViewModel = viewModel<HomeViewModel>(
-        factory = HomeViewModelFactory()
-    )
+    val homeViewModel = getViewModel<HomeViewModel>()
 
     val homeModel by homeViewModel.homeLiveData.observeAsState()
-
 
     when (homeModel) {
         is HomeModel.Loading -> Loader()

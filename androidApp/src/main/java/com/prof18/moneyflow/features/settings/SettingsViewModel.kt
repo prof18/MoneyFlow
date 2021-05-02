@@ -18,13 +18,3 @@ class SettingsViewModel(
         databaseImportExport.importFromMemory(uri)
     }
 }
-
-class SettingsViewModelFactory : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SettingsViewModel::class.java)) {
-            return SettingsViewModel(getKoin().get()) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

@@ -82,13 +82,3 @@ class AddTransactionViewModel(
         }
     }
 }
-
-class AddTransactionViewModelFactory : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(AddTransactionViewModel::class.java)) {
-            return AddTransactionViewModel(getKoin().get()) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

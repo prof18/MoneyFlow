@@ -14,6 +14,7 @@ import com.prof18.moneyflow.features.categories.data.toCategoryUIData
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.presentation.categories.CategoryModel
+import org.koin.androidx.compose.getViewModel
 
 
 @Composable
@@ -22,9 +23,7 @@ fun CategoriesScreen(
     isFromAddTransaction: Boolean,
 ) {
 
-    val viewModel = viewModel<CategoriesViewModel>(
-        factory = CategoriesViewModelFactory()
-    )
+    val viewModel = getViewModel<CategoriesViewModel>()
 
     Scaffold(
         topBar = {

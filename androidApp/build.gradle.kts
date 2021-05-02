@@ -73,7 +73,7 @@ dependencies {
     implementation(Deps.Compose.composeNavigation)
     implementation(Deps.Compose.activityCompose)
     implementation(Deps.Koin.core)
-    implementation(Deps.Koin.androidViewModel)
+    implementation(Deps.Koin.android)
     implementation(Deps.Koin.compose)
     implementation(Deps.timber)
     implementation(Deps.dropboxCore)

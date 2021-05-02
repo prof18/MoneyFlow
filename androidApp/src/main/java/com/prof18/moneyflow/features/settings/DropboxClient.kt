@@ -62,7 +62,7 @@ class DropboxClient(
                     ?.withMode(WriteMode.OVERWRITE)
                     ?.uploadAndFinish(FileInputStream(databaseFile))
 
-                val rev = metadata?.rev
+//                val rev = metadata?.rev
                 metadata?.serverModified?.time?.let { lastRefresh ->
                     Timber.d("Last refresh new: $lastRefresh")
                     // TODO: improve and set a flow to show the update

@@ -11,6 +11,7 @@ class HomeViewModel(
     private var useCase: HomeUseCase
 ) : ViewModel() {
 
+    // TODO: get rid of live data
     private val _homeLiveData = MutableLiveData<HomeModel>()
     val homeLiveData: LiveData<HomeModel>
         get() = _homeLiveData
@@ -32,15 +33,5 @@ class HomeViewModel(
 
     fun deleteTransaction(id: Long) {
         useCase.deleteTransaction(id)
-    }
-}
-
-class HomeViewModelFactory : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(getKoin().get()) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

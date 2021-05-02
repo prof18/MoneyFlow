@@ -28,7 +28,6 @@ fun AppContainer() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
-
     MoneyFlowTheme {
         Scaffold(
             bottomBar = {
@@ -49,7 +48,6 @@ fun AppContainer() {
                                 },
                                 label = { Text(stringResource(tabBarItem.titleResId)) },
                                 selected = currentRoute == tabBarItem.screen.name,
-//                                selectedContentColor = LocalContentColor.current,
                                 unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                                 onClick = {
                                     // This is the equivalent to popUpTo the start destination

@@ -16,6 +16,7 @@ import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.addtransaction.components.*
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun AddTransactionScreen(
@@ -25,9 +26,7 @@ fun AddTransactionScreen(
     @DrawableRes categoryIcon: Int?
 ) {
 
-    val viewModel = viewModel<AddTransactionViewModel>(
-        factory = AddTransactionViewModelFactory()
-    )
+    val viewModel = getViewModel<AddTransactionViewModel>()
 
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
