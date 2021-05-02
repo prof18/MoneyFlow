@@ -9,10 +9,11 @@ version = "1.0-SNAPSHOT"
 
 // Workaround to solve https://youtrack.jetbrains.com/issue/KT-43944
 android {
-    compileSdkVersion(30)
+    compileSdk= 30
     defaultConfig {
-        minSdkVersion(23)
-        targetSdkVersion(30)
+        minSdk = 24
+        targetSdk = 30
+
 //        versionCode = 1
 //        versionName = "1.0"
 

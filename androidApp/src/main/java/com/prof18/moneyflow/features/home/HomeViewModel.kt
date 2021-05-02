@@ -1,33 +1,23 @@
 package com.prof18.moneyflow.features.home
 
-import androidx.lifecycle.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import org.koin.java.KoinJavaComponent.getKoin
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.presentation.home.HomeUseCase
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private var useCase: HomeUseCase
 ) : ViewModel() {
-
-    // TODO: get rid of live data
-    private val _homeLiveData = MutableLiveData<HomeModel>()
-    val homeLiveData: LiveData<HomeModel>
-        get() = _homeLiveData
+    
+    val homeState = useCase.observeHomeModel()
+        .stateIn(viewModelScope, SharingStarted.Eagerly, HomeModel.Loading)
 
     init {
-        observeHomeModel()
         viewModelScope.launch {
             useCase.computeHomeDataSuspendable()
-        }
-    }
-
-    private fun observeHomeModel() {
-        viewModelScope.launch {
-            useCase.observeHomeModel().collect {
-                _homeLiveData.postValue(it)
-            }
         }
     }
 

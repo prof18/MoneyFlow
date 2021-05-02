@@ -13,7 +13,6 @@ plugins {
 //}
 
 android {
-//    compileSdkVersion(30)
     compileSdk= 30
     defaultConfig {
         applicationId = "com.prof18.moneyflow"
@@ -58,8 +57,6 @@ android {
 dependencies {
     implementation(project(":shared"))
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0")
-
     implementation(Deps.Compose.core)
     implementation(Deps.Compose.foundation)
     implementation(Deps.Compose.layout)
@@ -67,18 +64,19 @@ dependencies {
     implementation(Deps.Compose.materialIconsExtended)
     implementation(Deps.Compose.materialIconsCore)
     implementation(Deps.Compose.runtime)
-    implementation(Deps.Compose.runtimeLivedata)
     implementation(Deps.Compose.tooling)
-    implementation(Deps.Compose.runtimeLiveData)
     implementation(Deps.Compose.composeNavigation)
     implementation(Deps.Compose.activityCompose)
+    implementation(Deps.viewModelKTX)
     implementation(Deps.Koin.core)
     implementation(Deps.Koin.android)
     implementation(Deps.Koin.compose)
     implementation(Deps.timber)
     implementation(Deps.dropboxCore)
 
-//    androidTestImplementation(Deps.Compose.test)
+    // Needed for getting it.savedStateHandle as observable live data
+    implementation(Deps.Compose.runtimeLivedata)
+
     androidTestImplementation(Deps.Compose.uiTest)
 
     debugImplementation(Deps.Compose.tooling)

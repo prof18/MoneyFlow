@@ -20,24 +20,22 @@ object Versions {
     const val dropboxCore = "4.0.0"
     const val multiplatformSettings = "0.7.4"
     const val androidCrypto = "1.1.0-alpha02"
+    const val viewModelKTX = "2.3.1"
 }
 
 object Deps {
 
-    //    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTime}"
     const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
-    //    const val activityKTX = "androidx.activity:activity-ktx:${Versions.activityKTX}"
     const val dropboxCore = "com.dropbox.core:dropbox-core-sdk:${Versions.dropboxCore}"
     const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
-    val multiplatformSettings =
-        "com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}"
-    val multiplatformSettingsTest =
-        "com.russhwolf:multiplatform-settings-test:${Versions.multiplatformSettings}"
-    val androidCrypto = "androidx.security:security-crypto:${Versions.androidCrypto}"
+    const val multiplatformSettings = "com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}"
+    const val multiplatformSettingsTest = "com.russhwolf:multiplatform-settings-test:${Versions.multiplatformSettings}"
+    const val androidCrypto = "androidx.security:security-crypto:${Versions.androidCrypto}"
+    const val viewModelKTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelKTX}"
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
@@ -47,35 +45,23 @@ object Deps {
     }
 
     object Compose {
-
         const val core = "androidx.compose.ui:ui:${Versions.compose}"
         const val foundation = "androidx.compose.foundation:foundation:${Versions.compose}"
         const val layout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
         const val material = "androidx.compose.material:material:${Versions.compose}"
-        const val materialIconsExtended =
-            "androidx.compose.material:material-icons-extended:${Versions.compose}"
-        const val materialIconsCore =
-            "androidx.compose.material:material-icons-core:${Versions.compose}"
+        const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
+        const val materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.compose}"
         const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
         const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
-
-        //        const val tooling = "androidx.ui:ui-tooling:${Versions.compose}"
-//                const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
         const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-
-        //                const val test = "androidx.compose.test:test-core:${Versions.compose}"
         const val uiTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
-        const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
-        const val composeNavigation =
-            "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
-        const val activityCompose =
-            "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
+        const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
+        const val activityCompose = "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
     }
 
     object KotlinTest {
         const val common = "org.jetbrains.kotlin:kotlin-test-common:${Versions.kotlin}"
-        const val annotations =
-            "org.jetbrains.kotlin:kotlin-test-annotations-common:${Versions.kotlin}"
+        const val annotations = "org.jetbrains.kotlin:kotlin-test-annotations-common:${Versions.kotlin}"
         const val jvm = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
         const val junit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
@@ -97,14 +83,12 @@ object Deps {
     object SqlDelight {
         const val gradle = "com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}"
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
-        const val coroutineExtensions =
-            "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+        const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
         const val driver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
         const val runtimeJdk = "com.squareup.sqldelight:runtime-jvm:${Versions.sqlDelight}"
         const val driverIos = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         const val driverAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-        const val driverMacOs =
-            "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
+        const val driverMacOs = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
         const val runtimeMacOs = "com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}"
     }
 

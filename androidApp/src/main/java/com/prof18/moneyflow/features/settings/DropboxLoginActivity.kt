@@ -11,8 +11,8 @@ import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.dropbox.core.android.Auth
@@ -35,7 +35,7 @@ class DropboxLoginActivity : ComponentActivity() {
                 Scaffold(
                     topBar = {
 
-                        val lastRefresh by viewModel.lastRefreshLiveData.observeAsState()
+                        val lastRefresh by viewModel.lastRefresh.collectAsState()
 
                         Column(
                             modifier = Modifier
@@ -61,7 +61,7 @@ class DropboxLoginActivity : ComponentActivity() {
                     },
                     content = {
 
-                        val isConnected by viewModel.isDropboxConnected.observeAsState(false)
+                        val isConnected by viewModel.isDropboxConnected.collectAsState()
 
                         Column(
                             modifier = Modifier

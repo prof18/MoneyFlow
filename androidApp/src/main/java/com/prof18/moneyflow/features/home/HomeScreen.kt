@@ -6,23 +6,18 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
+import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
-import com.prof18.moneyflow.presentation.home.HomeModel
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
@@ -32,7 +27,7 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
 
     val homeViewModel = getViewModel<HomeViewModel>()
 
-    val homeModel by homeViewModel.homeLiveData.observeAsState()
+    val homeModel by homeViewModel.homeState.collectAsState()
 
     when (homeModel) {
         is HomeModel.Loading -> Loader()

@@ -1,14 +1,13 @@
 package com.prof18.moneyflow.features.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dropbox.core.android.Auth
-import com.dropbox.core.oauth.DbxCredential
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
 import timber.log.Timber
 
 class DropboxLoginViewModel(
@@ -16,12 +15,13 @@ class DropboxLoginViewModel(
     private val dropboxClient: DropboxClient,
 ) : ViewModel() {
 
-    private val _lastRefreshLiveData = MutableLiveData<String?>()
-    val lastRefreshLiveData: LiveData<String?>
-        get() = _lastRefreshLiveData
 
-    private val _isDropboxConnected = MutableLiveData<Boolean>()
-    val isDropboxConnected: LiveData<Boolean>
+    private val _lastRefresh = MutableStateFlow<String?>(null)
+    val lastRefresh: StateFlow<String?>
+        get() = _lastRefresh
+
+    private val _isDropboxConnected = MutableStateFlow(false)
+    val isDropboxConnected: StateFlow<Boolean>
         get() = _isDropboxConnected
 
     init {
@@ -39,7 +39,7 @@ class DropboxLoginViewModel(
 
     fun getLastRefresh() {
         val refresh = dropboxSyncUserCase.getLastRefresh()
-        _lastRefreshLiveData.value = refresh
+        _lastRefresh.value = refresh
     }
 
     fun saveAccessToken() {

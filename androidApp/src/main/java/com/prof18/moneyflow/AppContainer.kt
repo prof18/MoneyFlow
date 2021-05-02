@@ -77,9 +77,9 @@ fun AppContainer() {
                 composable(Screen.AddTransactionScreen.name) {
 
                     // Get back the category
-                    val category =
-                        it.savedStateHandle.getLiveData<CategoryUIData>(NavigationArguments.CATEGORY)
-                            .observeAsState()
+                    val category = it.savedStateHandle
+                        .getLiveData<CategoryUIData>(NavigationArguments.CATEGORY)
+                        .observeAsState()
 
                     AddTransactionScreen(
                         navController = navController,
