@@ -13,8 +13,9 @@ android {
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+//        versionCode = 1
+//        versionName = "1.0"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -87,6 +88,8 @@ kotlin {
                 implementation(Deps.stately)
                 implementation(Deps.Koin.coreMultiplatform)
                 implementation(Deps.kotlinDateTime)
+                implementation(Deps.multiplatformSettings)
+
             }
         }
         val commonTest by getting {
@@ -95,11 +98,14 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
                 implementation(Deps.Koin.test)
                 implementation(Deps.turbine)
+                implementation(Deps.multiplatformSettingsTest)
+
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.2.0")
+                implementation(Deps.androidCrypto)
                 implementation(Deps.SqlDelight.driverAndroid)
             }
         }

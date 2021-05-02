@@ -1,19 +1,17 @@
 package com.prof18.moneyflow.domain.repository
 
-import kotlinx.coroutines.flow.Flow
-
 interface DropboxSyncRepository {
 
     @Throws(Exception::class)
-    suspend fun getAccessToken(): String?
+    fun getClientCred(): String?
 
     @Throws(Exception::class)
-    suspend fun getLastRefreshTime(): Flow<String?>
+    fun getLastRefreshTime(): String?
 
     @Throws(Exception::class)
-    suspend fun saveAccessToken(accessToken: String)
+    fun saveClientCred(clientCred: String)
 
     @Throws(Exception::class)
-    suspend fun saveLastRefresh(lastRefresh: Long)
+    fun saveLastRefresh(lastRefresh: Long)
 
 }

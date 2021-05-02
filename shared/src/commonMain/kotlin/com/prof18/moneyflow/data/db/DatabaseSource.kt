@@ -31,9 +31,4 @@ interface DatabaseSource {
     )
     suspend fun getMonthlyRecap(currentMonthID: CurrentMonthID): MonthlyRecapTable
     suspend fun getTransaction(transactionId: Long): TransactionTable?
-    suspend fun insertDropboxAccessToken(accessToken: String)
-    suspend fun updateDropboxLastRefresh(lastRefreshMillis: Long)
-    fun getDropboxLastRefresh(): Flow<GetLastRefresh?>
-    suspend fun getDropboxAccessToken(): GetAccessToken?
-
 }

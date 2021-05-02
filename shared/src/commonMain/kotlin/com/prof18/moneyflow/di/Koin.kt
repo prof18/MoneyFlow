@@ -4,6 +4,7 @@ import com.prof18.moneyflow.data.DropboxSyncRepositoryImpl
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.DatabaseSourceImpl
+import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import kotlinx.coroutines.Dispatchers
@@ -36,15 +37,20 @@ private val coreModule = module {
         DatabaseSourceImpl(get(), Dispatchers.Main)
     }
 
+    single {
+        SettingsSource(get())
+    }
+
+    single<DropboxSyncRepository> {
+        DropboxSyncRepositoryImpl(get())
+    }
+
     // Repository
 
     single<MoneyRepository> {
         MoneyRepositoryImpl(get())
     }
 
-    single<DropboxSyncRepository> {
-        DropboxSyncRepositoryImpl(get())
-    }
 
     // Use Cases
 

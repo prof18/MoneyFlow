@@ -13,15 +13,14 @@ plugins {
 //}
 
 android {
-    compileSdkVersion(30)
+//    compileSdkVersion(30)
+    compileSdk= 30
     defaultConfig {
         applicationId = "com.prof18.moneyflow"
-        minSdkVersion(24)
-        targetSdkVersion(30)
+        minSdk = 24
+        targetSdk = 30
         versionCode = 1
         versionName = "1.0"
-
-//        buildConfigField , , )
 
         val propertiesFile = file("local.properties")
         val properties = Properties()
@@ -31,9 +30,6 @@ android {
 
         buildConfigField("String", "DROPBOX_APP_KEY", properties.getProperty("dropbox.app_key") ?: "\"\"")
         resValue("string", "dropbox_app_key_schema", properties.getProperty("dropbox.app_key_schema") ?: "\"\"")
-
-//        resValue "string", "dropbox_app_key_schema", gradle.ext.appProperties.getProperty("dropbox.app_key_schema", '')
-
     }
     buildTypes {
         getByName("release") {

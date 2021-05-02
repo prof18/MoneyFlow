@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dropbox.core.android.Auth
+import com.dropbox.core.oauth.DbxCredential
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
@@ -12,7 +13,7 @@ import timber.log.Timber
 
 class DropboxLoginViewModel(
     private val dropboxSyncUserCase: DropboxSyncUserCase,
-    private val dropboxClient: DropboxClient
+    private val dropboxClient: DropboxClient,
 ) : ViewModel() {
 
     private val _lastRefreshLiveData = MutableLiveData<String?>()
@@ -24,19 +25,6 @@ class DropboxLoginViewModel(
         get() = _isDropboxConnected
 
     init {
-        observeLastRefresh()
-    }
-
-    private fun observeLastRefresh() {
-
-        viewModelScope.launch {
-            dropboxSyncUserCase.observeLastRefresh().collect {
-                Timber.d("Got last refresh: $it")
-                _lastRefreshLiveData.value = it
-            }
-        }
-
-        // In the same viewModel scope is not working
         viewModelScope.launch {
             dropboxClient.observeClientStatus().collect {
                 Timber.d("Got Client Status com.prof18.moneyflow.data: $it")
@@ -49,14 +37,18 @@ class DropboxLoginViewModel(
         }
     }
 
+    fun getLastRefresh() {
+        val refresh = dropboxSyncUserCase.getLastRefresh()
+        _lastRefreshLiveData.value = refresh
+    }
+
     fun saveAccessToken() {
         viewModelScope.launch {
-            val dropboxToken = Auth.getOAuth2Token()
-            if (dropboxToken != null) {
-                dropboxSyncUserCase.saveAccessToken(dropboxToken)
-                dropboxClient.setTokenAndCreateClient(dropboxToken)
-                _isDropboxConnected.value = true
-            }
+            val dropboxClientCredentials = Auth.getDbxCredential()
+            val stringValue = dropboxClientCredentials.toString()
+            dropboxSyncUserCase.saveClientCred(stringValue)
+            dropboxClient.setTokenAndCreateClient(dropboxClientCredentials)
+            _isDropboxConnected.value = true
         }
     }
 

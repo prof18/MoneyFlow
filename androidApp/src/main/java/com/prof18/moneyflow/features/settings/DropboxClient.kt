@@ -2,13 +2,14 @@ package com.prof18.moneyflow.features.settings
 
 import com.dropbox.core.DbxException
 import com.dropbox.core.DbxRequestConfig
+import com.dropbox.core.oauth.DbxCredential
 import com.dropbox.core.v2.DbxClientV2
 import com.dropbox.core.v2.files.WriteMode
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
 import com.prof18.moneyflow.utils.DatabaseImportExport
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
 import timber.log.Timber
 import java.io.FileInputStream
 import java.util.*
@@ -29,25 +30,25 @@ class DropboxClient(
 
     init {
         scope.launch {
-            val accessToken = dropboxSyncUserCase.getAccessTokenSuspendable()
-            Timber.d("Dropbox access token: $accessToken")
-            if (accessToken != null) {
-                createDropboxClient(accessToken)
+            val clientCredString = dropboxSyncUserCase.getClientCred()
+            if (clientCredString != null) {
+                val clientFromString = DbxCredential.Reader.readFully(clientCredString)
+                createDropboxClient(clientFromString)
             }
         }
     }
 
-    fun setTokenAndCreateClient(accessToken: String) {
-        createDropboxClient(accessToken)
+    fun setTokenAndCreateClient(clientCredential: DbxCredential) {
+        createDropboxClient(clientCredential)
     }
 
-    private fun createDropboxClient(accessToken: String) {
+    private fun createDropboxClient(clientCredential: DbxCredential) {
         val userLocale: String = Locale.getDefault().toString()
         val requestConfig = DbxRequestConfig
             .newBuilder("moneyflowapp")
             .withUserLocale(userLocale)
             .build()
-        dbxClientV2 = DbxClientV2(requestConfig, accessToken)
+        dbxClientV2 = DbxClientV2(requestConfig, clientCredential)
         dropboxClientLinkStatus.value = DropboxClientStatus.LINKED
         Timber.d("Dropbox client status: ${if (dbxClientV2 == null) "null" else "not null"}")
     }
@@ -64,7 +65,9 @@ class DropboxClient(
                 val rev = metadata?.rev
                 metadata?.serverModified?.time?.let { lastRefresh ->
                     Timber.d("Last refresh new: $lastRefresh")
-                    dropboxSyncUserCase.updateLastRefreshSuspendable(lastRefresh)
+                    // TODO: improve and set a flow to show the update
+                    dropboxSyncUserCase.saveLastRefresh(lastRefresh)
+//                    dropboxSyncUserCase.updateLastRefreshSuspendable(lastRefresh)
                 }
 
                 Timber.d("Upload Done")

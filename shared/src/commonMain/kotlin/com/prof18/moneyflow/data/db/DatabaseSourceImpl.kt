@@ -177,32 +177,4 @@ class DatabaseSourceImpl(
             return@withContext dbRef.transactionTableQueries.selectTransaction(transactionId)
                 .executeAsOneOrNull()
         }
-
-    override suspend fun insertDropboxAccessToken(accessToken: String) {
-        withContext(backgroundDispatcher) {
-            // There is always one item with id 1
-            dbRef.dropboxSyncTableQueries.updateAccessToken(accessToken, 1)
-        }
-    }
-
-    override suspend fun updateDropboxLastRefresh(lastRefreshMillis: Long) {
-        withContext(backgroundDispatcher) {
-            // There is always one item with id 1
-            dbRef.dropboxSyncTableQueries.updateLastRefresh(lastRefreshMillis, 1)
-        }
-    }
-
-    override fun getDropboxLastRefresh(): Flow<GetLastRefresh?> {
-        return dbRef.dropboxSyncTableQueries
-            .getLastRefresh()
-            .asFlow()
-            .mapToOneOrNull()
-            .flowOn(backgroundDispatcher)
-    }
-
-    override suspend fun getDropboxAccessToken(): GetAccessToken? =
-        withContext(backgroundDispatcher) {
-            return@withContext dbRef.dropboxSyncTableQueries.getAccessToken().executeAsOneOrNull()
-        }
-
 }
