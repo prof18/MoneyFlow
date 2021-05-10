@@ -7,10 +7,7 @@ import com.prof18.moneyflow.db.MonthlyRecapTable
 import com.prof18.moneyflow.db.SelectAllTransactions
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.model.TransactionType
-import com.prof18.moneyflow.domain.entities.BalanceRecap
-import com.prof18.moneyflow.domain.entities.Category
-import com.prof18.moneyflow.domain.entities.MoneyTransaction
-import com.prof18.moneyflow.domain.entities.TransactionTypeUI
+import com.prof18.moneyflow.domain.entities.*
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -18,6 +15,7 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import com.prof18.moneyflow.presentation.CategoryIcon
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
+import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.utils.Utils.formatDateDayMonthYear
 import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
 import kotlin.math.abs
@@ -30,14 +28,22 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource) : MoneyRepositor
     private var account: Flow<AccountTable> = emptyFlow()
 
     init {
-        ensureNeverFrozen()
         allTransactions = dbSource.selectAllTransaction()
         allCategories = dbSource.selectAllCategories()
         monthlyRecap = dbSource.selectCurrentMonthlyRecap()
         account = dbSource.selectCurrentAccount()
     }
 
-    override suspend fun getBalanceRecap(): Flow<BalanceRecap> {
+    override fun getMoneySummary(): Flow<MoneySummary> {
+        return getLatestTransactions().combine(getBalanceRecap()) { transactions: List<MoneyTransaction>, balanceRecap: BalanceRecap ->
+           MoneySummary(
+                balanceRecap = balanceRecap,
+                latestTransactions = transactions
+            )
+        }
+    }
+
+    override fun getBalanceRecap(): Flow<BalanceRecap> {
         return monthlyRecap.combine(account) { monthlyRecap: MonthlyRecapTable, account: AccountTable ->
             BalanceRecap(
                 totalBalance = account.amount,
@@ -47,7 +53,7 @@ class MoneyRepositoryImpl(private val dbSource: DatabaseSource) : MoneyRepositor
         }
     }
 
-    override suspend fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
+    override fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
         return allTransactions.map {
             it.take(10).map { transaction ->
 

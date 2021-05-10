@@ -13,10 +13,6 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 30
-
-//        versionCode = 1
-//        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -128,6 +124,11 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(Deps.SqlDelight.driverIos)
+                implementation(Deps.Coroutines.common) {
+                    version {
+                        strictly(Versions.coroutinesMt)
+                    }
+                }
             }
         }
         val iosTest by getting {

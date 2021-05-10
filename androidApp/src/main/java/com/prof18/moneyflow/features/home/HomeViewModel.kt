@@ -11,17 +11,13 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private var useCase: HomeUseCase
 ) : ViewModel() {
-    
+
     val homeState = useCase.observeHomeModel()
         .stateIn(viewModelScope, SharingStarted.Eagerly, HomeModel.Loading)
 
-    init {
-        viewModelScope.launch {
-            useCase.computeHomeDataSuspendable()
-        }
-    }
-
     fun deleteTransaction(id: Long) {
-        useCase.deleteTransaction(id)
+        viewModelScope.launch {
+            useCase.deleteTransaction(id)
+        }
     }
 }

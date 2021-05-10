@@ -16,6 +16,7 @@ class DIContainer {
     
     private var databaseSource: DatabaseSource?
     private var moneyRepository: MoneyRepositoryImpl?
+    private var homeUseCaseIos: HomeUseCaseIos?
     
     func getDatabaseSource() -> DatabaseSource {
         if self.databaseSource == nil {
@@ -36,6 +37,13 @@ class DIContainer {
             moneyRepository = MoneyRepositoryImpl(dbSource: getDatabaseSource())
         }
         return self.moneyRepository!
+    }
+
+    func getHomeUseCase() -> HomeUseCaseIos {
+        if self.homeUseCaseIos == nil {
+            homeUseCaseIos = HomeUseCaseIos(moneyRepository: DIContainer.instance.getMoneyRepository())
+        }
+        return self.homeUseCaseIos!
     }
     
 }

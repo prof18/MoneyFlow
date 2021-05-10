@@ -11,13 +11,13 @@ import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 import platform.Foundation.NSUserDefaults
 
-fun initKoinIos(
-    doOnStartup: () -> Unit
-): KoinApplication = initKoin(
-    module {
-        single { doOnStartup }
-    }
-)
+//fun initKoinIos(
+//    doOnStartup: () -> Unit
+//): KoinApplication = initKoin(
+//    module {
+//        single { doOnStartup }
+//    }
+//)
 
 actual val platformModule = module {
 //    single<MoneyFlowDB> {

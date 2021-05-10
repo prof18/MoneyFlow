@@ -11,6 +11,8 @@
 		9DD367CED83E33C5980BD01D /* Pods_iosApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA512D19D684B9033B3B0147 /* Pods_iosApp__macOS_.framework */; };
 		A930B87F253B800500CB92DF /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B87E253B800500CB92DF /* Koin.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
+		A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F6899263F36E80075AB49 /* CombineAdapters.swift */; };
+		A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */; };
 		A9471EBF257594E300C5D3AF /* AddTransactionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */; };
 		A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471EC5257595D800C5D3AF /* CategoriesScreen.swift */; };
 		A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */; };
@@ -113,6 +115,8 @@
 		4618554838A84A2CDCD563E1 /* Pods-iosApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-iosApp (macOS)/Pods-iosApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		A930B87E253B800500CB92DF /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		A93F6899263F36E80075AB49 /* CombineAdapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAdapters.swift; sourceTree = "<group>"; };
+		A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatcherQueueUtils.swift; sourceTree = "<group>"; };
 		A9471EBE257594E300C5D3AF /* AddTransactionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionScreen.swift; sourceTree = "<group>"; };
 		A9471EC5257595D800C5D3AF /* CategoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesScreen.swift; sourceTree = "<group>"; };
 		A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 			children = (
 				A9D8986F24FBF8C4007771A1 /* Extensions.swift */,
 				A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */,
+				A93F6899263F36E80075AB49 /* CombineAdapters.swift */,
+				A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -788,11 +794,13 @@
 				A98B5CFA258BF5B70020C5C5 /* DropboxViewModel.swift in Sources */,
 				A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */,
 				A98B5CEE258B40390020C5C5 /* DropboxScreen.swift in Sources */,
+				A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9E68AB62503B2AA00851990 /* Loader.swift in Sources */,
 				A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */,
 				A9B3D76F257FC68600E65F1A /* AppState.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,
+				A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */,
 				A98B5CF4258BF2660020C5C5 /* DropboxNotifications.swift in Sources */,
 				A9B3C53425FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */,
 				A98B5CE0258AA7F40020C5C5 /* DropboxLoginView.swift in Sources */,

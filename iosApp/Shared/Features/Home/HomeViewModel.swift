@@ -6,30 +6,40 @@
 //
 
 import shared
+import Combine
 
 class HomeViewModel: ObservableObject {
     
-    @Published var homeModel: HomeModel = HomeModel.Loading() {
-        willSet {
-            debugPrint(homeModel)
-        }
-    }
-    
-    var useCase: HomeUseCaseImpl?
-    
+    @Published var homeModel: HomeModel = HomeModel.Loading()
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    private var homeUseCase: HomeUseCaseIos = DIContainer.instance.getHomeUseCase()
+
     func startObserving() {
-        
-        useCase = HomeUseCaseImpl(moneyRepository: DIContainer.instance.getMoneyRepository(), viewUpdate: { [weak self] model in
-            self?.homeModel = model
+        createPublisher(homeUseCase.getMoneySummary())
+                .eraseToAnyPublisher()
+        .receive(on: DispatchQueue.global(qos: .userInitiated))
+        .sink(receiveCompletion: { completion in
+            if case let .failure(error) = completion {
+                self.homeModel = HomeModel.Error(message: "Something wrong here :(")
+            }
+        }, receiveValue: { genericResponse in
+            onMainThread {
+                self.homeModel = HomeModel.HomeState(
+                        balanceRecap: genericResponse.balanceRecap,
+                        latestTransactions: genericResponse.latestTransactions
+                )
+            }
         })
-        self.useCase?.computeData()
+        .store(in: &self.subscriptions)
     }
     
     func deleteTransaction(transactionId: Int64) {
-        self.useCase?.deleteTransaction(transactionId: transactionId)
+        homeUseCase.deleteTransaction(transactionId: transactionId)
     }
     
     func stopObserving() {
-        self.useCase?.onDestroy()
+//        self.useCase?.onDestroy()
     }
 }

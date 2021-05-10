@@ -1,11 +1,8 @@
 package com.prof18.moneyflow.presentation.home
 
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 interface HomeUseCase {
-    fun observeHomeModel(): StateFlow<HomeModel>
-    fun computeData()
-    suspend fun computeHomeDataSuspendable()
-    suspend fun deleteTransactionSuspendable(transactionId: Long)
-    fun deleteTransaction(transactionId: Long)
+    fun observeHomeModel(): Flow<HomeModel>
+    suspend fun deleteTransaction(transactionId: Long)
 }
