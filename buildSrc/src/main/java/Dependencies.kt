@@ -14,7 +14,7 @@ object Versions {
     const val kotlinDateTime = "0.2.0"
     const val androidXTest = "1.3.0"
     const val androidXTestExt = "1.1.2"
-    const val turbine = "0.4.1"
+    const val turbine = "0.5.0"
     const val timber = "4.7.1"
     const val activityKTX = "1.1.0"
     const val dropboxCore = "4.0.0"
