@@ -10,6 +10,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import com.prof18.moneyflow.features.addtransaction.AddTransactionScreen
@@ -31,8 +33,7 @@ fun AppContainer() {
     MoneyFlowTheme {
         Scaffold(
             bottomBar = {
-
-                val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
+                val currentDestination = navBackStackEntry?.destination
 
                 if (canShowBottomBar(navBackStackEntry)) {
 
@@ -47,20 +48,23 @@ fun AppContainer() {
                                     )
                                 },
                                 label = { Text(stringResource(tabBarItem.titleResId)) },
-                                selected = currentRoute == tabBarItem.screen.name,
+                                selected = currentDestination?.hierarchy?.any { it.route == tabBarItem.screen.name } == true,
                                 unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                                 onClick = {
-                                    // This is the equivalent to popUpTo the start destination
-                                    navController.popBackStack(
-                                        navController.graph.startDestination,
-                                        false
-                                    )
-
-                                    // This if check gives us a "singleTop" behavior where we do not create a
-                                    // second instance of the composable if we are already on that destination
-                                    if (currentRoute != tabBarItem.screen.name) {
-                                        navController.navigate(tabBarItem.screen.name)
+                                    navController.navigate(tabBarItem.screen.name) {
+                                        // Pop up to the start destination of the graph to
+                                        // avoid building up a large stack of destinations
+                                        // on the back stack as users select items
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        // Avoid multiple copies of the same destination when
+                                        // reselecting the same item
+                                        launchSingleTop = true
+                                        // Restore state when reselecting a previously selected item
+                                        restoreState = true
                                     }
+
                                 }
                             )
                         }
@@ -122,14 +126,14 @@ fun AppContainer() {
     }
 }
 
-
+// TODO: improve or delete
 private fun canShowBottomBar(navBackStackEntry: NavBackStackEntry?): Boolean {
-    val keyRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
-    if (keyRoute != null) {
-        return keyRoute.contains(Screen.HomeScreen.name) ||
-                keyRoute.contains(Screen.RecapScreen.name) ||
-                keyRoute.contains(Screen.BudgetScreen.name) ||
-                keyRoute.contains(Screen.SettingsScreen.name)
+    val currentDestination = navBackStackEntry?.destination?.route
+    if (currentDestination != null) {
+        return currentDestination.contains(Screen.HomeScreen.name) ||
+                currentDestination.contains(Screen.RecapScreen.name) ||
+                currentDestination.contains(Screen.BudgetScreen.name) ||
+                currentDestination.contains(Screen.SettingsScreen.name)
     }
     return false
 

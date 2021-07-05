@@ -7,7 +7,6 @@ plugins {
 group = "com.prof18"
 version = "1.0-SNAPSHOT"
 
-// Workaround to solve https://youtrack.jetbrains.com/issue/KT-43944
 android {
     compileSdk= 30
     defaultConfig {
@@ -31,14 +30,15 @@ android {
         }
     }
 
-    configurations {
-        create("androidTestApi")
-        create("androidTestDebugApi")
-        create("androidTestReleaseApi")
-        create("testApi")
-        create("testDebugApi")
-        create("testReleaseApi")
-    }
+    // Workaround to solve https://youtrack.jetbrains.com/issue/KT-43944
+//    configurations {
+//        create("androidTestApi")
+//        create("androidTestDebugApi")
+//        create("androidTestReleaseApi")
+//        create("testApi")
+//        create("testDebugApi")
+//        create("testReleaseApi")
+//    }
 }
 
 kotlin.sourceSets.matching {
@@ -101,7 +101,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.core:core-ktx:1.2.0")
+                implementation(Deps.coreKTX)
                 implementation(Deps.androidCrypto)
                 implementation(Deps.SqlDelight.driverAndroid)
             }

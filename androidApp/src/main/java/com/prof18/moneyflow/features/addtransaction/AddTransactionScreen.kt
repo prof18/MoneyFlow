@@ -10,7 +10,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.addtransaction.components.*

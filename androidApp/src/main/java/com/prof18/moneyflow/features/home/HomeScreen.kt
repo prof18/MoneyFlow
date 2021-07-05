@@ -10,7 +10,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import androidx.navigation.compose.navigate
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
