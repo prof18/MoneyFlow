@@ -51,7 +51,7 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
 
                     IconButton(
                         onClick = {
-                            navController.navigate(Screen.AddTransactionScreen.name)
+                            navController.navigate(Screen.AddTransactionScreen.route)
                         },
                         modifier = Modifier
                             .align(Alignment.CenterVertically)

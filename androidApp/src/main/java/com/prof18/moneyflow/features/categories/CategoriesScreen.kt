@@ -10,6 +10,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.prof18.moneyflow.NavigationArguments
 import com.prof18.moneyflow.features.categories.components.CategoryCard
+import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.categories.data.toCategoryUIData
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
@@ -19,7 +20,8 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CategoriesScreen(
-    navController: NavController,
+    navigateUp: () -> Unit,
+    sendCategoryBack: (NavigationArguments, CategoryUIData) -> Unit,
     isFromAddTransaction: Boolean,
 ) {
 
@@ -30,9 +32,7 @@ fun CategoriesScreen(
             MFTopBar(
                 topAppBarText = "Categories",
                 actionTitle = "Add",
-                onBackPressed = {
-                    navController.popBackStack()
-                },
+                onBackPressed = { navigateUp() },
                 onActionClicked = {
                     // TODO
                 },
@@ -54,11 +54,9 @@ fun CategoriesScreen(
                                 category = it,
                                 onClick = { category ->
                                     if (isFromAddTransaction) {
-                                        navController.previousBackStackEntry?.savedStateHandle?.set(
-                                            NavigationArguments.CATEGORY,
-                                            category.toCategoryUIData()
-                                        )
-                                        navController.popBackStack()
+                                        // TODO: Move to viewModel?
+                                        sendCategoryBack(NavigationArguments.FromAddTransaction, category.toCategoryUIData())
+                                        navigateUp()
                                     }
                                 }
                             )

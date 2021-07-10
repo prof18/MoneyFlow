@@ -3,19 +3,18 @@ package com.prof18.moneyflow
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-sealed class Screen(val name: String) {
-    object HomeScreenContainer : Screen("HomeScreenContainer")
-    object AddTransactionScreen : Screen("AddTransactionScreen")
-    object CategoriesScreen : Screen("CategoriesScreen")
-    object HomeScreen: Screen("HomeScreen")
-    object RecapScreen: Screen("RecapScreen")
-    object BudgetScreen: Screen("BudgetScreen")
-    object SettingsScreen: Screen("SettingsScreen")
+sealed class Screen(val route: String) {
+    object AddTransactionScreen : Screen("add_transaction_screen")
+    object CategoriesScreen : Screen("categories_screen")
+    object HomeScreen: Screen("home_screen")
+    object RecapScreen: Screen("recap_screen")
+    object BudgetScreen: Screen("budget_screen")
+    object SettingsScreen: Screen("settings_screen")
 }
 
-object NavigationArguments {
-    const val FROM_ADD_TRANSACTION = "fromAddTransaction"
-    const val CATEGORY = "category"
+sealed class NavigationArguments(val key: String) {
+    object FromAddTransaction: NavigationArguments("from_add_transaction")
+    object Category: NavigationArguments("category")
 }
 
 data class BottomNavigationItem(
@@ -32,17 +31,19 @@ val bottomNavigationItems = listOf(
         drawableResId = R.drawable.ic_home_solid
     ),
 
-    BottomNavigationItem(
-        screen = Screen.RecapScreen,
-        titleResId = R.string.recap_screen,
-        drawableResId = R.drawable.ic_chart_pie_solid
-    ),
-
-    BottomNavigationItem(
-        screen = Screen.BudgetScreen,
-        titleResId = R.string.budget_screen,
-        drawableResId = R.drawable.ic_balance_scale_left_solid
-    ),
+//    // Coming Soon
+//    BottomNavigationItem(
+//        screen = Screen.RecapScreen,
+//        titleResId = R.string.recap_screen,
+//        drawableResId = R.drawable.ic_chart_pie_solid
+//    ),
+//
+//    // Coming Soon
+//    BottomNavigationItem(
+//        screen = Screen.BudgetScreen,
+//        titleResId = R.string.budget_screen,
+//        drawableResId = R.drawable.ic_balance_scale_left_solid
+//    ),
 
     BottomNavigationItem(
         screen = Screen.SettingsScreen,

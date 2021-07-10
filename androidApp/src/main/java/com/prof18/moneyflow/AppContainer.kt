@@ -15,11 +15,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import com.prof18.moneyflow.features.addtransaction.AddTransactionScreen
-import com.prof18.moneyflow.features.budget.BudgetScreen
 import com.prof18.moneyflow.features.categories.CategoriesScreen
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreen
-import com.prof18.moneyflow.features.recap.RecapScreen
 import com.prof18.moneyflow.features.settings.SettingsScreen
 import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -34,9 +32,7 @@ fun AppContainer() {
         Scaffold(
             bottomBar = {
                 val currentDestination = navBackStackEntry?.destination
-
                 if (canShowBottomBar(navBackStackEntry)) {
-
                     BottomNavigation {
                         bottomNavigationItems.forEach { tabBarItem ->
                             BottomNavigationItem(
@@ -48,10 +44,10 @@ fun AppContainer() {
                                     )
                                 },
                                 label = { Text(stringResource(tabBarItem.titleResId)) },
-                                selected = currentDestination?.hierarchy?.any { it.route == tabBarItem.screen.name } == true,
+                                selected = currentDestination?.hierarchy?.any { it.route == tabBarItem.screen.route } == true,
                                 unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                                 onClick = {
-                                    navController.navigate(tabBarItem.screen.name) {
+                                    navController.navigate(tabBarItem.screen.route) {
                                         // Pop up to the start destination of the graph to
                                         // avoid building up a large stack of destinations
                                         // on the back stack as users select items
@@ -73,70 +69,76 @@ fun AppContainer() {
             }
         ) { paddingValues ->
 
-            NavHost(navController, startDestination = Screen.HomeScreen.name) {
-                composable(Screen.HomeScreen.name) {
+            NavHost(navController, startDestination = Screen.HomeScreen.route) {
+                composable(Screen.HomeScreen.route) {
                     HomeScreen(navController, paddingValues)
                 }
 
-                composable(Screen.AddTransactionScreen.name) {
+                composable(Screen.AddTransactionScreen.route) {
 
                     // Get back the category
                     val category = it.savedStateHandle
-                        .getLiveData<CategoryUIData>(NavigationArguments.CATEGORY)
+                        .getLiveData<CategoryUIData>( NavigationArguments.Category.key)
                         .observeAsState()
 
                     AddTransactionScreen(
-                        navController = navController,
                         categoryName = category.value?.name,
                         categoryId = category.value?.id,
-                        categoryIcon = category.value?.icon
+                        categoryIcon = category.value?.icon,
+                        navigateUp = { navController.popBackStack() },
+                        navigateToCategoryList = {
+                            navController.navigate("${Screen.CategoriesScreen.route}/true")
+                        },
                     )
                 }
 
                 composable(
-                    route = Screen.CategoriesScreen.name + "/{${NavigationArguments.FROM_ADD_TRANSACTION}}",
-                    arguments = listOf(navArgument(NavigationArguments.FROM_ADD_TRANSACTION) {
+                    route = Screen.CategoriesScreen.route + "/{${ NavigationArguments.FromAddTransaction.key}}",
+                    arguments = listOf(navArgument( NavigationArguments.FromAddTransaction.key) {
                         type = NavType.BoolType
                     })
                 ) { backStackEntry ->
                     CategoriesScreen(
-                        navController,
-                        backStackEntry.arguments?.getBoolean(NavigationArguments.FROM_ADD_TRANSACTION)
-                            ?: false
+                        // TODO: do not inject the nav controller, but a lambda
+                        navigateUp = { navController.popBackStack() },
+                        sendCategoryBack = { navArguments, categoryData ->
+                            navController.previousBackStackEntry?.savedStateHandle?.set(
+                                navArguments.key,
+                                categoryData
+                            )
+                        },
+                        isFromAddTransaction = backStackEntry.arguments?.getBoolean(
+                            NavigationArguments.FromAddTransaction.key
+                        ) ?: false,
                     )
                 }
 
-                composable(Screen.RecapScreen.name) {
-                    RecapScreen()
-                }
+//                // Coming Soon
+//                composable(Screen.RecapScreen.route) {
+//                    RecapScreen()
+//                }
+//                // Coming Soon
+//                composable(Screen.BudgetScreen.route) {
+//                    BudgetScreen()
+//                }
 
-                composable(Screen.BudgetScreen.name) {
-                    BudgetScreen()
-                }
-
-                composable(Screen.SettingsScreen.name) {
+                composable(Screen.SettingsScreen.route) {
                     SettingsScreen()
                 }
-
             }
-
         }
-
-
     }
 }
 
-// TODO: improve or delete
 private fun canShowBottomBar(navBackStackEntry: NavBackStackEntry?): Boolean {
     val currentDestination = navBackStackEntry?.destination?.route
     if (currentDestination != null) {
-        return currentDestination.contains(Screen.HomeScreen.name) ||
-                currentDestination.contains(Screen.RecapScreen.name) ||
-                currentDestination.contains(Screen.BudgetScreen.name) ||
-                currentDestination.contains(Screen.SettingsScreen.name)
+        return currentDestination.contains(Screen.HomeScreen.route) ||
+                currentDestination.contains(Screen.RecapScreen.route) ||
+                currentDestination.contains(Screen.BudgetScreen.route) ||
+                currentDestination.contains(Screen.SettingsScreen.route)
     }
     return false
-
 }
 
 
