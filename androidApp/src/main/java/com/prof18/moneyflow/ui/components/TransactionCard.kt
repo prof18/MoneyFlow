@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,7 +28,6 @@ fun TransactionCard(
     transaction: MoneyTransaction,
     onLongPress: () -> Unit,
     onClick: () -> Unit
-
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -46,7 +46,6 @@ fun TransactionCard(
     ) {
 
         Row {
-
             Box(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -118,45 +117,50 @@ fun TransactionCard(
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(
-                        top = AppMargins.regular,
-                        bottom = AppMargins.regular,
-                        end = AppMargins.regular,
-                    )
+                    .padding(AppMargins.regular)
             )
-
-
         }
-
     }
-
-
 }
-
 
 @Preview
 @Composable
-fun TransactionPreview() {
-    MoneyFlowTheme {
-        TransactionCard(
-            transaction = MoneyTransaction(
-                id = 0,
-                title = "Eating out",
-                icon = CategoryIcon.IC_HAMBURGER_SOLID,
-                amount = 30.0,
-                type = TransactionTypeUI.EXPENSE,
-                formattedDate = "12/12/21"
-            ),
-            onLongPress = {},
-            onClick = {}
-        )
+fun TransactionCardLightPreview() {
+    Surface {
+        MoneyFlowTheme {
+            TransactionCard(
+                transaction = MoneyTransaction(
+                    id = 0,
+                    title = "Eating out",
+                    icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                    amount = 30.0,
+                    type = TransactionTypeUI.EXPENSE,
+                    formattedDate = "12/12/21"
+                ),
+                onLongPress = {},
+                onClick = {}
+            )
+        }
     }
 }
-//
-//@Preview
-//@Composable
-//fun TransactionDarkPreview() {
-//    MoneyFlowTheme(darkTheme = true) {
-//        TransactionCard()
-//    }
-//}
+
+@Preview
+@Composable
+fun TransactionCardDarkPreview() {
+    Surface {
+        MoneyFlowTheme(darkTheme = true) {
+            TransactionCard(
+                transaction = MoneyTransaction(
+                    id = 0,
+                    title = "Eating out",
+                    icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                    amount = 30.0,
+                    type = TransactionTypeUI.EXPENSE,
+                    formattedDate = "12/12/21"
+                ),
+                onLongPress = {},
+                onClick = {}
+            )
+        }
+    }
+}

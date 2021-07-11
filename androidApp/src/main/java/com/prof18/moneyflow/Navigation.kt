@@ -2,6 +2,12 @@ package com.prof18.moneyflow
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+
+interface ComposeNavigationFactory {
+    fun create(navGraphBuilder: NavGraphBuilder, navController: NavController)
+}
 
 sealed class Screen(val route: String) {
     object AddTransactionScreen : Screen("add_transaction_screen")

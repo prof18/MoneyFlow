@@ -32,6 +32,7 @@ fun AddTransactionScreen(
     navigateToCategoryList: () -> Unit
 ) {
 
+    // TODO: do not use the view model like this! But extract outside and pass only the needed data!
     val viewModel = getViewModel<AddTransactionViewModel>()
 
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
@@ -66,8 +67,7 @@ fun AddTransactionScreen(
                     onSave = {
                         viewModel.saveDate()
                     },
-
-                    )
+                )
 
                 TransactionTypeTabBar(
                     transactionType = viewModel.selectedTransactionType,

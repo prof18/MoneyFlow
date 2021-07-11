@@ -25,6 +25,7 @@ fun CategoriesScreen(
     isFromAddTransaction: Boolean,
 ) {
 
+    // TODO: do not use the view model like this! But extract outside and pass only the needed data!
     val viewModel = getViewModel<CategoriesViewModel>()
 
     Scaffold(

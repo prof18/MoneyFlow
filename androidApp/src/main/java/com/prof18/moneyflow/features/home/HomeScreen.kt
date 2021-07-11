@@ -9,30 +9,60 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+import com.prof18.moneyflow.ComposeNavigationFactory
+import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
+import com.prof18.moneyflow.domain.entities.BalanceRecap
+import com.prof18.moneyflow.domain.entities.MoneyTransaction
+import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
+import com.prof18.moneyflow.presentation.CategoryIcon
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
+class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavigationFactory {
+    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
+        navGraphBuilder.composable(Screen.HomeScreen.route) {
+            val homeViewModel = getViewModel<HomeViewModel>()
+            val homeModelState: HomeModel by homeViewModel.homeState.collectAsState()
+
+            HomeScreen(
+                navigateToAddTransaction = {
+                    navController.navigate(Screen.AddTransactionScreen.route)
+                },
+                paddingValues = paddingValues,
+                deleteTransaction = { transactionId ->
+                    homeViewModel.deleteTransaction(transactionId)
+                },
+                homeModel = homeModelState,
+            )
+        }
+    }
+}
 
 @Composable
-fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
-
-    val homeViewModel = getViewModel<HomeViewModel>()
-
-    val homeModel by homeViewModel.homeState.collectAsState()
+fun HomeScreen(
+    navigateToAddTransaction: () -> Unit = {},
+    paddingValues: PaddingValues = PaddingValues(0.dp),
+    deleteTransaction: (Long) -> Unit = {},
+    homeModel: HomeModel,
+) {
 
     when (homeModel) {
         is HomeModel.Loading -> Loader()
         is HomeModel.HomeState -> {
-
-            val homeState = (homeModel as HomeModel.HomeState)
 
             Column(modifier = Modifier.padding(AppMargins.small)) {
 
@@ -42,7 +72,7 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "My Wallet",
+                        text = stringResource(R.string.my_wallet),
                         style = MaterialTheme.typography.h4,
                         modifier = Modifier
                             .padding(horizontal = AppMargins.regular)
@@ -50,9 +80,7 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
                     )
 
                     IconButton(
-                        onClick = {
-                            navController.navigate(Screen.AddTransactionScreen.route)
-                        },
+                        onClick = { navigateToAddTransaction() },
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
                             .padding(top = AppMargins.small)
@@ -64,10 +92,10 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
                     }
                 }
 
-                HomeRecap(homeState.balanceRecap)
+                HomeRecap(homeModel.balanceRecap)
                 HeaderNavigator()
 
-                if (homeState.latestTransactions.isEmpty()) {
+                if (homeModel.latestTransactions.isEmpty()) {
 
                     Box(
                         contentAlignment = Alignment.Center,
@@ -77,35 +105,35 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                "¯\\_(ツ)_/¯",
+                                stringResource(id = R.string.shrug),
                                 modifier = Modifier
                                     .padding(bottom = AppMargins.small),
                                 style = MaterialTheme.typography.h6
                             )
 
                             Text(
-                                "Your wallet is emptyyy",
+                                stringResource(R.string.empty_wallet),
                                 style = MaterialTheme.typography.h6
                             )
                         }
                     }
                 } else {
-
-
                     LazyColumn(
                         modifier = Modifier
                             .padding(bottom = paddingValues.calculateBottomPadding())
                     ) {
-                        items(homeState.latestTransactions) { transaction ->
+                        items(homeModel.latestTransactions) { transaction ->
                             val (showTransactionMenu, setShowTransactionMenu) = remember {
                                 mutableStateOf(
                                     false
                                 )
                             }
 
-                            Box(modifier = Modifier
-                                .fillMaxSize()
-                                .wrapContentSize(Alignment.TopStart)) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .wrapContentSize(Alignment.TopStart)
+                            ) {
                                 TransactionCard(
                                     transaction = transaction,
                                     onClick = {
@@ -119,10 +147,10 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
                                     onDismissRequest = { setShowTransactionMenu(false) }
                                 ) {
                                     DropdownMenuItem(onClick = {
-                                        homeViewModel.deleteTransaction(transaction.id)
+                                        deleteTransaction(transaction.id)
                                         setShowTransactionMenu(false)
                                     }) {
-                                        Text("Delete")
+                                        Text(stringResource(R.string.delete))
                                     }
                                 }
                             }
@@ -132,7 +160,78 @@ fun HomeScreen(navController: NavController, paddingValues: PaddingValues) {
                 }
             }
         }
-        is HomeModel.Error -> Text("Something wrong here!")
+        is HomeModel.Error -> Text(stringResource(R.string.generic_error_message))
     }
 }
 
+@Preview
+@Composable
+fun HomeScreenLightPreview() {
+    MoneyFlowTheme {
+        Surface {
+            HomeScreen(
+                homeModel = HomeModel.HomeState(
+                    balanceRecap = BalanceRecap(
+                        totalBalance = 5000.0,
+                        monthlyIncome = 1000.0,
+                        monthlyExpenses = 50.0
+                    ),
+                    latestTransactions = listOf(
+                        MoneyTransaction(
+                            id = 0,
+                            title = "Ice Cream",
+                            icon = CategoryIcon.IC_ICE_CREAM_SOLID,
+                            amount = 10.0,
+                            type = TransactionTypeUI.EXPENSE,
+                            formattedDate = "12 July 2021"
+                        ),
+                        MoneyTransaction(
+                            id = 1,
+                            title = "Tip",
+                            icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
+                            amount = 50.0,
+                            type = TransactionTypeUI.INCOME,
+                            formattedDate = "12 July 2021"
+                        )
+                    )
+                )
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HomeScreenDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            HomeScreen(
+                homeModel = HomeModel.HomeState(
+                    balanceRecap = BalanceRecap(
+                        totalBalance = 5000.0,
+                        monthlyIncome = 1000.0,
+                        monthlyExpenses = 50.0
+                    ),
+                    latestTransactions = listOf(
+                        MoneyTransaction(
+                            id = 0,
+                            title = "Ice Cream",
+                            icon = CategoryIcon.IC_ICE_CREAM_SOLID,
+                            amount = 10.0,
+                            type = TransactionTypeUI.EXPENSE,
+                            formattedDate = "12 July 2021"
+                        ),
+                        MoneyTransaction(
+                            id = 1,
+                            title = "Tip",
+                            icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
+                            amount = 50.0,
+                            type = TransactionTypeUI.INCOME,
+                            formattedDate = "12 July 2021"
+                        )
+                    )
+                )
+            )
+        }
+    }
+}

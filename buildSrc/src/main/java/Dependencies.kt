@@ -53,7 +53,9 @@ object Deps {
         const val materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.compose}"
         const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
         const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
-        const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+//        const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+        // TODO: downgrade until artic fox rc01 is out
+        const val tooling = "androidx.compose.ui:ui-tooling:1.0.0-beta09"
         const val uiTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityComposeVersion}"

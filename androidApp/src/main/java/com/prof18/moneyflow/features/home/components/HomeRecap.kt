@@ -6,16 +6,50 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.*
 import com.prof18.moneyflow.domain.entities.BalanceRecap
+import com.prof18.moneyflow.ui.style.*
+
+@Preview
+@Composable
+fun HomeRecapPreview() {
+    MoneyFlowTheme {
+        Surface {
+            HomeRecap(
+                balanceRecap = BalanceRecap(
+                    totalBalance = 1200.0,
+                    monthlyIncome = 150.0,
+                    monthlyExpenses = 200.0
+                )
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HomeRecapDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            HomeRecap(
+                balanceRecap = BalanceRecap(
+                    totalBalance = 1200.0,
+                    monthlyIncome = 150.0,
+                    monthlyExpenses = 200.0
+                )
+            )
+        }
+    }
+}
 
 @Composable
 fun HomeRecap(
@@ -31,13 +65,12 @@ fun HomeRecap(
     ) {
 
 
-
-
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally),
         ) {
             Text(
-                text = "€",
+                // TODO: inject the currency the user has chosen from somewhere
+                text = stringResource(R.string.euro_symbol),
                 style = MaterialTheme.typography.h5,
                 modifier = Modifier.align(Alignment.CenterVertically),
             )
@@ -51,12 +84,10 @@ fun HomeRecap(
         }
 
         Text(
-            text = "Total Balance",
+            text = stringResource(R.string.total_balance),
             style = MaterialTheme.typography.subtitle2,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
-
-
 
         Spacer(Modifier.height(AppMargins.medium))
 
@@ -74,7 +105,7 @@ fun HomeRecap(
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_up_rotate),
-                        contentDescription = null,
+                        contentDescription = stringResource(R.string.up_arrow_content_desc),
                         modifier = Modifier
                             .padding(AppMargins.small)
                             .size(24.dp),
@@ -84,16 +115,15 @@ fun HomeRecap(
 
                 Column() {
                     Text(
-                        text = "+${balanceRecap.monthlyIncome} €",
+
+                        text = "+${balanceRecap.monthlyIncome} ${stringResource(id = R.string.euro_symbol)}",
                         style = MaterialTheme.typography.h5
                     )
                     Text(
-                        text = "Income",
+                        text = stringResource(id = R.string.transaction_type_income),
                         style = MaterialTheme.typography.subtitle2,
                     )
                 }
-
-
             }
 
             Row {
@@ -105,7 +135,7 @@ fun HomeRecap(
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_down_rotate),
-                        contentDescription = null,
+                        contentDescription = stringResource(R.string.down_arrow_content_desc),
                         modifier = Modifier
                             .padding(AppMargins.small)
                             .size(24.dp),
@@ -113,47 +143,19 @@ fun HomeRecap(
                     )
                 }
 
-                Column() {
+                Column {
                     Text(
+                        // TODO: inject the currency the user has chosen from somewhere
                         text = "-${balanceRecap.monthlyExpenses} €",
                         style = MaterialTheme.typography.h5
                     )
                     Text(
-                        text = "Expense",
+                        text = stringResource(id = R.string.transaction_type_outcome),
                         style = MaterialTheme.typography.subtitle2,
                         modifier = Modifier.align(Alignment.End),
                     )
                 }
-
-
             }
-
-
         }
-
-    }
-
-}
-
-
-@Preview
-@Composable
-fun HomeRecapPreview() {
-    MoneyFlowTheme {
-        HomeRecap(
-            balanceRecap = BalanceRecap(
-                totalBalance = 1200.0,
-                monthlyIncome = 150.0,
-                monthlyExpenses = 200.0
-            )
-        )
     }
 }
-
-//@Preview
-//@Composable
-//fun HomeRecapDarkPreview() {
-//    MoneyFlowTheme(darkTheme = true) {
-//        HomeRecap()
-//    }
-//}

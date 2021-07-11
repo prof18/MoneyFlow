@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">MoneyFlow</string>
     <string name="transaction_type_income">Income</string>
     <string name="transaction_type_outcome">Expense</string>
     <string name="select_category">Select Category</string>
@@ -16,4 +16,14 @@
     <string name="categories_screen">Categories</string>
     <string name="dropbox_not_sync_yet">Not yet synced</string>
     <string name="dropbox_last_refresh">Last refresh:</string>
+    <string name="latest_transactions">Latest Transactions</string>
+    <string name="euro_symbol">€</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="up_arrow_content_desc">Up arrow</string>
+    <string name="down_arrow_content_desc">Down arrow</string>
+    <string name="my_wallet">My Wallet</string>
+    <string name="empty_wallet">Your wallet is empty</string>
+    <string name="shrug">¯\_(ツ)_/¯</string>
+    <string name="delete">Delete</string>
+    <string name="generic_error_message">Something wrong here!</string>
 </resources>

@@ -12,6 +12,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.util.*
 
+@Preview
+@Composable
+fun AddTransactionTopBarPreview() {
+    return MFTopBar(
+        topAppBarText = "Title",
+        actionTitle = "Save",
+        onBackPressed = {  },
+        onActionClicked = {  },
+        actionEnabled = false
+    )
+}
+
 @Composable
 fun MFTopBar(
     topAppBarText: String,
@@ -44,7 +56,7 @@ fun MFTopBar(
                 Spacer(modifier = Modifier.width(68.dp))
                 TextButton(onClick = onActionClicked, enabled = actionEnabled) {
                     Text(
-                        actionTitle!!.toUpperCase(Locale.getDefault()),
+                        actionTitle!!.uppercase(),
                         style = MaterialTheme.typography.subtitle2
                     )
                 }
@@ -52,17 +64,5 @@ fun MFTopBar(
         },
         backgroundColor = MaterialTheme.colors.background,
         elevation = 0.dp
-    )
-}
-
-@Preview
-@Composable
-fun AddTransactionTopBarPreview() {
-    return MFTopBar(
-        topAppBarText = "Title",
-        actionTitle = "Save",
-        onBackPressed = {  },
-        onActionClicked = {  },
-        actionEnabled = false
     )
 }

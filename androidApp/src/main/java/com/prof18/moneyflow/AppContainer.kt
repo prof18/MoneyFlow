@@ -3,6 +3,7 @@ package com.prof18.moneyflow
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -18,9 +19,13 @@ import com.prof18.moneyflow.features.addtransaction.AddTransactionScreen
 import com.prof18.moneyflow.features.categories.CategoriesScreen
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreen
+import com.prof18.moneyflow.features.home.HomeScreenFactory
+import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.SettingsScreen
+import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun AppContainer() {
@@ -70,15 +75,14 @@ fun AppContainer() {
         ) { paddingValues ->
 
             NavHost(navController, startDestination = Screen.HomeScreen.route) {
-                composable(Screen.HomeScreen.route) {
-                    HomeScreen(navController, paddingValues)
-                }
+
+                HomeScreenFactory(paddingValues).create(this, navController)
 
                 composable(Screen.AddTransactionScreen.route) {
 
                     // Get back the category
                     val category = it.savedStateHandle
-                        .getLiveData<CategoryUIData>( NavigationArguments.Category.key)
+                        .getLiveData<CategoryUIData>(NavigationArguments.Category.key)
                         .observeAsState()
 
                     AddTransactionScreen(
@@ -93,8 +97,8 @@ fun AppContainer() {
                 }
 
                 composable(
-                    route = Screen.CategoriesScreen.route + "/{${ NavigationArguments.FromAddTransaction.key}}",
-                    arguments = listOf(navArgument( NavigationArguments.FromAddTransaction.key) {
+                    route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
+                    arguments = listOf(navArgument(NavigationArguments.FromAddTransaction.key) {
                         type = NavType.BoolType
                     })
                 ) { backStackEntry ->
