@@ -20,6 +20,7 @@ import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreenFactory
 import com.prof18.moneyflow.features.recap.RecapScreenFactory
 import com.prof18.moneyflow.features.settings.SettingsScreen
+import com.prof18.moneyflow.features.settings.SettingsScreenFactory
 import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
@@ -90,9 +91,7 @@ fun AppContainer() {
                 // Coming Soon
 //                BudgetScreenFactory.create(this, navController)
 
-                composable(Screen.SettingsScreen.route) {
-                    SettingsScreen()
-                }
+                SettingsScreenFactory.create(this, navController)
             }
         }
     }

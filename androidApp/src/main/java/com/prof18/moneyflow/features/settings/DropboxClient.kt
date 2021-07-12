@@ -13,8 +13,11 @@ import kotlinx.coroutines.flow.StateFlow
 import timber.log.Timber
 import java.io.FileInputStream
 import java.util.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
-
+// TODO: clean-up
 class DropboxClient(
     private val dropboxSyncUserCase: DropboxSyncUserCase,
     private val databaseImportExport: DatabaseImportExport
@@ -53,7 +56,7 @@ class DropboxClient(
         Timber.d("Dropbox client status: ${if (dbxClientV2 == null) "null" else "not null"}")
     }
 
-    suspend fun upload() = withContext(Dispatchers.IO) {
+    suspend fun upload() = suspendCancellableCoroutine<Unit> { continuation ->
         val databaseFile = databaseImportExport.generateDatabaseFile()
         if (databaseFile != null) {
             try {
@@ -71,10 +74,12 @@ class DropboxClient(
                 }
 
                 Timber.d("Upload Done")
+                continuation.resume(Unit)
 
             } catch (e: DbxException) {
                 Timber.e("Unable to upload backup on dropbox")
                 e.printStackTrace()
+                continuation.resumeWithException(e)
             }
         }
 

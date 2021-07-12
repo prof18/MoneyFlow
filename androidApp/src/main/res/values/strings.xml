@@ -29,4 +29,15 @@
     <string name="icon_content_desc">icon</string>
     <string name="save">Save</string>
     <string name="add">Add</string>
+    <string name="import_database">Import Database</string>
+    <string name="export_database">Export Database</string>
+    <string name="setup_dropbox">Setup Dropbox Sync</string>
+    <string name="db_import_completed">Database import completed</string>
+    <string name="db_export_completed">Database export completed</string>
+    <string name="dropbox_sync">Dropbox Sync</string>
+    <string name="dropbox_linked">Dropbox Linked</string>
+    <string name="backup_to_dropbox">Backup to Dropbox</string>
+    <string name="restore_from_dropbox">Restore from Dropbox</string>
+    <string name="unlink_dropbox">Unlink Dropbox</string>
+    <string name="connect_dropbox">Connect Dropbox</string>
 </resources>

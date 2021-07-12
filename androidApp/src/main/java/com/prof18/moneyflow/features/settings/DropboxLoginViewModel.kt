@@ -15,7 +15,6 @@ class DropboxLoginViewModel(
     private val dropboxClient: DropboxClient,
 ) : ViewModel() {
 
-
     private val _lastRefresh = MutableStateFlow<String?>(null)
     val lastRefresh: StateFlow<String?>
         get() = _lastRefresh
@@ -27,7 +26,7 @@ class DropboxLoginViewModel(
     init {
         viewModelScope.launch {
             dropboxClient.observeClientStatus().collect {
-                Timber.d("Got Client Status com.prof18.moneyflow.data: $it")
+                Timber.d("Got Client Status data: $it")
                 _isDropboxConnected.value = when (it) {
                     DropboxClientStatus.LINKED -> true
                     DropboxClientStatus.NOT_LINKED -> false
