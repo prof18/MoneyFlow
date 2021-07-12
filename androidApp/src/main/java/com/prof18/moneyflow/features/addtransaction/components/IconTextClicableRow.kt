@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,10 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 fun IconTextClickableRow(
@@ -40,11 +43,9 @@ fun IconTextClickableRow(
     ) {
 
         Row {
-
             Icon(
                 painter = painterResource(id = iconId),
-                contentDescription = null,
-//                tint = textColor(),
+                contentDescription = "$text ${stringResource(id = R.string.icon_content_desc)}",
                 tint = if (isSystemInDarkTheme()) {
                     Color(0xff888a8f)
                 } else {
@@ -55,8 +56,6 @@ fun IconTextClickableRow(
 
             Spacer(Modifier.width(AppMargins.textFieldPadding))
 
-//            val textColor = MaterialTheme.typography.body1.color
-
             val alpha = if (isSomethingSelected) {
                 1.0f
             } else {
@@ -65,28 +64,39 @@ fun IconTextClickableRow(
 
             Text(
                 text,
-                style = MaterialTheme.typography.body1, // TODO
-//                color = if (isSomethingSelected) textColor else textColor.copy(alpha = 0.5f),
+                style = MaterialTheme.typography.body1,
                 modifier = Modifier
                     .alpha(alpha)
                     .align(Alignment.CenterVertically)
             )
-
         }
-
-//        Spacer(Modifier.height(AppMargins.small))
-
-//        Divider(color = MaterialTheme.colors.onSurface.copy(alpha = 0.3f))
-
     }
 }
 
 @Preview
 @Composable
-fun IconTextClickableRowPreview() {
-    return IconTextClickableRow(
-        onClick = {},
-        text = "Select something",
-        iconId = R.drawable.ic_question_circle,
-    )
+fun IconTextClickableRowLightPreview() {
+     MoneyFlowTheme {
+         Surface {
+             IconTextClickableRow(
+                 onClick = {},
+                 text = "Select something",
+                 iconId = R.drawable.ic_question_circle,
+             )
+         }
+     }
+}
+
+@Preview
+@Composable
+fun IconTextClickableRowDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            IconTextClickableRow(
+                onClick = {},
+                text = "Select something",
+                iconId = R.drawable.ic_question_circle,
+            )
+        }
+    }
 }

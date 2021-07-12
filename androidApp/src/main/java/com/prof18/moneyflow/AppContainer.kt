@@ -2,10 +2,7 @@ package com.prof18.moneyflow
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -15,17 +12,16 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
-import com.prof18.moneyflow.features.addtransaction.AddTransactionScreen
+import com.prof18.moneyflow.features.addtransaction.AddTransactionScreenFactory
+import com.prof18.moneyflow.features.budget.BudgetScreenFactory
 import com.prof18.moneyflow.features.categories.CategoriesScreen
+import com.prof18.moneyflow.features.categories.CategoriesScreenFactory
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
-import com.prof18.moneyflow.features.home.HomeScreen
 import com.prof18.moneyflow.features.home.HomeScreenFactory
-import com.prof18.moneyflow.features.home.HomeViewModel
+import com.prof18.moneyflow.features.recap.RecapScreenFactory
 import com.prof18.moneyflow.features.settings.SettingsScreen
-import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun AppContainer() {
@@ -74,57 +70,25 @@ fun AppContainer() {
             }
         ) { paddingValues ->
 
+//            var category: CategoryUIData? by remember {
+//                mutableStateOf(null)
+//            }
+
+            val categoryState: MutableState<CategoryUIData?> = mutableStateOf(null)
+
             NavHost(navController, startDestination = Screen.HomeScreen.route) {
 
                 HomeScreenFactory(paddingValues).create(this, navController)
 
-                composable(Screen.AddTransactionScreen.route) {
+                AddTransactionScreenFactory(categoryState).create(this, navController)
 
-                    // Get back the category
-                    val category = it.savedStateHandle
-                        .getLiveData<CategoryUIData>(NavigationArguments.Category.key)
-                        .observeAsState()
+                CategoriesScreenFactory(categoryState).create(this, navController)
 
-                    AddTransactionScreen(
-                        categoryName = category.value?.name,
-                        categoryId = category.value?.id,
-                        categoryIcon = category.value?.icon,
-                        navigateUp = { navController.popBackStack() },
-                        navigateToCategoryList = {
-                            navController.navigate("${Screen.CategoriesScreen.route}/true")
-                        },
-                    )
-                }
+                // Coming Soon
+//                RecapScreenFactory.create(this, navController)
 
-                composable(
-                    route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
-                    arguments = listOf(navArgument(NavigationArguments.FromAddTransaction.key) {
-                        type = NavType.BoolType
-                    })
-                ) { backStackEntry ->
-                    CategoriesScreen(
-                        // TODO: do not inject the nav controller, but a lambda
-                        navigateUp = { navController.popBackStack() },
-                        sendCategoryBack = { navArguments, categoryData ->
-                            navController.previousBackStackEntry?.savedStateHandle?.set(
-                                navArguments.key,
-                                categoryData
-                            )
-                        },
-                        isFromAddTransaction = backStackEntry.arguments?.getBoolean(
-                            NavigationArguments.FromAddTransaction.key
-                        ) ?: false,
-                    )
-                }
-
-//                // Coming Soon
-//                composable(Screen.RecapScreen.route) {
-//                    RecapScreen()
-//                }
-//                // Coming Soon
-//                composable(Screen.BudgetScreen.route) {
-//                    BudgetScreen()
-//                }
+                // Coming Soon
+//                BudgetScreenFactory.create(this, navController)
 
                 composable(Screen.SettingsScreen.route) {
                     SettingsScreen()

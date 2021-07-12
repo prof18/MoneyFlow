@@ -8,23 +8,19 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TabPosition
-import androidx.compose.material.TabRow
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
-import com.prof18.moneyflow.ui.style.downArrowCircleColor
-import com.prof18.moneyflow.ui.style.downArrowColor
-import com.prof18.moneyflow.ui.style.upArrowCircleColor
-import com.prof18.moneyflow.ui.style.upArrowColor
 import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.ui.style.*
 
 @Composable
 fun TransactionTypeTabBar(
@@ -45,14 +41,14 @@ fun TransactionTypeTabBar(
             boxColor = upArrowCircleColor(),
             arrowColor = upArrowColor(),
             iconId = R.drawable.ic_arrow_up_rotate,
-            title = "Income",
+            title = stringResource(id = R.string.transaction_type_income),
             onClick = { onTabSelected(TransactionType.INCOME) },
         )
         TransactionTab(
             boxColor = downArrowCircleColor(),
             arrowColor = downArrowColor(),
             iconId = R.drawable.ic_arrow_down_rotate,
-            title = "Expense",
+            title = stringResource(id = R.string.transaction_type_outcome),
             onClick = { onTabSelected(TransactionType.OUTCOME) }
         )
     }
@@ -90,11 +86,11 @@ private fun TransactionTabIndicator(
     tabPositions: List<TabPosition>,
     transactionType: TransactionType
 ) {
-    val transition = updateTransition(transactionType)
-    val indicatorLeft by transition.animateDp { page ->
+    val transition = updateTransition(transactionType, label = "tab_selection_transition")
+    val indicatorLeft by transition.animateDp(label = "indicator_left_animation") { page ->
         tabPositions[page.ordinal].left
     }
-    val indicatorRight by transition.animateDp { page ->
+    val indicatorRight by transition.animateDp(label = "indicator_right_animation") { page ->
         tabPositions[page.ordinal].right
     }
 
@@ -110,4 +106,18 @@ private fun TransactionTabIndicator(
                 RoundedCornerShape(4.dp)
             )
     )
+}
+
+@Preview
+@Composable
+fun TransactionTypeTabBarPreview() {
+    MoneyFlowTheme {
+        Surface {
+            TransactionTypeTabBar(
+                transactionType = TransactionType.INCOME,
+                onTabSelected = {},
+                modifier = Modifier.padding(AppMargins.small)
+            )
+        }
+    }
 }

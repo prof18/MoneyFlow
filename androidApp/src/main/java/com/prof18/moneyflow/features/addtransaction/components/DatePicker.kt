@@ -9,8 +9,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import java.util.*
 
 fun getYearList() = (2015..2023).map { it.toString() }
@@ -100,8 +102,8 @@ private fun DatePickerItemDropdownMenu(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .clickable(onClick = {
-                expanded = true
-            })
+                    expanded = true
+                })
         ) {
             Text(
                 text = dropdownText,
@@ -136,3 +138,19 @@ private fun DatePickerItemDropdownMenu(
     }
 }
 
+@Preview
+@Composable
+fun DatePickerDialogPreview() {
+    MoneyFlowTheme {
+        Surface {
+            DatePickerDialog(
+                showDialog = true,
+                setDialogVisible = { },
+                onYearSelected = { },
+                onMonthSelected = { },
+                onDaySelected = { },
+                onSave = {}
+            )
+        }
+    }
+}

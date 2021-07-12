@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,6 +18,7 @@ import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 fun CategoryCard(
@@ -67,9 +69,26 @@ fun CategoryCard(
 
 @Preview
 @Composable
-fun CategoryCardPreview() {
-    return CategoryCard(
-        category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),
-        onClick = {}
-    )
+fun CategoryCardLightPreview() {
+    MoneyFlowTheme {
+        Surface {
+            CategoryCard(
+                category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),
+                onClick = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun CategoryCardDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            CategoryCard(
+                category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),
+                onClick = {}
+            )
+        }
+    }
 }

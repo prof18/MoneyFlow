@@ -6,14 +6,16 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
+import com.prof18.moneyflow.R
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
-
+// TODO: check padding bottom of the text
 @Composable
 fun MFTextInput(
     text: String,
@@ -26,7 +28,6 @@ fun MFTextInput(
 ) {
 
     val focusManager = LocalFocusManager.current
-
 
     OutlinedTextField(
         value = text,
@@ -53,23 +54,83 @@ fun MFTextInput(
             onDone = {
                 onTextChange(text)
                 focusManager.clearFocus()
-//                focusManager.moveFocus(FocusDirection.Down)
-//                softKeyboardController?.hideSoftwareKeyboard()
             },
-//
         ),
-//        colors = TextFieldDefaults.textFieldColors(
-//            backgroundColor = Color.Transparent,
-//            textColor = textColor()
-//        )
-
-       /* onImeActionPerformed = { action, softKeyboardController ->
-            if (action == ImeAction.Done) {
-                onTextChange(text)
-                softKeyboardController?.hideSoftwareKeyboard()
-            }
-        },*/
-//        activeColor = textColor(),
-//        backgroundColor = Color.Transparent,
     )
+}
+
+@Preview
+@Composable
+fun MFTextInputPreviewWithIcon() {
+    MoneyFlowTheme {
+        Surface {
+            MFTextInput(
+                text = "This is a text",
+                label = null,
+                onTextChange = { },
+                keyboardType = KeyboardType.Text,
+                textStyle = MaterialTheme.typography.body1,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_edit),
+                        contentDescription = null,
+                    )
+                },
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun MFTextInputDarkWithIconPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            MFTextInput(
+                text = "This is a text",
+                label = null,
+                onTextChange = { },
+                keyboardType = KeyboardType.Text,
+                textStyle = MaterialTheme.typography.body1,
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_edit),
+                        contentDescription = null,
+                    )
+                },
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun MFTextInputPreview() {
+    MoneyFlowTheme {
+        Surface {
+            MFTextInput(
+                text = "This is a text",
+                label = null,
+                onTextChange = { },
+                keyboardType = KeyboardType.Text,
+                textStyle = MaterialTheme.typography.body1,
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun MFTextInputLabelPreview() {
+    MoneyFlowTheme {
+        Surface {
+            MFTextInput(
+                text = "",
+                label = "This is a label",
+                onTextChange = { },
+                keyboardType = KeyboardType.Text,
+                textStyle = MaterialTheme.typography.body1,
+            )
+        }
+    }
 }

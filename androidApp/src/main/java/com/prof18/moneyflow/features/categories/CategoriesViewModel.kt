@@ -19,6 +19,7 @@ class CategoriesViewModel(
     var categoryModel: CategoryModel by mutableStateOf(CategoryModel.Loading)
         private set
 
+    // TODO: move to new shared arch
     init {
         observeCategoryModel()
         viewModelScope.launch {
