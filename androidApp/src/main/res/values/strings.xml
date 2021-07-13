@@ -40,4 +40,11 @@
     <string name="restore_from_dropbox">Restore from Dropbox</string>
     <string name="unlink_dropbox">Unlink Dropbox</string>
     <string name="connect_dropbox">Connect Dropbox</string>
+    <string name="retry">Retry</string>
+    <string name="authenticating">Authenticating...</string>
+    <string name="auth_error">Something wrong with authentication</string>
+    <string name="auth_failed">Failed to authenticate. Is that you?</string>
+    <string name="security">Security</string>
+    <string name="biometric_support">Face or fingerprint protection</string>
+    <string name="database_management">Database Management</string>
 </resources>

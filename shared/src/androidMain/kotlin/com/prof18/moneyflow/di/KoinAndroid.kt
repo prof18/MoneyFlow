@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.di
 
 import com.prof18.moneyflow.database.DatabaseHelper
+import com.prof18.moneyflow.settings.EncryptedSettingsFactory
 import com.russhwolf.settings.AndroidSettings
 import com.russhwolf.settings.Settings
 import org.koin.core.module.Module
@@ -14,10 +15,8 @@ actual val platformModule: Module = module {
     }
 
     single {
-        val factory: Settings.Factory = AndroidSettings.Factory(get())
+        val factory: Settings.Factory = EncryptedSettingsFactory(get())
        factory.create()
     }
-
-//
 }
 

@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.di
 
+import com.prof18.moneyflow.MainViewModel
 import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
@@ -15,9 +16,10 @@ val appModule = module {
     single { DropboxClient(get(), get()) }
     
     // View Models
+    viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get())}
     viewModel { AddTransactionViewModel(get()) }
     viewModel { CategoriesViewModel(get()) }
-    viewModel { SettingsViewModel(get()) }
+    viewModel { SettingsViewModel(get(), get()) }
     viewModel { DropboxLoginViewModel(get(), get()) }
 }

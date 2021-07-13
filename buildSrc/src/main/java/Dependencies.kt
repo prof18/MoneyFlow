@@ -19,6 +19,7 @@ object Versions {
     const val multiplatformSettings = "0.7.7"
     const val androidCrypto = "1.1.0-alpha03"
     const val viewModelKTX = "2.4.0-alpha02"
+    const val biometric = "1.2.0-alpha03"
 }
 
 object Deps {
@@ -36,6 +37,7 @@ object Deps {
     const val multiplatformSettingsTest = "com.russhwolf:multiplatform-settings-test:${Versions.multiplatformSettings}"
     const val androidCrypto = "androidx.security:security-crypto:${Versions.androidCrypto}"
     const val viewModelKTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelKTX}"
+    const val biometric = "androidx.biometric:biometric-ktx:${Versions.biometric}"
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"

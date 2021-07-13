@@ -1,25 +1,25 @@
 package com.prof18.moneyflow.presentation.dropboxsync
 
-import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
+import com.prof18.moneyflow.domain.repository.SettingsRepository
 
 class DropboxSyncUseCaseImpl(
-    private val dropboxSyncRepository: DropboxSyncRepository,
+    private val settingsRepository: SettingsRepository,
 
 ) : DropboxSyncUserCase {
 
     override fun saveClientCred(string: String) {
-        dropboxSyncRepository.saveClientCred(string)
+        settingsRepository.saveDropboxClientCred(string)
     }
 
     override fun getClientCred(): String? {
-        return dropboxSyncRepository.getClientCred()
+        return settingsRepository.getDropboxClientCred()
     }
 
     override fun saveLastRefresh(lastRefreshMillis: Long) {
-        dropboxSyncRepository.saveLastRefresh(lastRefreshMillis)
+        settingsRepository.saveLastDropboxRefreshTime(lastRefreshMillis)
     }
 
     override fun getLastRefresh(): String? {
-        return dropboxSyncRepository.getLastRefreshTime()
+        return settingsRepository.getLastDropboxRefreshTime()
     }
 }

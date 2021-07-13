@@ -73,9 +73,8 @@ dependencies {
     implementation(Deps.Koin.compose)
     implementation(Deps.timber)
     implementation(Deps.dropboxCore)
+    implementation(Deps.biometric)
 
-    // Needed for getting it.savedStateHandle as observable live data
-    implementation(Deps.Compose.runtimeLivedata)
 
     androidTestImplementation(Deps.Compose.uiTest)
 

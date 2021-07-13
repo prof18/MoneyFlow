@@ -1,7 +1,8 @@
 package com.prof18.moneyflow.di
 
 import com.russhwolf.settings.Settings
-import com.russhwolf.settings.AppleSettings
+//import com.russhwolf.settings.AppleSettings
+import com.russhwolf.settings.KeychainSettings
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.getOriginalKotlinClass
 import org.koin.core.Koin
@@ -25,7 +26,8 @@ actual val platformModule = module {
 //        DatabaseHelper.instance
 //    }
 
-    single<Settings> { AppleSettings(NSUserDefaults.standardUserDefaults) }
+//    single<Settings> { AppleSettings(NSUserDefaults.standardUserDefaults) }
+    single<Settings> { KeychainSettings(NSUserDefaults.standardUserDefaults) }
 
 }
 
