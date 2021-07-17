@@ -39,6 +39,8 @@ class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavig
         navGraphBuilder.composable(Screen.HomeScreen.route) {
             val homeViewModel = getViewModel<HomeViewModel>()
             val homeModelState: HomeModel by homeViewModel.homeState.collectAsState()
+            val hideSensitiveDataState: Boolean by homeViewModel.hideSensitiveDataState.collectAsState()
+
 
             HomeScreen(
                 navigateToAddTransaction = {
@@ -49,7 +51,7 @@ class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavig
                     homeViewModel.deleteTransaction(transactionId)
                 },
                 homeModel = homeModelState,
-                isSensitiveDataVisible = homeViewModel.isSensitiveDataVisible,
+                hideSensitiveDataState = hideSensitiveDataState,
                 changeSensitiveDataVisibility = { visibility ->
                     homeViewModel.changeSensitiveDataVisibility(
                         visibility
@@ -66,7 +68,7 @@ fun HomeScreen(
     paddingValues: PaddingValues = PaddingValues(0.dp),
     deleteTransaction: (Long) -> Unit = {},
     homeModel: HomeModel,
-    isSensitiveDataVisible: Boolean,
+    hideSensitiveDataState: Boolean,
     changeSensitiveDataVisibility: (Boolean) -> Unit = {}
 ) {
 
@@ -94,20 +96,20 @@ fun HomeScreen(
                     Row {
 
                         IconButton(
-                            onClick = { changeSensitiveDataVisibility(isSensitiveDataVisible.not()) },
+                            onClick = { changeSensitiveDataVisibility(hideSensitiveDataState.not()) },
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
                                 .padding(top = AppMargins.small)
                         ) {
-                            if (isSensitiveDataVisible) {
-                                Icon(
-                                    Icons.Rounded.VisibilityOff,
-                                    contentDescription = stringResource(R.string.hide_sensible_data),
-                                )
-                            } else {
+                            if (hideSensitiveDataState) {
                                 Icon(
                                     Icons.Rounded.Visibility,
                                     contentDescription = stringResource(R.string.show_sensitive_data),
+                                )
+                            } else {
+                                Icon(
+                                    Icons.Rounded.VisibilityOff,
+                                    contentDescription = stringResource(R.string.hide_sensitive_data),
                                 )
                             }
                         }
@@ -128,7 +130,7 @@ fun HomeScreen(
 
                 HomeRecap(
                     balanceRecap = homeModel.balanceRecap,
-                    isSensitiveDataVisible = isSensitiveDataVisible
+                    hideSensitiveData = hideSensitiveDataState
                 )
                 HeaderNavigator()
 
@@ -179,7 +181,7 @@ fun HomeScreen(
                                     onLongPress = {
                                         setShowTransactionMenu(true)
                                     },
-                                    isSensitiveDataVisible = isSensitiveDataVisible
+                                    hideSensitiveData = hideSensitiveDataState
                                 )
                                 DropdownMenu(
                                     expanded = showTransactionMenu,
@@ -234,7 +236,7 @@ fun HomeScreenLightPreview() {
                         )
                     )
                 ),
-                isSensitiveDataVisible = true,
+                hideSensitiveDataState = true,
             )
         }
     }
@@ -271,7 +273,7 @@ fun HomeScreenDarkPreview() {
                         )
                     )
                 ),
-                isSensitiveDataVisible = false,
+                hideSensitiveDataState = false,
             )
         }
     }

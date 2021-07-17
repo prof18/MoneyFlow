@@ -29,7 +29,7 @@ fun TransactionCard(
     transaction: MoneyTransaction,
     onLongPress: () -> Unit,
     onClick: () -> Unit,
-    isSensitiveDataVisible: Boolean
+    hideSensitiveData: Boolean
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -120,7 +120,7 @@ fun TransactionCard(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(AppMargins.regular),
-                isVisible = isSensitiveDataVisible
+                hide = hideSensitiveData
             )
         }
     }
@@ -142,7 +142,7 @@ fun TransactionCardLightPreview() {
                 ),
                 onLongPress = {},
                 onClick = {},
-                isSensitiveDataVisible = true
+                hideSensitiveData = true
             )
         }
     }
@@ -164,7 +164,7 @@ fun TransactionCardDarkPreview() {
                 ),
                 onLongPress = {},
                 onClick = {},
-                isSensitiveDataVisible = false
+                hideSensitiveData = false
             )
         }
     }

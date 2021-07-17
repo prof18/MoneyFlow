@@ -6,7 +6,8 @@ import com.russhwolf.settings.*
 enum class SettingsFields {
     DROPBOX_CLIENT_CRED,
     DROPBOX_LAST_SYNC,
-    USE_BIOMETRIC
+    USE_BIOMETRIC,
+    HIDE_SENSITIVE_DATA
 }
 
 class SettingsSource(private val settings: Settings) {
@@ -23,6 +24,9 @@ class SettingsSource(private val settings: Settings) {
 
     fun getUseBiometric(): Boolean = settings.getBoolean(SettingsFields.USE_BIOMETRIC.name, false)
     fun setUseBiometric(value: Boolean) = settings.set(SettingsFields.USE_BIOMETRIC.name, value)
+
+    fun getHideSensitiveData(): Boolean = settings.getBoolean(SettingsFields.HIDE_SENSITIVE_DATA.name, false)
+    fun setHideSensitiveData(value: Boolean) = settings.set(SettingsFields.HIDE_SENSITIVE_DATA.name, value)
 
     fun clear() = settings.clear()
 }

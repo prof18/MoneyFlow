@@ -25,7 +25,7 @@ import com.prof18.moneyflow.ui.style.*
 @Composable
 fun HomeRecap(
     balanceRecap: BalanceRecap,
-    isSensitiveDataVisible: Boolean
+    hideSensitiveData: Boolean
 ) {
 
     // TODO: fix string handling
@@ -52,7 +52,7 @@ fun HomeRecap(
 
             HideableTextField(
                 text = balanceRecap.totalBalance.toString(),
-                isVisible = isSensitiveDataVisible,
+                hide = hideSensitiveData,
                 style = MaterialTheme.typography.h3,
             )
         }
@@ -90,7 +90,7 @@ fun HomeRecap(
                 Column {
                     HideableTextField(
                         text = "${balanceRecap.monthlyIncome} ${stringResource(id = R.string.euro_symbol)}",
-                        isVisible = isSensitiveDataVisible,
+                        hide = hideSensitiveData,
                         style = MaterialTheme.typography.h5,
                     )
                     Text(
@@ -121,7 +121,7 @@ fun HomeRecap(
                     HideableTextField(
                         // TODO: inject the currency the user has chosen from somewhere
                         text = "${balanceRecap.monthlyExpenses} €",
-                        isVisible = isSensitiveDataVisible,
+                        hide = hideSensitiveData,
                         style = MaterialTheme.typography.h5,
                     )
                     Text(
@@ -146,7 +146,7 @@ private fun HomeRecapPreview() {
                     monthlyIncome = 150.0,
                     monthlyExpenses = 200.0
                 ),
-                isSensitiveDataVisible = true
+                hideSensitiveData = true
             )
         }
     }
@@ -163,7 +163,7 @@ private fun HomeRecapDarkPreview() {
                     monthlyIncome = 150.0,
                     monthlyExpenses = 200.0
                 ),
-                isSensitiveDataVisible = false
+                hideSensitiveData = false
             )
         }
     }

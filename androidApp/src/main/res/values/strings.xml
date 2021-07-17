@@ -47,6 +47,6 @@
     <string name="security">Security</string>
     <string name="biometric_support">Face or fingerprint protection</string>
     <string name="database_management">Database Management</string>
-    <string name="hide_sensible_data">Hide sensible data</string>
     <string name="show_sensitive_data">Show sensitive data</string>
+    <string name="hide_sensitive_data">Hide sensitive data</string>
 </resources>

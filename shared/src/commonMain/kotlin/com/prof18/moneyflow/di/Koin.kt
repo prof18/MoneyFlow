@@ -14,7 +14,6 @@ import com.prof18.moneyflow.presentation.categories.CategoriesUseCaseImpl
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCaseImpl
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
 import com.prof18.moneyflow.presentation.home.HomeUseCase
-import com.prof18.moneyflow.presentation.home.HomeUseCaseImpl
 import com.prof18.moneyflow.presentation.main.MainUseCase
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 import kotlinx.coroutines.Dispatchers
@@ -40,12 +39,12 @@ private val coreModule = module {
     single<MoneyRepository> { MoneyRepositoryImpl(get()) }
 
     // Use Cases
-    factory<HomeUseCase> { HomeUseCaseImpl(get()) }
     factory<AddTransactionUseCase> { AddTransactionUseCaseImpl(get()) }
     factory<CategoriesUseCase> { CategoriesUseCaseImpl(get()) }
     factory<DropboxSyncUserCase> { DropboxSyncUseCaseImpl(get()) }
 
     factory { MainUseCase(get()) }
+    factory { HomeUseCase(get(), get()) }
     factory { SettingsUseCase(get()) }
 }
 

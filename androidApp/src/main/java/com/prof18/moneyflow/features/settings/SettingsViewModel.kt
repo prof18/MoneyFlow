@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 import com.prof18.moneyflow.utils.DatabaseImportExport
+import kotlinx.coroutines.flow.StateFlow
 
 class SettingsViewModel(
     private val databaseImportExport: DatabaseImportExport,
@@ -15,6 +16,8 @@ class SettingsViewModel(
 
     var biometricState: Boolean by mutableStateOf(false)
         private set
+
+    val hideSensitiveDataState: StateFlow<Boolean> = settingsUseCase.sensitiveDataVisibilityState
 
     init {
         biometricState = settingsUseCase.isBiometricEnabled()
@@ -31,6 +34,10 @@ class SettingsViewModel(
     fun updateBiometricState(enabled: Boolean) {
         settingsUseCase.toggleBiometricStatus(enabled)
         biometricState = enabled
+    }
+
+    fun updateHideSensitiveDataState(enabled: Boolean) {
+        settingsUseCase.toggleHideSensitiveData(enabled)
     }
 
 

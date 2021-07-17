@@ -16,17 +16,17 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 fun HideableTextField(
     modifier: Modifier = Modifier,
     text: String,
-    isVisible: Boolean,
+    hide: Boolean,
     style: TextStyle = MaterialTheme.typography.body1,
 ) {
 
     val hiddenWord: String by remember { mutableStateOf(text.replace("[\\d|.,]".toRegex(), "*")) }
     Text(
         modifier = modifier,
-        text = if (isVisible) {
-            text
-        } else {
+        text = if (hide) {
             hiddenWord
+        } else {
+            text
         },
         style = style
     )
@@ -38,7 +38,7 @@ private fun HideableTextFieldVisiblePreview() {
     MoneyFlowTheme {
         Surface {
             HideableTextField(
-                text = "$ 10.000", isVisible = true
+                text = "$ 10.000", hide = true
             )
         }
     }
@@ -50,7 +50,7 @@ private fun HideableTextFieldHiddenPreview() {
     MoneyFlowTheme {
         Surface {
             HideableTextField(
-                text = "$ 10.000", isVisible = false
+                text = "$ 10.000", hide = false
             )
         }
     }

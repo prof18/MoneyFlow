@@ -9,14 +9,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -27,6 +23,7 @@ import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
+import com.prof18.moneyflow.ui.components.SwitchWithText
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
@@ -36,12 +33,15 @@ object SettingsScreenFactory : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.SettingsScreen.route) {
             val viewModel = getViewModel<SettingsViewModel>()
+            val hideDataState by viewModel.hideSensitiveDataState.collectAsState()
 
             SettingsScreen(
                 performBackup = { uri -> viewModel.performBackup(uri) },
                 performRestore = { uri -> viewModel.performRestore(uri) },
                 biometricState = viewModel.biometricState,
                 onBiometricEnabled = { viewModel.updateBiometricState(it) },
+                hideSensitiveDataState= hideDataState,
+                onHideSensitiveDataEnabled= { viewModel.updateHideSensitiveDataState(it) }
             )
         }
     }
@@ -53,6 +53,8 @@ fun SettingsScreen(
     performRestore: (Uri) -> Unit,
     biometricState: Boolean,
     onBiometricEnabled: (Boolean) -> Unit,
+    hideSensitiveDataState: Boolean,
+    onHideSensitiveDataEnabled: (Boolean) -> Unit,
 ) {
 
     val context = LocalContext.current
@@ -92,6 +94,8 @@ fun SettingsScreen(
         isBiometricSupported = isBiometricSupported(LocalContext.current),
         biometricState = biometricState,
         onBiometricEnabled = onBiometricEnabled,
+        hideSensitiveDataState = hideSensitiveDataState,
+        onHideSensitiveDataEnabled = onHideSensitiveDataEnabled,
     )
 }
 
@@ -103,6 +107,8 @@ private fun SettingsScreenContent(
     isBiometricSupported: Boolean,
     biometricState: Boolean,
     onBiometricEnabled: (Boolean) -> Unit,
+    hideSensitiveDataState: Boolean,
+    onHideSensitiveDataEnabled: (Boolean) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -126,28 +132,18 @@ private fun SettingsScreenContent(
                     modifier = Modifier.padding(start = AppMargins.regular)
                 )
 
-                if (isBiometricSupported) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(end = AppMargins.regular),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            stringResource(R.string.biometric_support),
-                            style = MaterialTheme.typography.h6,
-                            modifier = Modifier
-                                .weight(0.9f)
-                                .clickable { onImportDatabaseClick() }
-                                .padding(AppMargins.regular)
-                        )
+                SwitchWithText(
+                    onSwitchChanged = onHideSensitiveDataEnabled,
+                    switchStatus = hideSensitiveDataState,
+                    title = stringResource(R.string.hide_sensitive_data)
+                )
 
-                        Switch(
-                            modifier = Modifier.weight(0.1f),
-                            checked = biometricState,
-                            onCheckedChange = { onBiometricEnabled(it) }
-                        )
-                    }
+                if (isBiometricSupported) {
+                    SwitchWithText(
+                        onSwitchChanged = onBiometricEnabled,
+                        switchStatus = biometricState,
+                        title = stringResource(R.string.biometric_support)
+                    )
                 }
 
                 Text(
@@ -220,7 +216,9 @@ private fun SettingsScreenLightPreview() {
                 openDropboxSetup = {},
                 biometricState = true,
                 isBiometricSupported = true,
-                onBiometricEnabled = {}
+                onBiometricEnabled = {},
+                hideSensitiveDataState = true,
+                onHideSensitiveDataEnabled = {},
             )
         }
     }
@@ -237,7 +235,9 @@ private fun SettingsScreenLightNoBiometricPreview() {
                 openDropboxSetup = {},
                 isBiometricSupported = false,
                 biometricState = true,
-                onBiometricEnabled = {}
+                onBiometricEnabled = {},
+                hideSensitiveDataState = false,
+                onHideSensitiveDataEnabled = {},
             )
         }
     }
@@ -254,7 +254,9 @@ private fun SettingsScreenDarkPreview() {
                 openDropboxSetup = {},
                 isBiometricSupported = true,
                 biometricState = true,
-                onBiometricEnabled = {}
+                onBiometricEnabled = {},
+                hideSensitiveDataState = false,
+                onHideSensitiveDataEnabled = {},
             )
         }
     }
