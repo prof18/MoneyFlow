@@ -17,43 +17,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.domain.entities.BalanceRecap
+import com.prof18.moneyflow.ui.components.HideableTextField
 import com.prof18.moneyflow.ui.style.*
 
-@Preview
-@Composable
-fun HomeRecapPreview() {
-    MoneyFlowTheme {
-        Surface {
-            HomeRecap(
-                balanceRecap = BalanceRecap(
-                    totalBalance = 1200.0,
-                    monthlyIncome = 150.0,
-                    monthlyExpenses = 200.0
-                )
-            )
-        }
-    }
-}
 
-@Preview
-@Composable
-fun HomeRecapDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            HomeRecap(
-                balanceRecap = BalanceRecap(
-                    totalBalance = 1200.0,
-                    monthlyIncome = 150.0,
-                    monthlyExpenses = 200.0
-                )
-            )
-        }
-    }
-}
 
 @Composable
 fun HomeRecap(
-    balanceRecap: BalanceRecap
+    balanceRecap: BalanceRecap,
+    isSensitiveDataVisible: Boolean
 ) {
 
     // TODO: fix string handling
@@ -77,9 +49,11 @@ fun HomeRecap(
 
             Spacer(Modifier.width(AppMargins.small))
 
-            Text(
+
+            HideableTextField(
                 text = balanceRecap.totalBalance.toString(),
-                style = MaterialTheme.typography.h3
+                isVisible = isSensitiveDataVisible,
+                style = MaterialTheme.typography.h3,
             )
         }
 
@@ -113,11 +87,11 @@ fun HomeRecap(
                     )
                 }
 
-                Column() {
-                    Text(
-
-                        text = "+${balanceRecap.monthlyIncome} ${stringResource(id = R.string.euro_symbol)}",
-                        style = MaterialTheme.typography.h5
+                Column {
+                    HideableTextField(
+                        text = "${balanceRecap.monthlyIncome} ${stringResource(id = R.string.euro_symbol)}",
+                        isVisible = isSensitiveDataVisible,
+                        style = MaterialTheme.typography.h5,
                     )
                     Text(
                         text = stringResource(id = R.string.transaction_type_income),
@@ -144,10 +118,11 @@ fun HomeRecap(
                 }
 
                 Column {
-                    Text(
+                    HideableTextField(
                         // TODO: inject the currency the user has chosen from somewhere
-                        text = "-${balanceRecap.monthlyExpenses} €",
-                        style = MaterialTheme.typography.h5
+                        text = "${balanceRecap.monthlyExpenses} €",
+                        isVisible = isSensitiveDataVisible,
+                        style = MaterialTheme.typography.h5,
                     )
                     Text(
                         text = stringResource(id = R.string.transaction_type_outcome),
@@ -156,6 +131,40 @@ fun HomeRecap(
                     )
                 }
             }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun HomeRecapPreview() {
+    MoneyFlowTheme {
+        Surface {
+            HomeRecap(
+                balanceRecap = BalanceRecap(
+                    totalBalance = 1200.0,
+                    monthlyIncome = 150.0,
+                    monthlyExpenses = 200.0
+                ),
+                isSensitiveDataVisible = true
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun HomeRecapDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            HomeRecap(
+                balanceRecap = BalanceRecap(
+                    totalBalance = 1200.0,
+                    monthlyIncome = 150.0,
+                    monthlyExpenses = 200.0
+                ),
+                isSensitiveDataVisible = false
+            )
         }
     }
 }

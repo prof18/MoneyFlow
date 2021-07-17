@@ -22,12 +22,14 @@ import com.prof18.moneyflow.ui.style.*
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.CategoryIcon
+import kotlin.math.abs
 
 @Composable
 fun TransactionCard(
     transaction: MoneyTransaction,
     onLongPress: () -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    isSensitiveDataVisible: Boolean
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -111,13 +113,14 @@ fun TransactionCard(
                 modifier = Modifier.align(Alignment.CenterVertically)
             )
 
-            Text(
+            HideableTextField(
                 // TODO: Inject correct currency
-                text = "${transaction.amount} €",
+                text = "${abs(transaction.amount)} €",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(AppMargins.regular)
+                    .padding(AppMargins.regular),
+                isVisible = isSensitiveDataVisible
             )
         }
     }
@@ -138,7 +141,8 @@ fun TransactionCardLightPreview() {
                     formattedDate = "12/12/21"
                 ),
                 onLongPress = {},
-                onClick = {}
+                onClick = {},
+                isSensitiveDataVisible = true
             )
         }
     }
@@ -159,7 +163,8 @@ fun TransactionCardDarkPreview() {
                     formattedDate = "12/12/21"
                 ),
                 onLongPress = {},
-                onClick = {}
+                onClick = {},
+                isSensitiveDataVisible = false
             )
         }
     }

@@ -5,7 +5,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Visibility
+import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,6 +49,12 @@ class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavig
                     homeViewModel.deleteTransaction(transactionId)
                 },
                 homeModel = homeModelState,
+                isSensitiveDataVisible = homeViewModel.isSensitiveDataVisible,
+                changeSensitiveDataVisibility = { visibility ->
+                    homeViewModel.changeSensitiveDataVisibility(
+                        visibility
+                    )
+                }
             )
         }
     }
@@ -58,7 +66,10 @@ fun HomeScreen(
     paddingValues: PaddingValues = PaddingValues(0.dp),
     deleteTransaction: (Long) -> Unit = {},
     homeModel: HomeModel,
+    isSensitiveDataVisible: Boolean,
+    changeSensitiveDataVisibility: (Boolean) -> Unit = {}
 ) {
+
 
     when (homeModel) {
         is HomeModel.Loading -> Loader()
@@ -79,20 +90,46 @@ fun HomeScreen(
                             .padding(top = AppMargins.regular)
                     )
 
-                    IconButton(
-                        onClick = { navigateToAddTransaction() },
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(top = AppMargins.small)
-                    ) {
-                        Icon(
-                            Icons.Filled.Add,
-                            contentDescription = null,
-                        )
+
+                    Row {
+
+                        IconButton(
+                            onClick = { changeSensitiveDataVisibility(isSensitiveDataVisible.not()) },
+                            modifier = Modifier
+                                .align(Alignment.CenterVertically)
+                                .padding(top = AppMargins.small)
+                        ) {
+                            if (isSensitiveDataVisible) {
+                                Icon(
+                                    Icons.Rounded.VisibilityOff,
+                                    contentDescription = stringResource(R.string.hide_sensible_data),
+                                )
+                            } else {
+                                Icon(
+                                    Icons.Rounded.Visibility,
+                                    contentDescription = stringResource(R.string.show_sensitive_data),
+                                )
+                            }
+                        }
+
+                        IconButton(
+                            onClick = { navigateToAddTransaction() },
+                            modifier = Modifier
+                                .align(Alignment.CenterVertically)
+                                .padding(top = AppMargins.small)
+                        ) {
+                            Icon(
+                                Icons.Rounded.Add,
+                                contentDescription = null,
+                            )
+                        }
                     }
                 }
 
-                HomeRecap(homeModel.balanceRecap)
+                HomeRecap(
+                    balanceRecap = homeModel.balanceRecap,
+                    isSensitiveDataVisible = isSensitiveDataVisible
+                )
                 HeaderNavigator()
 
                 if (homeModel.latestTransactions.isEmpty()) {
@@ -141,7 +178,9 @@ fun HomeScreen(
                                     },
                                     onLongPress = {
                                         setShowTransactionMenu(true)
-                                    })
+                                    },
+                                    isSensitiveDataVisible = isSensitiveDataVisible
+                                )
                                 DropdownMenu(
                                     expanded = showTransactionMenu,
                                     onDismissRequest = { setShowTransactionMenu(false) }
@@ -194,7 +233,8 @@ fun HomeScreenLightPreview() {
                             formattedDate = "12 July 2021"
                         )
                     )
-                )
+                ),
+                isSensitiveDataVisible = true,
             )
         }
     }
@@ -230,7 +270,8 @@ fun HomeScreenDarkPreview() {
                             formattedDate = "12 July 2021"
                         )
                     )
-                )
+                ),
+                isSensitiveDataVisible = false,
             )
         }
     }
