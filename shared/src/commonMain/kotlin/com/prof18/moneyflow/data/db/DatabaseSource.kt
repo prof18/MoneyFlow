@@ -7,7 +7,7 @@ import com.prof18.moneyflow.utils.CurrentMonthID
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 
 interface DatabaseSource {
-    fun selectAllTransaction(): Flow<List<SelectAllTransactions>>
+    fun selectLatestTransactions(): Flow<List<SelectLatestTransactions>>
     fun selectAllCategories(): Flow<List<CategoryTable>>
     fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable>
     fun selectCurrentAccount(): Flow<AccountTable>
@@ -31,4 +31,5 @@ interface DatabaseSource {
     )
     suspend fun getMonthlyRecap(currentMonthID: CurrentMonthID): MonthlyRecapTable
     suspend fun getTransaction(transactionId: Long): TransactionTable?
+    suspend fun getTransactionsPaginated(pageSize: Long, lastTransactionMillis: Long): List<SelectTransactionsPaginated>
 }

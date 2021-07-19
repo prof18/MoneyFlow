@@ -4,6 +4,7 @@ import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.presentation.CategoryIcon
 
+// TODO: localize?
 val defaultCategories = listOf(
 
     CategoryTable(

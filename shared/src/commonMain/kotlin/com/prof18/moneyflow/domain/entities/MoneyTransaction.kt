@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.domain.entities
 
 import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.utils.MillisSinceEpoch
 
 data class MoneyTransaction(
     val id: Long,
@@ -8,5 +9,6 @@ data class MoneyTransaction(
     val icon: CategoryIcon,
     val amount: Double,
     val type: TransactionTypeUI,
+    val milliseconds: MillisSinceEpoch,
     val formattedDate: String
 )

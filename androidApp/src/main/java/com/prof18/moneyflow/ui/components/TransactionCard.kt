@@ -138,6 +138,7 @@ fun TransactionCardLightPreview() {
                     icon = CategoryIcon.IC_HAMBURGER_SOLID,
                     amount = 30.0,
                     type = TransactionTypeUI.EXPENSE,
+                    milliseconds = 0,
                     formattedDate = "12/12/21"
                 ),
                 onLongPress = {},
@@ -160,6 +161,7 @@ fun TransactionCardDarkPreview() {
                     icon = CategoryIcon.IC_HAMBURGER_SOLID,
                     amount = 30.0,
                     type = TransactionTypeUI.EXPENSE,
+                    milliseconds = 0,
                     formattedDate = "12/12/21"
                 ),
                 onLongPress = {},

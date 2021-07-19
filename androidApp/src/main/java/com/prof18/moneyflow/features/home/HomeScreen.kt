@@ -224,6 +224,7 @@ fun HomeScreenLightPreview() {
                             icon = CategoryIcon.IC_ICE_CREAM_SOLID,
                             amount = 10.0,
                             type = TransactionTypeUI.EXPENSE,
+                            milliseconds = 0,
                             formattedDate = "12 July 2021"
                         ),
                         MoneyTransaction(
@@ -232,6 +233,7 @@ fun HomeScreenLightPreview() {
                             icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
                             amount = 50.0,
                             type = TransactionTypeUI.INCOME,
+                            milliseconds = 0,
                             formattedDate = "12 July 2021"
                         )
                     )
@@ -261,6 +263,7 @@ fun HomeScreenDarkPreview() {
                             icon = CategoryIcon.IC_ICE_CREAM_SOLID,
                             amount = 10.0,
                             type = TransactionTypeUI.EXPENSE,
+                            milliseconds = 0,
                             formattedDate = "12 July 2021"
                         ),
                         MoneyTransaction(
@@ -269,6 +272,7 @@ fun HomeScreenDarkPreview() {
                             icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
                             amount = 50.0,
                             type = TransactionTypeUI.INCOME,
+                            milliseconds = 0,
                             formattedDate = "12 July 2021"
                         )
                     )

@@ -9,12 +9,22 @@ CREATE TABLE TransactionTable (
     type TEXT AS TransactionType NOT NULL
 );
 
-selectAllTransactions:
+selectLatestTransactions:
 SELECT T.id, T.dateMillis, T.amount, T.description, T.type, C.name AS categoryName, C.iconName
 FROM TransactionTable T
 INNER JOIN CategoryTable AS C
 ON T.categoryId = C.id
-ORDER BY T.dateMillis DESC;
+ORDER BY T.dateMillis DESC
+LIMIT 10;
+
+selectTransactionsPaginated:
+SELECT T.id, T.dateMillis, T.amount, T.description, T.type, C.name AS categoryName, C.iconName
+FROM TransactionTable T
+INNER JOIN CategoryTable AS C
+ON T.categoryId = C.id
+WHERE T.dateMillis < :lastTransactionTimestamp
+ORDER BY T.dateMillis DESC
+LIMIT :pageSize;
 
 insertTransaction:
 INSERT INTO TransactionTable (dateMillis, amount, description, categoryId, type)

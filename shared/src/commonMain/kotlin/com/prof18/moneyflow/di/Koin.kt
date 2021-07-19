@@ -9,6 +9,7 @@ import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCaseImpl
+import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCaseImpl
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCaseImpl
@@ -46,6 +47,7 @@ private val coreModule = module {
     factory { MainUseCase(get()) }
     factory { HomeUseCase(get(), get()) }
     factory { SettingsUseCase(get()) }
+    factory { AllTransactionsUseCase(get()) }
 }
 
 expect val platformModule: Module

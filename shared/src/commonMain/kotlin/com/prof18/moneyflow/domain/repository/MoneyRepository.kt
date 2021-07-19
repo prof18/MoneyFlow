@@ -26,4 +26,7 @@ interface MoneyRepository {
 
     @Throws(Exception::class)
     fun getMoneySummary(): Flow<MoneySummary>
+
+    @Throws(Exception::class)
+    suspend fun getTransactionsPaginated(lastTransactionTimestamp: Long, pageSize: Int): List<MoneyTransaction>
 }

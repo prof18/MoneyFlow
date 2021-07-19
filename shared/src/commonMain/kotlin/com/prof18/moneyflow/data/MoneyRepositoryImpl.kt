@@ -2,11 +2,10 @@ package com.prof18.moneyflow.data
 
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.model.TransactionType
-import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MonthlyRecapTable
-import com.prof18.moneyflow.db.SelectAllTransactions
+import com.prof18.moneyflow.db.SelectLatestTransactions
 import com.prof18.moneyflow.domain.entities.*
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.CategoryIcon
@@ -23,13 +22,13 @@ class MoneyRepositoryImpl(
     private val dbSource: DatabaseSource
     ) : MoneyRepository {
 
-    private var allTransactions: Flow<List<SelectAllTransactions>> = emptyFlow()
+    private var allTransactions: Flow<List<SelectLatestTransactions>> = emptyFlow()
     private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
     private var monthlyRecap: Flow<MonthlyRecapTable> = emptyFlow()
     private var account: Flow<AccountTable> = emptyFlow()
 
     init {
-        allTransactions = dbSource.selectAllTransaction()
+        allTransactions = dbSource.selectLatestTransactions()
         allCategories = dbSource.selectAllCategories()
         monthlyRecap = dbSource.selectCurrentMonthlyRecap()
         account = dbSource.selectCurrentAccount()
@@ -56,8 +55,7 @@ class MoneyRepositoryImpl(
 
     override fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
         return allTransactions.map {
-            it.take(10).map { transaction ->
-
+            it.map { transaction ->
                 val transactionTypeUI = when (transaction.type) {
                     TransactionType.INCOME -> TransactionTypeUI.INCOME
                     TransactionType.OUTCOME -> TransactionTypeUI.EXPENSE
@@ -75,6 +73,7 @@ class MoneyRepositoryImpl(
                     icon = CategoryIcon.fromValue(transaction.iconName),
                     amount = transaction.amount,
                     type = transactionTypeUI,
+                    milliseconds = transaction.dateMillis,
                     formattedDate = transaction.dateMillis.formatDateDayMonthYear()
                 )
             }
@@ -167,6 +166,36 @@ class MoneyRepositoryImpl(
                 )
             }
         }
+    }
+
+    override suspend fun getTransactionsPaginated(
+        lastTransactionTimestamp: Long,
+        pageSize: Int
+    ): List<MoneyTransaction> {
+        return dbSource.getTransactionsPaginated(pageSize.toLong(), lastTransactionTimestamp)
+            .map { transaction ->
+
+                val transactionTypeUI = when (transaction.type) {
+                    TransactionType.INCOME -> TransactionTypeUI.INCOME
+                    TransactionType.OUTCOME -> TransactionTypeUI.EXPENSE
+                }
+
+                val transactionTitle = if (transaction.description.isNullOrEmpty()) {
+                    transaction.categoryName
+                } else {
+                    transaction.description
+                }
+
+                MoneyTransaction(
+                    id = transaction.id,
+                    title = transactionTitle,
+                    icon = CategoryIcon.fromValue(transaction.iconName),
+                    amount = transaction.amount,
+                    type = transactionTypeUI,
+                    milliseconds = transaction.dateMillis,
+                    formattedDate = transaction.dateMillis.formatDateDayMonthYear()
+                )
+            }
     }
 }
 

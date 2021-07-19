@@ -1,36 +1,32 @@
 package com.prof18.moneyflow.data.db
 
+import com.prof18.moneyflow.data.db.model.Currency
+import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.db.*
+import com.prof18.moneyflow.utils.CurrentMonthID
+import com.prof18.moneyflow.utils.MillisSinceEpoch
+import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.squareup.sqldelight.runtime.coroutines.mapToOneOrDefault
-import com.squareup.sqldelight.runtime.coroutines.mapToOneOrNull
-import com.prof18.moneyflow.data.db.model.Currency
-import com.prof18.moneyflow.data.db.model.TransactionType
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
-import com.prof18.moneyflow.utils.CurrentMonthID
-import com.prof18.moneyflow.utils.MillisSinceEpoch
-import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
 
 class DatabaseSourceImpl(
-    // not private and mutable to close and reopen the com.prof18.moneyflow.database at runtime
+    // not private and mutable to close and reopen the database at runtime
     var dbRef: MoneyFlowDB,
     dispatcher: CoroutineDispatcher?
 ) : DatabaseSource {
 
     private val backgroundDispatcher = dispatcher ?: Dispatchers.Main
 
-    override fun selectAllTransaction(): Flow<List<SelectAllTransactions>> =
+    override fun selectLatestTransactions(): Flow<List<SelectLatestTransactions>> =
         dbRef.transactionTableQueries
-            .selectAllTransactions()
+            .selectLatestTransactions()
             .asFlow()
             .mapToList()
             .flowOn(backgroundDispatcher)
@@ -175,4 +171,15 @@ class DatabaseSourceImpl(
             return@withContext dbRef.transactionTableQueries.selectTransaction(transactionId)
                 .executeAsOneOrNull()
         }
+
+
+    override suspend fun getTransactionsPaginated(
+        pageSize: Long,
+        lastTransactionMillis: Long
+    ): List<SelectTransactionsPaginated> = withContext(backgroundDispatcher) {
+        return@withContext dbRef.transactionTableQueries.selectTransactionsPaginated(
+            lastTransactionMillis,
+            pageSize
+        ).executeAsList()
+    }
 }
