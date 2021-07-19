@@ -16,6 +16,7 @@ sealed class Screen(val route: String) {
     object RecapScreen: Screen("recap_screen")
     object BudgetScreen: Screen("budget_screen")
     object SettingsScreen: Screen("settings_screen")
+    object AllTransactionsScreen: Screen("all_transactions_screen")
 }
 
 sealed class NavigationArguments(val key: String) {

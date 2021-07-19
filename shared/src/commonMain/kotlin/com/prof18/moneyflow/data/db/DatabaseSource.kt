@@ -31,5 +31,5 @@ interface DatabaseSource {
     )
     suspend fun getMonthlyRecap(currentMonthID: CurrentMonthID): MonthlyRecapTable
     suspend fun getTransaction(transactionId: Long): TransactionTable?
-    suspend fun getTransactionsPaginated(pageSize: Long, lastTransactionMillis: Long): List<SelectTransactionsPaginated>
+    suspend fun getTransactionsPaginated(pageNum: Long, pageSize: Long): List<SelectTransactionsPaginated>
 }

@@ -18,29 +18,10 @@ import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
-@Preview("Header Navigator - light theme")
-@Composable
-fun SnackCardPreview() {
-    MoneyFlowTheme {
-        Surface {
-            HeaderNavigator()
-        }
-    }
-}
-
-@Preview("Header Navigator - dark theme")
-@Composable
-fun SnackCardDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            HeaderNavigator()
-        }
-    }
-}
-
 @Composable
 fun HeaderNavigator(
-    onClick: () -> Unit = {}
+    title: String,
+    onClick: () -> Unit = {},
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -51,7 +32,7 @@ fun HeaderNavigator(
             .clickable { onClick() }
     ) {
         Text(
-            text = stringResource(R.string.latest_transactions),
+            text = title,
             style = MaterialTheme.typography.h5,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
@@ -70,6 +51,26 @@ fun HeaderNavigator(
                 Icons.Outlined.KeyboardArrowRight,
                 contentDescription = null
             )
+        }
+    }
+}
+
+@Preview("Header Navigator - light theme")
+@Composable
+private fun SnackCardPreview() {
+    MoneyFlowTheme {
+        Surface {
+            HeaderNavigator(title = "This is a title")
+        }
+    }
+}
+
+@Preview("Header Navigator - dark theme")
+@Composable
+private fun SnackCardDarkPreview() {
+    MoneyFlowTheme(darkTheme = true) {
+        Surface {
+            HeaderNavigator(title = "This is a title")
         }
     }
 }

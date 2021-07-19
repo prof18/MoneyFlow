@@ -2,6 +2,7 @@ package com.prof18.moneyflow.di
 
 import com.prof18.moneyflow.MainViewModel
 import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
+import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.DropboxClient
@@ -22,4 +23,5 @@ val appModule = module {
     viewModel { CategoriesViewModel(get()) }
     viewModel { SettingsViewModel(get(), get()) }
     viewModel { DropboxLoginViewModel(get(), get()) }
+    viewModel { AllTransactionsViewModel(get()) }
 }

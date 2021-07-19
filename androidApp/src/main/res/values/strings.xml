@@ -49,4 +49,5 @@
     <string name="database_management">Database Management</string>
     <string name="show_sensitive_data">Show sensitive data</string>
     <string name="hide_sensitive_data">Hide sensitive data</string>
+    <string name="all_transactions">All Transactions</string>
 </resources>

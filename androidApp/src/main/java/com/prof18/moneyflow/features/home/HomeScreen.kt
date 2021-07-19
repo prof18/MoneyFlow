@@ -56,7 +56,8 @@ class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavig
                     homeViewModel.changeSensitiveDataVisibility(
                         visibility
                     )
-                }
+                },
+                navigateToAllTransactions = { navController.navigate(Screen.AllTransactionsScreen.route) }
             )
         }
     }
@@ -69,7 +70,8 @@ fun HomeScreen(
     deleteTransaction: (Long) -> Unit = {},
     homeModel: HomeModel,
     hideSensitiveDataState: Boolean,
-    changeSensitiveDataVisibility: (Boolean) -> Unit = {}
+    changeSensitiveDataVisibility: (Boolean) -> Unit = {},
+    navigateToAllTransactions: () -> Unit
 ) {
 
 
@@ -132,7 +134,10 @@ fun HomeScreen(
                     balanceRecap = homeModel.balanceRecap,
                     hideSensitiveData = hideSensitiveDataState
                 )
-                HeaderNavigator()
+                HeaderNavigator(
+                    title = stringResource(R.string.latest_transactions),
+                    onClick = navigateToAllTransactions
+                )
 
                 if (homeModel.latestTransactions.isEmpty()) {
 
@@ -239,6 +244,7 @@ fun HomeScreenLightPreview() {
                     )
                 ),
                 hideSensitiveDataState = true,
+                navigateToAllTransactions = {}
             )
         }
     }
@@ -278,6 +284,7 @@ fun HomeScreenDarkPreview() {
                     )
                 ),
                 hideSensitiveDataState = false,
+                navigateToAllTransactions = {}
             )
         }
     }

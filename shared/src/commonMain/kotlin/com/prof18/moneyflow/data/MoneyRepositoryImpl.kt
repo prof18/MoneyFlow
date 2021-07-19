@@ -20,7 +20,7 @@ import kotlin.math.abs
 
 class MoneyRepositoryImpl(
     private val dbSource: DatabaseSource
-    ) : MoneyRepository {
+) : MoneyRepository {
 
     private var allTransactions: Flow<List<SelectLatestTransactions>> = emptyFlow()
     private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
@@ -36,7 +36,7 @@ class MoneyRepositoryImpl(
 
     override fun getMoneySummary(): Flow<MoneySummary> {
         return getLatestTransactions().combine(getBalanceRecap()) { transactions: List<MoneyTransaction>, balanceRecap: BalanceRecap ->
-           MoneySummary(
+            MoneySummary(
                 balanceRecap = balanceRecap,
                 latestTransactions = transactions
             )
@@ -169,11 +169,17 @@ class MoneyRepositoryImpl(
     }
 
     override suspend fun getTransactionsPaginated(
-        lastTransactionTimestamp: Long,
-        pageSize: Int
+        pageNum: Long,
+        pageSize: Long
     ): List<MoneyTransaction> {
-        return dbSource.getTransactionsPaginated(pageSize.toLong(), lastTransactionTimestamp)
+
+        return dbSource.getTransactionsPaginated(
+            pageNum = (pageNum * pageSize),
+            pageSize = pageSize
+        )
             .map { transaction ->
+
+                // TODO: return a different think, to create headers
 
                 val transactionTypeUI = when (transaction.type) {
                     TransactionType.INCOME -> TransactionTypeUI.INCOME

@@ -174,12 +174,11 @@ class DatabaseSourceImpl(
 
 
     override suspend fun getTransactionsPaginated(
-        pageSize: Long,
-        lastTransactionMillis: Long
+        pageNum: Long,
+        pageSize: Long
     ): List<SelectTransactionsPaginated> = withContext(backgroundDispatcher) {
-        return@withContext dbRef.transactionTableQueries.selectTransactionsPaginated(
-            lastTransactionMillis,
-            pageSize
-        ).executeAsList()
+        return@withContext dbRef.transactionTableQueries
+            .selectTransactionsPaginated(pageSize = pageSize, pageNum = pageNum)
+            .executeAsList()
     }
 }

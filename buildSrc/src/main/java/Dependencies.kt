@@ -20,6 +20,7 @@ object Versions {
     const val androidCrypto = "1.1.0-alpha03"
     const val viewModelKTX = "2.4.0-alpha02"
     const val biometric = "1.2.0-alpha03"
+    const val pagingCompose = "1.0.0-alpha11"
 }
 
 object Deps {
@@ -61,6 +62,7 @@ object Deps {
         const val uiTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
         const val activityCompose = "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
+        const val paging = "androidx.paging:paging-compose:${Versions.pagingCompose}"
     }
 
     object KotlinTest {

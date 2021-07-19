@@ -28,5 +28,9 @@ interface MoneyRepository {
     fun getMoneySummary(): Flow<MoneySummary>
 
     @Throws(Exception::class)
-    suspend fun getTransactionsPaginated(lastTransactionTimestamp: Long, pageSize: Int): List<MoneyTransaction>
+    suspend fun getTransactionsPaginated(pageNum: Long, pageSize: Long): List<MoneyTransaction>
+
+    companion object {
+        const val DEFAULT_PAGE_SIZE = 30L
+    }
 }

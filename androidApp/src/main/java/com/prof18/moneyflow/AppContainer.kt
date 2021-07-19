@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.prof18.moneyflow.features.addtransaction.AddTransactionScreenFactory
+import com.prof18.moneyflow.features.alltransactions.AllTransactionsScreenFactory
 import com.prof18.moneyflow.features.categories.CategoriesScreenFactory
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.home.HomeScreenFactory
@@ -86,6 +87,8 @@ fun AppContainer() {
 //                BudgetScreenFactory.create(this, navController)
 
             SettingsScreenFactory.create(this, navController)
+
+            AllTransactionsScreenFactory.create(this, navController)
         }
     }
 }

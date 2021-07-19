@@ -57,16 +57,20 @@ android {
 dependencies {
     implementation(project(":shared"))
 
-    implementation(Deps.Compose.core)
-    implementation(Deps.Compose.foundation)
-    implementation(Deps.Compose.layout)
-    implementation(Deps.Compose.material)
-    implementation(Deps.Compose.materialIconsExtended)
-    implementation(Deps.Compose.materialIconsCore)
-    implementation(Deps.Compose.runtime)
-    implementation(Deps.Compose.tooling)
-    implementation(Deps.Compose.composeNavigation)
-    implementation(Deps.Compose.activityCompose)
+    with(Deps.Compose) {
+        implementation(core)
+        implementation(foundation)
+        implementation(layout)
+        implementation(material)
+        implementation(materialIconsExtended)
+        implementation(materialIconsCore)
+        implementation(runtime)
+        implementation(tooling)
+        implementation(composeNavigation)
+        implementation(activityCompose)
+        implementation(paging)
+    }
+
     implementation(Deps.viewModelKTX)
     implementation(Deps.Koin.core)
     implementation(Deps.Koin.android)
