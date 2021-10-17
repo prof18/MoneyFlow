@@ -15,7 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.NavigationArguments
 import com.prof18.moneyflow.R

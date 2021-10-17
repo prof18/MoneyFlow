@@ -8,10 +8,10 @@ group = "com.prof18"
 version = "1.0-SNAPSHOT"
 
 android {
-    compileSdk= 30
+    compileSdk= 31
     defaultConfig {
         minSdk = 24
-        targetSdk = 30
+        targetSdk = 31
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

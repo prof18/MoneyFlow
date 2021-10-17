@@ -13,11 +13,11 @@ plugins {
 //}
 
 android {
-    compileSdk= 30
+    compileSdk= 31
     defaultConfig {
         applicationId = "com.prof18.moneyflow"
         minSdk = 24
-        targetSdk = 30
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
 

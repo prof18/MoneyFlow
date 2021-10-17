@@ -11,7 +11,10 @@
         android:label="Money Flow"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyFlow">
-        <activity android:name="com.prof18.moneyflow.MainActivity">
+
+        <activity
+            android:name="com.prof18.moneyflow.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,6 +25,7 @@
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
             android:configChanges="orientation|keyboard"
+            android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <data android:scheme="@string/dropbox_app_key_schema" />
