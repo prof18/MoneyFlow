@@ -41,13 +41,6 @@ android {
 //    }
 }
 
-kotlin.sourceSets.matching {
-    it.name.endsWith("Test")
-}.configureEach {
-    languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
-    languageSettings.useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
-}
-
 kotlin {
 
     android()
@@ -72,8 +65,8 @@ kotlin {
 
         all {
             languageSettings.apply {
-                useExperimentalAnnotation("kotlin.RequiresOptIn")
-                useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+                optIn("kotlin.RequiresOptIn")
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
             }
         }
 
@@ -146,14 +139,15 @@ kotlin {
 
         }
     }
+
+    sourceSets.matching {
+        it.name.endsWith("Test")
+    }.configureEach {
+        languageSettings.optIn("kotlin.time.ExperimentalTime")
+        languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+    }
 }
 
-kotlin.sourceSets.matching {
-    it.name.endsWith("Test")
-}.configureEach {
-    languageSettings.useExperimentalAnnotation("kotlin.time.ExperimentalTime")
-    languageSettings.useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
-}
 
 
 sqldelight {

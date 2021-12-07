@@ -34,7 +34,6 @@ class MainActivity : FragmentActivity() {
     private var authState: AuthState by mutableStateOf(AuthState.AUTH_IN_PROGRESS)
 
 
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupAuthentication()
