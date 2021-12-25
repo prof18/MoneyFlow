@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.di
 
+import com.prof18.moneyflow.domain.repository.SettingsRepository
 import com.russhwolf.settings.Settings
 //import com.russhwolf.settings.AppleSettings
 import com.russhwolf.settings.KeychainSettings
@@ -12,13 +13,7 @@ import org.koin.core.qualifier.Qualifier
 import org.koin.dsl.module
 import platform.Foundation.NSUserDefaults
 
-//fun initKoinIos(
-//    doOnStartup: () -> Unit
-//): KoinApplication = initKoin(
-//    module {
-//        single { doOnStartup }
-//    }
-//)
+fun initKoinIos(): KoinApplication = initKoin()
 
 actual val platformModule = module {
 //    single<MoneyFlowDB> {
@@ -27,9 +22,13 @@ actual val platformModule = module {
 //    }
 
 //    single<Settings> { AppleSettings(NSUserDefaults.standardUserDefaults) }
-    single<Settings> { KeychainSettings(NSUserDefaults.standardUserDefaults) }
+//    single<Settings> { KeychainSettings(NSUserDefaults.standardUserDefaults) }
+
+    single<Settings> { KeychainSettings(service = "MoneyFlow") }
 
 }
+
+fun Koin.getSettingRepository() = get<SettingsRepository>()
 
 fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?, parameter: Any): Any {
     val kClazz = getOriginalKotlinClass(objCClass)!!

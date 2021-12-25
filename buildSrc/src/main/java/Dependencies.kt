@@ -2,7 +2,7 @@ object Versions {
     const val kotlin = "1.6.0"
     const val koin = "3.1.4"
     const val coreKTX = "1.7.0-rc01"
-    const val compose = "1.1.0-beta04"
+    const val compose = "1.1.0-rc01"
     const val junit = "4.12"
     const val coroutinesMt = "1.5.2-native-mt"
     const val coroutines = "1.5.2"

@@ -156,7 +156,7 @@ class MoneyRepositoryImpl(
         }
     }
 
-    override suspend fun getCategories(): Flow<List<Category>> {
+    override fun getCategories(): Flow<List<Category>> {
         return allCategories.map {
             it.map { category ->
                 Category(

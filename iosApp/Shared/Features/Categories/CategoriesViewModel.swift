@@ -6,21 +6,45 @@
 //
 
 import shared
+import Combine
 
 class CategoriesViewModel: ObservableObject {
     
     @Published var categoriesModel: CategoryModel = CategoryModel.Loading()
     
-    var useCase: CategoriesUseCase?
+    private var subscriptions = Set<AnyCancellable>()
+    
+    private var categoriesUseCase: CategoriesUseCaseIos = DIContainer.instance.getCategoriesUseCase()
+    
     
     func startObserving() {
-        useCase = CategoriesUseCaseImpl(moneyRepository: DIContainer.instance.getMoneyRepository(), viewUpdate: { [weak self] model in
-            self?.categoriesModel = model
-        })
-        self.useCase?.getCategories()
+        
+        createPublisher(categoriesUseCase.getCategories())
+            .eraseToAnyPublisher()
+            .receive(on: DispatchQueue.global(qos: .userInitiated))
+            .sink(
+                receiveCompletion: { completion in
+                    if case let .failure(error) = completion {
+                        self.categoriesModel = CategoryModel.Error(message: "Something wrong here :(")
+                    }
+                },
+                receiveValue: { genericResponse in
+                    onMainThread {
+                        self.categoriesModel = genericResponse
+                    }
+                }
+            )
+            .store(in: &self.subscriptions)
     }
     
     func stopObserving() {
-        self.useCase?.onDestroy()
+        // TODO: check here. If it's done the scope is deleted but the class is not GC
+//        self.categoriesUseCase.onDestroy()
+    }
+    
+    deinit {
+        onMainThread {
+            self.categoriesUseCase.onDestroy()
+        }
     }
 }

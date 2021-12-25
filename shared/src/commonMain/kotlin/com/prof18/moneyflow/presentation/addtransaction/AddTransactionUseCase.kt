@@ -1,12 +1,11 @@
 package com.prof18.moneyflow.presentation.addtransaction
 
+import com.prof18.moneyflow.domain.repository.MoneyRepository
 
-interface AddTransactionUseCase {
-
-    @Throws(Exception::class)
-    fun insertTransaction(transactionToSave: TransactionToSave)
-
-    @Throws(Exception::class)
-    suspend fun insertTransactionSuspendable(transactionToSave: TransactionToSave)
-
+class AddTransactionUseCase(
+    private val moneyRepository: MoneyRepository
+) {
+    suspend fun insertTransaction(transactionToSave: TransactionToSave) {
+        moneyRepository.insertTransaction(transactionToSave)
+    }
 }

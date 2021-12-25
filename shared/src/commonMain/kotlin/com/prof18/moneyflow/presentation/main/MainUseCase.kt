@@ -13,5 +13,4 @@ class MainUseCase(
     fun toggleBiometricStatus(status: Boolean) {
         settingsRepository.setBiometric(status)
     }
-
 }

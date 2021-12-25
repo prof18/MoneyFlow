@@ -3,7 +3,10 @@ package com.prof18.moneyflow.presentation.home
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
 import com.prof18.moneyflow.printThrowable
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 
 class HomeUseCase(
     private val moneyRepository: MoneyRepository,
@@ -12,18 +15,18 @@ class HomeUseCase(
 
     val hideSensibleDataState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState
 
-    fun observeHomeModel(): Flow<HomeModel> {
-        return moneyRepository.getMoneySummary().catch { cause: Throwable ->
-            printThrowable(cause)
-            // TODO: move to error Code
-            HomeModel.Error("Something wrong :(")
-        }.map {
-             HomeModel.HomeState(
-                balanceRecap = it.balanceRecap,
-                latestTransactions = it.latestTransactions
-            )
-        }
-    }
+    fun observeHomeModel(): Flow<HomeModel> =
+        moneyRepository.getMoneySummary()
+            .catch { cause: Throwable ->
+                printThrowable(cause)
+                // TODO: move to error Code
+                HomeModel.Error("Something wrong :(")
+            }.map {
+                HomeModel.HomeState(
+                    balanceRecap = it.balanceRecap,
+                    latestTransactions = it.latestTransactions
+                )
+            }
 
 
     fun toggleHideSensitiveData(status: Boolean) {

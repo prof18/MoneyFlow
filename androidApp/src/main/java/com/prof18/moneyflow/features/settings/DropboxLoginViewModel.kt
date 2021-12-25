@@ -3,7 +3,7 @@ package com.prof18.moneyflow.features.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dropbox.core.android.Auth
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class DropboxLoginViewModel(
-    private val dropboxSyncUserCase: DropboxSyncUserCase,
+    private val dropboxSyncUserCase: DropboxSyncUseCase,
     private val dropboxClient: DropboxClient,
 ) : ViewModel() {
 

@@ -20,5 +20,4 @@ class SettingsUseCase(
     fun toggleHideSensitiveData(status: Boolean) {
         settingsRepository.setHideSensitiveData(status)
     }
-
 }

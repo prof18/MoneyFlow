@@ -67,6 +67,7 @@ kotlin {
             languageSettings.apply {
                 optIn("kotlin.RequiresOptIn")
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+                optIn("com.russhwolf.settings.ExperimentalSettingsImplementation")
             }
         }
 

@@ -18,6 +18,9 @@ struct MoneyFlowApp: App {
     //    @StateObject var appState: AppState = AppState()
     
     init() {
+        
+        startKoin()
+        
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .foregroundColor: UIColor(named: "ColorOnBackground")! as UIColor,
             .font : UIFont(name:"Poppins-Regular", size: 32)!]

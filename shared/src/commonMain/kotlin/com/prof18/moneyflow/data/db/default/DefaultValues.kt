@@ -1,10 +1,13 @@
 package com.prof18.moneyflow.data.db.default
 
-import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.presentation.CategoryIcon
+import kotlin.native.concurrent.SharedImmutable
 
 // TODO: localize?
+
+@SharedImmutable
 val defaultCategories = listOf(
 
     CategoryTable(

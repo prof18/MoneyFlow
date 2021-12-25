@@ -22,8 +22,6 @@ class SettingsRepositoryImpl(
         _hideSensibleDataState.value = settingsSource.getHideSensitiveData()
     }
 
-    // TODO: expose a flow for sensitive data settings
-
     override fun getDropboxClientCred(): String? {
         return settingsSource.getDropboxClientCred()
     }

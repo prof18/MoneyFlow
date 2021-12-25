@@ -5,7 +5,7 @@ import com.dropbox.core.DbxRequestConfig
 import com.dropbox.core.oauth.DbxCredential
 import com.dropbox.core.v2.DbxClientV2
 import com.dropbox.core.v2.files.WriteMode
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUserCase
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import com.prof18.moneyflow.utils.DatabaseImportExport
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,11 +15,10 @@ import java.io.FileInputStream
 import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 // TODO: clean-up
 class DropboxClient(
-    private val dropboxSyncUserCase: DropboxSyncUserCase,
+    private val dropboxSyncUserCase: DropboxSyncUseCase,
     private val databaseImportExport: DatabaseImportExport
 ) {
 

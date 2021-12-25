@@ -19,20 +19,15 @@ class CategoriesViewModel(
     var categoryModel: CategoryModel by mutableStateOf(CategoryModel.Loading)
         private set
 
-    // TODO: move to new shared arch
     init {
         observeCategoryModel()
-        viewModelScope.launch {
-            categoriesUseCase.getCategoriesSuspendable()
-        }
     }
 
     private fun observeCategoryModel() {
         viewModelScope.launch {
-            categoriesUseCase.observeCategories().collect {
+            categoriesUseCase.observeCategoryModel().collect {
                 categoryModel = it
             }
         }
     }
-
 }

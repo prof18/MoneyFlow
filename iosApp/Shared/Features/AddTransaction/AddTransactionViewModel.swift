@@ -29,20 +29,13 @@ class AddTransactionViewModel: ObservableObject {
         TransactionTypeRadioItem(name: "Expense", id: .expense)
     ]
     
-    let addTransactionUseCase: AddTransactionUseCase
-    
-    init() {
-        addTransactionUseCase = AddTransactionUseCaseImpl(moneyRepository: DIContainer.instance.getMoneyRepository(), onInsertDone: {
-            
-            // TODO: save to dropbox
-            
-        })
-    }
-    
+        
     private func updateSaveButtonStatus() {
         let canSave = !amountTextField.isEmpty && categoryId != nil
         self.saveDisabled = !canSave
     }
+    
+    private var addTransactionUseCase: AddTransactionUseCaseIos = DIContainer.instance.getAddTransactionUseCase()
     
     func addTransaction() {
         
