@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:iosApp.xcodeproj">
+      location = "group:/Users/marcogomiero/Workspace/Personal/KMP/MoneyFlow/iosApp/MoneyFlow.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MoneyFlow.xcodeproj">
    </FileRef>
 </Workspace>

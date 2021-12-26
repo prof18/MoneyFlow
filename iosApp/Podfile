@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 
-target 'iosApp (iOS)' do
+target 'MoneyFlow' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   platform :ios, '14.0'
