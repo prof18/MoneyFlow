@@ -3,7 +3,7 @@ import java.util.*
 plugins {
     id("com.android.application")
     kotlin("android")
-//    id("kotlin-parcelize")
+    id("kotlin-parcelize")
 }
 
 //val propertiesFile = file("local.properties")
