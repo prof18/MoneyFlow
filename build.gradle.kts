@@ -5,15 +5,15 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath("com.android.tools.build:gradle:7.0.4")
+        classpath(Deps.kotlinGradle)
+        classpath(Deps.agp)
         classpath(Deps.SqlDelight.gradle)
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.39.0")
+        classpath(Deps.gradleVersion)
     }
 }
 
 plugins {
-    id("com.github.ben-manes.versions") version "0.39.0"
+    id(Deps.gradleVersionPlugin) version Versions.gradleVersions
 }
 
 allprojects {
@@ -22,13 +22,12 @@ allprojects {
         mavenCentral()
         maven(url = "https://kotlin.bintray.com/kotlinx")
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
-
     }
 }
 
 
-group = "com.prof18"
-version = "1.0-SNAPSHOT"
+group = Config.Release.sharedLibGroup
+version = Config.Release.sharedLibVersion
 
 repositories {
     mavenCentral()

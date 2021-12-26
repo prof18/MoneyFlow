@@ -4,14 +4,14 @@ plugins {
     id("com.android.library")
     id("com.squareup.sqldelight")
 }
-group = "com.prof18"
-version = "1.0-SNAPSHOT"
+group = Config.Release.sharedLibGroup
+version = Config.Release.sharedLibVersion
 
 android {
-    compileSdk= 31
+    compileSdk = Config.Android.compileSdk
     defaultConfig {
-        minSdk = 24
-        targetSdk = 31
+        minSdk = Config.Android.minSdk
+        targetSdk = Config.Android.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,31 +20,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = Config.Java.javaVersion
+        targetCompatibility = Config.Java.javaVersion
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
+            jvmTarget = Config.Java.javaVersionNumber
         }
     }
-
-    // Workaround to solve https://youtrack.jetbrains.com/issue/KT-43944
-//    configurations {
-//        create("androidTestApi")
-//        create("androidTestDebugApi")
-//        create("androidTestReleaseApi")
-//        create("testApi")
-//        create("testDebugApi")
-//        create("testReleaseApi")
-//    }
 }
 
 kotlin {
-
     android()
-
     ios()
 
     targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
@@ -54,15 +42,13 @@ kotlin {
     }
 
     cocoapods {
-        // TODO: add proper values
         // Configure fields required by CocoaPods.
-        summary = "Some description for a Kotlin/Native module"
-        homepage = "Link to a Kotlin/Native module homepage"
-//        ios.deploymentTarget = "14.1"
-//        podfile = project.file("../iosApp/Podfile")
-//        framework {
-//            baseName = "shared"
-//        }
+        summary = "Kotlin Multiplatform Library for MoneyFlow"
+        homepage = "https://github.com/prof18/MoneyFlow"
+        authors = "Marco Gomiero"
+        license = "APACHE"
+        ios.deploymentTarget = "15"
+        podfile = project.file("../iosApp/Podfile")
     }
 
     sourceSets {
@@ -89,8 +75,8 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+                implementation(kotlin(Deps.KotlinTest.common))
+                implementation(kotlin(Deps.KotlinTest.annotations))
                 implementation(Deps.Koin.test)
                 implementation(Deps.turbine)
                 implementation(Deps.multiplatformSettingsTest)
@@ -106,7 +92,7 @@ kotlin {
         }
         val androidTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
+                implementation(kotlin(Deps.KotlinTest.common))
                 implementation(Deps.SqlDelight.driver)
 
                 implementation(Deps.KotlinTest.jvm)
@@ -143,8 +129,6 @@ kotlin {
         languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
 }
-
-
 
 sqldelight {
     database("MoneyFlowDB") {

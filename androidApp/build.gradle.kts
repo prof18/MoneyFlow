@@ -6,20 +6,14 @@ plugins {
     id("kotlin-parcelize")
 }
 
-//val propertiesFile = file("local.properties")
-//val properties = Properties()
-//if (propertiesFile.exists()) {
-//    properties.load(propertiesFile.inputStream())
-//}
-
 android {
-    compileSdk= 31
+    compileSdk= Config.Android.compileSdk
     defaultConfig {
-        applicationId = "com.prof18.moneyflow"
-        minSdk = 24
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Config.Release.applicationID
+        minSdk = Config.Android.minSdk
+        targetSdk = Config.Android.targetSdk
+        versionCode = Config.Release.appVersionCode
+        versionName = Config.Release.appVersionName
 
         val propertiesFile = file("local.properties")
         val properties = Properties()
@@ -37,12 +31,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = Config.Java.javaVersion
+        targetCompatibility = Config.Java.javaVersion
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = Config.Java.javaVersionNumber
     }
 
     composeOptions {
@@ -50,7 +44,6 @@ android {
     }
 
     buildFeatures { compose = true }
-    buildToolsVersion = "30.0.3"
 }
 
 dependencies {
@@ -83,6 +76,4 @@ dependencies {
 
     debugImplementation(Deps.Compose.tooling)
     debugImplementation(Deps.kotlinReflect)
-
-
 }

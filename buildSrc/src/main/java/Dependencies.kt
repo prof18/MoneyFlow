@@ -1,5 +1,6 @@
 object Versions {
     const val kotlin = "1.6.0"
+    const val agp = "7.0.4"
     const val koin = "3.1.4"
     const val coreKTX = "1.7.0-rc01"
     const val compose = "1.1.0-rc01"
@@ -21,10 +22,12 @@ object Versions {
     const val viewModelKTX = "2.4.0"
     const val biometric = "1.2.0-alpha04"
     const val pagingCompose = "1.0.0-alpha14"
+    const val gradleVersions = "0.39.0"
 }
 
 object Deps {
-
+    const val agp = "com.android.tools.build:gradle:${Versions.agp}"
+    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val coreKTX = "androidx.core:core-ktx:${Versions.coreKTX}"
 
     const val stately = "co.touchlab:stately-common:${Versions.stately}"
@@ -39,6 +42,9 @@ object Deps {
     const val androidCrypto = "androidx.security:security-crypto:${Versions.androidCrypto}"
     const val viewModelKTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelKTX}"
     const val biometric = "androidx.biometric:biometric-ktx:${Versions.biometric}"
+    const val gradleVersionPlugin = "com.github.ben-manes.versions"
+    const val gradleVersion = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersions}"
+
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
@@ -55,7 +61,6 @@ object Deps {
         const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.compose}"
         const val materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.compose}"
         const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
-        const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
         const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
         const val uiTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
         const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.navComposeVersion}"
@@ -64,8 +69,8 @@ object Deps {
     }
 
     object KotlinTest {
-        const val common = "org.jetbrains.kotlin:kotlin-test-common:${Versions.kotlin}"
-        const val annotations = "org.jetbrains.kotlin:kotlin-test-annotations-common:${Versions.kotlin}"
+        const val common = "test-common"
+        const val annotations = "test-annotations-common"
         const val jvm = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
         const val junit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
@@ -92,10 +97,7 @@ object Deps {
         const val runtimeJdk = "com.squareup.sqldelight:runtime-jvm:${Versions.sqlDelight}"
         const val driverIos = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
         const val driverAndroid = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
-        const val driverMacOs = "com.squareup.sqldelight:native-driver-macosx64:${Versions.sqlDelight}"
-        const val runtimeMacOs = "com.squareup.sqldelight:runtime-macosx64:${Versions.sqlDelight}"
     }
-
 }
 
 
