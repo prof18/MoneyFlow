@@ -2,10 +2,7 @@ package com.prof18.moneyflow
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -70,7 +67,7 @@ fun AppContainer() {
         }
     ) { paddingValues ->
 
-        val categoryState: MutableState<CategoryUIData?> = mutableStateOf(null)
+        val categoryState: MutableState<CategoryUIData?> = remember { mutableStateOf(null) }
 
         NavHost(navController, startDestination = Screen.HomeScreen.route) {
 

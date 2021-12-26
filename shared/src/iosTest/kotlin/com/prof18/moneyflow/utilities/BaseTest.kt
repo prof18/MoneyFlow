@@ -1,14 +1,12 @@
 package com.prof18.moneyflow.utilities
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import platform.CoreFoundation.CFRunLoopGetCurrent
 import platform.CoreFoundation.CFRunLoopRun
 import platform.CoreFoundation.CFRunLoopStop
 
 actual abstract class BaseTest {
+    @OptIn(DelicateCoroutinesApi::class)
     actual fun <T> runTest(block: suspend CoroutineScope.() -> T) {
         var error: Throwable? = null
         GlobalScope.launch(Dispatchers.Main) {

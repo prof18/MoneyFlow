@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.utilities
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule

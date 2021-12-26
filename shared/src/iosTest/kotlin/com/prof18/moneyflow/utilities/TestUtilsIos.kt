@@ -5,6 +5,7 @@ import com.prof18.moneyflow.database.DatabaseHelper
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 import com.squareup.sqldelight.drivers.native.wrapConnection
 import co.touchlab.sqliter.DatabaseConfiguration
+import com.prof18.moneyflow.data.db.Schema
 
 
 actual fun createDriver() {
@@ -14,7 +15,7 @@ actual fun createDriver() {
             version = 1,
             inMemory = true,
             create = { connection ->
-                wrapConnection(connection) { MoneyFlowDB.Schema.create(it) }
+                wrapConnection(connection) { Schema.create(it) }
             },
             upgrade = { connection, oldVersion, newVersion ->
                 wrapConnection(connection) { MoneyFlowDB.Schema.migrate(it, oldVersion, newVersion) }
@@ -22,9 +23,6 @@ actual fun createDriver() {
         )
     )
     DatabaseHelper.setupDatabase(driver)
-//    val driver = JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY)
-//    Schema.create(driver)
-//    DatabaseHelper.setupDatabase(driver)
 }
 
 actual fun closeDriver() {

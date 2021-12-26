@@ -17,7 +17,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.NavigationArguments
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.data.db.model.TransactionType
@@ -200,13 +199,15 @@ fun AddTransactionScreenLightPreview() {
     MoneyFlowTheme {
         Surface {
             AddTransactionScreen(
-                categoryState = mutableStateOf(
-                    CategoryUIData(
-                        id = 1,
-                        name = "Food",
-                        icon = R.drawable.ic_hamburger_solid
+                categoryState = remember {
+                    mutableStateOf(
+                        CategoryUIData(
+                            id = 1,
+                            name = "Food",
+                            icon = R.drawable.ic_hamburger_solid
+                        )
                     )
-                ),
+                },
                 navigateUp = {},
                 navigateToCategoryList = {},
                 addTransaction = {},
@@ -232,13 +233,15 @@ fun AddTransactionScreenDarkPreview() {
     MoneyFlowTheme(darkTheme = true) {
         Surface {
             AddTransactionScreen(
-                categoryState = mutableStateOf(
-                    CategoryUIData(
-                        id = 1,
-                        name = "Food",
-                        icon = R.drawable.ic_hamburger_solid
+                categoryState = remember {
+                    mutableStateOf(
+                        CategoryUIData(
+                            id = 1,
+                            name = "Food",
+                            icon = R.drawable.ic_hamburger_solid
+                        )
                     )
-                ),
+                },
                 navigateUp = {},
                 navigateToCategoryList = {},
                 addTransaction = {},
