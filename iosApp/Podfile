@@ -10,14 +10,3 @@ target 'iosApp (iOS)' do
   pod 'SwiftyDropbox'
 
 end
-
-target 'iosApp (macOS)' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-  platform :macos, '11.0'
-
-
-  # Pods for iosApp (macOS)
-#  pod 'shared', :path => '../shared'
-#  podå 'SwiftyDropbox'
-end

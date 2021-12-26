@@ -28,12 +28,7 @@ struct MoneyFlowApp: App {
         let dropboxKey = Bundle.main.infoDictionary?["DropboxApiKey"] as? String ?? ""
         
         
-        #if os(iOS)
         DropboxClientsManager.setupWithAppKey(dropboxKey)
-        #else
-        DropboxClientsManager.setupWithAppKeyDesktop(dropboxKey)
-        #endif
-        
     }
     
     var body: some Scene {

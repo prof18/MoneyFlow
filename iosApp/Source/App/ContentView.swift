@@ -12,20 +12,14 @@ struct ContentView: View {
     
     @EnvironmentObject var appState: AppState
     
-    #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
     
     var body: some View {
-        #if os(iOS)
         if horizontalSizeClass == .compact {
             AppTabNavigation().environmentObject(appState)
         } else {
             AppSidebarNavigation().environmentObject(appState)
         }
-        #else
-        AppSidebarNavigation()
-        #endif
     }
 }
 

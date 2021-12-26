@@ -9,10 +9,18 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>iosApp (macOS).xcscheme_^#shared#^_</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A9F674FB24F59E2700F486FE</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9F6750B24F59E2700F486FE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

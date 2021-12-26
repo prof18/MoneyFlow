@@ -1,7 +1,7 @@
 # MoneyFlow
 A money management Android and iOS app wrote with Kotlin Multiplatform, Jetpack Compose and Swift UI.
 
-Coming soon: Desktop App (with Compose for Desktop) and MacOS App (with SwiftUI).
+Coming soon: Desktop App (with Compose for Desktop).
 
 <div align="center">
   <img src="image/money-flow-light.png">

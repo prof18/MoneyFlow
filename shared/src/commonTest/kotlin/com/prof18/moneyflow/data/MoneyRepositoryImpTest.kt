@@ -42,7 +42,7 @@ class MoneyRepositoryImplTest : BaseTest() {
     @Test
     fun getBalanceRecap_UpdatesDataWhenAddingIncomeAndNoDataPresent() = runTest {
         moneyRepository.getBalanceRecap().test {
-            assertEquals(DataFactory.getEmptyBalanceRecap(), expectItem())
+            assertEquals(DataFactory.getEmptyBalanceRecap(), expectMostRecentItem())
         }
 
         moneyRepository.insertTransaction(
@@ -56,7 +56,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         )
 
         moneyRepository.getBalanceRecap().test {
-            val balance = expectItem()
+            val balance = expectMostRecentItem()
             assertEquals(-10.0, balance.totalBalance)
             assertEquals(10.0, balance.monthlyExpenses)
             assertEquals(0.0, balance.monthlyIncome)
@@ -100,7 +100,7 @@ class MoneyRepositoryImplTest : BaseTest() {
 
         // Assert
         moneyRepository.getBalanceRecap().test {
-            val balance = expectItem()
+            val balance = expectMostRecentItem()
             assertEquals(0.0, balance.totalBalance)
             assertEquals(20.0, balance.monthlyExpenses)
             assertEquals(20.0, balance.monthlyIncome)
@@ -143,7 +143,7 @@ class MoneyRepositoryImplTest : BaseTest() {
 
         // Assert
         moneyRepository.getBalanceRecap().test {
-            val balance = expectItem()
+            val balance = expectMostRecentItem()
             assertEquals(-20.0, balance.totalBalance)
             assertEquals(30.0, balance.monthlyExpenses)
             assertEquals(10.0, balance.monthlyIncome)
@@ -162,7 +162,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         )
 
         moneyRepository.getLatestTransactions().test {
-            val transactions = expectItem()
+            val transactions = expectMostRecentItem()
             print(transactions)
             assertEquals(defaultCategories.first().name, transactions.first().title)
         }
@@ -180,7 +180,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         )
 
         moneyRepository.getLatestTransactions().test {
-            val transactions = expectItem()
+            val transactions = expectMostRecentItem()
             print(transactions)
             assertEquals("Description", transactions.first().title)
         }
@@ -213,7 +213,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         moneyRepository.deleteTransaction(1)
 
         moneyRepository.getBalanceRecap().test {
-            val balance = expectItem()
+            val balance = expectMostRecentItem()
             assertEquals(10.0, balance.totalBalance)
             assertEquals(0.0, balance.monthlyExpenses)
             assertEquals(10.0, balance.monthlyIncome)
@@ -245,7 +245,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         )
 
         moneyRepository.getBalanceRecap().test {
-            val balance = expectItem()
+            val balance = expectMostRecentItem()
             assertEquals(0.0, balance.totalBalance)
             assertEquals(10.0, balance.monthlyExpenses)
             assertEquals(10.0, balance.monthlyIncome)
@@ -254,7 +254,7 @@ class MoneyRepositoryImplTest : BaseTest() {
         moneyRepository.deleteTransaction(2)
 
         moneyRepository.getBalanceRecap().test {
-            val balance = expectItem()
+            val balance = expectMostRecentItem()
             assertEquals(-10.0, balance.totalBalance)
             assertEquals(10.0, balance.monthlyExpenses)
             assertEquals(0.0, balance.monthlyIncome)

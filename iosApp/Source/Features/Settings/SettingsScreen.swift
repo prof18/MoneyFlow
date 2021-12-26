@@ -14,9 +14,7 @@ struct SettingsScreen: View {
     @EnvironmentObject var appState: AppState
     @State var sheetToShow: SheetToShow?
     
-    #if os(iOS)
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    #endif
     
     var body: some View {
         if showNavigation() {
@@ -29,15 +27,11 @@ struct SettingsScreen: View {
     }
     
     private func showNavigation() -> Bool {
-        #if os(iOS)
         if horizontalSizeClass == .compact {
             return false
         } else {
             return true
         }
-        #else
-        return true
-        #endif
     }
     
     private func getContent() -> some View {
@@ -66,7 +60,7 @@ struct SettingsScreen: View {
         }) { item in
             
             switch item {
-            
+                
             case .filePicker:
                 FilePickerController { url in
                     DatabaseImportExport.replaceDatabase(url: url)

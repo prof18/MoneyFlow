@@ -47,8 +47,6 @@ kotlin {
 
     ios()
 
-    macosX64("macOS")
-
     targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
         binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
             isStatic = false
@@ -56,6 +54,7 @@ kotlin {
     }
 
     cocoapods {
+        // TODO: add proper values
         // Configure fields required by CocoaPods.
         summary = "Some description for a Kotlin/Native module"
         homepage = "Link to a Kotlin/Native module homepage"
@@ -129,15 +128,6 @@ kotlin {
             dependencies {
                 implementation(Deps.SqlDelight.driverIos)
             }
-        }
-        val macOSMain by getting {
-            dependencies {
-                implementation(Deps.SqlDelight.driverMacOs)
-                implementation(Deps.SqlDelight.runtimeMacOs)
-            }
-        }
-        val macOSTest by getting {
-
         }
     }
 
