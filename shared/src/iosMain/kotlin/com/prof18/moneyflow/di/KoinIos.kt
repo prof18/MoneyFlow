@@ -43,11 +43,11 @@ actual val platformModule = module {
         scoped { HomeUseCase(get(), get()) }
         scoped { HomeUseCaseIos(get()) }
 
-        scoped { AddTransactionUseCase(get()) }
-        scoped { AddTransactionUseCaseIos(get()) }
+        factory { AddTransactionUseCase(get()) }
+        factory { AddTransactionUseCaseIos(get()) }
 
-        scoped { CategoriesUseCase(get()) }
-        scoped { CategoriesUseCaseIos(get()) }
+        factory { CategoriesUseCase(get()) }
+        factory { CategoriesUseCaseIos(get()) }
     }
 }
 
