@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
     id("com.android.library")
-    id("org.jetbrains.kotlin.native.cocoapods")
     id("com.squareup.sqldelight")
 }
 group = "com.prof18"
@@ -58,6 +58,11 @@ kotlin {
         // Configure fields required by CocoaPods.
         summary = "Some description for a Kotlin/Native module"
         homepage = "Link to a Kotlin/Native module homepage"
+//        ios.deploymentTarget = "14.1"
+//        podfile = project.file("../iosApp/Podfile")
+//        framework {
+//            baseName = "shared"
+//        }
     }
 
     sourceSets {

@@ -16,7 +16,7 @@
 		A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */; };
 		A9471ED325759ACA00C5D3AF /* CategoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED225759ACA00C5D3AF /* CategoryCard.swift */; };
 		A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */; };
-		A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DIContainer.swift */; };
+		A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DepsInjector.swift */; };
 		A947AF252554A7D500633BD3 /* DatabaseImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */; };
 		A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B761257D675B00F6113A /* AddTransactionViewModel.swift */; };
 		A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B767257D6A2A00F6113A /* RadioButton.swift */; };
@@ -88,7 +88,7 @@
 		A9471ECB2575979100C5D3AF /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		A9471ED225759ACA00C5D3AF /* CategoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCard.swift; sourceTree = "<group>"; };
 		A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionState.swift; sourceTree = "<group>"; };
-		A947AF1E2554991600633BD3 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		A947AF1E2554991600633BD3 /* DepsInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepsInjector.swift; sourceTree = "<group>"; };
 		A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseImportExport.swift; sourceTree = "<group>"; };
 		A988B761257D675B00F6113A /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
 		A988B767257D6A2A00F6113A /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				A930B87E253B800500CB92DF /* Koin.swift */,
-				A947AF1E2554991600633BD3 /* DIContainer.swift */,
+				A947AF1E2554991600633BD3 /* DepsInjector.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -597,7 +597,7 @@
 				A930B87F253B800500CB92DF /* Koin.swift in Sources */,
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A9B3C52D25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */,
-				A947AF1F2554991600633BD3 /* DIContainer.swift in Sources */,
+				A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */,
 				A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
 				A99B3574257F7ABF00B626ED /* SidebarNavigationItem.swift in Sources */,

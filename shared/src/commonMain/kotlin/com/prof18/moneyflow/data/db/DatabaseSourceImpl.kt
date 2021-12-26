@@ -17,8 +17,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 
 class DatabaseSourceImpl(
-    // not private and mutable to close and reopen the database at runtime
-    var dbRef: MoneyFlowDB,
+    private val dbRef: MoneyFlowDB,
     dispatcher: CoroutineDispatcher?
 ) : DatabaseSource {
 

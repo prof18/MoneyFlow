@@ -83,7 +83,7 @@ class DropboxClientManager {
                     // TODO: decide if refresh or not
                     
                     DatabaseImportExport.replaceDatabase(url: destURL)
-                    DIContainer.instance.reloadDatabaseRef()
+               
                     print(response)
                 } else if let error = error {
                     print(error)

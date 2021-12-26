@@ -30,7 +30,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
 
 private val coreModule = module {
 
-    single<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Main) }
+    single<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Default) }
     single { SettingsSource(get()) }
 
     // Repository

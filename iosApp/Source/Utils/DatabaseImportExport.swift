@@ -1,4 +1,5 @@
 //
+
 //  DatabaseExporter.swift
 //  iosApp (iOS)
 //
@@ -31,12 +32,12 @@ class DatabaseImportExport {
             
             _ = try FileManager.default.replaceItemAt(fileURL, withItemAt: url, backupItemName: "MoneyFlowDB.old", options: .usingNewMetadataOnly)
             
-            DIContainer.instance.reloadDatabaseRef()
-            
+            DI.reloadDIGraph()
+        
         } catch let error {
             print(error.localizedDescription)
-            print("Something wrong during replace of the com.prof18.moneyflow.database")
-            DIContainer.instance.reloadDatabaseRef()
+            print("Something wrong during replace of the database")
+            DI.reloadDIGraph()
         }
     }
 }

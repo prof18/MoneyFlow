@@ -11,12 +11,12 @@ actual val platformModule: Module = module {
 
     single {
         DatabaseHelper.setupDatabase()
-       DatabaseHelper.instance
+        DatabaseHelper.instance
     }
 
     single {
         val factory: Settings.Factory = EncryptedSettingsFactory(get())
-       factory.create()
+        factory.create()
     }
 }
 

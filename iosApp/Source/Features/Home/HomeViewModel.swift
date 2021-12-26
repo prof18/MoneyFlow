@@ -13,11 +13,13 @@ class HomeViewModel: ObservableObject {
     @Published var homeModel: HomeModel = HomeModel.Loading()
     
     private var subscriptions = Set<AnyCancellable>()
-    
-    private var homeUseCase: HomeUseCaseIos = DIContainer.instance.getHomeUseCase()
+        
+    private func homeUseCase() -> HomeUseCaseIos {
+        DI.getHomeUseCase()
+    }
     
     func startObserving() {
-        createPublisher(homeUseCase.getMoneySummary())
+        createPublisher(homeUseCase().getMoneySummary())
             .eraseToAnyPublisher()
             .receive(on: DispatchQueue.global(qos: .userInitiated))
             .sink(
@@ -36,7 +38,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func deleteTransaction(transactionId: Int64) {
-        homeUseCase.deleteTransaction(transactionId: transactionId)
+        homeUseCase().deleteTransaction(transactionId: transactionId)
     }
     
     func stopObserving() {

@@ -24,6 +24,7 @@ func startKoin() {
 //        doOnStartup: doOnStartup
     )
     _koin = koinApplication.koin
+    koin.openKoinScope()
 }
 
 private var _koin: Koin_coreKoin?

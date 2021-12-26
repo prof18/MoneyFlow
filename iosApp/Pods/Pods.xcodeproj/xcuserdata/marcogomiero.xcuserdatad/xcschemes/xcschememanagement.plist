@@ -7,25 +7,33 @@
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>Pods-MoneyFlow.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>SwiftyDropbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>shared.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<false />
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict />
 </dict>
 </plist>
