@@ -23,6 +23,7 @@ object Versions {
     const val biometric = "1.2.0-alpha04"
     const val pagingCompose = "1.0.0-alpha14"
     const val gradleVersions = "0.39.0"
+    const val kermit = "1.0.0"
 }
 
 object Deps {
@@ -34,6 +35,8 @@ object Deps {
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinDateTime}"
     const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    const val kermit = "co.touchlab:kermit:${Versions.kermit}"
+    const val kermitGradle = "co.touchlab:kermit-gradle-plugin:${Versions.kermit}"
 
     const val dropboxCore = "com.dropbox.core:dropbox-core-sdk:${Versions.dropboxCore}"
     const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"

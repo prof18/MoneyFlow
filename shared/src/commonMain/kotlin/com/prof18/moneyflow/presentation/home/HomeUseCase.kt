@@ -1,8 +1,8 @@
 package com.prof18.moneyflow.presentation.home
 
+import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
-import com.prof18.moneyflow.printThrowable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -18,7 +18,7 @@ class HomeUseCase(
     fun observeHomeModel(): Flow<HomeModel> =
         moneyRepository.getMoneySummary()
             .catch { cause: Throwable ->
-                printThrowable(cause)
+                Logger.w(cause) { "Error while getting Categories" }
                 // TODO: move to error Code
                 HomeModel.Error("Something wrong :(")
             }.map {

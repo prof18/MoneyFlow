@@ -9,6 +9,7 @@ buildscript {
         classpath(Deps.agp)
         classpath(Deps.SqlDelight.gradle)
         classpath(Deps.gradleVersion)
+        classpath(Deps.kermitGradle)
     }
 }
 

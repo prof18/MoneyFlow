@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    id("co.touchlab.kermit")
 }
 group = Config.Release.sharedLibGroup
 version = Config.Release.sharedLibVersion
@@ -33,11 +34,11 @@ android {
 
 kotlin {
     android()
-    ios()
-
-    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
-            isStatic = false
+    ios() {
+        binaries {
+            framework {
+                isStatic = false
+            }
         }
     }
 
@@ -70,7 +71,7 @@ kotlin {
                 implementation(Deps.Koin.core)
                 implementation(Deps.kotlinDateTime)
                 implementation(Deps.multiplatformSettings)
-
+                implementation(Deps.kermit)
             }
         }
         val commonTest by getting {
@@ -134,5 +135,12 @@ sqldelight {
     database("MoneyFlowDB") {
         packageName = "com.prof18.moneyflow.db"
         schemaOutputDirectory = file("src/main/sqldelight/databases")
+    }
+}
+
+val releaseBuild: String by project
+kermit {
+    if(releaseBuild.toBoolean()) {
+        stripBelow = co.touchlab.kermit.gradle.StripSeverity.Info
     }
 }
