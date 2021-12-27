@@ -24,7 +24,9 @@ class CategoriesViewModel: ObservableObject {
             .sink(
                 receiveCompletion: { completion in
                     if case let .failure(error) = completion {
-                        self.categoriesModel = CategoryModel.Error(message: "Something wrong here :(")
+                        let moneyFlowError = MoneyFlowError.GetCategories(throwable:  error.throwable)
+                        error.throwable.logError(moneyFlowError: moneyFlowError , message: "Got error while transforming Flow to Publisher")
+                        self.categoriesModel = CategoryModel.Error(moneyFlowError: moneyFlowError)
                     }
                 },
                 receiveValue: { genericResponse in

@@ -5,7 +5,7 @@ import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.db.*
 import com.prof18.moneyflow.utils.CurrentMonthID
 import com.prof18.moneyflow.utils.MillisSinceEpoch
-import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
+import com.prof18.moneyflow.utils.generateCurrentMonthId
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.squareup.sqldelight.runtime.coroutines.mapToOneOrDefault

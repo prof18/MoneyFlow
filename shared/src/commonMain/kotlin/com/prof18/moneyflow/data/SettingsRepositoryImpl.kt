@@ -2,7 +2,7 @@ package com.prof18.moneyflow.data
 
 import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.domain.repository.SettingsRepository
-import com.prof18.moneyflow.utils.Utils.formatDateAllData
+import com.prof18.moneyflow.utils.formatDateAllData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

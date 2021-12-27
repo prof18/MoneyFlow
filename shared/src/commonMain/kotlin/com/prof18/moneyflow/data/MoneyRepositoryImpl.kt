@@ -10,12 +10,9 @@ import com.prof18.moneyflow.domain.entities.*
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.CategoryIcon
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
-import com.prof18.moneyflow.utils.Utils.formatDateDayMonthYear
-import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emptyFlow
-import kotlinx.coroutines.flow.map
+import com.prof18.moneyflow.utils.formatDateDayMonthYear
+import com.prof18.moneyflow.utils.generateCurrentMonthId
+import kotlinx.coroutines.flow.*
 import kotlin.math.abs
 
 class MoneyRepositoryImpl(
@@ -28,7 +25,9 @@ class MoneyRepositoryImpl(
     private var account: Flow<AccountTable> = emptyFlow()
 
     init {
-        allTransactions = dbSource.selectLatestTransactions()
+        allTransactions = dbSource.selectLatestTransactions().catch {
+            
+        }
         allCategories = dbSource.selectAllCategories()
         monthlyRecap = dbSource.selectCurrentMonthlyRecap()
         account = dbSource.selectCurrentAccount()

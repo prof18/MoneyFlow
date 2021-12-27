@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.utils
 
-import com.prof18.moneyflow.utils.Utils.generateCurrentMonthId
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

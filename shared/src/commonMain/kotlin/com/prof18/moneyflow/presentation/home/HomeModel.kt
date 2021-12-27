@@ -1,11 +1,12 @@
 package com.prof18.moneyflow.presentation.home
 
 import com.prof18.moneyflow.domain.entities.BalanceRecap
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 
 sealed class HomeModel {
     object Loading: HomeModel()
-    data class Error(val message: String): HomeModel()
+    data class Error(val error: MoneyFlowError): HomeModel()
     data class HomeState(val balanceRecap: BalanceRecap, val latestTransactions: List<MoneyTransaction>): HomeModel()
 
     override fun toString(): String {

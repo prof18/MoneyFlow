@@ -1,8 +1,10 @@
 package com.prof18.moneyflow.presentation.home
 
-import co.touchlab.kermit.Logger
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -17,10 +19,10 @@ class HomeUseCase(
 
     fun observeHomeModel(): Flow<HomeModel> =
         moneyRepository.getMoneySummary()
-            .catch { cause: Throwable ->
-                Logger.w(cause) { "Error while getting Categories" }
-                // TODO: move to error Code
-                HomeModel.Error("Something wrong :(")
+            .catch { throwable: Throwable ->
+                val error = MoneyFlowError.GetMoneySummary(throwable)
+                throwable.logError(error)
+                HomeModel.Error(error)
             }.map {
                 HomeModel.HomeState(
                     balanceRecap = it.balanceRecap,
@@ -28,13 +30,19 @@ class HomeUseCase(
                 )
             }
 
-
     fun toggleHideSensitiveData(status: Boolean) {
         settingsRepository.setHideSensitiveData(status)
     }
 
-    suspend fun deleteTransaction(transactionId: Long) {
-        moneyRepository.deleteTransaction(transactionId)
+    suspend fun deleteTransaction(transactionId: Long): MoneyFlowResult<Unit> {
+        return try {
+            moneyRepository.deleteTransaction(transactionId)
+            MoneyFlowResult.Success(Unit)
+        } catch (throwable: Throwable) {
+            val error = MoneyFlowError.DeleteTransaction(throwable)
+            throwable.logError(error)
+            MoneyFlowResult.Error(error)
+        }
     }
 }
 

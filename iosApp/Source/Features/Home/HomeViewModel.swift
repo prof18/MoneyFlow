@@ -13,7 +13,7 @@ class HomeViewModel: ObservableObject {
     @Published var homeModel: HomeModel = HomeModel.Loading()
     
     private var subscriptions = Set<AnyCancellable>()
-        
+    
     private func homeUseCase() -> HomeUseCaseIos {
         DI.getHomeUseCase()
     }
@@ -25,7 +25,9 @@ class HomeViewModel: ObservableObject {
             .sink(
                 receiveCompletion: { completion in
                     if case let .failure(error) = completion {
-                        self.homeModel = HomeModel.Error(message: "Something wrong here :(")
+                        let moneyFlowError = MoneyFlowError.GetMoneySummary(throwable:  error.throwable)
+                        error.throwable.logError(moneyFlowError: moneyFlowError , message: "Got error while transforming Flow to Publisher")
+                        self.homeModel = HomeModel.Error(error: moneyFlowError)
                     }
                 },
                 receiveValue: { genericResponse in
@@ -38,7 +40,12 @@ class HomeViewModel: ObservableObject {
     }
     
     func deleteTransaction(transactionId: Int64) {
-        homeUseCase().deleteTransaction(transactionId: transactionId)
+        homeUseCase().deleteTransaction(
+            transactionId: transactionId,
+            onError: { error in
+                // TODO: show the error on the UI
+            }
+        )
     }
     
     deinit {

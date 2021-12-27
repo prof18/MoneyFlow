@@ -50,18 +50,19 @@ class AddTransactionViewModel: ObservableObject {
         if transactionTypeUI == TransactionTypeUI.expense {
             transactionType = .outcome
         }
-        // TODO: handle error
-        do {
-            try addTransactionUseCase.insertTransaction(transactionToSave: TransactionToSave(
+        
+        addTransactionUseCase.insertTransaction(
+            transactionToSave: TransactionToSave(
                 dateMillis: transactionDate.millisecondsSinceEpoch(),
                 amount: amount!,
                 description: descriptionTextField,
                 categoryId: categoryId!,
                 transactionType: transactionType
-            ))
-        } catch let error  {
-            print(error.localizedDescription)
-        }
+            ),
+            onError: { error in
+                // TODO: show the error on UI
+            }
+        )
     }
     
     deinit {

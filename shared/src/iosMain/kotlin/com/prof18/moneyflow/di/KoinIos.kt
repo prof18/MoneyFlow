@@ -1,10 +1,10 @@
 package com.prof18.moneyflow.di
 
+import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.DatabaseSourceImpl
 import com.prof18.moneyflow.database.DatabaseHelper
-import com.prof18.moneyflow.debugLog
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.AddTransactionUseCaseIos
 import com.prof18.moneyflow.presentation.CategoriesUseCaseIos
@@ -52,17 +52,17 @@ actual val platformModule = module {
 }
 
 fun Koin.openKoinScope(): Scope {
-    debugLog("KOIN", "Opening Koin Scope")
+    Logger.d { "Opening Koin Scope" }
     return this.createScope(MONEY_FLOW_SCOPE_ID, named(MONEY_FLOW_SCOPE_NAME))
 }
 
 fun Koin.getScope(): Scope {
-    debugLog("KOIN", "Getting Koin Scope")
+    Logger.d { "Getting Koin Scope" }
     return this.getScope(MONEY_FLOW_SCOPE_ID)
 }
 
 fun Koin.closeScope() {
-    debugLog("KOIN", "Closing Koin Scope")
+    Logger.d { "Closing Koin Scope" }
     this.getScope().close()
 }
 

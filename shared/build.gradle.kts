@@ -34,13 +34,7 @@ android {
 
 kotlin {
     android()
-    ios() {
-        binaries {
-            framework {
-                isStatic = false
-            }
-        }
-    }
+    ios()
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -50,6 +44,10 @@ kotlin {
         license = "APACHE"
         ios.deploymentTarget = "15"
         podfile = project.file("../iosApp/Podfile")
+        framework {
+            isStatic = false
+            linkerOpts.add("-lsqlite3")
+        }
     }
 
     sourceSets {

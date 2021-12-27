@@ -1,5 +1,7 @@
 package com.prof18.moneyflow.presentation
 
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
@@ -13,15 +15,12 @@ class AllTransactionsUseCaseIos(
         pageNum: Long,
         pageSize: Long,
         onSuccess: (List<MoneyTransaction>) -> Unit,
-        onError: (Throwable) -> Unit,
+        onError: (MoneyFlowError) -> Unit,
     ) {
         scope.launch {
-            try {
-                val transactions = allTransactionsUseCase.getTransactionsPaginated(pageNum, pageSize)
-                onSuccess(transactions)
-            } catch (e: Throwable) {
-                e.printStackTrace()
-                onError(e)
+            when (val result = allTransactionsUseCase.getTransactionsPaginated(pageNum, pageSize)) {
+                is MoneyFlowResult.Error -> onError(result.moneyFlowError)
+                is MoneyFlowResult.Success -> onSuccess(result.data)
             }
         }
     }

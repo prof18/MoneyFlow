@@ -2,6 +2,8 @@ package com.prof18.moneyflow.features.alltransactions
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
@@ -11,25 +13,26 @@ class TransactionPagingSource(
 ) : PagingSource<Long, MoneyTransaction>() {
 
     override suspend fun load(params: LoadParams<Long>): LoadResult<Long, MoneyTransaction> {
-        try {
-            // Start refresh at page 1 if undefined.
-            val pageNum = params.key ?: 0
-            val response = allTransactionsUseCase.getTransactionsPaginated(
-                pageNum = pageNum,
-                pageSize = MoneyRepository.DEFAULT_PAGE_SIZE
-            )
-            val nextKey = response.lastOrNull()?.milliseconds
-            return LoadResult.Page(
-                data = response,
-                prevKey = null, // Only paging forward.
-                nextKey = nextKey
-            )
-        } catch (e: Exception) {
-            // Handle errors in this block and return LoadResult.Error if it is an
-            // expected error (such as a network failure).
-            return LoadResult.Error(
-                throwable = e
-            )
+
+        val pageNum = params.key ?: 0
+        val response = allTransactionsUseCase.getTransactionsPaginated(
+            pageNum = pageNum,
+            pageSize = MoneyRepository.DEFAULT_PAGE_SIZE
+        )
+        return when (response) {
+            is MoneyFlowResult.Error -> {
+                val throwable = response.moneyFlowError.throwable
+                LoadResult.Error(throwable)
+            }
+            is MoneyFlowResult.Success -> {
+                val data = response.data
+                val nextKey = data.lastOrNull()?.milliseconds
+                LoadResult.Page(
+                    data = data,
+                    prevKey = null, // Only paging forward.
+                    nextKey = nextKey
+                )
+            }
         }
     }
 

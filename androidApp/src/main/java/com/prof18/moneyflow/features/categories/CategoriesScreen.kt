@@ -80,7 +80,8 @@ fun CategoriesScreen(
             when (categoryModel) {
                 CategoryModel.Loading -> Loader()
                 is CategoryModel.Error -> {
-                    Text(categoryModel.message)
+                    // TODO: show the message from a mapper
+                    Text("CHANGEME: Error!!!!!")
                 }
                 is CategoryModel.CategoryState -> {
                     LazyColumn {
