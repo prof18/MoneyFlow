@@ -41,8 +41,7 @@ class HomeViewModel: ObservableObject {
         homeUseCase().deleteTransaction(transactionId: transactionId)
     }
     
-    func stopObserving() {
-        // TODO: Cancel scope here or on the deinit
-        //        self.useCase?.onDestroy()
+    deinit {
+        homeUseCase().onDestroy()
     }
 }

@@ -50,7 +50,7 @@ class AddTransactionViewModel: ObservableObject {
         if transactionTypeUI == TransactionTypeUI.expense {
             transactionType = .outcome
         }
-        
+        // TODO: handle error
         do {
             try addTransactionUseCase.insertTransaction(transactionToSave: TransactionToSave(
                 dateMillis: transactionDate.millisecondsSinceEpoch(),
@@ -62,7 +62,9 @@ class AddTransactionViewModel: ObservableObject {
         } catch let error  {
             print(error.localizedDescription)
         }
-        
-        
+    }
+    
+    deinit {
+        addTransactionUseCase.onDestroy()
     }
 }

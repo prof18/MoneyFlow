@@ -68,11 +68,10 @@ struct HomeScreen: View {
         }
         .onAppear {
             self.viewModel.startObserving()
-        }.onDisappear {
-            self.viewModel.stopObserving()
-        }.onReceive(self.appState.$reloadDatabase) { value in
+        }
+        .onReceive(self.appState.$reloadDatabase) { value in
             if value {
-                self.viewModel.stopObserving()
+                // Start observing again without stopping, because the use case has been already restored
                 self.viewModel.startObserving()
                 self.appState.reloadDatabase = false
             }

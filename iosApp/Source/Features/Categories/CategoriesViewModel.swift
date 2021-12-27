@@ -14,8 +14,7 @@ class CategoriesViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    private var categoriesUseCase: CategoriesUseCaseIos = DI .getCategoriesUseCase()
-    
+    private var categoriesUseCase: CategoriesUseCaseIos = DI.getCategoriesUseCase()
     
     func startObserving() {
         
@@ -38,13 +37,6 @@ class CategoriesViewModel: ObservableObject {
     }
     
     func stopObserving() {
-        // TODO: check here. If it's done the scope is deleted but the class is not GC
-//        self.categoriesUseCase.onDestroy()
-    }
-    
-    deinit {
-        onMainThread {
-            self.categoriesUseCase.onDestroy()
-        }
+        self.categoriesUseCase.onDestroy()
     }
 }

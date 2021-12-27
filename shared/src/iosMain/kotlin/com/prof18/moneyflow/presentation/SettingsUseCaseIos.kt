@@ -12,7 +12,7 @@ class SettingsUseCaseIos(
 
     fun isBiometricEnabled(): Boolean = settingsUseCase.isBiometricEnabled()
 
-    fun toggleBiometricStatus(status: Boolean) = settingsUseCase::toggleBiometricStatus
+    fun toggleBiometricStatus(status: Boolean) = settingsUseCase.toggleBiometricStatus(status)
 
-    fun toggleHideSensitiveData(status: Boolean) = settingsUseCase::toggleHideSensitiveData
+    fun toggleHideSensitiveData(status: Boolean) = settingsUseCase.toggleHideSensitiveData(status)
 }
