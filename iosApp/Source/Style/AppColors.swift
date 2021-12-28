@@ -17,4 +17,6 @@ extension Color {
     static let upArrowColor = Color("UpArrowColor")
     static let colorOnBackground = Color("ColorOnBackground")
     static let onPrimary = Color("OnPrimary")
+    static let popupBackground = Color("PopupBackgroundColor")
+    static let popupText = Color("PopupTextColor")
 }

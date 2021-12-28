@@ -11,4 +11,5 @@ class AppState: ObservableObject {
     
     @Published var reloadDatabase: Bool = false
     
+    @Published var errorData: UIErrorData = UIErrorData()    
 }

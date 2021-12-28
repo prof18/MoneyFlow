@@ -56,8 +56,6 @@ class AddTransactionViewModel(
     }
 
     fun addTransaction(categoryId: Long) {
-        // TODO: perform adding
-
         val amount = amountText.toDoubleOrNull()
         if (amount == null) {
             // TODO: show error

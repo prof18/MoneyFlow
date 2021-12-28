@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		599F9F5F6803CB0E30AD29BC /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */; };
+		8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */; };
+		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
 		A930B87F253B800500CB92DF /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B87E253B800500CB92DF /* Koin.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F6899263F36E80075AB49 /* CombineAdapters.swift */; };
@@ -77,6 +79,8 @@
 
 /* Begin PBXFileReference section */
 		0290555E464C0A2749A91632 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
+		8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomErrorBanner.swift; sourceTree = "<group>"; };
+		8D9481C6277BA694003568EE /* UIErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorData.swift; sourceTree = "<group>"; };
 		93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A930B87E253B800500CB92DF /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
@@ -167,6 +171,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8D9481C5277BA688003568EE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D9481C6277BA694003568EE /* UIErrorData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A92ADAB3257FA88100214846 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +245,7 @@
 		A99B3571257F7A8E00B626ED /* App */ = {
 			isa = PBXGroup;
 			children = (
+				8D9481C5277BA688003568EE /* Model */,
 				A99B3572257F7AAC00B626ED /* Sidebar */,
 				A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */,
 				A9F674F524F59E2500F486FE /* MoneyFlowApp.swift */,
@@ -377,6 +390,7 @@
 				A988B77E257D763900F6113A /* DMImage.swift */,
 				A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */,
 				A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */,
+				8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -609,6 +623,7 @@
 				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
 				A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */,
 				A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A988B77F257D763900F6113A /* DMImage.swift in Sources */,
@@ -625,6 +640,7 @@
 				A98B5CF4258BF2660020C5C5 /* DropboxNotifications.swift in Sources */,
 				A9B3C53425FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */,
 				A98B5CE0258AA7F40020C5C5 /* DropboxLoginView.swift in Sources */,
+				8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */,
 				A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */,
 				A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,

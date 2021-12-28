@@ -15,10 +15,21 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     var body: some View {
-        if horizontalSizeClass == .compact {
-            AppTabNavigation().environmentObject(appState)
-        } else {
-            AppSidebarNavigation().environmentObject(appState)
+        
+        ZStack {
+            if horizontalSizeClass == .compact {
+                AppTabNavigation().environmentObject(appState)
+            } else {
+                AppSidebarNavigation().environmentObject(appState)
+            }
+            
+            
+            VStack(spacing: 0) {
+                
+                Spacer()
+                
+                BottomErrorBanner(appState : appState)
+            }
         }
     }
 }

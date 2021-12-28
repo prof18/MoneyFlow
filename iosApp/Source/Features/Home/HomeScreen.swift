@@ -67,6 +67,7 @@ struct HomeScreen: View {
             AddTransactionScreen(showSheet: self.$showAddTransaction)
         }
         .onAppear {
+//            self.appState.errorData = UIErrorData(title: "This is test error, just to check how it is showed", nerdishDesc: "Error 101", showBanner: true )
             self.viewModel.startObserving()
         }
         .onReceive(self.appState.$reloadDatabase) { value in
