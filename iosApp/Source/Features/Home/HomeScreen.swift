@@ -12,16 +12,41 @@ struct HomeScreen: View {
     
     @EnvironmentObject var appState: AppState
     @StateObject var viewModel: HomeViewModel = HomeViewModel()
+    
+    var body: some View {
+        HomeScreenContent(
+            reloadDatabase: $appState.reloadDatabase,
+            errorData: $appState.errorData,
+            homeModel: $viewModel.homeModel,
+            onAppear: { viewModel.startObserving() },
+            deleteTransaction: { transactionId in
+                viewModel.deleteTransaction(transactionId: transactionId)
+            }
+        )
+    }
+}
+
+struct HomeScreenContent: View  {
+    
+    @Binding var reloadDatabase: Bool
+    @Binding var errorData: UIErrorData
+    @Binding var homeModel: HomeModel
+    
+    let onAppear  : () -> Void
+    let deleteTransaction: (Int64) -> Void
+    
     @State private var showAddTransaction = false
     
     var body: some View {
         
         VStack {
-            if (viewModel.homeModel is HomeModel.Loading) {
+            
+            // TODO: cover the error case here!!
+            if (homeModel is HomeModel.Loading) {
                 Loader()
-            } else if (viewModel.homeModel is HomeModel.HomeState) {
+            } else if (homeModel is HomeModel.HomeState) {
                 
-                let homeState = (viewModel.homeModel as! HomeModel.HomeState)
+                let homeState = (homeModel as! HomeModel.HomeState)
                 
                 HomeRecap(balanceRecap: homeState.balanceRecap)
                 HeaderNavigator()
@@ -42,7 +67,7 @@ struct HomeScreen: View {
                                 .listRowInsets(EdgeInsets())
                                 .contextMenu {
                                     Button(action: {
-                                        viewModel.deleteTransaction(transactionId: transaction.id)
+                                        deleteTransaction(transaction.id )
                                     }) {
                                         Text("Delete")
                                         Image(systemName: "trash")
@@ -55,50 +80,69 @@ struct HomeScreen: View {
             }
         }
         .navigationTitle("My Wallet")
-        .navigationBarItems(/*leading: refreshButton,*/ trailing: Button(action: {
-            self.showAddTransaction.toggle()
-        }) {
-            // TODO: localize
-            Image(systemName: "plus")
-            
-        }
+        .navigationBarItems(/*leading: refreshButton,*/
+            trailing: Button(
+                action: {
+                    self.showAddTransaction.toggle()
+                }) {
+                    // TODO: localize
+                    Image(systemName: "plus")
+                }
         )
         .sheet(isPresented: self.$showAddTransaction) {
             AddTransactionScreen(showSheet: self.$showAddTransaction)
         }
         .onAppear {
-//            self.appState.errorData = UIErrorData(title: "This is test error, just to check how it is showed", nerdishDesc: "Error 101", showBanner: true )
-            self.viewModel.startObserving()
+            self.onAppear()
         }
-        .onReceive(self.appState.$reloadDatabase) { value in
+        .onChange(of: self.reloadDatabase) { value  in
             if value {
+                print("Reload received")
                 // Start observing again without stopping, because the use case has been already restored
-                self.viewModel.startObserving()
-                self.appState.reloadDatabase = false
+                onAppear()
+                self.reloadDatabase = false
             }
         }
-        
+        .onChange(of: self.homeModel) { model  in
+            if model is HomeModel.Error {
+                // TODO: call an error mapper and show the error
+                //                self.errorData = UIErrorData(title: "This is a sample error, just to test", nerdishDesc: "Error code 101", showBanner: true)
+            }
+        }
     }
-    
-//    var refreshButton: AnyView {
-//        if true {
-//            return AnyView(
-//                Button(action: {
-//                    // TODO:
-//                }) {
-//                    // TODO: localize
-//                    Image(systemName: "arrow.clockwise")
-//                }
-//            )
-//        } else {
-//            return AnyView(EmptyView())
-//        }
-//    }
-    
 }
 
-//struct HomeScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeScreen()
-//    }
-//}
+struct HomeScreen_Previews: PreviewProvider {
+    static let model = HomeModel.HomeState(
+        balanceRecap: BalanceRecap(totalBalance: 100, monthlyIncome: 150, monthlyExpenses: 50),
+        latestTransactions: [
+            MoneyTransaction(id: 1, title: "Transaction", icon: CategoryIcon.icAddressBook, amount: 50, type: TransactionTypeUI.expense, milliseconds: 123456, formattedDate: "20/10/21")
+        ]
+    )
+    
+    static var previews: some View {
+        HomeScreenContent(
+            reloadDatabase: .constant(false ),
+            errorData: .constant(UIErrorData.init()),
+            homeModel: .constant(model ) ,
+            onAppear: {},
+            deleteTransaction: {_ in }
+        )
+        
+        HomeScreenContent(
+            reloadDatabase: .constant(false ),
+            errorData: .constant(UIErrorData.init()),
+            homeModel: .constant(HomeModel.Loading()) ,
+            onAppear: {},
+            deleteTransaction: {_ in }
+        )
+        
+        HomeScreenContent(
+            reloadDatabase: .constant(false ),
+            errorData: .constant(UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )),
+            homeModel: .constant(HomeModel.Error(error: MoneyFlowError.GetMoneySummary(throwable: KotlinThrowable()))) ,
+            onAppear: {},
+            deleteTransaction: {_ in }
+        )
+    }
+}
