@@ -25,7 +25,7 @@ import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard

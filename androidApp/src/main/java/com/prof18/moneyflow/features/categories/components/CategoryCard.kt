@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.domain.entities.Category
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable

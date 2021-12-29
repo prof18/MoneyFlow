@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.domain.entities
 
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 
 data class MoneyTransaction(

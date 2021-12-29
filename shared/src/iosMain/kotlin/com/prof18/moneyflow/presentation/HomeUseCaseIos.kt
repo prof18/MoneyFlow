@@ -2,10 +2,10 @@ package com.prof18.moneyflow.presentation
 
 import co.touchlab.stately.freeze
 import com.prof18.moneyflow.FlowWrapper
-import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.doOnError
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.presentation.home.HomeUseCase
+import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.launch
 
 class HomeUseCaseIos(
@@ -18,7 +18,7 @@ class HomeUseCaseIos(
     fun getMoneySummary(): FlowWrapper<HomeModel> =
         FlowWrapper(scope, homeUseCase.observeHomeModel().freeze())
 
-    fun deleteTransaction(transactionId: Long, onError: (MoneyFlowError) -> Unit) {
+    fun deleteTransaction(transactionId: Long, onError: (UIErrorMessage) -> Unit) {
         scope.launch {
             val result = homeUseCase.deleteTransaction(transactionId)
             result.doOnError { onError(it) }

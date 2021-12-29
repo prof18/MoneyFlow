@@ -26,7 +26,8 @@ class CategoriesViewModel: ObservableObject {
                     if case let .failure(error) = completion {
                         let moneyFlowError = MoneyFlowError.GetCategories(throwable:  error.throwable)
                         error.throwable.logError(moneyFlowError: moneyFlowError , message: "Got error while transforming Flow to Publisher")
-                        self.categoriesModel = CategoryModel.Error(moneyFlowError: moneyFlowError)
+                        let uiErrorMessage = DI.getErrorMapper().getUIErrorMessage(error: moneyFlowError)
+                        self.categoriesModel = CategoryModel.Error(uiErrorMessage: uiErrorMessage)
                     }
                 },
                 receiveValue: { genericResponse in

@@ -4,6 +4,7 @@ import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.flow.map
 
 class HomeUseCase(
     private val moneyRepository: MoneyRepository,
-    private val settingsRepository: SettingsRepository
+    private val settingsRepository: SettingsRepository,
+    private val errorMapper: MoneyFlowErrorMapper
 ) {
 
     val hideSensibleDataState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState
@@ -22,7 +24,8 @@ class HomeUseCase(
             .catch { throwable: Throwable ->
                 val error = MoneyFlowError.GetMoneySummary(throwable)
                 throwable.logError(error)
-                HomeModel.Error(error)
+                val errorMessage = errorMapper.getUIErrorMessage(error)
+                HomeModel.Error(errorMessage)
             }.map {
                 HomeModel.HomeState(
                     balanceRecap = it.balanceRecap,
@@ -41,7 +44,8 @@ class HomeUseCase(
         } catch (throwable: Throwable) {
             val error = MoneyFlowError.DeleteTransaction(throwable)
             throwable.logError(error)
-            MoneyFlowResult.Error(error)
+            val errorMessage = errorMapper.getUIErrorMessage(error)
+            MoneyFlowResult.Error(errorMessage)
         }
     }
 }

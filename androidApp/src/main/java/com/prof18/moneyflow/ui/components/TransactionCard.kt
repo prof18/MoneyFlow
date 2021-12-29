@@ -21,7 +21,7 @@ import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.ui.style.*
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import kotlin.math.abs
 
 @Composable

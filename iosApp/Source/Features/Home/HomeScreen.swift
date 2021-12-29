@@ -16,7 +16,8 @@ struct HomeScreen: View {
     var body: some View {
         HomeScreenContent(
             reloadDatabase: $appState.reloadDatabase,
-            errorData: $appState.errorData,
+            appErrorData: $appState.errorData,
+            screenErrorData: $viewModel.uiErrorData,
             homeModel: $viewModel.homeModel,
             onAppear: { viewModel.startObserving() },
             deleteTransaction: { transactionId in
@@ -29,7 +30,8 @@ struct HomeScreen: View {
 struct HomeScreenContent: View  {
     
     @Binding var reloadDatabase: Bool
-    @Binding var errorData: UIErrorData
+    @Binding var appErrorData: UIErrorData
+    @Binding var screenErrorData: UIErrorData
     @Binding var homeModel: HomeModel
     
     let onAppear  : () -> Void
@@ -103,10 +105,13 @@ struct HomeScreenContent: View  {
                 self.reloadDatabase = false
             }
         }
+        .onChange(of: self.screenErrorData) { errorData in
+            self.appErrorData = errorData
+        }
         .onChange(of: self.homeModel) { model  in
             if model is HomeModel.Error {
-                // TODO: call an error mapper and show the error
-                //                self.errorData = UIErrorData(title: "This is a sample error, just to test", nerdishDesc: "Error code 101", showBanner: true)
+                let uiErrorMessage = (model as! HomeModel.Error).uiErrorMessage
+                self.appErrorData = uiErrorMessage.toUIErrorData()
             }
         }
     }
@@ -123,7 +128,8 @@ struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreenContent(
             reloadDatabase: .constant(false ),
-            errorData: .constant(UIErrorData.init()),
+            appErrorData: .constant(UIErrorData.init()),
+            screenErrorData: .constant(UIErrorData.init()),
             homeModel: .constant(model ) ,
             onAppear: {},
             deleteTransaction: {_ in }
@@ -131,7 +137,8 @@ struct HomeScreen_Previews: PreviewProvider {
         
         HomeScreenContent(
             reloadDatabase: .constant(false ),
-            errorData: .constant(UIErrorData.init()),
+            appErrorData: .constant(UIErrorData.init()),
+            screenErrorData: .constant(UIErrorData.init()),
             homeModel: .constant(HomeModel.Loading()) ,
             onAppear: {},
             deleteTransaction: {_ in }
@@ -139,8 +146,9 @@ struct HomeScreen_Previews: PreviewProvider {
         
         HomeScreenContent(
             reloadDatabase: .constant(false ),
-            errorData: .constant(UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )),
-            homeModel: .constant(HomeModel.Error(error: MoneyFlowError.GetMoneySummary(throwable: KotlinThrowable()))) ,
+            appErrorData: .constant(UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )),
+            screenErrorData: .constant(UIErrorData.init()),
+            homeModel: .constant(HomeModel.Error(uiErrorMessage: UIErrorMessage(message: "Error!", nerdMessage: "Error code: 101"))) ,
             onAppear: {},
             deleteTransaction: {_ in }
         )

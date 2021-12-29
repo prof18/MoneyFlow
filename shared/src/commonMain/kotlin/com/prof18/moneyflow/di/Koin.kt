@@ -7,6 +7,9 @@ import com.prof18.moneyflow.data.db.DatabaseSourceImpl
 import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.platform.LocalizedStringProvider
+import com.prof18.moneyflow.platform.LocalizedStringProviderImpl
+import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
@@ -22,7 +25,7 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
-   return  startKoin {
+    return startKoin {
         appDeclaration()
         modules(platformModule, coreModule)
     }
@@ -32,6 +35,8 @@ private val coreModule = module {
 
     single<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Default) }
     single { SettingsSource(get()) }
+    single<LocalizedStringProvider> { LocalizedStringProviderImpl() }
+    single { MoneyFlowErrorMapper(get()) }
 
     // Repository
     single<SettingsRepository> { SettingsRepositoryImpl(get()) }
@@ -39,11 +44,11 @@ private val coreModule = module {
 
     // Use Cases
     factory { MainUseCase(get()) }
-    factory { HomeUseCase(get(), get()) }
-    factory { AddTransactionUseCase(get()) }
+    factory { HomeUseCase(get(), get(), get()) }
+    factory { AddTransactionUseCase(get(), get()) }
     factory { SettingsUseCase(get()) }
     factory { AllTransactionsUseCase(get()) }
-    factory { CategoriesUseCase(get()) }
+    factory { CategoriesUseCase(get(), get()) }
     factory { DropboxSyncUseCase(get()) }
 }
 

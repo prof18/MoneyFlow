@@ -10,7 +10,8 @@
 		599F9F5F6803CB0E30AD29BC /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */; };
 		8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */; };
 		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
-		A930B87F253B800500CB92DF /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B87E253B800500CB92DF /* Koin.swift */; };
+		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
+		8D9481DE277CCDB7003568EE /* UIErrorDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F6899263F36E80075AB49 /* CombineAdapters.swift */; };
 		A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */; };
@@ -81,8 +82,10 @@
 		0290555E464C0A2749A91632 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
 		8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomErrorBanner.swift; sourceTree = "<group>"; };
 		8D9481C6277BA694003568EE /* UIErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorData.swift; sourceTree = "<group>"; };
+		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8D9481DB277C9EDD003568EE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorDataMapper.swift; sourceTree = "<group>"; };
 		93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A930B87E253B800500CB92DF /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A93F6899263F36E80075AB49 /* CombineAdapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAdapters.swift; sourceTree = "<group>"; };
 		A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatcherQueueUtils.swift; sourceTree = "<group>"; };
@@ -179,6 +182,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8D9481D5277C9EAA003568EE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				8D9481DA277C9ED9003568EE /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		8D9481DC277CCDA7003568EE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		A92ADAB3257FA88100214846 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +209,6 @@
 		A930B879253B7FFB00CB92DF /* DI */ = {
 			isa = PBXGroup;
 			children = (
-				A930B87E253B800500CB92DF /* Koin.swift */,
 				A947AF1E2554991600633BD3 /* DepsInjector.swift */,
 			);
 			path = DI;
@@ -346,6 +364,7 @@
 		A9D8985424FBEFF8007771A1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8D9481D5277C9EAA003568EE /* Localization */,
 				A9F674FF24F59E2700F486FE /* Info.plist */,
 				A9F674F724F59E2600F486FE /* Images.xcassets */,
 				A9D8986B24FBF22F007771A1 /* Colors.xcassets */,
@@ -411,6 +430,7 @@
 		A9F674F424F59E2500F486FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8D9481DC277CCDA7003568EE /* Data */,
 				A99B3571257F7A8E00B626ED /* App */,
 				A98B5D0D258DF4000020C5C5 /* DropboxSync */,
 				A9A8A9CF2557E9FB00C0ED89 /* Features */,
@@ -514,6 +534,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = A9F674EF24F59E2500F486FE;
 			productRefGroup = A9F674FD24F59E2700F486FE /* Products */;
@@ -536,6 +557,7 @@
 				A9D8985A24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */,
 				A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */,
 				A9F6752224F59E2700F486FE /* Images.xcassets in Resources */,
+				8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */,
 				A9D1B2CA2553E8E100931B2B /* shared in Resources */,
 				A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -604,7 +626,6 @@
 				A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */,
 				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
 				A98B5D04258D44D00020C5C5 /* DropboxClientManager.swift in Sources */,
-				A930B87F253B800500CB92DF /* Koin.swift in Sources */,
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A9B3C52D25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */,
 				A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */,
@@ -628,6 +649,7 @@
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A988B77F257D763900F6113A /* DMImage.swift in Sources */,
 				A98B5CFA258BF5B70020C5C5 /* DropboxViewModel.swift in Sources */,
+				8D9481DE277CCDB7003568EE /* UIErrorDataMapper.swift in Sources */,
 				A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */,
 				A98B5CEE258B40390020C5C5 /* DropboxScreen.swift in Sources */,
 				A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */,
@@ -667,11 +689,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		8D9481DA277C9ED9003568EE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D9481D9277C9ED9003568EE /* en */,
+				8D9481DB277C9EDD003568EE /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		A9F6752424F59E2700F486FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -732,6 +767,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

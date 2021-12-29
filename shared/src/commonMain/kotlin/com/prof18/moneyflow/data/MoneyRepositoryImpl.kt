@@ -8,7 +8,7 @@ import com.prof18.moneyflow.db.MonthlyRecapTable
 import com.prof18.moneyflow.db.SelectLatestTransactions
 import com.prof18.moneyflow.domain.entities.*
 import com.prof18.moneyflow.domain.repository.MoneyRepository
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
 import com.prof18.moneyflow.utils.generateCurrentMonthId

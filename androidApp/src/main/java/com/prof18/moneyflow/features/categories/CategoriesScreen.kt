@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -24,7 +23,7 @@ import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.features.categories.components.CategoryCard
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.categories.data.toCategoryUIData
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.presentation.categories.CategoryModel

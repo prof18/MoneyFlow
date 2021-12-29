@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">MoneyFlow</string>
     <string name="transaction_type_income">Income</string>
@@ -50,4 +51,11 @@
     <string name="show_sensitive_data">Show sensitive data</string>
     <string name="hide_sensitive_data">Hide sensitive data</string>
     <string name="all_transactions">All Transactions</string>
+    <string name="error_nerd_message">Error code: %s</string>
+    <string name="error_add_transaction_message">Sorry, I\'m not able to add the transaction</string>
+    <string name="error_delete_transaction_message">I can\'t delete the transaction right now 😞 Please retry later.</string>
+    <string name="error_get_all_transaction_message">Sorry, an error occurred while retrieving your transactions. Please retry later.</string>
+    <string name="error_get_categories_message">Sorry, an error occurred while retrieving your categories</string>
+    <string name="error_get_money_summary_message">Sorry, I\'m not able to compute your Money Summary right now 🧐</string>
+    <string name="error_generic_message">Ops, something unexpected happened 😭</string>
 </resources>

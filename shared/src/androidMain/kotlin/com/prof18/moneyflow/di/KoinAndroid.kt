@@ -18,5 +18,7 @@ actual val platformModule: Module = module {
         val factory: Settings.Factory = EncryptedSettingsFactory(get())
         factory.create()
     }
+
+    single {  }
 }
 

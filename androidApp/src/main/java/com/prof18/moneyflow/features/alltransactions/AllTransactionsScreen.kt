@@ -19,7 +19,7 @@ import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
-import com.prof18.moneyflow.presentation.CategoryIcon
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.components.TransactionCard
@@ -58,6 +58,13 @@ fun AllTransactionsScreen(
             val lazyPagingItems = pagingFlow.collectAsLazyPagingItems()
 
             LazyColumn {
+
+                if (lazyPagingItems.loadState.refresh is LoadState.Error) {
+                  item {
+                      // TODO: show a meaningful error message
+                      Text("Error!!!!")
+                  }
+                }
 
                 if (lazyPagingItems.loadState.refresh == LoadState.Loading) {
                     item {

@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.presentation
+package com.prof18.moneyflow.presentation.model
 
 enum class CategoryIcon(val iconName: String) {
     IC_ADDRESS_BOOK("ic_address_book"),

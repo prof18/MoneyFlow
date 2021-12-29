@@ -19,8 +19,6 @@ import kotlinx.cinterop.getOriginalKotlinClass
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.Koin
 import org.koin.core.KoinApplication
-import org.koin.core.parameter.parametersOf
-import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
@@ -40,13 +38,13 @@ actual val platformModule = module {
         scoped<MoneyRepository> { MoneyRepositoryImpl(get()) }
 
         // Use Cases
-        scoped { HomeUseCase(get(), get()) }
+        scoped { HomeUseCase(get(), get(), get()) }
         scoped { HomeUseCaseIos(get()) }
 
-        factory { AddTransactionUseCase(get()) }
+        factory { AddTransactionUseCase(get(), get()) }
         factory { AddTransactionUseCaseIos(get()) }
 
-        factory { CategoriesUseCase(get()) }
+        factory { CategoriesUseCase(get(), get()) }
         factory { CategoriesUseCaseIos(get()) }
     }
 }
@@ -69,21 +67,10 @@ fun Koin.closeScope() {
 const val MONEY_FLOW_SCOPE_NAME = "MoneyFlowScope_Name"
 const val MONEY_FLOW_SCOPE_ID = "MoneyFlowScope_ID"
 
-fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?, parameter: Any): Any {
+fun Koin.get(objCClass: ObjCClass): Any {
     val kClazz = getOriginalKotlinClass(objCClass)!!
-    return get(kClazz, qualifier) { parametersOf(parameter) }
+    return get(kClazz)
 }
-
-fun Koin.get(objCClass: ObjCClass, parameter: Any): Any {
-    val kClazz = getOriginalKotlinClass(objCClass)!!
-    return get(kClazz, null) { parametersOf(parameter) }
-}
-
-fun Koin.get(objCClass: ObjCClass, qualifier: Qualifier?): Any {
-    val kClazz = getOriginalKotlinClass(objCClass)!!
-    return get(kClazz, qualifier, null)
-}
-
 
 fun Koin.getFromScope(objCClass: ObjCClass): Any {
     val kClazz = getOriginalKotlinClass(objCClass)!!
