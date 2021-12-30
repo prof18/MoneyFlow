@@ -10,8 +10,7 @@ import SwiftUI
 struct HeaderNavigator: View {
     var body: some View {
         HStack {
-            // TODO: localize
-            Text("Latest Transactions")
+            Text("latest_transactions".localized)
                 .font(AppFonts.h6)
             Spacer()
             HStack {
@@ -19,7 +18,7 @@ struct HeaderNavigator: View {
             }
         }
         .onTapGesture(perform: {
-            // TODO
+            // TODO: add action to navigate
         })
         .padding(AppMargins.regular)
     }

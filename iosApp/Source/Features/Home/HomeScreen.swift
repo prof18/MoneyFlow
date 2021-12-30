@@ -55,9 +55,9 @@ struct HomeScreenContent: View  {
                 if homeState.latestTransactions.isEmpty {
                     Spacer()
                     VStack {
-                        Text("¯\\_(ツ)_/¯")
+                        Text("shrug".localized)
                             .padding(.bottom, AppMargins.small)
-                        Text("Your wallet is empty")
+                        Text("empty_wallet".localized)
                     }
                     Spacer()
                 } else {
@@ -70,7 +70,7 @@ struct HomeScreenContent: View  {
                                     Button(action: {
                                         deleteTransaction(transaction.id )
                                     }) {
-                                        Text("Delete")
+                                        Text("delete".localized)
                                         Image(systemName: "trash")
                                     }
                                 }
@@ -80,13 +80,12 @@ struct HomeScreenContent: View  {
                 }
             }
         }
-        .navigationTitle("My Wallet")
+        .navigationTitle("my_wallet".localized)
         .navigationBarItems(/*leading: refreshButton,*/
             trailing: Button(
                 action: {
                     self.showAddTransaction.toggle()
                 }) {
-                    // TODO: localize
                     Image(systemName: "plus")
                 }
         )

@@ -37,7 +37,7 @@ struct SidebarMenuItem: View {
                alignment: .leading
         )
         .contentShape(Rectangle())
-        .background(currentSelection == itemSelection ? Color.primary.opacity(0.2) : Color.clear)
+        .background(currentSelection == itemSelection ? Color.primaryColor.opacity(0.2) : Color.clear)
         .cornerRadius(8)
         .padding(.horizontal, 16)
     }

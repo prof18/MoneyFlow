@@ -14,9 +14,9 @@ struct HomeRecap: View {
     
     var body: some View {
         VStack {
-            // TODO: localize
+
             HStack {
-                
+                // TODO: inject currency?
                 Text("€")
                     .font(AppFonts.h5)
                 
@@ -25,7 +25,7 @@ struct HomeRecap: View {
                 
             }
             
-            Text("Total Balance")
+            Text("total_balance".localized)
                 .font(AppFonts.subtitle2)
             
             Spacer()
@@ -42,7 +42,7 @@ struct HomeRecap: View {
                         Text("+\(balanceRecap.monthlyIncome.formatTwoDigit()) €")
                             .font(AppFonts.h5)
                         
-                        Text("Income")
+                        Text("transaction_type_income".localized)
                             .font(AppFonts.subtitle2)
                         
                     }
@@ -60,16 +60,10 @@ struct HomeRecap: View {
                         Text("-\(balanceRecap.monthlyExpenses.formatTwoDigit()) €")
                             .font(AppFonts.h5)
                         
-                        Text("Expenses")
+                        Text("transaction_type_outcome".localized)
                             .font(AppFonts.subtitle2)
                     }
-                    
                 }
-                
-                
-                
-                
-                
             }
             
         }
@@ -77,9 +71,11 @@ struct HomeRecap: View {
     }
 }
 
-// TODO: restore preview
-//struct HomeRecap_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeRecap()
-//    }
-//}
+struct HomeRecap_Previews: PreviewProvider {
+    
+    static let balanceRecap = BalanceRecap(totalBalance: 100, monthlyIncome: 150, monthlyExpenses: 50)
+    
+    static var previews: some View {
+        HomeRecap(balanceRecap: balanceRecap)
+    }
+}

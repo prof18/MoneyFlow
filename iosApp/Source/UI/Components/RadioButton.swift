@@ -22,7 +22,7 @@ struct RadioButton: View {
         callback: @escaping (String)->(),
         selectedID: String,
         size: CGFloat = 20,
-        color: Color = Color.primary,
+        color: Color = Color.primaryColor,
         textSize: CGFloat = 14
         ) {
         self.id = id

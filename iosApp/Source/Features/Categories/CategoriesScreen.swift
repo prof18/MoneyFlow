@@ -75,7 +75,7 @@ struct CategoriesScreenContent: View {
                 self.appErrorData = uiErrorMessage.toUIErrorData()
             }
         }
-        .navigationTitle(Text("Select Category")) // TODO: localize
+        .navigationTitle(Text("select_category".localized))
     }
     
 }

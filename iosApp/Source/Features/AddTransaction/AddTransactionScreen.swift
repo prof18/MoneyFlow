@@ -64,8 +64,7 @@ struct AddTransactionScreenContent: View {
             VStack {
                 
                 Form {
-                    // TODO: localize
-                    Picker("Transaction Type", selection: $transactionTypeUI) {
+                    Picker("transaction_type".localized, selection: $transactionTypeUI) {
                         ForEach(transactionTypes) {
                             Text($0.name).tag($0 as TransactionTypeRadioItem)
                         }
@@ -79,13 +78,13 @@ struct AddTransactionScreenContent: View {
                     
                     HStack {
                         DMImage(imageName: "ic_edit", color: Color.colorOnBackground)
-                        TextField("Description", text: $descriptionTextField)
+                        TextField("description".localized, text: $descriptionTextField)
                     }
                     
                     NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
                         HStack {
                             DMImage(imageName: addTransactionState.categoryIcon ?? "ic_question_circle", color: Color.colorOnBackground)
-                            Text(addTransactionState.categoryTitle ?? "Select Category")
+                            Text(addTransactionState.categoryTitle ?? "select_category".localized)
                         }
                     }
                     
@@ -106,19 +105,17 @@ struct AddTransactionScreenContent: View {
                     }
                 }
             }
-            .navigationTitle(Text("Add transaction"))
+            .navigationTitle(Text("add_transaction_screen".localized))
             .navigationBarItems(leading: Button(action: {
                 self.showSheet.toggle()
             }) {
-                // TODO: localize
-                Text("Close")
+                Text("close".localized)
                 
             }, trailing: Button(  action: {
                 self.addTransaction()
                 self.showSheet.toggle()
             }) {
-                // TODO: localize
-                Text("Save")
+                Text("save".localized)
                 
             }.disabled(saveDisabled)
             )

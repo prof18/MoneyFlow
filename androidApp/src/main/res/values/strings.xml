@@ -58,4 +58,7 @@
     <string name="error_get_categories_message">Sorry, an error occurred while retrieving your categories</string>
     <string name="error_get_money_summary_message">Sorry, I\'m not able to compute your Money Summary right now 🧐</string>
     <string name="error_generic_message">Ops, something unexpected happened 😭</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="close">Close</string>
+    <string name="amount_not_empty_error">The amount cannot be empty!</string>
 </resources>

@@ -18,7 +18,7 @@ struct CategoryCard: View {
             
             DMImage(imageName: category.icon.iconName)
                 .padding(AppMargins.small)
-                .background(Color.primary)
+                .background(Color.primaryColor)
                 .cornerRadius(AppMargins.regularCornerRadius)
                 .padding(AppMargins.regular)
             

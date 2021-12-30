@@ -17,7 +17,7 @@ struct TransactionCard: View {
             
             DMImage(imageName: transaction.icon.iconName)
                 .padding(AppMargins.small)
-                .background(Color.primary)
+                .background(Color.primaryColor)
                 .cornerRadius(AppMargins.regularCornerRadius)
                 .padding(.vertical, AppMargins.regular)
                 .padding(.trailing, AppMargins.regular)
@@ -46,25 +46,44 @@ struct TransactionCard: View {
                     .padding(.trailing, AppMargins.small)
             }
             
-            // TODO: fix this
+            // TODO: inject currency?
             Text("\(transaction.amount.formatTwoDigit()) €")
                 .font(AppFonts.body1)
                 .padding(.bottom, AppMargins.regular)
                 .padding(.top, AppMargins.regular)
-//                .padding(.trailing, AppMargins.regular)
-
-
         }
         
         .onTapGesture {
-            // TODO
+            // TODO: handle click on transaction?
         }
     }
 }
 
-// TODO: restore preview
-//struct TransactionCard_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TransactionCard()
-//    }
-//}
+struct TransactionCard_Previews: PreviewProvider {
+    
+    static let transactionIncome = MoneyTransaction(
+        id: 1,
+        title: "Salary",
+        icon: CategoryIcon.icMoneyCheckAltSolid,
+        amount: 100,
+        type: .income,
+        milliseconds: 12345,
+        formattedDate: "10/10/2021"
+    )
+    
+    static let transactionExpense = MoneyTransaction(
+        id: 2,
+        title: "Food",
+        icon: CategoryIcon.icHamburgerSolid,
+        amount: 20,
+        type: .expense,
+        milliseconds: 12345,
+        formattedDate: "10/10/2021"
+    )
+    
+    static var previews: some View {
+        TransactionCard(transaction: transactionIncome)
+        
+        TransactionCard(transaction: transactionExpense)
+    }
+}

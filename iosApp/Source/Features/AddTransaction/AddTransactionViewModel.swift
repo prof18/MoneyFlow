@@ -43,7 +43,7 @@ class AddTransactionViewModel: ObservableObject {
         let amount = Double(amountTextField)
         
         guard amount != nil else {
-            // TODO: show error
+            self.uiErrorData = UIErrorData(title: "amount_not_empty_error".localized, nerdishDesc: "", showBanner: true)
             return
         }
         

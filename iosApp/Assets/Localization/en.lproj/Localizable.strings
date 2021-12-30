@@ -56,3 +56,6 @@
 "error_get_categories_message" = "Sorry, an error occurred while retrieving your categories";
 "error_get_money_summary_message" = "Sorry, I'm not able to compute your Money Summary right now 🧐";
 "error_generic_message" = "Ops, something unexpected happened 😭";
+"transaction_type" = "Transaction Type";
+"close" = "Close";
+"amount_not_empty_error" = "The amount cannot be empty!";

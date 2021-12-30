@@ -36,27 +36,25 @@
         
         private func getContent() -> some View {
             return Form {
-                // TODO: localize
-                Button("Export Database") {
+                Button("export_database".localized) {
                     DatabaseHelper().dbClear()
                     sheetToShow = .shareSheet
                 }
                 
-                // TODO: localize
-                Button("Import Database") {
+                Button("import_database".localized) {
                     sheetToShow = .filePicker
                 }
                 
                 NavigationLink(destination: DropboxScreen()) {
-                    Button("Dropbox Sync") {}
+                    Button("dropbox_sync".localized) {}
                 }
                 
             }
-            .navigationTitle(Text("Settings"))
+            .navigationTitle(Text("settings_screen".localized))
             
             .navigationBarItems(leading: showNavigation() ? AnyView(closeButton) : AnyView(EmptyView()))
             .sheet(item: $sheetToShow, onDismiss: {
-                // TODO: reload here the database
+                // TODO: reload here the database?
             }) { item in
                 
                 switch item {
@@ -68,15 +66,8 @@
                     }
                     
                 case .shareSheet:
-                    
                     ShareSheet(activityItems: [DatabaseImportExport.getDatabaseURL() ?? ""] as [Any], applicationActivities: nil) { _,_,_,_ in
-                        
-                        // TODO: close and reopen the scope
-                        
-                        koin.closeScope()
-                        koin.openKoinScope()
-                        
-    //                    DIContainer.instance.reloadDatabaseRef()
+                        DI.reloadDIGraph()
                         appState.reloadDatabase = true
                     }
                 }
@@ -87,9 +78,7 @@
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
-                // TODO: localize
-                Text("Close")
-                
+                Text("close".localized)
             }
         }
     }

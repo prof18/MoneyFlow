@@ -55,7 +55,6 @@ struct AppSidebarNavigation: View {
             
             Spacer()
             
-            // TODO: show a modal sheet!
             Divider()
             SidebarMenuItem(currentSelection: $selection, imageName: "gear", textString: "Settings", itemSelection: .settings)
                 .onTapGesture {
