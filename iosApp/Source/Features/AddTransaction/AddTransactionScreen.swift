@@ -10,11 +10,48 @@ import shared
 
 struct AddTransactionScreen: View {
     
+    @EnvironmentObject var appState: AppState
     @Binding var showSheet: Bool
     @StateObject var addTransactionState = AddTransactionState()
-    @State var showsDatePicker = false
+    @StateObject var viewModel = AddTransactionViewModel()
     
-    @ObservedObject var viewModel = AddTransactionViewModel()
+    
+    var body: some View {
+        AddTransactionScreenContent(
+            showSheet: $showSheet,
+            transactionTypeUI: $viewModel.transactionTypeUI,
+            saveDisabled: $viewModel.saveDisabled,
+            appErrorData: $viewModel.uiErrorData,
+            amountTextField: $viewModel.amountTextField,
+            descriptionTextField: $viewModel.descriptionTextField,
+            transactionDate: $viewModel.transactionDate,
+            addTransactionState: addTransactionState,
+            addTransaction: { viewModel.addTransaction() },
+            setCategoryId: { id in viewModel.categoryId = id  },
+            transactionTypes: viewModel.transactionsType
+        )
+    }
+}
+
+struct AddTransactionScreenContent: View {
+    
+    @Binding var showSheet: Bool
+    @Binding var transactionTypeUI: TransactionTypeUI
+    @Binding var saveDisabled: Bool
+    @Binding var appErrorData: UIErrorData
+    @Binding var amountTextField: String
+    @Binding var descriptionTextField: String
+    @Binding var transactionDate: Date
+    
+    @StateObject var addTransactionState: AddTransactionState
+    
+    let addTransaction : () -> Void
+    let setCategoryId: (Int64?) -> Void
+    
+    let transactionTypes: [TransactionTypeRadioItem]
+    
+    @State private var showsDatePicker = false
+    
     
     let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -27,22 +64,22 @@ struct AddTransactionScreen: View {
             VStack {
                 
                 Form {
-                    
-                    Picker("Transaction Type", selection: $viewModel.transactionTypeUI) {
-                        ForEach(viewModel.transactions) {
+                    // TODO: localize
+                    Picker("Transaction Type", selection: $transactionTypeUI) {
+                        ForEach(transactionTypes) {
                             Text($0.name).tag($0 as TransactionTypeRadioItem)
                         }
                     }
                     
                     HStack {
                         DMImage(imageName: "ic_euro_sign", color: Color.colorOnBackground)
-                        TextField("0.00", text: $viewModel.amountTextField)
+                        TextField("0.00", text: $amountTextField)
                             .keyboardType(.decimalPad)
                     }
                     
                     HStack {
                         DMImage(imageName: "ic_edit", color: Color.colorOnBackground)
-                        TextField("Description", text: $viewModel.descriptionTextField)
+                        TextField("Description", text: $descriptionTextField)
                     }
                     
                     NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
@@ -54,7 +91,7 @@ struct AddTransactionScreen: View {
                     
                     HStack {
                         DMImage(imageName: "ic_calendar", color: Color.colorOnBackground)
-                        Text("\(dateFormatter.string(from: viewModel.transactionDate))")
+                        Text("\(dateFormatter.string(from: transactionDate))")
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .leading)
                     .contentShape(Rectangle())
@@ -63,7 +100,7 @@ struct AddTransactionScreen: View {
                     }
                     
                     if showsDatePicker {
-                        DatePicker("", selection: $viewModel.transactionDate, displayedComponents: .date)
+                        DatePicker("", selection: $transactionDate, displayedComponents: .date)
                             .datePickerStyle(GraphicalDatePickerStyle())
                             .padding(20)
                     }
@@ -77,25 +114,62 @@ struct AddTransactionScreen: View {
                 Text("Close")
                 
             }, trailing: Button(  action: {
-                self.viewModel.addTransaction()
+                self.addTransaction()
                 self.showSheet.toggle()
             }) {
                 // TODO: localize
                 Text("Save")
                 
-            }
-                .disabled(viewModel.saveDisabled)
+            }.disabled(saveDisabled)
             )
             .onReceive(addTransactionState.$categoryId) { value in
-                self.viewModel.categoryId = value
+                setCategoryId(value)
             }
         }
-
+        
     }
 }
 
-//struct AddTransactionScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddTransactionScreen()
-//    }
-//}
+
+
+struct AddTransactionScreen_Previews: PreviewProvider {
+    
+    static let transactionsType: [TransactionTypeRadioItem] = [
+        TransactionTypeRadioItem(name: "Expense", id: .expense),
+        TransactionTypeRadioItem(name: "Income", id: .income)
+    ]
+    static let addTransactionEmptyState =  AddTransactionState()
+    static let appErrorData = UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )
+    static let addTransactionState = AddTransactionState(categoryId: 1, categoryTitle: "Category Name", categoryIcon: CategoryIcon.icAddressBook.iconName)
+    
+    
+    static var previews: some View {
+        AddTransactionScreenContent(
+            showSheet: .constant(false ),
+            transactionTypeUI: .constant(TransactionTypeUI.expense),
+            saveDisabled: .constant(false ) ,
+            appErrorData: .constant(appErrorData),
+            amountTextField: .constant(""),
+            descriptionTextField: .constant(""),
+            transactionDate: .constant(Date()),
+            addTransactionState: addTransactionEmptyState,
+            addTransaction: {},
+            setCategoryId: { _ in  },
+            transactionTypes: transactionsType
+        )
+        
+        AddTransactionScreenContent(
+            showSheet: .constant(false ),
+            transactionTypeUI: .constant(TransactionTypeUI.income ),
+            saveDisabled: .constant(false ) ,
+            appErrorData: .constant(appErrorData),
+            amountTextField: .constant("20"),
+            descriptionTextField: .constant("A Description"),
+            transactionDate: .constant(Date()),
+            addTransactionState: addTransactionState,
+            addTransaction: {},
+            setCategoryId: { _ in  },
+            transactionTypes: transactionsType
+        )
+    }
+}

@@ -43,13 +43,12 @@ struct HomeScreenContent: View  {
         
         VStack {
             
-            // TODO: cover the error case here!!
             if (homeModel is HomeModel.Loading) {
                 Loader()
-            } else if (homeModel is HomeModel.HomeState) {
-                
-                let homeState = (homeModel as! HomeModel.HomeState)
-                
+            } else if let error = homeModel as? HomeModel.Error {
+                ErrorView(uiErrorMessage: error.uiErrorMessage)
+            } else if let homeState = homeModel as? HomeModel.HomeState {
+                                
                 HomeRecap(balanceRecap: homeState.balanceRecap)
                 HeaderNavigator()
                 

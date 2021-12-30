@@ -15,7 +15,7 @@ class AddTransactionViewModel: ObservableObject {
         }
     }
     @Published var descriptionTextField : String = ""
-    @Published var transactionTypeUI: TransactionTypeUI = .income
+    @Published var transactionTypeUI: TransactionTypeUI = .expense
     @Published var transactionDate = Date()
     @Published var saveDisabled: Bool = true
     var categoryId: Int64? = nil {
@@ -23,10 +23,11 @@ class AddTransactionViewModel: ObservableObject {
             updateSaveButtonStatus()
         }
     }
+    @Published var uiErrorData: UIErrorData = UIErrorData()
     
-    let transactions: [TransactionTypeRadioItem] = [
-        TransactionTypeRadioItem(name: "Income", id: .income),
-        TransactionTypeRadioItem(name: "Expense", id: .expense)
+    let transactionsType: [TransactionTypeRadioItem] = [
+        TransactionTypeRadioItem(name: "Expense", id: .expense),
+        TransactionTypeRadioItem(name: "Income", id: .income)
     ]
     
         
@@ -60,7 +61,7 @@ class AddTransactionViewModel: ObservableObject {
                 transactionType: transactionType
             ),
             onError: { error in
-                // TODO: show the error on UI
+                self.uiErrorData = error.toUIErrorData()
             }
         )
     }

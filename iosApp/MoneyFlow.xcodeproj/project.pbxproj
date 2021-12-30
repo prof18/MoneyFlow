@@ -12,6 +12,7 @@
 		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
 		8D9481DE277CCDB7003568EE /* UIErrorDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */; };
+		8D9481E0277E6535003568EE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DF277E6535003568EE /* ErrorView.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F6899263F36E80075AB49 /* CombineAdapters.swift */; };
 		A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */; };
@@ -85,6 +86,7 @@
 		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DB277C9EDD003568EE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorDataMapper.swift; sourceTree = "<group>"; };
+		8D9481DF277E6535003568EE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A93F6899263F36E80075AB49 /* CombineAdapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAdapters.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */,
 				A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */,
 				8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */,
+				8D9481DF277E6535003568EE /* ErrorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				A9D269DC24FC2E5000D2B4AE /* HomeRecap.swift in Sources */,
 				A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
+				8D9481E0277E6535003568EE /* ErrorView.swift in Sources */,
 				8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */,
 				A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
