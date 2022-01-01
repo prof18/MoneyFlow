@@ -28,14 +28,11 @@ fun HomeRecap(
     hideSensitiveData: Boolean
 ) {
 
-    // TODO: fix string handling
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(AppMargins.regular)
     ) {
-
 
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -48,7 +45,6 @@ fun HomeRecap(
             )
 
             Spacer(Modifier.width(AppMargins.small))
-
 
             HideableTextField(
                 text = balanceRecap.totalBalance.toString(),
