@@ -15,6 +15,11 @@
   "platforms": {
     "ios": "15"
   },
+  "dependencies": {
+    "ObjectiveDropboxOfficial": [
+
+    ]
+  },
   "pod_target_xcconfig": {
     "KOTLIN_PROJECT_PATH": ":shared",
     "PRODUCT_MODULE_NAME": "shared"

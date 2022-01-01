@@ -14,7 +14,7 @@ struct MoneyFlowApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     @StateObject var appState: AppState = AppState()
-
+    
     //    @StateObject var appState: AppState = AppState()
     
     init() {
@@ -25,10 +25,15 @@ struct MoneyFlowApp: App {
             .foregroundColor: UIColor(named: "ColorOnBackground")! as UIColor,
             .font : UIFont(name:"Poppins-Regular", size: 32)!]
         
-        let dropboxKey = Bundle.main.infoDictionary?["DropboxApiKey"] as? String ?? ""
+        // TODO: delete and use shared code
+        var key = ""
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+            if let keys = NSDictionary(contentsOfFile: path) {
+                key = keys["DropboxApiKey"] as? String  ?? ""
+            }
+        }
         
-        
-        DropboxClientsManager.setupWithAppKey(dropboxKey)
+        DropboxClientsManager.setupWithAppKey(key)
     }
     
     var body: some Scene {
@@ -54,17 +59,17 @@ struct MoneyFlowApp: App {
                     DropboxClientsManager.handleRedirectURL(url, completion: oauthCompletion)
                 }
         }
-                .onChange(of: scenePhase) { newScenePhase in
-                    switch newScenePhase {
-                    case .active:
-                        print("App is active")
-                    case .inactive:
-                        print("App is inactive")
-                    case .background:
-                        print("App is in background")
-                    @unknown default:
-                        print("Oh - interesting: I received an unexpected new value.")
-                    }
-                }
+        .onChange(of: scenePhase) { newScenePhase in
+            switch newScenePhase {
+            case .active:
+                print("App is active")
+            case .inactive:
+                print("App is inactive")
+            case .background:
+                print("App is in background")
+            @unknown default:
+                print("Oh - interesting: I received an unexpected new value.")
+            }
+        }
     }
 }

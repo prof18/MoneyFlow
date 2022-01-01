@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdk= Config.Android.compileSdk
+    compileSdk = Config.Android.compileSdk
     defaultConfig {
         applicationId = Config.Release.applicationID
         minSdk = Config.Android.minSdk
@@ -21,8 +21,13 @@ android {
             properties.load(propertiesFile.inputStream())
         }
 
-        buildConfigField("String", "DROPBOX_APP_KEY", properties.getProperty("dropbox.app_key") ?: "\"\"")
-        resValue("string", "dropbox_app_key_schema", properties.getProperty("dropbox.app_key_schema") ?: "\"\"")
+        val dropboxKey = properties.getProperty("dropbox.app_key") ?: ""
+        buildConfigField("String", "DROPBOX_APP_KEY", dropboxKey)
+        addManifestPlaceholders(
+            mapOf(
+                "dropboxKey" to dropboxKey
+            )
+        )
     }
     buildTypes {
         getByName("release") {

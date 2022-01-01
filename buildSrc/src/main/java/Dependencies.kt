@@ -16,7 +16,7 @@ object Versions {
     const val androidXTestExt = "1.1.2"
     const val turbine = "0.7.0"
     const val timber = "5.0.1"
-    const val dropboxCore = "5.0.0"
+    const val dropboxCore = "5.1.1"
     const val multiplatformSettings = "0.8.1"
     const val androidCrypto = "1.1.0-alpha03"
     const val viewModelKTX = "2.4.0"

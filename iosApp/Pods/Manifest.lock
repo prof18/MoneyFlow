@@ -1,6 +1,8 @@
 PODS:
   - Alamofire (4.8.2)
-  - shared (1.0-SNAPSHOT)
+  - ObjectiveDropboxOfficial (6.2.3)
+  - shared (1.0-SNAPSHOT):
+    - ObjectiveDropboxOfficial
   - SwiftyDropbox (6.0.3):
     - Alamofire (~> 4.8.2)
 
@@ -11,6 +13,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - ObjectiveDropboxOfficial
     - SwiftyDropbox
 
 EXTERNAL SOURCES:
@@ -19,7 +22,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  shared: ed9a6623b90cbd81c024378876f9a555eb410795
+  ObjectiveDropboxOfficial: fe206ce8c0bc49976c249d472db7fdbc53ebbd53
+  shared: 621444a3547a7906f8c9cbda6011d1cede67b16d
   SwiftyDropbox: 7e864f1e826bfc1b9b53a5edccef6c8d5fbe9e3b
 
 PODFILE CHECKSUM: 35a19fcb07da86638268158d5e063fc94cf97270

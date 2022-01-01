@@ -24,3 +24,4 @@ gradle-app.setting
 /build
 /captures
 /iosApp/Config.xcconfig
+/iosApp/Assets/Keys.plist

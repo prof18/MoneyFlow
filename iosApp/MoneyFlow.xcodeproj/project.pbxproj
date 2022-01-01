@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		599F9F5F6803CB0E30AD29BC /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */; };
+		8D8B33762780BBA300702C08 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B33752780BBA300702C08 /* Keys.plist */; };
 		8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */; };
 		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		0290555E464C0A2749A91632 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
+		8D8B33752780BBA300702C08 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomErrorBanner.swift; sourceTree = "<group>"; };
 		8D9481C6277BA694003568EE /* UIErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorData.swift; sourceTree = "<group>"; };
 		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				A9F674F724F59E2600F486FE /* Images.xcassets */,
 				A9D8986B24FBF22F007771A1 /* Colors.xcassets */,
 				A9D8985524FBEFFF007771A1 /* Font */,
+				8D8B33752780BBA300702C08 /* Keys.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */,
 				A9F6752224F59E2700F486FE /* Images.xcassets in Resources */,
 				8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */,
+				8D8B33762780BBA300702C08 /* Keys.plist in Resources */,
 				A9D1B2CA2553E8E100931B2B /* shared in Resources */,
 				A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);

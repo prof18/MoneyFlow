@@ -71,7 +71,5 @@
 			<string></string>
 		</dict>
 	</array>
-	<key>DropboxApiKey</key>
-	<string>$(DROPBOX_API_KEY)</string>
 </dict>
 </plist>

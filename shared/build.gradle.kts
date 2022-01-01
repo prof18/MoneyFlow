@@ -36,6 +36,9 @@ kotlin {
     android()
     ios()
 
+
+
+
     cocoapods {
         // Configure fields required by CocoaPods.
         summary = "Kotlin Multiplatform Library for MoneyFlow"
@@ -44,10 +47,13 @@ kotlin {
         license = "APACHE"
         ios.deploymentTarget = "15"
         podfile = project.file("../iosApp/Podfile")
+
         framework {
             isStatic = false
             linkerOpts.add("-lsqlite3")
         }
+
+        pod("ObjectiveDropboxOfficial")
     }
 
     sourceSets {
