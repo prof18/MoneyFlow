@@ -27,6 +27,8 @@ import com.prof18.moneyflow.features.home.components.HeaderNavigator
 import com.prof18.moneyflow.features.home.components.HomeRecap
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.presentation.home.HomeModel
+import com.prof18.moneyflow.presentation.model.UIErrorMessage
+import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.AppMargins
@@ -206,7 +208,7 @@ fun HomeScreen(
                 }
             }
         }
-        is HomeModel.Error -> Text(stringResource(R.string.generic_error_message))
+        is HomeModel.Error -> ErrorView(uiErrorMessage = homeModel.uiErrorMessage)
     }
 }
 
@@ -241,6 +243,25 @@ fun HomeScreenLightPreview() {
                             milliseconds = 0,
                             formattedDate = "12 July 2021"
                         )
+                    )
+                ),
+                hideSensitiveDataState = true,
+                navigateToAllTransactions = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HomeScreenErrorLightPreview() {
+    MoneyFlowTheme {
+        Surface {
+            HomeScreen(
+                homeModel = HomeModel.Error(
+                    UIErrorMessage(
+                        "An error occurred",
+                        "Error code 101",
                     )
                 ),
                 hideSensitiveDataState = true,

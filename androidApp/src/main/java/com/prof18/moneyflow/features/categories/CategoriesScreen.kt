@@ -5,7 +5,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.res.stringResource
@@ -23,10 +22,12 @@ import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.features.categories.components.CategoryCard
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.features.categories.data.toCategoryUIData
+import com.prof18.moneyflow.presentation.categories.CategoryModel
 import com.prof18.moneyflow.presentation.model.CategoryIcon
+import com.prof18.moneyflow.presentation.model.UIErrorMessage
+import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
-import com.prof18.moneyflow.presentation.categories.CategoryModel
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 
@@ -79,8 +80,7 @@ fun CategoriesScreen(
             when (categoryModel) {
                 CategoryModel.Loading -> Loader()
                 is CategoryModel.Error -> {
-                    // TODO: show the message from a mapper
-                    Text("CHANGEME: Error!!!!!")
+                    ErrorView(uiErrorMessage = categoryModel.uiErrorMessage)
                 }
                 is CategoryModel.CategoryState -> {
                     LazyColumn {
@@ -152,6 +152,26 @@ fun CategoriesScreenDarkPreview() {
                             name = "Drinks",
                             icon = CategoryIcon.IC_COCKTAIL_SOLID
                         )
+                    )
+                )
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun CategoriesScreenErrorPreview() {
+    MoneyFlowTheme {
+        Surface {
+            CategoriesScreen(
+                navigateUp = { },
+                sendCategoryBack = {  },
+                isFromAddTransaction = true,
+                categoryModel = CategoryModel.Error(
+                    uiErrorMessage = UIErrorMessage(
+                        message = "An error happened :(",
+                        nerdMessage = "Error code: 101"
                     )
                 )
             )

@@ -17,9 +17,12 @@ import androidx.paging.compose.items
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.model.CategoryIcon
+import com.prof18.moneyflow.presentation.model.UIErrorMessage
+import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.components.TransactionCard
@@ -36,6 +39,7 @@ object AllTransactionsScreenFactory : ComposeNavigationFactory {
 
             AllTransactionsScreen(
                 navigateUp = { navController.popBackStack() },
+                getUIErrorMessage = { error -> viewModel.mapErrorToErrorMessage(error) },
                 pagingFlow = viewModel.transactionPagingFlow
             )
         }
@@ -45,7 +49,8 @@ object AllTransactionsScreenFactory : ComposeNavigationFactory {
 @Composable
 fun AllTransactionsScreen(
     navigateUp: () -> Unit = {},
-    pagingFlow: Flow<PagingData<MoneyTransaction>>
+    getUIErrorMessage: (MoneyFlowError) -> UIErrorMessage,
+    pagingFlow: Flow<PagingData<MoneyTransaction>>,
 ) {
     Scaffold(
         topBar = {
@@ -58,12 +63,20 @@ fun AllTransactionsScreen(
             val lazyPagingItems = pagingFlow.collectAsLazyPagingItems()
 
             LazyColumn {
-
                 if (lazyPagingItems.loadState.refresh is LoadState.Error) {
-                  item {
-                      // TODO: show a meaningful error message
-                      Text("Error!!!!")
-                  }
+                    item {
+                        val paginationError = (lazyPagingItems.loadState.refresh as LoadState.Error)
+                            .error as? PaginationError
+                        val uiErrorMessage = if (paginationError != null) {
+                            getUIErrorMessage(paginationError.moneyFlowError)
+                        } else {
+                            UIErrorMessage(
+                                message = stringResource(id = R.string.error_generic_message),
+                                nerdMessage = "",
+                            )
+                        }
+                        ErrorView(uiErrorMessage = uiErrorMessage)
+                    }
                 }
 
                 if (lazyPagingItems.loadState.refresh == LoadState.Loading) {
@@ -75,18 +88,15 @@ fun AllTransactionsScreen(
                 // TODO: create some sort of sticky header by grouping by date
 
                 items(lazyPagingItems) { transaction ->
-
                     if (transaction != null) {
                         TransactionCard(
                             transaction = transaction,
-                            onLongPress = { /*TODO*/ },
-                            onClick = { /*TODO*/ },
-                            hideSensitiveData = false // TODO
+                            onLongPress = { /*TODO: add long press on transaction*/ },
+                            onClick = { /*TODO: add click on transaction*/ },
+                            hideSensitiveData = false // TODO: Hide sensitive data on transaction card
                         )
                         Divider()
                     }
-
-
                 }
             }
         }
@@ -99,6 +109,7 @@ private fun AllTransactionsScreenPreviews() {
     MoneyFlowTheme {
         AllTransactionsScreen(
             navigateUp = {},
+            getUIErrorMessage = { UIErrorMessage("", "") },
             pagingFlow = flowOf(
                 PagingData.from(
                     listOf(
@@ -122,7 +133,7 @@ private fun AllTransactionsScreenPreviews() {
                         )
                     )
                 )
-            )
+            ),
         )
     }
 }

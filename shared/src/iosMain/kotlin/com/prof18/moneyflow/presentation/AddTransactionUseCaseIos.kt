@@ -11,11 +11,19 @@ class AddTransactionUseCaseIos(
     private val addTransactionUseCase: AddTransactionUseCase
 ) : BaseUseCaseIos() {
 
-    fun insertTransaction(transactionToSave: TransactionToSave, onError: (UIErrorMessage) -> Unit) {
+    fun insertTransaction(
+        transactionToSave: TransactionToSave,
+        onSuccess: () -> Unit,
+        onError: (UIErrorMessage) -> Unit,
+    ) {
         scope.launch {
-            val result: MoneyFlowResult<Unit> =
-                addTransactionUseCase.insertTransaction(transactionToSave)
-            result.doOnError { onError(it) }
+            val result: MoneyFlowResult<Unit> = addTransactionUseCase.insertTransaction(
+                transactionToSave
+            )
+            when (result) {
+                is MoneyFlowResult.Success -> onSuccess()
+                is MoneyFlowResult.Error -> onError(result.uiErrorMessage)
+            }
         }
     }
 }

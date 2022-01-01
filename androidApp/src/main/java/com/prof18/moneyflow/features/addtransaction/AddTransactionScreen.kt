@@ -3,12 +3,11 @@ package com.prof18.moneyflow.features.addtransaction
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -25,9 +24,12 @@ import com.prof18.moneyflow.features.addtransaction.components.IconTextClickable
 import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
 import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeTabBar
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
+import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
+import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
 class AddTransactionScreenFactory(private val categoryState: MutableState<CategoryUIData?>) :
@@ -61,7 +63,9 @@ class AddTransactionScreenFactory(private val categoryState: MutableState<Catego
                 updateMonth = { month -> viewModel.setMonthNumber(month) },
                 updateDay = { day -> viewModel.setDayNumber(day) },
                 saveDate = { viewModel.saveDate() },
-                dateLabel = viewModel.dateLabel
+                dateLabel = viewModel.dateLabel,
+                addTransactionAction = viewModel.addTransactionAction,
+                resetAction = { viewModel.resetAction() }
             )
         }
     }
@@ -83,20 +87,43 @@ fun AddTransactionScreen(
     updateMonth: (Int) -> Unit,
     updateDay: (Int) -> Unit,
     saveDate: () -> Unit,
-    dateLabel: String?
+    dateLabel: String?,
+    addTransactionAction: AddTransactionAction?,
+    resetAction: () -> Unit,
 ) {
 
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
+    val scaffoldState = rememberScaffoldState()
+    addTransactionAction?.let {
+        when (it) {
+            is AddTransactionAction.GoBack -> {
+                navigateUp()
+                resetAction()
+            }
+            is AddTransactionAction.ShowError -> {
+                LaunchedEffect(scaffoldState.snackbarHostState) {
+                    val uiErrorMessage = it.uiErrorMessage
+                    val message = "${uiErrorMessage.message}\n${uiErrorMessage.nerdMessage}"
+                    scaffoldState.snackbarHostState.showSnackbar(message)
+                    resetAction()
+                }
+            }
+        }
+    }
+
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             MFTopBar(
                 topAppBarText = stringResource(id = R.string.add_transaction_screen),
                 actionTitle = stringResource(R.string.save),
                 onBackPressed = { navigateUp() },
                 onActionClicked = {
+                    keyboardController?.hide()
                     addTransaction(categoryState.value?.id!!)
-                    navigateUp()
                 },
                 actionEnabled = categoryState.value?.id != null && amountText.isNotEmpty()
             )
@@ -221,7 +248,9 @@ fun AddTransactionScreenLightPreview() {
                 updateMonth = {},
                 updateDay = {},
                 saveDate = {},
-                dateLabel = "11 July 2021"
+                dateLabel = "11 July 2021",
+                addTransactionAction = null,
+                resetAction = {}
             )
         }
     }
@@ -255,7 +284,9 @@ fun AddTransactionScreenDarkPreview() {
                 updateMonth = {},
                 updateDay = {},
                 saveDate = {},
-                dateLabel = "11 July 2021"
+                dateLabel = "11 July 2021",
+                addTransactionAction = null,
+                resetAction = {}
             )
         }
     }

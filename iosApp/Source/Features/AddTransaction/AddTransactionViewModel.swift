@@ -23,7 +23,7 @@ class AddTransactionViewModel: ObservableObject {
             updateSaveButtonStatus()
         }
     }
-    @Published var uiErrorData: UIErrorData = UIErrorData()
+    @Published var addTransactionAction: AddTransactionAction? = nil
     
     let transactionsType: [TransactionTypeRadioItem] = [
         TransactionTypeRadioItem(name: "Expense", id: .expense),
@@ -43,7 +43,11 @@ class AddTransactionViewModel: ObservableObject {
         let amount = Double(amountTextField)
         
         guard amount != nil else {
-            self.uiErrorData = UIErrorData(title: "amount_not_empty_error".localized, nerdishDesc: "", showBanner: true)
+            let uiErrorMessage = UIErrorMessage(
+                message: "amount_not_empty_error".localized,
+                nerdMessage: ""
+            )
+            self.addTransactionAction = AddTransactionAction.ShowError(uiErrorMessage: uiErrorMessage)
             return
         }
         
@@ -60,10 +64,21 @@ class AddTransactionViewModel: ObservableObject {
                 categoryId: categoryId!,
                 transactionType: transactionType
             ),
+            onSuccess: {
+                onMainThread {
+                    self.addTransactionAction = AddTransactionAction.GoBack()
+                }
+            },
             onError: { error in
-                self.uiErrorData = error.toUIErrorData()
+                onMainThread {
+                    self.addTransactionAction = AddTransactionAction.ShowError(uiErrorMessage: error)
+                }
             }
         )
+    }
+
+    func resetAction() {
+        self.addTransactionAction = nil
     }
     
     deinit {

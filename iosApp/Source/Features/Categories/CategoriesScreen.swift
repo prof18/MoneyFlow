@@ -10,15 +10,12 @@ import shared
 
 struct CategoriesScreen: View {
     
-    @EnvironmentObject var appState: AppState
     @StateObject var addTransactionState: AddTransactionState
     @StateObject var viewModel = CategoriesViewModel()
-
 
     var body: some View {
         CategoriesScreenContent(
             categoriesModel: $viewModel.categoriesModel,
-            appErrorData: $appState.errorData,
             addTransactionState: addTransactionState,
             onAppear: { viewModel.startObserving() } ,
             onDisappear: { viewModel.stopObserving() }
@@ -30,7 +27,6 @@ struct CategoriesScreen: View {
 struct CategoriesScreenContent: View {
     
     @Binding var categoriesModel: CategoryModel
-    @Binding var appErrorData: UIErrorData
     @StateObject var addTransactionState: AddTransactionState
     
     let onAppear  : () -> Void
@@ -69,12 +65,6 @@ struct CategoriesScreenContent: View {
         }.onDisappear {
             onDisappear()
         }
-        .onChange(of: self.categoriesModel) { model  in
-            if model is CategoryModel.Error {
-                let uiErrorMessage = (model as! CategoryModel.Error).uiErrorMessage
-                self.appErrorData = uiErrorMessage.toUIErrorData()
-            }
-        }
         .navigationTitle(Text("select_category".localized))
     }
     
@@ -92,7 +82,6 @@ struct CategoriesScreen_Previews: PreviewProvider {
                     shared.Category(id: 2, name: "Category 2", icon: CategoryIcon.icAdjustSolid)
                 ]
             )),
-            appErrorData: .constant(UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )),
             addTransactionState: addTransactionState,
             onAppear: {},
             onDisappear: {}
@@ -100,7 +89,6 @@ struct CategoriesScreen_Previews: PreviewProvider {
         
         CategoriesScreenContent(
             categoriesModel: .constant(CategoryModel.Loading()),
-            appErrorData: .constant(UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )),
             addTransactionState: addTransactionState,
             onAppear: {},
             onDisappear: {}
@@ -108,7 +96,6 @@ struct CategoriesScreen_Previews: PreviewProvider {
         
         CategoriesScreenContent(
             categoriesModel: .constant(CategoryModel.Error(uiErrorMessage: UIErrorMessage(message: "Error", nerdMessage: "Error code: 101"))),
-            appErrorData: .constant(UIErrorData(title: "An error occoured", nerdishDesc: "Error code 1012", showBanner: true )),
             addTransactionState: addTransactionState,
             onAppear: {},
             onDisappear: {}

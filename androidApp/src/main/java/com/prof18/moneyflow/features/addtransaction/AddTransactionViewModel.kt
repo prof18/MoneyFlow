@@ -4,18 +4,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.db.model.TransactionType
-import kotlinx.coroutines.launch
-import org.koin.java.KoinJavaComponent.getKoin
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
+import com.prof18.moneyflow.platform.LocalizedStringProvider
+import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
+import com.prof18.moneyflow.presentation.model.UIErrorMessage
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddTransactionViewModel(
-    private val addTransactionUseCase: AddTransactionUseCase
+    private val addTransactionUseCase: AddTransactionUseCase,
+    private val localizedStringProvider: LocalizedStringProvider
 ) : ViewModel() {
 
     // States
@@ -23,6 +26,8 @@ class AddTransactionViewModel(
     var amountText: String by mutableStateOf("")
     var descriptionText: String? by mutableStateOf(null)
     var dateLabel: String? by mutableStateOf(null)
+    var addTransactionAction: AddTransactionAction? by mutableStateOf(null)
+        private set
 
     // Private variables
     private var yearNumber: Int = Calendar.getInstance().get(Calendar.YEAR)
@@ -58,25 +63,36 @@ class AddTransactionViewModel(
     fun addTransaction(categoryId: Long) {
         val amount = amountText.toDoubleOrNull()
         if (amount == null) {
-            // TODO: show error
+            val errorMessage = UIErrorMessage(
+                message = localizedStringProvider.get("amount_not_empty_error"),
+                nerdMessage = ""
+            )
+            addTransactionAction = AddTransactionAction.ShowError(errorMessage)
             return
         }
 
         viewModelScope.launch {
-            try {
-                addTransactionUseCase.insertTransaction(
-                   TransactionToSave(
-                       dateMillis = selectedDate.timeInMillis,
-                       amount = amount,
-                       description = descriptionText,
-                       categoryId = categoryId,
-                       transactionType = selectedTransactionType
-                   )
+            val result = addTransactionUseCase.insertTransaction(
+                TransactionToSave(
+                    dateMillis = selectedDate.timeInMillis,
+                    amount = amount,
+                    description = descriptionText,
+                    categoryId = categoryId,
+                    transactionType = selectedTransactionType
                 )
-            } catch (e: Exception) {
-                e.printStackTrace()
-                // TODO: show something in UI
+            )
+            addTransactionAction = when (result) {
+                is MoneyFlowResult.Success -> {
+                    AddTransactionAction.GoBack
+                }
+                is MoneyFlowResult.Error -> {
+                    AddTransactionAction.ShowError(result.uiErrorMessage)
+                }
             }
         }
+    }
+
+    fun resetAction() {
+        addTransactionAction = null
     }
 }

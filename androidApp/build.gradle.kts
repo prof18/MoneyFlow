@@ -46,6 +46,10 @@ android {
     buildFeatures { compose = true }
 }
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions.freeCompilerArgs += "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+}
+
 dependencies {
     implementation(project(":shared"))
 

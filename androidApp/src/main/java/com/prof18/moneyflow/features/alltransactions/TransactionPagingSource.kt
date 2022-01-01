@@ -28,7 +28,8 @@ class TransactionPagingSource(
         } catch (throwable: Throwable) {
             val error = MoneyFlowError.GetAllTransaction(throwable)
             throwable.logError(error)
-            LoadResult.Error(throwable)
+            val paginationError = PaginationError(error)
+            LoadResult.Error(paginationError)
         }
     }
 

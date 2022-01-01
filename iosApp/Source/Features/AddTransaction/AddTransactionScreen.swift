@@ -21,10 +21,10 @@ struct AddTransactionScreen: View {
             showSheet: $showSheet,
             transactionTypeUI: $viewModel.transactionTypeUI,
             saveDisabled: $viewModel.saveDisabled,
-            appErrorData: $viewModel.uiErrorData,
             amountTextField: $viewModel.amountTextField,
             descriptionTextField: $viewModel.descriptionTextField,
             transactionDate: $viewModel.transactionDate,
+            addTransactionAction: $viewModel.addTransactionAction,
             addTransactionState: addTransactionState,
             addTransaction: { viewModel.addTransaction() },
             setCategoryId: { id in viewModel.categoryId = id  },
@@ -35,13 +35,14 @@ struct AddTransactionScreen: View {
 
 struct AddTransactionScreenContent: View {
     
+    @EnvironmentObject var appState: AppState
     @Binding var showSheet: Bool
     @Binding var transactionTypeUI: TransactionTypeUI
     @Binding var saveDisabled: Bool
-    @Binding var appErrorData: UIErrorData
     @Binding var amountTextField: String
     @Binding var descriptionTextField: String
     @Binding var transactionDate: Date
+    @Binding var addTransactionAction: AddTransactionAction?
     
     @StateObject var addTransactionState: AddTransactionState
     
@@ -61,48 +62,57 @@ struct AddTransactionScreenContent: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                
-                Form {
-                    Picker("transaction_type".localized, selection: $transactionTypeUI) {
-                        ForEach(transactionTypes) {
-                            Text($0.name).tag($0 as TransactionTypeRadioItem)
+            ZStack {
+                VStack {
+                    
+                    Form {
+                        Picker("transaction_type".localized, selection: $transactionTypeUI) {
+                            ForEach(transactionTypes) {
+                                Text($0.name).tag($0 as TransactionTypeRadioItem)
+                            }
                         }
-                    }
-                    
-                    HStack {
-                        DMImage(imageName: "ic_euro_sign", color: Color.colorOnBackground)
-                        TextField("0.00", text: $amountTextField)
-                            .keyboardType(.decimalPad)
-                    }
-                    
-                    HStack {
-                        DMImage(imageName: "ic_edit", color: Color.colorOnBackground)
-                        TextField("description".localized, text: $descriptionTextField)
-                    }
-                    
-                    NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
+                        
                         HStack {
-                            DMImage(imageName: addTransactionState.categoryIcon ?? "ic_question_circle", color: Color.colorOnBackground)
-                            Text(addTransactionState.categoryTitle ?? "select_category".localized)
+                            DMImage(imageName: "ic_euro_sign", color: Color.colorOnBackground)
+                            TextField("0.00", text: $amountTextField)
+                                .keyboardType(.decimalPad)
+                        }
+                        
+                        HStack {
+                            DMImage(imageName: "ic_edit", color: Color.colorOnBackground)
+                            TextField("description".localized, text: $descriptionTextField)
+                        }
+                        
+                        NavigationLink(destination: CategoriesScreen(addTransactionState: addTransactionState)) {
+                            HStack {
+                                DMImage(imageName: addTransactionState.categoryIcon ?? "ic_question_circle", color: Color.colorOnBackground)
+                                Text(addTransactionState.categoryTitle ?? "select_category".localized)
+                            }
+                        }
+                        
+                        HStack {
+                            DMImage(imageName: "ic_calendar", color: Color.colorOnBackground)
+                            Text("\(dateFormatter.string(from: transactionDate))")
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            self.showsDatePicker.toggle()
+                        }
+                        
+                        if showsDatePicker {
+                            DatePicker("", selection: $transactionDate, displayedComponents: .date)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                                .padding(20)
                         }
                     }
+                }
+                
+                VStack(spacing: 0) {
                     
-                    HStack {
-                        DMImage(imageName: "ic_calendar", color: Color.colorOnBackground)
-                        Text("\(dateFormatter.string(from: transactionDate))")
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 20, maxHeight: 20, alignment: .leading)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        self.showsDatePicker.toggle()
-                    }
+                    Spacer()
                     
-                    if showsDatePicker {
-                        DatePicker("", selection: $transactionDate, displayedComponents: .date)
-                            .datePickerStyle(GraphicalDatePickerStyle())
-                            .padding(20)
-                    }
+                    BottomErrorBanner(appState : appState)
                 }
             }
             .navigationTitle(Text("add_transaction_screen".localized))
@@ -111,16 +121,23 @@ struct AddTransactionScreenContent: View {
             }) {
                 Text("close".localized)
                 
-            }, trailing: Button(  action: {
-                self.addTransaction()
-                self.showSheet.toggle()
-            }) {
-                Text("save".localized)
-                
-            }.disabled(saveDisabled)
+            }, trailing: Button(
+                action: {
+                    // TODO: do not close here but check the error before!!
+                    self.addTransaction()
+                }) {
+                    Text("save".localized)
+                }.disabled(saveDisabled)
             )
             .onReceive(addTransactionState.$categoryId) { value in
                 setCategoryId(value)
+            }
+            .onChange(of: addTransactionAction) { action in
+                if let errorAction = action as? AddTransactionAction.ShowError {
+                    self.appState.errorData = errorAction.uiErrorMessage.toUIErrorData()
+                } else if action is AddTransactionAction.GoBack {
+                    self.showSheet.toggle()
+                }
             }
         }
         
@@ -145,10 +162,10 @@ struct AddTransactionScreen_Previews: PreviewProvider {
             showSheet: .constant(false ),
             transactionTypeUI: .constant(TransactionTypeUI.expense),
             saveDisabled: .constant(false ) ,
-            appErrorData: .constant(appErrorData),
             amountTextField: .constant(""),
             descriptionTextField: .constant(""),
             transactionDate: .constant(Date()),
+            addTransactionAction: .constant(nil),
             addTransactionState: addTransactionEmptyState,
             addTransaction: {},
             setCategoryId: { _ in  },
@@ -159,10 +176,10 @@ struct AddTransactionScreen_Previews: PreviewProvider {
             showSheet: .constant(false ),
             transactionTypeUI: .constant(TransactionTypeUI.income ),
             saveDisabled: .constant(false ) ,
-            appErrorData: .constant(appErrorData),
             amountTextField: .constant("20"),
             descriptionTextField: .constant("A Description"),
             transactionDate: .constant(Date()),
+            addTransactionAction: .constant(nil),
             addTransactionState: addTransactionState,
             addTransaction: {},
             setCategoryId: { _ in  },

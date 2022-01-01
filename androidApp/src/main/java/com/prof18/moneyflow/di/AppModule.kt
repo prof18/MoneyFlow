@@ -19,9 +19,9 @@ val appModule = module {
     // View Models
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get())}
-    viewModel { AddTransactionViewModel(get()) }
+    viewModel { AddTransactionViewModel(get(), get()) }
     viewModel { CategoriesViewModel(get()) }
     viewModel { SettingsViewModel(get(), get()) }
     viewModel { DropboxLoginViewModel(get(), get()) }
-    viewModel { AllTransactionsViewModel(get()) }
+    viewModel { AllTransactionsViewModel(get(), get()) }
 }
