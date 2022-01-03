@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.dropbox
+package com.prof18.moneyflow.dropboxapi
 
 import com.dropbox.core.DbxRequestConfig
 import com.dropbox.core.android.Auth

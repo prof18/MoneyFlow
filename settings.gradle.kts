@@ -17,3 +17,4 @@ rootProject.name = "money-flow"
 
 include(":shared")
 include(":androidApp")
+include(":dropbox-api")

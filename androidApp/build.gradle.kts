@@ -21,7 +21,7 @@ android {
             properties.load(propertiesFile.inputStream())
         }
 
-        val dropboxKey = properties.getProperty("dropbox.app_key") ?: ""
+        val dropboxKey = properties.getProperty("dropbox.app_key") ?: "\"\""
         buildConfigField("String", "DROPBOX_APP_KEY", dropboxKey)
         addManifestPlaceholders(
             mapOf(

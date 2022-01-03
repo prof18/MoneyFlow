@@ -1,12 +1,9 @@
-package com.prof18.moneyflow.dropbox
+package com.prof18.moneyflow.dropboxapi
 
 import cocoapods.ObjectiveDropboxOfficial.DBFILESFileMetadata
-import cocoapods.ObjectiveDropboxOfficial.DBUserClient
 import platform.Foundation.NSData
 import platform.Foundation.NSURL
 import platform.UIKit.UIViewController
-
-actual typealias DropboxClient = DBUserClient
 
 actual class DropboxAuthorizationData(
     val viewController: UIViewController,

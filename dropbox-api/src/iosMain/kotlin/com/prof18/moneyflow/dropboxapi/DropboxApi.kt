@@ -1,13 +1,14 @@
-package com.prof18.moneyflow.dropbox
+package com.prof18.moneyflow.dropboxapi
 
-import co.touchlab.kermit.Logger
 import cocoapods.ObjectiveDropboxOfficial.*
 import platform.Foundation.*
 import platform.UIKit.UIApplication
+import co.touchlab.kermit.Logger
 
 actual class DropboxApi {
 
     actual fun setup() {
+        // TODO: pass data from external
         var apiKey = ""
         val path = NSBundle.mainBundle.pathForResource("Keys", "plist")
         if (path != null) {
@@ -20,6 +21,7 @@ actual class DropboxApi {
     }
 
     actual fun startAuthorization(authData: DropboxAuthorizationData) {
+        // TODO: pass scope from external
         val scopeRequest = DBScopeRequest(
             scopeType = DBScopeTypeUser,
             scopes = listOf("files.content.write", "files.content.read", "files.metadata.read"),
@@ -122,9 +124,3 @@ actual class DropboxApi {
         }
     }
 }
-
-
-
-
-
-

@@ -36,9 +36,6 @@ kotlin {
     android()
     ios()
 
-
-
-
     cocoapods {
         // Configure fields required by CocoaPods.
         summary = "Kotlin Multiplatform Library for MoneyFlow"
@@ -52,8 +49,6 @@ kotlin {
             isStatic = false
             linkerOpts.add("-lsqlite3")
         }
-
-        pod("ObjectiveDropboxOfficial")
     }
 
     sourceSets {
@@ -68,6 +63,7 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
+                implementation(project(":dropbox-api"))
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutineExtensions)
                 implementation(Deps.Coroutines.common)
@@ -93,8 +89,6 @@ kotlin {
                 implementation(Deps.coreKTX)
                 implementation(Deps.androidCrypto)
                 implementation(Deps.SqlDelight.driverAndroid)
-                // TODO: think about making api and remove the deps on androidApp
-                implementation(Deps.dropboxCore)
             }
         }
         val androidTest by getting {
