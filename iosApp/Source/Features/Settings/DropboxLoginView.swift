@@ -16,6 +16,7 @@ struct DropboxLoginView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         if isShown {
+            // TODO: call startAuth from shared code
             let scopeRequest = ScopeRequest(scopeType: .user, scopes: ["files.content.write", "files.content.read", "files.metadata.read"], includeGrantedScopes: false)
               DropboxClientsManager.authorizeFromControllerV2(
                   UIApplication.shared,

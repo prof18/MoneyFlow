@@ -93,6 +93,8 @@ kotlin {
                 implementation(Deps.coreKTX)
                 implementation(Deps.androidCrypto)
                 implementation(Deps.SqlDelight.driverAndroid)
+                // TODO: think about making api and remove the deps on androidApp
+                implementation(Deps.dropboxCore)
             }
         }
         val androidTest by getting {

@@ -77,6 +77,7 @@ dependencies {
     implementation(Deps.Koin.android)
     implementation(Deps.Koin.compose)
     implementation(Deps.timber)
+    // TODO: think about removing and use the api from shared
     implementation(Deps.dropboxCore)
     implementation(Deps.biometric)
 
