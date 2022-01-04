@@ -61,4 +61,5 @@
     <string name="transaction_type">Transaction Type</string>
     <string name="close">Close</string>
     <string name="amount_not_empty_error">The amount cannot be empty!</string>
+    <string name="error_dropbox_auth">Something unexpected happened during Dropbox login</string>
 </resources>

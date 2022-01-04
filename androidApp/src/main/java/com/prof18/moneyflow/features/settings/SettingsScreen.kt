@@ -87,7 +87,7 @@ fun SettingsScreen(
             context.startActivity(
                 Intent(
                     context,
-                    DropboxLoginActivity::class.java
+                    DropboxSyncActivity::class.java
                 )
             )
         },

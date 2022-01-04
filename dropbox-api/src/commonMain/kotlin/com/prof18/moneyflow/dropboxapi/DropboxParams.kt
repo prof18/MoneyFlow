@@ -9,5 +9,3 @@ expect class DropboxHandleOAuthRequestParam
 expect class DropboxUploadParam
 
 expect class DropboxDownloadParam
-
-expect class DropboxClientParam

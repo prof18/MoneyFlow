@@ -9,22 +9,25 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.dropbox.core.android.Auth
 import com.prof18.moneyflow.BuildConfig
 import com.prof18.moneyflow.R
+import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DropboxLoginActivity : ComponentActivity() {
+class DropboxSyncActivity : ComponentActivity() {
 
-    private val viewModel: DropboxLoginViewModel by viewModel()
-    private var hasPerformLogin = false
+    private val viewModel: DropboxSyncViewModel by viewModel()
+    private var isAuthOngoing = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +41,23 @@ class DropboxLoginActivity : ComponentActivity() {
                     lastRefreshTimestamp = lastRefresh,
                     isConnected = isConnected,
                     connectDropbox = {
-                        Auth.startOAuth2Authentication(
-                            this@DropboxLoginActivity,
-                            BuildConfig.DROPBOX_APP_KEY
+                        val authParam = DropboxAuthorizationParam(
+                            activity = this@DropboxSyncActivity,
+                            apiKey = BuildConfig.DROPBOX_APP_KEY,
                         )
-                        hasPerformLogin = true
+                        viewModel.startAuthFlow(authParam)
+                        isAuthOngoing = true
                     },
-                    backupOnDropbox = { viewModel.backup() },
-                    unlinkDropbox = { viewModel.unlinkDropbox() }
+                    backupOnDropbox = {
+                        // TODO: implement backup
+                        //                        viewModel.backup()
+                    },
+                    unlinkDropbox = {
+                        // TODO: implement unlinck
+//                        viewModel.unlinkDropbox()
+                    },
+                    dropboxSyncAction = viewModel.dropboxSyncAction,
+                    resetAction = { viewModel.resetAction() },
                 )
             }
         }
@@ -53,9 +65,9 @@ class DropboxLoginActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (hasPerformLogin) {
-            viewModel.saveAccessToken()
-            hasPerformLogin = false
+        if (isAuthOngoing) {
+            viewModel.saveDropboxAuth()
+            isAuthOngoing = false
         }
     }
 }
@@ -67,8 +79,26 @@ private fun DropboxLoginContent(
     connectDropbox: () -> Unit,
     backupOnDropbox: () -> Unit,
     unlinkDropbox: () -> Unit,
+    dropboxSyncAction: DropboxSyncAction?,
+    resetAction: () -> Unit,
 ) {
+
+    val scaffoldState = rememberScaffoldState()
+    dropboxSyncAction?.let {
+        when (it) {
+            is DropboxSyncAction.ShowError -> {
+                LaunchedEffect(scaffoldState.snackbarHostState) {
+                    val uiErrorMessage = it.uiErrorMessage
+                    val message = "${uiErrorMessage.message}\n${uiErrorMessage.nerdMessage}"
+                    scaffoldState.snackbarHostState.showSnackbar(message)
+                    resetAction()
+                }
+            }
+        }
+    }
+
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             Column(
                 modifier = Modifier
@@ -160,7 +190,9 @@ fun DropboxLoginContentLightNotConnectedPreview() {
                 isConnected = false,
                 connectDropbox = { },
                 backupOnDropbox = { },
-                unlinkDropbox = {}
+                unlinkDropbox = {},
+                dropboxSyncAction = null,
+                resetAction = {},
             )
         }
     }
@@ -176,7 +208,9 @@ fun DropboxLoginContentLightConnectedPreview() {
                 isConnected = true,
                 connectDropbox = { },
                 backupOnDropbox = { },
-                unlinkDropbox = {}
+                unlinkDropbox = {},
+                dropboxSyncAction = null,
+                resetAction = {},
             )
         }
     }
@@ -193,7 +227,9 @@ fun DropboxLoginContentDarkNotConnectedPreview() {
                 isConnected = false,
                 connectDropbox = { },
                 backupOnDropbox = { },
-                unlinkDropbox = {}
+                unlinkDropbox = {},
+                dropboxSyncAction = null,
+                resetAction = {},
             )
         }
     }
@@ -209,7 +245,9 @@ fun DropboxLoginContentDarkConnectedPreview() {
                 isConnected = true,
                 connectDropbox = { },
                 backupOnDropbox = { },
-                unlinkDropbox = {}
+                unlinkDropbox = {},
+                dropboxSyncAction = null,
+                resetAction = {},
             )
         }
     }

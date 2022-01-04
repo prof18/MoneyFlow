@@ -6,6 +6,14 @@ plugins {
     id("kotlin-parcelize")
 }
 
+val propertiesFile = file("$rootDir/local.properties")
+val properties = Properties()
+if (propertiesFile.exists()) {
+    properties.load(propertiesFile.inputStream())
+}
+val dropboxKey = properties.getProperty("dropbox.app_key") ?: "\"\""
+
+
 android {
     compileSdk = Config.Android.compileSdk
     defaultConfig {
@@ -15,14 +23,6 @@ android {
         versionCode = Config.Release.appVersionCode
         versionName = Config.Release.appVersionName
 
-        val propertiesFile = file("local.properties")
-        val properties = Properties()
-        if (propertiesFile.exists()) {
-            properties.load(propertiesFile.inputStream())
-        }
-
-        val dropboxKey = properties.getProperty("dropbox.app_key") ?: "\"\""
-        buildConfigField("String", "DROPBOX_APP_KEY", dropboxKey)
         addManifestPlaceholders(
             mapOf(
                 "dropboxKey" to dropboxKey
@@ -31,7 +31,14 @@ android {
     }
     buildTypes {
         getByName("release") {
+            buildConfigField("String", "DROPBOX_APP_KEY", "\"$dropboxKey\"")
             isMinifyEnabled = false
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "DROPBOX_APP_KEY", "\"$dropboxKey\"")
         }
     }
 

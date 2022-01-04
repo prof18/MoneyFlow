@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".features.settings.DropboxLoginActivity" />
+        <activity android:name=".features.settings.DropboxSyncActivity" />
 
     </application>
 

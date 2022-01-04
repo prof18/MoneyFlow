@@ -59,3 +59,4 @@
 "transaction_type" = "Transaction Type";
 "close" = "Close";
 "amount_not_empty_error" = "The amount cannot be empty!";
+"error_dropbox_auth" = "Something unexpected happened during Dropbox login";

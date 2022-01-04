@@ -15,8 +15,3 @@ actual class DropboxHandleOAuthRequestParam
 actual class DropboxUploadParam
 
 actual class DropboxDownloadParam
-
-actual class DropboxClientParam(
-    val credential: DbxCredential,
-    val clientIdentifier: String
-)

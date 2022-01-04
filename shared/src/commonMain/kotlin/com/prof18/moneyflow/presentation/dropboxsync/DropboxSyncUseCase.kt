@@ -1,24 +1,23 @@
 package com.prof18.moneyflow.presentation.dropboxsync
 
-import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.domain.entities.DropboxClientStatus
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
+import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
+import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import kotlinx.coroutines.flow.StateFlow
 
 class DropboxSyncUseCase(
-    private val settingsRepository: SettingsRepository,
+    private val dropboxSyncRepository: DropboxSyncRepository
 ) {
 
-    fun saveClientCred(string: String) {
-        settingsRepository.saveDropboxClientCred(string)
-    }
+    val dropboxClientStatus: StateFlow<DropboxClientStatus> = dropboxSyncRepository.dropboxConnectionStatus
 
-    fun getClientCred(): String? {
-        return settingsRepository.getDropboxClientCred()
-    }
+    // TODO: transform as string here?
+    val lastDropboxSync: StateFlow<Long?> = dropboxSyncRepository.lastDropboxSync
 
-    fun saveLastRefresh(lastRefreshMillis: Long) {
-        settingsRepository.saveLastDropboxRefreshTime(lastRefreshMillis)
-    }
+    fun startAuthFlow(authorizationParam: DropboxAuthorizationParam) =
+        dropboxSyncRepository.startDropboxAuthorization(authorizationParam)
 
-    fun getLastRefresh(): String? {
-        return settingsRepository.getLastDropboxRefreshTime()
-    }
+    fun saveDropboxAuth(): MoneyFlowResult<Unit> = dropboxSyncRepository.saveDropboxAuthorization()
+
 }

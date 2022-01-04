@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.dropboxapi
 
-import cocoapods.ObjectiveDropboxOfficial.DBFILESFileMetadata
 import platform.Foundation.NSData
 import platform.Foundation.NSURL
 import platform.UIKit.UIViewController
@@ -20,8 +19,6 @@ actual class DropboxHandleOAuthRequestParam(
     val onCancel: () -> Unit,
     val onError: () -> Unit,
 )
-
-actual class DropboxClientParam
 
 actual class DropboxUploadParam(
     val client: DropboxClient,

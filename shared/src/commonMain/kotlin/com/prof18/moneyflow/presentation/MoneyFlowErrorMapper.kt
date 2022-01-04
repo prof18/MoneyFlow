@@ -22,6 +22,7 @@ class MoneyFlowErrorMapper(
             is MoneyFlowError.GetAllTransaction -> localizedStringProvider.get("error_get_all_transaction_message")
             is MoneyFlowError.GetCategories -> localizedStringProvider.get("error_get_categories_message")
             is MoneyFlowError.GetMoneySummary -> localizedStringProvider.get("error_get_money_summary_message")
+            is MoneyFlowError.DropboxAuth -> localizedStringProvider.get("error_dropbox_auth")
         }
     }
 

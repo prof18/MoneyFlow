@@ -40,7 +40,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(Deps.dropboxCore)
+                api(Deps.dropboxCore)
             }
         }
         val androidTest by getting {

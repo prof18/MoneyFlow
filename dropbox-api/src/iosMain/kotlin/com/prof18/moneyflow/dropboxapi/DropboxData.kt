@@ -9,3 +9,5 @@ actual class DropboxDownloadResult(
     val metadata: DBFILESFileMetadata,
     val destinationUrl: NSURL
 )
+
+actual class DropboxCredentials

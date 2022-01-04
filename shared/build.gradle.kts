@@ -63,7 +63,7 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(project(":dropbox-api"))
+                api(project(":dropbox-api"))
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutineExtensions)
                 implementation(Deps.Coroutines.common) {

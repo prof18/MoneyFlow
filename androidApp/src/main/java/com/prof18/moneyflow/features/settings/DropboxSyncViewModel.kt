@@ -1,18 +1,25 @@
 package com.prof18.moneyflow.features.settings
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dropbox.core.android.Auth
+import com.prof18.moneyflow.domain.entities.DropboxClientStatus
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
+import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class DropboxLoginViewModel(
-    private val dropboxSyncUserCase: DropboxSyncUseCase,
-    private val dropboxClient: DropboxClient,
+class DropboxSyncViewModel(
+    private val dropboxSyncUseCase: DropboxSyncUseCase,
 ) : ViewModel() {
 
     private val _lastRefresh = MutableStateFlow<String?>(null)
@@ -23,21 +30,39 @@ class DropboxLoginViewModel(
     val isDropboxConnected: StateFlow<Boolean>
         get() = _isDropboxConnected
 
+    var dropboxSyncAction: DropboxSyncAction? by mutableStateOf(null)
+        private set
+
     init {
         viewModelScope.launch {
-            dropboxClient.observeClientStatus().collect {
-                Timber.d("Got Client Status data: $it")
+            dropboxSyncUseCase.dropboxClientStatus.collect {
+                Timber.d("Got new client status: $it")
                 _isDropboxConnected.value = when (it) {
                     DropboxClientStatus.LINKED -> true
                     DropboxClientStatus.NOT_LINKED -> false
                 }
-
             }
+            // TODO: observe also latest sync
         }
     }
 
-    fun getLastRefresh() {
-        val refresh = dropboxSyncUserCase.getLastRefresh()
+    fun startAuthFlow(authorizationParam: DropboxAuthorizationParam) {
+        dropboxSyncUseCase.startAuthFlow(authorizationParam)
+    }
+
+    fun saveDropboxAuth() {
+        val result = dropboxSyncUseCase.saveDropboxAuth()
+        if (result is MoneyFlowResult.Error) {
+            dropboxSyncAction = DropboxSyncAction.ShowError(result.uiErrorMessage)
+        }
+    }
+
+    fun resetAction() {
+        dropboxSyncAction = null
+    }
+
+    /*fun getLastRefresh() {
+        val refresh = dropboxSyncUseCase.getLastRefresh()
         _lastRefresh.value = refresh
     }
 
@@ -45,7 +70,7 @@ class DropboxLoginViewModel(
         viewModelScope.launch {
             val dropboxClientCredentials = Auth.getDbxCredential()
             val stringValue = dropboxClientCredentials.toString()
-            dropboxSyncUserCase.saveClientCred(stringValue)
+            dropboxSyncUseCase.saveClientCred(stringValue)
             dropboxClient.setTokenAndCreateClient(dropboxClientCredentials)
             _isDropboxConnected.value = true
         }
@@ -59,5 +84,5 @@ class DropboxLoginViewModel(
         viewModelScope.launch {
             dropboxClient.upload()
         }
-    }
+    }*/
 }

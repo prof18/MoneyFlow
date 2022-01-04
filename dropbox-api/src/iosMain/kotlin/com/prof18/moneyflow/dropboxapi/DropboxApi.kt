@@ -67,12 +67,22 @@ actual class DropboxApi {
         )
     }
 
-    actual fun getClient(clientParam: DropboxClientParam): DropboxClient? {
+    actual fun getClient(clientIdentifier: String, credentials: DropboxCredentials): DropboxClient? {
         return DBClientsManager.authorizedClient()
     }
 
     actual fun revokeAccess() {
         DBClientsManager.unlinkAndResetClients()
+    }
+
+    actual fun getCredentials(): DropboxCredentials? {
+        // No-op on iOS
+        return null
+    }
+
+    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials? {
+        // No-op on iOS
+        return null
     }
 
     actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =

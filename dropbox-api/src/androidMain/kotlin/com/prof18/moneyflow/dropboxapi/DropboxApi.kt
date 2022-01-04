@@ -2,6 +2,7 @@ package com.prof18.moneyflow.dropboxapi
 
 import com.dropbox.core.DbxRequestConfig
 import com.dropbox.core.android.Auth
+import com.dropbox.core.oauth.DbxCredential
 import com.dropbox.core.v2.DbxClientV2
 import java.util.*
 
@@ -19,17 +20,25 @@ actual class DropboxApi {
         // TODO? is required?
     }
 
-    actual fun getClient(clientParam: DropboxClientParam): DropboxClient? {
+    actual fun getClient(clientIdentifier: String, credentials: DropboxCredentials): DropboxClient? {
         val userLocale: String = Locale.getDefault().toString()
         val requestConfig = DbxRequestConfig
-            .newBuilder(clientParam.clientIdentifier)
+            .newBuilder(clientIdentifier)
             .withUserLocale(userLocale)
             .build()
-        return DbxClientV2(requestConfig, clientParam.credential)
+        return DbxClientV2(requestConfig, credentials)
     }
 
     actual fun revokeAccess() {
         // TODO: implement revoke time
+    }
+
+    actual fun getCredentials(): DropboxCredentials? {
+        return Auth.getDbxCredential()
+    }
+
+    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials? {
+        return DbxCredential.Reader.readFully(stringCredentials)
     }
 
     actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult {

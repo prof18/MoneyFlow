@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.features.settings
+package com.prof18.moneyflow.domain.entities
 
 enum class DropboxClientStatus {
     LINKED,
