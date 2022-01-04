@@ -6,37 +6,38 @@ import com.dropbox.core.v2.DbxClientV2
 import java.util.*
 
 actual class DropboxApi {
-    actual fun setup() {
+
+    actual fun setup(setupParam: DropboxSetupParam) {
         // No op, nothing required on Android side
     }
 
-    actual fun startAuthorization(authData: DropboxAuthorizationData) {
-        Auth.startOAuth2Authentication(authData.activity, authData.apiKey)
+    actual fun startAuthorization(authParam: DropboxAuthorizationParam) {
+        Auth.startOAuth2Authentication(authParam.activity, authParam.apiKey)
     }
 
-    actual fun handleOAuthResponse(oAuthRequestData: DropboxHandleOAuthRequestData) {
+    actual fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam) {
         // TODO? is required?
     }
 
-    actual fun getClient(clientData: DropboxClientData): DropboxClient? {
+    actual fun getClient(clientParam: DropboxClientParam): DropboxClient? {
         val userLocale: String = Locale.getDefault().toString()
         val requestConfig = DbxRequestConfig
-            .newBuilder(clientData.clientIdentifier)
+            .newBuilder(clientParam.clientIdentifier)
             .withUserLocale(userLocale)
             .build()
-        return DbxClientV2(requestConfig, clientData.credential)
+        return DbxClientV2(requestConfig, clientParam.credential)
     }
 
     actual fun revokeAccess() {
         // TODO: implement revoke time
     }
 
-    actual fun performUpload(uploadData: DropboxUploadData) {
-        // TODO: implement upload
+    actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult {
+        TODO()
     }
 
-    actual fun performDownload(downloadData: DropboxDownloadData) {
-        // TODO: implement download
+    actual suspend fun performDownload(downloadParam: DropboxDownloadParam): DropboxDownloadResult {
+        TODO()
     }
 
 }

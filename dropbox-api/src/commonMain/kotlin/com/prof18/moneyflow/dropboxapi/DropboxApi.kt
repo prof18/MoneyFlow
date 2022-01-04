@@ -1,14 +1,18 @@
 package com.prof18.moneyflow.dropboxapi
 
 expect class DropboxApi {
-    fun setup()
-    fun startAuthorization(authData: DropboxAuthorizationData)
-    fun handleOAuthResponse(oAuthRequestData: DropboxHandleOAuthRequestData)
-    fun getClient(clientData: DropboxClientData): DropboxClient?
+    fun setup(setupParam: DropboxSetupParam)
+    fun startAuthorization(authParam: DropboxAuthorizationParam)
+    fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam)
+    fun getClient(clientParam: DropboxClientParam): DropboxClient?
     fun revokeAccess()
-    // TODO: make it suspend?
-    fun performUpload(uploadData: DropboxUploadData)
-    // TODO: make it suspend?
-    fun performDownload(downloadData: DropboxDownloadData)
+    /**
+     * If successful returns a [DropboxUploadResult] otherwise throws a [DropboxUploadException]
+     */
+    suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult
+    /**
+     * If successful returns a [DropboxDownloadResult] otherwise throws a [DropboxUploadException]
+     */
+    suspend fun performDownload(downloadParam: DropboxDownloadParam): DropboxDownloadResult
     // TODO: maybe add a method to get the credentials?
 }

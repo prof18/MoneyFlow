@@ -1,11 +1,13 @@
 package com.prof18.moneyflow.dropboxapi
 
-expect class DropboxAuthorizationData
+expect class DropboxSetupParam
 
-expect class DropboxHandleOAuthRequestData
+expect class DropboxAuthorizationParam
 
-expect class DropboxUploadData
+expect class DropboxHandleOAuthRequestParam
 
-expect class DropboxDownloadData
+expect class DropboxUploadParam
 
-expect class DropboxClientData
+expect class DropboxDownloadParam
+
+expect class DropboxClientParam

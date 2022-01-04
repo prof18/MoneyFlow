@@ -5,35 +5,32 @@ import platform.Foundation.NSData
 import platform.Foundation.NSURL
 import platform.UIKit.UIViewController
 
-actual class DropboxAuthorizationData(
-    val viewController: UIViewController,
+actual class DropboxSetupParam(
+    val apiKey: String
 )
 
-actual class DropboxHandleOAuthRequestData(
+actual class DropboxAuthorizationParam(
+    val viewController: UIViewController,
+    val scopes: List<String>
+)
+
+actual class DropboxHandleOAuthRequestParam(
     val url: NSURL,
     val onSuccess: () -> Unit,
     val onCancel: () -> Unit,
     val onError: () -> Unit,
 )
 
-actual class DropboxClientData
+actual class DropboxClientParam
 
-actual class DropboxUploadData(
+actual class DropboxUploadParam(
     val client: DropboxClient,
     val path: String,
     val data: NSData,
-    val onSuccess: (DBFILESFileMetadata) -> Unit,
-    val onError: () -> Unit,
-    // bytesUploaded, totalBytesUploaded, totalBytesExpectedToUpload
-    val onProgress: (Long, Long, Long) -> Unit
 )
 
-actual class DropboxDownloadData(
+actual class DropboxDownloadParam(
     val client: DropboxClient,
     val outputName: String,
     val path: String,
-    val onSuccess: (DBFILESFileMetadata, NSURL) -> Unit,
-    val onError: () -> Unit,
-    // bytesDownloaded, totalBytesDownloaded, totalBytesExpectedToDownload
-    val onProgress: (Long, Long, Long) -> Unit
 )

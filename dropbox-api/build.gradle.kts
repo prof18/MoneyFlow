@@ -20,11 +20,16 @@ kotlin {
 
         pod("ObjectiveDropboxOfficial")
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation(Deps.kermit)
+                implementation(Deps.Coroutines.common) {
+                    version {
+                        strictly(Versions.coroutinesMt)
+                    }
+                }
             }
         }
         val commonTest by getting {
@@ -59,7 +64,7 @@ android {
 
 val releaseBuild: String by project
 kermit {
-    if(releaseBuild.toBoolean()) {
+    if (releaseBuild.toBoolean()) {
         stripBelow = co.touchlab.kermit.gradle.StripSeverity.Info
     }
 }

@@ -3,18 +3,20 @@ package com.prof18.moneyflow.dropboxapi
 import android.app.Activity
 import com.dropbox.core.oauth.DbxCredential
 
-actual class DropboxAuthorizationData(
+actual class DropboxSetupParam
+
+actual class DropboxAuthorizationParam(
     val activity: Activity,
     val apiKey: String
 )
 
-actual class DropboxHandleOAuthRequestData
+actual class DropboxHandleOAuthRequestParam
 
-actual class DropboxUploadData
+actual class DropboxUploadParam
 
-actual class DropboxDownloadData
+actual class DropboxDownloadParam
 
-actual class DropboxClientData(
+actual class DropboxClientParam(
     val credential: DbxCredential,
     val clientIdentifier: String
 )

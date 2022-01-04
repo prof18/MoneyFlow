@@ -66,7 +66,11 @@ kotlin {
                 implementation(project(":dropbox-api"))
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutineExtensions)
-                implementation(Deps.Coroutines.common)
+                implementation(Deps.Coroutines.common) {
+                    version {
+                        strictly(Versions.coroutinesMt)
+                    }
+                }
                 implementation(Deps.stately)
                 implementation(Deps.Koin.core)
                 implementation(Deps.kotlinDateTime)
