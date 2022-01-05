@@ -8,10 +8,7 @@ import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
-import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
-import com.prof18.moneyflow.dropboxapi.DropboxClient
-import com.prof18.moneyflow.dropboxapi.DropboxCredentials
-import com.prof18.moneyflow.dropboxapi.DropboxSetupParam
+import com.prof18.moneyflow.dropboxapi.*
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.DispatcherProvider
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,8 +43,13 @@ class DropboxSyncRepositoryImpl(
     }
 
     // TODo: move in the constructor, if necessary
-    override fun restoreDropboxClient(): MoneyFlowResult<Unit> {
-        val savedStringCredentials = settingsSource.getDropboxClientCred() ?: return generateDropboxAuthErrorResult()
+    override suspend fun restoreDropboxClient(): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
+        if (dropboxClient != null) {
+            // Avoid setting up again
+            return@withContext MoneyFlowResult.Success(Unit)
+        }
+        val savedStringCredentials =
+            settingsSource.getDropboxClientCred() ?: return@withContext generateDropboxAuthErrorResult()
         val credentials = try {
             dropboxSource.getCredentialsFromString(savedStringCredentials)
         } catch (e: Exception) {
@@ -57,26 +59,32 @@ class DropboxSyncRepositoryImpl(
         if (credentials != null) {
             setClient(credentials)
             if (dropboxClient == null) {
-                return generateDropboxAuthErrorResult()
+                return@withContext generateDropboxAuthErrorResult()
             }
         }
-        return MoneyFlowResult.Success(Unit)
+        return@withContext MoneyFlowResult.Success(Unit)
     }
 
-    override fun saveDropboxAuthorization(): MoneyFlowResult<Unit> {
-        val credentials = dropboxSource.getCredentials() ?: return generateDropboxAuthErrorResult()
+    override suspend fun saveDropboxAuthorization(): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
+        val credentials = dropboxSource.getCredentials() ?: return@withContext generateDropboxAuthErrorResult()
         val stringCredentials = credentials.toString()
         settingsSource.saveDropboxClientCred(stringCredentials)
         setClient(credentials)
         if (dropboxClient == null) {
-            return generateDropboxAuthErrorResult()
+            return@withContext generateDropboxAuthErrorResult()
         }
-        return MoneyFlowResult.Success(Unit)
+        return@withContext MoneyFlowResult.Success(Unit)
     }
 
 
-    override fun unlinkDropboxClient() {
-        dropboxSource.revokeAccess()
+    override suspend fun unlinkDropboxClient() = withContext(dispatcherProvider.default()) {
+        dropboxClient?.let {
+            try {
+                dropboxSource.revokeAccess(it)
+            } catch (_: DropboxException) {
+
+            }
+        }
         dropboxClient = null
         settingsSource.deleteLastDropboxSync()
         settingsSource.deleteDropboxClientCred()

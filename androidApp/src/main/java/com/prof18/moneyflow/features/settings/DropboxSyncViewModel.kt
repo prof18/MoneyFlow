@@ -35,6 +35,7 @@ class DropboxSyncViewModel(
 
     init {
         viewModelScope.launch {
+            dropboxSyncUseCase.restoreDropboxClient()
             dropboxSyncUseCase.dropboxClientStatus.collect {
                 Timber.d("Got new client status: $it")
                 _isDropboxConnected.value = when (it) {
@@ -51,14 +52,22 @@ class DropboxSyncViewModel(
     }
 
     fun saveDropboxAuth() {
-        val result = dropboxSyncUseCase.saveDropboxAuth()
-        if (result is MoneyFlowResult.Error) {
-            dropboxSyncAction = DropboxSyncAction.ShowError(result.uiErrorMessage)
+        viewModelScope.launch {
+            val result = dropboxSyncUseCase.saveDropboxAuth()
+            if (result is MoneyFlowResult.Error) {
+                dropboxSyncAction = DropboxSyncAction.ShowError(result.uiErrorMessage)
+            }
         }
     }
 
     fun resetAction() {
         dropboxSyncAction = null
+    }
+
+    fun unlinkDropbox() {
+        viewModelScope.launch {
+            dropboxSyncUseCase.unlinkDropbox()
+        }
     }
 
     /*fun getLastRefresh() {
@@ -76,9 +85,7 @@ class DropboxSyncViewModel(
         }
     }
 
-    fun unlinkDropbox() {
 
-    }
 
     fun backup() {
         viewModelScope.launch {

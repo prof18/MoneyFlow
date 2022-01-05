@@ -16,7 +16,7 @@ class DropboxSourceImpl(
     override fun getClient(clientIdentifier: String, credentials: DropboxCredentials): DropboxClient? =
         dropboxApi.getClient(clientIdentifier, credentials)
 
-    override fun revokeAccess() = dropboxApi.revokeAccess()
+    override fun revokeAccess(client: DropboxClient) = dropboxApi.revokeAccess(client)
 
     override fun getCredentials(): DropboxCredentials? = dropboxApi.getCredentials()
 

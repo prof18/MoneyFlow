@@ -18,6 +18,9 @@ class DropboxSyncUseCase(
     fun startAuthFlow(authorizationParam: DropboxAuthorizationParam) =
         dropboxSyncRepository.startDropboxAuthorization(authorizationParam)
 
-    fun saveDropboxAuth(): MoneyFlowResult<Unit> = dropboxSyncRepository.saveDropboxAuthorization()
+    suspend fun saveDropboxAuth(): MoneyFlowResult<Unit> = dropboxSyncRepository.saveDropboxAuthorization()
 
+    suspend fun unlinkDropbox() = dropboxSyncRepository.unlinkDropboxClient()
+
+    suspend fun restoreDropboxClient(): MoneyFlowResult<Unit> = dropboxSyncRepository.restoreDropboxClient()
 }

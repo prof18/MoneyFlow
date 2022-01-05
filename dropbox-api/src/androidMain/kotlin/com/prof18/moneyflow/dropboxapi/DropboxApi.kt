@@ -1,5 +1,8 @@
 package com.prof18.moneyflow.dropboxapi
 
+import co.touchlab.kermit.Logger
+import com.dropbox.core.DbxApiException
+import com.dropbox.core.DbxException
 import com.dropbox.core.DbxRequestConfig
 import com.dropbox.core.android.Auth
 import com.dropbox.core.oauth.DbxCredential
@@ -29,8 +32,14 @@ actual class DropboxApi {
         return DbxClientV2(requestConfig, credentials)
     }
 
-    actual fun revokeAccess() {
-        // TODO: implement revoke time
+    actual fun revokeAccess(client: DropboxClient) {
+        try {
+            client.auth().tokenRevoke()
+        } catch (e: DbxException) {
+            val message = "Error during revoking dropbox access"
+            Logger.e { message }
+            throw DropboxException(e.message ?: message)
+        }
     }
 
     actual fun getCredentials(): DropboxCredentials? {

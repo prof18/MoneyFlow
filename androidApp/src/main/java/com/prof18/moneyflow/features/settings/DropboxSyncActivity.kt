@@ -53,8 +53,7 @@ class DropboxSyncActivity : ComponentActivity() {
                         //                        viewModel.backup()
                     },
                     unlinkDropbox = {
-                        // TODO: implement unlinck
-//                        viewModel.unlinkDropbox()
+                        viewModel.unlinkDropbox()
                     },
                     dropboxSyncAction = viewModel.dropboxSyncAction,
                     resetAction = { viewModel.resetAction() },

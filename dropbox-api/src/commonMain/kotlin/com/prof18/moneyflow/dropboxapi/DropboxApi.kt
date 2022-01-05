@@ -5,7 +5,10 @@ expect class DropboxApi() {
     fun startAuthorization(authParam: DropboxAuthorizationParam)
     fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam)
     fun getClient(clientIdentifier: String, credentials: DropboxCredentials): DropboxClient?
-    fun revokeAccess()
+    /**
+     * Can throw a [DropboxException]
+     */
+    fun revokeAccess(client: DropboxClient)
     fun getCredentials(): DropboxCredentials?
 
     /**

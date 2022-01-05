@@ -71,7 +71,7 @@ actual class DropboxApi {
         return DBClientsManager.authorizedClient()
     }
 
-    actual fun revokeAccess() {
+    actual fun revokeAccess(client: DropboxClient) {
         DBClientsManager.unlinkAndResetClients()
     }
 

@@ -12,7 +12,7 @@ interface DropboxSyncRepository {
     val lastDropboxSync: StateFlow<Long?>
     fun setupDropboxApp(setupParam: DropboxSetupParam)
     fun startDropboxAuthorization(authorizationParam: DropboxAuthorizationParam)
-    fun saveDropboxAuthorization(): MoneyFlowResult<Unit>
-    fun restoreDropboxClient(): MoneyFlowResult<Unit>
-    fun unlinkDropboxClient()
+    suspend fun saveDropboxAuthorization(): MoneyFlowResult<Unit>
+    suspend fun restoreDropboxClient(): MoneyFlowResult<Unit>
+    suspend fun unlinkDropboxClient()
 }

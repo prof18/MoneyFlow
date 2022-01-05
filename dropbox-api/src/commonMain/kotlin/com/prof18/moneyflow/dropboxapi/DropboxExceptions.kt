@@ -7,3 +7,7 @@ data class DropboxUploadException(
 data class DropboxDownloadException(
     val errorMessage: String
 ) : Exception(errorMessage)
+
+data class DropboxException(
+    val errorMessage: String
+): Exception(errorMessage)
