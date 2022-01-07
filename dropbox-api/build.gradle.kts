@@ -25,11 +25,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(Deps.kermit)
-                implementation(Deps.Coroutines.common) {
-                    version {
-                        strictly(Versions.coroutinesMt)
-                    }
-                }
+                implementation(Deps.Coroutines.core)
             }
         }
         val commonTest by getting {

@@ -15,6 +15,11 @@ android {
         targetSdk = Config.Android.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -34,7 +39,16 @@ android {
 
 kotlin {
     android()
-    ios()
+    ios() {
+        binaries {
+            getTest("DEBUG").apply {
+                val frameworkPath = "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
+                linkerOpts("-F$frameworkPath")
+                linkerOpts("-rpath", frameworkPath)
+                linkerOpts("-framework", "ObjectiveDropboxOfficial")
+            }
+        }
+    }
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -66,11 +80,7 @@ kotlin {
                 api(project(":dropbox-api"))
                 implementation(Deps.SqlDelight.runtime)
                 implementation(Deps.SqlDelight.coroutineExtensions)
-                implementation(Deps.Coroutines.common) {
-                    version {
-                        strictly(Versions.coroutinesMt)
-                    }
-                }
+                implementation(Deps.Coroutines.core)
                 implementation(Deps.stately)
                 implementation(Deps.Koin.core)
                 implementation(Deps.kotlinDateTime)
@@ -83,6 +93,7 @@ kotlin {
                 implementation(kotlin(Deps.KotlinTest.common))
                 implementation(kotlin(Deps.KotlinTest.annotations))
                 implementation(Deps.Koin.test)
+                implementation(Deps.Coroutines.test)
                 implementation(Deps.turbine)
                 implementation(Deps.multiplatformSettingsTest)
 
@@ -113,9 +124,9 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(Deps.SqlDelight.driverIos)
-                implementation(Deps.Coroutines.common) {
+                implementation(Deps.Coroutines.core) {
                     version {
-                        strictly(Versions.coroutinesMt)
+                        strictly(Versions.coroutines)
                     }
                 }
             }

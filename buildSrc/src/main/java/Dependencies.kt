@@ -1,11 +1,11 @@
 object Versions {
-    const val kotlin = "1.6.0"
+    const val kotlin = "1.6.10"
     const val agp = "7.0.4"
     const val koin = "3.1.4"
     const val coreKTX = "1.7.0-rc01"
     const val compose = "1.1.0-rc01"
+    const val composeCompiler = "1.1.0-rc02"
     const val junit = "4.12"
-    const val coroutinesMt = "1.6.0-native-mt"
     const val coroutines = "1.6.0"
     const val sqlDelight = "1.5.3"
     const val stately = "1.2.0"
@@ -86,9 +86,9 @@ object Deps {
     }
 
     object Coroutines {
-        const val common = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesMt}"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val android =
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesMt}"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 

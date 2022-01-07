@@ -7,7 +7,6 @@ import com.squareup.sqldelight.drivers.native.wrapConnection
 import co.touchlab.sqliter.DatabaseConfiguration
 import com.prof18.moneyflow.data.db.Schema
 
-
 actual fun createDriver() {
     val driver = NativeSqliteDriver(
         DatabaseConfiguration(

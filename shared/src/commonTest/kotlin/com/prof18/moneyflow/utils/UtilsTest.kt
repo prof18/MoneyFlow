@@ -5,7 +5,6 @@ import kotlin.test.assertEquals
 
 class UtilsTest {
 
-
     @Test
     fun generateCurrentMonthIdWorksCorrectly() {
 
