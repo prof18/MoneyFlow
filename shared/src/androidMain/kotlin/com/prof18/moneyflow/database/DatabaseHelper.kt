@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.database
 
+import com.prof18.moneyflow.data.db.DATABASE_NAME
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
@@ -11,7 +12,6 @@ object DatabaseHelper {
 
     private var driverRef: SqlDriver? = null
     private var dbRef: MoneyFlowDB? = null
-    const val DATABASE_NAME = "MoneyFlowDB"
 
     fun setupDatabase(driver: SqlDriver? = null ) {
         val driverRef = driver ?: AndroidSqliteDriver(

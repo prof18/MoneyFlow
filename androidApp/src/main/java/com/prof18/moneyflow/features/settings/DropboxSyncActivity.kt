@@ -20,8 +20,10 @@ import com.prof18.moneyflow.R
 import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import com.prof18.moneyflow.utils.DropboxConstants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DropboxSyncActivity : ComponentActivity() {
@@ -44,13 +46,14 @@ class DropboxSyncActivity : ComponentActivity() {
                         val authParam = DropboxAuthorizationParam(
                             activity = this@DropboxSyncActivity,
                             apiKey = BuildConfig.DROPBOX_APP_KEY,
+                            clientIdentifier = DropboxConstants.DROPBOX_CLIENT_IDENTIFIER,
+                            scopes = DropboxConstants.DROPBOX_SCOPES,
                         )
                         viewModel.startAuthFlow(authParam)
                         isAuthOngoing = true
                     },
                     backupOnDropbox = {
-                        // TODO: implement backup
-                        //                        viewModel.backup()
+                        viewModel.backup()
                     },
                     unlinkDropbox = {
                         viewModel.unlinkDropbox()
@@ -214,7 +217,6 @@ fun DropboxLoginContentLightConnectedPreview() {
         }
     }
 }
-
 
 @Preview
 @Composable

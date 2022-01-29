@@ -1,6 +1,6 @@
 object Versions {
     const val kotlin = "1.6.10"
-    const val agp = "7.0.4"
+    const val agp = "7.1.0"
     const val koin = "3.1.4"
     const val coreKTX = "1.7.0-rc01"
     const val compose = "1.1.0-rc01"

@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.domain.repository
 
+import com.prof18.moneyflow.domain.entities.DatabaseData
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
@@ -15,4 +16,5 @@ interface DropboxSyncRepository {
     suspend fun saveDropboxAuthorization(): MoneyFlowResult<Unit>
     suspend fun restoreDropboxClient(): MoneyFlowResult<Unit>
     suspend fun unlinkDropboxClient()
+    suspend fun upload(databaseData: DatabaseData): MoneyFlowResult<Unit>
 }

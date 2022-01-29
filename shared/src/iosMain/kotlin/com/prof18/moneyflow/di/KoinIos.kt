@@ -4,6 +4,8 @@ import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.DatabaseSourceImpl
+import com.prof18.moneyflow.database.DBImportExport
+import com.prof18.moneyflow.database.DBImportExportImpl
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.AddTransactionUseCaseIos
@@ -27,6 +29,7 @@ fun initKoinIos(): KoinApplication = initKoin()
 
 actual val platformModule = module {
     single<Settings> { KeychainSettings(service = "MoneyFlow") }
+    factory<DBImportExport> { DBImportExportImpl() }
 
     scope(named(MONEY_FLOW_SCOPE_NAME)) {
         scoped {

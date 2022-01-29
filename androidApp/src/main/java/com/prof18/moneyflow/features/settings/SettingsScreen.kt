@@ -2,6 +2,7 @@ package com.prof18.moneyflow.features.settings
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -195,19 +196,10 @@ private fun isBiometricSupported(context: Context): Boolean {
     }
 }
 
-private fun hasToSetupBiometric(context: Context): Boolean {
-    val biometricManager = BiometricManager.from(context)
-    return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
-        BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> true
-        else -> {
-            false
-        }
-    }
-}
-
-@Preview
+@Preview(name= "Settings Dark")
+@Preview(name= "Settings Night",uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun SettingsScreenLightPreview() {
+private fun SettingsScreenPreview() {
     MoneyFlowTheme {
         Surface {
             SettingsScreenContent(
@@ -220,6 +212,16 @@ private fun SettingsScreenLightPreview() {
                 hideSensitiveDataState = true,
                 onHideSensitiveDataEnabled = {},
             )
+        }
+    }
+}
+
+private fun hasToSetupBiometric(context: Context): Boolean {
+    val biometricManager = BiometricManager.from(context)
+    return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
+        BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> true
+        else -> {
+            false
         }
     }
 }
@@ -243,21 +245,3 @@ private fun SettingsScreenLightNoBiometricPreview() {
     }
 }
 
-@Preview
-@Composable
-private fun SettingsScreenDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            SettingsScreenContent(
-                onImportDatabaseClick = {},
-                onExportDatabaseClick = {},
-                openDropboxSetup = {},
-                isBiometricSupported = true,
-                biometricState = true,
-                onBiometricEnabled = {},
-                hideSensitiveDataState = false,
-                onHideSensitiveDataEnabled = {},
-            )
-        }
-    }
-}

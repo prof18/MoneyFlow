@@ -5,12 +5,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
-import com.prof18.moneyflow.utils.DatabaseImportExport
 import kotlinx.coroutines.flow.StateFlow
 
 class SettingsViewModel(
-    private val databaseImportExport: DatabaseImportExport,
+    private val databaseImportExport: DBImportExport,
     private val settingsUseCase: SettingsUseCase
 ) : ViewModel() {
 
@@ -24,11 +24,13 @@ class SettingsViewModel(
     }
 
     fun performBackup(uri: Uri) {
-        databaseImportExport.exportToMemory(uri)
+        // TODO: handle error message
+        databaseImportExport.exportDatabaseToFileSystem(uri)
     }
 
     fun performRestore(uri: Uri) {
-        databaseImportExport.importFromMemory(uri)
+        // TODO: handle error message
+        databaseImportExport.importDatabaseFromFileSystem(uri)
     }
 
     fun updateBiometricState(enabled: Boolean) {

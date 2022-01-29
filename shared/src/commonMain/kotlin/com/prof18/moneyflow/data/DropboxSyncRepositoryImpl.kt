@@ -3,14 +3,17 @@ package com.prof18.moneyflow.data
 import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.data.dropbox.DropboxSource
 import com.prof18.moneyflow.data.settings.SettingsSource
-import com.prof18.moneyflow.domain.entities.DropboxAuthFailedException
+import com.prof18.moneyflow.domain.entities.DropboxAuthFailedExceptions
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.dropboxapi.*
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
+import com.prof18.moneyflow.domain.entities.DatabaseData
+import com.prof18.moneyflow.domain.mapper.toDropboxUploadParams
 import com.prof18.moneyflow.utils.DispatcherProvider
+import com.prof18.moneyflow.utils.DropboxConstants
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
@@ -19,7 +22,7 @@ class DropboxSyncRepositoryImpl(
     private val dropboxSource: DropboxSource,
     private val settingsSource: SettingsSource,
     private val dispatcherProvider: DispatcherProvider,
-    private val errorMapper: MoneyFlowErrorMapper
+    private val errorMapper: MoneyFlowErrorMapper,
 ) : DropboxSyncRepository {
 
     private val _dropboxConnectionStatus = MutableStateFlow(DropboxClientStatus.NOT_LINKED)
@@ -42,7 +45,7 @@ class DropboxSyncRepositoryImpl(
         dropboxSource.startAuthorization(authorizationParam)
     }
 
-    // TODo: move in the constructor, if necessary
+    // TODO: move in the constructor, if necessary
     override suspend fun restoreDropboxClient(): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
         if (dropboxClient != null) {
             // Avoid setting up again
@@ -76,7 +79,6 @@ class DropboxSyncRepositoryImpl(
         return@withContext MoneyFlowResult.Success(Unit)
     }
 
-
     override suspend fun unlinkDropboxClient() = withContext(dispatcherProvider.default()) {
         dropboxClient?.let {
             try {
@@ -92,39 +94,32 @@ class DropboxSyncRepositoryImpl(
         _lastDropboxSync.value = null
     }
 
-    suspend fun upload(): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
+    override suspend fun upload(
+        databaseData: DatabaseData,
+    ): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
 
-        // TODO: implement. Maybe use a common class to get the database class
-
-        /*
-         val databaseFile = databaseImportExport.generateDatabaseFile()
-        if (databaseFile != null) {
-            try {
-                val metadata = dbxClientV2?.files()
-                    ?.uploadBuilder("/MoneyFlow.db")
-                    ?.withMode(WriteMode.OVERWRITE)
-                    ?.uploadAndFinish(FileInputStream(databaseFile))
-
-//                val rev = metadata?.rev
-                metadata?.serverModified?.time?.let { lastRefresh ->
-                    Timber.d("Last refresh new: $lastRefresh")
-                    // TODO: improve and set a flow to show the update
-                    dropboxSyncUserCase.saveLastRefresh(lastRefresh)
+        if (dropboxClient == null) {
+            // TODO: return a custom error to the caller!
+            TODO()
+//            return@withContext MoneyFlowResult.Error()
+        }
+        try {
+            // TODO: return and map the result in some way
+            val result = dropboxSource.performUpload(databaseData.toDropboxUploadParams(dropboxClient!!))
+            /*result.serverModified?.time?.let { lastRefresh ->
+                Timber.d("Last refresh new: $lastRefresh")
+                dropboxSyncUserCase.saveLastRefresh(lastRefresh)
 //                    dropboxSyncUserCase.updateLastRefreshSuspendable(lastRefresh)
-                }
-
-                Timber.d("Upload Done")
-                continuation.resume(Unit)
-
-            } catch (e: DbxException) {
-                Timber.e("Unable to upload backup on dropbox")
-                e.printStackTrace()
-                continuation.resumeWithException(e)
-            }
+            }*/
+        } catch (e: DropboxUploadException) {
+            Logger.e("Error", e)
+            TODO()
+            // Return a custom error to the caller!
+//            return@withContext MoneyFlowResult.Error()
         }
 
-        Timber.d("file null?: ${if (databaseFile == null) "yes" else "no"}")
-         */
+
+
 
         return@withContext MoneyFlowResult.Success(Unit)
     }
@@ -135,7 +130,7 @@ class DropboxSyncRepositoryImpl(
 
     private fun setClient(credentials: DropboxCredentials) {
         dropboxClient = dropboxSource.getClient(
-            clientIdentifier = DROPBOX_CLIENT_IDENTIFIER,
+            clientIdentifier = DropboxConstants.DROPBOX_CLIENT_IDENTIFIER,
             credentials = credentials
         )
         if (dropboxClient != null) {
@@ -145,12 +140,11 @@ class DropboxSyncRepositoryImpl(
     }
 
     private fun generateDropboxAuthErrorResult(): MoneyFlowResult.Error {
-        val error = MoneyFlowError.DropboxAuth(DropboxAuthFailedException())
+        val error = MoneyFlowError.DropboxAuth(DropboxAuthFailedExceptions())
         return MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
     }
 
     companion object {
-        private const val DROPBOX_CLIENT_IDENTIFIER = "moneyflowapp"
 
         // TODO: enable it when necessary!
 //        private const val UPLOAD_FILE_SIZE_LIMIT: Long = 150 // MB

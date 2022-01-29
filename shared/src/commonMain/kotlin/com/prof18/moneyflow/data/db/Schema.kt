@@ -9,6 +9,10 @@ import com.squareup.sqldelight.db.SqlDriver
 import com.prof18.moneyflow.data.db.default.defaultCategories
 import com.prof18.moneyflow.data.db.model.Currency
 
+const val DB_FILE_NAME_WITH_EXTENSION = "MoneyFlow.db"
+const val DB_FILE_NAME = "MoneyFlow"
+const val DATABASE_NAME = "MoneyFlowDB"
+
 fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
     return MoneyFlowDB(
         driver,
@@ -28,7 +32,6 @@ object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
     override fun create(driver: SqlDriver) {
         MoneyFlowDB.Schema.create(driver)
 
-        // Seed com.prof18.moneyflow.data time!
         createQueryWrapper(driver).apply {
 
             accountTableQueries.insertAccount(
@@ -48,4 +51,3 @@ object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
 
     }
 }
-//expect fun getSQLDriver(): SqlDriver

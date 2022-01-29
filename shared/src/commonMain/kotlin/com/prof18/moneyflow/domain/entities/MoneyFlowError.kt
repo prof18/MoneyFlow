@@ -7,4 +7,6 @@ sealed class MoneyFlowError(val code: Int, val throwable: Throwable) {
     class GetAllTransaction(throwable: Throwable) : MoneyFlowError(103, throwable)
     class GetCategories(throwable: Throwable) : MoneyFlowError(104, throwable)
     class DropboxAuth(throwable: Throwable): MoneyFlowError(105, throwable)
+    class DatabaseExport(throwable: Throwable): MoneyFlowError(106, throwable)
+    class DatabaseImport(throwable: Throwable): MoneyFlowError(107, throwable)
 }

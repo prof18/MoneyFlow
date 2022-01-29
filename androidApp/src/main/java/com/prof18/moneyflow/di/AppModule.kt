@@ -7,19 +7,16 @@ import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.DropboxSyncViewModel
 import com.prof18.moneyflow.features.settings.SettingsViewModel
-import com.prof18.moneyflow.utils.DatabaseImportExport
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    single { DatabaseImportExport(get()) }
-
     // View Models
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get())}
     viewModel { AddTransactionViewModel(get(), get()) }
     viewModel { CategoriesViewModel(get()) }
     viewModel { SettingsViewModel(get(), get()) }
-    viewModel { DropboxSyncViewModel(get()) }
+    viewModel { DropboxSyncViewModel(get(), get()) }
     viewModel { AllTransactionsViewModel(get(), get()) }
 }

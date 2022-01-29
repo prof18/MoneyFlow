@@ -10,7 +10,7 @@ actual class DropboxSetupParam(
 
 actual class DropboxAuthorizationParam(
     val viewController: UIViewController,
-    val scopes: List<String>
+    val scopes: List<String>,
 )
 
 actual class DropboxHandleOAuthRequestParam(
