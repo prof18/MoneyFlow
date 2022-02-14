@@ -13,10 +13,17 @@ import org.koin.dsl.module
 val appModule = module {
     // View Models
     viewModel { MainViewModel(get()) }
-    viewModel { HomeViewModel(get())}
+    viewModel { HomeViewModel(get()) }
     viewModel { AddTransactionViewModel(get(), get()) }
     viewModel { CategoriesViewModel(get()) }
     viewModel { SettingsViewModel(get(), get()) }
-    viewModel { DropboxSyncViewModel(get(), get()) }
+    viewModel {
+        DropboxSyncViewModel(
+            dropboxSyncUseCase = get(),
+            databaseImportExport = get(),
+            errorMapper = get(),
+            localizedStringProvider = get(),
+        )
+    }
     viewModel { AllTransactionsViewModel(get(), get()) }
 }

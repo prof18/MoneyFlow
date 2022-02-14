@@ -52,7 +52,7 @@ private val coreModule = module {
     // Repository
     single<SettingsRepository> { SettingsRepositoryImpl(get()) }
     single<MoneyRepository> { MoneyRepositoryImpl(get()) }
-    single<DropboxSyncRepository> { DropboxSyncRepositoryImpl(get(), get(), get(), get()) }
+    single<DropboxSyncRepository> { DropboxSyncRepositoryImpl(get(), get(), get(), get(), get()) }
 
     // Use Cases
     factory { MainUseCase(get()) }
@@ -61,7 +61,13 @@ private val coreModule = module {
     factory { SettingsUseCase(get()) }
     factory { AllTransactionsUseCase(get()) }
     factory { CategoriesUseCase(get(), get()) }
-    factory { DropboxSyncUseCase(get()) }
+    factory {
+        DropboxSyncUseCase(
+            dropboxSyncRepository = get(),
+            errorMapper = get(),
+            localizedStringProvider = get(),
+        )
+    }
 }
 
 expect val platformModule: Module

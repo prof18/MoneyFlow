@@ -178,7 +178,7 @@ class MoneyRepositoryImpl(
         )
             .map { transaction ->
 
-                // TODO: return a different think, to create date headers
+                // TODO: return a different thing, to create date headers
 
                 val transactionTypeUI = when (transaction.type) {
                     TransactionType.INCOME -> TransactionTypeUI.INCOME

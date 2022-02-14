@@ -20,6 +20,12 @@ fun MillisSinceEpoch.formatDateDayMonthYear(): String {
     return "${dateTime.dayOfMonth}/${dateTime.monthNumber}/${dateTime.year}"
 }
 
+fun MillisSinceEpoch.formatFullDate(): String {
+    val instant = Instant.fromEpochMilliseconds(this)
+    val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
+    return "${dateTime.dayOfMonth}/${dateTime.monthNumber}/${dateTime.year} - ${dateTime.hour}:${dateTime.minute}:${dateTime.second}"
+}
+
 fun Long.formatDateAllData(): String {
     val instant = Instant.fromEpochMilliseconds(this)
     val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())

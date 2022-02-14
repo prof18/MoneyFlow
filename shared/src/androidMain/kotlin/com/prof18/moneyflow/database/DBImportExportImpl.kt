@@ -37,13 +37,13 @@ class DBImportExportImpl(
                 // Close the streams
                 output.flush()
                 fis.close()
-                Logger.d { "Backup Completed" }
+                Logger.d { "Database file generated successfully" }
 
                 return context.getFileStreamPath(DB_FILE_NAME_WITH_EXTENSION)
             }
             return null
         } catch (e: Exception) {
-            Logger.e { "Error during the database export: $e" }
+            Logger.e { "Error during the generation of the database file: $e" }
             return null
         }
     }
@@ -74,10 +74,9 @@ class DBImportExportImpl(
                 output.flush()
                 output.close()
                 fis.close()
-                Logger.d { "Backup Completed" }
+                Logger.d { "Database file exported correctly" }
                 return MoneyFlowResult.Success(Unit)
             }
-            // TODO: check if this is triggered before the use
             val error = MoneyFlowError.DatabaseExport(DatabaseExportException())
             Logger.e { "Failure on opening the output stream" }
             return MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
@@ -106,10 +105,9 @@ class DBImportExportImpl(
                 output.flush()
                 output.close()
                 fis.close()
-                Logger.d { "Database import completed" }
+                Logger.d { "Database file imported completed" }
                 return MoneyFlowResult.Success(Unit)
             }
-            // TODO: check if this is called before the call to use
             val error = MoneyFlowError.DatabaseImport(DatabaseImportException())
             Logger.e { "Failure on opening the output stream" }
             return MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))

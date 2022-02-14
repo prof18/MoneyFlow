@@ -7,7 +7,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -18,9 +24,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.BuildConfig
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
-import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction.ShowError
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncTimestampModel
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncTimestampModel.Error
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncTimestampModel.Loading
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncTimestampModel.Success
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.utils.DropboxConstants
@@ -36,11 +45,11 @@ class DropboxSyncActivity : ComponentActivity() {
         setContent {
             MoneyFlowTheme {
 
-                val lastRefresh by viewModel.lastRefresh.collectAsState()
+                val dropboxSyncModel by viewModel.dropboxSyncTimestampState.collectAsState()
                 val isConnected by viewModel.isDropboxConnected.collectAsState()
 
                 DropboxLoginContent(
-                    lastRefreshTimestamp = lastRefresh,
+                    dropboxSyncTimestampModel = dropboxSyncModel,
                     isConnected = isConnected,
                     connectDropbox = {
                         val authParam = DropboxAuthorizationParam(
@@ -76,7 +85,7 @@ class DropboxSyncActivity : ComponentActivity() {
 
 @Composable
 private fun DropboxLoginContent(
-    lastRefreshTimestamp: String?,
+    dropboxSyncTimestampModel: DropboxSyncTimestampModel,
     isConnected: Boolean,
     connectDropbox: () -> Unit,
     backupOnDropbox: () -> Unit,
@@ -88,11 +97,18 @@ private fun DropboxLoginContent(
     val scaffoldState = rememberScaffoldState()
     dropboxSyncAction?.let {
         when (it) {
-            is DropboxSyncAction.ShowError -> {
+            is ShowError -> {
                 LaunchedEffect(scaffoldState.snackbarHostState) {
                     val uiErrorMessage = it.uiErrorMessage
                     val message = "${uiErrorMessage.message}\n${uiErrorMessage.nerdMessage}"
                     scaffoldState.snackbarHostState.showSnackbar(message)
+                    resetAction()
+                }
+            }
+            is DropboxSyncAction.Loading -> TODO()
+            is DropboxSyncAction.Success -> {
+                LaunchedEffect(scaffoldState.snackbarHostState) {
+                    scaffoldState.snackbarHostState.showSnackbar(it.message)
                     resetAction()
                 }
             }
@@ -112,15 +128,7 @@ private fun DropboxLoginContent(
                     style = MaterialTheme.typography.h4,
                 )
 
-                Text(
-                    if (lastRefreshTimestamp != null) {
-                        "${stringResource(id = R.string.dropbox_last_refresh)} $lastRefreshTimestamp"
-                    } else {
-                        stringResource(id = R.string.dropbox_not_sync_yet)
-                    },
-                    style = MaterialTheme.typography.body2,
-                    modifier = Modifier.padding(top = AppMargins.small)
-                )
+                DropboxSyncTimestampsUI(dropboxSyncTimestampModel)
             }
         },
         content = {
@@ -182,13 +190,48 @@ private fun DropboxLoginContent(
     )
 }
 
+@Composable
+private fun DropboxSyncTimestampsUI(
+    timestampModel: DropboxSyncTimestampModel,
+) {
+    when (timestampModel) {
+        is Success -> {
+            Column {
+                Text(
+                    timestampModel.latestUploadFormattedDate,
+                    style = MaterialTheme.typography.body2,
+                    modifier = Modifier.padding(top = AppMargins.small)
+                )
+
+                Text(
+                    timestampModel.latestDownloadFormattedDate,
+                    style = MaterialTheme.typography.body2,
+                    modifier = Modifier.padding(top = AppMargins.small)
+                )
+            }
+        }
+        is Error -> {
+            Text(
+                timestampModel.errorMessage.message,
+                style = MaterialTheme.typography.body2,
+                modifier = Modifier.padding(top = AppMargins.small)
+            )
+        }
+        Loading -> CircularProgressIndicator()
+    }
+}
+
 @Preview
 @Composable
 fun DropboxLoginContentLightNotConnectedPreview() {
     MoneyFlowTheme {
         Surface {
             DropboxLoginContent(
-                lastRefreshTimestamp = null,
+                dropboxSyncTimestampModel = DropboxSyncTimestampModel.Success(
+                    latestUploadFormattedDate = "Data not uploaded yet",
+                    latestDownloadFormattedDate = "Data not downloaded yet"
+
+                ),
                 isConnected = false,
                 connectDropbox = { },
                 backupOnDropbox = { },
@@ -206,7 +249,11 @@ fun DropboxLoginContentLightConnectedPreview() {
     MoneyFlowTheme {
         Surface {
             DropboxLoginContent(
-                lastRefreshTimestamp = "12 July 2021",
+                dropboxSyncTimestampModel = DropboxSyncTimestampModel.Success(
+                    latestUploadFormattedDate = "12 July 2021 - 14:21:45",
+                    latestDownloadFormattedDate = "12 July 2021 - 14:21:45"
+
+                ),
                 isConnected = true,
                 connectDropbox = { },
                 backupOnDropbox = { },
@@ -224,7 +271,11 @@ fun DropboxLoginContentDarkNotConnectedPreview() {
     MoneyFlowTheme(darkTheme = true) {
         Surface {
             DropboxLoginContent(
-                lastRefreshTimestamp = null,
+                dropboxSyncTimestampModel = DropboxSyncTimestampModel.Success(
+                    latestUploadFormattedDate = "Data not uploaded yet",
+                    latestDownloadFormattedDate = "Data not downloaded yet"
+
+                ),
                 isConnected = false,
                 connectDropbox = { },
                 backupOnDropbox = { },
@@ -242,7 +293,11 @@ fun DropboxLoginContentDarkConnectedPreview() {
     MoneyFlowTheme(darkTheme = true) {
         Surface {
             DropboxLoginContent(
-                lastRefreshTimestamp = "12 July 2021",
+                dropboxSyncTimestampModel = DropboxSyncTimestampModel.Success(
+                    latestUploadFormattedDate = "12 July 2021 - 14:21:45",
+                    latestDownloadFormattedDate = "12 July 2021 - 14:21:45"
+
+                ),
                 isConnected = true,
                 connectDropbox = { },
                 backupOnDropbox = { },

@@ -6,11 +6,7 @@ interface SettingsRepository {
 
     fun getDropboxClientCred(): String?
 
-    fun getLastDropboxRefreshTime(): String?
-
     fun saveDropboxClientCred(clientCred: String)
-
-    fun saveLastDropboxRefreshTime(lastRefresh: Long)
 
     fun isBiometricEnabled(): Boolean
 

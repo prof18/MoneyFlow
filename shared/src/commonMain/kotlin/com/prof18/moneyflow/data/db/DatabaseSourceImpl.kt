@@ -2,7 +2,14 @@ package com.prof18.moneyflow.data.db
 
 import com.prof18.moneyflow.data.db.model.Currency
 import com.prof18.moneyflow.data.db.model.TransactionType
-import com.prof18.moneyflow.db.*
+import com.prof18.moneyflow.db.AccountTable
+import com.prof18.moneyflow.db.CategoryTable
+import com.prof18.moneyflow.db.DropboxMetadataTable
+import com.prof18.moneyflow.db.MoneyFlowDB
+import com.prof18.moneyflow.db.MonthlyRecapTable
+import com.prof18.moneyflow.db.SelectLatestTransactions
+import com.prof18.moneyflow.db.SelectTransactionsPaginated
+import com.prof18.moneyflow.db.TransactionTable
 import com.prof18.moneyflow.utils.CurrentMonthID
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 import com.prof18.moneyflow.utils.generateCurrentMonthId
@@ -18,7 +25,7 @@ import kotlinx.datetime.Clock
 
 class DatabaseSourceImpl(
     private val dbRef: MoneyFlowDB,
-    dispatcher: CoroutineDispatcher?
+    dispatcher: CoroutineDispatcher?,
 ) : DatabaseSource {
 
     private val backgroundDispatcher = dispatcher ?: Dispatchers.Main
@@ -37,7 +44,6 @@ class DatabaseSourceImpl(
             .mapToList()
             .flowOn(backgroundDispatcher)
 
-
     override fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable> {
         val current = Clock.System.now()
         val id = current.toEpochMilliseconds().generateCurrentMonthId()
@@ -54,7 +60,6 @@ class DatabaseSourceImpl(
             )
             .flowOn(backgroundDispatcher)
     }
-
 
     override fun selectCurrentAccount(): Flow<AccountTable> =
         dbRef.accountTableQueries
@@ -78,7 +83,7 @@ class DatabaseSourceImpl(
         transactionType: TransactionType,
         monthId: Long,
         monthlyIncomeAmount: Double,
-        monthlyOutcomeAmount: Double
+        monthlyOutcomeAmount: Double,
     ) {
         withContext(backgroundDispatcher) {
             dbRef.transaction {
@@ -119,7 +124,7 @@ class DatabaseSourceImpl(
         transactionAmountToUpdate: Double,
         monthId: Long,
         monthlyIncomeAmount: Double,
-        monthlyOutcomeAmount: Double
+        monthlyOutcomeAmount: Double,
     ) {
         withContext(backgroundDispatcher) {
             dbRef.transaction {
@@ -164,20 +169,37 @@ class DatabaseSourceImpl(
             return@withContext recap
         }
 
-
     override suspend fun getTransaction(transactionId: Long): TransactionTable? =
         withContext(backgroundDispatcher) {
             return@withContext dbRef.transactionTableQueries.selectTransaction(transactionId)
                 .executeAsOneOrNull()
         }
 
-
     override suspend fun getTransactionsPaginated(
         pageNum: Long,
-        pageSize: Long
+        pageSize: Long,
     ): List<SelectTransactionsPaginated> = withContext(backgroundDispatcher) {
         return@withContext dbRef.transactionTableQueries
             .selectTransactionsPaginated(pageSize = pageSize, pageNum = pageNum)
             .executeAsList()
+    }
+
+    override suspend fun insertLatestDropboxUploadTime(millis: Long) = withContext(backgroundDispatcher) {
+        dbRef.dropboxMetadataTableQueries.updateLastUploadTimestamp(millis)
+    }
+
+    override suspend fun insertLatestDropboxDownloadTime(millis: Long) = withContext(backgroundDispatcher) {
+        dbRef.dropboxMetadataTableQueries.updateLastDownloadTimestamp(millis)
+    }
+
+    override fun getDropboxMetadata(): Flow<DropboxMetadataTable> =
+        dbRef.dropboxMetadataTableQueries
+            .getMetadata()
+            .asFlow()
+            .mapToOneOrDefault(DropboxMetadataTable(1, null, null))
+            .flowOn(backgroundDispatcher)
+
+    override suspend fun resetDropboxMetadata() = withContext(backgroundDispatcher) {
+        dbRef.dropboxMetadataTableQueries.resetData()
     }
 }

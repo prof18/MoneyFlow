@@ -7,11 +7,11 @@ import com.dropbox.core.android.Auth
 import com.dropbox.core.oauth.DbxCredential
 import com.dropbox.core.v2.DbxClientV2
 import com.dropbox.core.v2.files.WriteMode
+import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.FileInputStream
 import java.util.Locale
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 actual class DropboxApi {
 
@@ -57,15 +57,28 @@ actual class DropboxApi {
     }
 
     actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =
-        suspendCoroutine { continuation ->
+        suspendCancellableCoroutine { continuation ->
             try {
                 val metadata = uploadParam.client.files()
                     ?.uploadBuilder(uploadParam.path)
                     ?.withMode(WriteMode.OVERWRITE)
                     ?.uploadAndFinish(FileInputStream(uploadParam.file))
 
-                if (metadata != null) {
-                    continuation.resume(metadata)
+                val id = metadata?.id
+                val editTime = metadata?.serverModified
+                val size = metadata?.size ?: 0
+                val hash = metadata?.contentHash
+                if (id != null && editTime != null) {
+                    val uploadResult = DropboxUploadResult(
+                        id = id,
+                        editDateMillis = editTime.time,
+                        sizeInByte = size,
+                        contentHash = hash
+                    )
+                    continuation.resume(uploadResult)
+                } else {
+                    Logger.e { "Metadata from Dropbox are null" }
+                    continuation.resumeWithException(IllegalArgumentException("Metadata from Dropbox are null"))
                 }
             } catch (e: Exception) {
                 Logger.e { "Error while uploading data on Dropbox" }

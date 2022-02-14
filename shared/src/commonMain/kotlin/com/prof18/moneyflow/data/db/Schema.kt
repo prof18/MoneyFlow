@@ -1,13 +1,13 @@
 package com.prof18.moneyflow.data.db
 
+import com.prof18.moneyflow.data.db.default.defaultCategories
+import com.prof18.moneyflow.data.db.model.Currency
 import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.prof18.moneyflow.db.TransactionTable
 import com.squareup.sqldelight.EnumColumnAdapter
 import com.squareup.sqldelight.db.SqlDriver
-import com.prof18.moneyflow.data.db.default.defaultCategories
-import com.prof18.moneyflow.data.db.model.Currency
 
 const val DB_FILE_NAME_WITH_EXTENSION = "MoneyFlow.db"
 const val DB_FILE_NAME = "MoneyFlow"
@@ -47,7 +47,8 @@ object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
                     iconName = category.iconName
                 )
             }
-        }
 
+            dropboxMetadataTableQueries.insertEmptyData()
+        }
     }
 }

@@ -67,6 +67,7 @@ fun SettingsScreen(
         }
     createFileURI.value?.let { uri ->
         performBackup(uri)
+        // TODO: move this toast from here?
         Toast.makeText(context, stringResource(R.string.db_export_completed), Toast.LENGTH_SHORT)
             .show()
     }
@@ -77,6 +78,7 @@ fun SettingsScreen(
     }
     openFileURI.value?.let { uri ->
         performRestore(uri)
+        // TODO: move this toast from here??
         Toast.makeText(context, stringResource(R.string.db_import_completed), Toast.LENGTH_SHORT)
             .show()
     }

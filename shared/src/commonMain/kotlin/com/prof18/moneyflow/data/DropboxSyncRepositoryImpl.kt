@@ -1,8 +1,10 @@
 package com.prof18.moneyflow.data
 
 import co.touchlab.kermit.Logger
+import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.dropbox.DropboxSource
 import com.prof18.moneyflow.data.settings.SettingsSource
+import com.prof18.moneyflow.db.DropboxMetadataTable
 import com.prof18.moneyflow.domain.entities.DropboxAuthFailedExceptions
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
@@ -11,29 +13,37 @@ import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.dropboxapi.*
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.domain.entities.DatabaseData
+import com.prof18.moneyflow.domain.entities.DropboxSyncTimestamp
 import com.prof18.moneyflow.domain.mapper.toDropboxUploadParams
 import com.prof18.moneyflow.utils.DispatcherProvider
 import com.prof18.moneyflow.utils.DropboxConstants
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import kotlinx.datetime.Clock
 
 class DropboxSyncRepositoryImpl(
     private val dropboxSource: DropboxSource,
     private val settingsSource: SettingsSource,
     private val dispatcherProvider: DispatcherProvider,
     private val errorMapper: MoneyFlowErrorMapper,
+    private val databaseSource: DatabaseSource,
 ) : DropboxSyncRepository {
 
     private val _dropboxConnectionStatus = MutableStateFlow(DropboxClientStatus.NOT_LINKED)
     override val dropboxConnectionStatus: StateFlow<DropboxClientStatus>
         get() = _dropboxConnectionStatus
 
-    private val _lastDropboxSync = MutableStateFlow<Long?>(null)
-    override val lastDropboxSync: StateFlow<Long?>
-        get() = _lastDropboxSync
+    private var dropboxMetadataFlow: Flow<DropboxMetadataTable> = emptyFlow()
 
     private var dropboxClient: DropboxClient? = null
+
+    init {
+        dropboxMetadataFlow = databaseSource.getDropboxMetadata()
+    }
 
     override fun setupDropboxApp(setupParam: DropboxSetupParam) {
         Logger.d { "Setting up dropbox app" }
@@ -88,10 +98,9 @@ class DropboxSyncRepositoryImpl(
             }
         }
         dropboxClient = null
-        settingsSource.deleteLastDropboxSync()
+        databaseSource.resetDropboxMetadata()
         settingsSource.deleteDropboxClientCred()
         _dropboxConnectionStatus.value = DropboxClientStatus.NOT_LINKED
-        _lastDropboxSync.value = null
     }
 
     override suspend fun upload(
@@ -99,9 +108,7 @@ class DropboxSyncRepositoryImpl(
     ): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
 
         if (dropboxClient == null) {
-            // TODO: return a custom error to the caller!
-            TODO()
-//            return@withContext MoneyFlowResult.Error()
+            generateDropboxAuthErrorResult()
         }
         try {
             // TODO: return and map the result in some way
@@ -111,21 +118,27 @@ class DropboxSyncRepositoryImpl(
                 dropboxSyncUserCase.saveLastRefresh(lastRefresh)
 //                    dropboxSyncUserCase.updateLastRefreshSuspendable(lastRefresh)
             }*/
+            databaseSource.insertLatestDropboxUploadTime(result.editDateMillis)
+            return@withContext MoneyFlowResult.Success(Unit)
         } catch (e: DropboxUploadException) {
-            Logger.e("Error", e)
-            TODO()
-            // Return a custom error to the caller!
-//            return@withContext MoneyFlowResult.Error()
+            Logger.e("Upload to dropbox failed", e)
+            val error = MoneyFlowError.DropboxUpload(e)
+            return@withContext MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
         }
 
-
-
-
-        return@withContext MoneyFlowResult.Success(Unit)
     }
 
     suspend fun download() = withContext(dispatcherProvider.default()) {
         // TODO: return something as soon understood android side
+    }
+
+    override fun getDropboxSyncTimestamps(): Flow<DropboxSyncTimestamp> {
+        return dropboxMetadataFlow.map {
+            DropboxSyncTimestamp(
+                lastUploadTimestamp = it.lastUploadTimestamp,
+                lastDownloadTimestamp = it.lastDownloadTimestamp
+            )
+        }
     }
 
     private fun setClient(credentials: DropboxCredentials) {
@@ -134,7 +147,6 @@ class DropboxSyncRepositoryImpl(
             credentials = credentials
         )
         if (dropboxClient != null) {
-            _lastDropboxSync.value = settingsSource.getDropboxLastSync()
             _dropboxConnectionStatus.value = DropboxClientStatus.LINKED
         }
     }

@@ -26,16 +26,8 @@ class SettingsRepositoryImpl(
         return settingsSource.getDropboxClientCred()
     }
 
-    override fun getLastDropboxRefreshTime(): String? {
-        return settingsSource.getDropboxLastSync()?.formatDateAllData()
-    }
-
     override fun saveDropboxClientCred(clientCred: String) {
         settingsSource.saveDropboxClientCred(clientCred)
-    }
-
-    override fun saveLastDropboxRefreshTime(lastRefresh: Long) {
-        settingsSource.saveDropboxLastSync(lastRefresh)
     }
 
     override fun isBiometricEnabled(): Boolean {

@@ -4,6 +4,7 @@ import cocoapods.ObjectiveDropboxOfficial.*
 import platform.Foundation.*
 import platform.UIKit.UIApplication
 import co.touchlab.kermit.Logger
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -86,14 +87,20 @@ actual class DropboxApi {
     }
 
     actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =
-        suspendCoroutine { continuation ->
+        suspendCancellableCoroutine { continuation ->
             uploadParam.client.filesRoutes.uploadData(
                 path = uploadParam.path,
                 inputData = uploadParam.data,
             ).setResponseBlock { result, routeError, networkError ->
                 if (result is DBFILESFileMetadata? && result != null) {
                     Logger.d { "Data successfully uploaded to Dropbox" }
-                    continuation.resume(result)
+                    val uploadResult = DropboxUploadResult(
+                        id = result.id_,
+                        editDateMillis = result.serverModified.timeIntervalSince1970().toLong() * 1000,
+                        sizeInByte = result.size.longValue,
+                        contentHash = result.contentHash
+                    )
+                    continuation.resume(uploadResult)
                 } else {
                     if (networkError != null) {
                         Logger.e { "Network error during dropbox upload: ${networkError.errorContent}" }

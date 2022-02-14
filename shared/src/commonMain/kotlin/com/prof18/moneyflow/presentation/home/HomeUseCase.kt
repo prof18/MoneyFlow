@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.presentation.home
 
-import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.MoneyRepository

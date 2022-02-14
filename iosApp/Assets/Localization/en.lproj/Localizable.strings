@@ -30,7 +30,7 @@
 "add" = "Add";
 "import_database" = "Import Database";
 "export_database" = "Export Database";
-"setup_dropbox" = "Setup Dropbox Sync";
+"setup_dropbox" = "Dropbox Sync";
 "db_import_completed" = "Database import completed";
 "db_export_completed" = "Database export completed";
 "dropbox_sync" = "Dropbox Sync";
@@ -60,3 +60,8 @@
 "close" = "Close";
 "amount_not_empty_error" = "The amount cannot be empty!";
 "error_dropbox_auth" = "Something unexpected happened during Dropbox login";
+"error_database_export" = "Something unexpected happened during the export of the database";
+"error_database_import" = "Something unexpected happened during the import of the database";
+"error_dropbox_upload" = "Something unexpected happened during the upload to Dropbox";
+"error_dropbox_download" = "Something unexpected happened during the download from Dropbox";
+"error_dropbox_metadata" = "Something unexpected happened while getting the latest Dropbox sync time";
