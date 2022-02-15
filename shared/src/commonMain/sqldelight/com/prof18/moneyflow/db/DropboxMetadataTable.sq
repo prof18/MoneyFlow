@@ -1,7 +1,9 @@
 CREATE TABLE DropboxMetadataTable (
     id INTEGER NOT NULL PRIMARY KEY,
     lastUploadTimestamp INTEGER,
-    lastDownloadTimestamp INTEGER
+    lastDownloadTimestamp INTEGER,
+    lastUploadHash TEXT,
+    lastDownloadHash TEXT
 );
 
 getMetadata:
@@ -9,8 +11,8 @@ SELECT * FROM DropboxMetadataTable
 WHERE id = 1;
 
 insertEmptyData:
-INSERT OR IGNORE INTO DropboxMetadataTable (id, lastUploadTimestamp, lastDownloadTimestamp)
-VALUES (1, NULL , NULL);
+INSERT OR IGNORE INTO DropboxMetadataTable (id, lastUploadTimestamp, lastDownloadTimestamp, lastUploadTimestamp, lastDownloadTimestamp)
+VALUES (1, NULL , NULL, NULL, NULL);
 
 delete:
 DELETE FROM DropboxMetadataTable;
@@ -25,7 +27,17 @@ UPDATE DropboxMetadataTable
 SET lastDownloadTimestamp = :lastDownloadTimestamp
 WHERE id = 1;
 
+updateLastUploadHash:
+UPDATE DropboxMetadataTable
+SET lastUploadHash = :lastUploadHash
+WHERE id = 1;
+
+updateLastDownloadHash:
+UPDATE DropboxMetadataTable
+SET lastDownloadHash = :lastDownloadHash
+WHERE id = 1;
+
 resetData:
 UPDATE DropboxMetadataTable
-SET lastUploadTimestamp = NULL, lastDownloadTimestamp = NULL
+SET lastUploadTimestamp = NULL, lastDownloadTimestamp = NULL, lastUploadTimestamp = NULL, lastDownloadTimestamp = NULL
 WHERE id = 1;

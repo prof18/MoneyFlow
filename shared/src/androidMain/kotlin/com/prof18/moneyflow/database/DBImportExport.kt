@@ -8,4 +8,5 @@ interface DBImportExport {
     fun generateDatabaseFile(): File?
     fun exportDatabaseToFileSystem(uri: Uri): MoneyFlowResult<Unit>
     fun importDatabaseFromFileSystem(uri: Uri): MoneyFlowResult<Unit>
+    fun databasePath(): String
 }

@@ -74,4 +74,8 @@
     <string name="database_file_not_found">I can\'t find the database file. That is weird!</string>
     <string name="dropbox_upload_success">Database successfully updated to Dropbox</string>
     <string name="dropbox_download_success">Database successfully downloaded from Dropbox</string>
+    <string name="dropbox_nerd_stats">Dropbox Sync Nerd Stats</string>
+    <string name="dropbox_latest_upload_content_hash">Last upload content hash: %s</string>
+    <string name="dropbox_latest_download_content_hash">Last download content hash: %s</string>
+    <string name="dropbox_sync_time">Dropbox Sync Time</string>
 </resources>

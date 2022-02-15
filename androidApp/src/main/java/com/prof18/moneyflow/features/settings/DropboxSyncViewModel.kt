@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.db.DB_FILE_NAME_WITH_EXTENSION
 import com.prof18.moneyflow.database.DBImportExport
-import com.prof18.moneyflow.domain.entities.DatabaseData
+import com.prof18.moneyflow.domain.entities.DatabaseDownloadData
+import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
@@ -15,7 +16,7 @@ import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncTimestampModel
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +26,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.io.FileOutputStream
 
 class DropboxSyncViewModel(
     private val dropboxSyncUseCase: DropboxSyncUseCase,
@@ -33,10 +35,11 @@ class DropboxSyncViewModel(
     private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
-    private val _dropboxSyncTimestampState =
-        MutableStateFlow<DropboxSyncTimestampModel>(DropboxSyncTimestampModel.Loading)
-    val dropboxSyncTimestampState: StateFlow<DropboxSyncTimestampModel>
-        get() = _dropboxSyncTimestampState
+    private val _dropboxSyncMetadataState = MutableStateFlow<DropboxSyncMetadataModel>(
+        DropboxSyncMetadataModel.Loading
+    )
+    val dropboxSyncMetadataState: StateFlow<DropboxSyncMetadataModel>
+        get() = _dropboxSyncMetadataState
 
     private val _isDropboxConnected = MutableStateFlow(false)
     val isDropboxConnected: StateFlow<Boolean>
@@ -57,14 +60,14 @@ class DropboxSyncViewModel(
             }
         }
         viewModelScope.launch {
-            dropboxSyncUseCase.observeDropboxSyncModel()
+            dropboxSyncUseCase.observeDropboxSyncMetadataModel()
                 .catch { throwable: Throwable ->
                     val error = MoneyFlowError.DropboxMetadata(throwable)
                     throwable.logError(error)
                     val errorMessage = errorMapper.getUIErrorMessage(error)
-                    _dropboxSyncTimestampState.value = DropboxSyncTimestampModel.Error(errorMessage)
+                    _dropboxSyncMetadataState.value = DropboxSyncMetadataModel.Error(errorMessage)
                 }
-                .collect { _dropboxSyncTimestampState.value = it }
+                .collect { _dropboxSyncMetadataState.value = it }
         }
     }
 
@@ -103,7 +106,7 @@ class DropboxSyncViewModel(
                 dropboxSyncAction = DropboxSyncAction.ShowError(errorMapper.getUIErrorMessage(error))
                 return@launch
             }
-            val databaseData = DatabaseData(
+            val databaseData = DatabaseUploadData(
                 path = "/$DB_FILE_NAME_WITH_EXTENSION",
                 file = databaseFile
             )
@@ -111,6 +114,23 @@ class DropboxSyncViewModel(
             dropboxSyncAction = when (result) {
                 is MoneyFlowResult.Error -> DropboxSyncAction.ShowError(result.uiErrorMessage)
                 is MoneyFlowResult.Success -> DropboxSyncAction.Success(localizedStringProvider.get("dropbox_upload_success"))
+            }
+        }
+    }
+
+    fun restore() {
+        viewModelScope.launch {
+            dropboxSyncAction = DropboxSyncAction.Loading
+
+            val databaseLocalPath = databaseImportExport.databasePath()
+            val databaseData = DatabaseDownloadData(
+                path = "/$DB_FILE_NAME_WITH_EXTENSION",
+                outputStream = FileOutputStream(databaseLocalPath)
+            )
+            val result = dropboxSyncUseCase.download(databaseData)
+            dropboxSyncAction = when (result) {
+                is MoneyFlowResult.Error -> DropboxSyncAction.ShowError(result.uiErrorMessage)
+                is MoneyFlowResult.Success -> DropboxSyncAction.Success(localizedStringProvider.get("dropbox_download_success"))
             }
         }
     }

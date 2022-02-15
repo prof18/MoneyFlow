@@ -7,6 +7,13 @@ data class DropboxUploadResult(
     val contentHash: String?,
 )
 
-expect class DropboxDownloadResult
+data class DropboxDownloadResult(
+    val id: String,
+    val sizeInByte: Long,
+    val contentHash: String?,
+    val destinationUrl: DatabaseDestinationUrl? = null
+)
+
+expect class DatabaseDestinationUrl
 
 expect class DropboxCredentials

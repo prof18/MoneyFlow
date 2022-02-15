@@ -1,8 +1,9 @@
 package com.prof18.moneyflow.presentation.dropboxsync
 
-import com.prof18.moneyflow.domain.entities.DatabaseData
+import com.prof18.moneyflow.domain.entities.DatabaseDownloadData
+import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
-import com.prof18.moneyflow.domain.entities.DropboxSyncTimestamp
+import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
@@ -15,7 +16,6 @@ import kotlinx.coroutines.flow.map
 
 class DropboxSyncUseCase(
     private val dropboxSyncRepository: DropboxSyncRepository,
-    private val errorMapper: MoneyFlowErrorMapper,
     private val localizedStringProvider: LocalizedStringProvider,
 ) {
 
@@ -30,33 +30,52 @@ class DropboxSyncUseCase(
 
     suspend fun restoreDropboxClient(): MoneyFlowResult<Unit> = dropboxSyncRepository.restoreDropboxClient()
 
-    suspend fun upload(databaseData: DatabaseData): MoneyFlowResult<Unit> =
-        dropboxSyncRepository.upload(databaseData)
+    suspend fun upload(databaseUploadData: DatabaseUploadData): MoneyFlowResult<Unit> =
+        dropboxSyncRepository.upload(databaseUploadData)
 
-    fun observeDropboxSyncModel(): Flow<DropboxSyncTimestampModel> =
-        dropboxSyncRepository.getDropboxSyncTimestamps()
+    suspend fun download(databaseDownloadData: DatabaseDownloadData): MoneyFlowResult<Unit> =
+        dropboxSyncRepository.download(databaseDownloadData)
+
+    fun observeDropboxSyncMetadataModel(): Flow<DropboxSyncMetadataModel> =
+        dropboxSyncRepository.getDropboxSyncMetadata()
             .map {
-                val uploadDate = getUploadDate(it)
-                val downloadDate = getDownloadDate(it)
-                DropboxSyncTimestampModel.Success(
-                    latestUploadFormattedDate = uploadDate,
-                    latestDownloadFormattedDate = downloadDate,
+                DropboxSyncMetadataModel.Success(
+                    latestUploadFormattedDate = getUploadDate(it),
+                    latestDownloadFormattedDate = getDownloadDate(it),
+                    latestUploadHash = getUploadHash(it),
+                    latestDownloadHash = getDownloadHash(it),
                 )
             }
 
     private fun getDownloadDate(
-        syncTimestamp: DropboxSyncTimestamp,
-    ): String = if (syncTimestamp.lastDownloadTimestamp != null) {
+        syncMetadata: DropboxSyncMetadata,
+    ): String = if (syncMetadata.lastDownloadTimestamp != null) {
         localizedStringProvider.get("dropbox_latest_download_date",
-            syncTimestamp.lastDownloadTimestamp.formatFullDate())
+            syncMetadata.lastDownloadTimestamp.formatFullDate())
     } else {
         localizedStringProvider.get("dropbox_no_download_date")
     }
 
     private fun getUploadDate(
-        syncTimestamp: DropboxSyncTimestamp,
-    ): String = if (syncTimestamp.lastUploadTimestamp != null) {
-        localizedStringProvider.get("dropbox_latest_upload_date", syncTimestamp.lastUploadTimestamp.formatFullDate())
+        syncMetadata: DropboxSyncMetadata,
+    ): String = if (syncMetadata.lastUploadTimestamp != null) {
+        localizedStringProvider.get("dropbox_latest_upload_date", syncMetadata.lastUploadTimestamp.formatFullDate())
+    } else {
+        localizedStringProvider.get("dropbox_no_upload_date")
+    }
+
+    private fun getDownloadHash(
+        syncMetadata: DropboxSyncMetadata,
+    ): String = if (syncMetadata.lastDownloadHash != null) {
+        localizedStringProvider.get("dropbox_latest_download_content_hash", syncMetadata.lastDownloadHash)
+    } else {
+        localizedStringProvider.get("dropbox_no_download_date")
+    }
+
+    private fun getUploadHash(
+        syncMetadata: DropboxSyncMetadata,
+    ): String = if (syncMetadata.lastUploadHash != null) {
+        localizedStringProvider.get("dropbox_latest_upload_content_hash", syncMetadata.lastUploadHash)
     } else {
         localizedStringProvider.get("dropbox_no_upload_date")
     }

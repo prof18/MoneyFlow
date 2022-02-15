@@ -36,4 +36,6 @@ interface DatabaseSource {
     suspend fun insertLatestDropboxDownloadTime(millis: Long)
     fun getDropboxMetadata(): Flow<DropboxMetadataTable>
     suspend fun resetDropboxMetadata()
+    suspend fun insertLatestDropboxUploadHash(hash: String?)
+    suspend fun insertLatestDropboxDownloadHash(hash: String?)
 }

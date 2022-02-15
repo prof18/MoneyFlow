@@ -64,7 +64,6 @@ private val coreModule = module {
     factory {
         DropboxSyncUseCase(
             dropboxSyncRepository = get(),
-            errorMapper = get(),
             localizedStringProvider = get(),
         )
     }

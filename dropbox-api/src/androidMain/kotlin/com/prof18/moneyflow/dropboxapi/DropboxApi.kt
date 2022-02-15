@@ -68,6 +68,8 @@ actual class DropboxApi {
                 val editTime = metadata?.serverModified
                 val size = metadata?.size ?: 0
                 val hash = metadata?.contentHash
+                Logger.d { "Dropbox content hash on upload is: $hash" }
+
                 if (id != null && editTime != null) {
                     val uploadResult = DropboxUploadResult(
                         id = id,
@@ -78,17 +80,40 @@ actual class DropboxApi {
                     continuation.resume(uploadResult)
                 } else {
                     Logger.e { "Metadata from Dropbox are null" }
-                    continuation.resumeWithException(IllegalArgumentException("Metadata from Dropbox are null"))
+                    continuation.resumeWithException(DropboxUploadException("Metadata from Dropbox are null"))
                 }
             } catch (e: Exception) {
-                Logger.e { "Error while uploading data on Dropbox" }
-                continuation.resumeWithException(e)
+                Logger.e(e) { "Error while uploading data on Dropbox" }
+                continuation.resumeWithException(DropboxUploadException(exceptionCause = e))
             }
         }
 
-    actual suspend fun performDownload(downloadParam: DropboxDownloadParam): DropboxDownloadResult {
-        TODO()
-    }
+    actual suspend fun performDownload(downloadParam: DropboxDownloadParam): DropboxDownloadResult =
+        suspendCancellableCoroutine { continuation ->
+            try {
+                val metadata = downloadParam.client.files()
+                    .downloadBuilder(downloadParam.path)
+                    .download(downloadParam.outputStream)
 
+                val id = metadata?.id
+                val contentHash = metadata?.contentHash
+                val sizeInBytes = metadata?.size ?: 0
+                Logger.d { "Dropbox content hash on download is: $contentHash" }
+                if (id != null) {
+                    val downloadResult = DropboxDownloadResult(
+                        id = id,
+                        sizeInByte = sizeInBytes,
+                        contentHash = contentHash,
+                    )
+                    continuation.resume(downloadResult)
+                } else {
+                    Logger.e { "Metadata from Dropbox are null" }
+                    continuation.resumeWithException(DropboxDownloadException("Metadata from Dropbox are null"))
+                }
+
+            } catch (e: Exception) {
+                Logger.e(e) { "Error while downloading data from Dropbox" }
+                continuation.resumeWithException(DropboxDownloadException(exceptionCause = e))
+            }
+        }
 }
-

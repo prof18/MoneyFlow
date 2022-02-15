@@ -132,7 +132,9 @@ actual class DropboxApi {
                 if (result is DBFILESFileMetadata? && result != null && destinationUrl != null) {
                     Logger.d { "Data successfully downloaded from Dropbox" }
                     val downloadResult = DropboxDownloadResult(
-                        metadata = result,
+                        id = result.id_,
+                        sizeInByte = result.size.longValue,
+                        contentHash = result.contentHash,
                         destinationUrl = destinationUrl
                     )
                     continuation.resume(downloadResult)

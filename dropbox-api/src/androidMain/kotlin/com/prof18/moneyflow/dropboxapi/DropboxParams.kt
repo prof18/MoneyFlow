@@ -3,6 +3,7 @@ package com.prof18.moneyflow.dropboxapi
 import android.app.Activity
 import com.dropbox.core.oauth.DbxCredential
 import java.io.File
+import java.io.OutputStream
 
 actual class DropboxSetupParam
 
@@ -21,4 +22,8 @@ actual class DropboxUploadParam(
     val file: File,
 )
 
-actual class DropboxDownloadParam
+actual class DropboxDownloadParam(
+    val client: DropboxClient,
+    val path: String,
+    val outputStream: OutputStream,
+)

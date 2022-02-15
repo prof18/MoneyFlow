@@ -1,11 +1,9 @@
 package com.prof18.moneyflow.dropboxapi
 
-import cocoapods.ObjectiveDropboxOfficial.DBFILESFileMetadata
 import platform.Foundation.NSURL
 
-actual class DropboxDownloadResult(
-    val metadata: DBFILESFileMetadata,
-    val destinationUrl: NSURL
-)
-
 actual class DropboxCredentials
+
+@Suppress("CONFLICTING_OVERLOADS")
+// TODO: check if its working
+actual typealias DatabaseDestinationUrl = NSURL

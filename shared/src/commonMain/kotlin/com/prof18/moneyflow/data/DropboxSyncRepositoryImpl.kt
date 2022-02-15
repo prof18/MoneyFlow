@@ -5,16 +5,24 @@ import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.dropbox.DropboxSource
 import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.db.DropboxMetadataTable
+import com.prof18.moneyflow.domain.entities.DatabaseDownloadData
+import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxAuthFailedExceptions
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
+import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
-import com.prof18.moneyflow.dropboxapi.*
-import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
-import com.prof18.moneyflow.domain.entities.DatabaseData
-import com.prof18.moneyflow.domain.entities.DropboxSyncTimestamp
+import com.prof18.moneyflow.domain.mapper.toDropboxDownloadParams
 import com.prof18.moneyflow.domain.mapper.toDropboxUploadParams
+import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
+import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropboxapi.DropboxClient
+import com.prof18.moneyflow.dropboxapi.DropboxCredentials
+import com.prof18.moneyflow.dropboxapi.DropboxDownloadException
+import com.prof18.moneyflow.dropboxapi.DropboxException
+import com.prof18.moneyflow.dropboxapi.DropboxSetupParam
+import com.prof18.moneyflow.dropboxapi.DropboxUploadException
+import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.DispatcherProvider
 import com.prof18.moneyflow.utils.DropboxConstants
 import kotlinx.coroutines.flow.Flow
@@ -104,21 +112,16 @@ class DropboxSyncRepositoryImpl(
     }
 
     override suspend fun upload(
-        databaseData: DatabaseData,
+        databaseUploadData: DatabaseUploadData,
     ): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
 
         if (dropboxClient == null) {
             generateDropboxAuthErrorResult()
         }
         try {
-            // TODO: return and map the result in some way
-            val result = dropboxSource.performUpload(databaseData.toDropboxUploadParams(dropboxClient!!))
-            /*result.serverModified?.time?.let { lastRefresh ->
-                Timber.d("Last refresh new: $lastRefresh")
-                dropboxSyncUserCase.saveLastRefresh(lastRefresh)
-//                    dropboxSyncUserCase.updateLastRefreshSuspendable(lastRefresh)
-            }*/
+            val result = dropboxSource.performUpload(databaseUploadData.toDropboxUploadParams(dropboxClient!!))
             databaseSource.insertLatestDropboxUploadTime(result.editDateMillis)
+            databaseSource.insertLatestDropboxUploadHash(result.contentHash)
             return@withContext MoneyFlowResult.Success(Unit)
         } catch (e: DropboxUploadException) {
             Logger.e("Upload to dropbox failed", e)
@@ -128,15 +131,32 @@ class DropboxSyncRepositoryImpl(
 
     }
 
-    suspend fun download() = withContext(dispatcherProvider.default()) {
-        // TODO: return something as soon understood android side
+    override suspend fun download(
+        databaseDownloadData: DatabaseDownloadData,
+    ): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
+        if (dropboxClient == null) {
+            generateDropboxAuthErrorResult()
+        }
+        try {
+            val result = dropboxSource.performDownload(databaseDownloadData.toDropboxDownloadParams(dropboxClient!!))
+            Logger.d { "result: $result" }
+            databaseSource.insertLatestDropboxDownloadHash(result.contentHash)
+            databaseSource.insertLatestDropboxDownloadTime(Clock.System.now().toEpochMilliseconds())
+            return@withContext MoneyFlowResult.Success(Unit)
+        } catch (e: DropboxDownloadException) {
+            Logger.e("Download from dropbox failed", e)
+            val error = MoneyFlowError.DropboxDownload(e)
+            return@withContext MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
+        }
     }
 
-    override fun getDropboxSyncTimestamps(): Flow<DropboxSyncTimestamp> {
+    override fun getDropboxSyncMetadata(): Flow<DropboxSyncMetadata> {
         return dropboxMetadataFlow.map {
-            DropboxSyncTimestamp(
+            DropboxSyncMetadata(
                 lastUploadTimestamp = it.lastUploadTimestamp,
-                lastDownloadTimestamp = it.lastDownloadTimestamp
+                lastDownloadTimestamp = it.lastDownloadTimestamp,
+                lastUploadHash = it.lastUploadHash,
+                lastDownloadHash = it.lastDownloadHash,
             )
         }
     }
@@ -154,12 +174,5 @@ class DropboxSyncRepositoryImpl(
     private fun generateDropboxAuthErrorResult(): MoneyFlowResult.Error {
         val error = MoneyFlowError.DropboxAuth(DropboxAuthFailedExceptions())
         return MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
-    }
-
-    companion object {
-
-        // TODO: enable it when necessary!
-//        private const val UPLOAD_FILE_SIZE_LIMIT: Long = 150 // MB
-//        private const val LARGE_FILE = "File larger then $UPLOAD_FILE_SIZE_LIMIT MB"
     }
 }

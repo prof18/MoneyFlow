@@ -22,7 +22,7 @@ class DBImportExportImpl(
 ) : DBImportExport {
 
     override fun generateDatabaseFile(): File? {
-        val inFileName: String = context.getDatabasePath(DATABASE_NAME).toString()
+        val inFileName: String = databasePath()
         try {
             val dbFile = File(inFileName)
             val fis = FileInputStream(dbFile)
@@ -50,7 +50,7 @@ class DBImportExportImpl(
 
     override fun exportDatabaseToFileSystem(uri: Uri): MoneyFlowResult<Unit> {
         // Database path
-        val inFileName: String = context.getDatabasePath(DATABASE_NAME).toString()
+        val inFileName: String = databasePath()
         try {
             val dbFile = File(inFileName)
             val fis = FileInputStream(dbFile)
@@ -88,7 +88,7 @@ class DBImportExportImpl(
     }
 
     override fun importDatabaseFromFileSystem(uri: Uri): MoneyFlowResult<Unit> {
-        val outFileName: String = context.getDatabasePath(DATABASE_NAME).toString()
+        val outFileName: String = databasePath()
         try {
             context.contentResolver.openInputStream(uri)?.use { fis ->
                 // Open the empty db as the output stream
@@ -117,4 +117,6 @@ class DBImportExportImpl(
             return MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
         }
     }
+
+    override fun databasePath(): String = context.getDatabasePath(DATABASE_NAME).toString()
 }

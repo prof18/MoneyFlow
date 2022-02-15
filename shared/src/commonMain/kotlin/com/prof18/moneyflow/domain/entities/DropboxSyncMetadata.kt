@@ -2,7 +2,9 @@ package com.prof18.moneyflow.domain.entities
 
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 
-data class DropboxSyncTimestamp(
+data class DropboxSyncMetadata(
     val lastUploadTimestamp: MillisSinceEpoch?,
     val lastDownloadTimestamp: MillisSinceEpoch?,
+    val lastUploadHash: String?,
+    val lastDownloadHash: String?,
 )
