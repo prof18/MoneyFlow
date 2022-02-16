@@ -47,8 +47,6 @@ object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
                     iconName = category.iconName
                 )
             }
-
-            dropboxMetadataTableQueries.insertEmptyData()
         }
     }
 }

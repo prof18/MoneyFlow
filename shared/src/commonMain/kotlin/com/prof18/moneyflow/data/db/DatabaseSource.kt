@@ -32,10 +32,4 @@ interface DatabaseSource {
     suspend fun getMonthlyRecap(currentMonthID: CurrentMonthID): MonthlyRecapTable
     suspend fun getTransaction(transactionId: Long): TransactionTable?
     suspend fun getTransactionsPaginated(pageNum: Long, pageSize: Long): List<SelectTransactionsPaginated>
-    suspend fun insertLatestDropboxUploadTime(millis: Long)
-    suspend fun insertLatestDropboxDownloadTime(millis: Long)
-    fun getDropboxMetadata(): Flow<DropboxMetadataTable>
-    suspend fun resetDropboxMetadata()
-    suspend fun insertLatestDropboxUploadHash(hash: String?)
-    suspend fun insertLatestDropboxDownloadHash(hash: String?)
 }

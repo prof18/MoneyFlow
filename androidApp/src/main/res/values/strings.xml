@@ -78,4 +78,6 @@
     <string name="dropbox_latest_upload_content_hash">Last upload content hash: %s</string>
     <string name="dropbox_latest_download_content_hash">Last download content hash: %s</string>
     <string name="dropbox_sync_time">Dropbox Sync Time</string>
+    <string name="tl_dr_dropbox_same_hash_message">tl;dr The content hash are the same!</string>
+    <string name="tl_dr_dropbox_different_hash_message">tl;dr The content hash are different!</string>
 </resources>

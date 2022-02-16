@@ -217,13 +217,13 @@ private fun DropboxSyncMetadataUI(
 
                     Text(
                         metadataModel.latestUploadFormattedDate,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(top = AppMargins.small)
                     )
 
                     Text(
                         metadataModel.latestDownloadFormattedDate,
-                        style = MaterialTheme.typography.body2,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(top = AppMargins.small)
                     )
 
@@ -233,9 +233,18 @@ private fun DropboxSyncMetadataUI(
                         modifier = Modifier.padding(top = AppMargins.regular)
                     )
 
+
+                    if (metadataModel.tlDrHashMessage != null) {
+                        Text(
+                            metadataModel.tlDrHashMessage!!,
+                            style = MaterialTheme.typography.caption,
+                            modifier = Modifier.padding(top = AppMargins.small)
+                        )
+                    }
+
                     Text(
                         metadataModel.latestUploadHash,
-                        style = MaterialTheme.typography.caption ,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(top = AppMargins.small)
                     )
 
@@ -269,6 +278,7 @@ fun DropboxLoginContentLightNotConnectedPreview() {
                     latestDownloadFormattedDate = "Data not downloaded yet",
                     latestUploadHash = "Data not uploaded yet",
                     latestDownloadHash = "Data not downloaded yet",
+                    tlDrHashMessage = null,
                 ),
                 isConnected = false,
                 connectDropbox = { },
@@ -293,6 +303,7 @@ fun DropboxLoginContentLightConnectedPreview() {
                     latestDownloadFormattedDate = "12 July 2021 - 14:21:45",
                     latestUploadHash = "Last upload content hash",
                     latestDownloadHash = "Last download content hash",
+                    tlDrHashMessage = "Contents are the same",
                 ),
                 isConnected = true,
                 connectDropbox = { },
@@ -317,6 +328,7 @@ fun DropboxLoginContentDarkNotConnectedPreview() {
                     latestDownloadFormattedDate = "Data not downloaded yet",
                     latestUploadHash = "Last upload content hash",
                     latestDownloadHash = "Last download content hash",
+                    tlDrHashMessage = "Contents are the same",
                 ),
                 isConnected = false,
                 connectDropbox = { },
@@ -341,6 +353,7 @@ fun DropboxLoginContentDarkConnectedPreview() {
                     latestDownloadFormattedDate = "12 July 2021 - 14:21:45",
                     latestUploadHash = "Last upload content hash",
                     latestDownloadHash = "Last download content hash",
+                    tlDrHashMessage = "Contents are the same",
                 ),
                 isConnected = true,
                 connectDropbox = { },

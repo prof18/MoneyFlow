@@ -18,11 +18,15 @@ import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
+import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.SharingStarted.Companion
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -35,11 +39,15 @@ class DropboxSyncViewModel(
     private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
-    private val _dropboxSyncMetadataState = MutableStateFlow<DropboxSyncMetadataModel>(
-        DropboxSyncMetadataModel.Loading
-    )
-    val dropboxSyncMetadataState: StateFlow<DropboxSyncMetadataModel>
-        get() = _dropboxSyncMetadataState
+    val dropboxSyncMetadataState: StateFlow<DropboxSyncMetadataModel> = dropboxSyncUseCase.observeDropboxSyncMetadataModel()
+        .catch { throwable: Throwable ->
+            val error = MoneyFlowError.DropboxMetadata(throwable)
+            throwable.logError(error)
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = DropboxSyncMetadataModel.Loading
+        )
 
     private val _isDropboxConnected = MutableStateFlow(false)
     val isDropboxConnected: StateFlow<Boolean>
@@ -58,16 +66,6 @@ class DropboxSyncViewModel(
                     DropboxClientStatus.NOT_LINKED -> false
                 }
             }
-        }
-        viewModelScope.launch {
-            dropboxSyncUseCase.observeDropboxSyncMetadataModel()
-                .catch { throwable: Throwable ->
-                    val error = MoneyFlowError.DropboxMetadata(throwable)
-                    throwable.logError(error)
-                    val errorMessage = errorMapper.getUIErrorMessage(error)
-                    _dropboxSyncMetadataState.value = DropboxSyncMetadataModel.Error(errorMessage)
-                }
-                .collect { _dropboxSyncMetadataState.value = it }
         }
     }
 

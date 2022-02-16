@@ -52,7 +52,7 @@ private val coreModule = module {
     // Repository
     single<SettingsRepository> { SettingsRepositoryImpl(get()) }
     single<MoneyRepository> { MoneyRepositoryImpl(get()) }
-    single<DropboxSyncRepository> { DropboxSyncRepositoryImpl(get(), get(), get(), get(), get()) }
+    single<DropboxSyncRepository> { DropboxSyncRepositoryImpl(get(), get(), get(), get()) }
 
     // Use Cases
     factory { MainUseCase(get()) }

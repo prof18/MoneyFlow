@@ -7,4 +7,13 @@ data class DropboxSyncMetadata(
     val lastDownloadTimestamp: MillisSinceEpoch?,
     val lastUploadHash: String?,
     val lastDownloadHash: String?,
-)
+) {
+    companion object {
+        fun empty(): DropboxSyncMetadata = DropboxSyncMetadata(
+            lastUploadTimestamp = null,
+            lastDownloadTimestamp = null,
+            lastUploadHash = null,
+            lastDownloadHash = null,
+        )
+    }
+}

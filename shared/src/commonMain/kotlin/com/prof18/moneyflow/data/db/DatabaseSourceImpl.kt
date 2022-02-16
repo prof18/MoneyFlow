@@ -4,7 +4,6 @@ import com.prof18.moneyflow.data.db.model.Currency
 import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
-import com.prof18.moneyflow.db.DropboxMetadataTable
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.prof18.moneyflow.db.MonthlyRecapTable
 import com.prof18.moneyflow.db.SelectLatestTransactions
@@ -182,38 +181,5 @@ class DatabaseSourceImpl(
         return@withContext dbRef.transactionTableQueries
             .selectTransactionsPaginated(pageSize = pageSize, pageNum = pageNum)
             .executeAsList()
-    }
-
-    override suspend fun insertLatestDropboxUploadTime(millis: Long) = withContext(backgroundDispatcher) {
-        dbRef.dropboxMetadataTableQueries.updateLastUploadTimestamp(millis)
-    }
-
-    override suspend fun insertLatestDropboxUploadHash(hash: String?) = withContext(backgroundDispatcher) {
-        dbRef.dropboxMetadataTableQueries.updateLastUploadHash(hash)
-    }
-
-    override suspend fun insertLatestDropboxDownloadHash(hash: String?) = withContext(backgroundDispatcher) {
-        dbRef.dropboxMetadataTableQueries.updateLastDownloadHash(hash)
-    }
-
-    override suspend fun insertLatestDropboxDownloadTime(millis: Long) = withContext(backgroundDispatcher) {
-        dbRef.dropboxMetadataTableQueries.updateLastDownloadTimestamp(millis)
-    }
-
-    override fun getDropboxMetadata(): Flow<DropboxMetadataTable> =
-        dbRef.dropboxMetadataTableQueries
-            .getMetadata()
-            .asFlow()
-            .mapToOneOrDefault(DropboxMetadataTable(
-                id = 1,
-                lastUploadTimestamp = null,
-                lastDownloadTimestamp = null,
-                lastUploadHash = null,
-                lastDownloadHash = null,
-            ))
-            .flowOn(backgroundDispatcher)
-
-    override suspend fun resetDropboxMetadata() = withContext(backgroundDispatcher) {
-        dbRef.dropboxMetadataTableQueries.resetData()
     }
 }

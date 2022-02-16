@@ -9,6 +9,7 @@ sealed class DropboxSyncMetadataModel {
         val latestDownloadFormattedDate: String,
         val latestUploadHash: String,
         val latestDownloadHash: String,
+        val tlDrHashMessage: String?,
     ) : DropboxSyncMetadataModel()
 
     class Error(

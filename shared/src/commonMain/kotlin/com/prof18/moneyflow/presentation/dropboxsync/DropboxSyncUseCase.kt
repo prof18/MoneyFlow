@@ -8,7 +8,6 @@ import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
 import com.prof18.moneyflow.platform.LocalizedStringProvider
-import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.formatFullDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,15 +36,24 @@ class DropboxSyncUseCase(
         dropboxSyncRepository.download(databaseDownloadData)
 
     fun observeDropboxSyncMetadataModel(): Flow<DropboxSyncMetadataModel> =
-        dropboxSyncRepository.getDropboxSyncMetadata()
+        dropboxSyncRepository.dropboxMetadataFlow
             .map {
                 DropboxSyncMetadataModel.Success(
                     latestUploadFormattedDate = getUploadDate(it),
                     latestDownloadFormattedDate = getDownloadDate(it),
                     latestUploadHash = getUploadHash(it),
                     latestDownloadHash = getDownloadHash(it),
+                    tlDrHashMessage = getTlDrHashMessage(it),
                 )
             }
+
+    private fun getTlDrHashMessage(syncMetadata: DropboxSyncMetadata): String? = when {
+        syncMetadata.lastUploadHash == null || syncMetadata.lastDownloadHash == null -> null
+        syncMetadata.lastUploadHash == syncMetadata.lastDownloadHash ->  {
+            localizedStringProvider.get("tl_dr_dropbox_same_hash_message")
+        }
+        else -> localizedStringProvider.get("tl_dr_dropbox_different_hash_message")
+    }
 
     private fun getDownloadDate(
         syncMetadata: DropboxSyncMetadata,
