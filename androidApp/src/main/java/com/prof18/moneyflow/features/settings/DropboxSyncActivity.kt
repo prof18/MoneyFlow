@@ -112,7 +112,7 @@ private fun DropboxLoginContent(
                 }
             }
             is DropboxSyncAction.Loading -> {
-                // TODO()
+                // The loading is handled in the UI below
             }
             is DropboxSyncAction.Success -> {
                 LaunchedEffect(scaffoldState.snackbarHostState) {

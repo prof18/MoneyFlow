@@ -25,7 +25,7 @@ actual class DropboxApi {
     }
 
     actual fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam) {
-        // TODO? is required?
+        // no-op on Android
     }
 
     actual fun getClient(clientIdentifier: String, credentials: DropboxCredentials): DropboxClient? {
