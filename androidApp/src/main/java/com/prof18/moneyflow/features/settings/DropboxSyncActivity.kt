@@ -31,6 +31,7 @@ import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Error
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Loading
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Success
+import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.utils.DropboxConstants
@@ -149,41 +150,44 @@ private fun DropboxLoginContent(
 
                 if (isConnected) {
 
-                    Text(
-                        stringResource(R.string.dropbox_linked),
-                        style = MaterialTheme.typography.body1,
-                        modifier = Modifier
-                            .padding(AppMargins.regular)
-                    )
+                    if (dropboxSyncAction is DropboxSyncAction.Loading) {
+                        Loader()
+                    } else {
+                        Text(
+                            stringResource(R.string.dropbox_linked),
+                            style = MaterialTheme.typography.body1,
+                            modifier = Modifier
+                                .padding(AppMargins.regular)
+                        )
 
-                    Text(
-                        stringResource(R.string.backup_to_dropbox),
-                        style = MaterialTheme.typography.h6,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { backupOnDropbox() }
-                            .padding(AppMargins.regular)
-                    )
-                    Divider()
-                    Text(
-                        stringResource(R.string.restore_from_dropbox),
-                        style = MaterialTheme.typography.h6,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { restoreFromDropbox() }
-                            .padding(AppMargins.regular)
-                    )
-                    Divider()
-                    Text(
-                        stringResource(R.string.unlink_dropbox),
-                        style = MaterialTheme.typography.h6,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { unlinkDropbox() }
-                            .padding(AppMargins.regular)
-                    )
-                    Divider()
-
+                        Text(
+                            stringResource(R.string.backup_to_dropbox),
+                            style = MaterialTheme.typography.h6,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { backupOnDropbox() }
+                                .padding(AppMargins.regular)
+                        )
+                        Divider()
+                        Text(
+                            stringResource(R.string.restore_from_dropbox),
+                            style = MaterialTheme.typography.h6,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { restoreFromDropbox() }
+                                .padding(AppMargins.regular)
+                        )
+                        Divider()
+                        Text(
+                            stringResource(R.string.unlink_dropbox),
+                            style = MaterialTheme.typography.h6,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { unlinkDropbox() }
+                                .padding(AppMargins.regular)
+                        )
+                        Divider()
+                    }
                 } else {
                     Text(
                         stringResource(R.string.connect_dropbox),
