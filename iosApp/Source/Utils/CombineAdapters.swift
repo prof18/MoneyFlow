@@ -11,7 +11,7 @@ import Combine
 import shared
 
 func createPublisher<T>(_ flowAdapter: FlowWrapper<T>) -> AnyPublisher<T, KotlinError> {
-    return Deferred<Publishers.HandleEvents<PassthroughSubject<T, KotlinError>>> {
+//    return Deferred<Publishers.HandleEvents<PassthroughSubject<T, KotlinError>>> {
         let subject = PassthroughSubject<T, KotlinError>()
         let job = flowAdapter.subscribe { (item) in
             let _ = subject.send(item)
@@ -22,8 +22,8 @@ func createPublisher<T>(_ flowAdapter: FlowWrapper<T>) -> AnyPublisher<T, Kotlin
         }
         return subject.handleEvents(receiveCancel: {
             job.cancel(cause: nil)
-        })
-    }.eraseToAnyPublisher()
+        }).eraseToAnyPublisher()
+//    }.eraseToAnyPublisher()
 }
 
 class PublishedFlow<T> : ObservableObject {

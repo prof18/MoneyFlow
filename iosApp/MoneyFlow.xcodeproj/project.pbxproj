@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		599F9F5F6803CB0E30AD29BC /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */; };
-		8D8B33762780BBA300702C08 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B33752780BBA300702C08 /* Keys.plist */; };
+		663F8105C5CED07B3CBF002C /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */; };
 		8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */; };
 		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
@@ -24,6 +23,7 @@
 		A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */; };
 		A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DepsInjector.swift */; };
 		A947AF252554A7D500633BD3 /* DatabaseImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */; };
+		A9871E0D27C2801800FDE9CE /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9871E0C27C2801800FDE9CE /* Keys.plist */; };
 		A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B761257D675B00F6113A /* AddTransactionViewModel.swift */; };
 		A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B767257D6A2A00F6113A /* RadioButton.swift */; };
 		A988B76E257D6AA600F6113A /* ColorInverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B76D257D6AA600F6113A /* ColorInverter.swift */; };
@@ -81,15 +81,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0290555E464C0A2749A91632 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
-		8D8B33752780BBA300702C08 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		18FAAF44652500A26ACC8FC8 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
 		8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomErrorBanner.swift; sourceTree = "<group>"; };
 		8D9481C6277BA694003568EE /* UIErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorData.swift; sourceTree = "<group>"; };
 		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DB277C9EDD003568EE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorDataMapper.swift; sourceTree = "<group>"; };
 		8D9481DF277E6535003568EE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A93F6899263F36E80075AB49 /* CombineAdapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAdapters.swift; sourceTree = "<group>"; };
 		A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatcherQueueUtils.swift; sourceTree = "<group>"; };
@@ -100,6 +99,7 @@
 		A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionState.swift; sourceTree = "<group>"; };
 		A947AF1E2554991600633BD3 /* DepsInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepsInjector.swift; sourceTree = "<group>"; };
 		A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseImportExport.swift; sourceTree = "<group>"; };
+		A9871E0C27C2801800FDE9CE /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A988B761257D675B00F6113A /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
 		A988B767257D6A2A00F6113A /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		A988B76D257D6AA600F6113A /* ColorInverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInverter.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		A9F6751024F59E2700F486FE /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		A9F6751224F59E2700F486FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9FEB378253CCAD6002DEB65 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
-		B69433D1CCEC0317A5D3C4D8 /* Pods-MoneyFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.debug.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.debug.xcconfig"; sourceTree = "<group>"; };
+		C01C17F103DA37F28E6E90F4 /* Pods-MoneyFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.debug.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				599F9F5F6803CB0E30AD29BC /* Pods_MoneyFlow.framework in Frameworks */,
+				663F8105C5CED07B3CBF002C /* Pods_MoneyFlow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,10 +170,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2811F797507548BFD1C0613E /* Frameworks */ = {
+		37204CC749F71A39C7B404A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				93D960EC9293597F26EC92A3 /* Pods_MoneyFlow.framework */,
+				93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 				A9F674F724F59E2600F486FE /* Images.xcassets */,
 				A9D8986B24FBF22F007771A1 /* Colors.xcassets */,
 				A9D8985524FBEFFF007771A1 /* Font */,
-				8D8B33752780BBA300702C08 /* Keys.plist */,
+				A9871E0C27C2801800FDE9CE /* Keys.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -429,7 +429,7 @@
 				A9F6750F24F59E2700F486FE /* Tests */,
 				A9F674FD24F59E2700F486FE /* Products */,
 				CAEF5179E3C74C35C9D9124B /* Pods */,
-				2811F797507548BFD1C0613E /* Frameworks */,
+				37204CC749F71A39C7B404A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -469,8 +469,8 @@
 		CAEF5179E3C74C35C9D9124B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B69433D1CCEC0317A5D3C4D8 /* Pods-MoneyFlow.debug.xcconfig */,
-				0290555E464C0A2749A91632 /* Pods-MoneyFlow.release.xcconfig */,
+				C01C17F103DA37F28E6E90F4 /* Pods-MoneyFlow.debug.xcconfig */,
+				18FAAF44652500A26ACC8FC8 /* Pods-MoneyFlow.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -482,11 +482,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9F6752624F59E2700F486FE /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
 			buildPhases = (
-				68FEF637F91A32226A5E1608 /* [CP] Check Pods Manifest.lock */,
+				DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */,
 				A9F674F824F59E2700F486FE /* Sources */,
 				A9F674F924F59E2700F486FE /* Frameworks */,
 				A9F674FA24F59E2700F486FE /* Resources */,
-				EB1C577B105C2366CF183B94 /* [CP] Embed Pods Frameworks */,
+				4D5A09BB2D64094588CD5AE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -564,7 +564,7 @@
 				A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */,
 				A9F6752224F59E2700F486FE /* Images.xcassets in Resources */,
 				8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */,
-				8D8B33762780BBA300702C08 /* Keys.plist in Resources */,
+				A9871E0D27C2801800FDE9CE /* Keys.plist in Resources */,
 				A9D1B2CA2553E8E100931B2B /* shared in Resources */,
 				A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -580,7 +580,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		68FEF637F91A32226A5E1608 /* [CP] Check Pods Manifest.lock */ = {
+		4D5A09BB2D64094588CD5AE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -600,23 +617,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EB1C577B105C2366CF183B94 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -827,7 +827,7 @@
 		};
 		A9F6752724F59E2700F486FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B69433D1CCEC0317A5D3C4D8 /* Pods-MoneyFlow.debug.xcconfig */;
+			baseConfigurationReference = C01C17F103DA37F28E6E90F4 /* Pods-MoneyFlow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -848,7 +848,7 @@
 		};
 		A9F6752824F59E2700F486FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0290555E464C0A2749A91632 /* Pods-MoneyFlow.release.xcconfig */;
+			baseConfigurationReference = 18FAAF44652500A26ACC8FC8 /* Pods-MoneyFlow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -8,6 +8,7 @@ target 'MoneyFlow' do
 
   # Pods for MoneyFlow
   pod 'shared', :path => '../shared'
-  pod 'SwiftyDropbox'
-
+  pod 'SwiftyDropbox' # TODO: delete this, now neeed
+  # Needed for linking 
+  pod 'ObjectiveDropboxOfficial'
 end
