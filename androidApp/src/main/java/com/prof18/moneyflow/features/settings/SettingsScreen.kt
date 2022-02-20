@@ -12,8 +12,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Divider
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -41,8 +49,8 @@ object SettingsScreenFactory : ComposeNavigationFactory {
                 performRestore = { uri -> viewModel.performRestore(uri) },
                 biometricState = viewModel.biometricState,
                 onBiometricEnabled = { viewModel.updateBiometricState(it) },
-                hideSensitiveDataState= hideDataState,
-                onHideSensitiveDataEnabled= { viewModel.updateHideSensitiveDataState(it) }
+                hideSensitiveDataState = hideDataState,
+                onHideSensitiveDataEnabled = { viewModel.updateHideSensitiveDataState(it) }
             )
         }
     }
@@ -198,8 +206,8 @@ private fun isBiometricSupported(context: Context): Boolean {
     }
 }
 
-@Preview(name= "Settings Dark")
-@Preview(name= "Settings Night",uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Settings Light")
+@Preview(name = "Settings Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SettingsScreenPreview() {
     MoneyFlowTheme {
@@ -217,33 +225,3 @@ private fun SettingsScreenPreview() {
         }
     }
 }
-
-private fun hasToSetupBiometric(context: Context): Boolean {
-    val biometricManager = BiometricManager.from(context)
-    return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
-        BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> true
-        else -> {
-            false
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun SettingsScreenLightNoBiometricPreview() {
-    MoneyFlowTheme {
-        Surface {
-            SettingsScreenContent(
-                onImportDatabaseClick = {},
-                onExportDatabaseClick = {},
-                openDropboxSetup = {},
-                isBiometricSupported = false,
-                biometricState = true,
-                onBiometricEnabled = {},
-                hideSensitiveDataState = false,
-                onHideSensitiveDataEnabled = {},
-            )
-        }
-    }
-}
-

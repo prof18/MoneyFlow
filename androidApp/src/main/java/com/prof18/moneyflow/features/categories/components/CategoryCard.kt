@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.categories.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -63,27 +64,13 @@ fun CategoryCard(
             )
         }
     }
-
-
 }
 
-@Preview
+@Preview(name = "CategoryCard Light")
+@Preview(name = "CategoryCard Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun CategoryCardLightPreview() {
+fun CategoryCardPreview() {
     MoneyFlowTheme {
-        Surface {
-            CategoryCard(
-                category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),
-                onClick = {}
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun CategoryCardDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
         Surface {
             CategoryCard(
                 category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),

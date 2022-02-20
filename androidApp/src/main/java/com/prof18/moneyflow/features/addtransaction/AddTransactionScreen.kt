@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -220,9 +221,10 @@ fun AddTransactionScreen(
     )
 }
 
-@Preview
+@Preview(name = "Add Transaction Screen Light")
+@Preview(name = "Add Transaction Screen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun AddTransactionScreenLightPreview() {
+fun AddTransactionScreenPreview() {
     MoneyFlowTheme {
         Surface {
             AddTransactionScreen(
@@ -255,41 +257,3 @@ fun AddTransactionScreenLightPreview() {
         }
     }
 }
-
-@Preview
-@Composable
-fun AddTransactionScreenDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            AddTransactionScreen(
-                categoryState = remember {
-                    mutableStateOf(
-                        CategoryUIData(
-                            id = 1,
-                            name = "Food",
-                            icon = R.drawable.ic_hamburger_solid
-                        )
-                    )
-                },
-                navigateUp = {},
-                navigateToCategoryList = {},
-                addTransaction = {},
-                amountText = "10.00",
-                updateAmountText = {},
-                descriptionText = null,
-                updateDescriptionText = {},
-                selectedTransactionType = TransactionType.OUTCOME,
-                updateTransactionType = {},
-                updateYear = {},
-                updateMonth = {},
-                updateDay = {},
-                saveDate = {},
-                dateLabel = "11 July 2021",
-                addTransactionAction = null,
-                resetAction = {}
-            )
-        }
-    }
-}
-
-

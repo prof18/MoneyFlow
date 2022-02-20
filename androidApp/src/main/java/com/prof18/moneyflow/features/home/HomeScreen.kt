@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.home
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -212,9 +213,10 @@ fun HomeScreen(
     }
 }
 
-@Preview
+@Preview(name = "HomeScreen Light")
+@Preview(name = "HomeScreen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HomeScreenLightPreview() {
+fun HomeScreenPreview() {
     MoneyFlowTheme {
         Surface {
             HomeScreen(
@@ -252,9 +254,10 @@ fun HomeScreenLightPreview() {
     }
 }
 
-@Preview
+@Preview(name = "HomeScreenError Light")
+@Preview(name = "HomeScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HomeScreenErrorLightPreview() {
+fun HomeScreenErrorPreview() {
     MoneyFlowTheme {
         Surface {
             HomeScreen(
@@ -265,46 +268,6 @@ fun HomeScreenErrorLightPreview() {
                     )
                 ),
                 hideSensitiveDataState = true,
-                navigateToAllTransactions = {}
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun HomeScreenDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            HomeScreen(
-                homeModel = HomeModel.HomeState(
-                    balanceRecap = BalanceRecap(
-                        totalBalance = 5000.0,
-                        monthlyIncome = 1000.0,
-                        monthlyExpenses = 50.0
-                    ),
-                    latestTransactions = listOf(
-                        MoneyTransaction(
-                            id = 0,
-                            title = "Ice Cream",
-                            icon = CategoryIcon.IC_ICE_CREAM_SOLID,
-                            amount = 10.0,
-                            type = TransactionTypeUI.EXPENSE,
-                            milliseconds = 0,
-                            formattedDate = "12 July 2021"
-                        ),
-                        MoneyTransaction(
-                            id = 1,
-                            title = "Tip",
-                            icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
-                            amount = 50.0,
-                            type = TransactionTypeUI.INCOME,
-                            milliseconds = 0,
-                            formattedDate = "12 July 2021"
-                        )
-                    )
-                ),
-                hideSensitiveDataState = false,
                 navigateToAllTransactions = {}
             )
         }

@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
@@ -108,7 +109,8 @@ private fun TransactionTabIndicator(
     )
 }
 
-@Preview
+@Preview(name = "TransactionTypeTabBarPreview Light")
+@Preview(name = "TransactionTypeTabBarPreview Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun TransactionTypeTabBarPreview() {
     MoneyFlowTheme {

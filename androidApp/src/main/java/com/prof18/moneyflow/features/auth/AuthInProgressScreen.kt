@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.auth
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -53,9 +54,9 @@ private fun AuthState.getAuthMessage(): String {
     }
 }
 
-@Preview
-@Composable
-private fun AuthScreenLightProgressPreview() {
+@Preview(name = "AuthScreenProgress Light")
+@Preview(name = "AuthScreenProgress Night", uiMode = Configuration.UI_MODE_NIGHT_YES)@Composable
+private fun AuthScreenProgressPreview() {
     MoneyFlowTheme {
         Surface {
             AuthScreen(
@@ -66,9 +67,10 @@ private fun AuthScreenLightProgressPreview() {
     }
 }
 
-@Preview
+@Preview(name = "uthScreenFail Light")
+@Preview(name = "uthScreenFail Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun AuthScreenLightFailPreview() {
+private fun AuthScreenFailPreview() {
     MoneyFlowTheme {
         Surface {
             AuthScreen(
@@ -79,9 +81,10 @@ private fun AuthScreenLightFailPreview() {
     }
 }
 
-@Preview
+@Preview(name = "AuthScreenError Light")
+@Preview(name = "AuthScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun AuthScreenLightErrorPreview() {
+private fun AuthScreenErrorPreview() {
     MoneyFlowTheme {
         Surface {
             AuthScreen(

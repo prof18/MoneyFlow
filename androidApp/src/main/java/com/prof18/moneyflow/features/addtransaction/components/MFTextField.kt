@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -59,7 +60,8 @@ fun MFTextInput(
     )
 }
 
-@Preview
+@Preview(name = "MFTextInputPreviewWithIcon Light")
+@Preview(name = "MFTextInputPreviewWithIcon Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun MFTextInputPreviewWithIcon() {
     MoneyFlowTheme {
@@ -81,29 +83,8 @@ fun MFTextInputPreviewWithIcon() {
     }
 }
 
-@Preview
-@Composable
-fun MFTextInputDarkWithIconPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            MFTextInput(
-                text = "This is a text",
-                label = null,
-                onTextChange = { },
-                keyboardType = KeyboardType.Text,
-                textStyle = MaterialTheme.typography.body1,
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_edit),
-                        contentDescription = null,
-                    )
-                },
-            )
-        }
-    }
-}
-
-@Preview
+@Preview(name = "MFTextInputPreview Light")
+@Preview(name = "MFTextInputPreview Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun MFTextInputPreview() {
     MoneyFlowTheme {
@@ -111,22 +92,6 @@ fun MFTextInputPreview() {
             MFTextInput(
                 text = "This is a text",
                 label = null,
-                onTextChange = { },
-                keyboardType = KeyboardType.Text,
-                textStyle = MaterialTheme.typography.body1,
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun MFTextInputLabelPreview() {
-    MoneyFlowTheme {
-        Surface {
-            MFTextInput(
-                text = "",
-                label = "This is a label",
                 onTextChange = { },
                 keyboardType = KeyboardType.Text,
                 textStyle = MaterialTheme.typography.body1,

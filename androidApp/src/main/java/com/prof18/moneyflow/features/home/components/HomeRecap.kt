@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.features.home.components
 
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -131,7 +132,8 @@ fun HomeRecap(
     }
 }
 
-@Preview
+@Preview(name = "HomeRecap Light")
+@Preview(name = "HomeRecap Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun HomeRecapPreview() {
     MoneyFlowTheme {
@@ -143,23 +145,6 @@ private fun HomeRecapPreview() {
                     monthlyExpenses = 200.0
                 ),
                 hideSensitiveData = true
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun HomeRecapDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            HomeRecap(
-                balanceRecap = BalanceRecap(
-                    totalBalance = 1200.0,
-                    monthlyIncome = 150.0,
-                    monthlyExpenses = 200.0
-                ),
-                hideSensitiveData = false
             )
         }
     }

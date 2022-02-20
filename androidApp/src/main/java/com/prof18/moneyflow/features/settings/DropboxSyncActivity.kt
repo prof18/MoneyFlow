@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.settings
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -271,9 +272,10 @@ private fun DropboxSyncMetadataUI(
     }
 }
 
-@Preview
+@Preview(name = "DropboxLoginContentNotConnected Light")
+@Preview(name = "DropboxLoginContentNotConnected Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun DropboxLoginContentLightNotConnectedPreview() {
+fun DropboxLoginContentNotConnectedPreview() {
     MoneyFlowTheme {
         Surface {
             DropboxLoginContent(
@@ -296,60 +298,11 @@ fun DropboxLoginContentLightNotConnectedPreview() {
     }
 }
 
-@Preview
+@Preview(name = "DropboxLoginContentConnected Light")
+@Preview(name = "DropboxLoginContentConnected Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun DropboxLoginContentLightConnectedPreview() {
+fun DropboxLoginContentConnectedPreview() {
     MoneyFlowTheme {
-        Surface {
-            DropboxLoginContent(
-                dropboxSyncMetadataModel = DropboxSyncMetadataModel.Success(
-                    latestUploadFormattedDate = "12 July 2021 - 14:21:45",
-                    latestDownloadFormattedDate = "12 July 2021 - 14:21:45",
-                    latestUploadHash = "Last upload content hash",
-                    latestDownloadHash = "Last download content hash",
-                    tlDrHashMessage = "Contents are the same",
-                ),
-                isConnected = true,
-                connectDropbox = { },
-                backupOnDropbox = { },
-                restoreFromDropbox = {},
-                unlinkDropbox = {},
-                dropboxSyncAction = null,
-                resetAction = {},
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun DropboxLoginContentDarkNotConnectedPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            DropboxLoginContent(
-                dropboxSyncMetadataModel = DropboxSyncMetadataModel.Success(
-                    latestUploadFormattedDate = "Data not uploaded yet",
-                    latestDownloadFormattedDate = "Data not downloaded yet",
-                    latestUploadHash = "Last upload content hash",
-                    latestDownloadHash = "Last download content hash",
-                    tlDrHashMessage = "Contents are the same",
-                ),
-                isConnected = false,
-                connectDropbox = { },
-                backupOnDropbox = { },
-                restoreFromDropbox = {},
-                unlinkDropbox = {},
-                dropboxSyncAction = null,
-                resetAction = {},
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun DropboxLoginContentDarkConnectedPreview() {
-    MoneyFlowTheme(darkTheme = true) {
         Surface {
             DropboxLoginContent(
                 dropboxSyncMetadataModel = DropboxSyncMetadataModel.Success(

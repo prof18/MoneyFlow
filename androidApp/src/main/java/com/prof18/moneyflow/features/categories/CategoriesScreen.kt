@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.categories
 
+import android.content.res.Configuration
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
@@ -103,9 +104,10 @@ fun CategoriesScreen(
     )
 }
 
-@Preview
+@Preview(name = "CategoriesScreen Light")
+@Preview(name = "CategoriesScreen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun CategoriesScreenLightPreview() {
+fun CategoriesScreenPreview() {
     MoneyFlowTheme {
         Surface {
             CategoriesScreen(
@@ -131,35 +133,8 @@ fun CategoriesScreenLightPreview() {
     }
 }
 
-@Preview
-@Composable
-fun CategoriesScreenDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            CategoriesScreen(
-                navigateUp = { },
-                sendCategoryBack = {  },
-                isFromAddTransaction = true,
-                categoryModel = CategoryModel.CategoryState(
-                    categories = listOf(
-                        Category(
-                            id = 0,
-                            name = "Food",
-                            icon = CategoryIcon.IC_HAMBURGER_SOLID
-                        ),
-                        Category(
-                            id = 0,
-                            name = "Drinks",
-                            icon = CategoryIcon.IC_COCKTAIL_SOLID
-                        )
-                    )
-                )
-            )
-        }
-    }
-}
-
-@Preview
+@Preview(name = "CategoriesScreenError Light")
+@Preview(name = "CategoriesScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun CategoriesScreenErrorPreview() {
     MoneyFlowTheme {

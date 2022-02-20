@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.home.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -55,20 +56,11 @@ fun HeaderNavigator(
     }
 }
 
-@Preview("Header Navigator - light theme")
+@Preview(name = "HeaderNavigator Light")
+@Preview(name = "HeaderNavigator Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SnackCardPreview() {
     MoneyFlowTheme {
-        Surface {
-            HeaderNavigator(title = "This is a title")
-        }
-    }
-}
-
-@Preview("Header Navigator - dark theme")
-@Composable
-private fun SnackCardDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
         Surface {
             HeaderNavigator(title = "This is a title")
         }

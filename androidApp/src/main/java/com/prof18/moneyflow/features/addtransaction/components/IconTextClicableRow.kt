@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -73,9 +74,10 @@ fun IconTextClickableRow(
     }
 }
 
-@Preview
+@Preview(name = "IconTextClickableRow Light")
+@Preview(name = "IconTextClickableRow Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun IconTextClickableRowLightPreview() {
+fun IconTextClickableRowPreview() {
      MoneyFlowTheme {
          Surface {
              IconTextClickableRow(
@@ -85,18 +87,4 @@ fun IconTextClickableRowLightPreview() {
              )
          }
      }
-}
-
-@Preview
-@Composable
-fun IconTextClickableRowDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            IconTextClickableRow(
-                onClick = {},
-                text = "Select something",
-                iconId = R.drawable.ic_question_circle,
-            )
-        }
-    }
 }
