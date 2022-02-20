@@ -22,9 +22,9 @@ import kotlin.test.assertEquals
 
 class MoneyRepositoryImplTest {
 
-    lateinit var databaseSource: DatabaseSource
-    lateinit var moneyRepository: MoneyRepository
-    lateinit var database: MoneyFlowDB
+    private lateinit var databaseSource: DatabaseSource
+    private lateinit var moneyRepository: MoneyRepository
+    private lateinit var database: MoneyFlowDB
 
     @BeforeTest
     fun setup() {

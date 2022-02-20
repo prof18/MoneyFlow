@@ -60,7 +60,7 @@ private val coreModule = module {
     factory { AddTransactionUseCase(get(), get()) }
     factory { SettingsUseCase(get()) }
     factory { AllTransactionsUseCase(get()) }
-    factory { CategoriesUseCase(get(), get()) }
+    factory { CategoriesUseCase(get()) }
     factory {
         DropboxSyncUseCase(
             dropboxSyncRepository = get(),

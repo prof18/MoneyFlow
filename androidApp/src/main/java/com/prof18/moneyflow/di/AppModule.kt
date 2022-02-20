@@ -15,7 +15,7 @@ internal val appModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { AddTransactionViewModel(get(), get()) }
-    viewModel { CategoriesViewModel(get()) }
+    viewModel { CategoriesViewModel(get(), get()) }
     viewModel { SettingsViewModel(get(), get()) }
     viewModel {
         DropboxSyncViewModel(

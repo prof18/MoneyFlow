@@ -47,7 +47,7 @@ actual val platformModule = module {
         factory { AddTransactionUseCase(get(), get()) }
         factory { AddTransactionUseCaseIos(get()) }
 
-        factory { CategoriesUseCase(get(), get()) }
+        factory { CategoriesUseCase(get()) }
         factory { CategoriesUseCaseIos(get()) }
     }
 }

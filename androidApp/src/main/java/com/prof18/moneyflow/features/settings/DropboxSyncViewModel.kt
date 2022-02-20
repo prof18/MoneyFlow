@@ -43,6 +43,7 @@ internal class DropboxSyncViewModel(
         .catch { throwable: Throwable ->
             val error = MoneyFlowError.DropboxMetadata(throwable)
             throwable.logError(error)
+            emit(DropboxSyncMetadataModel.Error(errorMapper.getUIErrorMessage(error)))
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),

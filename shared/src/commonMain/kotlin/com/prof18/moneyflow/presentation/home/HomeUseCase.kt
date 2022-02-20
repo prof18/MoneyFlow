@@ -8,30 +8,23 @@ import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
 class HomeUseCase(
     private val moneyRepository: MoneyRepository,
     private val settingsRepository: SettingsRepository,
-    private val errorMapper: MoneyFlowErrorMapper
+    private val errorMapper: MoneyFlowErrorMapper,
 ) {
 
     val hideSensibleDataState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState
 
     fun observeHomeModel(): Flow<HomeModel> =
-        moneyRepository.getMoneySummary()
-            .catch { throwable: Throwable ->
-                val error = MoneyFlowError.GetMoneySummary(throwable)
-                throwable.logError(error)
-                val errorMessage = errorMapper.getUIErrorMessage(error)
-                HomeModel.Error(errorMessage)
-            }.map {
-                HomeModel.HomeState(
-                    balanceRecap = it.balanceRecap,
-                    latestTransactions = it.latestTransactions
-                )
-            }
+        moneyRepository.getMoneySummary().map {
+            HomeModel.HomeState(
+                balanceRecap = it.balanceRecap,
+                latestTransactions = it.latestTransactions
+            )
+        }
 
     fun toggleHideSensitiveData(status: Boolean) {
         settingsRepository.setHideSensitiveData(status)

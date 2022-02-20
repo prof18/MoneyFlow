@@ -83,13 +83,13 @@ kotlin {
 //                linkerOpts("-framework", "ObjectiveDropboxOfficial")
 //            }
 
-//            getTest("DEBUG").apply {
-//                val frameworkPath =
-//                    "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-//                linkerOpts("-F$frameworkPath")
-//                linkerOpts("-rpath", frameworkPath)
-//                linkerOpts("-framework", "ObjectiveDropboxOfficial")
-//            }
+            getTest("DEBUG").apply {
+                val frameworkPath =
+                    "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
+                linkerOpts("-F$frameworkPath")
+                linkerOpts("-rpath", frameworkPath)
+                linkerOpts("-framework", "ObjectiveDropboxOfficial")
+            }
 //            getFramework("DEBUG").apply {
 //                val frameworkPath = "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
 //                linkerOpts("-F$frameworkPath")
