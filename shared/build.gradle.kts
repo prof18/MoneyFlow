@@ -39,50 +39,11 @@ android {
     }
 }
 
-
-
 kotlin {
-//    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
-//
-//
-//        binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
-//            isStatic = false
-//            export(project(":dropbox-api"))
-//
-//
-//            val isSimulator = this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
-//            println(">>> isSimulator?? $isSimulator")
-//
-////            this.
-//            val frameworkPath = if (isSimulator) {
-//                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-//            } else {
-//                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphoneos/ObjectiveDropboxOfficial"
-//            }
-//            linkerOpts("-F$frameworkPath")
-//            linkerOpts("-rpath", frameworkPath)
-//            linkerOpts("-framework", "ObjectiveDropboxOfficial")
-//
-////            transitiveExport = true
-//        }
-//    }
-
     android()
     ios() {
 
         binaries {
-//            framework {
-//                export(project(":dropbox-api"))
-//            }
-
-//            getFramework("DEBUG").apply {
-//                println(">>>>> GHErerrrr")
-//                val frameworkPath = "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-//                linkerOpts("-F$frameworkPath")
-//                linkerOpts("-rpath", frameworkPath)
-//                linkerOpts("-framework", "ObjectiveDropboxOfficial")
-//            }
-
             getTest("DEBUG").apply {
                 val frameworkPath =
                     "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
@@ -90,16 +51,8 @@ kotlin {
                 linkerOpts("-rpath", frameworkPath)
                 linkerOpts("-framework", "ObjectiveDropboxOfficial")
             }
-//            getFramework("DEBUG").apply {
-//                val frameworkPath = "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-//                linkerOpts("-F$frameworkPath")
-//                linkerOpts("-rpath", frameworkPath)
-//                linkerOpts("-framework", "ObjectiveDropboxOfficial")
-//            }
         }
     }
-
-
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -116,11 +69,7 @@ kotlin {
             transitiveExport = true
             linkerOpts.add("-lsqlite3")
 
-
             val isSimulator = this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
-            println(">>> isSimulator?? $isSimulator")
-
-//            this.
             val frameworkPath = if (isSimulator) {
                 "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
             } else {
@@ -129,7 +78,6 @@ kotlin {
             linkerOpts("-F$frameworkPath")
             linkerOpts("-rpath", frameworkPath)
             linkerOpts("-framework", "ObjectiveDropboxOfficial")
-
         }
     }
 
