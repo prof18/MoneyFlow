@@ -1,5 +1,5 @@
 package com.prof18.moneyflow.domain.entities
 
-class DatabaseExportException : Exception()
+internal class DatabaseExportException : Exception()
 
-class DatabaseImportException : Exception()
+internal class DatabaseImportException : Exception()

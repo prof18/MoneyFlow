@@ -8,7 +8,7 @@ import kotlin.native.concurrent.SharedImmutable
 // TODO: localize?
 
 @SharedImmutable
-val defaultCategories = listOf(
+internal val defaultCategories = listOf(
 
     CategoryTable(
         id = 0,

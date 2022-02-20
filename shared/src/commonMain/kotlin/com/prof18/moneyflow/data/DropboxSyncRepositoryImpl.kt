@@ -31,7 +31,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 
-class DropboxSyncRepositoryImpl(
+internal class DropboxSyncRepositoryImpl(
     private val dropboxSource: DropboxSource,
     private val settingsSource: SettingsSource,
     private val dispatcherProvider: DispatcherProvider,

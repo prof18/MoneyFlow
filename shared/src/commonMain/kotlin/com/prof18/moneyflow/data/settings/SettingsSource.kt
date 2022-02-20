@@ -4,7 +4,7 @@ import co.touchlab.stately.freeze
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.set
 
-enum class SettingsFields {
+internal enum class SettingsFields {
     DROPBOX_CLIENT_CRED,
     USE_BIOMETRIC,
     HIDE_SENSITIVE_DATA,
@@ -14,7 +14,7 @@ enum class SettingsFields {
     DROPBOX_LAST_DOWNLOAD_HASH,
 }
 
-class SettingsSource(private val settings: Settings) {
+internal class SettingsSource(private val settings: Settings) {
 
     init {
         freeze()

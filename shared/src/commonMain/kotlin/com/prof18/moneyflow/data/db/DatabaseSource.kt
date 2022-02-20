@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import com.prof18.moneyflow.utils.CurrentMonthID
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 
-interface DatabaseSource {
+internal interface DatabaseSource {
     fun selectLatestTransactions(): Flow<List<SelectLatestTransactions>>
     fun selectAllCategories(): Flow<List<CategoryTable>>
     fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable>

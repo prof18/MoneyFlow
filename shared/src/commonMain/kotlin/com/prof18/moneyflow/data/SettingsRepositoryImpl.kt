@@ -6,7 +6,7 @@ import com.prof18.moneyflow.utils.formatDateAllData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class SettingsRepositoryImpl(
+internal class SettingsRepositoryImpl(
     private val settingsSource: SettingsSource
 ) : SettingsRepository {
 

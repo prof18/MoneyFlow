@@ -8,7 +8,6 @@ import com.prof18.moneyflow.data.db.Schema
 import com.prof18.moneyflow.data.db.createQueryWrapper
 import kotlin.native.concurrent.AtomicReference
 
-
 object DatabaseHelper {
     private val driverRef = AtomicReference<SqlDriver?>(null)
     private val dbRef = AtomicReference<MoneyFlowDB?>(null)

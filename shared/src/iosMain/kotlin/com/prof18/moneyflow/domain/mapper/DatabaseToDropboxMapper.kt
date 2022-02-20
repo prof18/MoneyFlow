@@ -7,7 +7,7 @@ import com.prof18.moneyflow.dropboxapi.DropboxDownloadParam
 import com.prof18.moneyflow.dropboxapi.DropboxUploadParam
 import platform.Foundation.NSData
 
-actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam {
+internal actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam {
     // TODO: add real data!
     return DropboxUploadParam(
         client = dropboxClient,
@@ -16,7 +16,7 @@ actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient
     )
 }
 
-actual fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: DropboxClient): DropboxDownloadParam {
+internal actual fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: DropboxClient): DropboxDownloadParam {
     // TODO: add real data
     return DropboxDownloadParam(
         client = dropboxClient,

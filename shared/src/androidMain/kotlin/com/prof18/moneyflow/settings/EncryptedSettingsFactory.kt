@@ -6,7 +6,7 @@ import androidx.security.crypto.MasterKey
 import com.russhwolf.settings.AndroidSettings
 import com.russhwolf.settings.Settings
 
-class EncryptedSettingsFactory(private val context: Context) : Settings.Factory {
+internal class EncryptedSettingsFactory(private val context: Context) : Settings.Factory {
     private val masterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .setUserAuthenticationRequired(false)

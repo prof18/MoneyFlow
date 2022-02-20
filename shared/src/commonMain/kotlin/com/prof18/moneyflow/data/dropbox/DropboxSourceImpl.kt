@@ -2,7 +2,7 @@ package com.prof18.moneyflow.data.dropbox
 
 import com.prof18.moneyflow.dropboxapi.*
 
-class DropboxSourceImpl(
+internal class DropboxSourceImpl(
     private val dropboxApi: DropboxApi
 ) : DropboxSource {
 

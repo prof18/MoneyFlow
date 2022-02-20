@@ -6,6 +6,6 @@ import com.prof18.moneyflow.dropboxapi.DropboxClient
 import com.prof18.moneyflow.dropboxapi.DropboxDownloadParam
 import com.prof18.moneyflow.dropboxapi.DropboxUploadParam
 
-expect fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam
+internal expect fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam
 
-expect fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: DropboxClient): DropboxDownloadParam
+internal expect fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: DropboxClient): DropboxDownloadParam

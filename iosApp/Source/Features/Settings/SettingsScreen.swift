@@ -37,7 +37,8 @@
         private func getContent() -> some View {
             return Form {
                 Button("export_database".localized) {
-                    DatabaseHelper().dbClear()
+                    // TODO: replace with koin scope
+//                    DatabaseHelper().dbClear()
                     sheetToShow = .shareSheet
                 }
                 

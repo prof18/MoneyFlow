@@ -15,7 +15,7 @@ import com.prof18.moneyflow.utils.generateCurrentMonthId
 import kotlinx.coroutines.flow.*
 import kotlin.math.abs
 
-class MoneyRepositoryImpl(
+internal class MoneyRepositoryImpl(
     private val dbSource: DatabaseSource
 ) : MoneyRepository {
 

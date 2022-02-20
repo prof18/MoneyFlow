@@ -8,7 +8,7 @@ import com.prof18.moneyflow.data.db.Schema
 import com.prof18.moneyflow.data.db.createQueryWrapper
 import org.koin.java.KoinJavaComponent.getKoin
 
-object DatabaseHelper {
+internal object DatabaseHelper {
 
     private var driverRef: SqlDriver? = null
     private var dbRef: MoneyFlowDB? = null

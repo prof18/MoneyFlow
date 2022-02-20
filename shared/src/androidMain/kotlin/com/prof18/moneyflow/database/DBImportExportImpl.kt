@@ -16,7 +16,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-class DBImportExportImpl(
+internal class DBImportExportImpl(
     private val context: Context,
     private val errorMapper: MoneyFlowErrorMapper,
 ) : DBImportExport {

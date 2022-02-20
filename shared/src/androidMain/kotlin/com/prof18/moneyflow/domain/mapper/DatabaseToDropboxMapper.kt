@@ -6,7 +6,7 @@ import com.prof18.moneyflow.dropboxapi.DropboxClient
 import com.prof18.moneyflow.dropboxapi.DropboxDownloadParam
 import com.prof18.moneyflow.dropboxapi.DropboxUploadParam
 
-actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam {
+internal actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam {
     return DropboxUploadParam(
         client = dropboxClient,
         path = path,
@@ -14,7 +14,7 @@ actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient
     )
 }
 
-actual fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: DropboxClient): DropboxDownloadParam {
+internal actual fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: DropboxClient): DropboxDownloadParam {
     return DropboxDownloadParam(
         client = dropboxClient,
         path = this.path,

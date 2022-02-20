@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 
-class DatabaseSourceImpl(
+internal class DatabaseSourceImpl(
     private val dbRef: MoneyFlowDB,
     dispatcher: CoroutineDispatcher?,
 ) : DatabaseSource {

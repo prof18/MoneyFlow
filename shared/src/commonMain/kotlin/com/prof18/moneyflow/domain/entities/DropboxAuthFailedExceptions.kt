@@ -1,3 +1,3 @@
 package com.prof18.moneyflow.domain.entities
 
-class DropboxAuthFailedExceptions : Exception()
+internal class DropboxAuthFailedExceptions : Exception()

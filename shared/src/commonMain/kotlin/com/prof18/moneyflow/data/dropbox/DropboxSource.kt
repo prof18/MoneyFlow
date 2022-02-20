@@ -2,7 +2,7 @@ package com.prof18.moneyflow.data.dropbox
 
 import com.prof18.moneyflow.dropboxapi.*
 
-interface DropboxSource {
+internal interface DropboxSource {
 
     fun setup(setupParam: DropboxSetupParam)
     fun startAuthorization(authParam: DropboxAuthorizationParam)

@@ -13,7 +13,7 @@ const val DB_FILE_NAME_WITH_EXTENSION = "MoneyFlow.db"
 const val DB_FILE_NAME = "MoneyFlow"
 const val DATABASE_NAME = "MoneyFlowDB"
 
-fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
+internal fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
     return MoneyFlowDB(
         driver,
         CategoryTableAdapter = CategoryTable.Adapter(
@@ -28,7 +28,7 @@ fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
     )
 }
 
-object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
+internal object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
     override fun create(driver: SqlDriver) {
         MoneyFlowDB.Schema.create(driver)
 
