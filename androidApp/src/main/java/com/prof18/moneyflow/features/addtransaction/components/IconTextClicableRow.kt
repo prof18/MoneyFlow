@@ -25,7 +25,7 @@ import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun IconTextClickableRow(
+internal fun IconTextClickableRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     text: String,
@@ -77,7 +77,7 @@ fun IconTextClickableRow(
 @Preview(name = "IconTextClickableRow Light")
 @Preview(name = "IconTextClickableRow Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun IconTextClickableRowPreview() {
+private fun IconTextClickableRowPreview() {
      MoneyFlowTheme {
          Surface {
              IconTextClickableRow(

@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,7 +18,7 @@ import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun SwitchWithText(
+internal fun SwitchWithText(
     onSwitchChanged: (Boolean) -> Unit,
     switchStatus: Boolean,
     title: String,
@@ -46,29 +47,16 @@ fun SwitchWithText(
     }
 }
 
-@Preview
+@Preview(name = "SwitchWithText Light")
+@Preview(name = "SwitchWithText Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun SwitchWithTextLightPreview() {
+private fun SwitchWithTextPreview() {
     MoneyFlowTheme {
         Surface {
             SwitchWithText(
                 onSwitchChanged = {},
                 switchStatus = true,
                 title = "A super dupe preference"
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun SwitchWithTextDarkPreview() {
-    MoneyFlowTheme(darkTheme = true) {
-        Surface {
-            SwitchWithText(
-                onSwitchChanged = {},
-                switchStatus = false,
-                title = "A super dupe disabled preference"
             )
         }
     }

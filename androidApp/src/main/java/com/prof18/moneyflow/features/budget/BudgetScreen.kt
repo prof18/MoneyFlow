@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.Screen
 
-object BudgetScreenFactory : ComposeNavigationFactory {
+internal object BudgetScreenFactory : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.BudgetScreen.route) {
             BudgetScreen()
@@ -21,7 +21,7 @@ object BudgetScreenFactory : ComposeNavigationFactory {
 }
 
 @Composable
-fun BudgetScreen() {
+internal fun BudgetScreen() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()

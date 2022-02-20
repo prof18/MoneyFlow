@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.ui.components
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,23 +22,8 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
 
-@Preview
 @Composable
-fun ArrowCircleIconPreview() {
-    Surface {
-        MoneyFlowTheme {
-            ArrowCircleIcon(
-                boxColor = upArrowCircleColor(),
-                iconID = R.drawable.ic_arrow_up_rotate,
-                arrowColor = upArrowColor(),
-                iconSize = 18.dp
-            )
-        }
-    }
-}
-
-@Composable
-fun ArrowCircleIcon(
+internal fun ArrowCircleIcon(
     boxColor: Color,
     @DrawableRes iconID: Int,
     arrowColor: Color,
@@ -59,5 +45,21 @@ fun ArrowCircleIcon(
                 .size(iconSize),
             tint = arrowColor
         )
+    }
+}
+
+@Preview(name = "ArrowCircleIcon Light")
+@Preview(name = "ArrowCircleIcon Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun ArrowCircleIconPreview() {
+    Surface {
+        MoneyFlowTheme {
+            ArrowCircleIcon(
+                boxColor = upArrowCircleColor(),
+                iconID = R.drawable.ic_arrow_up_rotate,
+                arrowColor = upArrowColor(),
+                iconSize = 18.dp
+            )
+        }
     }
 }

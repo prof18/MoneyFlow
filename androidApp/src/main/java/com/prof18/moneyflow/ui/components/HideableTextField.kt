@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -13,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun HideableTextField(
+internal fun HideableTextField(
     modifier: Modifier = Modifier,
     text: String,
     hide: Boolean,
@@ -32,7 +33,8 @@ fun HideableTextField(
     )
 }
 
-@Preview
+@Preview(name = "HideableTextFieldVisible Light")
+@Preview(name = "HideableTextFieldVisible Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun HideableTextFieldVisiblePreview() {
     MoneyFlowTheme {
@@ -44,7 +46,8 @@ private fun HideableTextFieldVisiblePreview() {
     }
 }
 
-@Preview
+@Preview(name = "HideableTextFieldHidden Light")
+@Preview(name = "HideableTextFieldHidden Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun HideableTextFieldHiddenPreview() {
     MoneyFlowTheme {

@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -15,7 +16,7 @@ import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun ErrorView(
+internal fun ErrorView(
     uiErrorMessage: UIErrorMessage
 ) {
     Box(
@@ -46,25 +47,14 @@ fun ErrorView(
     }
 }
 
-@Preview
+@Preview(name = "ErrorView Light")
+@Preview(name = "ErrorView Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ErrorViewLightPreview() {
+private fun ErrorViewPreview() {
     val message = UIErrorMessage(message = "New error occurred", nerdMessage = "Error code: 101")
 
     Surface {
         MoneyFlowTheme {
-            ErrorView(uiErrorMessage = message)
-        }
-    }
-}
-
-@Preview
-@Composable
-fun ErrorViewDarkPreview() {
-    val message = UIErrorMessage(message = "New error occurred", nerdMessage = "Error code: 101")
-
-    Surface {
-        MoneyFlowTheme(darkTheme = true) {
             ErrorView(uiErrorMessage = message)
         }
     }

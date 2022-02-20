@@ -275,7 +275,7 @@ private fun DropboxSyncMetadataUI(
 @Preview(name = "DropboxLoginContentNotConnected Light")
 @Preview(name = "DropboxLoginContentNotConnected Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun DropboxLoginContentNotConnectedPreview() {
+private fun DropboxLoginContentNotConnectedPreview() {
     MoneyFlowTheme {
         Surface {
             DropboxLoginContent(
@@ -301,7 +301,7 @@ fun DropboxLoginContentNotConnectedPreview() {
 @Preview(name = "DropboxLoginContentConnected Light")
 @Preview(name = "DropboxLoginContentConnected Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun DropboxLoginContentConnectedPreview() {
+private fun DropboxLoginContentConnectedPreview() {
     MoneyFlowTheme {
         Surface {
             DropboxLoginContent(

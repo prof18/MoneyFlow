@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.features.home.components
 
-
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,10 +20,8 @@ import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.ui.components.HideableTextField
 import com.prof18.moneyflow.ui.style.*
 
-
-
 @Composable
-fun HomeRecap(
+internal fun HomeRecap(
     balanceRecap: BalanceRecap,
     hideSensitiveData: Boolean
 ) {

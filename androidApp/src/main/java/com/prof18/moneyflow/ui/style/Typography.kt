@@ -15,9 +15,7 @@ private val Poppins = FontFamily(
     Font(R.font.poppins_semibold, FontWeight.SemiBold)
 )
 
-
-
-val MoneyFlowTypography = Typography(
+internal val MoneyFlowTypography = Typography(
     h1 = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Light,

@@ -9,7 +9,7 @@ import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 import kotlinx.coroutines.flow.StateFlow
 
-class SettingsViewModel(
+internal class SettingsViewModel(
     private val databaseImportExport: DBImportExport,
     private val settingsUseCase: SettingsUseCase
 ) : ViewModel() {

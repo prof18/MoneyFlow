@@ -33,7 +33,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
-class AddTransactionScreenFactory(private val categoryState: MutableState<CategoryUIData?>) :
+internal class AddTransactionScreenFactory(private val categoryState: MutableState<CategoryUIData?>) :
     ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.AddTransactionScreen.route) {
@@ -73,7 +73,7 @@ class AddTransactionScreenFactory(private val categoryState: MutableState<Catego
 }
 
 @Composable
-fun AddTransactionScreen(
+internal fun AddTransactionScreen(
     categoryState: State<CategoryUIData?>,
     navigateUp: () -> Unit,
     navigateToCategoryList: () -> Unit,
@@ -224,7 +224,7 @@ fun AddTransactionScreen(
 @Preview(name = "Add Transaction Screen Light")
 @Preview(name = "Add Transaction Screen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun AddTransactionScreenPreview() {
+private fun AddTransactionScreenPreview() {
     MoneyFlowTheme {
         Surface {
             AddTransactionScreen(

@@ -22,7 +22,7 @@ import com.prof18.moneyflow.features.settings.SettingsScreenFactory
 import com.prof18.moneyflow.ui.style.LightAppColors
 
 @Composable
-fun AppContainer() {
+internal fun AppContainer() {
 
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()

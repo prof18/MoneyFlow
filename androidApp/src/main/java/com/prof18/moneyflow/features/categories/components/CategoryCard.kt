@@ -22,7 +22,7 @@ import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun CategoryCard(
+internal fun CategoryCard(
     category: Category,
     onClick: ((Category) -> Unit)?
 ) {
@@ -69,7 +69,7 @@ fun CategoryCard(
 @Preview(name = "CategoryCard Light")
 @Preview(name = "CategoryCard Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun CategoryCardPreview() {
+private fun CategoryCardPreview() {
     MoneyFlowTheme {
         Surface {
             CategoryCard(

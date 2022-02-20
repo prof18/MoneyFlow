@@ -8,7 +8,7 @@ import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.utils.logError
 
-class TransactionPagingSource(
+internal class TransactionPagingSource(
     private val allTransactionsUseCase: AllTransactionsUseCase
 ) : PagingSource<Long, MoneyTransaction>() {
 

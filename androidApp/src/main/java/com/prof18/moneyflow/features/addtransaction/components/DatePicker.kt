@@ -15,12 +15,12 @@ import com.prof18.moneyflow.R
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import java.util.*
 
-fun getYearList() = (2015..2023).map { it.toString() }
-fun getMonthList() = (1..12).map { it.toString() }
-fun getDayList() = (1..31).map { it.toString() }
+internal fun getYearList() = (2015..2023).map { it.toString() }
+internal fun getMonthList() = (1..12).map { it.toString() }
+internal fun getDayList() = (1..31).map { it.toString() }
 
 @Composable
-fun DatePickerDialog(
+internal fun DatePickerDialog(
     showDialog: Boolean,
     setDialogVisible: (Boolean) -> Unit,
     onYearSelected: (Int) -> Unit,
@@ -140,7 +140,7 @@ private fun DatePickerItemDropdownMenu(
 
 @Preview
 @Composable
-fun DatePickerDialogPreview() {
+private fun DatePickerDialogPreview() {
     MoneyFlowTheme {
         Surface {
             DatePickerDialog(

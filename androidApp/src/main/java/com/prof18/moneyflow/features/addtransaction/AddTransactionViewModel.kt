@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddTransactionViewModel(
+internal class AddTransactionViewModel(
     private val addTransactionUseCase: AddTransactionUseCase,
     private val localizedStringProvider: LocalizedStringProvider
 ) : ViewModel() {

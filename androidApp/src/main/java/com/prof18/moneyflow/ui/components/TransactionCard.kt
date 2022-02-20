@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -25,7 +26,7 @@ import com.prof18.moneyflow.presentation.model.CategoryIcon
 import kotlin.math.abs
 
 @Composable
-fun TransactionCard(
+internal fun TransactionCard(
     transaction: MoneyTransaction,
     onLongPress: () -> Unit,
     onClick: () -> Unit,
@@ -126,9 +127,10 @@ fun TransactionCard(
     }
 }
 
-@Preview
+@Preview(name = "TransactionCard Light")
+@Preview(name = "TransactionCard Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun TransactionCardLightPreview() {
+private fun TransactionCardPreview() {
     Surface {
         MoneyFlowTheme {
             TransactionCard(
@@ -144,29 +146,6 @@ fun TransactionCardLightPreview() {
                 onLongPress = {},
                 onClick = {},
                 hideSensitiveData = true
-            )
-        }
-    }
-}
-
-@Preview
-@Composable
-fun TransactionCardDarkPreview() {
-    Surface {
-        MoneyFlowTheme(darkTheme = true) {
-            TransactionCard(
-                transaction = MoneyTransaction(
-                    id = 0,
-                    title = "Eating out",
-                    icon = CategoryIcon.IC_HAMBURGER_SOLID,
-                    amount = 30.0,
-                    type = TransactionTypeUI.EXPENSE,
-                    milliseconds = 0,
-                    formattedDate = "12/12/21"
-                ),
-                onLongPress = {},
-                onClick = {},
-                hideSensitiveData = false
             )
         }
     }

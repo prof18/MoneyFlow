@@ -12,7 +12,7 @@ import org.koin.java.KoinJavaComponent.getKoin
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
 import com.prof18.moneyflow.presentation.categories.CategoryModel
 
-class CategoriesViewModel(
+internal class CategoriesViewModel(
     private var categoriesUseCase: CategoriesUseCase
 ): ViewModel() {
 

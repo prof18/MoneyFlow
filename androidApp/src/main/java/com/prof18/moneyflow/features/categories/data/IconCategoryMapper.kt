@@ -3,7 +3,7 @@ package com.prof18.moneyflow.features.categories.data
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 
-fun CategoryIcon.mapToAndroidIcon(): Int {
+internal fun CategoryIcon.mapToAndroidIcon(): Int {
     return when (this) {
         CategoryIcon.IC_ADDRESS_BOOK -> R.drawable.ic_address_book
         CategoryIcon.IC_ADDRESS_CARD -> R.drawable.ic_address_card

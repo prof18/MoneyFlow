@@ -6,13 +6,13 @@ import com.prof18.moneyflow.domain.entities.Category
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CategoryUIData(
+internal data class CategoryUIData(
     val id: Long,
     val name: String,
     @DrawableRes val icon: Int
 ) : Parcelable
 
-fun Category.toCategoryUIData() = CategoryUIData(
+internal fun Category.toCategoryUIData() = CategoryUIData(
     id = this.id,
     name = this.name,
     icon = this.icon.mapToAndroidIcon()

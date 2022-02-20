@@ -38,7 +38,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
-object SettingsScreenFactory : ComposeNavigationFactory {
+internal object SettingsScreenFactory : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.SettingsScreen.route) {
             val viewModel = getViewModel<SettingsViewModel>()
@@ -57,7 +57,7 @@ object SettingsScreenFactory : ComposeNavigationFactory {
 }
 
 @Composable
-fun SettingsScreen(
+internal fun SettingsScreen(
     performBackup: (Uri) -> Unit,
     performRestore: (Uri) -> Unit,
     biometricState: Boolean,

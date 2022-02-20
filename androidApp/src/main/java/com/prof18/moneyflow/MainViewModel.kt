@@ -3,7 +3,7 @@ package com.prof18.moneyflow
 import androidx.lifecycle.ViewModel
 import com.prof18.moneyflow.presentation.main.MainUseCase
 
-class MainViewModel(
+internal class MainViewModel(
     private val mainUseCase: MainUseCase
 ) : ViewModel() {
 

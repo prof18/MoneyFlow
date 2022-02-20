@@ -10,7 +10,7 @@ import com.prof18.moneyflow.features.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val appModule = module {
+internal val appModule = module {
     // View Models
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get()) }

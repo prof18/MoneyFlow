@@ -18,7 +18,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 // TODO: check padding bottom of the text
 @Composable
-fun MFTextInput(
+internal fun MFTextInput(
     text: String,
     label: String?,
     onTextChange: (String) -> Unit,
@@ -63,7 +63,7 @@ fun MFTextInput(
 @Preview(name = "MFTextInputPreviewWithIcon Light")
 @Preview(name = "MFTextInputPreviewWithIcon Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun MFTextInputPreviewWithIcon() {
+private fun MFTextInputPreviewWithIcon() {
     MoneyFlowTheme {
         Surface {
             MFTextInput(
@@ -86,7 +86,7 @@ fun MFTextInputPreviewWithIcon() {
 @Preview(name = "MFTextInputPreview Light")
 @Preview(name = "MFTextInputPreview Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun MFTextInputPreview() {
+private fun MFTextInputPreview() {
     MoneyFlowTheme {
         Surface {
             MFTextInput(

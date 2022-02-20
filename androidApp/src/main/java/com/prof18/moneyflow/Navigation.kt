@@ -5,11 +5,11 @@ import androidx.annotation.StringRes
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 
-interface ComposeNavigationFactory {
+internal interface ComposeNavigationFactory {
     fun create(navGraphBuilder: NavGraphBuilder, navController: NavController)
 }
 
-sealed class Screen(val route: String) {
+internal sealed class Screen(val route: String) {
     object AddTransactionScreen : Screen("add_transaction_screen")
     object CategoriesScreen : Screen("categories_screen")
     object HomeScreen: Screen("home_screen")
@@ -19,18 +19,18 @@ sealed class Screen(val route: String) {
     object AllTransactionsScreen: Screen("all_transactions_screen")
 }
 
-sealed class NavigationArguments(val key: String) {
+internal sealed class NavigationArguments(val key: String) {
     object FromAddTransaction: NavigationArguments("from_add_transaction")
     object Category: NavigationArguments("category")
 }
 
-data class BottomNavigationItem(
+internal data class BottomNavigationItem(
     val screen: Screen,
     @StringRes val titleResId: Int,
     @DrawableRes val drawableResId: Int
 )
 
-val bottomNavigationItems = listOf(
+internal val bottomNavigationItems = listOf(
 
     BottomNavigationItem(
         screen = Screen.HomeScreen,

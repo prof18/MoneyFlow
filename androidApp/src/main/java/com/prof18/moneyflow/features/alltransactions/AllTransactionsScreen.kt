@@ -32,8 +32,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.koin.androidx.compose.getViewModel
 
-object AllTransactionsScreenFactory : ComposeNavigationFactory {
-
+internal object AllTransactionsScreenFactory : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.AllTransactionsScreen.route) {
             val viewModel = getViewModel<AllTransactionsViewModel>()
@@ -48,7 +47,7 @@ object AllTransactionsScreenFactory : ComposeNavigationFactory {
 }
 
 @Composable
-fun AllTransactionsScreen(
+internal fun AllTransactionsScreen(
     navigateUp: () -> Unit = {},
     getUIErrorMessage: (MoneyFlowError) -> UIErrorMessage,
     pagingFlow: Flow<PagingData<MoneyTransaction>>,

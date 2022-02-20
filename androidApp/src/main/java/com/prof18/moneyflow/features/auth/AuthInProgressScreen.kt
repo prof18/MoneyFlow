@@ -13,7 +13,7 @@ import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun AuthScreen(
+internal fun AuthScreen(
     authState: AuthState,
     onRetryClick: () -> Unit,
 ) {

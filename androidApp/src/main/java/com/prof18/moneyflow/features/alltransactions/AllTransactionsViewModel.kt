@@ -14,7 +14,7 @@ import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.flow.Flow
 
-class AllTransactionsViewModel(
+internal class AllTransactionsViewModel(
     private val allTransactionsUseCase: AllTransactionsUseCase,
     private val errorMapper: MoneyFlowErrorMapper
 ) : ViewModel() {

@@ -32,7 +32,7 @@ import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 
-class CategoriesScreenFactory(private val categoryState: MutableState<CategoryUIData?>): ComposeNavigationFactory {
+internal class CategoriesScreenFactory(private val categoryState: MutableState<CategoryUIData?>): ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(
             route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
@@ -58,7 +58,7 @@ class CategoriesScreenFactory(private val categoryState: MutableState<CategoryUI
 }
 
 @Composable
-fun CategoriesScreen(
+internal fun CategoriesScreen(
     navigateUp: () -> Unit,
     sendCategoryBack: (CategoryUIData) -> Unit,
     isFromAddTransaction: Boolean,
@@ -107,7 +107,7 @@ fun CategoriesScreen(
 @Preview(name = "CategoriesScreen Light")
 @Preview(name = "CategoriesScreen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun CategoriesScreenPreview() {
+private fun CategoriesScreenPreview() {
     MoneyFlowTheme {
         Surface {
             CategoriesScreen(
@@ -136,7 +136,7 @@ fun CategoriesScreenPreview() {
 @Preview(name = "CategoriesScreenError Light")
 @Preview(name = "CategoriesScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun CategoriesScreenErrorPreview() {
+private fun CategoriesScreenErrorPreview() {
     MoneyFlowTheme {
         Surface {
             CategoriesScreen(

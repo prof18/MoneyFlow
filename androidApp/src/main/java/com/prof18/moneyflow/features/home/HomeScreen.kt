@@ -37,7 +37,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
-class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavigationFactory {
+internal class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.HomeScreen.route) {
             val homeViewModel = getViewModel<HomeViewModel>()
@@ -67,7 +67,7 @@ class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavig
 }
 
 @Composable
-fun HomeScreen(
+internal fun HomeScreen(
     navigateToAddTransaction: () -> Unit = {},
     paddingValues: PaddingValues = PaddingValues(0.dp),
     deleteTransaction: (Long) -> Unit = {},
@@ -216,7 +216,7 @@ fun HomeScreen(
 @Preview(name = "HomeScreen Light")
 @Preview(name = "HomeScreen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HomeScreenPreview() {
+private fun HomeScreenPreview() {
     MoneyFlowTheme {
         Surface {
             HomeScreen(
@@ -257,7 +257,7 @@ fun HomeScreenPreview() {
 @Preview(name = "HomeScreenError Light")
 @Preview(name = "HomeScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun HomeScreenErrorPreview() {
+private fun HomeScreenErrorPreview() {
     MoneyFlowTheme {
         Surface {
             HomeScreen(

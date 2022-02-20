@@ -32,7 +32,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.FileOutputStream
 
-class DropboxSyncViewModel(
+internal class DropboxSyncViewModel(
     private val dropboxSyncUseCase: DropboxSyncUseCase,
     private val databaseImportExport: DBImportExport,
     private val errorMapper: MoneyFlowErrorMapper,

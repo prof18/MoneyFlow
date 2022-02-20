@@ -42,19 +42,19 @@ private val DarkThemeColors = darkColors(
 )
 
 @Composable
-fun upArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.green3 else LightAppColors.green3
+internal fun upArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.green3 else LightAppColors.green3
 
 @Composable
-fun upArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.green3 else LightAppColors.green1
+internal fun upArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.green3 else LightAppColors.green1
 
 @Composable
-fun downArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.red3 else LightAppColors.red3
+internal fun downArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.red3 else LightAppColors.red3
 
 @Composable
-fun downArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.red3 else LightAppColors.red1
+internal fun downArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.red3 else LightAppColors.red1
 
 @Composable
-fun MoneyFlowTheme(
+internal fun MoneyFlowTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

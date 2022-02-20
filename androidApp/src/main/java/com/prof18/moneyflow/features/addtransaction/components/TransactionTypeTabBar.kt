@@ -24,7 +24,7 @@ import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.ui.style.*
 
 @Composable
-fun TransactionTypeTabBar(
+internal fun TransactionTypeTabBar(
     transactionType: TransactionType,
     onTabSelected: (tabPage: TransactionType) -> Unit,
     modifier: Modifier = Modifier
@@ -112,7 +112,7 @@ private fun TransactionTabIndicator(
 @Preview(name = "TransactionTypeTabBarPreview Light")
 @Preview(name = "TransactionTypeTabBarPreview Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun TransactionTypeTabBarPreview() {
+private fun TransactionTypeTabBarPreview() {
     MoneyFlowTheme {
         Surface {
             TransactionTypeTabBar(

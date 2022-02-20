@@ -2,7 +2,7 @@ package com.prof18.moneyflow.ui.style
 
 import androidx.compose.ui.graphics.Color
 
-object LightAppColors {
+internal object LightAppColors {
 
     val primary = Color(0XFF3E6275)
     val lightGrey = Color(0XFFF8F5F5)

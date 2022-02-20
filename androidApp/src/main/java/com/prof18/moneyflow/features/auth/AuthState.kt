@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.features.auth
 
-enum class AuthState {
+internal enum class AuthState {
     AUTHENTICATED,
     NOT_AUTHENTICATED,
     AUTH_IN_PROGRESS,

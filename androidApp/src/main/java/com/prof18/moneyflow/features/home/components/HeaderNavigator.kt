@@ -20,7 +20,7 @@ import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
-fun HeaderNavigator(
+internal fun HeaderNavigator(
     title: String,
     onClick: () -> Unit = {},
 ) {
