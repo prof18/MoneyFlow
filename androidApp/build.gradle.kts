@@ -1,9 +1,9 @@
 import java.util.*
 
+@Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    id("kotlin-parcelize")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 val propertiesFile = file("$rootDir/local.properties")
@@ -13,14 +13,19 @@ if (propertiesFile.exists()) {
 }
 val dropboxKey = properties.getProperty("dropbox.app_key") ?: ""
 
+val appVersionCode: String by project
+val appVersionName: String by project
+
+val javaVersion: JavaVersion by rootProject.extra
+
 android {
-    compileSdk = Config.Android.compileSdk
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        applicationId = Config.Release.applicationID
-        minSdk = Config.Android.minSdk
-        targetSdk = Config.Android.targetSdk
-        versionCode = Config.Release.appVersionCode
-        versionName = Config.Release.appVersionName
+        applicationId = "com.prof18.moneyflow"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = appVersionCode.toInt()
+        versionName = appVersionName
 
         addManifestPlaceholders(
             mapOf(
@@ -42,16 +47,18 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = Config.Java.javaVersion
-        targetCompatibility = Config.Java.javaVersion
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
-    kotlinOptions {
-        jvmTarget = Config.Java.javaVersionNumber
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = libs.versions.java.get()
+        }
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.composeCompiler
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
 
     buildFeatures { compose = true }
@@ -64,32 +71,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 dependencies {
     implementation(project(":shared"))
 
-    with(Deps.Compose) {
-        implementation(core)
-        implementation(foundation)
-        implementation(layout)
-        implementation(material)
-        implementation(materialIconsExtended)
-        implementation(materialIconsCore)
-        implementation(runtime)
-        implementation(tooling)
-        implementation(composeNavigation)
-        implementation(activityCompose)
-        implementation(paging)
-    }
-
-    implementation(Deps.viewModelKTX)
-    implementation(Deps.Koin.core)
-    implementation(Deps.Koin.android)
-    implementation(Deps.Koin.compose)
-    implementation(Deps.timber)
+    implementation(libs.bundles.koin)
+    implementation(libs.bundles.compose)
+    implementation(libs.androidx.lifecycle.viewModelKTX)
+    implementation(libs.jake.timber)
     // TODO: think about removing and use the api from shared
-    implementation(Deps.dropboxCore)
-    implementation(Deps.biometric)
+    implementation(libs.dropbox.dropboxCore)
+    implementation(libs.androidx.biometric.ktx)
 
-
-    androidTestImplementation(Deps.Compose.uiTest)
-
-    debugImplementation(Deps.Compose.tooling)
-    debugImplementation(Deps.kotlinReflect)
+    debugImplementation(libs.androidx.compose.ui.uiTooling)
+    androidTestImplementation(libs.androidx.compose.ui.uiTest)
 }

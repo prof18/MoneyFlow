@@ -1,20 +1,26 @@
 import org.jetbrains.kotlin.konan.target.KonanTarget;
 
+@Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.native.cocoapods)
+    alias(libs.plugins.android.library)
     id("com.squareup.sqldelight")
     id("co.touchlab.kermit")
 }
-group = Config.Release.sharedLibGroup
-version = Config.Release.sharedLibVersion
+
+val sharedLibGroup: String by project
+val sharedLibVersion: String by project
+val javaVersion: JavaVersion by rootProject.extra
+
+group = sharedLibGroup
+version = sharedLibVersion
 
 android {
-    compileSdk = Config.Android.compileSdk
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = Config.Android.minSdk
-        targetSdk = Config.Android.targetSdk
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     testOptions {
@@ -28,13 +34,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Config.Java.javaVersion
-        targetCompatibility = Config.Java.javaVersion
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
-            jvmTarget = Config.Java.javaVersionNumber
+            jvmTarget = libs.versions.java.get()
         }
     }
 }
@@ -69,7 +75,8 @@ kotlin {
             transitiveExport = true
             linkerOpts.add("-lsqlite3")
 
-            val isSimulator = this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
+            val isSimulator =
+                this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
             val frameworkPath = if (isSimulator) {
                 "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
             } else {
@@ -94,62 +101,52 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":dropbox-api"))
-                implementation(Deps.SqlDelight.runtime)
-                implementation(Deps.SqlDelight.coroutineExtensions)
-                implementation(Deps.Coroutines.core)
-                implementation(Deps.stately)
-                implementation(Deps.Koin.core)
-                implementation(Deps.kotlinDateTime)
-                implementation(Deps.multiplatformSettings)
-                implementation(Deps.kermit)
+                implementation(libs.squareup.sqldelight.runtime)
+                implementation(libs.squareup.sqldelight.coroutineExtensions)
+                implementation(libs.kotlinx.coroutine.core)
+                implementation(libs.touchlab.stately)
+                implementation(libs.koin.koinCore)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.russhwolf.multiplatform.settings)
+                implementation(libs.touchlab.kermit)
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin(Deps.KotlinTest.common))
-                implementation(kotlin(Deps.KotlinTest.annotations))
-                implementation(Deps.Koin.test)
-                implementation(Deps.Coroutines.test)
-                implementation(Deps.turbine)
-                implementation(Deps.multiplatformSettingsTest)
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(libs.koin.koinTest)
+                implementation(libs.kotlinx.coroutine.test)
+                implementation(libs.cashapp.turbine)
+                implementation(libs.russhwolf.multiplatform.settings.test)
 
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(Deps.coreKTX)
-                implementation(Deps.androidCrypto)
-                implementation(Deps.SqlDelight.driverAndroid)
+                implementation(libs.androidx.security.crypto)
+                implementation(libs.squareup.sqldelight.androidDriver)
             }
         }
         val androidTest by getting {
             dependencies {
-                implementation(kotlin(Deps.KotlinTest.common))
-                implementation(Deps.SqlDelight.driver)
-
-                implementation(Deps.KotlinTest.jvm)
-                implementation(Deps.KotlinTest.junit)
-                implementation(Deps.AndroidXTest.core)
-                implementation(Deps.AndroidXTest.junit)
-                implementation(Deps.AndroidXTest.runner)
-                implementation(Deps.AndroidXTest.rules)
-                implementation(Deps.Coroutines.test)
-
+                implementation(kotlin("test-common"))
+                implementation(libs.kotlin.kotlinTest)
+                implementation(libs.kotlin.kotlinTestJunit)
+                implementation(libs.bundles.androidx.test)
+                implementation(libs.kotlinx.coroutine.test)
+                implementation(libs.squareup.sqldelight.sqliteDriver)
             }
         }
         val iosMain by getting {
             dependencies {
-                implementation(Deps.SqlDelight.driverIos)
-                implementation(Deps.Coroutines.core) {
-                    version {
-                        strictly(Versions.coroutines)
-                    }
-                }
+                implementation(libs.squareup.sqldelight.nativeDriver)
+                implementation(libs.kotlinx.coroutine.core)
             }
         }
         val iosTest by getting {
             dependencies {
-                implementation(Deps.SqlDelight.driverIos)
+                implementation(libs.squareup.sqldelight.nativeDriver)
             }
         }
     }
