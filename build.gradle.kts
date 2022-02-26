@@ -64,3 +64,12 @@ tasks.withType<DependencyUpdatesTask> {
         }
     }
 }
+
+versionCatalogUpdate {
+    keep {
+        versions.add("android-compileSdk")
+        versions.add("android-minSdk")
+        versions.add("android-targetSdk")
+        versions.add("java")
+    }
+}
