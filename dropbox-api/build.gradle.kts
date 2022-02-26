@@ -1,7 +1,8 @@
+@Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.native.cocoapods)
+    alias(libs.plugins.android.library)
     id("co.touchlab.kermit")
 }
 
@@ -24,8 +25,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(Deps.kermit)
-                implementation(Deps.Coroutines.core)
+                implementation(libs.touchlab.kermit)
+                implementation(libs.kotlinx.coroutine.core)
             }
         }
         val commonTest by getting {
@@ -36,13 +37,13 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                api(Deps.dropboxCore)
+                api(libs.dropbox.dropboxCore)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(libs.junit)
             }
         }
         val iosMain by getting
@@ -50,11 +51,11 @@ kotlin {
 }
 
 android {
-    compileSdk = Config.Android.compileSdk
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = Config.Android.minSdk
-        targetSdk = Config.Android.targetSdk
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
     }
 }
 
