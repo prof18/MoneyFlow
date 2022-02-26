@@ -1,9 +1,6 @@
-name: Run Tests
+name: Run Checks
 
-on:
-  push:
-    branches:
-      - develop
+on: [push]
 
 jobs:
   build:
