@@ -45,10 +45,6 @@ allprojects {
 }
 
 tasks {
-
-//    name
-
-
     val swiftLint by registering {
         ByteArrayOutputStream().use { outputStream ->
             exec {
@@ -59,27 +55,7 @@ tasks {
             val output = outputStream.toString()
             println(output)
         }
-
-//        dependsOn(named("check"))
-        /*
-        return ByteArrayOutputStream().use { outputStream ->
-        project.exec {
-            workingDir = File(workingDirPath)
-            commandLine(commandList)
-            standardOutput = outputStream
-        }
-        val output = outputStream.toString()
-        if (showOutput) {
-            print(output)
-        }
-        return@use output
     }
-         */
-
-    }
-
-    named("check").dependsOn(swiftLint)
-
 }
 
 
@@ -92,40 +68,7 @@ subprojects {
     detekt {
         config = rootProject.files("config/detekt/detekt.yml")
     }
-
-//    detekt {
-//        source = files("src/main/java", "src/main/kotlin")
-//        config = rootProject.files("build-config/detekt.yml")
-//        buildUponDefaultConfig = true
-//    }
-
-    afterEvaluate {
-
-//        detekt {
-//            source = files("src/main/java", "src/main/kotlin")
-//            config = rootProject.files("build-config/detekt.yml")
-//            buildUponDefaultConfig = true
-//        }
-
-//        tasks {
-//
-//
-//            withType<Detekt> {
-//                // Required for type resolution
-//                jvmTarget = "1.8"
-//                config.setValue(files("$rootDir/config/detekt/detekt-config.yml"))
-////                config = files("$rootDir/build-config/detekt-config.yml")
-////                reports {
-////                    sarif {
-////                        required.set(true)
-////                    }
-////                }
-//            }
-//        }
-    }
 }
-
-
 
 group = sharedLibGroup
 version = sharedLibVersion
