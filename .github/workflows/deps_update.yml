@@ -32,10 +32,10 @@ jobs:
       - name: Revert gradlew change
         run: git checkout gradlew
       - name: Read dependency update report
-          id: report
-          uses: juliangruber/read-file-action@v1
-          with:
-            path: build/dependencyUpdates/report.txt
+        id: report
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: build/dependencyUpdates/report.txt
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
