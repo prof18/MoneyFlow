@@ -1,0 +1,13 @@
+name: Run Checks
+
+on:
+  push:
+    branches: [ ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python version
+        run: python -version

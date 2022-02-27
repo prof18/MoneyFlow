@@ -10,7 +10,7 @@ on:
 jobs:
   check:
     name: Check for updated dependencies
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -43,4 +43,4 @@ jobs:
           delete-branch: true
           branch: catalog-dependency-updates
           title: Dependency updates
-          body: There are new dependencies updates!\n\n${{ steps.report.outputs.content }}
+          body: There are new dependencies updates! ${{ steps.report.outputs.content }}
