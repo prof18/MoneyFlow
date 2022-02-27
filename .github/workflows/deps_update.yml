@@ -10,7 +10,7 @@ on:
 jobs:
   check:
     name: Check for updated dependencies
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
@@ -38,4 +38,4 @@ jobs:
           delete-branch: true
           branch: catalog-dependency-updates
           title: Dependency updates
-          body: Here are some suggested updates to dependencies :)
+          body: There are new dependencies updates!
