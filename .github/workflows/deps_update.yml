@@ -1,0 +1,41 @@
+# Adapted from https://github.com/code-with-the-italians/bundel/blob/main/.github/workflows/dependencies.yml
+name: dependency updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every Friday at 4:32 (note scheduled jobs might be delayed or skipped)
+    - cron: '32 4 * * 5'
+
+jobs:
+  check:
+    name: Check for updated dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Check for dependency updates
+        uses: eskatos/gradle-command-action@v1.3.3
+        with:
+          arguments: versionCatalogUpdate --no-daemon
+      # Prevent the change to gradlew to be included in the PR
+      - name: Revert gradlew change
+        run: git checkout gradlew
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Dependency updates
+          delete-branch: true
+          branch: catalog-dependency-updates
+          title: Dependency updates
+          body: Here are some suggested updates to dependencies :)
