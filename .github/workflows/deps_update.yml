@@ -31,11 +31,32 @@ jobs:
       # Prevent the change to gradlew to be included in the PR
       - name: Revert gradlew change
         run: git checkout gradlew
-      - name: Read dependency update report
-        id: report
-        uses: juliangruber/read-file-action@v1
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+      - name: Create PR message
+        uses: jannekem/run-python-script-action@v1
+        id: message
         with:
-          path: build/dependencyUpdates/report.txt
+          script: |
+            import json
+
+            f = open('build/dependencyUpdates/report.json')
+            data = json.load(f)
+
+            message = "There are new dependencies update!\n"
+
+            for item in data['outdated']['dependencies']:
+            	group = item['group']
+            	newVersion = item['available']['milestone']
+            	oldVersion = item['version']
+            	name = item['name']
+            	#-$group:$name [$oldVersion -> $newVersion]
+            	newVersionMessage="-{}:{} [{} -> {}]".format(group, name, oldVersion, newVersion)
+            	message += "\n{}".format(newVersionMessage)
+
+            print(message)
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -43,4 +64,4 @@ jobs:
           delete-branch: true
           branch: catalog-dependency-updates
           title: Dependency updates
-          body: There are new dependencies updates! ${{ steps.report.outputs.content }}
+          body: ${{ steps.message.outputs.stdout }}
