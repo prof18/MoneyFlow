@@ -1,8 +1,16 @@
 package com.prof18.moneyflow
 
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,7 +50,9 @@ internal fun AppContainer() {
                                 )
                             },
                             label = { Text(stringResource(tabBarItem.titleResId)) },
-                            selected = currentDestination?.hierarchy?.any { it.route == tabBarItem.screen.route } == true,
+                            selected = currentDestination?.hierarchy?.any {
+                                it.route == tabBarItem.screen.route
+                            } == true,
                             unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                             onClick = {
                                 navController.navigate(tabBarItem.screen.route) {
@@ -94,9 +104,9 @@ private fun canShowBottomBar(navBackStackEntry: NavBackStackEntry?): Boolean {
     val currentDestination = navBackStackEntry?.destination?.route
     if (currentDestination != null) {
         return currentDestination.contains(Screen.HomeScreen.route) ||
-                currentDestination.contains(Screen.RecapScreen.route) ||
-                currentDestination.contains(Screen.BudgetScreen.route) ||
-                currentDestination.contains(Screen.SettingsScreen.route)
+               currentDestination.contains(Screen.RecapScreen.route) ||
+               currentDestination.contains(Screen.BudgetScreen.route) ||
+               currentDestination.contains(Screen.SettingsScreen.route)
     }
     return false
 }

@@ -11,6 +11,8 @@ compose = "1.1.1"
 coroutines = "1.6.0"
 dropboxCore = "5.1.1"
 gradlePlugins-agp = "7.1.2"
+gradlePlugins-detekt = "1.19.0"
+gradlePlugins-kotlinter = "3.9.0"
 gradlePlugins-versionCatalog = "0.3.0"
 gradlePlugins-versionsBenManes = "0.39.0"
 java = "11"
@@ -80,9 +82,11 @@ koin = ["koin-koinAndroid", "koin-koinCompose", "koin-koinCore"]
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
 android-library = { id = "com.android.library", version.ref = "gradlePlugins-agp" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "gradlePlugins-detekt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-native-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "gradlePlugins-kotlinter" }
 versionCatalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.ref = "gradlePlugins-versionCatalog" }
 versionsBenManes = { id = "com.github.ben-manes.versions", version.ref = "gradlePlugins-versionsBenManes" }

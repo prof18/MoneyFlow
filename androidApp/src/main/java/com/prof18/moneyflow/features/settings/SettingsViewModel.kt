@@ -41,6 +41,4 @@ internal class SettingsViewModel(
     fun updateHideSensitiveDataState(enabled: Boolean) {
         settingsUseCase.toggleHideSensitiveData(enabled)
     }
-
-
 }

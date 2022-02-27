@@ -4,9 +4,17 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -26,11 +34,9 @@ import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
 import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeTabBar
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
-import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
 internal class AddTransactionScreenFactory(private val categoryState: MutableState<CategoryUIData?>) :
@@ -73,6 +79,7 @@ internal class AddTransactionScreenFactory(private val categoryState: MutableSta
 }
 
 @Composable
+@Suppress("LongMethod", "LongParameterList") // TODO: reduce method length
 internal fun AddTransactionScreen(
     categoryState: State<CategoryUIData?>,
     navigateUp: () -> Unit,
