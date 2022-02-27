@@ -1,7 +1,0 @@
-{
-  "extends": [
-    "config:base"
-  ],
-  "timezone": "Europe/Rome",
-  "schedule": "before 5am every saturday"
-}
