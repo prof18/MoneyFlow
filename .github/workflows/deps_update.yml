@@ -20,18 +20,9 @@ jobs:
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
-          distribution: 'adopt'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+          java-version: 11
       - name: Check for dependency updates
-        uses: eskatos/gradle-command-action@v1.3.3
-        with:
-          arguments: versionCatalogUpdate --no-daemon
-      # Prevent the change to gradlew to be included in the PR
-      - name: Revert gradlew change
-        run: git checkout gradlew
-
+        run: ./gradlew versionCatalogUpdate --no-daemon
       - name: Setup Python
         uses: actions/setup-python@v2
       - name: Create PR message
@@ -44,7 +35,7 @@ jobs:
             f = open('build/dependencyUpdates/report.json')
             data = json.load(f)
 
-            message = "There are new dependencies update!\n"
+            message = "I found a new version for those dependencies!\n"
 
             for item in data['outdated']['dependencies']:
             	group = item['group']
@@ -52,7 +43,7 @@ jobs:
             	oldVersion = item['version']
             	name = item['name']
             	#-$group:$name [$oldVersion -> $newVersion]
-            	newVersionMessage="-{}:{} [{} -> {}]".format(group, name, oldVersion, newVersion)
+            	newVersionMessage="- *{}:{}* [{} -> {}]".format(group, name, oldVersion, newVersion)
             	message += "\n{}".format(newVersionMessage)
 
             print(message)
@@ -63,5 +54,5 @@ jobs:
           commit-message: Dependency updates
           delete-branch: true
           branch: catalog-dependency-updates
-          title: Dependency updates
+          title: 🤖 Dependency updates
           body: ${{ steps.message.outputs.stdout }}
