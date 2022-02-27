@@ -9,14 +9,14 @@ import Foundation
 import shared
 
 class AddTransactionState: ObservableObject {
-    @Published var categoryId: Int64? = nil
-    @Published var categoryTitle: String? = nil
-    @Published var categoryIcon: String? = nil
-    
+    @Published var categoryId: Int64?
+    @Published var categoryTitle: String?
+    @Published var categoryIcon: String?
+
     init() {
-        
+
     }
-    
+
     init(categoryId: Int64, categoryTitle: String, categoryIcon: String) {
         self.categoryId = categoryId
         self.categoryTitle = categoryTitle

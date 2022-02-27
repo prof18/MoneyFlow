@@ -14,7 +14,7 @@ func createPublisher<T>(_ flowAdapter: FlowWrapper<T>) -> AnyPublisher<T, Kotlin
 //    return Deferred<Publishers.HandleEvents<PassthroughSubject<T, KotlinError>>> {
         let subject = PassthroughSubject<T, KotlinError>()
         let job = flowAdapter.subscribe { (item) in
-            let _ = subject.send(item)
+            _ = subject.send(item)
         } onError: { (error) in
             subject.send(completion: .failure(KotlinError(error)))
         } onComplete: {
@@ -29,10 +29,10 @@ func createPublisher<T>(_ flowAdapter: FlowWrapper<T>) -> AnyPublisher<T, Kotlin
 class PublishedFlow<T> : ObservableObject {
     @Published
     var output: T
-    
+
     init<E>(_ publisher: AnyPublisher<T, E>, defaultValue: T) {
         output = defaultValue
-        
+
         publisher
             .replaceError(with: defaultValue)
             .compactMap { $0 }
@@ -47,6 +47,8 @@ class KotlinError: LocalizedError {
         self.throwable = throwable
     }
     var errorDescription: String? {
+        // swiftlint:disable implicit_getter
         get { throwable.message }
+        // swiftlint:enable implicit_getter
     }
 }

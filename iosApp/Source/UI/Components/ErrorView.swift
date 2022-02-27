@@ -9,7 +9,7 @@ import SwiftUI
 import shared
 
 struct ErrorView: View {
-    
+
     let uiErrorMessage: UIErrorMessage
 
     var body: some View {
@@ -34,7 +34,7 @@ struct ErrorView_Previews: PreviewProvider {
         message: "An error occourred!",
         nerdMessage: "Error code 101"
     )
-    
+
     static var previews: some View {
         ErrorView(uiErrorMessage: error)
     }

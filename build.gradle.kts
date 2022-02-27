@@ -1,6 +1,8 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import io.gitlab.arturbosch.detekt.Detekt
 import com.android.build.gradle.internal.lint.AndroidLintTask
+import com.android.build.gradle.internal.tasks.factory.dependsOn
+import java.io.ByteArrayOutputStream
 
 @Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
@@ -42,6 +44,44 @@ allprojects {
     }
 }
 
+tasks {
+
+//    name
+
+
+    val swiftLint by registering {
+        ByteArrayOutputStream().use { outputStream ->
+            exec {
+                workingDir = File("${rootDir.path}/iosApp")
+                commandLine("swiftlint")
+                standardOutput = outputStream
+            }
+            val output = outputStream.toString()
+            println(output)
+        }
+
+//        dependsOn(named("check"))
+        /*
+        return ByteArrayOutputStream().use { outputStream ->
+        project.exec {
+            workingDir = File(workingDirPath)
+            commandLine(commandList)
+            standardOutput = outputStream
+        }
+        val output = outputStream.toString()
+        if (showOutput) {
+            print(output)
+        }
+        return@use output
+    }
+         */
+
+    }
+
+    named("check").dependsOn(swiftLint)
+
+}
+
 
 subprojects {
 
@@ -52,8 +92,6 @@ subprojects {
     detekt {
         config = rootProject.files("config/detekt/detekt.yml")
     }
-
-
 
 //    detekt {
 //        source = files("src/main/java", "src/main/kotlin")

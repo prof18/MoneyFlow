@@ -10,30 +10,44 @@ import Foundation
 import shared
 
 class DatabaseImportExport {
-    
+
     static func getDatabaseURL() -> URL? {
-        do {            
+        do {
             let fileURL = try FileManager.default
-                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .url(
+                    for: .applicationSupportDirectory,
+                       in: .userDomainMask,
+                       appropriateFor: nil,
+                       create: true
+                )
                 .appendingPathComponent("databases/MoneyFlowDB")
             return fileURL
         } catch {
             return nil
         }
     }
-    
+
     static func replaceDatabase(url: URL) {
         do {
             DatabaseHelper().dbClear()
-            
+
             let fileURL = try FileManager.default
-                .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                .url(
+                    for: .applicationSupportDirectory,
+                       in: .userDomainMask,
+                       appropriateFor: nil,
+                       create: true
+                )
                 .appendingPathComponent("databases/MoneyFlowDB")
-            
-            _ = try FileManager.default.replaceItemAt(fileURL, withItemAt: url, backupItemName: "MoneyFlowDB.old", options: .usingNewMetadataOnly)
-            
+
+            _ = try FileManager.default.replaceItemAt(
+                fileURL, withItemAt: url,
+                backupItemName: "MoneyFlowDB.old",
+                options: .usingNewMetadataOnly
+            )
+
             DI.reloadDIGraph()
-        
+
         } catch let error {
             print(error.localizedDescription)
             print("Something wrong during replace of the database")

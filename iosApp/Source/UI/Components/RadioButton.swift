@@ -11,7 +11,7 @@ struct RadioButton: View {
     @Environment(\.colorScheme) var colorScheme
 
     let id: String
-    let callback: (String)->()
+    let callback: (String) -> Void
     let selectedID : String
     let size: CGFloat
     let color: Color
@@ -19,7 +19,7 @@ struct RadioButton: View {
 
     init(
         _ id: String,
-        callback: @escaping (String)->(),
+        callback: @escaping (String) -> Void,
         selectedID: String,
         size: CGFloat = 20,
         color: Color = Color.primaryColor,
@@ -34,7 +34,7 @@ struct RadioButton: View {
     }
 
     var body: some View {
-        Button(action:{
+        Button(action: {
             self.callback(self.id)
         }) {
             HStack(alignment: .center, spacing: 10) {

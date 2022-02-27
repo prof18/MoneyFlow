@@ -48,7 +48,7 @@ timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+# Add this line if you want to avoid checking in source code from Swift Package Manager deps_update.yml.
 # Packages/
 # Package.pins
 # Package.resolved
@@ -68,7 +68,7 @@ playground.xcworkspace
 # *.xcworkspace
 
 # Carthage
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Add this line if you want to avoid checking in source code from Carthage deps_update.yml.
 # Carthage/Checkouts
 
 Carthage/Build/

@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct AppSidebarNavigation: View {
-    
+
     @State private var selection: SidebarNavigationItem? = .home
     @State var showSettingsSheet: Bool = false
     @EnvironmentObject var appState: AppState
-    
+
     var sidebar: some View {
-        
+
         VStack {
-            
+
             NavigationLink(
                 destination: HomeScreen().environmentObject(appState),
                 tag: SidebarNavigationItem.home,
@@ -28,7 +28,7 @@ struct AppSidebarNavigation: View {
                                     itemSelection: .home)
                 })
                 .buttonStyle(PlainButtonStyle())
-            
+
             NavigationLink(
                 destination: RecapScreen().environmentObject(appState),
                 tag: SidebarNavigationItem.recap,
@@ -40,7 +40,7 @@ struct AppSidebarNavigation: View {
                                     itemSelection: .recap)
                 })
                 .buttonStyle(PlainButtonStyle())
-            
+
             NavigationLink(
                 destination: BudgetScreen().environmentObject(appState),
                 tag: SidebarNavigationItem.budget,
@@ -52,14 +52,18 @@ struct AppSidebarNavigation: View {
                                     itemSelection: .budget)
                 })
                 .buttonStyle(PlainButtonStyle())
-            
+
             Spacer()
-            
+
             Divider()
-            SidebarMenuItem(currentSelection: $selection, imageName: "gear", textString: "Settings", itemSelection: .settings)
-                .onTapGesture {
-                    self.showSettingsSheet.toggle()
-                }
+            SidebarMenuItem(
+                currentSelection: $selection,
+                imageName: "gear",
+                textString: "Settings",
+                itemSelection: .settings
+            ).onTapGesture {
+                self.showSettingsSheet.toggle()
+            }
         }
         .padding(.top, AppMargins.regular)
         .sheet(isPresented: self.$showSettingsSheet) {
@@ -67,10 +71,10 @@ struct AppSidebarNavigation: View {
         }
         .navigationBarTitle(
             Text("Money Flow")
-            
+
         )
     }
-    
+
     var body: some View {
         NavigationView {
             sidebar

@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct BottomErrorBanner: View {
-    
+
     @StateObject var appState: AppState
-    
+
     @State private var errorData: UIErrorData = UIErrorData()
-    
+
     @State private var showBanner: Bool = false
-    
+
     var body: some View {
-        
+
         VStack(alignment: .leading, spacing: AppMargins.xSmall) {
-            
+
             Text(errorData.title)
                 .font(AppFonts.subtitle1)
                 .foregroundColor(Color.popupText)
-            
+
             Text(errorData.nerdishDesc)
                 .font(AppFonts.caption)
                 .foregroundColor(Color.popupText)
-            
+
         }
         .padding(.vertical, AppMargins.regular)
         .padding(.horizontal, AppMargins.medium)
@@ -49,7 +49,7 @@ struct BottomErrorBanner: View {
                     self.errorData = value
                     self.showBanner = true
                 }
-                
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                     withAnimation {
                         showBanner = false
@@ -60,7 +60,6 @@ struct BottomErrorBanner: View {
         .padding(.bottom, AppMargins.regular)
         .zIndex(100)
         .offset(y: showBanner ? 0 : UIScreen.main.bounds.height)
-        
+
     }
 }
-

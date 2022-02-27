@@ -13,5 +13,9 @@ jobs:
           java-version: 11
       - name: Install cocoapod generate
         run: sudo gem install cocoapods-generate
+      - name: Install brew
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - name: Install swiftlint
+        run: brew install swiftlint
       - name: Run Check
         run: ./gradlew check
