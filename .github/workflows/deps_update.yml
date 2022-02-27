@@ -36,7 +36,7 @@ jobs:
             f = open('build/dependencyUpdates/report.json')
             data = json.load(f)
 
-            message = "I found a new version for those dependencies!\n"
+            message = "I found a new version for those dependencies:\n"
 
             for item in data['outdated']['dependencies']:
             	group = item['group']
