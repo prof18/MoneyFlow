@@ -32,7 +32,9 @@ import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 
-internal class CategoriesScreenFactory(private val categoryState: MutableState<CategoryUIData?>): ComposeNavigationFactory {
+internal class CategoriesScreenFactory(
+    private val categoryState: MutableState<CategoryUIData?>,
+) : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(
             route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
@@ -62,7 +64,7 @@ internal fun CategoriesScreen(
     navigateUp: () -> Unit,
     sendCategoryBack: (CategoryUIData) -> Unit,
     isFromAddTransaction: Boolean,
-    categoryModel: CategoryModel
+    categoryModel: CategoryModel,
 ) {
 
     Scaffold(
@@ -112,7 +114,7 @@ private fun CategoriesScreenPreview() {
         Surface {
             CategoriesScreen(
                 navigateUp = { },
-                sendCategoryBack = {  },
+                sendCategoryBack = { },
                 isFromAddTransaction = true,
                 categoryModel = CategoryModel.CategoryState(
                     categories = listOf(
@@ -141,7 +143,7 @@ private fun CategoriesScreenErrorPreview() {
         Surface {
             CategoriesScreen(
                 navigateUp = { },
-                sendCategoryBack = {  },
+                sendCategoryBack = { },
                 isFromAddTransaction = true,
                 categoryModel = CategoryModel.Error(
                     uiErrorMessage = UIErrorMessage(

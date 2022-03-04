@@ -48,7 +48,7 @@ class DropboxSyncActivity : ComponentActivity() {
         setContent {
             MoneyFlowTheme {
 
-                val dropboxSyncModel by viewModel.dropboxSyncMetadataState.collectAsState()
+                val dropboxSyncModel by viewModel.state.collectAsState()
                 val isConnected by viewModel.isDropboxConnected.collectAsState()
 
                 DropboxLoginContent(
@@ -90,6 +90,7 @@ class DropboxSyncActivity : ComponentActivity() {
 }
 
 @Composable
+@Suppress("LongMethod") // TODO: reduce method length
 private fun DropboxLoginContent(
     dropboxSyncMetadataModel: DropboxSyncMetadataModel,
     isConnected: Boolean,

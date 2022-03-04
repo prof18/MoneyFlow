@@ -4,7 +4,13 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -18,14 +24,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
-import com.prof18.moneyflow.ui.style.*
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
+import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.presentation.model.CategoryIcon
+import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import com.prof18.moneyflow.ui.style.downArrowCircleColor
+import com.prof18.moneyflow.ui.style.downArrowColor
+import com.prof18.moneyflow.ui.style.upArrowCircleColor
+import com.prof18.moneyflow.ui.style.upArrowColor
 import kotlin.math.abs
 
 @Composable
+@Suppress("LongMethod") // TODO: reduce method length
 internal fun TransactionCard(
     transaction: MoneyTransaction,
     onLongPress: () -> Unit,

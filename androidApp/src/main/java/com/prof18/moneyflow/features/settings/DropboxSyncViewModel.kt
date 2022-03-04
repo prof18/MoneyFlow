@@ -39,7 +39,7 @@ internal class DropboxSyncViewModel(
     private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
-    val dropboxSyncMetadataState: StateFlow<DropboxSyncMetadataModel> = dropboxSyncUseCase.observeDropboxSyncMetadataModel()
+    val state: StateFlow<DropboxSyncMetadataModel> = dropboxSyncUseCase.observeDropboxSyncMetadataModel()
         .catch { throwable: Throwable ->
             val error = MoneyFlowError.DropboxMetadata(throwable)
             throwable.logError(error)
@@ -112,7 +112,9 @@ internal class DropboxSyncViewModel(
             val result = dropboxSyncUseCase.upload(databaseData)
             dropboxSyncAction = when (result) {
                 is MoneyFlowResult.Error -> DropboxSyncAction.ShowError(result.uiErrorMessage)
-                is MoneyFlowResult.Success -> DropboxSyncAction.Success(localizedStringProvider.get("dropbox_upload_success"))
+                is MoneyFlowResult.Success -> {
+                    DropboxSyncAction.Success(localizedStringProvider.get("dropbox_upload_success"))
+                }
             }
         }
     }
@@ -129,7 +131,9 @@ internal class DropboxSyncViewModel(
             val result = dropboxSyncUseCase.download(databaseData)
             dropboxSyncAction = when (result) {
                 is MoneyFlowResult.Error -> DropboxSyncAction.ShowError(result.uiErrorMessage)
-                is MoneyFlowResult.Success -> DropboxSyncAction.Success(localizedStringProvider.get("dropbox_download_success"))
+                is MoneyFlowResult.Success -> {
+                    DropboxSyncAction.Success(localizedStringProvider.get("dropbox_download_success"))
+                }
             }
         }
     }

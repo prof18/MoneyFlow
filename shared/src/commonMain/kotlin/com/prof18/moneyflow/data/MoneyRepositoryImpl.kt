@@ -6,13 +6,21 @@ import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MonthlyRecapTable
 import com.prof18.moneyflow.db.SelectLatestTransactions
-import com.prof18.moneyflow.domain.entities.*
+import com.prof18.moneyflow.domain.entities.BalanceRecap
+import com.prof18.moneyflow.domain.entities.Category
+import com.prof18.moneyflow.domain.entities.MoneySummary
+import com.prof18.moneyflow.domain.entities.MoneyTransaction
+import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.domain.repository.MoneyRepository
-import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
 import com.prof18.moneyflow.utils.generateCurrentMonthId
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.map
 import kotlin.math.abs
 
 internal class MoneyRepositoryImpl(
@@ -26,7 +34,6 @@ internal class MoneyRepositoryImpl(
 
     init {
         allTransactions = dbSource.selectLatestTransactions().catch {
-            
         }
         allCategories = dbSource.selectAllCategories()
         monthlyRecap = dbSource.selectCurrentMonthlyRecap()
@@ -34,7 +41,7 @@ internal class MoneyRepositoryImpl(
     }
 
     override fun getMoneySummary(): Flow<MoneySummary> {
-        return getLatestTransactions().combine(getBalanceRecap()) { transactions: List<MoneyTransaction>, balanceRecap: BalanceRecap ->
+        return getLatestTransactions().combine(getBalanceRecap()) { transactions, balanceRecap ->
             MoneySummary(
                 balanceRecap = balanceRecap,
                 latestTransactions = transactions
@@ -121,7 +128,6 @@ internal class MoneyRepositoryImpl(
 
     override suspend fun deleteTransaction(transactionId: Long) {
 
-
         val transaction = dbSource.getTransaction(transactionId)
         // It should not be null!
         if (transaction != null) {
@@ -137,7 +143,6 @@ internal class MoneyRepositoryImpl(
                     // Since it is an income, we need to subtract it from the amount
                     monthlyIncomeAmount -= transactionAmountToUpdate
                     transactionAmountToUpdate = -transactionAmountToUpdate
-
                 }
                 TransactionType.OUTCOME -> {
                     monthlyOutcomeAmount -= abs(transactionAmountToUpdate)
@@ -203,6 +208,3 @@ internal class MoneyRepositoryImpl(
             }
     }
 }
-
-
-

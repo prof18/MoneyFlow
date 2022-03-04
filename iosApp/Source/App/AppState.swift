@@ -8,8 +8,8 @@
 import Foundation
 
 class AppState: ObservableObject {
-    
+
     @Published var reloadDatabase: Bool = false
-    
-    @Published var errorData: UIErrorData = UIErrorData()    
+
+    @Published var errorData: UIErrorData = UIErrorData()
 }

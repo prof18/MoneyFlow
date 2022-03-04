@@ -9,17 +9,17 @@ import shared
 import Combine
 
 class HomeViewModel: ObservableObject {
-    
+
     @Published var homeModel: HomeModel = HomeModel.Loading()
-    
+
     @Published var uiErrorData: UIErrorData = UIErrorData()
-        
+
     private var subscriptions = Set<AnyCancellable>()
-    
+
     private func homeUseCase() -> HomeUseCaseIos {
         DI.getHomeUseCase()
     }
-    
+
     func startObserving() {
         createPublisher(homeUseCase().getMoneySummary())
             .eraseToAnyPublisher()
@@ -28,7 +28,10 @@ class HomeViewModel: ObservableObject {
                 receiveCompletion: { completion in
                     if case let .failure(error) = completion {
                         let moneyFlowError = MoneyFlowError.GetMoneySummary(throwable:  error.throwable)
-                        error.throwable.logError(moneyFlowError: moneyFlowError , message: "Got error while transforming Flow to Publisher")
+                        error.throwable.logError(
+                            moneyFlowError: moneyFlowError,
+                            message: "Got error while transforming Flow to Publisher"
+                        )
                         let uiErrorMessage = DI.getErrorMapper().getUIErrorMessage(error: moneyFlowError)
                         self.homeModel = HomeModel.Error(uiErrorMessage: uiErrorMessage)
                     }
@@ -41,7 +44,7 @@ class HomeViewModel: ObservableObject {
             )
             .store(in: &self.subscriptions)
     }
-    
+
     func deleteTransaction(transactionId: Int64) {
         homeUseCase().deleteTransaction(
             transactionId: transactionId,
@@ -50,7 +53,7 @@ class HomeViewModel: ObservableObject {
             }
         )
     }
-    
+
     deinit {
         homeUseCase().onDestroy()
     }

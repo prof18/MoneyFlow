@@ -248,4 +248,3 @@ internal val defaultCategories = listOf(
         iconName = CategoryIcon.IC_GAMEPAD_SOLID.iconName,
     ),
 )
-

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct DropboxScreen: View {
-    
+
     @State var showDropboxConnectScreen = false
     @StateObject var dropboxViewModel: DropboxViewModel = DropboxViewModel()
-    
+
     var body: some View {
         content
             .navigationTitle(Text("Dropbox Sync"))
@@ -28,29 +28,29 @@ struct DropboxScreen: View {
                 self.dropboxViewModel.checkIfConnected()
             }
     }
-    
+
     var content: AnyView {
         if self.dropboxViewModel.isDropboxConnected {
             return AnyView(
-                
+
                 Form {
-                    
+
                     if self.dropboxViewModel.isDropboxConnected {
-                        
+
                         Text("Connected")
-                        
+
                         Button("Backup to Dropbox") {
                             dropboxViewModel.backup()
                         }
-                        
+
                         Button("Restore from Dropbox") {
                             dropboxViewModel.restore()
                         }
-                        
+
                         Button("Unlink") {
                             self.dropboxViewModel.unlink()
                         }
-                        
+
                     }
                 }
             )

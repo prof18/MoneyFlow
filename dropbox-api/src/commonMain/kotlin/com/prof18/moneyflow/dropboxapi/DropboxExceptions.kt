@@ -11,5 +11,6 @@ data class DropboxDownloadException(
 ) : Exception(errorMessage, exceptionCause)
 
 data class DropboxException(
-    val errorMessage: String
-): Exception(errorMessage)
+    val causeException: Exception,
+    val errorMessage: String,
+) : Exception(errorMessage, causeException)

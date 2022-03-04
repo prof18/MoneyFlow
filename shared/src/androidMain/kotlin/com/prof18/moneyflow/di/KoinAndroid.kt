@@ -22,4 +22,3 @@ actual val platformModule: Module = module {
 
     factory<DBImportExport> { DBImportExportImpl(get(), get()) }
 }
-
