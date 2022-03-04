@@ -1,10 +1,23 @@
 package com.prof18.moneyflow.dropboxapi
 
-import cocoapods.ObjectiveDropboxOfficial.*
-import platform.Foundation.*
-import platform.UIKit.UIApplication
 import co.touchlab.kermit.Logger
+import cocoapods.ObjectiveDropboxOfficial.DBClientsManager
+import cocoapods.ObjectiveDropboxOfficial.DBFILESDownloadError
+import cocoapods.ObjectiveDropboxOfficial.DBFILESFileMetadata
+import cocoapods.ObjectiveDropboxOfficial.DBFILESUploadError
+import cocoapods.ObjectiveDropboxOfficial.DBOAuthCompletion
+import cocoapods.ObjectiveDropboxOfficial.DBScopeRequest
+import cocoapods.ObjectiveDropboxOfficial.DBScopeTypeUser
+import cocoapods.ObjectiveDropboxOfficial.authorizeFromControllerV2
+import cocoapods.ObjectiveDropboxOfficial.setupWithAppKey
 import kotlinx.coroutines.suspendCancellableCoroutine
+import platform.Foundation.NSDocumentDirectory
+import platform.Foundation.NSFileManager
+import platform.Foundation.NSURL
+import platform.Foundation.NSUserDomainMask
+import platform.Foundation.URLByAppendingPathComponent
+import platform.Foundation.timeIntervalSince1970
+import platform.UIKit.UIApplication
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -94,6 +107,8 @@ actual class DropboxApi {
             ).setResponseBlock { result, routeError, networkError ->
                 if (result is DBFILESFileMetadata? && result != null) {
                     Logger.d { "Data successfully uploaded to Dropbox" }
+
+                    @Suppress("MagicNumber")
                     val uploadResult = DropboxUploadResult(
                         id = result.id_,
                         editDateMillis = result.serverModified.timeIntervalSince1970().toLong() * 1000,

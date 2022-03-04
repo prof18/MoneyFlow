@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 
+@Suppress("TooManyFunctions") // TODO: maybe fix and create a mapper?
 class DropboxSyncUseCase(
     private val dropboxSyncRepository: DropboxSyncRepository,
     private val localizedStringProvider: LocalizedStringProvider,

@@ -1,9 +1,12 @@
 package com.prof18.moneyflow.presentation
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
-
-abstract class BaseUseCaseIos {
+open class BaseUseCaseIos {
 
     // For testing, make internal
     private val dispatcher: CoroutineDispatcher = Dispatchers.Default

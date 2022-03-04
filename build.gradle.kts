@@ -3,6 +3,10 @@ import io.gitlab.arturbosch.detekt.Detekt
 import com.android.build.gradle.internal.lint.AndroidLintTask
 import com.android.build.gradle.internal.tasks.factory.dependsOn
 import java.io.ByteArrayOutputStream
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_SRC_DIR_JAVA
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_TEST_SRC_DIR_JAVA
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_SRC_DIR_KOTLIN
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_TEST_SRC_DIR_KOTLIN
 
 @Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
@@ -66,7 +70,16 @@ subprojects {
 
 
     detekt {
+        source = files(
+            "src",
+            DEFAULT_SRC_DIR_JAVA,
+            DEFAULT_TEST_SRC_DIR_JAVA,
+            DEFAULT_SRC_DIR_KOTLIN,
+            DEFAULT_TEST_SRC_DIR_KOTLIN,
+        )
+        toolVersion = rootProject.libs.versions.gradlePlugins.detekt.get()
         config = rootProject.files("config/detekt/detekt.yml")
+        parallel = true
     }
 }
 
@@ -78,6 +91,14 @@ fun isNonStable(version: String): Boolean {
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
     val isStable = stableKeyword || regex.matches(version)
     return isStable.not()
+}
+
+// Kotlin DSL
+tasks.withType<Detekt>().configureEach {
+    jvmTarget = libs.versions.java.get()
+}
+tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
+    jvmTarget = libs.versions.java.get()
 }
 
 tasks.withType<DependencyUpdatesTask> {

@@ -20,6 +20,7 @@ fun String.localized(): String {
     }
 }
 
+@Suppress("MagicNumber")
 fun String.localized(vararg arguments: Any?): String {
     val format = localized()
     // Kotlin does not support passing variadic parameters to Objective-C

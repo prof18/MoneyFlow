@@ -11,7 +11,6 @@ import kotlin.native.concurrent.AtomicReference
 object DatabaseHelper {
     private val driverRef = AtomicReference<SqlDriver?>(null)
     private val dbRef = AtomicReference<MoneyFlowDB?>(null)
-    private val loggingEnabled = AtomicReference(true)
 
     fun setupDatabase(driver: SqlDriver? = null ) {
         val databaseDriver = driver ?: NativeSqliteDriver(Schema, "MoneyFlowDB")

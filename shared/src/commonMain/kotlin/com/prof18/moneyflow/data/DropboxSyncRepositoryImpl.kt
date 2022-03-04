@@ -31,6 +31,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 
+@Suppress("TooManyFunctions") // TODO: Reduce the number?
 internal class DropboxSyncRepositoryImpl(
     private val dropboxSource: DropboxSource,
     private val settingsSource: SettingsSource,

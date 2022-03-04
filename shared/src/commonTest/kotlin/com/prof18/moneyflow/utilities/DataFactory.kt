@@ -10,6 +10,6 @@ object DataFactory {
         )
     }
 
-    val dayMillis: Long = 86400
+    const val dayMillis: Long = 86400
 
 }

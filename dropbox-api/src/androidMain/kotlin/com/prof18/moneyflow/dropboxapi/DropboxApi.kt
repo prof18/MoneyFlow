@@ -44,7 +44,7 @@ actual class DropboxApi {
         } catch (e: DbxException) {
             val message = "Error during revoking dropbox access"
             Logger.e { message }
-            throw DropboxException(e.message ?: message)
+            throw DropboxException(e, e.message ?: message)
         }
     }
 
@@ -110,7 +110,6 @@ actual class DropboxApi {
                     Logger.e { "Metadata from Dropbox are null" }
                     continuation.resumeWithException(DropboxDownloadException("Metadata from Dropbox are null"))
                 }
-
             } catch (e: Exception) {
                 Logger.e(e) { "Error while downloading data from Dropbox" }
                 continuation.resumeWithException(DropboxDownloadException(exceptionCause = e))

@@ -12,7 +12,6 @@ internal class TransactionPagingSource(
     private val allTransactionsUseCase: AllTransactionsUseCase
 ) : PagingSource<Long, MoneyTransaction>() {
 
-    @Suppress("TooGenericExceptionCaught")
     override suspend fun load(params: LoadParams<Long>): LoadResult<Long, MoneyTransaction> {
         val pageNum = params.key ?: 0
         return try {
