@@ -22,7 +22,7 @@ internal fun MFTopBar(
     topAppBarText: String,
     actionTitle: String? = null,
     onBackPressed: (() -> Unit)? = null,
-    onActionClicked: (() -> Unit)? = null ,
+    onActionClicked: (() -> Unit)? = null,
     actionEnabled: Boolean = true,
 ) {
     TopAppBar(
@@ -67,8 +67,8 @@ private fun AddTransactionTopBarPreview() {
     return MFTopBar(
         topAppBarText = "Title",
         actionTitle = "Save",
-        onBackPressed = {  },
-        onActionClicked = {  },
+        onBackPressed = { },
+        onActionClicked = { },
         actionEnabled = false
     )
 }

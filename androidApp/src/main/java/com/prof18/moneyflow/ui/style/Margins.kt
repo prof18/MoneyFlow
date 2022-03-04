@@ -2,7 +2,7 @@ package com.prof18.moneyflow.ui.style
 
 import androidx.compose.ui.unit.dp
 
-internal object AppMargins {
+internal object Margins {
     val small = 8.dp
     val regular = 16.dp
     val medium = 24.dp

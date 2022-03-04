@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
@@ -135,7 +135,7 @@ private fun TransactionTypeTabBarPreview() {
             TransactionTypeTabBar(
                 transactionType = TransactionType.INCOME,
                 onTabSelected = {},
-                modifier = Modifier.padding(AppMargins.small)
+                modifier = Modifier.padding(Margins.small)
             )
         }
     }

@@ -34,7 +34,7 @@ import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.ui.components.SwitchWithText
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
@@ -129,20 +129,20 @@ private fun SettingsScreenContent(
                 text = stringResource(id = R.string.settings_screen),
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier
-                    .padding(horizontal = AppMargins.regular)
-                    .padding(top = AppMargins.regular)
+                    .padding(horizontal = Margins.regular)
+                    .padding(top = Margins.regular)
             )
         },
         content = {
             Column(
                 modifier = Modifier
-                    .padding(top = AppMargins.regular)
+                    .padding(top = Margins.regular)
             ) {
 
                 Text(
                     text = stringResource(R.string.security),
                     style = MaterialTheme.typography.caption,
-                    modifier = Modifier.padding(start = AppMargins.regular)
+                    modifier = Modifier.padding(start = Margins.regular)
                 )
 
                 SwitchWithText(
@@ -162,7 +162,7 @@ private fun SettingsScreenContent(
                 Text(
                     text = stringResource(R.string.database_management),
                     style = MaterialTheme.typography.caption,
-                    modifier = Modifier.padding(start = AppMargins.regular)
+                    modifier = Modifier.padding(start = Margins.regular)
                 )
 
                 Text(
@@ -171,7 +171,7 @@ private fun SettingsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onImportDatabaseClick() }
-                        .padding(AppMargins.regular)
+                        .padding(Margins.regular)
                 )
                 Divider()
                 Text(
@@ -180,7 +180,7 @@ private fun SettingsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onExportDatabaseClick() }
-                        .padding(AppMargins.regular)
+                        .padding(Margins.regular)
                 )
                 Divider()
                 Text(
@@ -189,7 +189,7 @@ private fun SettingsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { openDropboxSetup() }
-                        .padding(AppMargins.regular)
+                        .padding(Margins.regular)
                 )
                 Divider()
             }

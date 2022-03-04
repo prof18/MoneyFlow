@@ -38,9 +38,11 @@ internal class CategoriesScreenFactory(
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(
             route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
-            arguments = listOf(navArgument(NavigationArguments.FromAddTransaction.key) {
-                type = NavType.BoolType
-            })
+            arguments = listOf(
+                navArgument(NavigationArguments.FromAddTransaction.key) {
+                    type = NavType.BoolType
+                }
+            )
         ) { backStackEntry ->
 
             val viewModel = getViewModel<CategoriesViewModel>()

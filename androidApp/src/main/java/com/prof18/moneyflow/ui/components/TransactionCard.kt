@@ -28,7 +28,7 @@ import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.presentation.model.CategoryIcon
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
@@ -65,18 +65,18 @@ internal fun TransactionCard(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(
-                        AppMargins.regular,
+                        Margins.regular,
                     )
                     .background(
                         MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(AppMargins.regularCornerRadius)
+                        shape = RoundedCornerShape(Margins.regularCornerRadius)
                     )
             ) {
                 Icon(
                     painter = painterResource(id = transaction.icon.mapToAndroidIcon()),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(AppMargins.small)
+                        .padding(Margins.small)
                         .size(28.dp),
                     tint = MaterialTheme.colors.onPrimary
                 )
@@ -86,9 +86,9 @@ internal fun TransactionCard(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(
-                        top = AppMargins.regular,
-                        bottom = AppMargins.regular,
-                        end = AppMargins.regular,
+                        top = Margins.regular,
+                        bottom = Margins.regular,
+                        end = Margins.regular,
                     ),
             ) {
 
@@ -132,7 +132,7 @@ internal fun TransactionCard(
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(AppMargins.regular),
+                    .padding(Margins.regular),
                 hide = hideSensitiveData
             )
         }

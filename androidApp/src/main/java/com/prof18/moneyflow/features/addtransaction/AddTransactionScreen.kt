@@ -35,7 +35,7 @@ import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeTa
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.ui.components.MFTopBar
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 
@@ -151,7 +151,7 @@ internal fun AddTransactionScreen(
                     transactionType = selectedTransactionType,
                     onTabSelected = { updateTransactionType(it) },
                     modifier = Modifier
-                        .padding(AppMargins.regular)
+                        .padding(Margins.regular)
                 )
 
                 MFTextInput(
@@ -170,9 +170,9 @@ internal fun AddTransactionScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
-                            start = AppMargins.regular,
-                            end = AppMargins.regular,
-                            top = AppMargins.small
+                            start = Margins.regular,
+                            end = Margins.regular,
+                            top = Margins.small
                         )
                 )
 
@@ -191,9 +191,9 @@ internal fun AddTransactionScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
-                            start = AppMargins.regular,
-                            end = AppMargins.regular,
-                            top = AppMargins.regular
+                            start = Margins.regular,
+                            end = Margins.regular,
+                            top = Margins.regular
                         )
                 )
 
@@ -204,9 +204,9 @@ internal fun AddTransactionScreen(
                     iconId = categoryState.value?.icon ?: R.drawable.ic_question_circle,
                     isSomethingSelected = categoryState.value?.name != null,
                     modifier = Modifier.padding(
-                        start = AppMargins.regular,
-                        end = AppMargins.regular,
-                        top = AppMargins.medium
+                        start = Margins.regular,
+                        end = Margins.regular,
+                        top = Margins.medium
                     )
                 )
 
@@ -217,10 +217,10 @@ internal fun AddTransactionScreen(
                     text = dateLabel ?: stringResource(id = R.string.today),
                     iconId = R.drawable.ic_calendar,
                     modifier = Modifier.padding(
-                        start = AppMargins.regular,
-                        end = AppMargins.regular,
-                        top = AppMargins.medium,
-                        bottom = AppMargins.regular
+                        start = Margins.regular,
+                        end = Margins.regular,
+                        top = Margins.medium,
+                        bottom = Margins.regular
                     )
                 )
             }

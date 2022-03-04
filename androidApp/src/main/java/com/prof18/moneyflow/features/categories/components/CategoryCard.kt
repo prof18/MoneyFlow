@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.presentation.model.CategoryIcon
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -46,18 +46,18 @@ internal fun CategoryCard(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(
-                        AppMargins.regular,
+                        Margins.regular,
                     )
                     .background(
                         MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(AppMargins.regularCornerRadius)
+                        shape = RoundedCornerShape(Margins.regularCornerRadius)
                     )
             ) {
                 Icon(
                     painter = painterResource(id = category.icon.mapToAndroidIcon()),
                     contentDescription = null,
                     modifier = Modifier
-                        .padding(AppMargins.small)
+                        .padding(Margins.small)
                         .size(28.dp),
                     tint = MaterialTheme.colors.onPrimary
                 )

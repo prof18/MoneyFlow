@@ -26,7 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -57,10 +57,10 @@ internal fun IconTextClickableRow(
                 } else {
                     Color(color = 0xff8d989d)
                 },
-                modifier = Modifier.padding(start = AppMargins.horizontalIconPadding),
+                modifier = Modifier.padding(start = Margins.horizontalIconPadding),
             )
 
-            Spacer(Modifier.width(AppMargins.textFieldPadding))
+            Spacer(Modifier.width(Margins.textFieldPadding))
 
             @Suppress("MagicNumber")
             val alpha = if (isSomethingSelected) {

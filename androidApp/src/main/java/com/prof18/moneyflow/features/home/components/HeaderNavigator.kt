@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -31,7 +31,7 @@ internal fun HeaderNavigator(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = AppMargins.regular, bottom = AppMargins.small)
+            .padding(top = Margins.regular, bottom = Margins.small)
             .clickable { onClick() }
     ) {
         Text(
@@ -41,14 +41,14 @@ internal fun HeaderNavigator(
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .weight(1f)
-                .padding(start = AppMargins.regular)
+                .padding(start = Margins.regular)
         )
 
         IconButton(
             onClick = { /* no-op, managed by the row */ },
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(vertical = AppMargins.small)
+                .padding(vertical = Margins.small)
         ) {
             Icon(
                 Icons.Outlined.KeyboardArrowRight,

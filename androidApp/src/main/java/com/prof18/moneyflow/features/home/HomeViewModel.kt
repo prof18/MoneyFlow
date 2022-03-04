@@ -20,9 +20,7 @@ internal class HomeViewModel(
             initialValue = HomeModel.Loading
         )
 
-
     val hideSensitiveDataState: StateFlow<Boolean> = useCase.hideSensibleDataState
-
 
     fun changeSensitiveDataVisibility(status: Boolean) {
         useCase.toggleHideSensitiveData(status)

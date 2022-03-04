@@ -18,12 +18,10 @@ import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
-import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.SharingStarted.Companion
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.stateIn

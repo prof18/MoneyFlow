@@ -68,7 +68,6 @@ internal fun AppContainer() {
                                     // Restore state when reselecting a previously selected item
                                     restoreState = true
                                 }
-
                             }
                         )
                     }
@@ -104,11 +103,9 @@ private fun canShowBottomBar(navBackStackEntry: NavBackStackEntry?): Boolean {
     val currentDestination = navBackStackEntry?.destination?.route
     if (currentDestination != null) {
         return currentDestination.contains(Screen.HomeScreen.route) ||
-               currentDestination.contains(Screen.RecapScreen.route) ||
-               currentDestination.contains(Screen.BudgetScreen.route) ||
-               currentDestination.contains(Screen.SettingsScreen.route)
+            currentDestination.contains(Screen.RecapScreen.route) ||
+            currentDestination.contains(Screen.BudgetScreen.route) ||
+            currentDestination.contains(Screen.SettingsScreen.route)
     }
     return false
 }
-
-

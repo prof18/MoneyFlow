@@ -48,7 +48,7 @@ internal val MoneyFlowTypography = Typography(
     ),
     h6 = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.Normal  ,
+        fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp
     ),

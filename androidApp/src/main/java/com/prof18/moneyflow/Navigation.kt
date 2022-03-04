@@ -12,16 +12,16 @@ internal interface ComposeNavigationFactory {
 internal sealed class Screen(val route: String) {
     object AddTransactionScreen : Screen("add_transaction_screen")
     object CategoriesScreen : Screen("categories_screen")
-    object HomeScreen: Screen("home_screen")
-    object RecapScreen: Screen("recap_screen")
-    object BudgetScreen: Screen("budget_screen")
-    object SettingsScreen: Screen("settings_screen")
-    object AllTransactionsScreen: Screen("all_transactions_screen")
+    object HomeScreen : Screen("home_screen")
+    object RecapScreen : Screen("recap_screen")
+    object BudgetScreen : Screen("budget_screen")
+    object SettingsScreen : Screen("settings_screen")
+    object AllTransactionsScreen : Screen("all_transactions_screen")
 }
 
 internal sealed class NavigationArguments(val key: String) {
-    object FromAddTransaction: NavigationArguments("from_add_transaction")
-    object Category: NavigationArguments("category")
+    object FromAddTransaction : NavigationArguments("from_add_transaction")
+    object Category : NavigationArguments("category")
 }
 
 internal data class BottomNavigationItem(
@@ -59,4 +59,3 @@ internal val bottomNavigationItems = listOf(
     ),
 
 )
-

@@ -51,7 +51,7 @@ import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
@@ -62,7 +62,6 @@ internal class HomeScreenFactory(private val paddingValues: PaddingValues) : Com
             val homeViewModel = getViewModel<HomeViewModel>()
             val homeModelState: HomeModel by homeViewModel.homeState.collectAsState()
             val hideSensitiveDataState: Boolean by homeViewModel.hideSensitiveDataState.collectAsState()
-
 
             HomeScreen(
                 navigateToAddTransaction = {
@@ -97,12 +96,11 @@ internal fun HomeScreen(
     navigateToAllTransactions: () -> Unit
 ) {
 
-
     when (homeModel) {
         is HomeModel.Loading -> Loader()
         is HomeModel.HomeState -> {
 
-            Column(modifier = Modifier.padding(AppMargins.small)) {
+            Column(modifier = Modifier.padding(Margins.small)) {
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -113,10 +111,9 @@ internal fun HomeScreen(
                         text = stringResource(R.string.my_wallet),
                         style = MaterialTheme.typography.h4,
                         modifier = Modifier
-                            .padding(horizontal = AppMargins.regular)
-                            .padding(top = AppMargins.regular)
+                            .padding(horizontal = Margins.regular)
+                            .padding(top = Margins.regular)
                     )
-
 
                     Row {
 
@@ -124,7 +121,7 @@ internal fun HomeScreen(
                             onClick = { changeSensitiveDataVisibility(hideSensitiveDataState.not()) },
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
-                                .padding(top = AppMargins.small)
+                                .padding(top = Margins.small)
                         ) {
                             if (hideSensitiveDataState) {
                                 Icon(
@@ -143,7 +140,7 @@ internal fun HomeScreen(
                             onClick = { navigateToAddTransaction() },
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
-                                .padding(top = AppMargins.small)
+                                .padding(top = Margins.small)
                         ) {
                             Icon(
                                 Icons.Rounded.Add,
@@ -174,7 +171,7 @@ internal fun HomeScreen(
                             Text(
                                 stringResource(id = R.string.shrug),
                                 modifier = Modifier
-                                    .padding(bottom = AppMargins.small),
+                                    .padding(bottom = Margins.small),
                                 style = MaterialTheme.typography.h6
                             )
 

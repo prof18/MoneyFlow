@@ -33,7 +33,7 @@ import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Er
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Loading
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Success
 import com.prof18.moneyflow.ui.components.Loader
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.utils.DropboxConstants
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -130,8 +130,8 @@ private fun DropboxLoginContent(
         topBar = {
             Column(
                 modifier = Modifier
-                    .padding(horizontal = AppMargins.regular)
-                    .padding(top = AppMargins.regular)
+                    .padding(horizontal = Margins.regular)
+                    .padding(top = Margins.regular)
             ) {
                 Text(
                     text = stringResource(R.string.dropbox_sync),
@@ -147,7 +147,7 @@ private fun DropboxLoginContent(
         content = {
             Column(
                 modifier = Modifier
-                    .padding(top = AppMargins.regular)
+                    .padding(top = Margins.regular)
             ) {
 
                 if (isConnected) {
@@ -159,7 +159,7 @@ private fun DropboxLoginContent(
                             stringResource(R.string.dropbox_linked),
                             style = MaterialTheme.typography.body1,
                             modifier = Modifier
-                                .padding(AppMargins.regular)
+                                .padding(Margins.regular)
                         )
 
                         Text(
@@ -168,7 +168,7 @@ private fun DropboxLoginContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { backupOnDropbox() }
-                                .padding(AppMargins.regular)
+                                .padding(Margins.regular)
                         )
                         Divider()
                         Text(
@@ -177,7 +177,7 @@ private fun DropboxLoginContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { restoreFromDropbox() }
-                                .padding(AppMargins.regular)
+                                .padding(Margins.regular)
                         )
                         Divider()
                         Text(
@@ -186,7 +186,7 @@ private fun DropboxLoginContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { unlinkDropbox() }
-                                .padding(AppMargins.regular)
+                                .padding(Margins.regular)
                         )
                         Divider()
                     }
@@ -197,7 +197,7 @@ private fun DropboxLoginContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { connectDropbox() }
-                            .padding(AppMargins.regular)
+                            .padding(Margins.regular)
                     )
                     Divider()
                 }
@@ -218,46 +218,45 @@ private fun DropboxSyncMetadataUI(
                     Text(
                         stringResource(id = R.string.dropbox_sync_time),
                         style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
-                        modifier = Modifier.padding(top = AppMargins.small)
+                        modifier = Modifier.padding(top = Margins.small)
                     )
 
                     Text(
                         metadataModel.latestUploadFormattedDate,
                         style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(top = AppMargins.small)
+                        modifier = Modifier.padding(top = Margins.small)
                     )
 
                     Text(
                         metadataModel.latestDownloadFormattedDate,
                         style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(top = AppMargins.small)
+                        modifier = Modifier.padding(top = Margins.small)
                     )
 
                     Text(
                         stringResource(id = R.string.dropbox_nerd_stats),
                         style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
-                        modifier = Modifier.padding(top = AppMargins.regular)
+                        modifier = Modifier.padding(top = Margins.regular)
                     )
-
 
                     if (metadataModel.tlDrHashMessage != null) {
                         Text(
                             metadataModel.tlDrHashMessage!!,
                             style = MaterialTheme.typography.caption,
-                            modifier = Modifier.padding(top = AppMargins.small)
+                            modifier = Modifier.padding(top = Margins.small)
                         )
                     }
 
                     Text(
                         metadataModel.latestUploadHash,
                         style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(top = AppMargins.small)
+                        modifier = Modifier.padding(top = Margins.small)
                     )
 
                     Text(
                         metadataModel.latestDownloadHash,
                         style = MaterialTheme.typography.caption,
-                        modifier = Modifier.padding(top = AppMargins.small)
+                        modifier = Modifier.padding(top = Margins.small)
                     )
                 }
             }
@@ -265,7 +264,7 @@ private fun DropboxSyncMetadataUI(
                 Text(
                     metadataModel.errorMessage.message,
                     style = MaterialTheme.typography.body2,
-                    modifier = Modifier.padding(top = AppMargins.small)
+                    modifier = Modifier.padding(top = Margins.small)
                 )
             }
             Loading -> CircularProgressIndicator()

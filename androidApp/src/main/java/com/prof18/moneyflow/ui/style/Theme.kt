@@ -59,7 +59,7 @@ internal fun MoneyFlowTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors =  if (darkTheme) DarkThemeColors else LightThemeColors,
+        colors = if (darkTheme) DarkThemeColors else LightThemeColors,
         typography = MoneyFlowTypography,
         shapes = MoneyFlowShapes,
         content = content

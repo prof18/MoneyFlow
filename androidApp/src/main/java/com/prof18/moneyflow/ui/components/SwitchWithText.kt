@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -27,7 +27,7 @@ internal fun SwitchWithText(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(end = AppMargins.regular),
+            .padding(end = Margins.regular),
         verticalAlignment = Alignment.CenterVertically
     ) {
         @Suppress("MagicNumber")
@@ -37,7 +37,7 @@ internal fun SwitchWithText(
             modifier = Modifier
                 .weight(0.9f)
                 .clickable { onSwitchChanged(switchStatus.not()) }
-                .padding(AppMargins.regular)
+                .padding(Margins.regular)
         )
 
         @Suppress("MagicNumber")

@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.ui.components.HideableTextField
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
@@ -44,7 +44,7 @@ internal fun HomeRecap(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(AppMargins.regular)
+            .padding(Margins.regular)
     ) {
 
         Row(
@@ -57,7 +57,7 @@ internal fun HomeRecap(
                 modifier = Modifier.align(Alignment.CenterVertically),
             )
 
-            Spacer(Modifier.width(AppMargins.small))
+            Spacer(Modifier.width(Margins.small))
 
             HideableTextField(
                 text = balanceRecap.totalBalance.toString(),
@@ -72,7 +72,7 @@ internal fun HomeRecap(
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
 
-        Spacer(Modifier.height(AppMargins.medium))
+        Spacer(Modifier.height(Margins.medium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -83,14 +83,14 @@ internal fun HomeRecap(
                 Box(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
-                        .padding(end = AppMargins.regular)
+                        .padding(end = Margins.regular)
                         .background(upArrowCircleColor(), shape = CircleShape)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_up_rotate),
                         contentDescription = stringResource(R.string.up_arrow_content_desc),
                         modifier = Modifier
-                            .padding(AppMargins.small)
+                            .padding(Margins.small)
                             .size(24.dp),
                         tint = upArrowColor()
                     )
@@ -113,14 +113,14 @@ internal fun HomeRecap(
                 Box(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
-                        .padding(end = AppMargins.regular, start = AppMargins.medium)
+                        .padding(end = Margins.regular, start = Margins.medium)
                         .background(downArrowCircleColor(), shape = CircleShape)
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_down_rotate),
                         contentDescription = stringResource(R.string.down_arrow_content_desc),
                         modifier = Modifier
-                            .padding(AppMargins.small)
+                            .padding(Margins.small)
                             .size(24.dp),
                         tint = downArrowColor()
                     )

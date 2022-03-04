@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -32,7 +32,7 @@ internal fun AuthScreen(
     ) {
         if (authState == AuthState.AUTH_IN_PROGRESS) {
             CircularProgressIndicator()
-            Spacer(modifier = Modifier.size(AppMargins.regular))
+            Spacer(modifier = Modifier.size(Margins.regular))
         }
 
         Text(
@@ -41,7 +41,7 @@ internal fun AuthScreen(
         )
 
         if (authState == AuthState.AUTH_ERROR) {
-            Spacer(modifier = Modifier.size(AppMargins.regular))
+            Spacer(modifier = Modifier.size(Margins.regular))
             Button(onClick = { onRetryClick() }) {
                 Text(
                     text = stringResource(R.string.retry),

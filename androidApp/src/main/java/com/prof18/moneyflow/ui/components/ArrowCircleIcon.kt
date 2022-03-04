@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.ui.style.AppMargins
+import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
@@ -41,7 +41,7 @@ internal fun ArrowCircleIcon(
             painter = painterResource(id = iconID),
             contentDescription = null,
             modifier = Modifier
-                .padding(AppMargins.small)
+                .padding(Margins.small)
                 .size(iconSize),
             tint = arrowColor
         )

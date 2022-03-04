@@ -8,7 +8,6 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
@@ -32,7 +31,6 @@ class MainActivity : FragmentActivity() {
     private val viewModel: MainViewModel by viewModel()
 
     private var authState: AuthState by mutableStateOf(AuthState.AUTH_IN_PROGRESS)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +56,6 @@ class MainActivity : FragmentActivity() {
                             AuthScreen(authState = authState, onRetryClick = { performAuth() })
                         }
                     }
-
                 }
             }
         }
@@ -85,7 +82,8 @@ class MainActivity : FragmentActivity() {
 
     private fun setupAuthentication() {
         val executor = ContextCompat.getMainExecutor(this@MainActivity)
-        biometricPrompt = BiometricPrompt(this@MainActivity, executor,
+        biometricPrompt = BiometricPrompt(
+            this@MainActivity, executor,
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(
                     errorCode: Int,
@@ -106,7 +104,8 @@ class MainActivity : FragmentActivity() {
                     super.onAuthenticationFailed()
                     authState = AuthState.NOT_AUTHENTICATED
                 }
-            })
+            }
+        )
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Biometric login for my app")
@@ -119,7 +118,6 @@ class MainActivity : FragmentActivity() {
             .setAllowedAuthenticators(BIOMETRIC_STRONG or DEVICE_CREDENTIAL)
             .build()
     }
-
 
     private fun isBiometricSupported(): Boolean {
         val biometricManager = BiometricManager.from(this)
