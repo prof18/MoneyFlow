@@ -11,20 +11,20 @@ import SwiftyDropbox
 
 @main
 struct MoneyFlowApp: App {
-    
+
     @Environment(\.scenePhase) var scenePhase
     @StateObject var appState: AppState = AppState()
-    
+
     //    @StateObject var appState: AppState = AppState()
-    
+
     init() {
-        
+
         startKoin()
-        
+
         UINavigationBar.appearance().largeTitleTextAttributes = [
             .foregroundColor: UIColor(named: "ColorOnBackground")! as UIColor,
             .font : UIFont(name:"Poppins-Regular", size: 32)!]
-        
+
         // TODO: delete and use shared code
         var key = ""
         if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
@@ -32,10 +32,10 @@ struct MoneyFlowApp: App {
                 key = keys["DropboxApiKey"] as? String  ?? ""
             }
         }
-        
+
         DropboxClientsManager.setupWithAppKey(key)
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(appState)

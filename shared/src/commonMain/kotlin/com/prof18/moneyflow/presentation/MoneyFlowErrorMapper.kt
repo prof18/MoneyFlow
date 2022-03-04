@@ -17,7 +17,7 @@ import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 
 class MoneyFlowErrorMapper(
-    private val localizedStringProvider: LocalizedStringProvider
+    private val localizedStringProvider: LocalizedStringProvider,
 ) {
 
     fun getUIErrorMessage(error: MoneyFlowError): UIErrorMessage {

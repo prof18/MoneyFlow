@@ -8,7 +8,8 @@ class AllTransactionsUseCase(
 ) {
 
     suspend fun getTransactionsPaginated(
-        pageNum: Long, pageSize: Long
+        pageNum: Long,
+        pageSize: Long
     ): List<MoneyTransaction> {
         return moneyRepository.getTransactionsPaginated(pageNum, pageSize)
     }

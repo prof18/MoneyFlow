@@ -22,7 +22,7 @@ internal fun SwitchWithText(
     onSwitchChanged: (Boolean) -> Unit,
     switchStatus: Boolean,
     title: String,
-    titleStyle: TextStyle = MaterialTheme.typography.h6
+    titleStyle: TextStyle = MaterialTheme.typography.h6,
 ) {
     Row(
         modifier = Modifier
@@ -30,6 +30,7 @@ internal fun SwitchWithText(
             .padding(end = AppMargins.regular),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        @Suppress("MagicNumber")
         Text(
             text = title,
             style = titleStyle,
@@ -39,6 +40,7 @@ internal fun SwitchWithText(
                 .padding(AppMargins.regular)
         )
 
+        @Suppress("MagicNumber")
         Switch(
             modifier = Modifier.weight(0.1f),
             checked = switchStatus,

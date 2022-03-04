@@ -1,5 +1,5 @@
 package com.prof18.moneyflow.database
 
-interface DBImportExport {
-
-}
+// TODO: add proper implementation
+@Suppress("EmptyClassBlock")
+interface DBImportExport

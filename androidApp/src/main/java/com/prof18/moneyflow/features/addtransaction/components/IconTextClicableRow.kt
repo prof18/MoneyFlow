@@ -5,7 +5,12 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -30,7 +35,7 @@ internal fun IconTextClickableRow(
     modifier: Modifier = Modifier,
     text: String,
     iconId: Int,
-    isSomethingSelected: Boolean = true
+    isSomethingSelected: Boolean = true,
 ) {
     Column(
         modifier = modifier
@@ -48,15 +53,16 @@ internal fun IconTextClickableRow(
                 painter = painterResource(id = iconId),
                 contentDescription = "$text ${stringResource(id = R.string.icon_content_desc)}",
                 tint = if (isSystemInDarkTheme()) {
-                    Color(0xff888a8f)
+                    Color(color = 0xff888a8f)
                 } else {
-                    Color(0xff8d989d)
+                    Color(color = 0xff8d989d)
                 },
                 modifier = Modifier.padding(start = AppMargins.horizontalIconPadding),
             )
 
             Spacer(Modifier.width(AppMargins.textFieldPadding))
 
+            @Suppress("MagicNumber")
             val alpha = if (isSomethingSelected) {
                 1.0f
             } else {
@@ -78,13 +84,13 @@ internal fun IconTextClickableRow(
 @Preview(name = "IconTextClickableRow Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun IconTextClickableRowPreview() {
-     MoneyFlowTheme {
-         Surface {
-             IconTextClickableRow(
-                 onClick = {},
-                 text = "Select something",
-                 iconId = R.drawable.ic_question_circle,
-             )
-         }
-     }
+    MoneyFlowTheme {
+        Surface {
+            IconTextClickableRow(
+                onClick = {},
+                text = "Select something",
+                iconId = R.drawable.ic_question_circle,
+            )
+        }
+    }
 }

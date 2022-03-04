@@ -23,6 +23,7 @@ internal fun MillisSinceEpoch.formatDateDayMonthYear(): String {
 internal fun MillisSinceEpoch.formatFullDate(): String {
     val instant = Instant.fromEpochMilliseconds(this)
     val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
+    @Suppress("MaxLineLength")
     return "${dateTime.dayOfMonth}/${dateTime.monthNumber}/${dateTime.year} - ${dateTime.hour}:${dateTime.minute}:${dateTime.second}"
 }
 
@@ -30,7 +31,6 @@ internal fun Long.formatDateAllData(): String {
     val instant = Instant.fromEpochMilliseconds(this)
     val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
     return "${dateTime.dayOfMonth}/${dateTime.monthNumber}/${dateTime.year} - ${dateTime.hour}:${dateTime.minute}"
-
 }
 
 fun Throwable.logError(moneyFlowError: MoneyFlowError, message: String? = null) {

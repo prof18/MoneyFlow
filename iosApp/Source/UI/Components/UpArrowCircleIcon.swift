@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct UpArrowCircleIcon: View {
-    
+
     var size: CGFloat
-    
+
     var body: some View {
         Image("ic_arrow_up_solid")
             .resizable()

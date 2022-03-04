@@ -14,5 +14,4 @@ class UtilsTest {
 
         assertEquals(monthID, 202011)
     }
-
 }

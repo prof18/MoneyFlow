@@ -10,7 +10,7 @@ import Foundation
 enum SheetToShow: Identifiable {
     case filePicker
     case shareSheet
-    
+
     var id: Int {
         hashValue
     }

@@ -24,4 +24,3 @@ func onUtilityThread(_ function: @escaping () -> Void) {
         function()
     }
 }
-

@@ -3,7 +3,11 @@ package com.prof18.moneyflow.features.categories.components
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -15,10 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
-import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.domain.entities.Category
+import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
 import com.prof18.moneyflow.presentation.model.CategoryIcon
+import com.prof18.moneyflow.ui.style.AppMargins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
@@ -34,6 +38,8 @@ internal fun CategoryCard(
         }, enabled = onClick != null)
     ) {
 
+        // TODO is this weight necessary?
+        @Suppress("MagicNumber")
         Row(modifier = Modifier.weight(8f)) {
 
             Box(

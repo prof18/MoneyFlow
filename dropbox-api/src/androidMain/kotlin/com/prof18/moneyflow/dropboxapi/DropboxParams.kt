@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.dropboxapi
 
 import android.app.Activity
-import com.dropbox.core.oauth.DbxCredential
 import java.io.File
 import java.io.OutputStream
 

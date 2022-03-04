@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricManager.Authenticators
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -111,6 +112,7 @@ internal fun SettingsScreen(
 }
 
 @Composable
+@Suppress("LongMethod") // TODO: reduce method length
 private fun SettingsScreenContent(
     onImportDatabaseClick: () -> Unit,
     onExportDatabaseClick: () -> Unit,
@@ -197,7 +199,7 @@ private fun SettingsScreenContent(
 
 private fun isBiometricSupported(context: Context): Boolean {
     val biometricManager = BiometricManager.from(context)
-    return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
+    return when (isBiometricAuthPossible(biometricManager)) {
         BiometricManager.BIOMETRIC_SUCCESS -> true
         else -> {
             Timber.d("Reached some auth state. It should be impossible to reach this state!")
@@ -205,6 +207,9 @@ private fun isBiometricSupported(context: Context): Boolean {
         }
     }
 }
+
+private fun isBiometricAuthPossible(biometricManager: BiometricManager) =
+    biometricManager.canAuthenticate(Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL)
 
 @Preview(name = "Settings Light")
 @Preview(name = "Settings Night", uiMode = Configuration.UI_MODE_NIGHT_YES)

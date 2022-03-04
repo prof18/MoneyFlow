@@ -336,6 +336,5 @@ enum class CategoryIcon(val iconName: String) {
 
         fun fromValue(value: String): CategoryIcon = value
             .let { values().firstOrNull { v -> v.iconName == value } ?: IC_QUESTION_CIRCLE }
-
     }
 }

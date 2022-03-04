@@ -9,7 +9,7 @@ import SwiftUI
 import shared
 
 struct CategoriesScreen: View {
-    
+
     @StateObject var addTransactionState: AddTransactionState
     @StateObject var viewModel = CategoriesViewModel()
 
@@ -21,38 +21,38 @@ struct CategoriesScreen: View {
             onDisappear: { viewModel.stopObserving() }
         )
     }
-    
+
 }
 
 struct CategoriesScreenContent: View {
-    
+
     @Binding var categoriesModel: CategoryModel
     @StateObject var addTransactionState: AddTransactionState
-    
+
     let onAppear  : () -> Void
     let onDisappear  : () -> Void
-    
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+
     var body: some View {
         VStack {
-                        
+
             if (categoriesModel is CategoryModel.Loading) {
                 Loader().edgesIgnoringSafeArea(.all)
             } else if let error = categoriesModel as? CategoryModel.Error {
                 ErrorView(uiErrorMessage: error.uiErrorMessage)
             } else if let categoryState = categoriesModel as? CategoryModel.CategoryState {
-                
+
                 List {
                     ForEach(categoryState.categories, id: \.self) { category in
                         CategoryCard(category: category, onItemClick: {
-                            
+
                             addTransactionState.categoryId = category.id
                             addTransactionState.categoryTitle = category.name
                             addTransactionState.categoryIcon = category.icon.iconName
-                            
+
                             self.presentationMode.wrappedValue.dismiss()
-                            
+
                         })
                             .listRowInsets(EdgeInsets())
                     }
@@ -67,13 +67,13 @@ struct CategoriesScreenContent: View {
         }
         .navigationTitle(Text("select_category".localized))
     }
-    
+
 }
 
 struct CategoriesScreen_Previews: PreviewProvider {
-    
+
     static let addTransactionState = AddTransactionState()
-    
+
     static var previews: some View {
         CategoriesScreenContent(
             categoriesModel: .constant(CategoryModel.CategoryState(
@@ -86,16 +86,23 @@ struct CategoriesScreen_Previews: PreviewProvider {
             onAppear: {},
             onDisappear: {}
         )
-        
+
         CategoriesScreenContent(
             categoriesModel: .constant(CategoryModel.Loading()),
             addTransactionState: addTransactionState,
             onAppear: {},
             onDisappear: {}
         )
-        
+
         CategoriesScreenContent(
-            categoriesModel: .constant(CategoryModel.Error(uiErrorMessage: UIErrorMessage(message: "Error", nerdMessage: "Error code: 101"))),
+            categoriesModel: .constant(
+                CategoryModel.Error(
+                    uiErrorMessage: UIErrorMessage(
+                        message: "Error",
+                        nerdMessage: "Error code: 101"
+                    )
+                )
+            ),
             addTransactionState: addTransactionState,
             onAppear: {},
             onDisappear: {}

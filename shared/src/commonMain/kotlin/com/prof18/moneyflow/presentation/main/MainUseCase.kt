@@ -7,7 +7,7 @@ class MainUseCase(
 ) {
 
     fun isBiometricEnabled(): Boolean {
-       return settingsRepository.isBiometricEnabled()
+        return settingsRepository.isBiometricEnabled()
     }
 
     fun toggleBiometricStatus(status: Boolean) {

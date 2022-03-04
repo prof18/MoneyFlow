@@ -13,7 +13,7 @@ struct RadioButtonGroup: View {
 
     @State var selectedId: String = ""
 
-    let callback: (String) -> ()
+    let callback: (String) -> Void
 
     var body: some View {
         VStack {

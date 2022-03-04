@@ -8,7 +8,6 @@ import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxAuthFailedExceptions
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
-import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata.Companion
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.mapper.toDropboxDownloadParams
@@ -24,13 +23,12 @@ import com.prof18.moneyflow.dropboxapi.DropboxUploadException
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.DispatcherProvider
 import com.prof18.moneyflow.utils.DropboxConstants
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 
+@Suppress("TooManyFunctions") // TODO: Reduce the number?
 internal class DropboxSyncRepositoryImpl(
     private val dropboxSource: DropboxSource,
     private val settingsSource: SettingsSource,
@@ -68,7 +66,7 @@ internal class DropboxSyncRepositoryImpl(
             return@withContext MoneyFlowResult.Success(Unit)
         }
         val savedStringCredentials = settingsSource.getDropboxClientCred()
-                                     ?: return@withContext generateDropboxAuthErrorResult()
+            ?: return@withContext generateDropboxAuthErrorResult()
         val credentials = try {
             dropboxSource.getCredentialsFromString(savedStringCredentials)
         } catch (e: Exception) {
@@ -111,7 +109,6 @@ internal class DropboxSyncRepositoryImpl(
             try {
                 dropboxSource.revokeAccess(it)
             } catch (_: DropboxException) {
-
             }
         }
         dropboxClient = null
@@ -143,7 +140,6 @@ internal class DropboxSyncRepositoryImpl(
             val error = MoneyFlowError.DropboxUpload(e)
             return@withContext MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
         }
-
     }
 
     override suspend fun download(
