@@ -42,4 +42,3 @@ class HomeUseCase(
         }
     }
 }
-

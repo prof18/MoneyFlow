@@ -13,5 +13,5 @@ sealed class MoneyFlowError(val code: Int, val throwable: Throwable) {
     class DropboxUpload(throwable: Throwable) : MoneyFlowError(108, throwable)
     class DropboxDownload(throwable: Throwable) : MoneyFlowError(109, throwable)
     class DropboxMetadata(throwable: Throwable) : MoneyFlowError(110, throwable)
-    class DatabaseNotFound(throwable: Throwable): MoneyFlowError(111, throwable)
+    class DatabaseNotFound(throwable: Throwable) : MoneyFlowError(111, throwable)
 }

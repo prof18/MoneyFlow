@@ -50,7 +50,7 @@ class DropboxSyncUseCase(
 
     private fun getTlDrHashMessage(syncMetadata: DropboxSyncMetadata): String? = when {
         syncMetadata.lastUploadHash == null || syncMetadata.lastDownloadHash == null -> null
-        syncMetadata.lastUploadHash == syncMetadata.lastDownloadHash ->  {
+        syncMetadata.lastUploadHash == syncMetadata.lastDownloadHash -> {
             localizedStringProvider.get("tl_dr_dropbox_same_hash_message")
         }
         else -> localizedStringProvider.get("tl_dr_dropbox_different_hash_message")
@@ -59,8 +59,10 @@ class DropboxSyncUseCase(
     private fun getDownloadDate(
         syncMetadata: DropboxSyncMetadata,
     ): String = if (syncMetadata.lastDownloadTimestamp != null) {
-        localizedStringProvider.get("dropbox_latest_download_date",
-            syncMetadata.lastDownloadTimestamp.formatFullDate())
+        localizedStringProvider.get(
+            "dropbox_latest_download_date",
+            syncMetadata.lastDownloadTimestamp.formatFullDate()
+        )
     } else {
         localizedStringProvider.get("dropbox_no_download_date")
     }

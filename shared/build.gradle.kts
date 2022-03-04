@@ -1,4 +1,5 @@
-import org.jetbrains.kotlin.konan.target.KonanTarget;
+import org.jetbrains.kotlin.konan.target.KonanTarget
+import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 @Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
@@ -15,6 +16,12 @@ val javaVersion: JavaVersion by rootProject.extra
 
 group = sharedLibGroup
 version = sharedLibVersion
+
+tasks {
+    named<LintTask>("lintKotlinCommonMain") {
+        exclude("com/prof18/moneyflow/db/**/*.kt")
+    }
+}
 
 android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()

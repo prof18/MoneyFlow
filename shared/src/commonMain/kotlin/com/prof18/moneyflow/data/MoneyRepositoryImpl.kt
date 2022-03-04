@@ -34,7 +34,6 @@ internal class MoneyRepositoryImpl(
 
     init {
         allTransactions = dbSource.selectLatestTransactions().catch {
-            
         }
         allCategories = dbSource.selectAllCategories()
         monthlyRecap = dbSource.selectCurrentMonthlyRecap()
@@ -129,7 +128,6 @@ internal class MoneyRepositoryImpl(
 
     override suspend fun deleteTransaction(transactionId: Long) {
 
-
         val transaction = dbSource.getTransaction(transactionId)
         // It should not be null!
         if (transaction != null) {
@@ -145,7 +143,6 @@ internal class MoneyRepositoryImpl(
                     // Since it is an income, we need to subtract it from the amount
                     monthlyIncomeAmount -= transactionAmountToUpdate
                     transactionAmountToUpdate = -transactionAmountToUpdate
-
                 }
                 TransactionType.OUTCOME -> {
                     monthlyOutcomeAmount -= abs(transactionAmountToUpdate)
@@ -211,6 +208,3 @@ internal class MoneyRepositoryImpl(
             }
     }
 }
-
-
-

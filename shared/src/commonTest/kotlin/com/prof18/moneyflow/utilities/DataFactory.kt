@@ -11,5 +11,4 @@ object DataFactory {
     }
 
     const val dayMillis: Long = 86400
-
 }
