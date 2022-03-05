@@ -1,5 +1,6 @@
 import java.util.*
 
+@Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -11,12 +12,12 @@ val properties = Properties()
 if (propertiesFile.exists()) {
     properties.load(propertiesFile.inputStream())
 }
-val dropboxKey = properties.getProperty("dropbox.app_key") ?: "\"\""
+val dropboxKey = properties.getProperty("dropbox.app_key") ?: ""
 
 val appVersionCode: String by project
 val appVersionName: String by project
 
-//val javaVersion: JavaVersion by rootProject.extra
+val javaVersion: JavaVersion by rootProject.extra
 
 android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -47,8 +48,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = org.gradle.api.JavaVersion.VERSION_11
-        targetCompatibility = org.gradle.api.JavaVersion.VERSION_11
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
     }
 
 
@@ -60,7 +61,10 @@ android {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.freeCompilerArgs += "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+    kotlinOptions {
+        freeCompilerArgs = freeCompilerArgs + "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+        jvmTarget = libs.versions.java.get()
+    }
 }
 
 dependencies {
