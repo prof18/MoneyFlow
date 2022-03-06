@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.presentation
 
-import co.touchlab.stately.freeze
 import com.prof18.moneyflow.FlowWrapper
 import com.prof18.moneyflow.domain.entities.doOnError
 import com.prof18.moneyflow.presentation.home.HomeModel
@@ -16,7 +15,7 @@ class HomeUseCaseIos(
         FlowWrapper(scope, homeUseCase.hideSensibleDataState)
 
     fun getMoneySummary(): FlowWrapper<HomeModel> =
-        FlowWrapper(scope, homeUseCase.observeHomeModel().freeze())
+        FlowWrapper(scope, homeUseCase.observeHomeModel())
 
     fun deleteTransaction(transactionId: Long, onError: (UIErrorMessage) -> Unit) {
         scope.launch {

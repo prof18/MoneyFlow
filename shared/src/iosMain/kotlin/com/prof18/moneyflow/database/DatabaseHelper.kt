@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.database
 
-import co.touchlab.stately.freeze
 import com.prof18.moneyflow.data.db.Schema
 import com.prof18.moneyflow.data.db.createQueryWrapper
 import com.prof18.moneyflow.db.MoneyFlowDB
@@ -15,8 +14,8 @@ object DatabaseHelper {
     fun setupDatabase(driver: SqlDriver? = null) {
         val databaseDriver = driver ?: NativeSqliteDriver(Schema, "MoneyFlowDB")
         val db = createQueryWrapper(databaseDriver)
-        driverRef.value = databaseDriver.freeze()
-        dbRef.value = db.freeze()
+        driverRef.value = databaseDriver
+        dbRef.value = db
     }
 
     fun dbClear() {

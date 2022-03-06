@@ -72,7 +72,6 @@ squareup-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", vers
 squareup-sqldelight-sqliteDriver = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 touchlab-kermit-plugin = { module = "co.touchlab:kermit-gradle-plugin", version.ref = "kermit" }
-touchlab-stately = { module = "co.touchlab:stately-common", version.ref = "stately" }
 
 [bundles]
 androidx-test = ["androidx-test-core", "androidx-test-ext-junit", "androidx-test-rules", "androidx-test-runner"]

@@ -111,7 +111,6 @@ kotlin {
                 implementation(libs.squareup.sqldelight.runtime)
                 implementation(libs.squareup.sqldelight.coroutineExtensions)
                 implementation(libs.kotlinx.coroutine.core)
-                implementation(libs.touchlab.stately)
                 implementation(libs.koin.koinCore)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.russhwolf.multiplatform.settings)

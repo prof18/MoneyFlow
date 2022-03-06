@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.data.settings
 
-import co.touchlab.stately.freeze
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.set
 
@@ -16,10 +15,6 @@ internal enum class SettingsFields {
 
 @Suppress("TooManyFunctions")
 internal class SettingsSource(private val settings: Settings) {
-
-    init {
-        freeze()
-    }
 
     fun getDropboxClientCred(): String? = settings.getStringOrNull(SettingsFields.DROPBOX_CLIENT_CRED.name)
     fun saveDropboxClientCred(clientCred: String) = settings.set(SettingsFields.DROPBOX_CLIENT_CRED.name, clientCred)

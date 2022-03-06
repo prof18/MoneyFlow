@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import kotlin.native.concurrent.freeze
 
 // From https://github.com/russhwolf/To-Do/blob/master/shared/src/iosMain/kotlin/com/russhwolf/todo/shared/CoroutineAdapters.kt
 class FlowWrapper<T : Any>(
@@ -21,8 +20,8 @@ class FlowWrapper<T : Any>(
         onComplete: () -> Unit
     ): Job =
         flow
-            .onEach { onEvent(it.freeze()) }
-            .catch { onError(it.freeze()) }
+            .onEach { onEvent(it) }
+            .catch { onError(it) }
             .onCompletion { onComplete() }
             .launchIn(scope)
 }
