@@ -27,7 +27,7 @@ struct ContentView: View {
 
                 Spacer()
 
-                BottomErrorBanner(appState : appState)
+                Snackbar(snackbarData: $appState.snackbarData)
             }
         }
     }

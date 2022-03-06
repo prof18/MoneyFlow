@@ -121,7 +121,7 @@ struct AddTransactionScreenContent: View {
 
                     Spacer()
 
-                    BottomErrorBanner(appState : appState)
+                    Snackbar(snackbarData: $appState.snackbarDataForSheet)
                 }
             }
             .navigationTitle(Text("add_transaction_screen".localized))
@@ -143,7 +143,7 @@ struct AddTransactionScreenContent: View {
             }
             .onChange(of: addTransactionAction) { action in
                 if let errorAction = action as? AddTransactionAction.ShowError {
-                    self.appState.errorData = errorAction.uiErrorMessage.toUIErrorData()
+                    self.appState.snackbarData = errorAction.uiErrorMessage.toSnackbarData()
                 } else if action is AddTransactionAction.GoBack {
                     self.showSheet.toggle()
                 }
@@ -160,9 +160,9 @@ struct AddTransactionScreen_Previews: PreviewProvider {
         TransactionTypeRadioItem(name: "Income", id: .income)
     ]
     static let addTransactionEmptyState =  AddTransactionState()
-    static let appErrorData = UIErrorData(
+    static let appErrorData = SnackbarData(
         title: "An error occoured",
-        nerdishDesc: "Error code 1012",
+        subtitle: "Error code 1012",
         showBanner: true
     )
     static let addTransactionState = AddTransactionState(

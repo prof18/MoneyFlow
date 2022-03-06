@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		663F8105C5CED07B3CBF002C /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */; };
 		8D8119EA27D3CC3F00906C82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */; };
-		8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */; };
-		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
+		8D9481C4277BA4AC003568EE /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* Snackbar.swift */; };
+		8D9481C7277BA694003568EE /* SnackbarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* SnackbarData.swift */; };
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
 		8D9481DE277CCDB7003568EE /* UIErrorDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */; };
 		8D9481E0277E6535003568EE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DF277E6535003568EE /* ErrorView.swift */; };
@@ -82,8 +82,8 @@
 /* Begin PBXFileReference section */
 		18FAAF44652500A26ACC8FC8 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
 		8D8119E927D3CC3F00906C82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomErrorBanner.swift; sourceTree = "<group>"; };
-		8D9481C6277BA694003568EE /* UIErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorData.swift; sourceTree = "<group>"; };
+		8D9481C3277BA4AC003568EE /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
+		8D9481C6277BA694003568EE /* SnackbarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarData.swift; sourceTree = "<group>"; };
 		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DB277C9EDD003568EE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorDataMapper.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		8D9481C5277BA688003568EE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8D9481C6277BA694003568EE /* UIErrorData.swift */,
+				8D9481C6277BA694003568EE /* SnackbarData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,7 +404,7 @@
 				A988B77E257D763900F6113A /* DMImage.swift */,
 				A9B3C52C25FBFEAD008FE244 /* UpArrowCircleIcon.swift */,
 				A9B3C53325FBFF14008FE244 /* DownArrowCircleIcon.swift */,
-				8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */,
+				8D9481C3277BA4AC003568EE /* Snackbar.swift */,
 				8D9481DF277E6535003568EE /* ErrorView.swift */,
 			);
 			path = Components;
@@ -659,7 +659,7 @@
 				A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */,
 				A9D269E324FC35CA00D2B4AE /* HideRowSeparatorModifier.swift in Sources */,
 				8D9481E0277E6535003568EE /* ErrorView.swift in Sources */,
-				8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */,
+				8D9481C7277BA694003568EE /* SnackbarData.swift in Sources */,
 				A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A988B77F257D763900F6113A /* DMImage.swift in Sources */,
@@ -677,7 +677,7 @@
 				A98B5CF4258BF2660020C5C5 /* DropboxNotifications.swift in Sources */,
 				A9B3C53425FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */,
 				A98B5CE0258AA7F40020C5C5 /* DropboxLoginView.swift in Sources */,
-				8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */,
+				8D9481C4277BA4AC003568EE /* Snackbar.swift in Sources */,
 				A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */,
 				A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,

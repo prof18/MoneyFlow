@@ -15,7 +15,6 @@ class DropboxViewModel: ObservableObject {
     @Published var isDropboxConnected: Bool = false
     @Published var dropboxSyncAction: DropboxSyncAction?
     @Published var metadataModel: DropboxSyncMetadataModel = DropboxSyncMetadataModel.Loading()
-    @Published var uiErrorData: UIErrorData = UIErrorData()
 
     private func dropboxSyncUseCase() -> DropboxSyncUseCaseIos {
         DI.getDropboxSyncUseCase()
@@ -69,7 +68,7 @@ class DropboxViewModel: ObservableObject {
 
         dropboxSyncUseCase().restoreDropboxClient(
             onError: { uiErrorMessage in
-                self.uiErrorData = uiErrorMessage.toUIErrorData()
+                self.dropboxSyncAction = DropboxSyncAction.ShowError(uiErrorMessage: uiErrorMessage)
             }
         )
     }
@@ -77,7 +76,7 @@ class DropboxViewModel: ObservableObject {
     func saveDropboxAuth() {
         dropboxSyncUseCase().saveDropboxAuth(
             onError: { uiErrorMessage in
-                self.uiErrorData = uiErrorMessage.toUIErrorData()
+                self.dropboxSyncAction = DropboxSyncAction.ShowError(uiErrorMessage: uiErrorMessage)
             }
         )
     }
@@ -99,18 +98,34 @@ class DropboxViewModel: ObservableObject {
                     ),
                     onSuccess: {
                         // TODO: show success on UI
-                        self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_upload_success".localized)
-                        print("Upload success!")
+                        onMainThread {
+                            self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_upload_success".localized)
+                            print("Upload success!")
+                        }
                     },
                     onError: { uiErrorMessage in
-                        self.uiErrorData = uiErrorMessage.toUIErrorData()
+                        self.dropboxSyncAction = DropboxSyncAction.ShowError(uiErrorMessage: uiErrorMessage)
                     }
                 )
 
-            } catch {
+            } catch let error {
                 // TODO: show error on UI
                 print("Unable to load com.prof18.moneyflow.data: \(error)")
+                self.dropboxSyncAction = DropboxSyncAction.ShowError(
+                    uiErrorMessage: UIErrorMessage(
+                        message: "database_file_not_found".localized,
+                        nerdMessage: "Error during data creationg"
+                    )
+                )
+
             }
+        } else {
+            self.dropboxSyncAction = DropboxSyncAction.ShowError(
+                uiErrorMessage: UIErrorMessage(
+                    message: "database_file_not_found".localized,
+                    nerdMessage: "Error during data creation"
+                )
+            )
         }
     }
 
@@ -123,16 +138,22 @@ class DropboxViewModel: ObservableObject {
             onSuccess: { result in
                 if let destinationUrl = result.destinationUrl {
                     DatabaseImportExport.replaceDatabase(url: destinationUrl )
-                    self. dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_download_success".localized)
+                    self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_download_success".localized)
                     print("Database correct restore")
                 } else {
                     // TODO: generate an error and show failure
                     print("dest url is null")
+                    self.dropboxSyncAction = DropboxSyncAction.ShowError(
+                        uiErrorMessage: UIErrorMessage(
+                            message: "error_dropbox_download".localized,
+                            nerdMessage: "Result destination is null"
+                        )
+                    )
                 }
 
             },
             onError: { uiErrorMessage in
-                self.uiErrorData = uiErrorMessage.toUIErrorData()
+                self.dropboxSyncAction = DropboxSyncAction.ShowError(uiErrorMessage: uiErrorMessage)
             }
         )
     }

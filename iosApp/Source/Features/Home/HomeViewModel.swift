@@ -12,7 +12,7 @@ class HomeViewModel: ObservableObject {
 
     @Published var homeModel: HomeModel = HomeModel.Loading()
 
-    @Published var uiErrorData: UIErrorData = UIErrorData()
+    @Published var snackbarData: SnackbarData = SnackbarData()
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -49,7 +49,7 @@ class HomeViewModel: ObservableObject {
         homeUseCase().deleteTransaction(
             transactionId: transactionId,
             onError: { error in
-                self.uiErrorData = error.toUIErrorData()
+                self.snackbarData = error.toSnackbarData()
             }
         )
     }

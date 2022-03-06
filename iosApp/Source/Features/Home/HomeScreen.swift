@@ -16,8 +16,8 @@ struct HomeScreen: View {
     var body: some View {
         HomeScreenContent(
             reloadDatabase: $appState.reloadDatabase,
-            appErrorData: $appState.errorData,
-            screenErrorData: $viewModel.uiErrorData,
+            appErrorData: $appState.snackbarData,
+            screenErrorData: $viewModel.snackbarData,
             homeModel: $viewModel.homeModel,
             onAppear: { viewModel.startObserving() },
             deleteTransaction: { transactionId in
@@ -30,8 +30,8 @@ struct HomeScreen: View {
 struct HomeScreenContent: View {
 
     @Binding var reloadDatabase: Bool
-    @Binding var appErrorData: UIErrorData
-    @Binding var screenErrorData: UIErrorData
+    @Binding var appErrorData: SnackbarData
+    @Binding var screenErrorData: SnackbarData
     @Binding var homeModel: HomeModel
 
     let onAppear  : () -> Void
@@ -109,7 +109,7 @@ struct HomeScreenContent: View {
         .onChange(of: self.homeModel) { model  in
             if model is HomeModel.Error {
                 if let uiErrorMessage = (model as? HomeModel.Error)?.uiErrorMessage {
-                    self.appErrorData = uiErrorMessage.toUIErrorData()
+                    self.appErrorData = uiErrorMessage.toSnackbarData()
                 }
             }
         }
@@ -135,8 +135,8 @@ struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreenContent(
             reloadDatabase: .constant(false ),
-            appErrorData: .constant(UIErrorData.init()),
-            screenErrorData: .constant(UIErrorData.init()),
+            appErrorData: .constant(SnackbarData.init()),
+            screenErrorData: .constant(SnackbarData.init()),
             homeModel: .constant(model ) ,
             onAppear: {},
             deleteTransaction: {_ in }
@@ -144,8 +144,8 @@ struct HomeScreen_Previews: PreviewProvider {
 
         HomeScreenContent(
             reloadDatabase: .constant(false ),
-            appErrorData: .constant(UIErrorData.init()),
-            screenErrorData: .constant(UIErrorData.init()),
+            appErrorData: .constant(SnackbarData.init()),
+            screenErrorData: .constant(SnackbarData.init()),
             homeModel: .constant(HomeModel.Loading()) ,
             onAppear: {},
             deleteTransaction: {_ in }
@@ -154,13 +154,13 @@ struct HomeScreen_Previews: PreviewProvider {
         HomeScreenContent(
             reloadDatabase: .constant(false ),
             appErrorData: .constant(
-                UIErrorData(
+                SnackbarData(
                     title: "An error occoured",
-                    nerdishDesc: "Error code 1012",
+                    subtitle: "Error code 1012",
                     showBanner: true
                 )
             ),
-            screenErrorData: .constant(UIErrorData.init()),
+            screenErrorData: .constant(SnackbarData.init()),
             homeModel: .constant(
                 HomeModel.Error(
                     uiErrorMessage: UIErrorMessage(

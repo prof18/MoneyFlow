@@ -8,7 +8,11 @@
 import shared
 
 extension UIErrorMessage {
-    func toUIErrorData() -> UIErrorData {
-        return UIErrorData(title: self.message, nerdishDesc: self.nerdMessage, showBanner: true)
+    func toSnackbarData() -> SnackbarData {
+        return SnackbarData(
+            title: self.message,
+            subtitle: self.nerdMessage,
+            showBanner: true
+        )
     }
 }

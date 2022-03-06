@@ -17,12 +17,21 @@ struct SettingsScreen: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     var body: some View {
-        if showNavigation() {
-            NavigationView {
+        ZStack {
+            if showNavigation() {
+                NavigationView {
+                    getContent()
+                }
+            } else {
                 getContent()
             }
-        } else {
-            getContent()
+
+            VStack(spacing: 0) {
+
+                Spacer()
+
+                Snackbar(snackbarData: $appState.snackbarDataForSheet)
+            }
         }
     }
 

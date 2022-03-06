@@ -16,9 +16,9 @@ struct DropboxScreen: View {
     var body: some View {
         DropboxScreenContent(
             isDropboxConnected: $dropboxViewModel.isDropboxConnected,
-            appErrorData: $appState.errorData,
+            snackbarData: $appState.snackbarDataForSheet,
             metadataModel: $dropboxViewModel.metadataModel,
-            screenErrorData: $dropboxViewModel.uiErrorData,
+            dropboxSyncAction: $dropboxViewModel.dropboxSyncAction,
             onAppear: {
                 dropboxViewModel.restoreClient()
             },
@@ -42,9 +42,9 @@ struct DropboxScreen: View {
 struct DropboxScreenContent: View {
 
     @Binding var isDropboxConnected: Bool
-    @Binding var appErrorData: UIErrorData
+    @Binding var snackbarData: SnackbarData
     @Binding var metadataModel: DropboxSyncMetadataModel
-    @Binding var screenErrorData: UIErrorData
+    @Binding var dropboxSyncAction: DropboxSyncAction?
 
     let onAppear: () -> Void
     let onDropboxAuthSuccess: () -> Void
@@ -53,6 +53,7 @@ struct DropboxScreenContent: View {
     let unlinkDropbox: () -> Void
 
     @State private var showDropboxConnectScreen = false
+    @State private var isLoading = false
 
     var body: some View {
         content
@@ -68,46 +69,68 @@ struct DropboxScreenContent: View {
                 print("Dropbox Error Notification")
             }.onAppear {
                 onAppear()
-            }.onChange(of: self.screenErrorData) { errorData in
-                self.appErrorData = errorData
+            }.onChange(of: dropboxSyncAction) { action in
+                if let errorAction = action as? DropboxSyncAction.ShowError {
+                    self.isLoading = false
+                    self.snackbarData = errorAction.uiErrorMessage.toSnackbarData()
+                } else if let successAction = action as? DropboxSyncAction.Success {
+                    self.isLoading = false
+                    self.snackbarData = SnackbarData(
+                        title: successAction.message,
+                        subtitle: nil,
+                        showBanner: true
+                    )
+                } else if action is DropboxSyncAction.Loading {
+                    self.isLoading = true
+                }
             }
     }
 
     var content: AnyView {
-        if isDropboxConnected {
 
+        if isLoading {
             return AnyView(
-                VStack(alignment: .leading) {
-
-                    DropboxSyncMetadataUI(metadataModel: $metadataModel)
-                        .padding(.horizontal, AppMargins.regular)
-
-                    Form {
-
-                        Button("backup_to_dropbox".localized) {
-                            backupToDropbox()
-                        }
-
-                        Button("restore_from_dropbox".localized) {
-                            restoreFromDropbox()
-                        }
-
-                        Button("unlink_dropbox".localized) {
-                            unlinkDropbox()
-                        }
-                    }
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
                 }
             )
         } else {
-            return AnyView(
-                VStack(alignment: .leading) {
-                    Text("Not Connected")
-                    Button("connect_dropbox".localized) {
-                        self.showDropboxConnectScreen.toggle()
+            if isDropboxConnected {
+                return AnyView(
+                    VStack(alignment: .leading) {
+
+                        DropboxSyncMetadataUI(metadataModel: $metadataModel)
+                            .padding(.horizontal, AppMargins.regular)
+
+                        Form {
+
+                            Button("backup_to_dropbox".localized) {
+                                backupToDropbox()
+                            }
+
+                            Button("restore_from_dropbox".localized) {
+                                restoreFromDropbox()
+                            }
+
+                            Button("unlink_dropbox".localized) {
+                                unlinkDropbox()
+                            }
+                        }
                     }
-                    DropboxLoginView(isShown: self.$showDropboxConnectScreen)
-                }.padding(AppMargins.regular)
-            )
+                )
+            } else {
+                return AnyView(
+                    VStack(alignment: .leading) {
+                        Text("Not Connected")
+                        Button("connect_dropbox".localized) {
+                            self.showDropboxConnectScreen.toggle()
+                        }
+                        DropboxLoginView(isShown: self.$showDropboxConnectScreen)
+                    }.padding(AppMargins.regular)
+                )
+            }
         }
     }
 }
@@ -121,7 +144,7 @@ struct DropboxSyncMetadataUI: View {
         if (metadataModel is DropboxSyncMetadataModel.Loading) {
             HStack {
                 Spacer()
-                Loader()
+                ProgressView()
                 Spacer()
             }
         } else if let error = metadataModel as? DropboxSyncMetadataModel.Error {
@@ -189,9 +212,9 @@ struct DropboxScreen_Previews: PreviewProvider {
         // With Success metadata
         DropboxScreenContent(
             isDropboxConnected: .constant(true ),
-            appErrorData: .constant(UIErrorData.init()),
+            snackbarData: .constant(SnackbarData.init()),
             metadataModel: .constant(model ) ,
-            screenErrorData: .constant(UIErrorData.init()),
+            dropboxSyncAction: .constant(nil),
             onAppear: {},
             onDropboxAuthSuccess: {},
             backupToDropbox: {},
@@ -202,9 +225,9 @@ struct DropboxScreen_Previews: PreviewProvider {
         // With Loading metadata
         DropboxScreenContent(
             isDropboxConnected: .constant(true ),
-            appErrorData: .constant(UIErrorData.init()),
+            snackbarData: .constant(SnackbarData.init()),
             metadataModel: .constant(DropboxSyncMetadataModel.Loading()),
-            screenErrorData: .constant(UIErrorData.init()),
+            dropboxSyncAction: .constant(nil),
             onAppear: {},
             onDropboxAuthSuccess: {},
             backupToDropbox: {},
@@ -215,9 +238,9 @@ struct DropboxScreen_Previews: PreviewProvider {
         // With Error metadata
         DropboxScreenContent(
             isDropboxConnected: .constant(true ),
-            appErrorData: .constant(UIErrorData.init()),
+            snackbarData: .constant(SnackbarData.init()),
             metadataModel: .constant(errorModel),
-            screenErrorData: .constant(UIErrorData.init()),
+            dropboxSyncAction: .constant(nil),
             onAppear: {},
             onDropboxAuthSuccess: {},
             backupToDropbox: {},

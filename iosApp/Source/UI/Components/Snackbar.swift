@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-struct BottomErrorBanner: View {
+struct Snackbar: View {
 
-    @StateObject var appState: AppState
-
-    @State private var errorData: UIErrorData = UIErrorData()
+    @Binding var snackbarData: SnackbarData
 
     @State private var showBanner: Bool = false
 
@@ -19,14 +17,15 @@ struct BottomErrorBanner: View {
 
         VStack(alignment: .leading, spacing: AppMargins.xSmall) {
 
-            Text(errorData.title)
+            Text(snackbarData.title)
                 .font(AppFonts.subtitle1)
                 .foregroundColor(Color.popupText)
 
-            Text(errorData.nerdishDesc)
-                .font(AppFonts.caption)
-                .foregroundColor(Color.popupText)
-
+            if let subtitle = snackbarData.subtitle {
+                Text(subtitle)
+                    .font(AppFonts.caption)
+                    .foregroundColor(Color.popupText)
+            }
         }
         .padding(.vertical, AppMargins.regular)
         .padding(.horizontal, AppMargins.medium)
@@ -43,10 +42,10 @@ struct BottomErrorBanner: View {
                     }
                 }
         )
-        .onReceive(self.appState.$errorData) { value in
+        .onChange(of: self.snackbarData) { value  in
             if !value.isEmpty() {
                 withAnimation {
-                    self.errorData = value
+                    self.snackbarData = value
                     self.showBanner = true
                 }
 
