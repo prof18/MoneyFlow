@@ -61,7 +61,6 @@
 		A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8986F24FBF8C4007771A1 /* Extensions.swift */; };
 		A9D8987424FBFA4A007771A1 /* TransactionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8987324FBFA4A007771A1 /* TransactionCard.swift */; };
 		A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E68AB225037D4F00851990 /* HomeViewModel.swift */; };
-		A9E68AB62503B2AA00851990 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E68AB52503B2AA00851990 /* Loader.swift */; };
 		A9F6751124F59E2700F486FE /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F6751024F59E2700F486FE /* Tests_iOS.swift */; };
 		A9F6751E24F59E2700F486FE /* MoneyFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F524F59E2500F486FE /* MoneyFlowApp.swift */; };
 		A9F6752024F59E2700F486FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F624F59E2500F486FE /* ContentView.swift */; };
@@ -136,7 +135,6 @@
 		A9D8986F24FBF8C4007771A1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A9D8987324FBFA4A007771A1 /* TransactionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCard.swift; sourceTree = "<group>"; };
 		A9E68AB225037D4F00851990 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		A9E68AB52503B2AA00851990 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		A9F674F524F59E2500F486FE /* MoneyFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyFlowApp.swift; sourceTree = "<group>"; };
 		A9F674F624F59E2500F486FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A9F674F724F59E2600F486FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -395,7 +393,6 @@
 			children = (
 				A9D8987324FBFA4A007771A1 /* TransactionCard.swift */,
 				A9D269D824FC28F900D2B4AE /* HeaderNavigator.swift */,
-				A9E68AB52503B2AA00851990 /* Loader.swift */,
 				A930B884253B8EED00CB92DF /* ShareSheet.swift */,
 				A9FEB378253CCAD6002DEB65 /* FilePicker.swift */,
 				A988B767257D6A2A00F6113A /* RadioButton.swift */,
@@ -669,7 +666,6 @@
 				A98B5CEE258B40390020C5C5 /* DropboxScreen.swift in Sources */,
 				A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
-				A9E68AB62503B2AA00851990 /* Loader.swift in Sources */,
 				A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */,
 				A9B3D76F257FC68600E65F1A /* AppState.swift in Sources */,
 				A9D8986624FBF18B007771A1 /* AppColors.swift in Sources */,

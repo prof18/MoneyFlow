@@ -38,7 +38,7 @@ struct CategoriesScreenContent: View {
         VStack {
 
             if (categoriesModel is CategoryModel.Loading) {
-                Loader().edgesIgnoringSafeArea(.all)
+                ProgressView().edgesIgnoringSafeArea(.all)
             } else if let error = categoriesModel as? CategoryModel.Error {
                 ErrorView(uiErrorMessage: error.uiErrorMessage)
             } else if let categoryState = categoriesModel as? CategoryModel.CategoryState {

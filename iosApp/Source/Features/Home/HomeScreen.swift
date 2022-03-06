@@ -44,7 +44,7 @@ struct HomeScreenContent: View {
         VStack {
 
             if (homeModel is HomeModel.Loading) {
-                Loader()
+                ProgressView()
             } else if let error = homeModel as? HomeModel.Error {
                 ErrorView(uiErrorMessage: error.uiErrorMessage)
             } else if let homeState = homeModel as? HomeModel.HomeState {
