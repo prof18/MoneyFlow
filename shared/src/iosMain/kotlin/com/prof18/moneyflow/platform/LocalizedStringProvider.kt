@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.platform
 
-import co.touchlab.kermit.Logger
 import platform.Foundation.NSBundle
 import platform.Foundation.NSString
 import platform.Foundation.stringWithFormat

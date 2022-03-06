@@ -99,7 +99,7 @@ internal class DropboxSyncRepositoryImpl(
     )
 
     override suspend fun saveDropboxAuthorization(): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
-        val credentials = dropboxSource.getCredentials() ?: return@withContext generateDropboxAuthErrorResult()
+        val credentials = dropboxSource.getCredentials()
         val stringCredentials = credentials.toString()
         settingsSource.saveDropboxClientCred(stringCredentials)
         setClient(credentials)
