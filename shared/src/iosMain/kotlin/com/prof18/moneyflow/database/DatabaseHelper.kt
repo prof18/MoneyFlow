@@ -20,7 +20,7 @@ object DatabaseHelper {
     }
 
     fun dbClear() {
-        driverRef.value!!.close()
+        driverRef.value?.close()
         dbRef.value = null
         driverRef.value = null
     }

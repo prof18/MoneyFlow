@@ -87,6 +87,7 @@ class DropboxViewModel: ObservableObject {
 
     func backup() {
         dropboxSyncAction = DropboxSyncAction.Loading()
+        DatabaseHelper().dbClear()
         if let databaseUrl = DatabaseImportExport.getDatabaseURL() {
             do {
                 let fileData = try Data(contentsOf: databaseUrl)
@@ -97,13 +98,14 @@ class DropboxViewModel: ObservableObject {
                         data: fileData
                     ),
                     onSuccess: {
-                        // TODO: show success on UI
+                        self.reloadDatabase()
                         onMainThread {
                             self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_upload_success".localized)
                             print("Upload success!")
                         }
                     },
                     onError: { uiErrorMessage in
+                        self.reloadDatabase()
                         self.dropboxSyncAction = DropboxSyncAction.ShowError(uiErrorMessage: uiErrorMessage)
                     }
                 )
@@ -130,6 +132,7 @@ class DropboxViewModel: ObservableObject {
     }
 
     func restore() {
+        dropboxSyncAction = DropboxSyncAction.Loading()
         dropboxSyncUseCase().download(
             databaseDownloadData: DatabaseDownloadData(
                 outputName: SchemaKt.DB_FILE_NAME_WITH_EXTENSION,
@@ -138,8 +141,10 @@ class DropboxViewModel: ObservableObject {
             onSuccess: { result in
                 if let destinationUrl = result.destinationUrl {
                     DatabaseImportExport.replaceDatabase(url: destinationUrl )
-                    self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_download_success".localized)
-                    print("Database correct restore")
+                    onMainThread {
+                        self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_download_success".localized)
+                        print("Database correct restore")
+                    }
                 } else {
                     // TODO: generate an error and show failure
                     print("dest url is null")
@@ -153,9 +158,15 @@ class DropboxViewModel: ObservableObject {
 
             },
             onError: { uiErrorMessage in
+                self.reloadDatabase()
                 self.dropboxSyncAction = DropboxSyncAction.ShowError(uiErrorMessage: uiErrorMessage)
             }
         )
+    }
+
+    private func reloadDatabase() {
+        DI.reloadDIGraph()
+        NotificationCenter.default.post(name: .databaseReloaded, object: nil)
     }
 
     deinit {

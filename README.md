@@ -19,10 +19,15 @@ MoneyFlow comes also in dark 🌃:
 
 - ✅ Transaction Entry
 - 🏗 Transaction List 
+- 💭 Edit Transaction
+- 💭 Add custom category
 - 💭 Recap screen with plots 
 - 💭 Budgeting feature  
 - ✅ Database import and export
-- 🏗 Sync data with Dropbox
+- ✅ Sync data with Dropbox
+- 💭 Import from CSV
+- 💭 Change currency
+- 🏗 Lock view with biometrics
 
 Legend:
 - ✅ Implemented

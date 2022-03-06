@@ -46,8 +46,7 @@ struct SettingsScreen: View {
     private func getContent() -> some View {
         return Form {
             Button("export_database".localized) {
-                // TODO: replace with koin scope
-                //                    DatabaseHelper().dbClear()
+                DatabaseHelper().dbClear()
                 sheetToShow = .shareSheet
             }
 
@@ -65,6 +64,8 @@ struct SettingsScreen: View {
         .navigationBarItems(leading: showNavigation() ? AnyView(closeButton) : AnyView(EmptyView()))
         .sheet(item: $sheetToShow, onDismiss: {
             // TODO: reload here the database?
+            DI.reloadDIGraph()
+            NotificationCenter.default.post(name: .databaseReloaded, object: nil)
         }) { item in
 
             switch item {
@@ -72,7 +73,6 @@ struct SettingsScreen: View {
             case .filePicker:
                 FilePickerController { url in
                     DatabaseImportExport.replaceDatabase(url: url)
-                    appState.reloadDatabase = true
                 }
 
             case .shareSheet:
@@ -81,7 +81,7 @@ struct SettingsScreen: View {
                     applicationActivities: nil
                 ) { _,_,_,_ in
                     DI.reloadDIGraph()
-                    appState.reloadDatabase = true
+                    NotificationCenter.default.post(name: .databaseReloaded, object: nil)
                 }
             }
         }

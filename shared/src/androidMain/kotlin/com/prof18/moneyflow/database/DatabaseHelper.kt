@@ -24,7 +24,7 @@ internal object DatabaseHelper {
     }
 
     fun dbClear() {
-        driverRef!!.close()
+        driverRef?.close()
         dbRef = null
         driverRef = null
     }

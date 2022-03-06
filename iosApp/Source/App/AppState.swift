@@ -9,8 +9,6 @@ import Foundation
 
 class AppState: ObservableObject {
 
-    @Published var reloadDatabase: Bool = false
-
     @Published var snackbarData: SnackbarData = SnackbarData()
 
     @Published var snackbarDataForSheet: SnackbarData = SnackbarData()

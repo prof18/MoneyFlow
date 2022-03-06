@@ -48,6 +48,10 @@ class DatabaseImportExport {
 
             DI.reloadDIGraph()
 
+            onMainThread {
+                NotificationCenter.default.post(name: .databaseReloaded, object: nil)
+            }
+
         } catch let error {
             print(error.localizedDescription)
             print("Something wrong during replace of the database")

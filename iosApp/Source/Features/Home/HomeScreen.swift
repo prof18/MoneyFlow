@@ -15,7 +15,6 @@ struct HomeScreen: View {
 
     var body: some View {
         HomeScreenContent(
-            reloadDatabase: $appState.reloadDatabase,
             appErrorData: $appState.snackbarData,
             screenErrorData: $viewModel.snackbarData,
             homeModel: $viewModel.homeModel,
@@ -29,7 +28,6 @@ struct HomeScreen: View {
 
 struct HomeScreenContent: View {
 
-    @Binding var reloadDatabase: Bool
     @Binding var appErrorData: SnackbarData
     @Binding var screenErrorData: SnackbarData
     @Binding var homeModel: HomeModel
@@ -95,14 +93,6 @@ struct HomeScreenContent: View {
         .onAppear {
             self.onAppear()
         }
-        .onChange(of: self.reloadDatabase) { value  in
-            if value {
-                print("Reload received")
-                // Start observing again without stopping, because the use case has been already restored
-                onAppear()
-                self.reloadDatabase = false
-            }
-        }
         .onChange(of: self.screenErrorData) { errorData in
             self.appErrorData = errorData
         }
@@ -112,6 +102,10 @@ struct HomeScreenContent: View {
                     self.appErrorData = uiErrorMessage.toSnackbarData()
                 }
             }
+        }.onReceive(NotificationCenter.default.publisher(for: .databaseReloaded)) { _ in
+            print("Reload received")
+            // Start observing again without stopping, because the use case has been already restored
+            onAppear()
         }
     }
 }
@@ -134,7 +128,6 @@ struct HomeScreen_Previews: PreviewProvider {
 
     static var previews: some View {
         HomeScreenContent(
-            reloadDatabase: .constant(false ),
             appErrorData: .constant(SnackbarData.init()),
             screenErrorData: .constant(SnackbarData.init()),
             homeModel: .constant(model ) ,
@@ -143,7 +136,6 @@ struct HomeScreen_Previews: PreviewProvider {
         )
 
         HomeScreenContent(
-            reloadDatabase: .constant(false ),
             appErrorData: .constant(SnackbarData.init()),
             screenErrorData: .constant(SnackbarData.init()),
             homeModel: .constant(HomeModel.Loading()) ,
@@ -152,7 +144,6 @@ struct HomeScreen_Previews: PreviewProvider {
         )
 
         HomeScreenContent(
-            reloadDatabase: .constant(false ),
             appErrorData: .constant(
                 SnackbarData(
                     title: "An error occoured",
