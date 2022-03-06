@@ -14,7 +14,7 @@ func createPublisher<T>(_ flowAdapter: FlowWrapper<T>) -> AnyPublisher<T, Kotlin
 //    return Deferred<Publishers.HandleEvents<PassthroughSubject<T, KotlinError>>> {
         let subject = PassthroughSubject<T, KotlinError>()
         let job = flowAdapter.subscribe { (item) in
-            _ = subject.send(item)
+            subject.send(item)
         } onError: { (error) in
             subject.send(completion: .failure(KotlinError(error)))
         } onComplete: {

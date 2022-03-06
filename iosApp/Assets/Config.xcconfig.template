@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  MoneyFlow
+//
+//  Created by Marco Gomiero on 05.03.22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+DROPBOX_URL_SCHEME=db-<your-api-key>
+DROPBOX_API_KEY=<your-api-key>

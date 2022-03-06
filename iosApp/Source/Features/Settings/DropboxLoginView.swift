@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import SwiftyDropbox
+import shared
 
 struct DropboxLoginView: UIViewControllerRepresentable {
 
@@ -15,23 +15,11 @@ struct DropboxLoginView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         if isShown {
-            // TODO: call startAuth from shared code
-            let scopeRequest = ScopeRequest(
-                scopeType: .user,
-                scopes: ["files.content.write", "files.content.read", "files.metadata.read"],
-                includeGrantedScopes: false
-            )
-            DropboxClientsManager.authorizeFromControllerV2(
-                UIApplication.shared,
-                controller: uiViewController,
-                loadingStatusDelegate: nil,
-                openURL: { (url: URL) -> Void in
-                    UIApplication.shared.open(
-                        url, options: [:],
-                        completionHandler: nil
-                    )
-                },
-                scopeRequest: scopeRequest
+            DI.getDropboxSyncUseCase().startAuthFlow(
+                authorizationParam: DropboxAuthorizationParam(
+                    viewController: uiViewController,
+                    scopes: DropboxConstants().DROPBOX_SCOPES
+                )
             )
         }
     }

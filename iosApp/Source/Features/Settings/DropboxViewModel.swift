@@ -6,34 +6,138 @@
 //
 
 import shared
-import SwiftyDropbox
+import Combine
 
 class DropboxViewModel: ObservableObject {
 
-    let dropboxClientManager = DropboxClientManager.instance
+    private var subscriptions = Set<AnyCancellable>()
+
     @Published var isDropboxConnected: Bool = false
+    @Published var dropboxSyncAction: DropboxSyncAction?
+    @Published var metadataModel: DropboxSyncMetadataModel = DropboxSyncMetadataModel.Loading()
+    @Published var uiErrorData: UIErrorData = UIErrorData()
 
-    // Method to observe the client status
-    func backup() {
-        self.dropboxClientManager.backup()
+    private func dropboxSyncUseCase() -> DropboxSyncUseCaseIos {
+        DI.getDropboxSyncUseCase()
     }
 
-    func checkIfConnected() {
-        self.isDropboxConnected = dropboxClientManager.isConnected()
+    func restoreClient() {
+
+        createPublisher(dropboxSyncUseCase().observeDropboxSyncMetadataModel())
+            .eraseToAnyPublisher()
+            .receive(on: DispatchQueue.global(qos: .userInitiated))
+            .sink(
+                receiveCompletion: { completion in
+                    if case let .failure(error) = completion {
+                        let moneyFlowError = MoneyFlowError.DropboxMetadata(throwable:  error.throwable)
+                        error.throwable.logError(
+                            moneyFlowError: moneyFlowError,
+                            message: "Got error while transforming Flow to Publisher"
+                        )
+                        let uiErrorMessage = DI.getErrorMapper().getUIErrorMessage(error: moneyFlowError)
+                        self.metadataModel = DropboxSyncMetadataModel.Error(errorMessage: uiErrorMessage)
+                    }
+                },
+                receiveValue: { genericResponse in
+                    onMainThread {
+                        self.metadataModel = genericResponse
+                    }
+                }
+            )
+            .store(in: &self.subscriptions)
+
+        createPublisher(dropboxSyncUseCase().dropboxClientStatus)
+            .eraseToAnyPublisher()
+            .receive(on: DispatchQueue.global(qos: .userInitiated))
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        self.isDropboxConnected = false
+                    }
+                },
+                receiveValue: { genericResponse in
+                    onMainThread {
+                        if (genericResponse == DropboxClientStatus.linked) {
+                            self.isDropboxConnected = true
+                        } else {
+                            self.isDropboxConnected = false
+                        }
+                    }
+                }
+            )
+            .store(in: &self.subscriptions)
+
+        dropboxSyncUseCase().restoreDropboxClient(
+            onError: { uiErrorMessage in
+                self.uiErrorData = uiErrorMessage.toUIErrorData()
+            }
+        )
     }
 
-    func setupDropboxClientManager() {
-        self.dropboxClientManager.setup()
-        self.checkIfConnected()
+    func saveDropboxAuth() {
+        dropboxSyncUseCase().saveDropboxAuth(
+            onError: { uiErrorMessage in
+                self.uiErrorData = uiErrorMessage.toUIErrorData()
+            }
+        )
     }
 
     func unlink() {
-        self.dropboxClientManager.unlink()
-        self.isDropboxConnected = false
+        dropboxSyncUseCase().unlink()
+    }
+
+    func backup() {
+        dropboxSyncAction = DropboxSyncAction.Loading()
+        if let databaseUrl = DatabaseImportExport.getDatabaseURL() {
+            do {
+                let fileData = try Data(contentsOf: databaseUrl)
+
+                dropboxSyncUseCase().upload(
+                    databaseUploadData: DatabaseUploadData(
+                        path: "/\(SchemaKt.DB_FILE_NAME_WITH_EXTENSION)",
+                        data: fileData
+                    ),
+                    onSuccess: {
+                        // TODO: show success on UI
+                        self.dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_upload_success".localized)
+                        print("Upload success!")
+                    },
+                    onError: { uiErrorMessage in
+                        self.uiErrorData = uiErrorMessage.toUIErrorData()
+                    }
+                )
+
+            } catch {
+                // TODO: show error on UI
+                print("Unable to load com.prof18.moneyflow.data: \(error)")
+            }
+        }
     }
 
     func restore() {
-        self.dropboxClientManager.restore()
+        dropboxSyncUseCase().download(
+            databaseDownloadData: DatabaseDownloadData(
+                outputName: SchemaKt.DB_FILE_NAME_WITH_EXTENSION,
+                path: "/\(SchemaKt.DB_FILE_NAME_WITH_EXTENSION)"
+            ),
+            onSuccess: { result in
+                if let destinationUrl = result.destinationUrl {
+                    DatabaseImportExport.replaceDatabase(url: destinationUrl )
+                    self. dropboxSyncAction = DropboxSyncAction.Success(message: "dropbox_download_success".localized)
+                    print("Database correct restore")
+                } else {
+                    // TODO: generate an error and show failure
+                    print("dest url is null")
+                }
+
+            },
+            onError: { uiErrorMessage in
+                self.uiErrorData = uiErrorMessage.toUIErrorData()
+            }
+        )
     }
 
+    deinit {
+        dropboxSyncUseCase().onDestroy()
+    }
 }

@@ -1,9 +1,13 @@
 package com.prof18.moneyflow.domain.entities
 
-// TODO: add stuff
-@Suppress("EmptyClassBlock")
-actual class DatabaseUploadData
+import platform.Foundation.NSData
 
-// TODO: add stuff
-@Suppress("EmptyClassBlock")
-actual class DatabaseDownloadData
+actual data class DatabaseUploadData(
+    val path: String,
+    val data: NSData,
+)
+
+actual data class DatabaseDownloadData(
+    val outputName: String,
+    val path: String,
+)

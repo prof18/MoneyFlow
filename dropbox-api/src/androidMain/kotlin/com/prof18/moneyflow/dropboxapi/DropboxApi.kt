@@ -48,11 +48,11 @@ actual class DropboxApi {
         }
     }
 
-    actual fun getCredentials(): DropboxCredentials? {
+    actual fun getCredentials(): DropboxCredentials {
         return Auth.getDbxCredential()
     }
 
-    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials? {
+    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials {
         return DbxCredential.Reader.readFully(stringCredentials)
     }
 

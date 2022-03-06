@@ -13,7 +13,6 @@ actual interface LocalizedStringProvider {
 fun String.localized(): String {
     val localizedString = NSBundle.mainBundle.localizedStringForKey(this, this, null)
     return if (localizedString != this) {
-        Logger.d { "Localized string is: $localizedString" }
         localizedString
     } else {
         this
@@ -22,7 +21,7 @@ fun String.localized(): String {
 
 @Suppress("MagicNumber")
 fun String.localized(vararg arguments: Any?): String {
-    val format = localized()
+    val format = localized().replace("%s", "%@")
     // Kotlin does not support passing variadic parameters to Objective-C
     return when (arguments.size) {
         0 -> NSString.stringWithFormat(format)

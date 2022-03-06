@@ -17,7 +17,9 @@ import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
 import com.prof18.moneyflow.dropboxapi.DropboxClient
 import com.prof18.moneyflow.dropboxapi.DropboxCredentials
 import com.prof18.moneyflow.dropboxapi.DropboxDownloadException
+import com.prof18.moneyflow.dropboxapi.DropboxDownloadResult
 import com.prof18.moneyflow.dropboxapi.DropboxException
+import com.prof18.moneyflow.dropboxapi.DropboxHandleOAuthRequestParam
 import com.prof18.moneyflow.dropboxapi.DropboxSetupParam
 import com.prof18.moneyflow.dropboxapi.DropboxUploadException
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
@@ -52,6 +54,10 @@ internal class DropboxSyncRepositoryImpl(
     override fun setupDropboxApp(setupParam: DropboxSetupParam) {
         Logger.d { "Setting up dropbox app" }
         dropboxSource.setup(setupParam)
+    }
+
+    override fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam) {
+        dropboxSource.handleOAuthResponse(oAuthRequestParam)
     }
 
     override fun startDropboxAuthorization(authorizationParam: DropboxAuthorizationParam) {
@@ -144,7 +150,7 @@ internal class DropboxSyncRepositoryImpl(
 
     override suspend fun download(
         databaseDownloadData: DatabaseDownloadData,
-    ): MoneyFlowResult<Unit> = withContext(dispatcherProvider.default()) {
+    ): MoneyFlowResult<DropboxDownloadResult> = withContext(dispatcherProvider.default()) {
         if (dropboxClient == null) {
             generateDropboxAuthErrorResult()
         }
@@ -160,7 +166,7 @@ internal class DropboxSyncRepositoryImpl(
                     lastDownloadHash = result.contentHash,
                 )
             )
-            return@withContext MoneyFlowResult.Success(Unit)
+            return@withContext MoneyFlowResult.Success(result)
         } catch (e: DropboxDownloadException) {
             Logger.e("Download from dropbox failed", e)
             val error = MoneyFlowError.DropboxDownload(e)

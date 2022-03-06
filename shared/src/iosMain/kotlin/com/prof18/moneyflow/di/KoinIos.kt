@@ -10,9 +10,11 @@ import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.AddTransactionUseCaseIos
 import com.prof18.moneyflow.presentation.CategoriesUseCaseIos
+import com.prof18.moneyflow.presentation.DropboxSyncUseCaseIos
 import com.prof18.moneyflow.presentation.HomeUseCaseIos
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
+import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import com.prof18.moneyflow.presentation.home.HomeUseCase
 import com.russhwolf.settings.KeychainSettings
 import com.russhwolf.settings.Settings
@@ -49,6 +51,12 @@ actual val platformModule = module {
 
         factory { CategoriesUseCase(get()) }
         factory { CategoriesUseCaseIos(get()) }
+    }
+
+    factory {
+        DropboxSyncUseCaseIos(
+            dropboxSyncUseCase = get()
+        )
     }
 }
 

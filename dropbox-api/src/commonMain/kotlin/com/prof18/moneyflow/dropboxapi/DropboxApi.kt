@@ -9,12 +9,13 @@ expect class DropboxApi() {
      * Can throw a [DropboxException]
      */
     fun revokeAccess(client: DropboxClient)
-    fun getCredentials(): DropboxCredentials?
+    fun getCredentials(): DropboxCredentials
 
     /**
      * Can throw JsonParseException, JsonReadException or IOException
      */
-    fun getCredentialsFromString(stringCredentials: String): DropboxCredentials?
+    fun getCredentialsFromString(stringCredentials: String): DropboxCredentials
+
     /**
      * If successful returns a [DropboxUploadResult] otherwise throws a [DropboxUploadException]
      */

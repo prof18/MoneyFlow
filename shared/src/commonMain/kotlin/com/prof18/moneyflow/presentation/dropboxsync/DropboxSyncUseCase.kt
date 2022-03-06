@@ -7,6 +7,9 @@ import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropboxapi.DropboxDownloadResult
+import com.prof18.moneyflow.dropboxapi.DropboxHandleOAuthRequestParam
+import com.prof18.moneyflow.dropboxapi.DropboxSetupParam
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.utils.formatFullDate
 import kotlinx.coroutines.flow.Flow
@@ -24,6 +27,12 @@ class DropboxSyncUseCase(
     fun startAuthFlow(authorizationParam: DropboxAuthorizationParam) =
         dropboxSyncRepository.startDropboxAuthorization(authorizationParam)
 
+    fun setupClient(setupParam: DropboxSetupParam) = dropboxSyncRepository.setupDropboxApp(setupParam)
+
+    fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam) {
+        dropboxSyncRepository.handleOAuthResponse(oAuthRequestParam)
+    }
+
     suspend fun saveDropboxAuth(): MoneyFlowResult<Unit> = dropboxSyncRepository.saveDropboxAuthorization()
 
     suspend fun unlinkDropbox() = dropboxSyncRepository.unlinkDropboxClient()
@@ -33,7 +42,7 @@ class DropboxSyncUseCase(
     suspend fun upload(databaseUploadData: DatabaseUploadData): MoneyFlowResult<Unit> =
         dropboxSyncRepository.upload(databaseUploadData)
 
-    suspend fun download(databaseDownloadData: DatabaseDownloadData): MoneyFlowResult<Unit> =
+    suspend fun download(databaseDownloadData: DatabaseDownloadData): MoneyFlowResult<DropboxDownloadResult> =
         dropboxSyncRepository.download(databaseDownloadData)
 
     fun observeDropboxSyncMetadataModel(): Flow<DropboxSyncMetadataModel> =

@@ -22,7 +22,7 @@
 "down_arrow_content_desc" = "Down arrow";
 "my_wallet" = "My Wallet";
 "empty_wallet" = "Your wallet is empty";
-"shrug" = "¯\\_(ツ)_/¯";
+"shrug" = "¯\\\\_(ツ)_/¯";
 "delete" = "Delete";
 "generic_error_message" = "Something wrong here!";
 "icon_content_desc" = "icon";
@@ -65,3 +65,16 @@
 "error_dropbox_upload" = "Something unexpected happened during the upload to Dropbox";
 "error_dropbox_download" = "Something unexpected happened during the download from Dropbox";
 "error_dropbox_metadata" = "Something unexpected happened while getting the latest Dropbox sync time";
+"dropbox_latest_upload_date" = "Last upload: %s";
+"dropbox_latest_download_date" = "Last download: %s";
+"dropbox_no_download_date" = "Data not downloaded yet";
+"dropbox_no_upload_date" = "Data not uploaded yet";
+"database_file_not_found" = "I can't find the database file. That is weird!";
+"dropbox_upload_success" = "Database successfully updated to Dropbox";
+"dropbox_download_success" = "Database successfully downloaded from Dropbox";
+"dropbox_nerd_stats" = "Dropbox Sync Nerd Stats";
+"dropbox_latest_upload_content_hash" = "Last upload content hash: %s";
+"dropbox_latest_download_content_hash" = "Last download content hash: %s";
+"dropbox_sync_time" = "Dropbox Sync Time";
+"tl_dr_dropbox_same_hash_message" = "tl;dr The content hash are the same!";
+"tl_dr_dropbox_different_hash_message" = "tl;dr The content hash are different!";

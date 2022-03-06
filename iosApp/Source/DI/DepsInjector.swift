@@ -64,6 +64,15 @@ class DepsInjector {
         return mapper
     }
 
+    func getDropboxSyncUseCase() -> DropboxSyncUseCaseIos {
+        guard let useCase = koin.get(
+            objCClass: DropboxSyncUseCaseIos.self
+        ) as? DropboxSyncUseCaseIos else {
+            fatalError("DropboxSyncUseCaseIos cannot be null")
+        }
+        return useCase
+    }
+
     func reloadDIGraph() {
         koin.closeScope()
         koin.openKoinScope()

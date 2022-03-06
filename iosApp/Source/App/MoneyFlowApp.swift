@@ -7,15 +7,12 @@
 
 import SwiftUI
 import shared
-import SwiftyDropbox
 
 @main
 struct MoneyFlowApp: App {
 
     @Environment(\.scenePhase) var scenePhase
     @StateObject var appState: AppState = AppState()
-
-    //    @StateObject var appState: AppState = AppState()
 
     init() {
 
@@ -25,15 +22,13 @@ struct MoneyFlowApp: App {
             .foregroundColor: UIColor(named: "ColorOnBackground")! as UIColor,
             .font : UIFont(name:"Poppins-Regular", size: 32)!]
 
-        // TODO: delete and use shared code
         var key = ""
-        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist") {
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
             if let keys = NSDictionary(contentsOfFile: path) {
                 key = keys["DropboxApiKey"] as? String  ?? ""
             }
         }
-
-        DropboxClientsManager.setupWithAppKey(key)
+        DI.getDropboxSyncUseCase().setupClient(setupParam: DropboxSetupParam(apiKey: key))
     }
 
     var body: some Scene {
@@ -41,23 +36,23 @@ struct MoneyFlowApp: App {
             ContentView().environmentObject(appState)
                 .onOpenURL { (url) in
                     print(url)
-                    // TODO: call handleOAuthResponse from shared code
-                    let oauthCompletion: DropboxOAuthCompletion = {
-                        if let authResult = $0 {
-                            switch authResult {
-                            case .success:
+                    DI.getDropboxSyncUseCase().handleOAuthResponse(
+                        oAuthRequestParam: DropboxHandleOAuthRequestParam(
+                            url: url,
+                            onSuccess: {
                                 print("Success! User is logged into DropboxClientsManager.")
                                 NotificationCenter.default.post(name: .didDropboxSuccess, object: nil)
-                            case .cancel:
+                            },
+                            onCancel: {
                                 print("Authorization flow was manually canceled by user!")
                                 NotificationCenter.default.post(name: .didDropboxCancel, object: nil)
-                            case .error(_, let description):
-                                print("Error: \(String(describing: description))")
+                            },
+                            onError: {
+                                print("Error")
                                 NotificationCenter.default.post(name: .didDropboxError, object: nil)
                             }
-                        }
-                    }
-                    DropboxClientsManager.handleRedirectURL(url, completion: oauthCompletion)
+                        )
+                    )
                 }
         }
         .onChange(of: scenePhase) { newScenePhase in

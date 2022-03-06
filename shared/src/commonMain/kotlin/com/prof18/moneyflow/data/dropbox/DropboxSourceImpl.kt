@@ -27,9 +27,9 @@ internal class DropboxSourceImpl(
 
     override fun revokeAccess(client: DropboxClient) = dropboxApi.revokeAccess(client)
 
-    override fun getCredentials(): DropboxCredentials? = dropboxApi.getCredentials()
+    override fun getCredentials(): DropboxCredentials = dropboxApi.getCredentials()
 
-    override fun getCredentialsFromString(stringCredentials: String): DropboxCredentials? =
+    override fun getCredentialsFromString(stringCredentials: String): DropboxCredentials =
         dropboxApi.getCredentialsFromString(stringCredentials)
 
     override suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =

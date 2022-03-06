@@ -65,11 +65,13 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>$(DROPBOX_DB_API_KEY)</string>
+				<string>$(DROPBOX_URL_SCHEME)</string>
 			</array>
 			<key>CFBundleURLName</key>
 			<string></string>
 		</dict>
 	</array>
+	<key>DropboxApiKey</key>
+	<string>$(DROPBOX_API_KEY)</string>
 </dict>
 </plist>

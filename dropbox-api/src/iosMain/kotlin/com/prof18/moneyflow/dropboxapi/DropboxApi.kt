@@ -5,6 +5,7 @@ import cocoapods.ObjectiveDropboxOfficial.DBClientsManager
 import cocoapods.ObjectiveDropboxOfficial.DBFILESDownloadError
 import cocoapods.ObjectiveDropboxOfficial.DBFILESFileMetadata
 import cocoapods.ObjectiveDropboxOfficial.DBFILESUploadError
+import cocoapods.ObjectiveDropboxOfficial.DBFILESWriteMode
 import cocoapods.ObjectiveDropboxOfficial.DBOAuthCompletion
 import cocoapods.ObjectiveDropboxOfficial.DBScopeRequest
 import cocoapods.ObjectiveDropboxOfficial.DBScopeTypeUser
@@ -25,19 +26,10 @@ import kotlin.coroutines.suspendCoroutine
 actual class DropboxApi {
 
     actual fun setup(setupParam: DropboxSetupParam) {
-//        var apiKey = ""
-//        val path = NSBundle.mainBundle.pathForResource("Keys", "plist")
-//        if (path != null) {
-//            val dict = NSDictionary.create(contentsOfURL = NSURL(fileURLWithPath = path))
-//            apiKey = dict?.run {
-//                this.objectForKey("DropboxApiKey") as? String
-//            } ?: ""
-//        }
         DBClientsManager.setupWithAppKey(setupParam.apiKey)
     }
 
     actual fun startAuthorization(authParam: DropboxAuthorizationParam) {
-        // listOf("files.content.write", "files.content.read", "files.metadata.read")
         val scopeRequest = DBScopeRequest(
             scopeType = DBScopeTypeUser,
             scopes = authParam.scopes,
@@ -89,21 +81,27 @@ actual class DropboxApi {
         DBClientsManager.unlinkAndResetClients()
     }
 
-    actual fun getCredentials(): DropboxCredentials? {
+    actual fun getCredentials(): DropboxCredentials {
         // No-op on iOS
-        return null
+        return IOS_DROPBOX_CREDENTIALS
     }
 
-    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials? {
+    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials {
         // No-op on iOS
-        return null
+        return IOS_DROPBOX_CREDENTIALS
     }
 
     actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =
         suspendCancellableCoroutine { continuation ->
             uploadParam.client.filesRoutes.uploadData(
                 path = uploadParam.path,
+                mode = DBFILESWriteMode(overwrite = Unit),
+                autorename = null,
+                clientModified = null,
                 inputData = uploadParam.data,
+                mute = null,
+                propertyGroups = null,
+                strictConflict = null,
             ).setResponseBlock { result, routeError, networkError ->
                 if (result is DBFILESFileMetadata? && result != null) {
                     Logger.d { "Data successfully uploaded to Dropbox" }
@@ -172,4 +170,8 @@ actual class DropboxApi {
                 }
             }
         }
+
+    private companion object {
+        const val IOS_DROPBOX_CREDENTIALS = "IOS_DROPBOX_CREDENTIALS"
+    }
 }

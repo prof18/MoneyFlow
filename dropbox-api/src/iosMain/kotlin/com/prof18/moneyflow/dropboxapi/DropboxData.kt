@@ -2,7 +2,7 @@ package com.prof18.moneyflow.dropboxapi
 
 import platform.Foundation.NSURL
 
-actual class DropboxCredentials
+actual typealias DropboxCredentials = String
 
 @Suppress("CONFLICTING_OVERLOADS")
 // TODO: check if its working

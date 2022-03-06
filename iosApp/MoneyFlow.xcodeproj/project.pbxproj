@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		663F8105C5CED07B3CBF002C /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */; };
+		8D8119EA27D3CC3F00906C82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */; };
 		8D9481C4277BA4AC003568EE /* BottomErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */; };
 		8D9481C7277BA694003568EE /* UIErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* UIErrorData.swift */; };
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
@@ -23,7 +24,6 @@
 		A9471EDA25759DAD00C5D3AF /* AddTransactionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */; };
 		A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF1E2554991600633BD3 /* DepsInjector.swift */; };
 		A947AF252554A7D500633BD3 /* DatabaseImportExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */; };
-		A9871E0D27C2801800FDE9CE /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9871E0C27C2801800FDE9CE /* Keys.plist */; };
 		A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B761257D675B00F6113A /* AddTransactionViewModel.swift */; };
 		A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B767257D6A2A00F6113A /* RadioButton.swift */; };
 		A988B76E257D6AA600F6113A /* ColorInverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B76D257D6AA600F6113A /* ColorInverter.swift */; };
@@ -34,7 +34,6 @@
 		A98B5CEE258B40390020C5C5 /* DropboxScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CED258B40390020C5C5 /* DropboxScreen.swift */; };
 		A98B5CF4258BF2660020C5C5 /* DropboxNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CF3258BF2660020C5C5 /* DropboxNotifications.swift */; };
 		A98B5CFA258BF5B70020C5C5 /* DropboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CF9258BF5B70020C5C5 /* DropboxViewModel.swift */; };
-		A98B5D04258D44D00020C5C5 /* DropboxClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5D03258D44D00020C5C5 /* DropboxClientManager.swift */; };
 		A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B356B257EE89900B626ED /* SidebarMenuItem.swift */; };
 		A99B3574257F7ABF00B626ED /* SidebarNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B3573257F7ABF00B626ED /* SidebarNavigationItem.swift */; };
 		A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */; };
@@ -82,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		18FAAF44652500A26ACC8FC8 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
+		8D8119E927D3CC3F00906C82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8D9481C3277BA4AC003568EE /* BottomErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomErrorBanner.swift; sourceTree = "<group>"; };
 		8D9481C6277BA694003568EE /* UIErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorData.swift; sourceTree = "<group>"; };
 		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -99,7 +99,6 @@
 		A9471ED925759DAD00C5D3AF /* AddTransactionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionState.swift; sourceTree = "<group>"; };
 		A947AF1E2554991600633BD3 /* DepsInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepsInjector.swift; sourceTree = "<group>"; };
 		A947AF242554A7D500633BD3 /* DatabaseImportExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseImportExport.swift; sourceTree = "<group>"; };
-		A9871E0C27C2801800FDE9CE /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		A988B761257D675B00F6113A /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
 		A988B767257D6A2A00F6113A /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		A988B76D257D6AA600F6113A /* ColorInverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInverter.swift; sourceTree = "<group>"; };
@@ -110,7 +109,6 @@
 		A98B5CED258B40390020C5C5 /* DropboxScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxScreen.swift; sourceTree = "<group>"; };
 		A98B5CF3258BF2660020C5C5 /* DropboxNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxNotifications.swift; sourceTree = "<group>"; };
 		A98B5CF9258BF5B70020C5C5 /* DropboxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxViewModel.swift; sourceTree = "<group>"; };
-		A98B5D03258D44D00020C5C5 /* DropboxClientManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxClientManager.swift; sourceTree = "<group>"; };
 		A99B356B257EE89900B626ED /* SidebarMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenuItem.swift; sourceTree = "<group>"; };
 		A99B3573257F7ABF00B626ED /* SidebarNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationItem.swift; sourceTree = "<group>"; };
 		A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
@@ -255,15 +253,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		A98B5D0D258DF4000020C5C5 /* DropboxSync */ = {
-			isa = PBXGroup;
-			children = (
-				A98B5CF3258BF2660020C5C5 /* DropboxNotifications.swift */,
-				A98B5D03258D44D00020C5C5 /* DropboxClientManager.swift */,
-			);
-			path = DropboxSync;
-			sourceTree = "<group>";
-		};
 		A99B3571257F7A8E00B626ED /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +310,7 @@
 			children = (
 				A9B3D775257FC95C00E65F1A /* Data */,
 				A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */,
+				A98B5CF3258BF2660020C5C5 /* DropboxNotifications.swift */,
 				A98B5CDF258AA7F30020C5C5 /* DropboxLoginView.swift */,
 				A98B5CED258B40390020C5C5 /* DropboxScreen.swift */,
 				A98B5CF9258BF5B70020C5C5 /* DropboxViewModel.swift */,
@@ -368,12 +358,12 @@
 		A9D8985424FBEFF8007771A1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				8D8119E927D3CC3F00906C82 /* Config.xcconfig */,
 				8D9481D5277C9EAA003568EE /* Localization */,
 				A9F674FF24F59E2700F486FE /* Info.plist */,
 				A9F674F724F59E2600F486FE /* Images.xcassets */,
 				A9D8986B24FBF22F007771A1 /* Colors.xcassets */,
 				A9D8985524FBEFFF007771A1 /* Font */,
-				A9871E0C27C2801800FDE9CE /* Keys.plist */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -438,7 +428,6 @@
 			children = (
 				8D9481DC277CCDA7003568EE /* Data */,
 				A99B3571257F7A8E00B626ED /* App */,
-				A98B5D0D258DF4000020C5C5 /* DropboxSync */,
 				A9A8A9CF2557E9FB00C0ED89 /* Features */,
 				A930B879253B7FFB00CB92DF /* DI */,
 				A9D8986E24FBF8A6007771A1 /* Utils */,
@@ -565,7 +554,7 @@
 				A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */,
 				A9F6752224F59E2700F486FE /* Images.xcassets in Resources */,
 				8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */,
-				A9871E0D27C2801800FDE9CE /* Keys.plist in Resources */,
+				8D8119EA27D3CC3F00906C82 /* Config.xcconfig in Resources */,
 				A9D1B2CA2553E8E100931B2B /* shared in Resources */,
 				A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -614,7 +603,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -651,7 +640,6 @@
 				A9471ED325759ACA00C5D3AF /* CategoryCard.swift in Sources */,
 				A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */,
 				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
-				A98B5D04258D44D00020C5C5 /* DropboxClientManager.swift in Sources */,
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A9B3C52D25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */,
 				A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */,
@@ -731,6 +719,7 @@
 /* Begin XCBuildConfiguration section */
 		A9F6752424F59E2700F486FE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -793,6 +782,7 @@
 		};
 		A9F6752524F59E2700F486FE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
