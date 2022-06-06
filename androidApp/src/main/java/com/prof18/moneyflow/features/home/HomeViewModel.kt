@@ -7,15 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
-import com.prof18.moneyflow.presentation.categories.CategoryModel
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.presentation.home.HomeUseCase
 import com.prof18.moneyflow.utils.logError
-import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 internal class HomeViewModel(
