@@ -60,7 +60,7 @@ internal class HomeScreenFactory(private val paddingValues: PaddingValues) : Com
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.HomeScreen.route) {
             val homeViewModel = getViewModel<HomeViewModel>()
-            val homeModelState: HomeModel by homeViewModel.homeState.collectAsState()
+            val homeModel: HomeModel = homeViewModel.homeModel
             val hideSensitiveDataState: Boolean by homeViewModel.hideSensitiveDataState.collectAsState()
 
             HomeScreen(
@@ -71,7 +71,7 @@ internal class HomeScreenFactory(private val paddingValues: PaddingValues) : Com
                 deleteTransaction = { transactionId ->
                     homeViewModel.deleteTransaction(transactionId)
                 },
-                homeModel = homeModelState,
+                homeModel = homeModel,
                 hideSensitiveDataState = hideSensitiveDataState,
                 changeSensitiveDataVisibility = { visibility ->
                     homeViewModel.changeSensitiveDataVisibility(
