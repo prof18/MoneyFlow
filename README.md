@@ -38,6 +38,7 @@ Legend:
 
 I wrote an article about all the decisions and the thoughts that I’ve made to come up with an architecture for MoneyFlow.
 
+[Improving shared architecture for a Kotlin Multiplatform, Jetpack Compose and SwiftUI app](https://www.marcogomiero.com/posts/2022/improved-kmm-shared-app-arch/)
 [Choosing the right architecture for a [new] Kotlin Multiplatform, Jetpack Compose and SwiftUI app](https://www.marcogomiero.com/posts/2020/kmm-shared-app-architecture/)
 
 ## License 📄
