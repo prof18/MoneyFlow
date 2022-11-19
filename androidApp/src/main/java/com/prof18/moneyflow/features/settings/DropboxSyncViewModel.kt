@@ -12,7 +12,7 @@ import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction

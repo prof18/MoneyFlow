@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.dropboxapi
+package com.prof18.moneyflow.dropbox
 
 import co.touchlab.kermit.Logger
 import com.dropbox.core.DbxException
@@ -48,7 +48,7 @@ actual class DropboxApi {
         }
     }
 
-    actual fun getCredentials(): DropboxCredentials {
+    actual fun getCredentials(): DropboxCredentials? {
         return Auth.getDbxCredential()
     }
 

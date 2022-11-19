@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.BuildConfig
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction.ShowError
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel

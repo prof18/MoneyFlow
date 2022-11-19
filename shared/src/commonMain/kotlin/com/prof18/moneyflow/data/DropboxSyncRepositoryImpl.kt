@@ -13,15 +13,15 @@ import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.domain.mapper.toDropboxDownloadParams
 import com.prof18.moneyflow.domain.mapper.toDropboxUploadParams
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
-import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
-import com.prof18.moneyflow.dropboxapi.DropboxClient
-import com.prof18.moneyflow.dropboxapi.DropboxCredentials
-import com.prof18.moneyflow.dropboxapi.DropboxDownloadException
-import com.prof18.moneyflow.dropboxapi.DropboxDownloadResult
-import com.prof18.moneyflow.dropboxapi.DropboxException
-import com.prof18.moneyflow.dropboxapi.DropboxHandleOAuthRequestParam
-import com.prof18.moneyflow.dropboxapi.DropboxSetupParam
-import com.prof18.moneyflow.dropboxapi.DropboxUploadException
+import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxClient
+import com.prof18.moneyflow.dropbox.DropboxCredentials
+import com.prof18.moneyflow.dropbox.DropboxDownloadException
+import com.prof18.moneyflow.dropbox.DropboxDownloadResult
+import com.prof18.moneyflow.dropbox.DropboxException
+import com.prof18.moneyflow.dropbox.DropboxHandleOAuthRequestParam
+import com.prof18.moneyflow.dropbox.DropboxSetupParam
+import com.prof18.moneyflow.dropbox.DropboxUploadException
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.DispatcherProvider
 import com.prof18.moneyflow.utils.DropboxConstants
@@ -102,7 +102,7 @@ internal class DropboxSyncRepositoryImpl(
         val credentials = dropboxSource.getCredentials()
         val stringCredentials = credentials.toString()
         settingsSource.saveDropboxClientCred(stringCredentials)
-        setClient(credentials)
+        credentials?.let { setClient(it) }
         if (dropboxClient == null) {
             return@withContext generateDropboxAuthErrorResult()
         }

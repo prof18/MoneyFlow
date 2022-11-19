@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.dropboxapi
+package com.prof18.moneyflow.dropbox
 
 expect class DropboxApi() {
     fun setup(setupParam: DropboxSetupParam)
@@ -9,7 +9,7 @@ expect class DropboxApi() {
      * Can throw a [DropboxException]
      */
     fun revokeAccess(client: DropboxClient)
-    fun getCredentials(): DropboxCredentials
+    fun getCredentials(): DropboxCredentials?
 
     /**
      * Can throw JsonParseException, JsonReadException or IOException

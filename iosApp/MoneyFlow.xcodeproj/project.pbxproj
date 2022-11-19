@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -472,8 +472,8 @@
 				A9F674F824F59E2700F486FE /* Sources */,
 				A9F674F924F59E2700F486FE /* Frameworks */,
 				A9F674FA24F59E2700F486FE /* Resources */,
-				4D5A09BB2D64094588CD5AE7 /* [CP] Embed Pods Frameworks */,
 				8DAC5AF327CC0A5B001F9E86 /* SwiftLint */,
+				06DE5AC5A4884DDAF4AD890D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -567,7 +567,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4D5A09BB2D64094588CD5AE7 /* [CP] Embed Pods Frameworks */ = {
+		06DE5AC5A4884DDAF4AD890D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -845,6 +845,14 @@
 				INFOPLIST_FILE = Assets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"shared\"",
+					"-lsqlite3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
 				PRODUCT_NAME = MoneyFlow;
 				SDKROOT = iphoneos;
@@ -866,6 +874,14 @@
 				INFOPLIST_FILE = Assets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"shared\"",
+					"-lsqlite3",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
 				PRODUCT_NAME = MoneyFlow;
 				SDKROOT = iphoneos;

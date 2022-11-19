@@ -1,9 +1,9 @@
 PODS:
-  - ObjectiveDropboxOfficial (6.2.3)
-  - shared (1.0-SNAPSHOT)
+  - ObjectiveDropboxOfficial (7.0.0)
+  - shared (1.0-SNAPSHOT):
+    - ObjectiveDropboxOfficial (~> 7.0.0)
 
 DEPENDENCIES:
-  - ObjectiveDropboxOfficial
   - shared (from `../shared`)
 
 SPEC REPOS:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  ObjectiveDropboxOfficial: fe206ce8c0bc49976c249d472db7fdbc53ebbd53
-  shared: ed9a6623b90cbd81c024378876f9a555eb410795
+  ObjectiveDropboxOfficial: cf39e37372f59c270aad869604dce20f11b877f5
+  shared: d6a44bd6751f397e9fcd612f7ea2f55726da2602
 
-PODFILE CHECKSUM: 45460ad53fd954ac188ad3dbad095f161aded627
+PODFILE CHECKSUM: 73f4896e537e1a25fb6e3403ad13e56b183dc5a6
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.dropboxapi
+package com.prof18.moneyflow.dropbox
 
 import com.dropbox.core.oauth.DbxCredential
 

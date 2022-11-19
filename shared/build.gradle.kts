@@ -54,9 +54,12 @@ android {
 
 kotlin {
     android()
-    ios() {
-
-        binaries {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    )/*.forEach {
+        it.binaries {
             getTest("DEBUG").apply {
                 val frameworkPath =
                     "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
@@ -65,7 +68,7 @@ kotlin {
                 linkerOpts("-framework", "ObjectiveDropboxOfficial")
             }
         }
-    }
+    }*/
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -77,21 +80,25 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
 
         framework {
-            isStatic = false
-            export(project(":dropbox-api"))
-            transitiveExport = true
+            isStatic = true
+//            export("com.prof18:kdrop:0.0.7")
+//            transitiveExport = true // todo: necessary?
             linkerOpts.add("-lsqlite3")
+//
+//            val isSimulator =
+//                this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
+//            val frameworkPath = if (isSimulator) {
+//                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
+//            } else {
+//                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphoneos/ObjectiveDropboxOfficial"
+//            }
+//            linkerOpts("-F$frameworkPath")
+//            linkerOpts("-rpath", frameworkPath)
+//            linkerOpts("-framework", "ObjectiveDropboxOfficial")
+        }
 
-            val isSimulator =
-                this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
-            val frameworkPath = if (isSimulator) {
-                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-            } else {
-                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphoneos/ObjectiveDropboxOfficial"
-            }
-            linkerOpts("-F$frameworkPath")
-            linkerOpts("-rpath", frameworkPath)
-            linkerOpts("-framework", "ObjectiveDropboxOfficial")
+        pod("ObjectiveDropboxOfficial") {
+            version = "~> 7.0.0"
         }
     }
 
@@ -107,7 +114,8 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                api(project(":dropbox-api"))
+//                api(project(":dropbox-api"))
+                implementation(libs.dropbox.dropboxCore)
                 implementation(libs.squareup.sqldelight.runtime)
                 implementation(libs.squareup.sqldelight.coroutineExtensions)
                 implementation(libs.kotlinx.coroutine.core)
@@ -144,13 +152,30 @@ kotlin {
                 implementation(libs.squareup.sqldelight.sqliteDriver)
             }
         }
-        val iosMain by getting {
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+
             dependencies {
                 implementation(libs.squareup.sqldelight.nativeDriver)
                 implementation(libs.kotlinx.coroutine.core)
             }
         }
-        val iosTest by getting {
+        val iosX64Test by getting
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            dependsOn(commonTest)
+            iosX64Test.dependsOn(this)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
+
             dependencies {
                 implementation(libs.squareup.sqldelight.nativeDriver)
             }

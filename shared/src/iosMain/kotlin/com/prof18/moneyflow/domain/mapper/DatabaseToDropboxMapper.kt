@@ -2,9 +2,9 @@ package com.prof18.moneyflow.domain.mapper
 
 import com.prof18.moneyflow.domain.entities.DatabaseDownloadData
 import com.prof18.moneyflow.domain.entities.DatabaseUploadData
-import com.prof18.moneyflow.dropboxapi.DropboxClient
-import com.prof18.moneyflow.dropboxapi.DropboxDownloadParam
-import com.prof18.moneyflow.dropboxapi.DropboxUploadParam
+import com.prof18.moneyflow.dropbox.DropboxClient
+import com.prof18.moneyflow.dropbox.DropboxDownloadParam
+import com.prof18.moneyflow.dropbox.DropboxUploadParam
 
 internal actual fun DatabaseUploadData.toDropboxUploadParams(dropboxClient: DropboxClient): DropboxUploadParam {
     return DropboxUploadParam(

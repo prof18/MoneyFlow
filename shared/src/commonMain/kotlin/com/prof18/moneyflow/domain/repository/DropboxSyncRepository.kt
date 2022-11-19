@@ -5,10 +5,10 @@ import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.dropboxapi.DropboxAuthorizationParam
-import com.prof18.moneyflow.dropboxapi.DropboxDownloadResult
-import com.prof18.moneyflow.dropboxapi.DropboxHandleOAuthRequestParam
-import com.prof18.moneyflow.dropboxapi.DropboxSetupParam
+import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxDownloadResult
+import com.prof18.moneyflow.dropbox.DropboxHandleOAuthRequestParam
+import com.prof18.moneyflow.dropbox.DropboxSetupParam
 import kotlinx.coroutines.flow.StateFlow
 
 interface DropboxSyncRepository {

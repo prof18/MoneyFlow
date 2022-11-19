@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.dropboxapi
+package com.prof18.moneyflow.dropbox
 
 import co.touchlab.kermit.Logger
 import cocoapods.ObjectiveDropboxOfficial.DBClientsManager
@@ -81,7 +81,7 @@ actual class DropboxApi {
         DBClientsManager.unlinkAndResetClients()
     }
 
-    actual fun getCredentials(): DropboxCredentials {
+    actual fun getCredentials(): DropboxCredentials? {
         // No-op on iOS
         return IOS_DROPBOX_CREDENTIALS
     }
@@ -98,10 +98,11 @@ actual class DropboxApi {
                 mode = DBFILESWriteMode(overwrite = Unit),
                 autorename = null,
                 clientModified = null,
-                inputData = uploadParam.data,
                 mute = null,
                 propertyGroups = null,
                 strictConflict = null,
+                contentHash = null,
+                inputData = uploadParam.data,
             ).setResponseBlock { result, routeError, networkError ->
                 if (result is DBFILESFileMetadata? && result != null) {
                     Logger.d { "Data successfully uploaded to Dropbox" }
