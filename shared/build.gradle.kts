@@ -1,13 +1,10 @@
-import org.jetbrains.kotlin.konan.target.KonanTarget
-import org.jmailen.gradle.kotlinter.tasks.LintTask
-
 @Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.native.cocoapods)
     alias(libs.plugins.android.library)
-    id("com.squareup.sqldelight")
-    id("co.touchlab.kermit")
+    alias(libs.plugins.sqldelight)
+    alias(libs.plugins.touchlab.kermit)
 }
 
 val sharedLibGroup: String by project
@@ -16,12 +13,6 @@ val javaVersion: JavaVersion by rootProject.extra
 
 group = sharedLibGroup
 version = sharedLibVersion
-
-tasks {
-    named<LintTask>("lintKotlinCommonMain") {
-        exclude("com/prof18/moneyflow/db/**/*.kt")
-    }
-}
 
 android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -54,21 +45,9 @@ android {
 
 kotlin {
     android()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    )/*.forEach {
-        it.binaries {
-            getTest("DEBUG").apply {
-                val frameworkPath =
-                    "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-                linkerOpts("-F$frameworkPath")
-                linkerOpts("-rpath", frameworkPath)
-                linkerOpts("-framework", "ObjectiveDropboxOfficial")
-            }
-        }
-    }*/
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
     cocoapods {
         // Configure fields required by CocoaPods.
@@ -81,24 +60,11 @@ kotlin {
 
         framework {
             isStatic = true
-//            export("com.prof18:kdrop:0.0.7")
-//            transitiveExport = true // todo: necessary?
             linkerOpts.add("-lsqlite3")
-//
-//            val isSimulator =
-//                this.target.konanTarget == KonanTarget.IOS_X64 || this.target.konanTarget == KonanTarget.IOS_SIMULATOR_ARM64
-//            val frameworkPath = if (isSimulator) {
-//                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphonesimulator/ObjectiveDropboxOfficial"
-//            } else {
-//                "$rootDir/dropbox-api/build/cocoapods/synthetic/IOS/dropbox_api/build/Release-iphoneos/ObjectiveDropboxOfficial"
-//            }
-//            linkerOpts("-F$frameworkPath")
-//            linkerOpts("-rpath", frameworkPath)
-//            linkerOpts("-framework", "ObjectiveDropboxOfficial")
         }
 
         pod("ObjectiveDropboxOfficial") {
-            version = "~> 7.0.0"
+            version = "~> ${libs.versions.dropbox.ios.get()}"
         }
     }
 
@@ -114,8 +80,6 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-//                api(project(":dropbox-api"))
-                implementation(libs.dropbox.dropboxCore)
                 implementation(libs.squareup.sqldelight.runtime)
                 implementation(libs.squareup.sqldelight.coroutineExtensions)
                 implementation(libs.kotlinx.coroutine.core)
@@ -138,6 +102,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(libs.dropbox.dropboxCore)
                 implementation(libs.androidx.security.crypto)
                 implementation(libs.squareup.sqldelight.androidDriver)
             }
