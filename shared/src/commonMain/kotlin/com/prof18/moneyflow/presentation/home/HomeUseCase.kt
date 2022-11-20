@@ -22,7 +22,7 @@ class HomeUseCase(
         moneyRepository.getMoneySummary().map {
             HomeModel.HomeState(
                 balanceRecap = it.balanceRecap,
-                latestTransactions = it.latestTransactions
+                latestTransactions = it.latestTransactions,
             )
         }
 

@@ -15,7 +15,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 internal fun Loader() {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         CircularProgressIndicator()
     }

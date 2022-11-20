@@ -6,7 +6,7 @@ object DataFactory {
         return BalanceRecap(
             totalBalance = 0.0,
             monthlyIncome = 0.0,
-            monthlyExpenses = 0.0
+            monthlyExpenses = 0.0,
         )
     }
 

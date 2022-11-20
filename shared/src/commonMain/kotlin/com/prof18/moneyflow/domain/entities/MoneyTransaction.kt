@@ -10,5 +10,5 @@ data class MoneyTransaction(
     val amount: Double,
     val type: TransactionTypeUI,
     val milliseconds: MillisSinceEpoch,
-    val formattedDate: String
+    val formattedDate: String,
 )

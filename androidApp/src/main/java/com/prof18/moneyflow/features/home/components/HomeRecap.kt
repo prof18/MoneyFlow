@@ -38,13 +38,13 @@ import com.prof18.moneyflow.ui.style.upArrowColor
 @Suppress("LongMethod") // TODO: reduce method length
 internal fun HomeRecap(
     balanceRecap: BalanceRecap,
-    hideSensitiveData: Boolean
+    hideSensitiveData: Boolean,
 ) {
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(Margins.regular)
+            .padding(Margins.regular),
     ) {
 
         Row(
@@ -84,7 +84,7 @@ internal fun HomeRecap(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(end = Margins.regular)
-                        .background(upArrowCircleColor(), shape = CircleShape)
+                        .background(upArrowCircleColor(), shape = CircleShape),
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_up_rotate),
@@ -92,7 +92,7 @@ internal fun HomeRecap(
                         modifier = Modifier
                             .padding(Margins.small)
                             .size(24.dp),
-                        tint = upArrowColor()
+                        tint = upArrowColor(),
                     )
                 }
 
@@ -114,7 +114,7 @@ internal fun HomeRecap(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(end = Margins.regular, start = Margins.medium)
-                        .background(downArrowCircleColor(), shape = CircleShape)
+                        .background(downArrowCircleColor(), shape = CircleShape),
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_down_rotate),
@@ -122,7 +122,7 @@ internal fun HomeRecap(
                         modifier = Modifier
                             .padding(Margins.small)
                             .size(24.dp),
-                        tint = downArrowColor()
+                        tint = downArrowColor(),
                     )
                 }
 
@@ -154,9 +154,9 @@ private fun HomeRecapPreview() {
                 balanceRecap = BalanceRecap(
                     totalBalance = 1200.0,
                     monthlyIncome = 150.0,
-                    monthlyExpenses = 200.0
+                    monthlyExpenses = 200.0,
                 ),
-                hideSensitiveData = true
+                hideSensitiveData = true,
             )
         }
     }

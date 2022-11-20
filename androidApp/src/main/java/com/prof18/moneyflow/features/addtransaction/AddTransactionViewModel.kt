@@ -19,7 +19,7 @@ import java.util.Locale
 
 internal class AddTransactionViewModel(
     private val addTransactionUseCase: AddTransactionUseCase,
-    private val localizedStringProvider: LocalizedStringProvider
+    private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
     // States
@@ -66,7 +66,7 @@ internal class AddTransactionViewModel(
         if (amount == null) {
             val errorMessage = UIErrorMessage(
                 message = localizedStringProvider.get("amount_not_empty_error"),
-                nerdMessage = ""
+                nerdMessage = "",
             )
             addTransactionAction = AddTransactionAction.ShowError(errorMessage)
             return
@@ -79,8 +79,8 @@ internal class AddTransactionViewModel(
                     amount = amount,
                     description = descriptionText,
                     categoryId = categoryId,
-                    transactionType = selectedTransactionType
-                )
+                    transactionType = selectedTransactionType,
+                ),
             )
             addTransactionAction = when (result) {
                 is MoneyFlowResult.Success -> {

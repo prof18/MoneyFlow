@@ -12,7 +12,7 @@ import com.prof18.moneyflow.dropbox.DropboxUploadParam
 import com.prof18.moneyflow.dropbox.DropboxUploadResult
 
 internal class DropboxSourceImpl(
-    private val dropboxApi: DropboxApi
+    private val dropboxApi: DropboxApi,
 ) : DropboxSource {
 
     override fun setup(setupParam: DropboxSetupParam) = dropboxApi.setup(setupParam)

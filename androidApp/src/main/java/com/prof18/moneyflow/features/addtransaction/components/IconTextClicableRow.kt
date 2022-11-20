@@ -41,11 +41,11 @@ internal fun IconTextClickableRow(
         modifier = modifier
             .border(
                 BorderStroke(1.dp, MaterialTheme.colors.onSurface.copy(alpha = 0.3f)),
-                RoundedCornerShape(4.dp)
+                RoundedCornerShape(4.dp),
             )
             .clickable(onClick = onClick)
             .fillMaxWidth()
-            .padding(vertical = 12.dp)
+            .padding(vertical = 12.dp),
     ) {
 
         Row {
@@ -74,7 +74,7 @@ internal fun IconTextClickableRow(
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier
                     .alpha(alpha)
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
             )
         }
     }

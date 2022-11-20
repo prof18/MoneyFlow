@@ -8,7 +8,7 @@ import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.launch
 
 class HomeUseCaseIos(
-    private val homeUseCase: HomeUseCase
+    private val homeUseCase: HomeUseCase,
 ) : BaseUseCaseIos() {
 
     val hideSensibleDataState: FlowWrapper<Boolean> =

@@ -29,7 +29,7 @@ internal fun HideableTextField(
         } else {
             text
         },
-        style = style
+        style = style,
     )
 }
 
@@ -40,7 +40,7 @@ private fun HideableTextFieldVisiblePreview() {
     MoneyFlowTheme {
         Surface {
             HideableTextField(
-                text = "$ 10.000", hide = true
+                text = "$ 10.000", hide = true,
             )
         }
     }
@@ -53,7 +53,7 @@ private fun HideableTextFieldHiddenPreview() {
     MoneyFlowTheme {
         Surface {
             HideableTextField(
-                text = "$ 10.000", hide = false
+                text = "$ 10.000", hide = false,
             )
         }
     }

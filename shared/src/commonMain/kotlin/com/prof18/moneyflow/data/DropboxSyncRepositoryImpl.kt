@@ -138,7 +138,7 @@ internal class DropboxSyncRepositoryImpl(
                 currentDropboxMetadata.copy(
                     lastUploadTimestamp = result.editDateMillis,
                     lastUploadHash = result.contentHash,
-                )
+                ),
             )
             return@withContext MoneyFlowResult.Success(Unit)
         } catch (e: DropboxUploadException) {
@@ -164,7 +164,7 @@ internal class DropboxSyncRepositoryImpl(
                 currentDropboxMetadata.copy(
                     lastDownloadTimestamp = millis,
                     lastDownloadHash = result.contentHash,
-                )
+                ),
             )
             return@withContext MoneyFlowResult.Success(result)
         } catch (e: DropboxDownloadException) {
@@ -177,7 +177,7 @@ internal class DropboxSyncRepositoryImpl(
     private fun setClient(credentials: DropboxCredentials) {
         dropboxClient = dropboxSource.getClient(
             clientIdentifier = DropboxConstants.DROPBOX_CLIENT_IDENTIFIER,
-            credentials = credentials
+            credentials = credentials,
         )
         if (dropboxClient != null) {
             _dropboxConnectionStatus.value = DropboxClientStatus.LINKED

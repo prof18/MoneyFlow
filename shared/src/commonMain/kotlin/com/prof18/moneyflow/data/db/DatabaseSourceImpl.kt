@@ -54,8 +54,8 @@ internal class DatabaseSourceImpl(
                 MonthlyRecapTable(
                     id = id,
                     incomeAmount = 0.0,
-                    outcomeAmount = 0.0
-                )
+                    outcomeAmount = 0.0,
+                ),
             )
             .flowOn(backgroundDispatcher)
     }
@@ -69,8 +69,8 @@ internal class DatabaseSourceImpl(
                     id = 1,
                     name = "Default Account",
                     currency = Currency.EURO,
-                    amount = 0.0
-                )
+                    amount = 0.0,
+                ),
             )
             .flowOn(backgroundDispatcher)
 
@@ -91,25 +91,25 @@ internal class DatabaseSourceImpl(
                     amount = amount,
                     description = description,
                     categoryId = categoryId,
-                    type = transactionType
+                    type = transactionType,
                 )
 
                 dbRef.accountTableQueries.updateAmount(
                     newTransaction = amount,
-                    id = 1 // no multi-account support for now
+                    id = 1, // no multi-account support for now
                 )
 
                 when (transactionType) {
                     TransactionType.INCOME -> {
                         dbRef.monthlyRecapTableQueries.updateIncome(
                             income = monthlyIncomeAmount,
-                            id = monthId
+                            id = monthId,
                         )
                     }
                     TransactionType.OUTCOME -> {
                         dbRef.monthlyRecapTableQueries.updateOutcome(
                             outcome = monthlyOutcomeAmount,
-                            id = monthId
+                            id = monthId,
                         )
                     }
                 }
@@ -131,20 +131,20 @@ internal class DatabaseSourceImpl(
 
                 dbRef.accountTableQueries.updateAmount(
                     newTransaction = transactionAmountToUpdate,
-                    id = 1 // No multi-account support
+                    id = 1, // No multi-account support
                 )
 
                 when (transactionType) {
                     TransactionType.INCOME -> {
                         dbRef.monthlyRecapTableQueries.updateIncome(
                             income = monthlyIncomeAmount,
-                            id = monthId
+                            id = monthId,
                         )
                     }
                     TransactionType.OUTCOME -> {
                         dbRef.monthlyRecapTableQueries.updateOutcome(
                             outcome = monthlyOutcomeAmount,
-                            id = monthId
+                            id = monthId,
                         )
                     }
                 }
@@ -161,7 +161,7 @@ internal class DatabaseSourceImpl(
                 dbRef.monthlyRecapTableQueries.insertMonthRecap(
                     id = currentMonthID,
                     incomeAmount = 0.0,
-                    outcomeAmount = 0.0
+                    outcomeAmount = 0.0,
                 )
                 recap = MonthlyRecapTable(currentMonthID, 0.0, 0.0)
             }

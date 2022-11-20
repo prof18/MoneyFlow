@@ -16,11 +16,11 @@ import kotlinx.coroutines.flow.Flow
 
 internal class AllTransactionsViewModel(
     private val allTransactionsUseCase: AllTransactionsUseCase,
-    private val errorMapper: MoneyFlowErrorMapper
+    private val errorMapper: MoneyFlowErrorMapper,
 ) : ViewModel() {
 
     val transactionPagingFlow: Flow<PagingData<MoneyTransaction>> = Pager(
-        PagingConfig(pageSize = MoneyRepository.DEFAULT_PAGE_SIZE.toInt())
+        PagingConfig(pageSize = MoneyRepository.DEFAULT_PAGE_SIZE.toInt()),
     ) {
         TransactionPagingSource(allTransactionsUseCase)
     }.flow.cachedIn(viewModelScope)

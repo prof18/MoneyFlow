@@ -1,12 +1,11 @@
 package com.prof18.moneyflow.dropbox
 
-import com.prof18.moneyflow.dropbox.DropboxClient
 import platform.Foundation.NSData
 import platform.Foundation.NSURL
 import platform.UIKit.UIViewController
 
 actual class DropboxSetupParam(
-    val apiKey: String
+    val apiKey: String,
 )
 
 actual class DropboxAuthorizationParam(

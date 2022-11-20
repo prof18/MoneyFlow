@@ -42,7 +42,7 @@ actual class DropboxApi {
             openURL = { url ->
                 url?.let { UIApplication.sharedApplication.openURL(it) }
             },
-            scopeRequest = scopeRequest
+            scopeRequest = scopeRequest,
         )
     }
 
@@ -112,7 +112,7 @@ actual class DropboxApi {
                         id = result.id_,
                         editDateMillis = result.serverModified.timeIntervalSince1970().toLong() * 1000,
                         sizeInByte = result.size.longValue,
-                        contentHash = result.contentHash
+                        contentHash = result.contentHash,
                     )
                     continuation.resume(uploadResult)
                 } else {
@@ -141,7 +141,7 @@ actual class DropboxApi {
             downloadParam.client.filesRoutes.downloadUrl(
                 path = downloadParam.path,
                 overwrite = true,
-                destination = outputUrl!!
+                destination = outputUrl!!,
             ).setResponseBlock { result, routeError, dbRequestError, destinationUrl ->
                 if (result is DBFILESFileMetadata? && result != null && destinationUrl != null) {
                     Logger.d { "Data successfully downloaded from Dropbox" }
@@ -149,7 +149,7 @@ actual class DropboxApi {
                         id = result.id_,
                         sizeInByte = result.size.longValue,
                         contentHash = result.contentHash,
-                        destinationUrl = destinationUrl
+                        destinationUrl = destinationUrl,
                     )
                     continuation.resume(downloadResult)
                 } else {
@@ -157,15 +157,15 @@ actual class DropboxApi {
                         Logger.e { "Network error during Dropbox download: ${dbRequestError.errorContent}" }
                         continuation.resumeWithException(
                             DropboxDownloadException(
-                                errorMessage = dbRequestError.errorContent ?: ""
-                            )
+                                errorMessage = dbRequestError.errorContent ?: "",
+                            ),
                         )
                     } else if (routeError is DBFILESDownloadError? && routeError != null) {
                         Logger.e { "Route error during Dropbox download: ${routeError.description}" }
                         continuation.resumeWithException(
                             DropboxDownloadException(
-                                errorMessage = routeError.description ?: ""
-                            )
+                                errorMessage = routeError.description ?: "",
+                            ),
                         )
                     }
                 }

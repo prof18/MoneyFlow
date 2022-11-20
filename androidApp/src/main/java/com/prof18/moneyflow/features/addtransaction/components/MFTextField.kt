@@ -47,14 +47,14 @@ internal fun MFTextInput(
                 Text(
                     text = label,
                     modifier = Modifier.alpha(0.5f),
-                    style = textStyle
+                    style = textStyle,
                 )
             }
         },
         leadingIcon = leadingIcon,
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,
-            imeAction = ImeAction.Done
+            imeAction = ImeAction.Done,
         ),
         keyboardActions = KeyboardActions(
             onDone = {

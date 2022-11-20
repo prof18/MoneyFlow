@@ -9,7 +9,7 @@ import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.utils.logError
 
 internal class TransactionPagingSource(
-    private val allTransactionsUseCase: AllTransactionsUseCase
+    private val allTransactionsUseCase: AllTransactionsUseCase,
 ) : PagingSource<Long, MoneyTransaction>() {
 
     override suspend fun load(params: LoadParams<Long>): LoadResult<Long, MoneyTransaction> {
@@ -17,13 +17,13 @@ internal class TransactionPagingSource(
         return try {
             val data = allTransactionsUseCase.getTransactionsPaginated(
                 pageNum = pageNum,
-                pageSize = MoneyRepository.DEFAULT_PAGE_SIZE
+                pageSize = MoneyRepository.DEFAULT_PAGE_SIZE,
             )
             val nextKey = data.lastOrNull()?.milliseconds
             LoadResult.Page(
                 data = data,
                 prevKey = null, // Only paging forward.
-                nextKey = nextKey
+                nextKey = nextKey,
             )
         } catch (throwable: Throwable) {
             val error = MoneyFlowError.GetAllTransaction(throwable)

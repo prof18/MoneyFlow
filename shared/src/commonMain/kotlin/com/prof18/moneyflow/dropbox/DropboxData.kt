@@ -11,7 +11,7 @@ data class DropboxDownloadResult(
     val id: String,
     val sizeInByte: Long,
     val contentHash: String?,
-    val destinationUrl: DatabaseDestinationUrl? = null
+    val destinationUrl: DatabaseDestinationUrl? = null,
 )
 
 expect class DatabaseDestinationUrl

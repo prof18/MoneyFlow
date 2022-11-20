@@ -75,7 +75,7 @@ actual class DropboxApi {
                         id = id,
                         editDateMillis = editTime.time,
                         sizeInByte = size,
-                        contentHash = hash
+                        contentHash = hash,
                     )
                     continuation.resume(uploadResult)
                 } else {

@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.map
 import kotlin.math.abs
 
 internal class MoneyRepositoryImpl(
-    private val dbSource: DatabaseSource
+    private val dbSource: DatabaseSource,
 ) : MoneyRepository {
 
     private var allTransactions: Flow<List<SelectLatestTransactions>> = emptyFlow()
@@ -44,7 +44,7 @@ internal class MoneyRepositoryImpl(
         return getLatestTransactions().combine(getBalanceRecap()) { transactions, balanceRecap ->
             MoneySummary(
                 balanceRecap = balanceRecap,
-                latestTransactions = transactions
+                latestTransactions = transactions,
             )
         }
     }
@@ -54,7 +54,7 @@ internal class MoneyRepositoryImpl(
             BalanceRecap(
                 totalBalance = account.amount,
                 monthlyIncome = monthlyRecap.incomeAmount,
-                monthlyExpenses = monthlyRecap.outcomeAmount
+                monthlyExpenses = monthlyRecap.outcomeAmount,
             )
         }
     }
@@ -80,7 +80,7 @@ internal class MoneyRepositoryImpl(
                     amount = transaction.amount,
                     type = transactionTypeUI,
                     milliseconds = transaction.dateMillis,
-                    formattedDate = transaction.dateMillis.formatDateDayMonthYear()
+                    formattedDate = transaction.dateMillis.formatDateDayMonthYear(),
                 )
             }
         }
@@ -122,7 +122,7 @@ internal class MoneyRepositoryImpl(
             transactionType,
             monthId,
             monthlyIncomeAmount,
-            monthlyOutcomeAmount
+            monthlyOutcomeAmount,
         )
     }
 
@@ -155,7 +155,7 @@ internal class MoneyRepositoryImpl(
                 transactionAmountToUpdate,
                 monthId,
                 monthlyIncomeAmount,
-                monthlyOutcomeAmount
+                monthlyOutcomeAmount,
             )
         }
     }
@@ -166,7 +166,7 @@ internal class MoneyRepositoryImpl(
                 Category(
                     id = category.id,
                     name = category.name,
-                    icon = CategoryIcon.fromValue(category.iconName)
+                    icon = CategoryIcon.fromValue(category.iconName),
                 )
             }
         }
@@ -174,12 +174,12 @@ internal class MoneyRepositoryImpl(
 
     override suspend fun getTransactionsPaginated(
         pageNum: Long,
-        pageSize: Long
+        pageSize: Long,
     ): List<MoneyTransaction> {
 
         return dbSource.getTransactionsPaginated(
             pageNum = (pageNum * pageSize),
-            pageSize = pageSize
+            pageSize = pageSize,
         )
             .map { transaction ->
 
@@ -203,7 +203,7 @@ internal class MoneyRepositoryImpl(
                     amount = transaction.amount,
                     type = transactionTypeUI,
                     milliseconds = transaction.dateMillis,
-                    formattedDate = transaction.dateMillis.formatDateDayMonthYear()
+                    formattedDate = transaction.dateMillis.formatDateDayMonthYear(),
                 )
             }
     }

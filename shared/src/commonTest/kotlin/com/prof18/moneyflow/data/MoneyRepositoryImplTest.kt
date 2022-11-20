@@ -51,8 +51,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         moneyRepository.getBalanceRecap().test {
@@ -73,8 +73,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         moneyRepository.insertTransaction(
@@ -83,8 +83,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         // Act
@@ -94,8 +94,8 @@ class MoneyRepositoryImplTest {
                 amount = 20.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.INCOME
-            )
+                transactionType = TransactionType.INCOME,
+            ),
         )
 
         // Assert
@@ -116,8 +116,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         moneyRepository.insertTransaction(
@@ -126,8 +126,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.INCOME
-            )
+                transactionType = TransactionType.INCOME,
+            ),
         )
 
         // Act
@@ -137,8 +137,8 @@ class MoneyRepositoryImplTest {
                 amount = 20.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         // Assert
@@ -158,7 +158,7 @@ class MoneyRepositoryImplTest {
             amount = 10.0,
             description = null,
             categoryId = 1,
-            type = TransactionType.INCOME
+            type = TransactionType.INCOME,
         )
 
         moneyRepository.getLatestTransactions().test {
@@ -176,7 +176,7 @@ class MoneyRepositoryImplTest {
             amount = 10.0,
             description = "Description",
             categoryId = 1,
-            type = TransactionType.INCOME
+            type = TransactionType.INCOME,
         )
 
         moneyRepository.getLatestTransactions().test {
@@ -196,8 +196,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         moneyRepository.insertTransaction(
@@ -206,8 +206,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.INCOME
-            )
+                transactionType = TransactionType.INCOME,
+            ),
         )
 
         moneyRepository.deleteTransaction(1)
@@ -230,8 +230,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.OUTCOME
-            )
+                transactionType = TransactionType.OUTCOME,
+            ),
         )
 
         moneyRepository.insertTransaction(
@@ -240,8 +240,8 @@ class MoneyRepositoryImplTest {
                 amount = 10.0,
                 description = null,
                 categoryId = 0,
-                transactionType = TransactionType.INCOME
-            )
+                transactionType = TransactionType.INCOME,
+            ),
         )
 
         moneyRepository.getBalanceRecap().test {

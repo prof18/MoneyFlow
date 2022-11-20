@@ -9,11 +9,11 @@ import kotlinx.parcelize.Parcelize
 internal data class CategoryUIData(
     val id: Long,
     val name: String,
-    @DrawableRes val icon: Int
+    @DrawableRes val icon: Int,
 ) : Parcelable
 
 internal fun Category.toCategoryUIData() = CategoryUIData(
     id = this.id,
     name = this.name,
-    icon = this.icon.mapToAndroidIcon()
+    icon = this.icon.mapToAndroidIcon(),
 )

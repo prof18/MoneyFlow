@@ -21,17 +21,17 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 internal fun ErrorView(
-    uiErrorMessage: UIErrorMessage
+    uiErrorMessage: UIErrorMessage,
 ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(Margins.regular)
+                .padding(Margins.regular),
         ) {
 
             Text(

@@ -17,14 +17,14 @@ internal fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
     return MoneyFlowDB(
         driver,
         CategoryTableAdapter = CategoryTable.Adapter(
-            typeAdapter = EnumColumnAdapter()
+            typeAdapter = EnumColumnAdapter(),
         ),
         TransactionTableAdapter = TransactionTable.Adapter(
-            typeAdapter = EnumColumnAdapter()
+            typeAdapter = EnumColumnAdapter(),
         ),
         AccountTableAdapter = AccountTable.Adapter(
-            currencyAdapter = EnumColumnAdapter()
-        )
+            currencyAdapter = EnumColumnAdapter(),
+        ),
     )
 }
 
@@ -37,14 +37,14 @@ internal object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
             accountTableQueries.insertAccount(
                 name = "Default Account",
                 currency = Currency.EURO,
-                amount = 0.0
+                amount = 0.0,
             )
 
             for (category in defaultCategories) {
                 categoryTableQueries.insertCategory(
                     name = category.name,
                     type = category.type,
-                    iconName = category.iconName
+                    iconName = category.iconName,
                 )
             }
         }

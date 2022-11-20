@@ -28,7 +28,7 @@ internal fun SwitchWithText(
         modifier = Modifier
             .fillMaxWidth()
             .padding(end = Margins.regular),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         @Suppress("MagicNumber")
         Text(
@@ -37,14 +37,14 @@ internal fun SwitchWithText(
             modifier = Modifier
                 .weight(0.9f)
                 .clickable { onSwitchChanged(switchStatus.not()) }
-                .padding(Margins.regular)
+                .padding(Margins.regular),
         )
 
         @Suppress("MagicNumber")
         Switch(
             modifier = Modifier.weight(0.1f),
             checked = switchStatus,
-            onCheckedChange = { onSwitchChanged(it) }
+            onCheckedChange = { onSwitchChanged(it) },
         )
     }
 }
@@ -58,7 +58,7 @@ private fun SwitchWithTextPreview() {
             SwitchWithText(
                 onSwitchChanged = {},
                 switchStatus = true,
-                title = "A super dupe preference"
+                title = "A super dupe preference",
             )
         }
     }

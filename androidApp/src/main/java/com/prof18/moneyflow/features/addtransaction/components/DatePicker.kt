@@ -56,14 +56,14 @@ internal fun DatePickerDialog(
             },
             text = {
                 Row(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     DatePickerItemDropdownMenu(
                         initialText = Calendar.getInstance().get(Calendar.YEAR).toString(),
                         itemList = getYearList(),
                         onItemSelected = {
                             onYearSelected(it.toInt())
-                        }
+                        },
                     )
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -73,7 +73,7 @@ internal fun DatePickerDialog(
                         itemList = getMonthList(),
                         onItemSelected = {
                             onMonthSelected(it.toInt())
-                        }
+                        },
                     )
 
                     Spacer(modifier = Modifier.width(16.dp))
@@ -83,7 +83,7 @@ internal fun DatePickerDialog(
                         itemList = getDayList(),
                         onItemSelected = {
                             onDaySelected(it.toInt())
-                        }
+                        },
                     )
                 }
             },
@@ -91,17 +91,17 @@ internal fun DatePickerDialog(
                 TextButton(onClick = {
                     onSave()
                     setDialogVisible(false)
-                }) {
+                },) {
                     Text(stringResource(id = R.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = {
                     setDialogVisible(false)
-                }) {
+                },) {
                     Text(stringResource(id = R.string.cancel))
                 }
-            }
+            },
         )
     }
 }
@@ -121,31 +121,31 @@ private fun DatePickerItemDropdownMenu(
             modifier = Modifier
                 .clickable(onClick = {
                     expanded = true
-                })
+                },),
         ) {
             Text(
                 text = dropdownText,
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body1,
             )
             Spacer(Modifier.width(4.dp))
             Icon(
                 Icons.Rounded.KeyboardArrowDown,
                 contentDescription = null,
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(16.dp),
             )
         }
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = {
                 expanded = false
-            }
+            },
         ) {
             itemList.forEach {
                 DropdownMenuItem(onClick = {
                     setDropdownText(it)
                     expanded = false
                     onItemSelected(it)
-                }) {
+                },) {
                     Text(
                         text = it,
                         style = MaterialTheme.typography.body1,
@@ -167,7 +167,7 @@ private fun DatePickerDialogPreview() {
                 onYearSelected = { },
                 onMonthSelected = { },
                 onDaySelected = { },
-                onSave = {}
+                onSave = {},
             )
         }
     }

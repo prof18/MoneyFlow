@@ -24,7 +24,7 @@ internal object BudgetScreenFactory : ComposeNavigationFactory {
 internal fun BudgetScreen() {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         Text("Coming Soon")
     }

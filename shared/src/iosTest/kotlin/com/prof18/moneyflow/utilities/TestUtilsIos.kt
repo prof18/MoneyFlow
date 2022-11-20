@@ -18,8 +18,8 @@ actual fun createDriver() {
             },
             upgrade = { connection, oldVersion, newVersion ->
                 wrapConnection(connection) { MoneyFlowDB.Schema.migrate(it, oldVersion, newVersion) }
-            }
-        )
+            },
+        ),
     )
     DatabaseHelper.setupDatabase(driver)
 }

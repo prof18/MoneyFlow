@@ -7,7 +7,7 @@ import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.launch
 
 class AddTransactionUseCaseIos(
-    private val addTransactionUseCase: AddTransactionUseCase
+    private val addTransactionUseCase: AddTransactionUseCase,
 ) : BaseUseCaseIos() {
 
     fun insertTransaction(
@@ -17,7 +17,7 @@ class AddTransactionUseCaseIos(
     ) {
         scope.launch {
             val result: MoneyFlowResult<Unit> = addTransactionUseCase.insertTransaction(
-                transactionToSave
+                transactionToSave,
             )
             when (result) {
                 is MoneyFlowResult.Success -> onSuccess()

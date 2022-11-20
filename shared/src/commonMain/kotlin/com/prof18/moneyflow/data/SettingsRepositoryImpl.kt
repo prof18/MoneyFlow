@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 internal class SettingsRepositoryImpl(
-    private val settingsSource: SettingsSource
+    private val settingsSource: SettingsSource,
 ) : SettingsRepository {
 
     // Just to avoid getting on disk every time the field is accessed

@@ -39,7 +39,7 @@ internal object AllTransactionsScreenFactory : ComposeNavigationFactory {
             AllTransactionsScreen(
                 navigateUp = { navController.popBackStack() },
                 getUIErrorMessage = { error -> viewModel.mapErrorToErrorMessage(error) },
-                pagingFlow = viewModel.transactionPagingFlow
+                pagingFlow = viewModel.transactionPagingFlow,
             )
         }
     }
@@ -92,13 +92,13 @@ internal fun AllTransactionsScreen(
                             transaction = transaction,
                             onLongPress = { /*TODO: add long press on transaction*/ },
                             onClick = { /*TODO: add click on transaction*/ },
-                            hideSensitiveData = false // TODO: Hide sensitive data on transaction card
+                            hideSensitiveData = false, // TODO: Hide sensitive data on transaction card
                         )
                         Divider()
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -120,7 +120,7 @@ private fun AllTransactionsScreenPreviews() {
                             amount = 10.0,
                             type = TransactionTypeUI.EXPENSE,
                             milliseconds = 0,
-                            formattedDate = "12 July 2021"
+                            formattedDate = "12 July 2021",
                         ),
                         MoneyTransaction(
                             id = 1,
@@ -129,10 +129,10 @@ private fun AllTransactionsScreenPreviews() {
                             amount = 50.0,
                             type = TransactionTypeUI.INCOME,
                             milliseconds = 0,
-                            formattedDate = "12 July 2021"
-                        )
-                    )
-                )
+                            formattedDate = "12 July 2021",
+                        ),
+                    ),
+                ),
             ),
         )
     }

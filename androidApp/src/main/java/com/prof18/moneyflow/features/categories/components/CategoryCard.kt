@@ -28,14 +28,14 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 @Composable
 internal fun CategoryCard(
     category: Category,
-    onClick: ((Category) -> Unit)?
+    onClick: ((Category) -> Unit)?,
 ) {
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.clickable(onClick = {
             onClick?.invoke(category)
-        }, enabled = onClick != null)
+        }, enabled = onClick != null,),
     ) {
 
         // TODO is this weight necessary?
@@ -50,8 +50,8 @@ internal fun CategoryCard(
                     )
                     .background(
                         MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(Margins.regularCornerRadius)
-                    )
+                        shape = RoundedCornerShape(Margins.regularCornerRadius),
+                    ),
             ) {
                 Icon(
                     painter = painterResource(id = category.icon.mapToAndroidIcon()),
@@ -59,14 +59,14 @@ internal fun CategoryCard(
                     modifier = Modifier
                         .padding(Margins.small)
                         .size(28.dp),
-                    tint = MaterialTheme.colors.onPrimary
+                    tint = MaterialTheme.colors.onPrimary,
                 )
             }
 
             Text(
                 modifier = Modifier.align(Alignment.CenterVertically),
                 text = category.name,
-                style = MaterialTheme.typography.subtitle1
+                style = MaterialTheme.typography.subtitle1,
             )
         }
     }
@@ -80,7 +80,7 @@ private fun CategoryCardPreview() {
         Surface {
             CategoryCard(
                 category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),
-                onClick = {}
+                onClick = {},
             )
         }
     }

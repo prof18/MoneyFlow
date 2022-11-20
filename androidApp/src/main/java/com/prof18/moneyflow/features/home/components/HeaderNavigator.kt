@@ -32,7 +32,7 @@ internal fun HeaderNavigator(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = Margins.regular, bottom = Margins.small)
-            .clickable { onClick() }
+            .clickable { onClick() },
     ) {
         Text(
             text = title,
@@ -41,18 +41,18 @@ internal fun HeaderNavigator(
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .weight(1f)
-                .padding(start = Margins.regular)
+                .padding(start = Margins.regular),
         )
 
         IconButton(
             onClick = { /* no-op, managed by the row */ },
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(vertical = Margins.small)
+                .padding(vertical = Margins.small),
         ) {
             Icon(
                 Icons.Outlined.KeyboardArrowRight,
-                contentDescription = null
+                contentDescription = null,
             )
         }
     }

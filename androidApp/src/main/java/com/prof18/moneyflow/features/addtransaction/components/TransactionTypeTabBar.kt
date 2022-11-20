@@ -44,7 +44,7 @@ import com.prof18.moneyflow.ui.style.upArrowColor
 internal fun TransactionTypeTabBar(
     transactionType: TransactionType,
     onTabSelected: (tabPage: TransactionType) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     TabRow(
         modifier = modifier,
@@ -53,7 +53,7 @@ internal fun TransactionTypeTabBar(
         indicator = { tabPositions ->
             TransactionTabIndicator(tabPositions, transactionType)
         },
-        divider = { }
+        divider = { },
     ) {
         TransactionTab(
             boxColor = upArrowCircleColor(),
@@ -67,7 +67,7 @@ internal fun TransactionTypeTabBar(
             arrowColor = downArrowColor(),
             iconId = R.drawable.ic_arrow_down_rotate,
             title = stringResource(id = R.string.transaction_type_outcome),
-            onClick = { onTabSelected(TransactionType.OUTCOME) }
+            onClick = { onTabSelected(TransactionType.OUTCOME) },
         )
     }
 }
@@ -79,14 +79,14 @@ private fun TransactionTab(
     @DrawableRes iconId: Int,
     title: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .clickable(onClick = onClick)
             .padding(16.dp),
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         ArrowCircleIcon(
             boxColor = boxColor,
@@ -102,7 +102,7 @@ private fun TransactionTab(
 @Composable
 private fun TransactionTabIndicator(
     tabPositions: List<TabPosition>,
-    transactionType: TransactionType
+    transactionType: TransactionType,
 ) {
     val transition = updateTransition(transactionType, label = "tab_selection_transition")
     val indicatorLeft by transition.animateDp(label = "indicator_left_animation") { page ->
@@ -121,8 +121,8 @@ private fun TransactionTabIndicator(
             .fillMaxSize()
             .border(
                 BorderStroke(1.dp, MaterialTheme.colors.onSurface.copy(alpha = 0.3f)),
-                RoundedCornerShape(4.dp)
-            )
+                RoundedCornerShape(4.dp),
+            ),
     )
 }
 
@@ -135,7 +135,7 @@ private fun TransactionTypeTabBarPreview() {
             TransactionTypeTabBar(
                 transactionType = TransactionType.INCOME,
                 onTabSelected = {},
-                modifier = Modifier.padding(Margins.small)
+                modifier = Modifier.padding(Margins.small),
             )
         }
     }

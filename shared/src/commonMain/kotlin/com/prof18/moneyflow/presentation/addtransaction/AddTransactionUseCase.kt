@@ -8,7 +8,7 @@ import com.prof18.moneyflow.utils.logError
 
 class AddTransactionUseCase(
     private val moneyRepository: MoneyRepository,
-    private val errorMapper: MoneyFlowErrorMapper
+    private val errorMapper: MoneyFlowErrorMapper,
 ) {
     suspend fun insertTransaction(transactionToSave: TransactionToSave): MoneyFlowResult<Unit> {
         return try {

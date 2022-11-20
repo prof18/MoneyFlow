@@ -56,12 +56,12 @@ internal fun downArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors
 @Composable
 internal fun MoneyFlowTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     MaterialTheme(
         colors = if (darkTheme) DarkThemeColors else LightThemeColors,
         typography = MoneyFlowTypography,
         shapes = MoneyFlowShapes,
-        content = content
+        content = content,
     )
 }

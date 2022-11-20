@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 internal class SettingsViewModel(
     private val databaseImportExport: DBImportExport,
-    private val settingsUseCase: SettingsUseCase
+    private val settingsUseCase: SettingsUseCase,
 ) : ViewModel() {
 
     var biometricState: Boolean by mutableStateOf(false)

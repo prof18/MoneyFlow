@@ -72,7 +72,7 @@ internal class AddTransactionScreenFactory(private val categoryState: MutableSta
                 saveDate = { viewModel.saveDate() },
                 dateLabel = viewModel.dateLabel,
                 addTransactionAction = viewModel.addTransactionAction,
-                resetAction = { viewModel.resetAction() }
+                resetAction = { viewModel.resetAction() },
             )
         }
     }
@@ -133,7 +133,7 @@ internal fun AddTransactionScreen(
                     keyboardController?.hide()
                     addTransaction(categoryState.value?.id!!)
                 },
-                actionEnabled = categoryState.value?.id != null && amountText.isNotEmpty()
+                actionEnabled = categoryState.value?.id != null && amountText.isNotEmpty(),
             )
         },
         content = {
@@ -151,7 +151,7 @@ internal fun AddTransactionScreen(
                     transactionType = selectedTransactionType,
                     onTabSelected = { updateTransactionType(it) },
                     modifier = Modifier
-                        .padding(Margins.regular)
+                        .padding(Margins.regular),
                 )
 
                 MFTextInput(
@@ -172,8 +172,8 @@ internal fun AddTransactionScreen(
                         .padding(
                             start = Margins.regular,
                             end = Margins.regular,
-                            top = Margins.small
-                        )
+                            top = Margins.small,
+                        ),
                 )
 
                 MFTextInput(
@@ -193,8 +193,8 @@ internal fun AddTransactionScreen(
                         .padding(
                             start = Margins.regular,
                             end = Margins.regular,
-                            top = Margins.regular
-                        )
+                            top = Margins.regular,
+                        ),
                 )
 
                 IconTextClickableRow(
@@ -206,8 +206,8 @@ internal fun AddTransactionScreen(
                     modifier = Modifier.padding(
                         start = Margins.regular,
                         end = Margins.regular,
-                        top = Margins.medium
-                    )
+                        top = Margins.medium,
+                    ),
                 )
 
                 IconTextClickableRow(
@@ -220,11 +220,11 @@ internal fun AddTransactionScreen(
                         start = Margins.regular,
                         end = Margins.regular,
                         top = Margins.medium,
-                        bottom = Margins.regular
-                    )
+                        bottom = Margins.regular,
+                    ),
                 )
             }
-        }
+        },
     )
 }
 
@@ -240,8 +240,8 @@ private fun AddTransactionScreenPreview() {
                         CategoryUIData(
                             id = 1,
                             name = "Food",
-                            icon = R.drawable.ic_hamburger_solid
-                        )
+                            icon = R.drawable.ic_hamburger_solid,
+                        ),
                     )
                 },
                 navigateUp = {},
@@ -259,7 +259,7 @@ private fun AddTransactionScreenPreview() {
                 saveDate = {},
                 dateLabel = "11 July 2021",
                 addTransactionAction = null,
-                resetAction = {}
+                resetAction = {},
             )
         }
     }

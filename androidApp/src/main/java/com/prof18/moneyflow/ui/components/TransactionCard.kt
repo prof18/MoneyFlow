@@ -42,7 +42,7 @@ internal fun TransactionCard(
     transaction: MoneyTransaction,
     onLongPress: () -> Unit,
     onClick: () -> Unit,
-    hideSensitiveData: Boolean
+    hideSensitiveData: Boolean,
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -50,14 +50,14 @@ internal fun TransactionCard(
             .fillMaxWidth()
             .clickable(onClick = {
                 onClick()
-            })
+            },)
             .pointerInput(Unit) {
                 detectTapGestures(
                     onLongPress = {
                         onLongPress()
-                    }
+                    },
                 )
-            }
+            },
     ) {
 
         Row {
@@ -69,8 +69,8 @@ internal fun TransactionCard(
                     )
                     .background(
                         MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(Margins.regularCornerRadius)
-                    )
+                        shape = RoundedCornerShape(Margins.regularCornerRadius),
+                    ),
             ) {
                 Icon(
                     painter = painterResource(id = transaction.icon.mapToAndroidIcon()),
@@ -78,7 +78,7 @@ internal fun TransactionCard(
                     modifier = Modifier
                         .padding(Margins.small)
                         .size(28.dp),
-                    tint = MaterialTheme.colors.onPrimary
+                    tint = MaterialTheme.colors.onPrimary,
                 )
             }
 
@@ -94,12 +94,12 @@ internal fun TransactionCard(
 
                 Text(
                     text = transaction.title,
-                    style = MaterialTheme.typography.subtitle1
+                    style = MaterialTheme.typography.subtitle1,
                 )
 
                 Text(
                     text = transaction.formattedDate,
-                    style = MaterialTheme.typography.caption
+                    style = MaterialTheme.typography.caption,
                 )
             }
         }
@@ -115,7 +115,7 @@ internal fun TransactionCard(
         }
 
         Row(
-            modifier = Modifier.align(Alignment.CenterVertically)
+            modifier = Modifier.align(Alignment.CenterVertically),
         ) {
 
             ArrowCircleIcon(
@@ -123,7 +123,7 @@ internal fun TransactionCard(
                 iconID = vectorId,
                 arrowColor = arrowColor,
                 iconSize = 18.dp,
-                modifier = Modifier.align(Alignment.CenterVertically)
+                modifier = Modifier.align(Alignment.CenterVertically),
             )
 
             HideableTextField(
@@ -133,7 +133,7 @@ internal fun TransactionCard(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(Margins.regular),
-                hide = hideSensitiveData
+                hide = hideSensitiveData,
             )
         }
     }
@@ -153,11 +153,11 @@ private fun TransactionCardPreview() {
                     amount = 30.0,
                     type = TransactionTypeUI.EXPENSE,
                     milliseconds = 0,
-                    formattedDate = "12/12/21"
+                    formattedDate = "12/12/21",
                 ),
                 onLongPress = {},
                 onClick = {},
-                hideSensitiveData = true
+                hideSensitiveData = true,
             )
         }
     }

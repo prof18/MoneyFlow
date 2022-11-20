@@ -75,10 +75,10 @@ internal class HomeScreenFactory(private val paddingValues: PaddingValues) : Com
                 hideSensitiveDataState = hideSensitiveDataState,
                 changeSensitiveDataVisibility = { visibility ->
                     homeViewModel.changeSensitiveDataVisibility(
-                        visibility
+                        visibility,
                     )
                 },
-                navigateToAllTransactions = { navController.navigate(Screen.AllTransactionsScreen.route) }
+                navigateToAllTransactions = { navController.navigate(Screen.AllTransactionsScreen.route) },
             )
         }
     }
@@ -93,7 +93,7 @@ internal fun HomeScreen(
     homeModel: HomeModel,
     hideSensitiveDataState: Boolean,
     changeSensitiveDataVisibility: (Boolean) -> Unit = {},
-    navigateToAllTransactions: () -> Unit
+    navigateToAllTransactions: () -> Unit,
 ) {
 
     when (homeModel) {
@@ -112,7 +112,7 @@ internal fun HomeScreen(
                         style = MaterialTheme.typography.h4,
                         modifier = Modifier
                             .padding(horizontal = Margins.regular)
-                            .padding(top = Margins.regular)
+                            .padding(top = Margins.regular),
                     )
 
                     Row {
@@ -121,7 +121,7 @@ internal fun HomeScreen(
                             onClick = { changeSensitiveDataVisibility(hideSensitiveDataState.not()) },
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
-                                .padding(top = Margins.small)
+                                .padding(top = Margins.small),
                         ) {
                             if (hideSensitiveDataState) {
                                 Icon(
@@ -140,7 +140,7 @@ internal fun HomeScreen(
                             onClick = { navigateToAddTransaction() },
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
-                                .padding(top = Margins.small)
+                                .padding(top = Margins.small),
                         ) {
                             Icon(
                                 Icons.Rounded.Add,
@@ -152,51 +152,51 @@ internal fun HomeScreen(
 
                 HomeRecap(
                     balanceRecap = homeModel.balanceRecap,
-                    hideSensitiveData = hideSensitiveDataState
+                    hideSensitiveData = hideSensitiveDataState,
                 )
                 HeaderNavigator(
                     title = stringResource(R.string.latest_transactions),
-                    onClick = navigateToAllTransactions
+                    onClick = navigateToAllTransactions,
                 )
 
                 if (homeModel.latestTransactions.isEmpty()) {
 
                     Box(
                         contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     ) {
                         Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
                                 stringResource(id = R.string.shrug),
                                 modifier = Modifier
                                     .padding(bottom = Margins.small),
-                                style = MaterialTheme.typography.h6
+                                style = MaterialTheme.typography.h6,
                             )
 
                             Text(
                                 stringResource(R.string.empty_wallet),
-                                style = MaterialTheme.typography.h6
+                                style = MaterialTheme.typography.h6,
                             )
                         }
                     }
                 } else {
                     LazyColumn(
                         modifier = Modifier
-                            .padding(bottom = paddingValues.calculateBottomPadding())
+                            .padding(bottom = paddingValues.calculateBottomPadding()),
                     ) {
                         items(homeModel.latestTransactions) { transaction ->
                             val (showTransactionMenu, setShowTransactionMenu) = remember {
                                 mutableStateOf(
-                                    false
+                                    false,
                                 )
                             }
 
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .wrapContentSize(Alignment.TopStart)
+                                    .wrapContentSize(Alignment.TopStart),
                             ) {
                                 TransactionCard(
                                     transaction = transaction,
@@ -206,16 +206,16 @@ internal fun HomeScreen(
                                     onLongPress = {
                                         setShowTransactionMenu(true)
                                     },
-                                    hideSensitiveData = hideSensitiveDataState
+                                    hideSensitiveData = hideSensitiveDataState,
                                 )
                                 DropdownMenu(
                                     expanded = showTransactionMenu,
-                                    onDismissRequest = { setShowTransactionMenu(false) }
+                                    onDismissRequest = { setShowTransactionMenu(false) },
                                 ) {
                                     DropdownMenuItem(onClick = {
                                         deleteTransaction(transaction.id)
                                         setShowTransactionMenu(false)
-                                    }) {
+                                    },) {
                                         Text(stringResource(R.string.delete))
                                     }
                                 }
@@ -241,7 +241,7 @@ private fun HomeScreenPreview() {
                     balanceRecap = BalanceRecap(
                         totalBalance = 5000.0,
                         monthlyIncome = 1000.0,
-                        monthlyExpenses = 50.0
+                        monthlyExpenses = 50.0,
                     ),
                     latestTransactions = listOf(
                         MoneyTransaction(
@@ -251,7 +251,7 @@ private fun HomeScreenPreview() {
                             amount = 10.0,
                             type = TransactionTypeUI.EXPENSE,
                             milliseconds = 0,
-                            formattedDate = "12 July 2021"
+                            formattedDate = "12 July 2021",
                         ),
                         MoneyTransaction(
                             id = 1,
@@ -260,12 +260,12 @@ private fun HomeScreenPreview() {
                             amount = 50.0,
                             type = TransactionTypeUI.INCOME,
                             milliseconds = 0,
-                            formattedDate = "12 July 2021"
-                        )
-                    )
+                            formattedDate = "12 July 2021",
+                        ),
+                    ),
                 ),
                 hideSensitiveDataState = true,
-                navigateToAllTransactions = {}
+                navigateToAllTransactions = {},
             )
         }
     }
@@ -282,10 +282,10 @@ private fun HomeScreenErrorPreview() {
                     UIErrorMessage(
                         "An error occurred",
                         "Error code 101",
-                    )
+                    ),
                 ),
                 hideSensitiveDataState = true,
-                navigateToAllTransactions = {}
+                navigateToAllTransactions = {},
             )
         }
     }

@@ -27,7 +27,7 @@ internal sealed class NavigationArguments(val key: String) {
 internal data class BottomNavigationItem(
     val screen: Screen,
     @StringRes val titleResId: Int,
-    @DrawableRes val drawableResId: Int
+    @DrawableRes val drawableResId: Int,
 )
 
 internal val bottomNavigationItems = listOf(
@@ -35,7 +35,7 @@ internal val bottomNavigationItems = listOf(
     BottomNavigationItem(
         screen = Screen.HomeScreen,
         titleResId = R.string.home_screen,
-        drawableResId = R.drawable.ic_home_solid
+        drawableResId = R.drawable.ic_home_solid,
     ),
 
 //    // Coming Soon
@@ -55,7 +55,7 @@ internal val bottomNavigationItems = listOf(
     BottomNavigationItem(
         screen = Screen.SettingsScreen,
         titleResId = R.string.settings_screen,
-        drawableResId = R.drawable.ic_cog_solid
+        drawableResId = R.drawable.ic_cog_solid,
     ),
 
 )

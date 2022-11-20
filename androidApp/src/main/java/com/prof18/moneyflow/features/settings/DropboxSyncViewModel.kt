@@ -45,7 +45,7 @@ internal class DropboxSyncViewModel(
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = DropboxSyncMetadataModel.Loading
+            initialValue = DropboxSyncMetadataModel.Loading,
         )
 
     private val _isDropboxConnected = MutableStateFlow(false)
@@ -105,7 +105,7 @@ internal class DropboxSyncViewModel(
             }
             val databaseData = DatabaseUploadData(
                 path = "/$DB_FILE_NAME_WITH_EXTENSION",
-                file = databaseFile
+                file = databaseFile,
             )
             val result = dropboxSyncUseCase.upload(databaseData)
             dropboxSyncAction = when (result) {
@@ -124,7 +124,7 @@ internal class DropboxSyncViewModel(
             val databaseLocalPath = databaseImportExport.databasePath()
             val databaseData = DatabaseDownloadData(
                 path = "/$DB_FILE_NAME_WITH_EXTENSION",
-                outputStream = FileOutputStream(databaseLocalPath)
+                outputStream = FileOutputStream(databaseLocalPath),
             )
             val result = dropboxSyncUseCase.download(databaseData)
             dropboxSyncAction = when (result) {

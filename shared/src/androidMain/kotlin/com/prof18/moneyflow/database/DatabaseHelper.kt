@@ -17,7 +17,7 @@ internal object DatabaseHelper {
         val driverRef = driver ?: AndroidSqliteDriver(
             Schema,
             getKoin().get(),
-            DATABASE_NAME
+            DATABASE_NAME,
         )
         this.driverRef = driverRef
         dbRef = createQueryWrapper(driverRef)

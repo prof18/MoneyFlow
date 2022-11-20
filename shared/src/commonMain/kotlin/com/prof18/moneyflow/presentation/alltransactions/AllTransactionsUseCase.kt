@@ -9,7 +9,7 @@ class AllTransactionsUseCase(
 
     suspend fun getTransactionsPaginated(
         pageNum: Long,
-        pageSize: Long
+        pageSize: Long,
     ): List<MoneyTransaction> {
         return moneyRepository.getTransactionsPaginated(pageNum, pageSize)
     }

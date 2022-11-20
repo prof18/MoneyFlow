@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.onEach
 // From https://github.com/russhwolf/To-Do/blob/master/shared/src/iosMain/kotlin/com/russhwolf/todo/shared/CoroutineAdapters.kt
 class FlowWrapper<T : Any>(
     private val scope: CoroutineScope,
-    private val flow: Flow<T>
+    private val flow: Flow<T>,
 ) {
 
     fun subscribe(
         onEvent: (T) -> Unit,
         onError: (Throwable) -> Unit,
-        onComplete: () -> Unit
+        onComplete: () -> Unit,
     ): Job =
         flow
             .onEach { onEvent(it) }

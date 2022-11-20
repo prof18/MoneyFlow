@@ -27,7 +27,7 @@ internal class SettingsSource(private val settings: Settings) {
     fun setHideSensitiveData(value: Boolean) = settings.set(SettingsFields.HIDE_SENSITIVE_DATA.name, value)
 
     fun getLastDropboxUploadTimestamp(): Long? = settings.getLongOrNull(
-        SettingsFields.DROPBOX_LAST_UPLOAD_TIMESTAMP.name
+        SettingsFields.DROPBOX_LAST_UPLOAD_TIMESTAMP.name,
     )
     fun setLastDropboxUploadTimestamp(value: Long) = settings.set(
         SettingsFields.DROPBOX_LAST_UPLOAD_TIMESTAMP.name,
@@ -36,7 +36,7 @@ internal class SettingsSource(private val settings: Settings) {
     fun deleteLastDropboxUploadTimestamp() = settings.remove(SettingsFields.DROPBOX_LAST_UPLOAD_TIMESTAMP.name)
 
     fun getLastDropboxDownloadTimestamp(): Long? = settings.getLongOrNull(
-        SettingsFields.DROPBOX_LAST_DOWNLOAD_TIMESTAMP.name
+        SettingsFields.DROPBOX_LAST_DOWNLOAD_TIMESTAMP.name,
     )
     fun setLastDropboxDownloadTimestamp(value: Long) = settings.set(
         SettingsFields.DROPBOX_LAST_DOWNLOAD_TIMESTAMP.name,

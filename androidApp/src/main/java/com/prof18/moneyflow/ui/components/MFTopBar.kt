@@ -29,7 +29,7 @@ internal fun MFTopBar(
         title = {
             Text(
                 text = topAppBarText,
-                style = MaterialTheme.typography.h5.copy(fontSize = 20.sp)
+                style = MaterialTheme.typography.h5.copy(fontSize = 20.sp),
             )
         },
         navigationIcon = if (onBackPressed != null) {
@@ -37,7 +37,7 @@ internal fun MFTopBar(
                 IconButton(onClick = onBackPressed) {
                     Icon(
                         Icons.Rounded.Close,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             }
@@ -50,13 +50,13 @@ internal fun MFTopBar(
                 TextButton(onClick = onActionClicked, enabled = actionEnabled) {
                     Text(
                         actionTitle!!.uppercase(),
-                        style = MaterialTheme.typography.subtitle2
+                        style = MaterialTheme.typography.subtitle2,
                     )
                 }
             }
         },
         backgroundColor = MaterialTheme.colors.background,
-        elevation = 0.dp
+        elevation = 0.dp,
     )
 }
 
@@ -69,6 +69,6 @@ private fun AddTransactionTopBarPreview() {
         actionTitle = "Save",
         onBackPressed = { },
         onActionClicked = { },
-        actionEnabled = false
+        actionEnabled = false,
     )
 }

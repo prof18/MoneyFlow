@@ -41,8 +41,8 @@ internal class CategoriesScreenFactory(
             arguments = listOf(
                 navArgument(NavigationArguments.FromAddTransaction.key) {
                     type = NavType.BoolType
-                }
-            )
+                },
+            ),
         ) { backStackEntry ->
 
             val viewModel = getViewModel<CategoriesViewModel>()
@@ -53,9 +53,9 @@ internal class CategoriesScreenFactory(
                     categoryState.value = categoryData
                 },
                 isFromAddTransaction = backStackEntry.arguments?.getBoolean(
-                    NavigationArguments.FromAddTransaction.key
+                    NavigationArguments.FromAddTransaction.key,
                 ) ?: false,
-                categoryModel = viewModel.categoryModel
+                categoryModel = viewModel.categoryModel,
             )
         }
     }
@@ -78,7 +78,7 @@ internal fun CategoriesScreen(
                 onActionClicked = {
                     // TODO: open a new screen to add a new category
                 },
-                actionEnabled = true
+                actionEnabled = true,
             )
         },
         content = {
@@ -97,14 +97,14 @@ internal fun CategoriesScreen(
                                         sendCategoryBack(category.toCategoryUIData())
                                         navigateUp()
                                     }
-                                }
+                                },
                             )
                             Divider()
                         }
                     }
                 }
             }
-        }
+        },
     )
 }
 
@@ -123,15 +123,15 @@ private fun CategoriesScreenPreview() {
                         Category(
                             id = 0,
                             name = "Food",
-                            icon = CategoryIcon.IC_HAMBURGER_SOLID
+                            icon = CategoryIcon.IC_HAMBURGER_SOLID,
                         ),
                         Category(
                             id = 0,
                             name = "Drinks",
-                            icon = CategoryIcon.IC_COCKTAIL_SOLID
-                        )
-                    )
-                )
+                            icon = CategoryIcon.IC_COCKTAIL_SOLID,
+                        ),
+                    ),
+                ),
             )
         }
     }
@@ -150,9 +150,9 @@ private fun CategoriesScreenErrorPreview() {
                 categoryModel = CategoryModel.Error(
                     uiErrorMessage = UIErrorMessage(
                         message = "An error happened :(",
-                        nerdMessage = "Error code: 101"
-                    )
-                )
+                        nerdMessage = "Error code: 101",
+                    ),
+                ),
             )
         }
     }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class AllTransactionsUseCaseIos(
     private val allTransactionsUseCase: AllTransactionsUseCase,
-    private val errorMapper: MoneyFlowErrorMapper
+    private val errorMapper: MoneyFlowErrorMapper,
 ) : BaseUseCaseIos() {
 
     fun getTransactionsPaginated(

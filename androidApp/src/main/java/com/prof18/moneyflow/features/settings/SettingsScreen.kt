@@ -51,7 +51,7 @@ internal object SettingsScreenFactory : ComposeNavigationFactory {
                 biometricState = viewModel.biometricState,
                 onBiometricEnabled = { viewModel.updateBiometricState(it) },
                 hideSensitiveDataState = hideDataState,
-                onHideSensitiveDataEnabled = { viewModel.updateHideSensitiveDataState(it) }
+                onHideSensitiveDataEnabled = { viewModel.updateHideSensitiveDataState(it) },
             )
         }
     }
@@ -99,8 +99,8 @@ internal fun SettingsScreen(
             context.startActivity(
                 Intent(
                     context,
-                    DropboxSyncActivity::class.java
-                )
+                    DropboxSyncActivity::class.java,
+                ),
             )
         },
         isBiometricSupported = isBiometricSupported(LocalContext.current),
@@ -130,39 +130,39 @@ private fun SettingsScreenContent(
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier
                     .padding(horizontal = Margins.regular)
-                    .padding(top = Margins.regular)
+                    .padding(top = Margins.regular),
             )
         },
         content = {
             Column(
                 modifier = Modifier
-                    .padding(top = Margins.regular)
+                    .padding(top = Margins.regular),
             ) {
 
                 Text(
                     text = stringResource(R.string.security),
                     style = MaterialTheme.typography.caption,
-                    modifier = Modifier.padding(start = Margins.regular)
+                    modifier = Modifier.padding(start = Margins.regular),
                 )
 
                 SwitchWithText(
                     onSwitchChanged = onHideSensitiveDataEnabled,
                     switchStatus = hideSensitiveDataState,
-                    title = stringResource(R.string.hide_sensitive_data)
+                    title = stringResource(R.string.hide_sensitive_data),
                 )
 
                 if (isBiometricSupported) {
                     SwitchWithText(
                         onSwitchChanged = onBiometricEnabled,
                         switchStatus = biometricState,
-                        title = stringResource(R.string.biometric_support)
+                        title = stringResource(R.string.biometric_support),
                     )
                 }
 
                 Text(
                     text = stringResource(R.string.database_management),
                     style = MaterialTheme.typography.caption,
-                    modifier = Modifier.padding(start = Margins.regular)
+                    modifier = Modifier.padding(start = Margins.regular),
                 )
 
                 Text(
@@ -171,7 +171,7 @@ private fun SettingsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onImportDatabaseClick() }
-                        .padding(Margins.regular)
+                        .padding(Margins.regular),
                 )
                 Divider()
                 Text(
@@ -180,7 +180,7 @@ private fun SettingsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onExportDatabaseClick() }
-                        .padding(Margins.regular)
+                        .padding(Margins.regular),
                 )
                 Divider()
                 Text(
@@ -189,11 +189,11 @@ private fun SettingsScreenContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { openDropboxSetup() }
-                        .padding(Margins.regular)
+                        .padding(Margins.regular),
                 )
                 Divider()
             }
-        }
+        },
     )
 }
 

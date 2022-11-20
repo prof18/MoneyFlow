@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.di
 
-import com.prof18.moneyflow.dropbox.DropboxApi
 import com.prof18.moneyflow.data.DropboxSyncRepositoryImpl
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.SettingsRepositoryImpl
@@ -12,6 +11,7 @@ import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.dropbox.DropboxApi
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.platform.LocalizedStringProviderImpl
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper

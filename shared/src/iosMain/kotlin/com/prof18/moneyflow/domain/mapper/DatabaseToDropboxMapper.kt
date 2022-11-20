@@ -18,6 +18,6 @@ internal actual fun DatabaseDownloadData.toDropboxDownloadParams(dropboxClient: 
     return DropboxDownloadParam(
         client = dropboxClient,
         outputName = this.outputName,
-        path = this.path
+        path = this.path,
     )
 }

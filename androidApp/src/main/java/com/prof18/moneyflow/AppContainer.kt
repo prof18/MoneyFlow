@@ -46,7 +46,7 @@ internal fun AppContainer() {
                                 Icon(
                                     painter = painterResource(id = tabBarItem.drawableResId),
                                     contentDescription = null,
-                                    modifier = Modifier.size(22.dp)
+                                    modifier = Modifier.size(22.dp),
                                 )
                             },
                             label = { Text(stringResource(tabBarItem.titleResId)) },
@@ -68,12 +68,12 @@ internal fun AppContainer() {
                                     // Restore state when reselecting a previously selected item
                                     restoreState = true
                                 }
-                            }
+                            },
                         )
                     }
                 }
             }
-        }
+        },
     ) { paddingValues ->
 
         val categoryState: MutableState<CategoryUIData?> = remember { mutableStateOf(null) }

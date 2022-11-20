@@ -70,7 +70,7 @@ class DropboxSyncUseCase(
     ): String = if (syncMetadata.lastDownloadTimestamp != null) {
         localizedStringProvider.get(
             "dropbox_latest_download_date",
-            syncMetadata.lastDownloadTimestamp.formatFullDate()
+            syncMetadata.lastDownloadTimestamp.formatFullDate(),
         )
     } else {
         localizedStringProvider.get("dropbox_no_download_date")

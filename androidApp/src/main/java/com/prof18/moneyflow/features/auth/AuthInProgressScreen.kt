@@ -28,7 +28,7 @@ internal fun AuthScreen(
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         if (authState == AuthState.AUTH_IN_PROGRESS) {
             CircularProgressIndicator()
@@ -37,7 +37,7 @@ internal fun AuthScreen(
 
         Text(
             text = authState.getAuthMessage(),
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body1,
         )
 
         if (authState == AuthState.AUTH_ERROR) {
@@ -45,7 +45,7 @@ internal fun AuthScreen(
             Button(onClick = { onRetryClick() }) {
                 Text(
                     text = stringResource(R.string.retry),
-                    style = MaterialTheme.typography.button
+                    style = MaterialTheme.typography.button,
                 )
             }
         }
@@ -69,7 +69,7 @@ private fun AuthScreenProgressPreview() {
         Surface {
             AuthScreen(
                 authState = AuthState.AUTH_IN_PROGRESS,
-                onRetryClick = {}
+                onRetryClick = {},
             )
         }
     }
@@ -83,7 +83,7 @@ private fun AuthScreenFailPreview() {
         Surface {
             AuthScreen(
                 authState = AuthState.NOT_AUTHENTICATED,
-                onRetryClick = {}
+                onRetryClick = {},
             )
         }
     }
@@ -97,7 +97,7 @@ private fun AuthScreenErrorPreview() {
         Surface {
             AuthScreen(
                 authState = AuthState.AUTH_ERROR,
-                onRetryClick = {}
+                onRetryClick = {},
             )
         }
     }

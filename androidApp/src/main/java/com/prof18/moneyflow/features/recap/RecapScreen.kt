@@ -24,7 +24,7 @@ internal object RecapScreenFactory : ComposeNavigationFactory {
 internal fun RecapScreen() {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         Text("Coming Soon")
     }

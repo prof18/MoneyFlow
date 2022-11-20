@@ -41,13 +41,13 @@ class MainActivity : FragmentActivity() {
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE
+            WindowManager.LayoutParams.FLAG_SECURE,
         )
 
         setContent {
             MoneyFlowTheme {
                 Box(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     AppContainer()
 
@@ -87,14 +87,14 @@ class MainActivity : FragmentActivity() {
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(
                     errorCode: Int,
-                    errString: CharSequence
+                    errString: CharSequence,
                 ) {
                     super.onAuthenticationError(errorCode, errString)
                     authState = AuthState.AUTH_ERROR
                 }
 
                 override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult
+                    result: BiometricPrompt.AuthenticationResult,
                 ) {
                     super.onAuthenticationSucceeded(result)
                     authState = AuthState.AUTHENTICATED
@@ -104,7 +104,7 @@ class MainActivity : FragmentActivity() {
                     super.onAuthenticationFailed()
                     authState = AuthState.NOT_AUTHENTICATED
                 }
-            }
+            },
         )
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()

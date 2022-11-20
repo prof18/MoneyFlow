@@ -4,7 +4,7 @@ import com.prof18.moneyflow.domain.repository.SettingsRepository
 import kotlinx.coroutines.flow.StateFlow
 
 class SettingsUseCase(
-    private val settingsRepository: SettingsRepository
+    private val settingsRepository: SettingsRepository,
 ) {
 
     val sensitiveDataVisibilityState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState

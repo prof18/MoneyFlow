@@ -4,7 +4,7 @@ import com.prof18.moneyflow.FlowWrapper
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 
 class SettingsUseCaseIos(
-    private val settingsUseCase: SettingsUseCase
+    private val settingsUseCase: SettingsUseCase,
 ) : BaseUseCaseIos() {
 
     val getSensitiveDataVisibilityState: FlowWrapper<Boolean> =

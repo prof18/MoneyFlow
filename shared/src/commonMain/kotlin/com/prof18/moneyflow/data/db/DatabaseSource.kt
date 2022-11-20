@@ -24,7 +24,7 @@ internal interface DatabaseSource {
         transactionType: TransactionType,
         monthId: CurrentMonthID,
         monthlyIncomeAmount: Double,
-        monthlyOutcomeAmount: Double
+        monthlyOutcomeAmount: Double,
     )
     suspend fun deleteTransaction(
         transactionId: Long,
@@ -32,7 +32,7 @@ internal interface DatabaseSource {
         transactionAmountToUpdate: Double,
         monthId: Long,
         monthlyIncomeAmount: Double,
-        monthlyOutcomeAmount: Double
+        monthlyOutcomeAmount: Double,
     )
     suspend fun getMonthlyRecap(currentMonthID: CurrentMonthID): MonthlyRecapTable
     suspend fun getTransaction(transactionId: Long): TransactionTable?

@@ -5,7 +5,7 @@ import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
 import com.prof18.moneyflow.presentation.categories.CategoryModel
 
 class CategoriesUseCaseIos(
-    private val categoriesUseCase: CategoriesUseCase
+    private val categoriesUseCase: CategoriesUseCase,
 ) : BaseUseCaseIos() {
 
     fun getCategories(): FlowWrapper<CategoryModel> =

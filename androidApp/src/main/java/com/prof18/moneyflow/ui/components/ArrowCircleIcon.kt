@@ -28,14 +28,14 @@ internal fun ArrowCircleIcon(
     @DrawableRes iconID: Int,
     arrowColor: Color,
     iconSize: Dp,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
             .background(
                 boxColor,
-                shape = CircleShape
-            )
+                shape = CircleShape,
+            ),
     ) {
         Icon(
             painter = painterResource(id = iconID),
@@ -43,7 +43,7 @@ internal fun ArrowCircleIcon(
             modifier = Modifier
                 .padding(Margins.small)
                 .size(iconSize),
-            tint = arrowColor
+            tint = arrowColor,
         )
     }
 }
@@ -58,7 +58,7 @@ private fun ArrowCircleIconPreview() {
                 boxColor = upArrowCircleColor(),
                 iconID = R.drawable.ic_arrow_up_rotate,
                 arrowColor = upArrowColor(),
-                iconSize = 18.dp
+                iconSize = 18.dp,
             )
         }
     }

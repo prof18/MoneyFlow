@@ -98,7 +98,7 @@ internal val defaultCategories = listOf(
         id = 12,
         name = "Food & Beverage",
         type = TransactionType.OUTCOME,
-        iconName = CategoryIcon.IC_DRUMSTICK_BITE_SOLID.iconName
+        iconName = CategoryIcon.IC_DRUMSTICK_BITE_SOLID.iconName,
     ),
 
     CategoryTable(

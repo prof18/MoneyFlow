@@ -54,7 +54,7 @@ actual val platformModule = module {
 
     factory {
         DropboxSyncUseCaseIos(
-            dropboxSyncUseCase = get()
+            dropboxSyncUseCase = get(),
         )
     }
 }
