@@ -72,12 +72,12 @@ dependencies {
 
     implementation(libs.bundles.koin)
     implementation(libs.bundles.compose)
-    implementation(libs.androidx.lifecycle.viewModelKTX)
+    implementation(libs.androidx.lifecycle.viewModel.ktx)
     implementation(libs.jake.timber)
     // TODO: think about removing and use the api from shared
-    implementation(libs.dropbox.dropboxCore)
+    implementation(libs.dropbox.core)
     implementation(libs.androidx.biometric.ktx)
 
-    debugImplementation(libs.androidx.compose.ui.uiTooling)
-    androidTestImplementation(libs.androidx.compose.ui.uiTest)
+    debugImplementation(libs.androidx.compose.ui.ui.tooling)
+    androidTestImplementation(libs.androidx.compose.ui.ui.test)
 }

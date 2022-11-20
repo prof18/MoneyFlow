@@ -59,7 +59,7 @@ allprojects {
             DEFAULT_SRC_DIR_KOTLIN,
             DEFAULT_TEST_SRC_DIR_KOTLIN,
         )
-        toolVersion = rootProject.libs.versions.gradlePlugins.detekt.get()
+        toolVersion = rootProject.libs.versions.detekt.get()
         config = rootProject.files("config/detekt/detekt.yml")
         parallel = true
     }

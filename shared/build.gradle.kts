@@ -83,9 +83,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.squareup.sqldelight.runtime)
-                implementation(libs.squareup.sqldelight.coroutineExtensions)
+                implementation(libs.squareup.sqldelight.coroutine.extensions)
                 implementation(libs.kotlinx.coroutine.core)
-                implementation(libs.koin.koinCore)
+                implementation(libs.koin.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.russhwolf.multiplatform.settings)
                 implementation(libs.touchlab.kermit)
@@ -95,7 +95,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(libs.koin.koinTest)
+                implementation(libs.koin.test)
                 implementation(libs.kotlinx.coroutine.test)
                 implementation(libs.cashapp.turbine)
                 implementation(libs.russhwolf.multiplatform.settings.test)
@@ -104,19 +104,19 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.dropbox.dropboxCore)
+                implementation(libs.dropbox.core)
                 implementation(libs.androidx.security.crypto)
-                implementation(libs.squareup.sqldelight.androidDriver)
+                implementation(libs.squareup.sqldelight.android.driver)
             }
         }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
-                implementation(libs.kotlin.kotlinTest)
-                implementation(libs.kotlin.kotlinTestJunit)
+                implementation(libs.kotlin.test)
+                implementation(libs.kotlin.test.junit)
                 implementation(libs.bundles.androidx.test)
                 implementation(libs.kotlinx.coroutine.test)
-                implementation(libs.squareup.sqldelight.sqliteDriver)
+                implementation(libs.squareup.sqldelight.sqlite.driver)
             }
         }
 
@@ -130,7 +130,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                implementation(libs.squareup.sqldelight.nativeDriver)
+                implementation(libs.squareup.sqldelight.native.driver)
                 implementation(libs.kotlinx.coroutine.core)
             }
         }
@@ -144,7 +144,7 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
 
             dependencies {
-                implementation(libs.squareup.sqldelight.nativeDriver)
+                implementation(libs.squareup.sqldelight.native.driver)
             }
         }
     }
