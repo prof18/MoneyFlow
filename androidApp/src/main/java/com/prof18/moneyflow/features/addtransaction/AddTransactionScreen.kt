@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -78,6 +79,7 @@ internal class AddTransactionScreenFactory(private val categoryState: MutableSta
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 @Suppress("LongMethod", "LongParameterList") // TODO: reduce method length
 internal fun AddTransactionScreen(

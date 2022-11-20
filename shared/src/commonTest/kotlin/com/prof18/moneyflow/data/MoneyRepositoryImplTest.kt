@@ -12,8 +12,8 @@ import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.utilities.closeDriver
 import com.prof18.moneyflow.utilities.createDriver
 import com.prof18.moneyflow.utilities.getDb
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Clock
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -26,11 +26,13 @@ class MoneyRepositoryImplTest {
     private lateinit var moneyRepository: MoneyRepository
     private lateinit var database: MoneyFlowDB
 
+    private val testDispatcher = StandardTestDispatcher()
+
     @BeforeTest
     fun setup() {
         createDriver()
         database = getDb()
-        databaseSource = DatabaseSourceImpl(dbRef = database, dispatcher = Dispatchers.Default)
+        databaseSource = DatabaseSourceImpl(dbRef = database, dispatcher = testDispatcher)
         moneyRepository = MoneyRepositoryImpl(databaseSource)
     }
 
@@ -40,7 +42,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun getBalanceRecap_UpdatesDataWhenAddingIncomeAndNoDataPresent() = runBlocking {
+    fun getBalanceRecap_UpdatesDataWhenAddingIncomeAndNoDataPresent() = runTest(testDispatcher) {
         moneyRepository.getBalanceRecap().test {
             assertEquals(DataFactory.getEmptyBalanceRecap(), awaitItem())
         }
@@ -64,7 +66,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun getBalanceRecap_UpdatesDataCorrectlyWhenAddingIncome() = runBlocking {
+    fun getBalanceRecap_UpdatesDataCorrectlyWhenAddingIncome() = runTest(testDispatcher) {
 
         // Setup
         moneyRepository.insertTransaction(
@@ -108,7 +110,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun getBalanceRecap_UpdatesDataCorrectlyWhenAddingOutcome() = runBlocking {
+    fun getBalanceRecap_UpdatesDataCorrectlyWhenAddingOutcome() = runTest(testDispatcher) {
         // Setup
         moneyRepository.insertTransaction(
             TransactionToSave(
@@ -151,7 +153,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun getLatestTransactions_returnsCategoryIfDescriptionIsNull() = runBlocking {
+    fun getLatestTransactions_returnsCategoryIfDescriptionIsNull() = runTest(testDispatcher) {
 
         database.transactionTableQueries.insertTransaction(
             dateMillis = Clock.System.now().toEpochMilliseconds(),
@@ -169,7 +171,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun getLatestTransactions_returnsDescriptionIfDescriptionIsNotNull() = runBlocking {
+    fun getLatestTransactions_returnsDescriptionIfDescriptionIsNotNull() = runTest(testDispatcher) {
 
         database.transactionTableQueries.insertTransaction(
             dateMillis = Clock.System.now().toEpochMilliseconds(),
@@ -187,7 +189,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun deleteTransaction_updatesBalanceCorrectlyWhenRemovingOutcome() = runBlocking {
+    fun deleteTransaction_updatesBalanceCorrectlyWhenRemovingOutcome() = runTest(testDispatcher) {
 
         // Setup
         moneyRepository.insertTransaction(
@@ -221,7 +223,7 @@ class MoneyRepositoryImplTest {
     }
 
     @Test
-    fun deleteTransaction_updatesBalanceCorrectlyWhenRemovingIncome() = runBlocking {
+    fun deleteTransaction_updatesBalanceCorrectlyWhenRemovingIncome() = runTest(testDispatcher) {
 
         // Setup
         moneyRepository.insertTransaction(

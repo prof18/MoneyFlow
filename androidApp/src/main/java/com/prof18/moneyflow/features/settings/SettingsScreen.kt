@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.settings
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -111,6 +112,7 @@ internal fun SettingsScreen(
     )
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
 private fun SettingsScreenContent(

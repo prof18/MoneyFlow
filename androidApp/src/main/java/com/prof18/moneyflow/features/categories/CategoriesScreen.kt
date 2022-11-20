@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.categories
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -61,6 +62,7 @@ internal class CategoriesScreenFactory(
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 internal fun CategoriesScreen(
     navigateUp: () -> Unit,

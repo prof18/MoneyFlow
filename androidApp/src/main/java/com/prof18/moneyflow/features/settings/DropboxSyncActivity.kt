@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.settings
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -89,6 +90,7 @@ class DropboxSyncActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
 private fun DropboxLoginContent(

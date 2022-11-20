@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.features.alltransactions
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
@@ -45,6 +46,7 @@ internal object AllTransactionsScreenFactory : ComposeNavigationFactory {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 internal fun AllTransactionsScreen(
     navigateUp: () -> Unit = {},
