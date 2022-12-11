@@ -26,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.BuildConfig
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.dropbox.DropboxDataSource
 import com.prof18.moneyflow.dropbox.DropboxDataSourceAndroid
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction.ShowError
@@ -37,7 +36,6 @@ import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Su
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import com.prof18.moneyflow.utils.DropboxConstants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DropboxSyncActivity : ComponentActivity() {

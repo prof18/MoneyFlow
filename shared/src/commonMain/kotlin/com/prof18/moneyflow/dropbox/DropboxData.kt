@@ -13,5 +13,3 @@ data class DropboxDownloadResult(
     val contentHash: String?,
     val destinationUrl: DatabaseDestinationUrl? = null,
 )
-
-expect class DatabaseDestinationUrl

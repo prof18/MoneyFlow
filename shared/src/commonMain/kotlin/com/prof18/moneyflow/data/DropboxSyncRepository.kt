@@ -2,8 +2,16 @@ package com.prof18.moneyflow.data
 
 import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.data.settings.SettingsSource
-import com.prof18.moneyflow.domain.entities.*
-import com.prof18.moneyflow.dropbox.*
+import com.prof18.moneyflow.domain.entities.DropboxAuthFailedExceptions
+import com.prof18.moneyflow.domain.entities.DropboxClientStatus
+import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
+import com.prof18.moneyflow.domain.entities.MoneyFlowResult
+import com.prof18.moneyflow.dropbox.DropboxDataSource
+import com.prof18.moneyflow.dropbox.DropboxDownloadParam
+import com.prof18.moneyflow.dropbox.DropboxDownloadResult
+import com.prof18.moneyflow.dropbox.DropboxStringCredentials
+import com.prof18.moneyflow.dropbox.DropboxUploadParam
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.DispatcherProvider
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +30,6 @@ class DropboxSyncRepository(
     private val _dropboxConnectionStatus = MutableStateFlow(DropboxClientStatus.NOT_LINKED)
     val dropboxConnectionStatus: StateFlow<DropboxClientStatus>
         get() = _dropboxConnectionStatus
-
 
     val dropboxMetadataFlow: StateFlow<DropboxSyncMetadata>
         get() = _dropboxMetadataFlow
@@ -53,8 +60,8 @@ class DropboxSyncRepository(
 
             dropboxDataSource.restoreAuth(
                 DropboxStringCredentials(
-                    value = savedStringCredentials
-                )
+                    value = savedStringCredentials,
+                ),
             )
 
             if (dropboxDataSource.isClientSet()) {

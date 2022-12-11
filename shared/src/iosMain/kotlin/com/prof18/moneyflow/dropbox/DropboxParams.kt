@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.dropbox
 
 import platform.Foundation.NSData
-import platform.Foundation.NSURL
 
 actual class DropboxUploadParam(
     val path: String,

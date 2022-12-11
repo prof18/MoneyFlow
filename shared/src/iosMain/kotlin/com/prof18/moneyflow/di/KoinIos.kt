@@ -33,8 +33,8 @@ fun initKoinIos(
     listOf(
         module {
             single { dropboxDataSource }
-        }
-    )
+        },
+    ),
 )
 
 actual val platformModule = module {

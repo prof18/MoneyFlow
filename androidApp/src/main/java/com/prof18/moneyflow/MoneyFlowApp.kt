@@ -19,7 +19,7 @@ class MoneyFlowApp : Application() {
         initKoin(
             module {
                 single<Context> { this@MoneyFlowApp }
-            } + appModule
+            } + appModule,
         )
     }
 }
