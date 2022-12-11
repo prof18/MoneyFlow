@@ -15,12 +15,9 @@ struct DropboxLoginView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         if isShown {
-            DI.getDropboxSyncUseCase().startAuthFlow(
-                authorizationParam: DropboxAuthorizationParam(
-                    viewController: uiViewController,
-                    scopes: DropboxConstants().DROPBOX_SCOPES
-                )
-            )
+            DI.getDropboxSyncUseCase().startAuthFlow {
+                DropboxDataSourceIOS.startAuth(viewController: uiViewController)
+            }
         }
     }
 

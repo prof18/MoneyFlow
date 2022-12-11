@@ -70,6 +70,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 dependencies {
     implementation(project(":shared"))
 
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
     implementation(libs.bundles.koin)
     implementation(libs.bundles.compose)
     implementation(libs.androidx.lifecycle.viewModel.ktx)

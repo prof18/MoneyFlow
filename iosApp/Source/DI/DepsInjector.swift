@@ -9,7 +9,9 @@ import Foundation
 import shared
 
 func startKoin() {
-    let koinApplication = KoinIosKt.doInitKoinIos()
+    let koinApplication = KoinIosKt.doInitKoinIos(
+        dropboxDataSource: DropboxDataSourceIOS()
+    )
     _koin = koinApplication.koin
     koin.openKoinScope()
 }

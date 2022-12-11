@@ -26,7 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.BuildConfig
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxDataSourceAndroid
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction.ShowError
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel
@@ -36,7 +36,6 @@ import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncMetadataModel.Su
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import com.prof18.moneyflow.utils.DropboxConstants
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DropboxSyncActivity : ComponentActivity() {
@@ -56,13 +55,12 @@ class DropboxSyncActivity : ComponentActivity() {
                     dropboxSyncMetadataModel = dropboxSyncModel,
                     isConnected = isConnected,
                     connectDropbox = {
-                        val authParam = DropboxAuthorizationParam(
-                            activity = this@DropboxSyncActivity,
-                            apiKey = BuildConfig.DROPBOX_APP_KEY,
-                            clientIdentifier = DropboxConstants.DROPBOX_CLIENT_IDENTIFIER,
-                            scopes = DropboxConstants.DROPBOX_SCOPES,
-                        )
-                        viewModel.startAuthFlow(authParam)
+                        viewModel.startAuthFlow {
+                            DropboxDataSourceAndroid.startAuth(
+                                activity = this@DropboxSyncActivity,
+                                apiKey = BuildConfig.DROPBOX_APP_KEY,
+                            )
+                        }
                         isAuthOngoing = true
                     },
                     backupOnDropbox = {

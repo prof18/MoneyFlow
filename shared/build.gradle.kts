@@ -17,6 +17,7 @@ group = sharedLibGroup
 version = sharedLibVersion
 
 android {
+    namespace = "com.prof18.moneyflow"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -63,10 +64,6 @@ kotlin {
         framework {
             isStatic = true
             linkerOpts.add("-lsqlite3")
-        }
-
-        pod("ObjectiveDropboxOfficial") {
-            version = "~> ${libs.versions.dropbox.ios.get()}"
         }
     }
 
@@ -164,7 +161,6 @@ kotlin {
 sqldelight {
     database("MoneyFlowDB") {
         packageName = "com.prof18.moneyflow.db"
-        schemaOutputDirectory = file("src/main/sqldelight/databases")
     }
 }
 

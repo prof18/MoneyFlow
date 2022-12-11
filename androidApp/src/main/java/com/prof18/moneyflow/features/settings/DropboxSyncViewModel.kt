@@ -7,12 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.db.DB_FILE_NAME_WITH_EXTENSION
 import com.prof18.moneyflow.database.DBImportExport
-import com.prof18.moneyflow.domain.entities.DatabaseDownloadData
-import com.prof18.moneyflow.domain.entities.DatabaseUploadData
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxDownloadParam
+import com.prof18.moneyflow.dropbox.DropboxUploadParam
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncAction
@@ -68,8 +67,8 @@ internal class DropboxSyncViewModel(
         }
     }
 
-    fun startAuthFlow(authorizationParam: DropboxAuthorizationParam) {
-        dropboxSyncUseCase.startAuthFlow(authorizationParam)
+    fun startAuthFlow(platformAuthHandler: () -> Unit) {
+        dropboxSyncUseCase.startAuthFlow(platformAuthHandler)
     }
 
     fun saveDropboxAuth() {
@@ -103,7 +102,7 @@ internal class DropboxSyncViewModel(
                 dropboxSyncAction = DropboxSyncAction.ShowError(errorMapper.getUIErrorMessage(error))
                 return@launch
             }
-            val databaseData = DatabaseUploadData(
+            val databaseData = DropboxUploadParam(
                 path = "/$DB_FILE_NAME_WITH_EXTENSION",
                 file = databaseFile,
             )
@@ -122,7 +121,7 @@ internal class DropboxSyncViewModel(
             dropboxSyncAction = DropboxSyncAction.Loading
 
             val databaseLocalPath = databaseImportExport.databasePath()
-            val databaseData = DatabaseDownloadData(
+            val databaseData = DropboxDownloadParam(
                 path = "/$DB_FILE_NAME_WITH_EXTENSION",
                 outputStream = FileOutputStream(databaseLocalPath),
             )

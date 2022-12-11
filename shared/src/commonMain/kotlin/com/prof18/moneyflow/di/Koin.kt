@@ -1,17 +1,13 @@
 package com.prof18.moneyflow.di
 
-import com.prof18.moneyflow.data.DropboxSyncRepositoryImpl
+import com.prof18.moneyflow.data.DropboxSyncRepository
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.SettingsRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.DatabaseSourceImpl
-import com.prof18.moneyflow.data.dropbox.DropboxSource
-import com.prof18.moneyflow.data.dropbox.DropboxSourceImpl
 import com.prof18.moneyflow.data.settings.SettingsSource
-import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
 import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.domain.repository.SettingsRepository
-import com.prof18.moneyflow.dropbox.DropboxApi
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.platform.LocalizedStringProviderImpl
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
@@ -28,13 +24,11 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
-import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
+fun initKoin(additionalModules: List<Module>): KoinApplication {
     return startKoin {
-        appDeclaration()
-        modules(platformModule, coreModule)
+        modules(additionalModules + platformModule + coreModule)
     }
 }
 
@@ -44,15 +38,13 @@ private val coreModule = module {
     single { SettingsSource(get()) }
     single<LocalizedStringProvider> { LocalizedStringProviderImpl() }
     single { MoneyFlowErrorMapper(get()) }
-    single { DropboxApi() }
-    single<DropboxSource> { DropboxSourceImpl(get()) }
 
     factory<DispatcherProvider> { DispatcherProviderImpl() }
 
     // Repository
     single<SettingsRepository> { SettingsRepositoryImpl(get()) }
     single<MoneyRepository> { MoneyRepositoryImpl(get()) }
-    single<DropboxSyncRepository> { DropboxSyncRepositoryImpl(get(), get(), get(), get()) }
+    single { DropboxSyncRepository(get(), get(), get(), get()) }
 
     // Use Cases
     factory { MainUseCase(get()) }

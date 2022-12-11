@@ -3,6 +3,8 @@ package com.prof18.moneyflow.di
 import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.database.DBImportExportImpl
 import com.prof18.moneyflow.database.DatabaseHelper
+import com.prof18.moneyflow.dropbox.DropboxDataSource
+import com.prof18.moneyflow.dropbox.DropboxDataSourceAndroid
 import com.prof18.moneyflow.settings.EncryptedSettingsFactory
 import com.russhwolf.settings.Settings
 import org.koin.core.module.Module
@@ -21,4 +23,6 @@ actual val platformModule: Module = module {
     }
 
     factory<DBImportExport> { DBImportExportImpl(get(), get()) }
+
+    single<DropboxDataSource> { DropboxDataSourceAndroid() }
 }

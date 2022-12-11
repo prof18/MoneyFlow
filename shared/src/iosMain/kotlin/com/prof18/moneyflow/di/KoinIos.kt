@@ -8,6 +8,7 @@ import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.database.DBImportExportImpl
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.domain.repository.MoneyRepository
+import com.prof18.moneyflow.dropbox.DropboxDataSource
 import com.prof18.moneyflow.presentation.AddTransactionUseCaseIos
 import com.prof18.moneyflow.presentation.CategoriesUseCaseIos
 import com.prof18.moneyflow.presentation.DropboxSyncUseCaseIos
@@ -26,7 +27,15 @@ import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
-fun initKoinIos(): KoinApplication = initKoin()
+fun initKoinIos(
+    dropboxDataSource: DropboxDataSource,
+): KoinApplication = initKoin(
+    listOf(
+        module {
+            single { dropboxDataSource }
+        },
+    ),
+)
 
 actual val platformModule = module {
     single<Settings> { KeychainSettings(service = "MoneyFlow") }
