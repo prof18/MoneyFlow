@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.dropbox
 
+import android.app.Activity
 import co.touchlab.kermit.Logger
 import com.dropbox.core.DbxException
 import com.dropbox.core.DbxRequestConfig
@@ -7,40 +8,63 @@ import com.dropbox.core.android.Auth
 import com.dropbox.core.oauth.DbxCredential
 import com.dropbox.core.v2.DbxClientV2
 import com.dropbox.core.v2.files.WriteMode
+import com.prof18.moneyflow.utils.DropboxConstants
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.FileInputStream
-import java.util.Locale
+import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-actual class DropboxApi {
+class DropboxDataSourceAndroid : DropboxDataSource {
 
-    actual fun setup(setupParam: DropboxSetupParam) {
+    private var dropboxClient: DbxClientV2? = null
+
+    override fun setup(apiKey: String) {
         // No op, nothing required on Android side
     }
 
-    actual fun startAuthorization(authParam: DropboxAuthorizationParam) {
-        val requestConfig = DbxRequestConfig(authParam.clientIdentifier)
-        Auth.startOAuth2PKCE(authParam.activity, authParam.apiKey, requestConfig, authParam.scopes)
-    }
+    override fun startAuthorization(platformAuthHandler: () -> Unit) = platformAuthHandler()
 
-    actual fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam) {
+    override fun handleOAuthResponse(platformOAuthResponseHandler: () -> Unit) {
         // no-op on Android
     }
 
-    actual fun getClient(clientIdentifier: String, credentials: DropboxCredentials): DropboxClient? {
+    // todo: create a method to get the status of the client
+
+    override fun saveAuth(): DropboxStringCredentials {
+        val credentials = getStoredCredentials()
+        credentials?.let { dropboxClient = createClient(credentials) }
+        return DropboxStringCredentials(
+            value = credentials.toString(),
+        )
+    }
+
+    override fun restoreAuth(stringCredentials: DropboxStringCredentials) {
+        if (dropboxClient != null) {
+            // Avoid setting up again
+            return
+        }
+        val credentials = getCredentialsFromString(stringCredentials.value)
+        if (credentials != null) {
+            dropboxClient = createClient(credentials)
+        }
+    }
+
+    private fun createClient(credentials: DbxCredential): DbxClientV2 {
         val userLocale: String = Locale.getDefault().toString()
         val requestConfig = DbxRequestConfig
-            .newBuilder(clientIdentifier)
+            .newBuilder(DropboxConstants.DROPBOX_CLIENT_IDENTIFIER)
             .withUserLocale(userLocale)
             .build()
         return DbxClientV2(requestConfig, credentials)
     }
 
-    actual fun revokeAccess(client: DropboxClient) {
+    override fun revokeAccess() {
+        val client = requireNotNull(dropboxClient)
         try {
             client.refreshAccessToken()
             client.auth().tokenRevoke()
+            dropboxClient = null
         } catch (e: DbxException) {
             val message = "Error during revoking dropbox access"
             Logger.e { message }
@@ -48,18 +72,55 @@ actual class DropboxApi {
         }
     }
 
-    actual fun getCredentials(): DropboxCredentials? {
+    override fun isClientSet(): Boolean =
+        dropboxClient != null
+
+    private fun getStoredCredentials(): DbxCredential? {
         return Auth.getDbxCredential()
     }
 
-    actual fun getCredentialsFromString(stringCredentials: String): DropboxCredentials {
-        return DbxCredential.Reader.readFully(stringCredentials)
+    private fun getCredentialsFromString(stringCredentials: String): DbxCredential? {
+        return try {
+            DbxCredential.Reader.readFully(stringCredentials)
+        } catch (e: Exception) {
+            Logger.e("Unable to create credentials from string", e)
+            null
+        }
     }
 
-    actual suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =
+    /*
+
+    actual class DropboxUploadParam(
+    val client: DropboxClient,
+    val path: String,
+    val file: File,
+)
+
+actual class DropboxDownloadParam(
+    val client: DropboxClient,
+    val path: String,
+    val outputStream: OutputStream,
+)
+
+actual class DropboxUploadParam(
+    val client: DropboxClient,
+    val path: String,
+    val data: NSData,
+)
+
+actual class DropboxDownloadParam(
+    val client: DropboxClient,
+    val outputName: String,
+    val path: String,
+)
+
+     */
+
+    override suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =
         suspendCancellableCoroutine { continuation ->
             try {
-                val metadata = uploadParam.client.files()
+                val client = requireNotNull(dropboxClient)
+                val metadata = client.files()
                     ?.uploadBuilder(uploadParam.path)
                     ?.withMode(WriteMode.OVERWRITE)
                     ?.uploadAndFinish(FileInputStream(uploadParam.file))
@@ -88,10 +149,11 @@ actual class DropboxApi {
             }
         }
 
-    actual suspend fun performDownload(downloadParam: DropboxDownloadParam): DropboxDownloadResult =
+    override suspend fun performDownload(downloadParam: DropboxDownloadParam): DropboxDownloadResult =
         suspendCancellableCoroutine { continuation ->
             try {
-                val metadata = downloadParam.client.files()
+                val client = requireNotNull(dropboxClient)
+                val metadata = client.files()
                     .downloadBuilder(downloadParam.path)
                     .download(downloadParam.outputStream)
 
@@ -115,4 +177,11 @@ actual class DropboxApi {
                 continuation.resumeWithException(DropboxDownloadException(exceptionCause = e))
             }
         }
+
+    companion object {
+        fun startAuth(activity: Activity, apiKey: String) {
+            val requestConfig = DbxRequestConfig(DropboxConstants.DROPBOX_CLIENT_IDENTIFIER)
+            Auth.startOAuth2PKCE(activity, apiKey, requestConfig, DropboxConstants.DROPBOX_SCOPES)
+        }
+    }
 }

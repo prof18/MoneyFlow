@@ -1,15 +1,12 @@
 package com.prof18.moneyflow.presentation.dropboxsync
 
-import com.prof18.moneyflow.domain.entities.DatabaseDownloadData
-import com.prof18.moneyflow.domain.entities.DatabaseUploadData
+import com.prof18.moneyflow.data.DropboxSyncRepository
 import com.prof18.moneyflow.domain.entities.DropboxClientStatus
 import com.prof18.moneyflow.domain.entities.DropboxSyncMetadata
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.domain.repository.DropboxSyncRepository
-import com.prof18.moneyflow.dropbox.DropboxAuthorizationParam
+import com.prof18.moneyflow.dropbox.DropboxDownloadParam
 import com.prof18.moneyflow.dropbox.DropboxDownloadResult
-import com.prof18.moneyflow.dropbox.DropboxHandleOAuthRequestParam
-import com.prof18.moneyflow.dropbox.DropboxSetupParam
+import com.prof18.moneyflow.dropbox.DropboxUploadParam
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.utils.formatFullDate
 import kotlinx.coroutines.flow.Flow
@@ -24,13 +21,13 @@ class DropboxSyncUseCase(
 
     val dropboxClientStatus: StateFlow<DropboxClientStatus> = dropboxSyncRepository.dropboxConnectionStatus
 
-    fun startAuthFlow(authorizationParam: DropboxAuthorizationParam) =
-        dropboxSyncRepository.startDropboxAuthorization(authorizationParam)
+    fun startAuthFlow(platformAuthHandler: () -> Unit) =
+        dropboxSyncRepository.startDropboxAuthorization(platformAuthHandler)
 
-    fun setupClient(setupParam: DropboxSetupParam) = dropboxSyncRepository.setupDropboxApp(setupParam)
+    fun setupClient(apiKey: String) = dropboxSyncRepository.setupDropboxApp(apiKey)
 
-    fun handleOAuthResponse(oAuthRequestParam: DropboxHandleOAuthRequestParam) {
-        dropboxSyncRepository.handleOAuthResponse(oAuthRequestParam)
+    fun handleOAuthResponse(platformOAuthResponseHandler: () -> Unit) {
+        dropboxSyncRepository.handleOAuthResponse(platformOAuthResponseHandler)
     }
 
     suspend fun saveDropboxAuth(): MoneyFlowResult<Unit> = dropboxSyncRepository.saveDropboxAuthorization()
@@ -39,11 +36,11 @@ class DropboxSyncUseCase(
 
     suspend fun restoreDropboxClient(): MoneyFlowResult<Unit> = dropboxSyncRepository.restoreDropboxClient()
 
-    suspend fun upload(databaseUploadData: DatabaseUploadData): MoneyFlowResult<Unit> =
-        dropboxSyncRepository.upload(databaseUploadData)
+    suspend fun upload(dropboxUploadParam: DropboxUploadParam): MoneyFlowResult<Unit> =
+        dropboxSyncRepository.upload(dropboxUploadParam)
 
-    suspend fun download(databaseDownloadData: DatabaseDownloadData): MoneyFlowResult<DropboxDownloadResult> =
-        dropboxSyncRepository.download(databaseDownloadData)
+    suspend fun download(downloadParam: DropboxDownloadParam): MoneyFlowResult<DropboxDownloadResult> =
+        dropboxSyncRepository.download(downloadParam)
 
     fun observeDropboxSyncMetadataModel(): Flow<DropboxSyncMetadataModel> =
         dropboxSyncRepository.dropboxMetadataFlow

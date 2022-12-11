@@ -473,7 +473,6 @@
 				A9F674F924F59E2700F486FE /* Frameworks */,
 				A9F674FA24F59E2700F486FE /* Resources */,
 				8DAC5AF327CC0A5B001F9E86 /* SwiftLint */,
-				06DE5AC5A4884DDAF4AD890D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -567,23 +566,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		06DE5AC5A4884DDAF4AD890D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8DAC5AF327CC0A5B001F9E86 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

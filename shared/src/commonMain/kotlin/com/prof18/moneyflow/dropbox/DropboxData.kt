@@ -15,5 +15,3 @@ data class DropboxDownloadResult(
 )
 
 expect class DatabaseDestinationUrl
-
-expect class DropboxCredentials

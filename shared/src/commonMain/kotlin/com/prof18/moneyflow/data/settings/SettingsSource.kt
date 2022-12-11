@@ -14,7 +14,7 @@ internal enum class SettingsFields {
 }
 
 @Suppress("TooManyFunctions")
-internal class SettingsSource(private val settings: Settings) {
+class SettingsSource(private val settings: Settings) {
 
     fun getDropboxClientCred(): String? = settings.getStringOrNull(SettingsFields.DROPBOX_CLIENT_CRED.name)
     fun saveDropboxClientCred(clientCred: String) = settings.set(SettingsFields.DROPBOX_CLIENT_CRED.name, clientCred)
