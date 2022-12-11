@@ -93,7 +93,7 @@ class DropboxViewModel: ObservableObject {
                 let fileData = try Data(contentsOf: databaseUrl)
 
                 dropboxSyncUseCase().upload(
-                    databaseUploadData: DatabaseUploadData(
+                    dropboxUploadParam: DropboxUploadParam(
                         path: "/\(SchemaKt.DB_FILE_NAME_WITH_EXTENSION)",
                         data: fileData
                     ),
@@ -134,7 +134,7 @@ class DropboxViewModel: ObservableObject {
     func restore() {
         dropboxSyncAction = DropboxSyncAction.Loading()
         dropboxSyncUseCase().download(
-            databaseDownloadData: DatabaseDownloadData(
+          downloadParam: DropboxDownloadParam(
                 outputName: SchemaKt.DB_FILE_NAME_WITH_EXTENSION,
                 path: "/\(SchemaKt.DB_FILE_NAME_WITH_EXTENSION)"
             ),

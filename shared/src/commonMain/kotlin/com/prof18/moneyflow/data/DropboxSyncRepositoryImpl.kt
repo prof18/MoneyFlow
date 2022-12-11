@@ -116,7 +116,7 @@ class DropboxSyncRepository(
                 ),
             )
             return@withContext MoneyFlowResult.Success(Unit)
-        } catch (e: DropboxUploadException) {
+        } catch (e: Exception) {
             Logger.e("Upload to dropbox failed", e)
             val error = MoneyFlowError.DropboxUpload(e)
             return@withContext MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
@@ -142,7 +142,7 @@ class DropboxSyncRepository(
                 ),
             )
             return@withContext MoneyFlowResult.Success(result)
-        } catch (e: DropboxDownloadException) {
+        } catch (e: Exception) {
             Logger.e("Download from dropbox failed", e)
             val error = MoneyFlowError.DropboxDownload(e)
             return@withContext MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))

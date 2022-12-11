@@ -1,16 +1,27 @@
 PODS:
+  - Alamofire (5.4.4)
   - shared (1.0-SNAPSHOT)
+  - SwiftyDropbox (9.1.0):
+    - Alamofire (~> 5.4.3)
 
 DEPENDENCIES:
   - shared (from `../shared`)
+  - SwiftyDropbox
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SwiftyDropbox
 
 EXTERNAL SOURCES:
   shared:
     :path: "../shared"
 
 SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   shared: 7dea836c653147433a5988dc079dacf506e5f027
+  SwiftyDropbox: 9d4bf6ccc0989b0c567004e425972d59993fdac5
 
-PODFILE CHECKSUM: 73f4896e537e1a25fb6e3403ad13e56b183dc5a6
+PODFILE CHECKSUM: 6e5e009d7057c504bd9c6d63c2dac3b46aae85fb
 
 COCOAPODS: 1.11.3

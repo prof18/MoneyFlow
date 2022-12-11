@@ -1,9 +1,10 @@
 package com.prof18.moneyflow
 
 import android.app.Application
+import android.content.Context
 import com.prof18.moneyflow.di.appModule
 import com.prof18.moneyflow.di.initKoin
-import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 import timber.log.Timber
 
 class MoneyFlowApp : Application() {
@@ -15,9 +16,10 @@ class MoneyFlowApp : Application() {
             Timber.plant(Timber.DebugTree())
         }
 
-        initKoin {
-            androidContext(this@MoneyFlowApp)
-            modules(appModule)
-        }
+        initKoin(
+            module {
+                single<Context> { this@MoneyFlowApp }
+            } + appModule
+        )
     }
 }

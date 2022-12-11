@@ -88,34 +88,6 @@ class DropboxDataSourceAndroid : DropboxDataSource {
         }
     }
 
-    /*
-
-    actual class DropboxUploadParam(
-    val client: DropboxClient,
-    val path: String,
-    val file: File,
-)
-
-actual class DropboxDownloadParam(
-    val client: DropboxClient,
-    val path: String,
-    val outputStream: OutputStream,
-)
-
-actual class DropboxUploadParam(
-    val client: DropboxClient,
-    val path: String,
-    val data: NSData,
-)
-
-actual class DropboxDownloadParam(
-    val client: DropboxClient,
-    val outputName: String,
-    val path: String,
-)
-
-     */
-
     override suspend fun performUpload(uploadParam: DropboxUploadParam): DropboxUploadResult =
         suspendCancellableCoroutine { continuation ->
             try {
