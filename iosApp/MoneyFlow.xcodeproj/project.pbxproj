@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		663F8105C5CED07B3CBF002C /* Pods_MoneyFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */; };
-		8D8119EA27D3CC3F00906C82 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */; };
 		8D9481C4277BA4AC003568EE /* Snackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C3277BA4AC003568EE /* Snackbar.swift */; };
 		8D9481C7277BA694003568EE /* SnackbarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481C6277BA694003568EE /* SnackbarData.swift */; };
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
@@ -67,6 +66,7 @@
 		A9F6752024F59E2700F486FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F674F624F59E2500F486FE /* ContentView.swift */; };
 		A9F6752224F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
 		A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FEB378253CCAD6002DEB65 /* FilePicker.swift */; };
+		CC60377D29A6070300EA03A4 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CC60377C29A6070300EA03A4 /* Config.xcconfig */; };
 		E755FEC2CD9B3B1AD81627BE /* DropboxErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E755F5FB5A5248912493FAF7 /* DropboxErrors.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,6 @@
 
 /* Begin PBXFileReference section */
 		18FAAF44652500A26ACC8FC8 /* Pods-MoneyFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.release.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.release.xcconfig"; sourceTree = "<group>"; };
-		8D8119E927D3CC3F00906C82 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8D9481C3277BA4AC003568EE /* Snackbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snackbar.swift; sourceTree = "<group>"; };
 		8D9481C6277BA694003568EE /* SnackbarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarData.swift; sourceTree = "<group>"; };
 		8D9481D9277C9ED9003568EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 		A9F6751224F59E2700F486FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9FEB378253CCAD6002DEB65 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
 		C01C17F103DA37F28E6E90F4 /* Pods-MoneyFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.debug.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.debug.xcconfig"; sourceTree = "<group>"; };
+		CC60377C29A6070300EA03A4 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E755F5FB5A5248912493FAF7 /* DropboxErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -368,12 +368,12 @@
 		A9D8985424FBEFF8007771A1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				8D8119E927D3CC3F00906C82 /* Config.xcconfig */,
 				8D9481D5277C9EAA003568EE /* Localization */,
 				A9F674FF24F59E2700F486FE /* Info.plist */,
 				A9F674F724F59E2600F486FE /* Images.xcassets */,
 				A9D8986B24FBF22F007771A1 /* Colors.xcassets */,
 				A9D8985524FBEFFF007771A1 /* Font */,
+				CC60377C29A6070300EA03A4 /* Config.xcconfig */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -563,9 +563,9 @@
 				A9D8986024FBF060007771A1 /* Poppins-Light.ttf in Resources */,
 				A9D8985A24FBF060007771A1 /* Poppins-ExtraLight.ttf in Resources */,
 				A9D8986C24FBF22F007771A1 /* Colors.xcassets in Resources */,
+				CC60377D29A6070300EA03A4 /* Config.xcconfig in Resources */,
 				A9F6752224F59E2700F486FE /* Images.xcassets in Resources */,
 				8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */,
-				8D8119EA27D3CC3F00906C82 /* Config.xcconfig in Resources */,
 				A9D1B2CA2553E8E100931B2B /* shared in Resources */,
 				A9D8985E24FBF060007771A1 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -731,7 +731,6 @@
 /* Begin XCBuildConfiguration section */
 		A9F6752424F59E2700F486FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -794,7 +793,6 @@
 		};
 		A9F6752524F59E2700F486FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D8119E927D3CC3F00906C82 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

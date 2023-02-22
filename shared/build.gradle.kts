@@ -74,6 +74,8 @@ kotlin {
                 optIn("kotlin.RequiresOptIn")
                 optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
                 optIn("com.russhwolf.settings.ExperimentalSettingsImplementation")
+                optIn("kotlin.experimental.ExperimentalObjCRefinement")
+                optIn("kotlin.experimental.ExperimentalObjCName")
             }
         }
 

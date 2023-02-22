@@ -12,36 +12,49 @@ import com.prof18.moneyflow.utils.formatFullDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlin.native.HiddenFromObjC
+import kotlin.native.ObjCName
 
+@ObjCName("_DropboxSyncUseCase")
 @Suppress("TooManyFunctions") // TODO: maybe fix and create a mapper?
 class DropboxSyncUseCase(
     private val dropboxSyncRepository: DropboxSyncRepository,
     private val localizedStringProvider: LocalizedStringProvider,
 ) {
 
+    @HiddenFromObjC
     val dropboxClientStatus: StateFlow<DropboxClientStatus> = dropboxSyncRepository.dropboxConnectionStatus
 
+    @HiddenFromObjC
     fun startAuthFlow(platformAuthHandler: () -> Unit) =
         dropboxSyncRepository.startDropboxAuthorization(platformAuthHandler)
 
+    @HiddenFromObjC
     fun setupClient(apiKey: String) = dropboxSyncRepository.setupDropboxApp(apiKey)
 
+    @HiddenFromObjC
     fun handleOAuthResponse(platformOAuthResponseHandler: () -> Unit) {
         dropboxSyncRepository.handleOAuthResponse(platformOAuthResponseHandler)
     }
 
+    @HiddenFromObjC
     suspend fun saveDropboxAuth(): MoneyFlowResult<Unit> = dropboxSyncRepository.saveDropboxAuthorization()
 
+    @HiddenFromObjC
     suspend fun unlinkDropbox() = dropboxSyncRepository.unlinkDropboxClient()
 
+    @HiddenFromObjC
     suspend fun restoreDropboxClient(): MoneyFlowResult<Unit> = dropboxSyncRepository.restoreDropboxClient()
 
+    @HiddenFromObjC
     suspend fun upload(dropboxUploadParam: DropboxUploadParam): MoneyFlowResult<Unit> =
         dropboxSyncRepository.upload(dropboxUploadParam)
 
+    @HiddenFromObjC
     suspend fun download(downloadParam: DropboxDownloadParam): MoneyFlowResult<DropboxDownloadResult> =
         dropboxSyncRepository.download(downloadParam)
 
+    @HiddenFromObjC
     fun observeDropboxSyncMetadataModel(): Flow<DropboxSyncMetadataModel> =
         dropboxSyncRepository.dropboxMetadataFlow
             .map {
