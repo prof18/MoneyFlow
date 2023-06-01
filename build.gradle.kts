@@ -6,7 +6,6 @@ import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_TEST_SRC_DIR_KOTLIN
 import java.io.ByteArrayOutputStream
 
-@Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.versionsBenManes)
     alias(libs.plugins.android.application) apply false

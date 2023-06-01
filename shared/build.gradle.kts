@@ -17,7 +17,7 @@ group = sharedLibGroup
 version = sharedLibVersion
 
 android {
-    namespace = "com.prof18.moneyflow"
+    namespace = "com.prof18.moneyflow.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

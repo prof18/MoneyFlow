@@ -14,7 +14,6 @@ import androidx.navigation.compose.composable
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
@@ -88,7 +87,10 @@ internal fun AllTransactionsScreen(
 
                 // TODO: create some sort of sticky header by grouping by date
 
-                items(lazyPagingItems) { transaction ->
+                items(
+                    count = lazyPagingItems.itemCount
+                ) { index ->
+                    val transaction = lazyPagingItems[index]
                     if (transaction != null) {
                         TransactionCard(
                             transaction = transaction,

@@ -13,5 +13,5 @@ enum SheetToShow: Identifiable {
 
     var id: Int {
         hashValue
-    }
+}
 }

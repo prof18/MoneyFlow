@@ -1,35 +1,36 @@
 [versions]
-activity-compose = "1.6.1"
+activity-compose = "1.7.2"
 android-compileSdk = "33"
 android-minSdk = "24"
 android-targetSdk = "33"
-android-crypto = "1.1.0-alpha04"
+android-crypto = "1.1.0-alpha06"
 androidx-test = "1.5.0"
-androidx-test-runner = "1.5.1"
-androidx-test-ext = "1.1.4"
+androidx-test-runner = "1.5.2"
+androidx-test-ext = "1.1.5"
 biometric = "1.2.0-alpha05"
 compose = "1.3.1"
-compose-compiler = "1.4.2"
-compose-bom = "2023.01.00"
-coroutines = "1.6.4"
+compose-compiler = "1.4.7"
+compose-bom = "2023.05.01"
+coroutines = "1.7.1"
 dropbox-core = "5.4.4"
-agp = "7.4.1"
+agp = "8.0.2"
 detekt = "1.22.0"
 versions-ben-manes = "0.44.0"
 java = "11"
 junit = "4.13.2"
 kermit = "1.2.2"
-koin = "3.2.2"
-koin-android = "3.3.0"
-kotlin = "1.8.10"
+koin = "3.4.1"
+koin-android = "3.4.1"
+koin-compose = "3.4.5"
+kotlin = "1.8.21"
 kotlinx-date-time = "0.4.0"
 multiplatform-settings = "0.9"
 nav-compose = "2.5.3"
-paging-compose = "1.0.0-alpha17"
+paging-compose = "1.0.0-alpha20"
 sqlDelight = "1.5.5"
 timber = "5.0.1"
 turbine = "0.12.1"
-viewModel-ktx = "2.5.1"
+viewModel-ktx = "2.6.1"
 
 [libraries]
 androidx-activity-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -56,7 +57,7 @@ dropbox-core = { module = "com.dropbox.core:dropbox-core-sdk", version.ref = "dr
 jake-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 junit = { module = "junit:junit", version.ref = "junit" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-android" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-android" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
