@@ -88,7 +88,7 @@ internal fun AllTransactionsScreen(
                 // TODO: create some sort of sticky header by grouping by date
 
                 items(
-                    count = lazyPagingItems.itemCount
+                    count = lazyPagingItems.itemCount,
                 ) { index ->
                     val transaction = lazyPagingItems[index]
                     if (transaction != null) {

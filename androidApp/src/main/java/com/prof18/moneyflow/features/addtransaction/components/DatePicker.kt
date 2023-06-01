@@ -91,14 +91,14 @@ internal fun DatePickerDialog(
                 TextButton(onClick = {
                     onSave()
                     setDialogVisible(false)
-                },) {
+                }) {
                     Text(stringResource(id = R.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = {
                     setDialogVisible(false)
-                },) {
+                }) {
                     Text(stringResource(id = R.string.cancel))
                 }
             },
@@ -121,7 +121,7 @@ private fun DatePickerItemDropdownMenu(
             modifier = Modifier
                 .clickable(onClick = {
                     expanded = true
-                },),
+                }),
         ) {
             Text(
                 text = dropdownText,
@@ -145,7 +145,7 @@ private fun DatePickerItemDropdownMenu(
                     setDropdownText(it)
                     expanded = false
                     onItemSelected(it)
-                },) {
+                }) {
                     Text(
                         text = it,
                         style = MaterialTheme.typography.body1,

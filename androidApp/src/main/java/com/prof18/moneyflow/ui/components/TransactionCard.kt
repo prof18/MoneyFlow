@@ -50,7 +50,7 @@ internal fun TransactionCard(
             .fillMaxWidth()
             .clickable(onClick = {
                 onClick()
-            },)
+            })
             .pointerInput(Unit) {
                 detectTapGestures(
                     onLongPress = {

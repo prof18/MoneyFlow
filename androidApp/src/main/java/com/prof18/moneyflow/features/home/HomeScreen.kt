@@ -215,7 +215,7 @@ internal fun HomeScreen(
                                     DropdownMenuItem(onClick = {
                                         deleteTransaction(transaction.id)
                                         setShowTransactionMenu(false)
-                                    },) {
+                                    }) {
                                         Text(stringResource(R.string.delete))
                                     }
                                 }

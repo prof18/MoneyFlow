@@ -35,7 +35,7 @@ internal fun CategoryCard(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.clickable(onClick = {
             onClick?.invoke(category)
-        }, enabled = onClick != null,),
+        }, enabled = onClick != null),
     ) {
 
         // TODO is this weight necessary?
