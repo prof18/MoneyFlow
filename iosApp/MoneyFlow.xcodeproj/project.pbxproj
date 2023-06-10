@@ -731,6 +731,7 @@
 /* Begin XCBuildConfiguration section */
 		A9F6752424F59E2700F486FE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC60377C29A6070300EA03A4 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -793,6 +794,7 @@
 		};
 		A9F6752524F59E2700F486FE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC60377C29A6070300EA03A4 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

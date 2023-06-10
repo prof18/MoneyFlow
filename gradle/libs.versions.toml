@@ -19,9 +19,10 @@ versions-ben-manes = "0.47.0"
 java = "11"
 junit = "4.13.2"
 kermit = "1.2.2"
-koin = "3.4.1"
-koin-android = "3.4.1"
-koin-compose = "3.4.5"
+koin-core = "3.4.2"
+koin-android = "3.4.2"
+koin-androidx-compose = "3.4.5"
+koin-test = "3.4.1"
 kotlin = "1.8.21"
 kotlinx-date-time = "0.4.0"
 multiplatform-settings = "1.0.0"
@@ -36,6 +37,7 @@ viewModel-ktx = "2.6.1"
 androidx-activity-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version.ref = "biometric" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+androidx-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compose-compiler" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
 androidx-compose-material = { module = "androidx.compose.material:material" }
 androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
@@ -57,9 +59,9 @@ dropbox-core = { module = "com.dropbox.core:dropbox-core-sdk", version.ref = "dr
 jake-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 junit = { module = "junit:junit", version.ref = "junit" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin-android" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-androidx-compose" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin-core" }
+koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin-test" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlinx-coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -78,7 +80,7 @@ io-gitlab-arturbosch-detekt-formatting = { module = "io.gitlab.arturbosch.detekt
 [bundles]
 androidx-test = ["androidx-test-core", "androidx-test-ext-junit", "androidx-test-rules", "androidx-test-runner"]
 compose = ["androidx-activity-activity-compose", "androidx-compose-foundation", "androidx-compose-material", "androidx-compose-material-icons-core", "androidx-compose-material-icons-extended", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-ui-test", "androidx-compose-ui-ui-tooling", "androidx-navigation-navigation-compose", "androidx-paging-paging-compose"]
-koin = ["koin-android", "koin-compose", "koin-core"]
+koin = ["koin-android", "koin-androidx-compose", "koin-core"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
