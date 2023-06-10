@@ -3,8 +3,8 @@ package com.prof18.moneyflow.settings
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.russhwolf.settings.AndroidSettings
 import com.russhwolf.settings.Settings
+import com.russhwolf.settings.SharedPreferencesSettings
 
 internal class EncryptedSettingsFactory(private val context: Context) : Settings.Factory {
     private val masterKey = MasterKey.Builder(context)
@@ -15,7 +15,7 @@ internal class EncryptedSettingsFactory(private val context: Context) : Settings
     override fun create(name: String?): Settings {
         val preferencesName = name ?: "${context.packageName}_preferences"
 
-        return AndroidSettings(
+        return SharedPreferencesSettings(
             EncryptedSharedPreferences.create(
                 context,
                 preferencesName,
