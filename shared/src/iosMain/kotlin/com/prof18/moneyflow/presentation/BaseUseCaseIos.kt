@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 
+@ObjCName("BaseUseCase")
 open class BaseUseCaseIos {
 
     // For testing, make internal

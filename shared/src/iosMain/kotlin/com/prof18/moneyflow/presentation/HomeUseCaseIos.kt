@@ -7,6 +7,7 @@ import com.prof18.moneyflow.presentation.home.HomeUseCase
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.launch
 
+@ObjCName("HomeUseCase")
 class HomeUseCaseIos(
     private val homeUseCase: HomeUseCase,
 ) : BaseUseCaseIos() {

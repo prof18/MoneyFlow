@@ -14,7 +14,7 @@ class CategoriesViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    private var categoriesUseCase: CategoriesUseCaseIos = DI.getCategoriesUseCase()
+    private var categoriesUseCase: CategoriesUseCase = DI.getCategoriesUseCase()
 
     func startObserving() {
 

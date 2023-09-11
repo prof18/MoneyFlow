@@ -35,7 +35,7 @@ class AddTransactionViewModel: ObservableObject {
         self.saveDisabled = !canSave
     }
 
-    private var addTransactionUseCase: AddTransactionUseCaseIos = DI .getAddTransactionUseCase()
+    private var addTransactionUseCase: AddTransactionUseCase = DI .getAddTransactionUseCase()
 
     func addTransaction() {
 

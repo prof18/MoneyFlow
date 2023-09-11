@@ -6,15 +6,12 @@ import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.logError
 import kotlin.native.HiddenFromObjC
-import kotlin.native.ObjCName
 
-@ObjCName("_AddTransactionUseCase")
+@HiddenFromObjC
 class AddTransactionUseCase(
     private val moneyRepository: MoneyRepository,
     private val errorMapper: MoneyFlowErrorMapper,
 ) {
-
-    @HiddenFromObjC
     suspend fun insertTransaction(transactionToSave: TransactionToSave): MoneyFlowResult<Unit> {
         return try {
             moneyRepository.insertTransaction(transactionToSave)

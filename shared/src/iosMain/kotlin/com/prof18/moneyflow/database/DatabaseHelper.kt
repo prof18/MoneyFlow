@@ -5,7 +5,7 @@ import com.prof18.moneyflow.data.db.createQueryWrapper
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
-import kotlin.native.concurrent.AtomicReference
+import kotlin.concurrent.AtomicReference
 
 object DatabaseHelper {
     private val driverRef = AtomicReference<SqlDriver?>(null)

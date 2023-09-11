@@ -16,7 +16,7 @@ class DropboxViewModel: ObservableObject {
     @Published var dropboxSyncAction: DropboxSyncAction?
     @Published var metadataModel: DropboxSyncMetadataModel = DropboxSyncMetadataModel.Loading()
 
-    private func dropboxSyncUseCase() -> DropboxSyncUseCaseIos {
+    private func dropboxSyncUseCase() -> DropboxSyncUseCase {
         DI.getDropboxSyncUseCase()
     }
 

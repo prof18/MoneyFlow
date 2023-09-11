@@ -12,6 +12,7 @@ import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.launch
 
+@ObjCName("DropboxSyncUseCase")
 class DropboxSyncUseCaseIos(
     private val dropboxSyncUseCase: DropboxSyncUseCase,
 ) : BaseUseCaseIos() {

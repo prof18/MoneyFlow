@@ -7,6 +7,7 @@ import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.launch
 
+@ObjCName("AllTransactionsUseCase")
 class AllTransactionsUseCaseIos(
     private val allTransactionsUseCase: AllTransactionsUseCase,
     private val errorMapper: MoneyFlowErrorMapper,

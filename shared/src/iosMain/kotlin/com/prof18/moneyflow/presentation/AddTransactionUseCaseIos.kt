@@ -6,6 +6,7 @@ import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import kotlinx.coroutines.launch
 
+@ObjCName("AddTransactionUseCase")
 class AddTransactionUseCaseIos(
     private val addTransactionUseCase: AddTransactionUseCase,
 ) : BaseUseCaseIos() {

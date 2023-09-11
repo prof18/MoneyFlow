@@ -108,7 +108,7 @@ kotlin {
                 implementation(libs.squareup.sqldelight.android.driver)
             }
         }
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(libs.kotlin.test)
@@ -146,13 +146,6 @@ kotlin {
                 implementation(libs.squareup.sqldelight.native.driver)
             }
         }
-    }
-
-    sourceSets.matching {
-        it.name.endsWith("Test")
-    }.configureEach {
-        languageSettings.optIn("kotlin.time.ExperimentalTime")
-        languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
     }
 
     targets.withType(KotlinNativeTargetWithSimulatorTests::class.java) {

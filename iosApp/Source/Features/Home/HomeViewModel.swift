@@ -16,7 +16,7 @@ class HomeViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    private func homeUseCase() -> HomeUseCaseIos {
+    private func homeUseCase() -> HomeUseCase {
         DI.getHomeUseCase()
     }
 

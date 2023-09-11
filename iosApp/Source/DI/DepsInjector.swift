@@ -1,6 +1,6 @@
 //
 //  DIContainer.swift
-//  iosApp (iOS)
+//  App ()
 //
 //  Created by Marco Gomiero on 05/11/2020.
 //
@@ -33,28 +33,28 @@ class DepsInjector {
     private init() {
     }
 
-    func getHomeUseCase() -> HomeUseCaseIos {
-        guard let useCase = koin.getFromScope(objCClass: HomeUseCaseIos.self) as? HomeUseCaseIos else {
-            fatalError("HomeUseCaseIos cannot be null")
+    func getHomeUseCase() -> HomeUseCase {
+        guard let useCase = koin.getFromScope(objCClass: HomeUseCase.self) as? HomeUseCase else {
+            fatalError("HomeUseCase cannot be null")
         }
         return useCase
 
     }
 
-    func getCategoriesUseCase() -> CategoriesUseCaseIos {
+    func getCategoriesUseCase() -> CategoriesUseCase {
         guard let useCase = koin.getFromScope(
-            objCClass: CategoriesUseCaseIos.self
-        ) as? CategoriesUseCaseIos else {
-            fatalError("CategoriesUseCaseIos cannot be null")
+            objCClass: CategoriesUseCase.self
+        ) as? CategoriesUseCase else {
+            fatalError("CategoriesUseCase cannot be null")
         }
         return useCase
     }
 
-    func getAddTransactionUseCase() -> AddTransactionUseCaseIos {
+    func getAddTransactionUseCase() -> AddTransactionUseCase {
         guard let useCase = koin.getFromScope(
-            objCClass: AddTransactionUseCaseIos.self
-        ) as? AddTransactionUseCaseIos else {
-            fatalError("AddTransactionUseCaseIos cannot be null")
+            objCClass: AddTransactionUseCase.self
+        ) as? AddTransactionUseCase else {
+            fatalError("AddTransactionUseCase cannot be null")
         }
         return useCase
     }
@@ -66,11 +66,11 @@ class DepsInjector {
         return mapper
     }
 
-    func getDropboxSyncUseCase() -> DropboxSyncUseCaseIos {
+    func getDropboxSyncUseCase() -> DropboxSyncUseCase {
         guard let useCase = koin.get(
-            objCClass: DropboxSyncUseCaseIos.self
-        ) as? DropboxSyncUseCaseIos else {
-            fatalError("DropboxSyncUseCaseIos cannot be null")
+            objCClass: DropboxSyncUseCase.self
+        ) as? DropboxSyncUseCase else {
+            fatalError("DropboxSyncUseCase cannot be null")
         }
         return useCase
     }

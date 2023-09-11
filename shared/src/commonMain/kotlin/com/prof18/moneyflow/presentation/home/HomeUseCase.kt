@@ -10,19 +10,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlin.native.HiddenFromObjC
-import kotlin.native.ObjCName
 
-@ObjCName("_HomeUseCase")
+@HiddenFromObjC
 class HomeUseCase(
     private val moneyRepository: MoneyRepository,
     private val settingsRepository: SettingsRepository,
     private val errorMapper: MoneyFlowErrorMapper,
 ) {
 
-    @HiddenFromObjC
     val hideSensibleDataState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState
 
-    @HiddenFromObjC
     fun observeHomeModel(): Flow<HomeModel> =
         moneyRepository.getMoneySummary().map {
             HomeModel.HomeState(
@@ -31,12 +28,10 @@ class HomeUseCase(
             )
         }
 
-    @HiddenFromObjC
     fun toggleHideSensitiveData(status: Boolean) {
         settingsRepository.setHideSensitiveData(status)
     }
 
-    @HiddenFromObjC
     suspend fun deleteTransaction(transactionId: Long): MoneyFlowResult<Unit> {
         return try {
             moneyRepository.deleteTransaction(transactionId)
