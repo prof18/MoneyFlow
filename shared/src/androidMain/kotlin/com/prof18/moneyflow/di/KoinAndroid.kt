@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.di
 
 import com.prof18.moneyflow.database.DBImportExport
-import com.prof18.moneyflow.database.DBImportExportImpl
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.settings.EncryptedSettingsFactory
 import com.russhwolf.settings.Settings
@@ -20,5 +19,5 @@ actual val platformModule: Module = module {
         factory.create()
     }
 
-    factory<DBImportExport> { DBImportExportImpl(get(), get()) }
+    factory { DBImportExport(get(), get()) }
 }

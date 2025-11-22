@@ -2,8 +2,8 @@ package com.prof18.moneyflow.presentation.home
 
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.domain.repository.MoneyRepository
-import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.data.MoneyRepository
+import com.prof18.moneyflow.data.SettingsRepository
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.flow.Flow

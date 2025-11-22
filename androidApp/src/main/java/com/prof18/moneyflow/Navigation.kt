@@ -5,9 +5,7 @@ import androidx.annotation.StringRes
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 
-internal interface ComposeNavigationFactory {
-    fun create(navGraphBuilder: NavGraphBuilder, navController: NavController)
-}
+internal typealias ComposeNavigationFactory = (NavGraphBuilder, NavController) -> Unit
 
 internal sealed class Screen(val route: String) {
     object AddTransactionScreen : Screen("add_transaction_screen")

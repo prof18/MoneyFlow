@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
-import com.prof18.moneyflow.domain.repository.MoneyRepository
+import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction

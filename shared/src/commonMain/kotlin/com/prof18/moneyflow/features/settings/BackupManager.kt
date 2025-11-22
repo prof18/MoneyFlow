@@ -1,8 +1,10 @@
 package com.prof18.moneyflow.features.settings
 
+import com.prof18.moneyflow.database.DBImportExport
+
 expect class BackupRequest
 
-interface BackupManager {
+expect class BackupManager(databaseImportExport: DBImportExport) {
     fun performBackup(request: BackupRequest)
     fun performRestore(request: BackupRequest)
 }

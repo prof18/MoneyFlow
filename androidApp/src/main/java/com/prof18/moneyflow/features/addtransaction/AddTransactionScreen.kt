@@ -42,43 +42,42 @@ import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.koinViewModel
 
-internal class AddTransactionScreenFactory(private val categoryState: MutableState<CategoryUIData?>) :
-    ComposeNavigationFactory {
-    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
-        navGraphBuilder.composable(Screen.AddTransactionScreen.route) {
-            val viewModel = koinViewModel<AddTransactionViewModel>()
-            val uiState by viewModel.uiState.collectAsState()
+internal fun addTransactionScreenFactory(
+    categoryState: MutableState<CategoryUIData?>,
+): ComposeNavigationFactory = { navGraphBuilder: NavGraphBuilder, navController: NavController ->
+    navGraphBuilder.composable(Screen.AddTransactionScreen.route) {
+        val viewModel = koinViewModel<AddTransactionViewModel>()
+        val uiState by viewModel.uiState.collectAsState()
 
-            AddTransactionScreen(
-                categoryState = categoryState,
-                navigateUp = { navController.popBackStack() },
-                navigateToCategoryList = {
-                    navController.navigate("${Screen.CategoriesScreen.route}/true")
-                },
-                addTransaction = { categoryId ->
-                    viewModel.addTransaction(categoryId)
-                },
-                amountText = uiState.amountText,
-                updateAmountText = { amountText ->
-                    viewModel.updateAmountText(amountText)
-                },
-                descriptionText = uiState.descriptionText,
-                updateDescriptionText = { descText ->
-                    viewModel.updateDescriptionText(descText)
-                },
-                selectedTransactionType = uiState.selectedTransactionType,
-                updateTransactionType = { transactionType ->
-                    viewModel.updateTransactionType(transactionType)
-                },
-                updateYear = { year -> viewModel.setYearNumber(year) },
-                updateMonth = { month -> viewModel.setMonthNumber(month) },
-                updateDay = { day -> viewModel.setDayNumber(day) },
-                saveDate = { viewModel.saveDate() },
-                dateLabel = uiState.dateLabel,
-                addTransactionAction = uiState.addTransactionAction,
-                resetAction = { viewModel.resetAction() },
-            )
-        }
+        AddTransactionScreen(
+            categoryState = categoryState,
+            navigateUp = { navController.popBackStack() },
+            navigateToCategoryList = {
+                navController.navigate("${Screen.CategoriesScreen.route}/true")
+            },
+            addTransaction = { categoryId ->
+                viewModel.addTransaction(categoryId)
+            },
+            amountText = uiState.amountText,
+            updateAmountText = { amountText ->
+                viewModel.updateAmountText(amountText)
+            },
+            descriptionText = uiState.descriptionText,
+            updateDescriptionText = { descText ->
+                viewModel.updateDescriptionText(descText)
+            },
+            selectedTransactionType = uiState.selectedTransactionType,
+            updateTransactionType = { transactionType ->
+                viewModel.updateTransactionType(transactionType)
+            },
+            updateYear = { year -> viewModel.setYearNumber(year) },
+            updateMonth = { month -> viewModel.setMonthNumber(month) },
+            updateDay = { day -> viewModel.setDayNumber(day) },
+            saveDate = { viewModel.saveDate() },
+            dateLabel = uiState.dateLabel,
+            addTransactionAction = uiState.addTransactionAction,
+            resetAction = { viewModel.resetAction() },
+        )
     }
 }
 

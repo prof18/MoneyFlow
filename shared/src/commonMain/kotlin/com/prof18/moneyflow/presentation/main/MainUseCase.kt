@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.presentation.main
 
-import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.data.SettingsRepository
 import kotlin.native.HiddenFromObjC
 
 @HiddenFromObjC

@@ -21,11 +21,11 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.prof18.moneyflow.features.addtransaction.AddTransactionScreenFactory
+import com.prof18.moneyflow.features.addtransaction.addTransactionScreenFactory
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsScreenFactory
-import com.prof18.moneyflow.features.categories.CategoriesScreenFactory
+import com.prof18.moneyflow.features.categories.categoriesScreenFactory
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
-import com.prof18.moneyflow.features.home.HomeScreenFactory
+import com.prof18.moneyflow.features.home.homeScreenFactory
 import com.prof18.moneyflow.features.settings.SettingsScreenFactory
 import com.prof18.moneyflow.ui.style.LightAppColors
 
@@ -80,11 +80,11 @@ internal fun AppContainer() {
 
         NavHost(navController, startDestination = Screen.HomeScreen.route) {
 
-            HomeScreenFactory(paddingValues).create(this, navController)
+            homeScreenFactory(paddingValues).invoke(this, navController)
 
-            AddTransactionScreenFactory(categoryState).create(this, navController)
+            addTransactionScreenFactory(categoryState).invoke(this, navController)
 
-            CategoriesScreenFactory(categoryState).create(this, navController)
+            categoriesScreenFactory(categoryState).invoke(this, navController)
 
             // Coming Soon
 //                RecapScreenFactory.create(this, navController)
@@ -92,9 +92,9 @@ internal fun AppContainer() {
             // Coming Soon
 //                BudgetScreenFactory.create(this, navController)
 
-            SettingsScreenFactory.create(this, navController)
+            SettingsScreenFactory.invoke(this, navController)
 
-            AllTransactionsScreenFactory.create(this, navController)
+            AllTransactionsScreenFactory.invoke(this, navController)
         }
     }
 }

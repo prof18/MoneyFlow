@@ -3,11 +3,11 @@ package com.prof18.moneyflow.data
 import DataFactory
 import app.cash.turbine.test
 import com.prof18.moneyflow.data.db.DatabaseSource
-import com.prof18.moneyflow.data.db.DatabaseSourceImpl
+import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.default.defaultCategories
 import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.db.MoneyFlowDB
-import com.prof18.moneyflow.domain.repository.MoneyRepository
+import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.utilities.closeDriver
 import com.prof18.moneyflow.utilities.createDriver
@@ -32,8 +32,8 @@ class MoneyRepositoryImplTest {
     fun setup() {
         createDriver()
         database = getDb()
-        databaseSource = DatabaseSourceImpl(dbRef = database, dispatcher = testDispatcher)
-        moneyRepository = MoneyRepositoryImpl(databaseSource)
+        databaseSource = DatabaseSource(dbRef = database, dispatcher = testDispatcher)
+        moneyRepository = MoneyRepository(databaseSource)
     }
 
     @AfterTest

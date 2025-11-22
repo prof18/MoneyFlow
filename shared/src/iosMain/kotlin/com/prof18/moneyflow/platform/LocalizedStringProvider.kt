@@ -4,7 +4,7 @@ import platform.Foundation.NSBundle
 import platform.Foundation.NSString
 import platform.Foundation.stringWithFormat
 
-actual interface LocalizedStringProvider {
+actual class LocalizedStringProvider {
     actual fun get(id: String): String = id.localized()
     actual fun get(id: String, vararg formatArgs: Any): String = id.localized(*formatArgs)
 }

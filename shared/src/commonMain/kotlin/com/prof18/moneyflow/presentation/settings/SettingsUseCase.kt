@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.presentation.settings
 
-import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.data.SettingsRepository
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.native.HiddenFromObjC
 

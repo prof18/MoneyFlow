@@ -35,33 +35,31 @@ import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.koinViewModel
 
-internal class CategoriesScreenFactory(
-    private val categoryState: MutableState<CategoryUIData?>,
-) : ComposeNavigationFactory {
-    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
-        navGraphBuilder.composable(
-            route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
-            arguments = listOf(
-                navArgument(NavigationArguments.FromAddTransaction.key) {
-                    type = NavType.BoolType
-                },
-            ),
-        ) { backStackEntry ->
+internal fun categoriesScreenFactory(
+    categoryState: MutableState<CategoryUIData?>,
+): ComposeNavigationFactory = { navGraphBuilder: NavGraphBuilder, navController: NavController ->
+    navGraphBuilder.composable(
+        route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
+        arguments = listOf(
+            navArgument(NavigationArguments.FromAddTransaction.key) {
+                type = NavType.BoolType
+            },
+        ),
+    ) { backStackEntry ->
 
-            val viewModel = koinViewModel<CategoriesViewModel>()
-            val categoryModel by viewModel.categories.collectAsState()
+        val viewModel = koinViewModel<CategoriesViewModel>()
+        val categoryModel by viewModel.categories.collectAsState()
 
-            CategoriesScreen(
-                navigateUp = { navController.popBackStack() },
-                sendCategoryBack = { categoryData ->
-                    categoryState.value = categoryData
-                },
-                isFromAddTransaction = backStackEntry.arguments?.getBoolean(
-                    NavigationArguments.FromAddTransaction.key,
-                ) ?: false,
-                categoryModel = categoryModel,
-            )
-        }
+        CategoriesScreen(
+            navigateUp = { navController.popBackStack() },
+            sendCategoryBack = { categoryData ->
+                categoryState.value = categoryData
+            },
+            isFromAddTransaction = backStackEntry.arguments?.getBoolean(
+                NavigationArguments.FromAddTransaction.key,
+            ) ?: false,
+            categoryModel = categoryModel,
+        )
     }
 }
 

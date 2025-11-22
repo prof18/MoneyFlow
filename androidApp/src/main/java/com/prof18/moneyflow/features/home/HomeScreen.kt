@@ -56,8 +56,8 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
-internal class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavigationFactory {
-    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
+internal fun homeScreenFactory(paddingValues: PaddingValues): ComposeNavigationFactory =
+    { navGraphBuilder: NavGraphBuilder, navController: NavController ->
         navGraphBuilder.composable(Screen.HomeScreen.route) {
             val homeViewModel = koinViewModel<HomeViewModel>()
             val homeModel: HomeModel by homeViewModel.homeModel.collectAsState()
@@ -82,7 +82,6 @@ internal class HomeScreenFactory(private val paddingValues: PaddingValues) : Com
             )
         }
     }
-}
 
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length

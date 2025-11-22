@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.presentation.categories
 
-import com.prof18.moneyflow.domain.repository.MoneyRepository
+import com.prof18.moneyflow.data.MoneyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlin.native.HiddenFromObjC
