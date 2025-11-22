@@ -5,7 +5,7 @@
 //  Created by Marco Gomiero on 29.12.21.
 //
 
-import shared
+import ComposeApp
 
 extension UIErrorMessage {
     func toSnackbarData() -> SnackbarData {

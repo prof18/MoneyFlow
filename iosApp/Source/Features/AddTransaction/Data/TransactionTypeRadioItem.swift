@@ -5,7 +5,7 @@
 //  Created by Marco Gomiero on 06/12/2020.
 //
 
-import shared
+import ComposeApp
 
 struct TransactionTypeRadioItem: Hashable, Identifiable {
     var name: String
