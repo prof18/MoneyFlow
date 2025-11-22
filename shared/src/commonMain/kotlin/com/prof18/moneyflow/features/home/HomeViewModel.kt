@@ -1,8 +1,5 @@
 package com.prof18.moneyflow.features.home
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
@@ -12,9 +9,11 @@ import com.prof18.moneyflow.domain.repository.SettingsRepository
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.utils.logError
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -23,8 +22,8 @@ class HomeViewModel(
     private val errorMapper: MoneyFlowErrorMapper,
 ) : ViewModel() {
 
-    var homeModel: HomeModel by mutableStateOf(HomeModel.Loading)
-        private set
+    private val _homeModel = MutableStateFlow<HomeModel>(HomeModel.Loading)
+    val homeModel: StateFlow<HomeModel> = _homeModel
 
     val hideSensitiveDataState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState
 
@@ -48,7 +47,7 @@ class HomeViewModel(
                     emit(HomeModel.Error(errorMessage))
                 }
                 .collect { model ->
-                    homeModel = model
+                    _homeModel.value = model
                 }
         }
     }
@@ -68,7 +67,7 @@ class HomeViewModel(
                 )
 
             if (result is MoneyFlowResult.Error) {
-                homeModel = HomeModel.Error(result.uiErrorMessage)
+                _homeModel.update { HomeModel.Error(result.uiErrorMessage) }
             }
         }
     }

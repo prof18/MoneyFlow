@@ -1,8 +1,5 @@
 package com.prof18.moneyflow.features.addtransaction
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.db.model.TransactionType
@@ -16,6 +13,9 @@ import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
 import com.prof18.moneyflow.utils.logError
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -29,13 +29,16 @@ class AddTransactionViewModel(
     private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
-    // States
-    var selectedTransactionType: TransactionType by mutableStateOf(TransactionType.INCOME)
-    var amountText: String by mutableStateOf("")
-    var descriptionText: String? by mutableStateOf(null)
-    var dateLabel: String? by mutableStateOf(null)
-    var addTransactionAction: AddTransactionAction? by mutableStateOf(null)
-        private set
+    private val _uiState = MutableStateFlow(
+        AddTransactionUiState(
+            selectedTransactionType = TransactionType.INCOME,
+            amountText = "",
+            descriptionText = null,
+            dateLabel = null,
+            addTransactionAction = null,
+        ),
+    )
+    val uiState: StateFlow<AddTransactionUiState> = _uiState
 
     // Private variables
     private var selectedDateMillis: Long = Clock.System.now().toEpochMilliseconds()
@@ -66,17 +69,21 @@ class AddTransactionViewModel(
     }
 
     private fun updateDateLabel() {
-        dateLabel = selectedDateMillis.formatDateDayMonthYear()
+        _uiState.update { state ->
+            state.copy(dateLabel = selectedDateMillis.formatDateDayMonthYear())
+        }
     }
 
     fun addTransaction(categoryId: Long) {
-        val amount = amountText.toDoubleOrNull()
+        val amount = uiState.value.amountText.toDoubleOrNull()
         if (amount == null) {
             val errorMessage = UIErrorMessage(
                 message = localizedStringProvider.get("amount_not_empty_error"),
                 nerdMessage = "",
             )
-            addTransactionAction = AddTransactionAction.ShowError(errorMessage)
+            _uiState.update { state ->
+                state.copy(addTransactionAction = AddTransactionAction.ShowError(errorMessage))
+            }
             return
         }
 
@@ -86,9 +93,9 @@ class AddTransactionViewModel(
                     TransactionToSave(
                         dateMillis = selectedDateMillis,
                         amount = amount,
-                        description = descriptionText,
+                        description = uiState.value.descriptionText,
                         categoryId = categoryId,
-                        transactionType = selectedTransactionType,
+                        transactionType = uiState.value.selectedTransactionType,
                     ),
                 )
                 MoneyFlowResult.Success(Unit)
@@ -97,21 +104,48 @@ class AddTransactionViewModel(
                 throwable.logError(error)
                 MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
             }
-            addTransactionAction = when (result) {
-                is MoneyFlowResult.Success -> {
-                    AddTransactionAction.GoBack
+            _uiState.update { state ->
+                val action = when (result) {
+                    is MoneyFlowResult.Success -> AddTransactionAction.GoBack
+                    is MoneyFlowResult.Error -> AddTransactionAction.ShowError(result.uiErrorMessage)
                 }
-                is MoneyFlowResult.Error -> {
-                    AddTransactionAction.ShowError(result.uiErrorMessage)
-                }
+                state.copy(addTransactionAction = action)
             }
         }
     }
 
     fun resetAction() {
-        addTransactionAction = null
+        _uiState.update { state ->
+            state.copy(addTransactionAction = null)
+        }
+    }
+
+    fun updateAmountText(amountText: String) {
+        _uiState.update { state ->
+            state.copy(amountText = amountText)
+        }
+    }
+
+    fun updateDescriptionText(description: String?) {
+        _uiState.update { state ->
+            state.copy(descriptionText = description)
+        }
+    }
+
+    fun updateTransactionType(transactionType: TransactionType) {
+        _uiState.update { state ->
+            state.copy(selectedTransactionType = transactionType)
+        }
     }
 
     private fun currentLocalDate(): LocalDate =
         Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
 }
+
+data class AddTransactionUiState(
+    val selectedTransactionType: TransactionType,
+    val amountText: String,
+    val descriptionText: String?,
+    val dateLabel: String?,
+    val addTransactionAction: AddTransactionAction?,
+)

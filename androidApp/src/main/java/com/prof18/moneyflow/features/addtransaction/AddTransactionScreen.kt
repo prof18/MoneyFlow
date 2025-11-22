@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -45,6 +47,7 @@ internal class AddTransactionScreenFactory(private val categoryState: MutableSta
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.AddTransactionScreen.route) {
             val viewModel = koinViewModel<AddTransactionViewModel>()
+            val uiState by viewModel.uiState.collectAsState()
 
             AddTransactionScreen(
                 categoryState = categoryState,
@@ -55,24 +58,24 @@ internal class AddTransactionScreenFactory(private val categoryState: MutableSta
                 addTransaction = { categoryId ->
                     viewModel.addTransaction(categoryId)
                 },
-                amountText = viewModel.amountText,
+                amountText = uiState.amountText,
                 updateAmountText = { amountText ->
-                    viewModel.amountText = amountText
+                    viewModel.updateAmountText(amountText)
                 },
-                descriptionText = viewModel.descriptionText,
+                descriptionText = uiState.descriptionText,
                 updateDescriptionText = { descText ->
-                    viewModel.descriptionText = descText
+                    viewModel.updateDescriptionText(descText)
                 },
-                selectedTransactionType = viewModel.selectedTransactionType,
+                selectedTransactionType = uiState.selectedTransactionType,
                 updateTransactionType = { transactionType ->
-                    viewModel.selectedTransactionType = transactionType
+                    viewModel.updateTransactionType(transactionType)
                 },
                 updateYear = { year -> viewModel.setYearNumber(year) },
                 updateMonth = { month -> viewModel.setMonthNumber(month) },
                 updateDay = { day -> viewModel.setDayNumber(day) },
                 saveDate = { viewModel.saveDate() },
-                dateLabel = viewModel.dateLabel,
-                addTransactionAction = viewModel.addTransactionAction,
+                dateLabel = uiState.dateLabel,
+                addTransactionAction = uiState.addTransactionAction,
                 resetAction = { viewModel.resetAction() },
             )
         }
