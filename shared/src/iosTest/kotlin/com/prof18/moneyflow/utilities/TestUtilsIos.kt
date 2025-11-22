@@ -1,11 +1,11 @@
 package com.prof18.moneyflow.utilities
 
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import app.cash.sqldelight.driver.native.wrapConnection
 import co.touchlab.sqliter.DatabaseConfiguration
 import com.prof18.moneyflow.data.db.Schema
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.db.MoneyFlowDB
-import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
-import com.squareup.sqldelight.drivers.native.wrapConnection
 
 actual fun createDriver() {
     val driver = NativeSqliteDriver(

@@ -21,14 +21,6 @@ internal class SettingsRepositoryImpl(
         _hideSensibleDataState.value = settingsSource.getHideSensitiveData()
     }
 
-    override fun getDropboxClientCred(): String? {
-        return settingsSource.getDropboxClientCred()
-    }
-
-    override fun saveDropboxClientCred(clientCred: String) {
-        settingsSource.saveDropboxClientCred(clientCred)
-    }
-
     override fun isBiometricEnabled(): Boolean {
         if (isBiometricEnabled == null) {
             isBiometricEnabled = settingsSource.getUseBiometric()

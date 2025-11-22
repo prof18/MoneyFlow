@@ -20,7 +20,7 @@ internal fun MillisSinceEpoch.formatDateDayMonthYear(): String {
     return "${dateTime.dayOfMonth}/${dateTime.monthNumber}/${dateTime.year}"
 }
 
-internal fun MillisSinceEpoch.formatFullDate(): String {
+fun MillisSinceEpoch.formatFullDate(): String {
     val instant = Instant.fromEpochMilliseconds(this)
     val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
     @Suppress("MaxLineLength")

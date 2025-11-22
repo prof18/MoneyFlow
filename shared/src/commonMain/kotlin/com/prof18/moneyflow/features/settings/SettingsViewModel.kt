@@ -1,17 +1,15 @@
 package com.prof18.moneyflow.features.settings
 
-import android.net.Uri
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 import kotlinx.coroutines.flow.StateFlow
 
-internal class SettingsViewModel(
-    private val databaseImportExport: DBImportExport,
+class SettingsViewModel(
     private val settingsUseCase: SettingsUseCase,
+    private val backupManager: BackupManager,
 ) : ViewModel() {
 
     var biometricState: Boolean by mutableStateOf(false)
@@ -23,14 +21,12 @@ internal class SettingsViewModel(
         biometricState = settingsUseCase.isBiometricEnabled()
     }
 
-    fun performBackup(uri: Uri) {
-        // TODO: handle error message
-        databaseImportExport.exportDatabaseToFileSystem(uri)
+    fun performBackup(request: BackupRequest) {
+        backupManager.performBackup(request)
     }
 
-    fun performRestore(uri: Uri) {
-        // TODO: handle error message
-        databaseImportExport.importDatabaseFromFileSystem(uri)
+    fun performRestore(request: BackupRequest) {
+        backupManager.performRestore(request)
     }
 
     fun updateBiometricState(enabled: Boolean) {

@@ -13,7 +13,6 @@
 		8D9481D8277C9ED9003568EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D9481DA277C9ED9003568EE /* Localizable.strings */; };
 		8D9481DE277CCDB7003568EE /* UIErrorDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */; };
 		8D9481E0277E6535003568EE /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9481DF277E6535003568EE /* ErrorView.swift */; };
-		8DEA1ABA29464CAB0039D836 /* DropboxDataSourceIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEA1AB929464CAB0039D836 /* DropboxDataSourceIOS.swift */; };
 		A930B885253B8EED00CB92DF /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A930B884253B8EED00CB92DF /* ShareSheet.swift */; };
 		A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F6899263F36E80075AB49 /* CombineAdapters.swift */; };
 		A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F689B263F3FCB0075AB49 /* DispatcherQueueUtils.swift */; };
@@ -30,10 +29,7 @@
 		A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B774257D6BA300F6113A /* RadioButtonGroup.swift */; };
 		A988B77F257D763900F6113A /* DMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B77E257D763900F6113A /* DMImage.swift */; };
 		A988B785257D7D5100F6113A /* TransactionTypeRadioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */; };
-		A98B5CE0258AA7F40020C5C5 /* DropboxLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CDF258AA7F30020C5C5 /* DropboxLoginView.swift */; };
-		A98B5CEE258B40390020C5C5 /* DropboxScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CED258B40390020C5C5 /* DropboxScreen.swift */; };
 		A98B5CF4258BF2660020C5C5 /* CustomNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CF3258BF2660020C5C5 /* CustomNotifications.swift */; };
-		A98B5CFA258BF5B70020C5C5 /* DropboxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98B5CF9258BF5B70020C5C5 /* DropboxViewModel.swift */; };
 		A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B356B257EE89900B626ED /* SidebarMenuItem.swift */; };
 		A99B3574257F7ABF00B626ED /* SidebarNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B3573257F7ABF00B626ED /* SidebarNavigationItem.swift */; };
 		A9A8A9D42557EA3D00C0ED89 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */; };
@@ -67,7 +63,6 @@
 		A9F6752224F59E2700F486FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9F674F724F59E2600F486FE /* Images.xcassets */; };
 		A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FEB378253CCAD6002DEB65 /* FilePicker.swift */; };
 		CC60377D29A6070300EA03A4 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = CC60377C29A6070300EA03A4 /* Config.xcconfig */; };
-		E755FEC2CD9B3B1AD81627BE /* DropboxErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E755F5FB5A5248912493FAF7 /* DropboxErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +83,6 @@
 		8D9481DB277C9EDD003568EE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D9481DD277CCDB7003568EE /* UIErrorDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIErrorDataMapper.swift; sourceTree = "<group>"; };
 		8D9481DF277E6535003568EE /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		8DEA1AB929464CAB0039D836 /* DropboxDataSourceIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxDataSourceIOS.swift; sourceTree = "<group>"; };
 		93E5ECD78328DBC603F66B2F /* Pods_MoneyFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A930B884253B8EED00CB92DF /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A93F6899263F36E80075AB49 /* CombineAdapters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAdapters.swift; sourceTree = "<group>"; };
@@ -106,10 +100,7 @@
 		A988B774257D6BA300F6113A /* RadioButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonGroup.swift; sourceTree = "<group>"; };
 		A988B77E257D763900F6113A /* DMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMImage.swift; sourceTree = "<group>"; };
 		A988B784257D7D5100F6113A /* TransactionTypeRadioItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTypeRadioItem.swift; sourceTree = "<group>"; };
-		A98B5CDF258AA7F30020C5C5 /* DropboxLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxLoginView.swift; sourceTree = "<group>"; };
-		A98B5CED258B40390020C5C5 /* DropboxScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropboxScreen.swift; sourceTree = "<group>"; };
 		A98B5CF3258BF2660020C5C5 /* CustomNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifications.swift; sourceTree = "<group>"; };
-		A98B5CF9258BF5B70020C5C5 /* DropboxViewModel.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = DropboxViewModel.swift; sourceTree = "<group>"; };
 		A99B356B257EE89900B626ED /* SidebarMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMenuItem.swift; sourceTree = "<group>"; };
 		A99B3573257F7ABF00B626ED /* SidebarNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationItem.swift; sourceTree = "<group>"; };
 		A9A8A9CE2557E98400C0ED89 /* AppTabNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
@@ -148,7 +139,6 @@
 		A9FEB378253CCAD6002DEB65 /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
 		C01C17F103DA37F28E6E90F4 /* Pods-MoneyFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyFlow.debug.xcconfig"; path = "Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		CC60377C29A6070300EA03A4 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		E755F5FB5A5248912493FAF7 /* DropboxErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,13 +192,9 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		8DEA1AB829464C780039D836 /* Dropbox */ = {
 			isa = PBXGroup;
 			children = (
-				8DEA1AB929464CAB0039D836 /* DropboxDataSourceIOS.swift */,
-				E755F5FB5A5248912493FAF7 /* DropboxErrors.swift */,
 			);
-			path = Dropbox;
 			sourceTree = "<group>";
 		};
 		A92ADAB3257FA88100214846 /* Components */ = {
@@ -321,9 +307,6 @@
 			children = (
 				A9B3D775257FC95C00E65F1A /* Data */,
 				A9A8A9D32557EA3D00C0ED89 /* SettingsScreen.swift */,
-				A98B5CDF258AA7F30020C5C5 /* DropboxLoginView.swift */,
-				A98B5CED258B40390020C5C5 /* DropboxScreen.swift */,
-				A98B5CF9258BF5B70020C5C5 /* DropboxViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -436,7 +419,6 @@
 		A9F674F424F59E2500F486FE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				8DEA1AB829464C780039D836 /* Dropbox */,
 				8D9481DC277CCDA7003568EE /* Data */,
 				A99B3571257F7A8E00B626ED /* App */,
 				A9A8A9CF2557E9FB00C0ED89 /* Features */,
@@ -481,11 +463,12 @@
 		A9F674FB24F59E2700F486FE /* MoneyFlow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9F6752624F59E2700F486FE /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
-			buildPhases = (
-				DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */,
-				A9F674F824F59E2700F486FE /* Sources */,
-				A9F674F924F59E2700F486FE /* Frameworks */,
-				A9F674FA24F59E2700F486FE /* Resources */,
+buildPhases = (
+DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */,
+E0C4A6F92CB5CE82006BDA5E /* Kotlin EmbedAndSign */,
+A9F674F824F59E2700F486FE /* Sources */,
+A9F674F924F59E2700F486FE /* Frameworks */,
+A9F674FA24F59E2700F486FE /* Resources */,
 				8DAC5AF327CC0A5B001F9E86 /* SwiftLint */,
 				B57974FDD4E6325DFEC2D09D /* [CP] Embed Pods Frameworks */,
 			);
@@ -616,8 +599,8 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoneyFlow/Pods-MoneyFlow-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
+DA4902125A333D5E0250254B /* [CP] Check Pods Manifest.lock */ = {
+isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -637,7 +620,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
+};
+E0C4A6F92CB5CE82006BDA5E /* Kotlin EmbedAndSign */ = {
+isa = PBXShellScriptBuildPhase;
+buildActionMask = 2147483647;
+files = (
+);
+inputFileListPaths = (
+);
+inputPaths = (
+);
+name = "Kotlin EmbedAndSign";
+outputFileListPaths = (
+);
+outputPaths = (
+);
+runOnlyForDeploymentPostprocessing = 0;
+shellPath = /bin/sh;
+shellScript = "set -euo pipefail\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode \\\n+  -PXCODE_CONFIGURATION=${CONFIGURATION} \\\n+  -PXCODE_SDK=${SDK_NAME} \\\n+  -PXCODE_ARCHS=\"${ARCHS}\"\n";
+};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -653,7 +654,6 @@
 				A9D8987024FBF8C4007771A1 /* Extensions.swift in Sources */,
 				A9FEB379253CCAD6002DEB65 /* FilePicker.swift in Sources */,
 				A9B3C52D25FBFEAD008FE244 /* UpArrowCircleIcon.swift in Sources */,
-				8DEA1ABA29464CAB0039D836 /* DropboxDataSourceIOS.swift in Sources */,
 				A947AF1F2554991600633BD3 /* DepsInjector.swift in Sources */,
 				A988B775257D6BA300F6113A /* RadioButtonGroup.swift in Sources */,
 				A9D8986924FBF196007771A1 /* AppMargins.swift in Sources */,
@@ -675,10 +675,8 @@
 				A9471EC6257595D800C5D3AF /* CategoriesScreen.swift in Sources */,
 				A9E68AB325037D4F00851990 /* HomeViewModel.swift in Sources */,
 				A988B77F257D763900F6113A /* DMImage.swift in Sources */,
-				A98B5CFA258BF5B70020C5C5 /* DropboxViewModel.swift in Sources */,
 				8D9481DE277CCDB7003568EE /* UIErrorDataMapper.swift in Sources */,
 				A988B762257D675B00F6113A /* AddTransactionViewModel.swift in Sources */,
-				A98B5CEE258B40390020C5C5 /* DropboxScreen.swift in Sources */,
 				A93F689C263F3FCB0075AB49 /* DispatcherQueueUtils.swift in Sources */,
 				A9D269E024FC311D00D2B4AE /* HomeScreen.swift in Sources */,
 				A9471ECC2575979100C5D3AF /* CategoriesViewModel.swift in Sources */,
@@ -687,14 +685,12 @@
 				A93F689A263F36E80075AB49 /* CombineAdapters.swift in Sources */,
 				A98B5CF4258BF2660020C5C5 /* CustomNotifications.swift in Sources */,
 				A9B3C53425FBFF14008FE244 /* DownArrowCircleIcon.swift in Sources */,
-				A98B5CE0258AA7F40020C5C5 /* DropboxLoginView.swift in Sources */,
 				8D9481C4277BA4AC003568EE /* Snackbar.swift in Sources */,
 				A988B768257D6A2A00F6113A /* RadioButton.swift in Sources */,
 				A99B356C257EE89900B626ED /* SidebarMenuItem.swift in Sources */,
 				A9F6752024F59E2700F486FE /* ContentView.swift in Sources */,
 				A9F6751E24F59E2700F486FE /* MoneyFlowApp.swift in Sources */,
 				A988B785257D7D5100F6113A /* TransactionTypeRadioItem.swift in Sources */,
-				E755FEC2CD9B3B1AD81627BE /* DropboxErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

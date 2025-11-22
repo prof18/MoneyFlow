@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.di
 
-import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.data.db.DatabaseSourceImpl
@@ -8,14 +7,18 @@ import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.database.DBImportExportImpl
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.domain.repository.MoneyRepository
-import com.prof18.moneyflow.dropbox.DropboxDataSource
-import com.prof18.moneyflow.presentation.AddTransactionUseCaseIos
-import com.prof18.moneyflow.presentation.CategoriesUseCaseIos
-import com.prof18.moneyflow.presentation.DropboxSyncUseCaseIos
-import com.prof18.moneyflow.presentation.HomeUseCaseIos
+import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
+import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
+import com.prof18.moneyflow.features.categories.CategoriesViewModel
+import com.prof18.moneyflow.features.home.HomeViewModel
+import com.prof18.moneyflow.features.settings.SettingsViewModel
+import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
+import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
 import com.prof18.moneyflow.presentation.home.HomeUseCase
+import com.prof18.moneyflow.presentation.main.MainUseCase
+import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 import com.russhwolf.settings.KeychainSettings
 import com.russhwolf.settings.Settings
 import kotlinx.cinterop.ObjCClass
@@ -23,76 +26,76 @@ import kotlinx.cinterop.getOriginalKotlinClass
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.Koin
 import org.koin.core.KoinApplication
-import org.koin.core.qualifier.named
-import org.koin.core.scope.Scope
+import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 
-fun initKoinIos(
-    dropboxDataSource: DropboxDataSource,
-): KoinApplication = initKoin(
-    listOf(
-        module {
-            single { dropboxDataSource }
-        },
-    ),
-)
+object KoinIosDependencies {
+    private lateinit var koinApplication: KoinApplication
+
+    val koin: Koin
+        get() = koinApplication.koin
+
+    fun start(additionalModules: List<org.koin.core.module.Module> = emptyList()): KoinApplication {
+        if (!this::koinApplication.isInitialized) {
+            koinApplication = initKoin(additionalModules)
+        }
+        return koinApplication
+    }
+
+    fun reload(additionalModules: List<org.koin.core.module.Module> = emptyList()) {
+        if (this::koinApplication.isInitialized) {
+            stopKoin()
+        }
+        koinApplication = initKoin(additionalModules)
+    }
+
+    fun homeUseCase(): HomeUseCase = koin.get()
+    fun categoriesUseCase(): CategoriesUseCase = koin.get()
+    fun addTransactionUseCase(): AddTransactionUseCase = koin.get()
+    fun allTransactionsUseCase(): AllTransactionsUseCase = koin.get()
+    fun settingsUseCase(): SettingsUseCase = koin.get()
+    fun mainUseCase(): MainUseCase = koin.get()
+    fun errorMapper(): MoneyFlowErrorMapper = koin.get()
+
+    // Shared ViewModels (ready for iOS usage when UI migrates)
+    fun homeViewModel(): HomeViewModel = koin.get()
+    fun categoriesViewModel(): CategoriesViewModel = koin.get()
+    fun addTransactionViewModel(): AddTransactionViewModel = koin.get()
+    fun allTransactionsViewModel(): AllTransactionsViewModel = koin.get()
+    fun settingsViewModel(): SettingsViewModel = koin.get()
+}
+
+// Backwards compatibility for Swift call site naming
+fun initKoinIos(): KoinApplication = KoinIosDependencies.start()
 
 actual val platformModule = module {
     single<Settings> { KeychainSettings(service = "MoneyFlow") }
     factory<DBImportExport> { DBImportExportImpl() }
-
-    scope(named(MONEY_FLOW_SCOPE_NAME)) {
-        scoped {
-            DatabaseHelper.setupDatabase()
-            DatabaseHelper.instance
-        }
-
-        scoped<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Main) }
-        scoped<MoneyRepository> { MoneyRepositoryImpl(get()) }
-
-        // Use Cases
-        scoped { HomeUseCase(get(), get(), get()) }
-        scoped { HomeUseCaseIos(get()) }
-
-        factory { AddTransactionUseCase(get(), get()) }
-        factory { AddTransactionUseCaseIos(get()) }
-
-        factory { CategoriesUseCase(get()) }
-        factory { CategoriesUseCaseIos(get()) }
+    single {
+        DatabaseHelper.setupDatabase()
+        DatabaseHelper.instance
     }
 
-    factory {
-        DropboxSyncUseCaseIos(
-            dropboxSyncUseCase = get(),
-        )
-    }
-}
+    single<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Main) }
+    single<MoneyRepository> { MoneyRepositoryImpl(get()) }
 
-fun Koin.openKoinScope(): Scope {
-    Logger.d { "Opening Koin Scope" }
-    return this.createScope(MONEY_FLOW_SCOPE_ID, named(MONEY_FLOW_SCOPE_NAME))
-}
+    // Use Cases
+    factory { MainUseCase(get()) }
+    factory { HomeUseCase(get(), get(), get()) }
+    factory { AddTransactionUseCase(get(), get()) }
+    factory { SettingsUseCase(get()) }
+    factory { AllTransactionsUseCase(get()) }
+    factory { CategoriesUseCase(get()) }
 
-fun Koin.getScope(): Scope {
-    Logger.d { "Getting Koin Scope" }
-    return this.getScope(MONEY_FLOW_SCOPE_ID)
+    // Shared ViewModels
+    factory { HomeViewModel(get(), get(), get()) }
+    factory { AddTransactionViewModel(get(), get(), get()) }
+    factory { SettingsViewModel(get(), get()) }
+    factory { AllTransactionsViewModel(get(), get()) }
+    factory { CategoriesViewModel(get(), get()) }
 }
-
-fun Koin.closeScope() {
-    Logger.d { "Closing Koin Scope" }
-    this.getScope().close()
-}
-
-const val MONEY_FLOW_SCOPE_NAME = "MoneyFlowScope_Name"
-const val MONEY_FLOW_SCOPE_ID = "MoneyFlowScope_ID"
 
 fun Koin.get(objCClass: ObjCClass): Any {
     val kClazz = getOriginalKotlinClass(objCClass)!!
     return get(kClazz)
-}
-
-fun Koin.getFromScope(objCClass: ObjCClass): Any {
-    val kClazz = getOriginalKotlinClass(objCClass)!!
-    val scope = getScope(MONEY_FLOW_SCOPE_ID)
-    return scope.get(kClazz)
 }

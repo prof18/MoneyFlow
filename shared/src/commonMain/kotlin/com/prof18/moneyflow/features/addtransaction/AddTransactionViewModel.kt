@@ -6,19 +6,26 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
+import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.platform.LocalizedStringProvider
+import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
-import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
+import com.prof18.moneyflow.utils.formatDateDayMonthYear
+import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.LocalDate
 
-internal class AddTransactionViewModel(
-    private val addTransactionUseCase: AddTransactionUseCase,
+class AddTransactionViewModel(
+    private val moneyRepository: MoneyRepository,
+    private val errorMapper: MoneyFlowErrorMapper,
     private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
@@ -31,16 +38,14 @@ internal class AddTransactionViewModel(
         private set
 
     // Private variables
-    private var yearNumber: Int = Calendar.getInstance().get(Calendar.YEAR)
-    private var monthNumber: Int = Calendar.getInstance().get(Calendar.MONTH)
-    private var dayNumber = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+    private var selectedDateMillis: Long = Clock.System.now().toEpochMilliseconds()
+    private var yearNumber: Int = currentLocalDate().year
+    private var monthNumber: Int = currentLocalDate().monthNumber - 1
+    private var dayNumber: Int = currentLocalDate().dayOfMonth
 
-    private var selectedDate: Calendar = Calendar.getInstance()
-        set(value) {
-            val formatter = SimpleDateFormat("EEE, d MMM yyyy", Locale.getDefault())
-            dateLabel = formatter.format(value.time)
-            field = value
-        }
+    init {
+        updateDateLabel()
+    }
 
     fun setYearNumber(yearNumber: Int) {
         this.yearNumber = yearNumber
@@ -55,10 +60,13 @@ internal class AddTransactionViewModel(
     }
 
     fun saveDate() {
-        val calendar = Calendar.getInstance().apply {
-            set(yearNumber, monthNumber, dayNumber)
-        }
-        selectedDate = calendar
+        val localDate = LocalDate(yearNumber, monthNumber + 1, dayNumber)
+        selectedDateMillis = localDate.atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds()
+        updateDateLabel()
+    }
+
+    private fun updateDateLabel() {
+        dateLabel = selectedDateMillis.formatDateDayMonthYear()
     }
 
     fun addTransaction(categoryId: Long) {
@@ -73,15 +81,22 @@ internal class AddTransactionViewModel(
         }
 
         viewModelScope.launch {
-            val result = addTransactionUseCase.insertTransaction(
-                TransactionToSave(
-                    dateMillis = selectedDate.timeInMillis,
-                    amount = amount,
-                    description = descriptionText,
-                    categoryId = categoryId,
-                    transactionType = selectedTransactionType,
-                ),
-            )
+            val result = try {
+                moneyRepository.insertTransaction(
+                    TransactionToSave(
+                        dateMillis = selectedDateMillis,
+                        amount = amount,
+                        description = descriptionText,
+                        categoryId = categoryId,
+                        transactionType = selectedTransactionType,
+                    ),
+                )
+                MoneyFlowResult.Success(Unit)
+            } catch (throwable: Throwable) {
+                val error = MoneyFlowError.AddTransaction(throwable)
+                throwable.logError(error)
+                MoneyFlowResult.Error(errorMapper.getUIErrorMessage(error))
+            }
             addTransactionAction = when (result) {
                 is MoneyFlowResult.Success -> {
                     AddTransactionAction.GoBack
@@ -96,4 +111,7 @@ internal class AddTransactionViewModel(
     fun resetAction() {
         addTransactionAction = null
     }
+
+    private fun currentLocalDate(): LocalDate =
+        Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
 }

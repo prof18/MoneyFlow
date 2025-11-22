@@ -6,10 +6,6 @@ import com.prof18.moneyflow.domain.entities.MoneyFlowError.DatabaseExport
 import com.prof18.moneyflow.domain.entities.MoneyFlowError.DatabaseImport
 import com.prof18.moneyflow.domain.entities.MoneyFlowError.DatabaseNotFound
 import com.prof18.moneyflow.domain.entities.MoneyFlowError.DeleteTransaction
-import com.prof18.moneyflow.domain.entities.MoneyFlowError.DropboxAuth
-import com.prof18.moneyflow.domain.entities.MoneyFlowError.DropboxDownload
-import com.prof18.moneyflow.domain.entities.MoneyFlowError.DropboxMetadata
-import com.prof18.moneyflow.domain.entities.MoneyFlowError.DropboxUpload
 import com.prof18.moneyflow.domain.entities.MoneyFlowError.GetAllTransaction
 import com.prof18.moneyflow.domain.entities.MoneyFlowError.GetCategories
 import com.prof18.moneyflow.domain.entities.MoneyFlowError.GetMoneySummary
@@ -34,12 +30,8 @@ class MoneyFlowErrorMapper(
             is GetAllTransaction -> localizedStringProvider.get("error_get_all_transaction_message")
             is GetCategories -> localizedStringProvider.get("error_get_categories_message")
             is GetMoneySummary -> localizedStringProvider.get("error_get_money_summary_message")
-            is DropboxAuth -> localizedStringProvider.get("error_dropbox_auth")
             is DatabaseExport -> localizedStringProvider.get("error_database_export")
             is DatabaseImport -> localizedStringProvider.get("error_database_import")
-            is DropboxDownload -> localizedStringProvider.get("error_dropbox_download")
-            is DropboxUpload -> localizedStringProvider.get("error_dropbox_upload")
-            is DropboxMetadata -> localizedStringProvider.get("error_dropbox_metadata")
             is DatabaseNotFound -> localizedStringProvider.get("database_file_not_found")
         }
     }

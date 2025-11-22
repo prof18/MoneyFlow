@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.di
 
-import com.prof18.moneyflow.data.DropboxSyncRepository
 import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.SettingsRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
@@ -14,7 +13,6 @@ import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
 import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
-import com.prof18.moneyflow.presentation.dropboxsync.DropboxSyncUseCase
 import com.prof18.moneyflow.presentation.home.HomeUseCase
 import com.prof18.moneyflow.presentation.main.MainUseCase
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
@@ -44,7 +42,7 @@ private val coreModule = module {
     // Repository
     single<SettingsRepository> { SettingsRepositoryImpl(get()) }
     single<MoneyRepository> { MoneyRepositoryImpl(get()) }
-    single { DropboxSyncRepository(get(), get(), get(), get()) }
+    
 
     // Use Cases
     factory { MainUseCase(get()) }
@@ -53,12 +51,6 @@ private val coreModule = module {
     factory { SettingsUseCase(get()) }
     factory { AllTransactionsUseCase(get()) }
     factory { CategoriesUseCase(get()) }
-    factory {
-        DropboxSyncUseCase(
-            dropboxSyncRepository = get(),
-            localizedStringProvider = get(),
-        )
-    }
 }
 
 expect val platformModule: Module

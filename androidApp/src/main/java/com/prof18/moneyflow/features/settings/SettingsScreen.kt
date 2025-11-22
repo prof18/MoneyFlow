@@ -2,7 +2,6 @@ package com.prof18.moneyflow.features.settings
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.widget.Toast
@@ -34,21 +33,22 @@ import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
+import com.prof18.moneyflow.features.settings.BackupRequest
 import com.prof18.moneyflow.ui.components.SwitchWithText
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
 internal object SettingsScreenFactory : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.SettingsScreen.route) {
-            val viewModel = getViewModel<SettingsViewModel>()
+            val viewModel = koinViewModel<SettingsViewModel>()
             val hideDataState by viewModel.hideSensitiveDataState.collectAsState()
 
             SettingsScreen(
-                performBackup = { uri -> viewModel.performBackup(uri) },
-                performRestore = { uri -> viewModel.performRestore(uri) },
+                performBackup = { uri -> viewModel.performBackup(BackupRequest(uri)) },
+                performRestore = { uri -> viewModel.performRestore(BackupRequest(uri)) },
                 biometricState = viewModel.biometricState,
                 onBiometricEnabled = { viewModel.updateBiometricState(it) },
                 hideSensitiveDataState = hideDataState,
@@ -96,14 +96,6 @@ internal fun SettingsScreen(
     SettingsScreenContent(
         onImportDatabaseClick = { openFileAction.launch(arrayOf("*/*")) },
         onExportDatabaseClick = { createFileAction.launch("MoneyFlowDB.db") },
-        openDropboxSetup = {
-            context.startActivity(
-                Intent(
-                    context,
-                    DropboxSyncActivity::class.java,
-                ),
-            )
-        },
         isBiometricSupported = isBiometricSupported(LocalContext.current),
         biometricState = biometricState,
         onBiometricEnabled = onBiometricEnabled,
@@ -118,7 +110,6 @@ internal fun SettingsScreen(
 private fun SettingsScreenContent(
     onImportDatabaseClick: () -> Unit,
     onExportDatabaseClick: () -> Unit,
-    openDropboxSetup: () -> Unit,
     isBiometricSupported: Boolean,
     biometricState: Boolean,
     onBiometricEnabled: (Boolean) -> Unit,
@@ -184,16 +175,6 @@ private fun SettingsScreenContent(
                         .clickable { onExportDatabaseClick() }
                         .padding(Margins.regular),
                 )
-                Divider()
-                Text(
-                    stringResource(R.string.setup_dropbox),
-                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { openDropboxSetup() }
-                        .padding(Margins.regular),
-                )
-                Divider()
             }
         },
     )
@@ -222,7 +203,6 @@ private fun SettingsScreenPreview() {
             SettingsScreenContent(
                 onImportDatabaseClick = {},
                 onExportDatabaseClick = {},
-                openDropboxSetup = {},
                 biometricState = true,
                 isBiometricSupported = true,
                 onBiometricEnabled = {},

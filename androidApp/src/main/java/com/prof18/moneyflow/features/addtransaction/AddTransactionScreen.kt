@@ -38,13 +38,13 @@ import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal class AddTransactionScreenFactory(private val categoryState: MutableState<CategoryUIData?>) :
     ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.AddTransactionScreen.route) {
-            val viewModel = getViewModel<AddTransactionViewModel>()
+            val viewModel = koinViewModel<AddTransactionViewModel>()
 
             AddTransactionScreen(
                 categoryState = categoryState,

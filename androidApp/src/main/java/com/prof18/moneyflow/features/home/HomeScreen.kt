@@ -53,13 +53,13 @@ import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
 internal class HomeScreenFactory(private val paddingValues: PaddingValues) : ComposeNavigationFactory {
     override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
         navGraphBuilder.composable(Screen.HomeScreen.route) {
-            val homeViewModel = getViewModel<HomeViewModel>()
+            val homeViewModel = koinViewModel<HomeViewModel>()
             val homeModel: HomeModel = homeViewModel.homeModel
             val hideSensitiveDataState: Boolean by homeViewModel.hideSensitiveDataState.collectAsState()
 
