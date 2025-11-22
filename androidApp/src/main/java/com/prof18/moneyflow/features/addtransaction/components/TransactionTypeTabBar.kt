@@ -31,7 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.R
-import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
