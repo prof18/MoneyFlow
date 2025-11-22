@@ -11,7 +11,6 @@ import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.domain.entities.MoneySummary
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
-import com.prof18.moneyflow.domain.repository.MoneyRepository
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
@@ -23,9 +22,13 @@ import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlin.math.abs
 
-internal class MoneyRepositoryImpl(
+class MoneyRepository(
     private val dbSource: DatabaseSource,
-) : MoneyRepository {
+) {
+
+    companion object {
+        const val DEFAULT_PAGE_SIZE = 30L
+    }
 
     private var allTransactions: Flow<List<SelectLatestTransactions>> = emptyFlow()
     private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
@@ -40,7 +43,7 @@ internal class MoneyRepositoryImpl(
         account = dbSource.selectCurrentAccount()
     }
 
-    override fun getMoneySummary(): Flow<MoneySummary> {
+    fun getMoneySummary(): Flow<MoneySummary> {
         return getLatestTransactions().combine(getBalanceRecap()) { transactions, balanceRecap ->
             MoneySummary(
                 balanceRecap = balanceRecap,
@@ -49,7 +52,7 @@ internal class MoneyRepositoryImpl(
         }
     }
 
-    override fun getBalanceRecap(): Flow<BalanceRecap> {
+    fun getBalanceRecap(): Flow<BalanceRecap> {
         return monthlyRecap.combine(account) { monthlyRecap: MonthlyRecapTable, account: AccountTable ->
             BalanceRecap(
                 totalBalance = account.amount,
@@ -59,7 +62,7 @@ internal class MoneyRepositoryImpl(
         }
     }
 
-    override fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
+    fun getLatestTransactions(): Flow<List<MoneyTransaction>> {
         return allTransactions.map {
             it.map { transaction ->
                 val transactionTypeUI = when (transaction.type) {
@@ -86,7 +89,7 @@ internal class MoneyRepositoryImpl(
         }
     }
 
-    override suspend fun insertTransaction(transactionToSave: TransactionToSave) {
+    suspend fun insertTransaction(transactionToSave: TransactionToSave) {
 
         val dateMillis = transactionToSave.dateMillis
         val transactionType = transactionToSave.transactionType
@@ -126,7 +129,7 @@ internal class MoneyRepositoryImpl(
         )
     }
 
-    override suspend fun deleteTransaction(transactionId: Long) {
+    suspend fun deleteTransaction(transactionId: Long) {
 
         val transaction = dbSource.getTransaction(transactionId)
         // It should not be null!
@@ -160,7 +163,7 @@ internal class MoneyRepositoryImpl(
         }
     }
 
-    override fun getCategories(): Flow<List<Category>> {
+    fun getCategories(): Flow<List<Category>> {
         return allCategories.map {
             it.map { category ->
                 Category(
@@ -172,7 +175,7 @@ internal class MoneyRepositoryImpl(
         }
     }
 
-    override suspend fun getTransactionsPaginated(
+    suspend fun getTransactionsPaginated(
         pageNum: Long,
         pageSize: Long,
     ): List<MoneyTransaction> {

@@ -28,8 +28,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.koin.androidx.compose.koinViewModel
 
-internal object AllTransactionsScreenFactory : ComposeNavigationFactory {
-    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
+internal val AllTransactionsScreenFactory: ComposeNavigationFactory =
+    { navGraphBuilder: NavGraphBuilder, navController: NavController ->
         navGraphBuilder.composable(Screen.AllTransactionsScreen.route) {
             val viewModel = koinViewModel<AllTransactionsViewModel>()
 
@@ -41,7 +41,6 @@ internal object AllTransactionsScreenFactory : ComposeNavigationFactory {
             )
         }
     }
-}
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

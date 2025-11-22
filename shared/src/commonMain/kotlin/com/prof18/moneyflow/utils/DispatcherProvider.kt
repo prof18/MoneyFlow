@@ -1,9 +1,10 @@
 package com.prof18.moneyflow.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
-interface DispatcherProvider {
-    fun main(): CoroutineDispatcher
-    fun default(): CoroutineDispatcher
-    fun unconfined(): CoroutineDispatcher
+class DispatcherProvider {
+    fun default(): CoroutineDispatcher = Dispatchers.Default
+    fun main(): CoroutineDispatcher = Dispatchers.Main
+    fun unconfined(): CoroutineDispatcher = Dispatchers.Unconfined
 }

@@ -40,8 +40,8 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.androidx.compose.koinViewModel
 import timber.log.Timber
 
-internal object SettingsScreenFactory : ComposeNavigationFactory {
-    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
+internal val SettingsScreenFactory: ComposeNavigationFactory =
+    { navGraphBuilder: NavGraphBuilder, navController: NavController ->
         navGraphBuilder.composable(Screen.SettingsScreen.route) {
             val viewModel = koinViewModel<SettingsViewModel>()
             val hideDataState by viewModel.hideSensitiveDataState.collectAsState()
@@ -57,7 +57,6 @@ internal object SettingsScreenFactory : ComposeNavigationFactory {
             )
         }
     }
-}
 
 @Composable
 internal fun SettingsScreen(

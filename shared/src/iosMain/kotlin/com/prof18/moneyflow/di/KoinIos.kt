@@ -1,12 +1,9 @@
 package com.prof18.moneyflow.di
 
-import com.prof18.moneyflow.data.MoneyRepositoryImpl
 import com.prof18.moneyflow.data.db.DatabaseSource
-import com.prof18.moneyflow.data.db.DatabaseSourceImpl
 import com.prof18.moneyflow.database.DBImportExport
-import com.prof18.moneyflow.database.DBImportExportImpl
 import com.prof18.moneyflow.database.DatabaseHelper
-import com.prof18.moneyflow.domain.repository.MoneyRepository
+import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
@@ -70,14 +67,14 @@ fun initKoinIos(): KoinApplication = KoinIosDependencies.start()
 
 actual val platformModule = module {
     single<Settings> { KeychainSettings(service = "MoneyFlow") }
-    factory<DBImportExport> { DBImportExportImpl() }
+    factory { DBImportExport() }
     single {
         DatabaseHelper.setupDatabase()
         DatabaseHelper.instance
     }
 
-    single<DatabaseSource> { DatabaseSourceImpl(get(), Dispatchers.Main) }
-    single<MoneyRepository> { MoneyRepositoryImpl(get()) }
+    single { DatabaseSource(get(), Dispatchers.Main) }
+    single { MoneyRepository(get()) }
 
     // Use Cases
     factory { MainUseCase(get()) }

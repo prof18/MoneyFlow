@@ -1,7 +1,7 @@
 package com.prof18.moneyflow.presentation.alltransactions
 
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
-import com.prof18.moneyflow.domain.repository.MoneyRepository
+import com.prof18.moneyflow.data.MoneyRepository
 import kotlin.native.HiddenFromObjC
 
 @HiddenFromObjC

@@ -1,7 +1,7 @@
 package com.prof18.moneyflow
 
 import androidx.lifecycle.ViewModel
-import com.prof18.moneyflow.domain.repository.SettingsRepository
+import com.prof18.moneyflow.data.SettingsRepository
 
 class MainViewModel(
     private val settingsRepository: SettingsRepository,

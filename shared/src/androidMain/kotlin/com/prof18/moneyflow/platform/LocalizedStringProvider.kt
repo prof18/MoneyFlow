@@ -3,7 +3,7 @@ package com.prof18.moneyflow.platform
 import android.content.Context
 import org.koin.java.KoinJavaComponent.getKoin
 
-actual interface LocalizedStringProvider {
+actual class LocalizedStringProvider {
 
     actual fun get(id: String): String {
         val context: Context = getKoin().get()

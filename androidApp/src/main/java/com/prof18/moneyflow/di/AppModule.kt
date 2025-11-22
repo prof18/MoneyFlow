@@ -6,13 +6,12 @@ import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.SettingsViewModel
-import com.prof18.moneyflow.features.settings.AndroidBackupManager
 import com.prof18.moneyflow.features.settings.BackupManager
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 internal val appModule = module {
-    single<BackupManager> { AndroidBackupManager(get()) }
+    single { BackupManager(get()) }
     // View Models
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get(), get(), get()) }

@@ -12,13 +12,12 @@ import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.Screen
 
-internal object RecapScreenFactory : ComposeNavigationFactory {
-    override fun create(navGraphBuilder: NavGraphBuilder, navController: NavController) {
+internal val RecapScreenFactory: ComposeNavigationFactory =
+    { navGraphBuilder: NavGraphBuilder, _: NavController ->
         navGraphBuilder.composable(Screen.RecapScreen.route) {
             RecapScreen()
         }
     }
-}
 
 @Composable
 internal fun RecapScreen() {
