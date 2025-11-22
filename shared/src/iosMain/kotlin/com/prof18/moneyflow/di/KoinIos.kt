@@ -16,8 +16,9 @@ import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
 import com.prof18.moneyflow.presentation.home.HomeUseCase
 import com.prof18.moneyflow.presentation.main.MainUseCase
 import com.prof18.moneyflow.presentation.settings.SettingsUseCase
-import com.russhwolf.settings.KeychainSettings
+import com.russhwolf.settings.AppleSettings
 import com.russhwolf.settings.Settings
+import platform.Foundation.NSUserDefaults
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.getOriginalKotlinClass
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +67,7 @@ object KoinIosDependencies {
 fun initKoinIos(): KoinApplication = KoinIosDependencies.start()
 
 actual val platformModule = module {
-    single<Settings> { KeychainSettings(service = "MoneyFlow") }
+    single<Settings> { AppleSettings(NSUserDefaults.standardUserDefaults) }
     factory { DBImportExport() }
     single {
         DatabaseHelper.setupDatabase()
