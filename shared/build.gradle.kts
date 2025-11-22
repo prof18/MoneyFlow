@@ -1,12 +1,7 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetWithSimulatorTests
-
-@Suppress("DSL_SCOPE_VIOLATION") // because of https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.kotlin.native.cocoapods)
     alias(libs.plugins.android.library)
     alias(libs.plugins.sqldelight)
-    alias(libs.plugins.touchlab.kermit)
 }
 
 val sharedLibGroup: String by project
@@ -40,35 +35,28 @@ android {
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = libs.versions.java.get()
-        }
+        compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
     }
 }
 
 kotlin {
-    android()
-    iosX64()
+    androidTarget()
     iosArm64()
     iosSimulatorArm64()
 
-    cocoapods {
-        // Configure fields required by CocoaPods.
-        summary = "Kotlin Multiplatform Library for MoneyFlow"
-        homepage = "https://github.com/prof18/MoneyFlow"
-        authors = "Marco Gomiero"
-        license = "APACHE"
-        ios.deploymentTarget = "15"
-        podfile = project.file("../iosApp/Podfile")
+    jvmToolchain(21)
+    applyDefaultHierarchyTemplate()
 
-        framework {
+    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).configureEach {
+        binaries.framework {
+            baseName = "Shared"
             isStatic = true
-            linkerOpts.add("-lsqlite3")
+            linkerOpts += listOf("-lsqlite3")
+            export(libs.androidx.lifecycle.viewmodel)
         }
     }
 
     sourceSets {
-
         all {
             languageSettings.apply {
                 optIn("kotlin.RequiresOptIn")
@@ -81,8 +69,9 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                implementation(libs.squareup.sqldelight.runtime)
-                implementation(libs.squareup.sqldelight.coroutine.extensions)
+                api(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutine.extensions)
                 implementation(libs.kotlinx.coroutine.core)
                 implementation(libs.koin.core)
                 implementation(libs.kotlinx.datetime)
@@ -92,8 +81,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
+                implementation(kotlin("test"))
                 implementation(libs.koin.test)
                 implementation(libs.kotlinx.coroutine.test)
                 implementation(libs.cashapp.turbine)
@@ -103,65 +91,40 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.dropbox.core)
+                implementation(libs.androidx.lifecycle.viewmodel.compose)
                 implementation(libs.androidx.security.crypto)
-                implementation(libs.squareup.sqldelight.android.driver)
+                implementation(libs.sqldelight.android.driver)
             }
         }
         val androidUnitTest by getting {
             dependencies {
-                implementation(kotlin("test-common"))
-                implementation(libs.kotlin.test)
+                implementation(kotlin("test"))
                 implementation(libs.kotlin.test.junit)
                 implementation(libs.bundles.androidx.test)
                 implementation(libs.kotlinx.coroutine.test)
-                implementation(libs.squareup.sqldelight.sqlite.driver)
+                implementation(libs.sqldelight.sqlite.driver)
             }
         }
 
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-
+        val iosMain by getting {
             dependencies {
-                implementation(libs.squareup.sqldelight.native.driver)
+                implementation(libs.sqldelight.native.driver)
                 implementation(libs.kotlinx.coroutine.core)
             }
         }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-
+        val iosTest by getting {
             dependencies {
-                implementation(libs.squareup.sqldelight.native.driver)
+                implementation(libs.sqldelight.native.driver)
             }
         }
-    }
-
-    targets.withType(KotlinNativeTargetWithSimulatorTests::class.java) {
-        testRuns["test"].deviceId = "iPhone 14"
     }
 }
 
 sqldelight {
-    database("MoneyFlowDB") {
-        packageName = "com.prof18.moneyflow.db"
+    databases {
+        create("MoneyFlowDB") {
+            packageName.set("com.prof18.moneyflow.db")
+        }
     }
 }
 
-val releaseBuild: String by project
-kermit {
-    if (releaseBuild.toBoolean()) {
-        stripBelow = co.touchlab.kermit.gradle.StripSeverity.Info
-    }
-}

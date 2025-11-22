@@ -9,18 +9,17 @@ import java.io.ByteArrayOutputStream
 plugins {
     alias(libs.plugins.versionsBenManes)
     alias(libs.plugins.android.application) apply false
-    alias(libs.plugins.kotlin.native.cocoapods) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.detekt)
-    alias(libs.plugins.touchlab.kermit) apply false
     alias(libs.plugins.sqldelight) apply false
+    alias(libs.plugins.compose.multiplatform) apply false
+    alias(libs.plugins.compose.compiler) apply false
 }
 
-// todo: move from here?
-val javaVersion by extra { JavaVersion.VERSION_11 }
+val javaVersion by extra { JavaVersion.VERSION_21 }
 val sharedLibGroup: String by project
 val sharedLibVersion: String by project
 

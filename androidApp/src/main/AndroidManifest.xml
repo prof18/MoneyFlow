@@ -23,26 +23,5 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.dropbox.core.android.AuthActivity"
-            android:configChanges="orientation|keyboard"
-            android:exported="true"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <!-- Using a Manifest Placeholder to hide our app key -->
-                <data android:scheme="db-${dropboxKey}" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".features.settings.DropboxSyncActivity" />
-
     </application>
-
-    <queries>
-        <package android:name="com.dropbox.android" />
-    </queries>
-
 </manifest>

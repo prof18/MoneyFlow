@@ -1,5 +1,8 @@
 package com.prof18.moneyflow.data.db
 
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToList
+import app.cash.sqldelight.coroutines.mapToOneOrDefault
 import com.prof18.moneyflow.data.db.model.Currency
 import com.prof18.moneyflow.data.db.model.TransactionType
 import com.prof18.moneyflow.db.AccountTable
@@ -12,9 +15,6 @@ import com.prof18.moneyflow.db.TransactionTable
 import com.prof18.moneyflow.utils.CurrentMonthID
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 import com.prof18.moneyflow.utils.generateCurrentMonthId
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
-import com.squareup.sqldelight.runtime.coroutines.mapToOneOrDefault
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -33,14 +33,14 @@ internal class DatabaseSourceImpl(
         dbRef.transactionTableQueries
             .selectLatestTransactions()
             .asFlow()
-            .mapToList()
+            .mapToList(backgroundDispatcher)
             .flowOn(backgroundDispatcher)
 
     override fun selectAllCategories(): Flow<List<CategoryTable>> =
         dbRef.categoryTableQueries
             .selectAll()
             .asFlow()
-            .mapToList()
+            .mapToList(backgroundDispatcher)
             .flowOn(backgroundDispatcher)
 
     override fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable> {
@@ -56,6 +56,7 @@ internal class DatabaseSourceImpl(
                     incomeAmount = 0.0,
                     outcomeAmount = 0.0,
                 ),
+                backgroundDispatcher,
             )
             .flowOn(backgroundDispatcher)
     }
@@ -71,6 +72,7 @@ internal class DatabaseSourceImpl(
                     currency = Currency.EURO,
                     amount = 0.0,
                 ),
+                backgroundDispatcher,
             )
             .flowOn(backgroundDispatcher)
 

@@ -9,16 +9,7 @@ import Foundation
 import shared
 
 func startKoin() {
-    let koinApplication = KoinIosKt.doInitKoinIos(
-        dropboxDataSource: DropboxDataSourceIOS()
-    )
-    _koin = koinApplication.koin
-    koin.openKoinScope()
-}
-
-private var _koin: Koin_coreKoin?
-var koin: Koin_coreKoin {
-    return _koin!
+    KoinIosDependencies.shared.start()
 }
 
 // swiftlint:disable identifier_name
@@ -33,50 +24,13 @@ class DepsInjector {
     private init() {
     }
 
-    func getHomeUseCase() -> HomeUseCase {
-        guard let useCase = koin.getFromScope(objCClass: HomeUseCase.self) as? HomeUseCase else {
-            fatalError("HomeUseCase cannot be null")
-        }
-        return useCase
+    func getHomeUseCase() -> HomeUseCase { KoinIosDependencies.shared.homeUseCase() }
 
-    }
+    func getCategoriesUseCase() -> CategoriesUseCase { KoinIosDependencies.shared.categoriesUseCase() }
 
-    func getCategoriesUseCase() -> CategoriesUseCase {
-        guard let useCase = koin.getFromScope(
-            objCClass: CategoriesUseCase.self
-        ) as? CategoriesUseCase else {
-            fatalError("CategoriesUseCase cannot be null")
-        }
-        return useCase
-    }
+    func getAddTransactionUseCase() -> AddTransactionUseCase { KoinIosDependencies.shared.addTransactionUseCase() }
 
-    func getAddTransactionUseCase() -> AddTransactionUseCase {
-        guard let useCase = koin.getFromScope(
-            objCClass: AddTransactionUseCase.self
-        ) as? AddTransactionUseCase else {
-            fatalError("AddTransactionUseCase cannot be null")
-        }
-        return useCase
-    }
+    func getErrorMapper() -> MoneyFlowErrorMapper { KoinIosDependencies.shared.errorMapper() }
 
-    func getErrorMapper() -> MoneyFlowErrorMapper {
-        guard let mapper = koin.get(objCClass: MoneyFlowErrorMapper.self) as? MoneyFlowErrorMapper else {
-            fatalError("MoneyFlowErrorMapper cannot be null")
-        }
-        return mapper
-    }
-
-    func getDropboxSyncUseCase() -> DropboxSyncUseCase {
-        guard let useCase = koin.get(
-            objCClass: DropboxSyncUseCase.self
-        ) as? DropboxSyncUseCase else {
-            fatalError("DropboxSyncUseCase cannot be null")
-        }
-        return useCase
-    }
-
-    func reloadDIGraph() {
-        koin.closeScope()
-        koin.openKoinScope()
-    }
+    func reloadDIGraph() { KoinIosDependencies.shared.reload() }
 }

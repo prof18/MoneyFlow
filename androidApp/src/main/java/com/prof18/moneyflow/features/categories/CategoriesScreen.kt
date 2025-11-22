@@ -8,6 +8,8 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,7 +33,7 @@ import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 internal class CategoriesScreenFactory(
     private val categoryState: MutableState<CategoryUIData?>,
@@ -46,7 +48,8 @@ internal class CategoriesScreenFactory(
             ),
         ) { backStackEntry ->
 
-            val viewModel = getViewModel<CategoriesViewModel>()
+            val viewModel = koinViewModel<CategoriesViewModel>()
+            val categoryModel by viewModel.categories.collectAsState()
 
             CategoriesScreen(
                 navigateUp = { navController.popBackStack() },
@@ -56,7 +59,7 @@ internal class CategoriesScreenFactory(
                 isFromAddTransaction = backStackEntry.arguments?.getBoolean(
                     NavigationArguments.FromAddTransaction.key,
                 ) ?: false,
-                categoryModel = viewModel.categoryModel,
+                categoryModel = categoryModel,
             )
         }
     }

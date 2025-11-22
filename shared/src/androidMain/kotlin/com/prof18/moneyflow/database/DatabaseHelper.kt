@@ -1,11 +1,11 @@
 package com.prof18.moneyflow.database
 
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.prof18.moneyflow.data.db.DATABASE_NAME
 import com.prof18.moneyflow.data.db.Schema
 import com.prof18.moneyflow.data.db.createQueryWrapper
 import com.prof18.moneyflow.db.MoneyFlowDB
-import com.squareup.sqldelight.android.AndroidSqliteDriver
-import com.squareup.sqldelight.db.SqlDriver
 import org.koin.java.KoinJavaComponent.getKoin
 
 internal object DatabaseHelper {
@@ -15,9 +15,9 @@ internal object DatabaseHelper {
 
     fun setupDatabase(driver: SqlDriver? = null) {
         val driverRef = driver ?: AndroidSqliteDriver(
-            Schema,
-            getKoin().get(),
-            DATABASE_NAME,
+            schema = Schema,
+            context = getKoin().get(),
+            name = DATABASE_NAME,
         )
         this.driverRef = driverRef
         dbRef = createQueryWrapper(driverRef)

@@ -1,13 +1,16 @@
 package com.prof18.moneyflow.data.db
 
+import app.cash.sqldelight.EnumColumnAdapter
+import app.cash.sqldelight.db.AfterVersion
+import app.cash.sqldelight.db.QueryResult
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.db.SqlSchema
 import com.prof18.moneyflow.data.db.default.defaultCategories
 import com.prof18.moneyflow.data.db.model.Currency
 import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MoneyFlowDB
 import com.prof18.moneyflow.db.TransactionTable
-import com.squareup.sqldelight.EnumColumnAdapter
-import com.squareup.sqldelight.db.SqlDriver
 
 const val DB_FILE_NAME_WITH_EXTENSION = "MoneyFlow.db"
 const val DB_FILE_NAME = "MoneyFlow"
@@ -28,25 +31,35 @@ internal fun createQueryWrapper(driver: SqlDriver): MoneyFlowDB {
     )
 }
 
-internal object Schema : SqlDriver.Schema by MoneyFlowDB.Schema {
-    override fun create(driver: SqlDriver) {
-        MoneyFlowDB.Schema.create(driver)
+internal object Schema : SqlSchema<QueryResult.Value<Unit>> {
+    override val version: Long
+        get() = MoneyFlowDB.Schema.version
 
-        createQueryWrapper(driver).apply {
+    override fun create(driver: SqlDriver): QueryResult.Value<Unit> {
+        val result = MoneyFlowDB.Schema.create(driver)
+        val queryWrapper = createQueryWrapper(driver)
 
-            accountTableQueries.insertAccount(
-                name = "Default Account",
-                currency = Currency.EURO,
-                amount = 0.0,
+        queryWrapper.accountTableQueries.insertAccount(
+            name = "Default Account",
+            currency = Currency.EURO,
+            amount = 0.0,
+        )
+
+        for (category in defaultCategories) {
+            queryWrapper.categoryTableQueries.insertCategory(
+                name = category.name,
+                type = category.type,
+                iconName = category.iconName,
             )
-
-            for (category in defaultCategories) {
-                categoryTableQueries.insertCategory(
-                    name = category.name,
-                    type = category.type,
-                    iconName = category.iconName,
-                )
-            }
         }
+
+        return result
     }
+
+    override fun migrate(
+        driver: SqlDriver,
+        oldVersion: Long,
+        newVersion: Long,
+        vararg callbacks: AfterVersion,
+    ): QueryResult.Value<Unit> = MoneyFlowDB.Schema.migrate(driver, oldVersion, newVersion, *callbacks)
 }

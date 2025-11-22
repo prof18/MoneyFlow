@@ -54,10 +54,6 @@ struct SettingsScreen: View {
                 sheetToShow = .filePicker
             }
 
-            NavigationLink(destination: DropboxScreen()) {
-                Button("dropbox_sync".localized) {}
-            }
-
         }
         .navigationTitle(Text("settings_screen".localized))
 

@@ -7,6 +7,4 @@ target 'MoneyFlow' do
   platform :ios, '15.0'
 
   # Pods for MoneyFlow
-  pod 'shared', :path => '../shared'
-  pod 'SwiftyDropbox'
 end
