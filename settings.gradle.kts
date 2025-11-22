@@ -21,4 +21,3 @@ plugins {
 rootProject.name = "money-flow"
 include(":shared")
 include(":androidApp")
-include(":database")
