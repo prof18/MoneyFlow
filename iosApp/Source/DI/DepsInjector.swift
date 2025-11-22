@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import shared
+import ComposeApp
 
 func startKoin() {
     KoinIosDependencies.shared.start()

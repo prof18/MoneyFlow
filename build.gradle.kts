@@ -20,8 +20,6 @@ plugins {
 }
 
 val javaVersion by extra { JavaVersion.VERSION_21 }
-val sharedLibGroup: String by project
-val sharedLibVersion: String by project
 
 
 tasks {

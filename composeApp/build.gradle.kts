@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.sqldelight)
 }
 
 val appVersionCode: String by project
@@ -16,6 +17,8 @@ val appVersionName: String by project
 val javaVersion: JavaVersion by rootProject.extra
 
 kotlin {
+    jvmToolchain(21)
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -31,19 +34,46 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            linkerOpts += listOf("-lsqlite3")
         }
     }
 
     sourceSets {
         applyDefaultHierarchyTemplate()
+        sourceSets.all {
+            languageSettings.optIn("kotlin.RequiresOptIn")
+            languageSettings.optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            languageSettings.optIn("com.russhwolf.settings.ExperimentalSettingsImplementation")
+            languageSettings.optIn("kotlin.experimental.ExperimentalObjCRefinement")
+            languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+        }
+
         val commonMain by getting {
             dependencies {
-                implementation(project(":shared"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.ui)
+                implementation(compose.components.resources)
+
+                implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.kotlinx.coroutine.core)
+                implementation(libs.koin.core)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.russhwolf.multiplatform.settings)
+                implementation(libs.touchlab.kermit)
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutine.extensions)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.koin.test)
+                implementation(libs.kotlinx.coroutine.test)
+                implementation(libs.cashapp.turbine)
+                implementation(libs.russhwolf.multiplatform.settings.test)
             }
         }
         val androidMain by getting {
@@ -56,10 +86,24 @@ kotlin {
                 implementation(libs.koin.androidx.compose)
                 implementation(libs.jake.timber)
                 implementation(libs.androidx.biometric.ktx)
-                implementation(compose.components.resources)
+                implementation(libs.sqldelight.android.driver)
             }
         }
-        val iosMain by getting
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.kotlin.test.junit)
+                implementation(libs.bundles.androidx.test)
+                implementation(libs.kotlinx.coroutine.test)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutine.core)
+                implementation(libs.sqldelight.native.driver)
+            }
+        }
+        val iosTest by getting
     }
 }
 
@@ -98,4 +142,13 @@ android {
 dependencies {
     debugImplementation(compose.uiTooling)
     androidTestImplementation(libs.compose.ui.test)
+}
+
+sqldelight {
+    databases {
+        create("MoneyFlowDB") {
+            packageName.set("com.prof18.moneyflow.db")
+            schemaOutputDirectory.set(file("src/commonMain/sqldelight/com/prof18/moneyflow/schema"))
+        }
+    }
 }

@@ -5,7 +5,7 @@
 //  Created by Marco Gomiero on 30/11/2020.
 //
 
-import shared
+import ComposeApp
 import Combine
 
 class CategoriesViewModel: ObservableObject {

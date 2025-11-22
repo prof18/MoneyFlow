@@ -8,7 +8,7 @@
 //
 
 import Combine
-import shared
+import ComposeApp
 
 func createPublisher<T>(_ flowAdapter: FlowWrapper<T>) -> AnyPublisher<T, KotlinError> {
 //    return Deferred<Publishers.HandleEvents<PassthroughSubject<T, KotlinError>>> {
