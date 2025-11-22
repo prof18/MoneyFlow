@@ -2,16 +2,13 @@ package com.prof18.moneyflow.data
 
 import DataFactory
 import app.cash.turbine.test
-import com.prof18.moneyflow.data.db.DatabaseSource
-import com.prof18.moneyflow.data.db.DatabaseSource
-import com.prof18.moneyflow.data.db.default.defaultCategories
-import com.prof18.moneyflow.data.db.model.TransactionType
-import com.prof18.moneyflow.db.MoneyFlowDB
-import com.prof18.moneyflow.data.MoneyRepository
+import com.prof18.moneyflow.database.DatabaseHelper
+import com.prof18.moneyflow.database.default.defaultCategories
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.utilities.closeDriver
 import com.prof18.moneyflow.utilities.createDriver
-import com.prof18.moneyflow.utilities.getDb
+import com.prof18.moneyflow.utilities.getDatabaseHelper
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.Clock
@@ -22,18 +19,16 @@ import kotlin.test.assertEquals
 
 class MoneyRepositoryImplTest {
 
-    private lateinit var databaseSource: DatabaseSource
+    private lateinit var databaseHelper: DatabaseHelper
     private lateinit var moneyRepository: MoneyRepository
-    private lateinit var database: MoneyFlowDB
 
     private val testDispatcher = StandardTestDispatcher()
 
     @BeforeTest
     fun setup() {
         createDriver()
-        database = getDb()
-        databaseSource = DatabaseSource(dbRef = database, dispatcher = testDispatcher)
-        moneyRepository = MoneyRepository(databaseSource)
+        databaseHelper = getDatabaseHelper()
+        moneyRepository = MoneyRepository(databaseHelper)
     }
 
     @AfterTest

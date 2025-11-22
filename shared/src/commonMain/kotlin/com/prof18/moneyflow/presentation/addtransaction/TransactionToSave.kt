@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.presentation.addtransaction
 
-import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.utils.MillisSinceEpoch
 
 data class TransactionToSave(

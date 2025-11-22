@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.sqldelight)
 }
 
 val sharedLibGroup: String by project
@@ -70,13 +69,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.androidx.lifecycle.viewmodel)
-                implementation(libs.sqldelight.runtime)
-                implementation(libs.sqldelight.coroutine.extensions)
                 implementation(libs.kotlinx.coroutine.core)
                 implementation(libs.koin.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.russhwolf.multiplatform.settings)
                 implementation(libs.touchlab.kermit)
+                api(project(":database"))
             }
         }
         val commonTest by getting {
@@ -93,7 +91,6 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.lifecycle.viewmodel.compose)
                 implementation(libs.androidx.security.crypto)
-                implementation(libs.sqldelight.android.driver)
             }
         }
         val androidUnitTest by getting {
@@ -102,28 +99,17 @@ kotlin {
                 implementation(libs.kotlin.test.junit)
                 implementation(libs.bundles.androidx.test)
                 implementation(libs.kotlinx.coroutine.test)
-                implementation(libs.sqldelight.sqlite.driver)
             }
         }
 
         val iosMain by getting {
             dependencies {
-                implementation(libs.sqldelight.native.driver)
                 implementation(libs.kotlinx.coroutine.core)
             }
         }
         val iosTest by getting {
             dependencies {
-                implementation(libs.sqldelight.native.driver)
             }
-        }
-    }
-}
-
-sqldelight {
-    databases {
-        create("MoneyFlowDB") {
-            packageName.set("com.prof18.moneyflow.db")
         }
     }
 }

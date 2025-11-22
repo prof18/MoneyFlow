@@ -30,7 +30,7 @@ import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
-import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.features.addtransaction.components.DatePickerDialog
 import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
 import com.prof18.moneyflow.features.addtransaction.components.MFTextInput

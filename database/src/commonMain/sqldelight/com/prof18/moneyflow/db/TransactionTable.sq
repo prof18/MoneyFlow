@@ -1,4 +1,4 @@
-import com.prof18.moneyflow.data.db.model.TransactionType;
+import com.prof18.moneyflow.database.model.TransactionType;
 
 CREATE TABLE TransactionTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

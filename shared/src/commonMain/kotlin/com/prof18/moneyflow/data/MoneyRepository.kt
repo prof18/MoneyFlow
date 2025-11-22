@@ -1,7 +1,7 @@
 package com.prof18.moneyflow.data
 
-import com.prof18.moneyflow.data.db.DatabaseSource
-import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.database.DatabaseHelper
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MonthlyRecapTable
@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.map
 import kotlin.math.abs
 
 class MoneyRepository(
-    private val dbSource: DatabaseSource,
+    private val dbSource: DatabaseHelper,
 ) {
 
     companion object {
@@ -70,11 +70,8 @@ class MoneyRepository(
                     TransactionType.OUTCOME -> TransactionTypeUI.EXPENSE
                 }
 
-                val transactionTitle = if (transaction.description.isNullOrEmpty()) {
-                    transaction.categoryName
-                } else {
-                    transaction.description
-                }
+                val transactionTitle = transaction.description.takeUnless { it.isNullOrEmpty() }
+                    ?: transaction.categoryName
 
                 MoneyTransaction(
                     id = transaction.id,
@@ -193,11 +190,8 @@ class MoneyRepository(
                     TransactionType.OUTCOME -> TransactionTypeUI.EXPENSE
                 }
 
-                val transactionTitle = if (transaction.description.isNullOrEmpty()) {
-                    transaction.categoryName
-                } else {
-                    transaction.description
-                }
+                val transactionTitle = transaction.description.takeUnless { it.isNullOrEmpty() }
+                    ?: transaction.categoryName
 
                 MoneyTransaction(
                     id = transaction.id,

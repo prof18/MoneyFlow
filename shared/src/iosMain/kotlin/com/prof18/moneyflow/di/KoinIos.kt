@@ -1,8 +1,8 @@
 package com.prof18.moneyflow.di
 
-import com.prof18.moneyflow.data.db.DatabaseSource
 import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.database.DatabaseHelper
+import com.prof18.moneyflow.database.createDatabaseDriver
 import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
@@ -73,7 +73,8 @@ actual val platformModule = module {
         DatabaseHelper.instance
     }
 
-    single { DatabaseSource(get(), Dispatchers.Main) }
+    single { createDatabaseDriver(useDebugDatabaseName = false) }
+    single { DatabaseHelper(get(), Dispatchers.Main) }
     single { MoneyRepository(get()) }
 
     // Use Cases

@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.utilities
 
-import com.prof18.moneyflow.db.MoneyFlowDB
+import com.prof18.moneyflow.database.DatabaseHelper
 
 /**
  * Init driver for each platform. Should *always* be called to setup test
@@ -12,7 +12,4 @@ expect fun createDriver()
  */
 expect fun closeDriver()
 
-/**
- * Platform specific access to HockeyDb
- */
-expect fun getDb(): MoneyFlowDB
+expect fun getDatabaseHelper(): DatabaseHelper

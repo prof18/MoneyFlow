@@ -2,7 +2,7 @@ package com.prof18.moneyflow.features.addtransaction
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prof18.moneyflow.data.db.model.TransactionType
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.data.MoneyRepository
