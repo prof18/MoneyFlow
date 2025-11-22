@@ -45,11 +45,12 @@ internal object SettingsScreenFactory : ComposeNavigationFactory {
         navGraphBuilder.composable(Screen.SettingsScreen.route) {
             val viewModel = koinViewModel<SettingsViewModel>()
             val hideDataState by viewModel.hideSensitiveDataState.collectAsState()
+            val biometricState by viewModel.biometricState.collectAsState()
 
             SettingsScreen(
                 performBackup = { uri -> viewModel.performBackup(BackupRequest(uri)) },
                 performRestore = { uri -> viewModel.performRestore(BackupRequest(uri)) },
-                biometricState = viewModel.biometricState,
+                biometricState = biometricState,
                 onBiometricEnabled = { viewModel.updateBiometricState(it) },
                 hideSensitiveDataState = hideDataState,
                 onHideSensitiveDataEnabled = { viewModel.updateHideSensitiveDataState(it) },
