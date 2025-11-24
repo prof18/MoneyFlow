@@ -19,4 +19,5 @@ plugins {
 }
 
 rootProject.name = "money-flow"
-include(":composeApp")
+include(":shared")
+include(":androidApp")
