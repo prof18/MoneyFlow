@@ -1,23 +1,23 @@
 package com.prof18.moneyflow.features.settings
 
 import androidx.lifecycle.ViewModel
-import com.prof18.moneyflow.presentation.settings.SettingsUseCase
+import com.prof18.moneyflow.data.SettingsRepository
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
 class SettingsViewModel(
-    private val settingsUseCase: SettingsUseCase,
+    private val settingsRepository: SettingsRepository,
     private val backupManager: BackupManager,
 ) : ViewModel() {
 
     private val _biometricState = MutableStateFlow(false)
     val biometricState: StateFlow<Boolean> = _biometricState
 
-    val hideSensitiveDataState: StateFlow<Boolean> = settingsUseCase.sensitiveDataVisibilityState
+    val hideSensitiveDataState: StateFlow<Boolean> = settingsRepository.hideSensibleDataState
 
     init {
-        _biometricState.value = settingsUseCase.isBiometricEnabled()
+        _biometricState.value = settingsRepository.isBiometricEnabled()
     }
 
     fun performBackup(request: BackupRequest) {
@@ -29,11 +29,11 @@ class SettingsViewModel(
     }
 
     fun updateBiometricState(enabled: Boolean) {
-        settingsUseCase.toggleBiometricStatus(enabled)
+        settingsRepository.setBiometric(enabled)
         _biometricState.update { enabled }
     }
 
     fun updateHideSensitiveDataState(enabled: Boolean) {
-        settingsUseCase.toggleHideSensitiveData(enabled)
+        settingsRepository.setHideSensitiveData(enabled)
     }
 }
