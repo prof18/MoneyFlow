@@ -27,36 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.prof18.moneyflow.ComposeNavigationFactory
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
-import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.ui.components.SwitchWithText
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import co.touchlab.kermit.Logger
-import org.koin.androidx.compose.koinViewModel
-
-internal val SettingsScreenFactory: ComposeNavigationFactory =
-    { navGraphBuilder: NavGraphBuilder, navController: NavController ->
-        navGraphBuilder.composable(Screen.SettingsScreen.route) {
-            val viewModel = koinViewModel<SettingsViewModel>()
-            val hideDataState by viewModel.hideSensitiveDataState.collectAsState()
-            val biometricState by viewModel.biometricState.collectAsState()
-
-            SettingsScreen(
-                performBackup = { uri -> viewModel.performBackup(BackupRequest(uri)) },
-                performRestore = { uri -> viewModel.performRestore(BackupRequest(uri)) },
-                biometricState = biometricState,
-                onBiometricEnabled = { viewModel.updateBiometricState(it) },
-                hideSensitiveDataState = hideDataState,
-                onHideSensitiveDataEnabled = { viewModel.updateHideSensitiveDataState(it) },
-            )
-        }
-    }
 
 @Composable
 internal fun SettingsScreen(

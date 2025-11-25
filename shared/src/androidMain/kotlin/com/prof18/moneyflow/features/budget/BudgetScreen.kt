@@ -6,18 +6,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.Screen
-
-internal val BudgetScreenFactory: ComposeNavigationFactory =
-    { navGraphBuilder: NavGraphBuilder, _: NavController ->
-        navGraphBuilder.composable(Screen.BudgetScreen.route) {
-            BudgetScreen()
-        }
-    }
 
 @Composable
 internal fun BudgetScreen() {

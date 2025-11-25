@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
 }
 
@@ -57,6 +58,10 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
 
                 implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.kotlinx.serialization.core)
+//                implementation(libs.androidx.navigation3.runtime)
+                implementation(libs.androidx.navigation3.ui)
+                implementation(libs.androidx.lifecycle.viewmodel.navigation3)
                 implementation(libs.kotlinx.coroutine.core)
                 implementation(libs.koin.core)
                 implementation(libs.kotlinx.datetime)

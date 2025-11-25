@@ -9,13 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.prof18.moneyflow.ComposeNavigationFactory
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
-import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.model.CategoryIcon
@@ -27,21 +22,6 @@ import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.koin.androidx.compose.koinViewModel
-
-internal val AllTransactionsScreenFactory: ComposeNavigationFactory =
-    { navGraphBuilder: NavGraphBuilder, navController: NavController ->
-        navGraphBuilder.composable(Screen.AllTransactionsScreen.route) {
-            val viewModel = koinViewModel<AllTransactionsViewModel>()
-
-            AllTransactionsScreen(
-                navigateUp = { navController.popBackStack() },
-                getUIErrorMessage = { error -> viewModel.mapErrorToErrorMessage(error) },
-                stateFlow = viewModel.state,
-                loadNextPage = viewModel::loadNextPage,
-            )
-        }
-    }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

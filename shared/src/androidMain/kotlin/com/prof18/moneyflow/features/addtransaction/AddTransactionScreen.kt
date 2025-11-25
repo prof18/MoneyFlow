@@ -24,13 +24,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.prof18.moneyflow.ComposeNavigationFactory
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
-import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.features.addtransaction.components.DatePickerDialog
 import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
@@ -43,46 +38,6 @@ import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.koinViewModel
-
-internal fun addTransactionScreenFactory(
-    categoryState: MutableState<CategoryUIData?>,
-): ComposeNavigationFactory = { navGraphBuilder: NavGraphBuilder, navController: NavController ->
-    navGraphBuilder.composable(Screen.AddTransactionScreen.route) {
-        val viewModel = koinViewModel<AddTransactionViewModel>()
-        val uiState by viewModel.uiState.collectAsState()
-
-        AddTransactionScreen(
-            categoryState = categoryState,
-            navigateUp = { navController.popBackStack() },
-            navigateToCategoryList = {
-                navController.navigate("${Screen.CategoriesScreen.route}/true")
-            },
-            addTransaction = { categoryId ->
-                viewModel.addTransaction(categoryId)
-            },
-            amountText = uiState.amountText,
-            updateAmountText = { amountText ->
-                viewModel.updateAmountText(amountText)
-            },
-            descriptionText = uiState.descriptionText,
-            updateDescriptionText = { descText ->
-                viewModel.updateDescriptionText(descText)
-            },
-            selectedTransactionType = uiState.selectedTransactionType,
-            updateTransactionType = { transactionType ->
-                viewModel.updateTransactionType(transactionType)
-            },
-            updateYear = { year -> viewModel.setYearNumber(year) },
-            updateMonth = { month -> viewModel.setMonthNumber(month) },
-            updateDay = { day -> viewModel.setDayNumber(day) },
-            saveDate = { viewModel.saveDate() },
-            dateLabel = uiState.dateLabel,
-            addTransactionAction = uiState.addTransactionAction,
-            resetAction = { viewModel.resetAction() },
-        )
-    }
-}
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
