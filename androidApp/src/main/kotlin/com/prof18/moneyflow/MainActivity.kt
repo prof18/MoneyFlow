@@ -21,6 +21,7 @@ import com.prof18.moneyflow.presentation.auth.AuthScreen
 import com.prof18.moneyflow.presentation.auth.AuthState
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import co.touchlab.kermit.Logger
+import com.prof18.moneyflow.navigation.MoneyFlowNavHost
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : FragmentActivity() {
@@ -49,7 +50,7 @@ class MainActivity : FragmentActivity() {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    MoneyFlowRoot()
+                    MoneyFlowNavHost()
 
                     AnimatedVisibility(visible = authState != AuthState.AUTHENTICATED) {
                         Surface(modifier = Modifier.fillMaxSize()) {

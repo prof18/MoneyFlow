@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.update
 
 class SettingsViewModel(
     private val settingsRepository: SettingsRepository,
-    private val backupManager: BackupManager,
 ) : ViewModel() {
 
     private val _biometricState = MutableStateFlow(false)
@@ -18,14 +17,6 @@ class SettingsViewModel(
 
     init {
         _biometricState.value = settingsRepository.isBiometricEnabled()
-    }
-
-    fun performBackup(request: BackupRequest) {
-        backupManager.performBackup(request)
-    }
-
-    fun performRestore(request: BackupRequest) {
-        backupManager.performRestore(request)
     }
 
     fun updateBiometricState(enabled: Boolean) {

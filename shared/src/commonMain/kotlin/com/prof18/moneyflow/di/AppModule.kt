@@ -6,14 +6,10 @@ import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.SettingsViewModel
-import com.prof18.moneyflow.features.settings.BackupManager
 import org.koin.core.module.dsl.viewModelOf
-import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val appModule = module {
-    singleOf(::BackupManager)
-
     // View Models
     viewModelOf(::MainViewModel)
     viewModelOf(::HomeViewModel)

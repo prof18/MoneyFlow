@@ -1,12 +1,13 @@
 package com.prof18.moneyflow.di
 
-import com.prof18.moneyflow.database.DBImportExport
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.database.createDatabaseDriver
 import com.prof18.moneyflow.data.MoneyRepository
-import com.prof18.moneyflow.features.settings.BackupManager
+import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
+import com.prof18.moneyflow.IosBiometricAvailabilityChecker
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.russhwolf.settings.AppleSettings
+import com.russhwolf.settings.NSUserDefaultsSettings
 import com.russhwolf.settings.Settings
 import platform.Foundation.NSUserDefaults
 import kotlinx.cinterop.ObjCClass
@@ -44,20 +45,9 @@ object KoinIosDependencies {
 fun initKoinIos(): KoinApplication = KoinIosDependencies.start()
 
 actual val platformModule = module {
-    single<Settings> { AppleSettings(NSUserDefaults.standardUserDefaults) }
-    factory { DBImportExport() }
-    single {
-        DatabaseHelper.setupDatabase()
-        DatabaseHelper.instance
-    }
-
+    single<Settings> { NSUserDefaultsSettings(NSUserDefaults.standardUserDefaults) }
     single { createDatabaseDriver(useDebugDatabaseName = false) }
-    single { DatabaseHelper(get(), Dispatchers.Main) }
-    single { MoneyRepository(get()) }
-    factory { BackupManager(get()) }
+    single<BiometricAvailabilityChecker> { IosBiometricAvailabilityChecker() }
 }
 
-fun Koin.get(objCClass: ObjCClass): Any {
-    val kClazz = getOriginalKotlinClass(objCClass)!!
-    return get(kClazz)
-}
+
