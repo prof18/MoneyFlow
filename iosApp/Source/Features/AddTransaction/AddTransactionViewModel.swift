@@ -5,7 +5,7 @@
 //  Created by Marco Gomiero on 06/12/2020.
 //
 
-import ComposeApp
+import shared
 
 class AddTransactionViewModel: ObservableObject {
 
@@ -42,10 +42,9 @@ class AddTransactionViewModel: ObservableObject {
         let amount = Double(amountTextField)
 
         guard amount != nil else {
-            let uiErrorMessage = UIErrorMessageFactoryKt.uiErrorMessageFromKeys(
-                messageKey: "amount_not_empty_error",
-                nerdMessageKey: "error_nerd_message",
-                nerdMessageArgs: []
+            let uiErrorMessage = UIErrorMessage(
+                message: "amount_not_empty_error".localized,
+                nerdMessage: ""
             )
             self.addTransactionAction = AddTransactionAction.ShowError(uiErrorMessage: uiErrorMessage)
             return

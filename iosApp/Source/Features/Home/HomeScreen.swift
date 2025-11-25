@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposeApp
+import shared
 
 struct HomeScreen: View {
 
@@ -154,10 +154,9 @@ struct HomeScreen_Previews: PreviewProvider {
             screenErrorData: .constant(SnackbarData.init()),
             homeModel: .constant(
                 HomeModel.Error(
-                    uiErrorMessage: UIErrorMessageFactoryKt.uiErrorMessageFromKeys(
-                        messageKey: "error_get_money_summary_message",
-                        nerdMessageKey: "error_nerd_message",
-                        nerdMessageArgs: ["101"]
+                    uiErrorMessage: UIErrorMessage(
+                        message: "Error!",
+                        nerdMessage: "Error code: 101"
                     )
                 )
             ) ,

@@ -5,13 +5,13 @@
 //  Created by Marco Gomiero on 29.12.21.
 //
 
-import ComposeApp
+import shared
 
 extension UIErrorMessage {
     func toSnackbarData() -> SnackbarData {
         return SnackbarData(
-            title: self.localizedMessage(),
-            subtitle: self.localizedNerdMessage(),
+            title: self.message,
+            subtitle: self.nerdMessage,
             showBanner: true
         )
     }

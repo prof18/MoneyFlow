@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import ComposeApp
+import shared
 
 class DatabaseImportExport {
 

@@ -5,7 +5,7 @@
 //  Created by Marco Gomiero on 05/09/2020.
 //
 
-import ComposeApp
+import shared
 import Combine
 
 class HomeViewModel: ObservableObject {

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposeApp
+import shared
 
 @main
 struct MoneyFlowApp: App {
@@ -22,11 +22,39 @@ struct MoneyFlowApp: App {
             .foregroundColor: UIColor(named: "ColorOnBackground")! as UIColor,
             .font: UIFont(name: "Poppins-Regular", size: 32)!]
 
+        var key = ""
+        if let path = Bundle.main.path(forResource: "Info", ofType: "plist") {
+            if let keys = NSDictionary(contentsOfFile: path) {
+                key = keys["DropboxApiKey"] as? String ?? ""
+            }
+        }
+        DI.getDropboxSyncUseCase().setupClient(apiKey: key)
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(appState)
+                    .onOpenURL { (url) in
+                        print(url)
+
+                        DI.getDropboxSyncUseCase().handleOAuthResponse {
+                            DropboxDataSourceIOS.handleOAuthResponse(
+                                    url: url,
+                                    onSuccess: {
+                                        print("Success! User is logged into DropboxClientsManager.")
+                                        NotificationCenter.default.post(name: .didDropboxSuccess, object: nil)
+                                    },
+                                    onCancel: {
+                                        print("Authorization flow was manually canceled by user!")
+                                        NotificationCenter.default.post(name: .didDropboxCancel, object: nil)
+                                    },
+                                    onError: {
+                                        print("Error")
+                                        NotificationCenter.default.post(name: .didDropboxError, object: nil)
+                                    }
+                            )
+                        }
+                    }
         }
                 .onChange(of: scenePhase) { newScenePhase in
                     switch newScenePhase {
