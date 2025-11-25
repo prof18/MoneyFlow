@@ -13,16 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.MutableState
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
-import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.NavigationArguments
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
-import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.features.categories.components.CategoryCard
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
@@ -34,35 +26,6 @@ import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.koin.androidx.compose.koinViewModel
-
-internal fun categoriesScreenFactory(
-    categoryState: MutableState<CategoryUIData?>,
-): ComposeNavigationFactory = { navGraphBuilder: NavGraphBuilder, navController: NavController ->
-    navGraphBuilder.composable(
-        route = Screen.CategoriesScreen.route + "/{${NavigationArguments.FromAddTransaction.key}}",
-        arguments = listOf(
-            navArgument(NavigationArguments.FromAddTransaction.key) {
-                type = NavType.BoolType
-            },
-        ),
-    ) { backStackEntry ->
-
-        val viewModel = koinViewModel<CategoriesViewModel>()
-        val categoryModel by viewModel.categories.collectAsState()
-
-        CategoriesScreen(
-            navigateUp = { navController.popBackStack() },
-            sendCategoryBack = { categoryData ->
-                categoryState.value = categoryData
-            },
-            isFromAddTransaction = backStackEntry.arguments?.getBoolean(
-                NavigationArguments.FromAddTransaction.key,
-            ) ?: false,
-            categoryModel = categoryModel,
-        )
-    }
-}
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

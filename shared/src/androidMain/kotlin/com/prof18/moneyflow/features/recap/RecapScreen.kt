@@ -6,18 +6,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.Screen
-
-internal val RecapScreenFactory: ComposeNavigationFactory =
-    { navGraphBuilder: NavGraphBuilder, _: NavController ->
-        navGraphBuilder.composable(Screen.RecapScreen.route) {
-            RecapScreen()
-        }
-    }
 
 @Composable
 internal fun RecapScreen() {

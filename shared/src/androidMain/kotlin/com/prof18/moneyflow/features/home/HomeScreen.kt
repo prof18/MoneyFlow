@@ -36,11 +36,6 @@ import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
@@ -55,34 +50,6 @@ import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import co.touchlab.kermit.Logger
-import org.koin.androidx.compose.koinViewModel
-
-internal fun homeScreenFactory(paddingValues: PaddingValues): ComposeNavigationFactory =
-    { navGraphBuilder: NavGraphBuilder, navController: NavController ->
-        navGraphBuilder.composable(Screen.HomeScreen.route) {
-            val homeViewModel = koinViewModel<HomeViewModel>()
-            val homeModel: HomeModel by homeViewModel.homeModel.collectAsState()
-            val hideSensitiveDataState: Boolean by homeViewModel.hideSensitiveDataState.collectAsState()
-
-            HomeScreen(
-                navigateToAddTransaction = {
-                    navController.navigate(Screen.AddTransactionScreen.route)
-                },
-                paddingValues = paddingValues,
-                deleteTransaction = { transactionId ->
-                    homeViewModel.deleteTransaction(transactionId)
-                },
-                homeModel = homeModel,
-                hideSensitiveDataState = hideSensitiveDataState,
-                changeSensitiveDataVisibility = { visibility ->
-                    homeViewModel.changeSensitiveDataVisibility(
-                        visibility,
-                    )
-                },
-                navigateToAllTransactions = { navController.navigate(Screen.AllTransactionsScreen.route) },
-            )
-        }
-    }
 
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
