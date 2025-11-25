@@ -14,7 +14,7 @@ class AndroidBiometricAvailabilityChecker(
         return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
             BiometricManager.BIOMETRIC_SUCCESS -> true
             else -> {
-                Logger.Companion.d { "Biometric not supported or not available on this device." }
+                Logger.d { "Biometric not supported or not available on this device." }
                 false
             }
         }
