@@ -12,7 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.MutableState
 import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -113,7 +113,6 @@ internal fun CategoriesScreen(
 }
 
 @Preview(name = "CategoriesScreen Light")
-@Preview(name = "CategoriesScreen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CategoriesScreenPreview() {
     MoneyFlowTheme {
@@ -142,7 +141,6 @@ private fun CategoriesScreenPreview() {
 }
 
 @Preview(name = "CategoriesScreenError Light")
-@Preview(name = "CategoriesScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CategoriesScreenErrorPreview() {
     MoneyFlowTheme {

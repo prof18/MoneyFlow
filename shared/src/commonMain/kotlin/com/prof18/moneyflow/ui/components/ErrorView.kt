@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,13 +11,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.shrug
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun ErrorView(
@@ -53,7 +52,6 @@ internal fun ErrorView(
 }
 
 @Preview(name = "ErrorView Light")
-@Preview(name = "ErrorView Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ErrorViewPreview() {
     val message = UIErrorMessage(message = "New error occurred", nerdMessage = "Error code: 101")

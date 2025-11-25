@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun SwitchWithText(
@@ -50,7 +49,6 @@ internal fun SwitchWithText(
 }
 
 @Preview(name = "SwitchWithText Light")
-@Preview(name = "SwitchWithText Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SwitchWithTextPreview() {
     MoneyFlowTheme {

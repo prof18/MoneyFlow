@@ -23,7 +23,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -37,7 +37,7 @@ import com.prof18.moneyflow.features.addtransaction.components.IconTextClickable
 import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
 import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeTabBar
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
-import com.prof18.moneyflow.features.categories.data.mapToDrawableResource
+import com.prof18.moneyflow.presentation.categories.mapToDrawableResource
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.MFTopBar
@@ -237,7 +237,6 @@ internal fun AddTransactionScreen(
 }
 
 @Preview(name = "Add Transaction Screen Light")
-@Preview(name = "Add Transaction Screen Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AddTransactionScreenPreview() {
     MoneyFlowTheme {

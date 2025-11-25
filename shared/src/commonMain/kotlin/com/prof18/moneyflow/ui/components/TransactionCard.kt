@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -20,12 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
-import org.jetbrains.compose.resources.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
-import com.prof18.moneyflow.features.categories.data.mapToDrawableResource
+import com.prof18.moneyflow.presentation.categories.mapToDrawableResource
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -34,7 +31,10 @@ import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
 import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
+import money_flow.shared.generated.resources.ic_arrow_down_rotate
+import money_flow.shared.generated.resources.ic_arrow_up_rotate
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.abs
 
 @Composable
@@ -141,7 +141,6 @@ internal fun TransactionCard(
 }
 
 @Preview(name = "TransactionCard Light")
-@Preview(name = "TransactionCard Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun TransactionCardPreview() {
     Surface {

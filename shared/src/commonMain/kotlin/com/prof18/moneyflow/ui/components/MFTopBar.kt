@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
@@ -13,9 +12,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun MFTopBar(
@@ -61,7 +60,6 @@ internal fun MFTopBar(
 }
 
 @Preview(name = "AddTransactionTopBar Light")
-@Preview(name = "AddTransactionTopBar Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AddTransactionTopBarPreview() {
     return MFTopBar(
