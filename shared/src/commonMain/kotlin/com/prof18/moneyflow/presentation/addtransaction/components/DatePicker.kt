@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package com.prof18.moneyflow.features.addtransaction.components
+package com.prof18.moneyflow.presentation.addtransaction.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

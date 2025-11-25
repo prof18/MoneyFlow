@@ -1,6 +1,5 @@
-package com.prof18.moneyflow.features.home.components
+package com.prof18.moneyflow.presentation.home.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

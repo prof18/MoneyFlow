@@ -8,7 +8,6 @@ import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.SettingsViewModel
 import com.prof18.moneyflow.features.settings.BackupManager
 import org.koin.core.module.dsl.viewModelOf
-import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 

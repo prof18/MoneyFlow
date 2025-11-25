@@ -17,8 +17,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import com.prof18.moneyflow.features.auth.AuthScreen
-import com.prof18.moneyflow.features.auth.AuthState
+import com.prof18.moneyflow.presentation.auth.AuthScreen
+import com.prof18.moneyflow.presentation.auth.AuthState
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import co.touchlab.kermit.Logger
 import org.koin.androidx.viewmodel.ext.android.viewModel

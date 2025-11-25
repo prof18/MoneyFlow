@@ -1,33 +1,29 @@
-package com.prof18.moneyflow.features.categories
+package com.prof18.moneyflow.presentation.categories
 
-import android.annotation.SuppressLint
-import android.content.res.Configuration
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.MutableState
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.domain.entities.Category
-import com.prof18.moneyflow.features.categories.components.CategoryCard
-import com.prof18.moneyflow.features.categories.data.CategoryUIData
-import com.prof18.moneyflow.features.categories.data.toCategoryUIData
-import com.prof18.moneyflow.presentation.categories.CategoryModel
+import com.prof18.moneyflow.presentation.categories.components.CategoryCard
+import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
+import com.prof18.moneyflow.presentation.categories.data.toCategoryUIData
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.add
+import money_flow.shared.generated.resources.categories_screen
+import money_flow.shared.generated.resources.error_get_categories_message
+import money_flow.shared.generated.resources.error_nerd_message
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 internal fun CategoriesScreen(
     navigateUp: () -> Unit,

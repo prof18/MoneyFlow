@@ -1,7 +1,5 @@
-package com.prof18.moneyflow.features.addtransaction
+package com.prof18.moneyflow.presentation.addtransaction
 
-import android.annotation.SuppressLint
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,34 +10,37 @@ import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.database.model.TransactionType
-import com.prof18.moneyflow.features.addtransaction.components.DatePickerDialog
-import com.prof18.moneyflow.features.addtransaction.components.IconTextClickableRow
-import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
-import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeTabBar
-import com.prof18.moneyflow.features.categories.data.CategoryUIData
+import com.prof18.moneyflow.presentation.addtransaction.components.DatePickerDialog
+import com.prof18.moneyflow.presentation.addtransaction.components.IconTextClickableRow
+import com.prof18.moneyflow.presentation.addtransaction.components.MFTextInput
+import com.prof18.moneyflow.presentation.addtransaction.components.TransactionTypeTabBar
+import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.categories.mapToDrawableResource
-import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.add_transaction_screen
+import money_flow.shared.generated.resources.description
+import money_flow.shared.generated.resources.ic_calendar
+import money_flow.shared.generated.resources.ic_edit
+import money_flow.shared.generated.resources.ic_money_bill_wave
+import money_flow.shared.generated.resources.ic_question_circle
+import money_flow.shared.generated.resources.save
+import money_flow.shared.generated.resources.select_category
+import money_flow.shared.generated.resources.today
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 @Suppress("LongMethod", "LongParameterList") // TODO: reduce method length
 internal fun AddTransactionScreen(

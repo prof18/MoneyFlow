@@ -22,15 +22,14 @@ import androidx.savedstate.compose.serialization.serializers.SnapshotStateListSe
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
-import kotlinx.serialization.serializer
-import com.prof18.moneyflow.features.addtransaction.AddTransactionScreen
+import com.prof18.moneyflow.presentation.addtransaction.AddTransactionScreen
 import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
-import com.prof18.moneyflow.features.alltransactions.AllTransactionsScreen
+import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsScreen
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
-import com.prof18.moneyflow.features.categories.CategoriesScreen
+import com.prof18.moneyflow.presentation.categories.CategoriesScreen
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
-import com.prof18.moneyflow.features.categories.data.CategoryUIData
-import com.prof18.moneyflow.features.home.HomeScreen
+import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
+import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.SettingsScreen
 import com.prof18.moneyflow.features.settings.SettingsViewModel
@@ -185,7 +184,6 @@ private fun EntryProviderScope<AppRoute>.screens(
         val viewModel = koinViewModel<AllTransactionsViewModel>()
         AllTransactionsScreen(
             navigateUp = { backStack.removeLastOrNull() },
-            getUIErrorMessage = viewModel::mapErrorToErrorMessage,
             stateFlow = viewModel.state,
             loadNextPage = viewModel::loadNextPage,
         )

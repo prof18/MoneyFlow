@@ -1,6 +1,5 @@
-package com.prof18.moneyflow.features.categories.components
+package com.prof18.moneyflow.presentation.categories.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

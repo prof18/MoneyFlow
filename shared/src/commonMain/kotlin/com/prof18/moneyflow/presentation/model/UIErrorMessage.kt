@@ -9,5 +9,3 @@ data class UIErrorMessage(
     val nerdMessageArgs: List<String> = emptyList(),
 )
 
-expect fun UIErrorMessage.localizedMessage(): String
-expect fun UIErrorMessage.localizedNerdMessage(): String

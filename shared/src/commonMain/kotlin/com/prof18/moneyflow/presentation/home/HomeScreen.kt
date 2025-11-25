@@ -1,8 +1,7 @@
-package com.prof18.moneyflow.features.home
+package com.prof18.moneyflow.presentation.home
 
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,8 +26,6 @@ import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -39,9 +36,8 @@ import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
-import com.prof18.moneyflow.features.home.components.HeaderNavigator
-import com.prof18.moneyflow.features.home.components.HomeRecap
-import com.prof18.moneyflow.presentation.home.HomeModel
+import com.prof18.moneyflow.presentation.home.components.HeaderNavigator
+import com.prof18.moneyflow.presentation.home.components.HomeRecap
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.ErrorView
