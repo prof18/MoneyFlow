@@ -1,6 +1,5 @@
-package com.prof18.moneyflow.features.auth
+package com.prof18.moneyflow.presentation.auth
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

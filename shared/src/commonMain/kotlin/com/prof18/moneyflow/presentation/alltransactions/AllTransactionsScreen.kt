@@ -1,20 +1,12 @@
-package com.prof18.moneyflow.features.alltransactions
+package com.prof18.moneyflow.presentation.alltransactions
 
-import android.annotation.SuppressLint
-import android.content.res.Configuration
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
-import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.model.CategoryIcon
-import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.MFTopBar
@@ -22,13 +14,14 @@ import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import money_flow.shared.generated.resources.*
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 internal fun AllTransactionsScreen(
     navigateUp: () -> Unit = {},
-    getUIErrorMessage: (MoneyFlowError) -> UIErrorMessage,
-    stateFlow: StateFlow<AllTransactionsUiState>,
+    stateFlow: StateFlow<com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState>,
     loadNextPage: () -> Unit,
 ) {
     Scaffold(
@@ -85,17 +78,8 @@ private fun AllTransactionsScreenPreviews() {
     MoneyFlowTheme {
         AllTransactionsScreen(
             navigateUp = {},
-            getUIErrorMessage = {
-                UIErrorMessage(
-                    message = Res.string.error_get_all_transaction_message,
-                    messageKey = "error_get_all_transaction_message",
-                    nerdMessage = Res.string.error_nerd_message,
-                    nerdMessageKey = "error_nerd_message",
-                    nerdMessageArgs = listOf("101"),
-                )
-            },
             stateFlow = MutableStateFlow(
-                AllTransactionsUiState(
+                _root_ide_package_.com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState(
                     transactions = listOf(
                         SampleTransactions.iceCream,
                         SampleTransactions.tip,

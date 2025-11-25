@@ -1,6 +1,5 @@
-package com.prof18.moneyflow.features.addtransaction.components
+package com.prof18.moneyflow.presentation.addtransaction.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

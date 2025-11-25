@@ -1,6 +1,5 @@
-package com.prof18.moneyflow.features.addtransaction.components
+package com.prof18.moneyflow.presentation.addtransaction.components
 
-import android.content.res.Configuration
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.BorderStroke

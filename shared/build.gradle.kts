@@ -59,6 +59,7 @@ kotlin {
 
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.koin.compose.viewmodel.navigation)
+                implementation(libs.koin.compose)
                 implementation(libs.kotlinx.serialization.core)
                 implementation(libs.androidx.navigation3.ui)
                 implementation(libs.androidx.lifecycle.viewmodel.navigation3)

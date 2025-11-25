@@ -1,4 +1,4 @@
-package com.prof18.moneyflow.features.auth
+package com.prof18.moneyflow.presentation.auth
 
 enum class AuthState {
     AUTHENTICATED,
