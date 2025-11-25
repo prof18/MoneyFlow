@@ -27,7 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
@@ -128,7 +128,6 @@ private fun TransactionTabIndicator(
 }
 
 @Preview(name = "TransactionTypeTabBarPreview Light")
-@Preview(name = "TransactionTypeTabBarPreview Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun TransactionTypeTabBarPreview() {
     MoneyFlowTheme {

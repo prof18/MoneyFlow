@@ -21,7 +21,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.addtransaction.addTransactionScreenFactory
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsScreenFactory
 import com.prof18.moneyflow.features.categories.categoriesScreenFactory

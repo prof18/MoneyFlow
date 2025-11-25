@@ -16,7 +16,7 @@ import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -67,7 +67,6 @@ internal fun MFTextInput(
 }
 
 @Preview(name = "MFTextInputPreviewWithIcon Light")
-@Preview(name = "MFTextInputPreviewWithIcon Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun MFTextInputPreviewWithIcon() {
     MoneyFlowTheme {
@@ -90,7 +89,6 @@ private fun MFTextInputPreviewWithIcon() {
 }
 
 @Preview(name = "MFTextInputPreview Light")
-@Preview(name = "MFTextInputPreview Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun MFTextInputPreview() {
     MoneyFlowTheme {

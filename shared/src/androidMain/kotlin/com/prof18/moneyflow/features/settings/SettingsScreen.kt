@@ -26,7 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -34,7 +34,6 @@ import com.prof18.moneyflow.ComposeNavigationFactory
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.Screen
-import com.prof18.moneyflow.features.settings.BackupRequest
 import com.prof18.moneyflow.ui.components.SwitchWithText
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -196,7 +195,6 @@ private fun isBiometricAuthPossible(biometricManager: BiometricManager) =
     biometricManager.canAuthenticate(Authenticators.BIOMETRIC_STRONG or Authenticators.DEVICE_CREDENTIAL)
 
 @Preview(name = "Settings Light")
-@Preview(name = "Settings Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SettingsScreenPreview() {
     MoneyFlowTheme {

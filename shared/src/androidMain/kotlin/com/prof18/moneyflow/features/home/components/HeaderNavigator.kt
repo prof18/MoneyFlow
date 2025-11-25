@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
@@ -59,7 +59,6 @@ internal fun HeaderNavigator(
 }
 
 @Preview(name = "HeaderNavigator Light")
-@Preview(name = "HeaderNavigator Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun SnackCardPreview() {
     MoneyFlowTheme {

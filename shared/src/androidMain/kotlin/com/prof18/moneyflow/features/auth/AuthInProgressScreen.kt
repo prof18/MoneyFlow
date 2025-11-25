@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.Margins
@@ -64,7 +64,7 @@ private fun AuthState.getAuthMessage(): String {
 }
 
 @Preview(name = "AuthScreenProgress Light")
-@Preview(name = "AuthScreenProgress Night", uiMode = Configuration.UI_MODE_NIGHT_YES)@Composable
+@Composable
 private fun AuthScreenProgressPreview() {
     MoneyFlowTheme {
         Surface {
@@ -77,7 +77,6 @@ private fun AuthScreenProgressPreview() {
 }
 
 @Preview(name = "uthScreenFail Light")
-@Preview(name = "uthScreenFail Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AuthScreenFailPreview() {
     MoneyFlowTheme {
@@ -91,7 +90,6 @@ private fun AuthScreenFailPreview() {
 }
 
 @Preview(name = "AuthScreenError Light")
-@Preview(name = "AuthScreenError Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AuthScreenErrorPreview() {
     MoneyFlowTheme {

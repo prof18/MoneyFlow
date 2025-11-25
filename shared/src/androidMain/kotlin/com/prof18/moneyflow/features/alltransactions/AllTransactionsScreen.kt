@@ -8,7 +8,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -100,14 +100,13 @@ internal fun AllTransactionsScreen(
 }
 
 @Preview(name = "AllTransactionsScreenPreviews Light")
-@Preview(name = "AllTransactionsScreenPreviews Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AllTransactionsScreenPreviews() {
     MoneyFlowTheme {
         AllTransactionsScreen(
             navigateUp = {},
             getUIErrorMessage = { UIErrorMessage("", "") },
-            stateFlow = kotlinx.coroutines.flow.MutableStateFlow(
+            stateFlow = MutableStateFlow(
                 AllTransactionsUiState(
                     transactions = listOf(
                         SampleTransactions.iceCream,
