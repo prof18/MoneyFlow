@@ -18,10 +18,12 @@ struct ErrorView: View {
             VStack {
                 Text("shrug".localized)
                     .padding(.bottom, AppMargins.small)
-                Text(uiErrorMessage.message )
+                Text(uiErrorMessage.localizedMessage())
                     .font(AppFonts.body1)
-                Text(uiErrorMessage.nerdMessage)
-                    .font(AppFonts.caption)
+                if !uiErrorMessage.localizedNerdMessage().isEmpty {
+                    Text(uiErrorMessage.localizedNerdMessage())
+                        .font(AppFonts.caption)
+                }
             }
             Spacer()
         }
@@ -30,9 +32,10 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
 
-    static let error = UIErrorMessage(
-        message: "An error occourred!",
-        nerdMessage: "Error code 101"
+    static let error = UIErrorMessageFactoryKt.uiErrorMessageFromKeys(
+        messageKey: "error_get_money_summary_message",
+        nerdMessageKey: "error_nerd_message",
+        nerdMessageArgs: ["101"]
     )
 
     static var previews: some View {

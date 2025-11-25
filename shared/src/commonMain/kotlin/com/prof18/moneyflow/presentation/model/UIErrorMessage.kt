@@ -1,6 +1,13 @@
 package com.prof18.moneyflow.presentation.model
 
 data class UIErrorMessage(
-    val message: String,
-    val nerdMessage: String,
+    val message: org.jetbrains.compose.resources.StringResource,
+    val messageKey: String,
+    val messageArgs: List<String> = emptyList(),
+    val nerdMessage: org.jetbrains.compose.resources.StringResource,
+    val nerdMessageKey: String,
+    val nerdMessageArgs: List<String> = emptyList(),
 )
+
+expect fun UIErrorMessage.localizedMessage(): String
+expect fun UIErrorMessage.localizedNerdMessage(): String

@@ -105,7 +105,15 @@ private fun AllTransactionsScreenPreviews() {
     MoneyFlowTheme {
         AllTransactionsScreen(
             navigateUp = {},
-            getUIErrorMessage = { UIErrorMessage("", "") },
+            getUIErrorMessage = {
+                UIErrorMessage(
+                    message = Res.string.error_get_all_transaction_message,
+                    messageKey = "error_get_all_transaction_message",
+                    nerdMessage = Res.string.error_nerd_message,
+                    nerdMessageKey = "error_nerd_message",
+                    nerdMessageArgs = listOf("101"),
+                )
+            },
             stateFlow = MutableStateFlow(
                 AllTransactionsUiState(
                     transactions = listOf(

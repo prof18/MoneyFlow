@@ -4,7 +4,6 @@ import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.data.SettingsRepository
 import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.database.DatabaseHelper
-import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
@@ -28,8 +27,7 @@ private val coreModule = module {
 
     single { DatabaseHelper(get(), Dispatchers.Default) }
     single { SettingsSource(get()) }
-    single { LocalizedStringProvider() }
-    single { MoneyFlowErrorMapper(get()) }
+    single { MoneyFlowErrorMapper() }
 
     factory { DispatcherProvider() }
 

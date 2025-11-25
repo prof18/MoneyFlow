@@ -117,9 +117,26 @@ internal fun AddTransactionScreen(
                 resetAction()
             }
             is AddTransactionAction.ShowError -> {
+                val messageText = stringResource(
+                    it.uiErrorMessage.message,
+                    *it.uiErrorMessage.messageArgs.toTypedArray(),
+                )
+                val nerdText = if (it.uiErrorMessage.nerdMessageArgs.isNotEmpty()) {
+                    stringResource(
+                        it.uiErrorMessage.nerdMessage,
+                        *it.uiErrorMessage.nerdMessageArgs.toTypedArray(),
+                    )
+                } else {
+                    ""
+                }
                 LaunchedEffect(scaffoldState.snackbarHostState) {
-                    val uiErrorMessage = it.uiErrorMessage
-                    val message = "${uiErrorMessage.message}\n${uiErrorMessage.nerdMessage}"
+                    val message = buildString {
+                        append(messageText)
+                        if (nerdText.isNotBlank()) {
+                            append("\n")
+                            append(nerdText)
+                        }
+                    }
                     scaffoldState.snackbarHostState.showSnackbar(message)
                     resetAction()
                 }

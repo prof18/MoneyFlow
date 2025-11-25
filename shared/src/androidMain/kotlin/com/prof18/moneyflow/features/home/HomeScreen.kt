@@ -278,8 +278,11 @@ private fun HomeScreenErrorPreview() {
             HomeScreen(
                 homeModel = HomeModel.Error(
                     UIErrorMessage(
-                        "An error occurred",
-                        "Error code 101",
+                        message = Res.string.error_get_money_summary_message,
+                        messageKey = "error_get_money_summary_message",
+                        nerdMessage = Res.string.error_nerd_message,
+                        nerdMessageKey = "error_nerd_message",
+                        nerdMessageArgs = listOf("101"),
                     ),
                 ),
                 hideSensitiveDataState = true,
