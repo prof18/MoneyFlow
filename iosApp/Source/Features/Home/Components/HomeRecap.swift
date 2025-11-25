@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposeApp
+import shared
 
 struct HomeRecap: View {
 

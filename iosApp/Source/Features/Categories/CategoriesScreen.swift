@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposeApp
+import shared
 
 struct CategoriesScreen: View {
 
@@ -97,10 +97,9 @@ struct CategoriesScreen_Previews: PreviewProvider {
         CategoriesScreenContent(
             categoriesModel: .constant(
                 CategoryModel.Error(
-                    uiErrorMessage: UIErrorMessageFactoryKt.uiErrorMessageFromKeys(
-                        messageKey: "error_get_categories_message",
-                        nerdMessageKey: "error_nerd_message",
-                        nerdMessageArgs: ["101"]
+                    uiErrorMessage: UIErrorMessage(
+                        message: "Error",
+                        nerdMessage: "Error code: 101"
                     )
                 )
             ),

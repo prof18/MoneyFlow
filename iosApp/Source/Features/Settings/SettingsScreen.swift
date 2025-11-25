@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ComposeApp
+import shared
 
 struct SettingsScreen: View {
 
@@ -52,6 +52,10 @@ struct SettingsScreen: View {
 
             Button("import_database".localized) {
                 sheetToShow = .filePicker
+            }
+
+            NavigationLink(destination: DropboxScreen()) {
+                Button("dropbox_sync".localized) {}
             }
 
         }

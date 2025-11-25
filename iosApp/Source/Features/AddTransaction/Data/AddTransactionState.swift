@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import ComposeApp
+import shared
 
 class AddTransactionState: ObservableObject {
     @Published var categoryId: Int64?
