@@ -16,11 +16,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.Category
-import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
+import com.prof18.moneyflow.features.categories.data.mapToDrawableResource
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -54,7 +54,7 @@ internal fun CategoryCard(
                     ),
             ) {
                 Icon(
-                    painter = painterResource(id = category.icon.mapToAndroidIcon()),
+                    painter = painterResource(category.icon.mapToDrawableResource()),
                     contentDescription = null,
                     modifier = Modifier
                         .padding(Margins.small)

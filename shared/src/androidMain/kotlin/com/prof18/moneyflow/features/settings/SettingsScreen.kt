@@ -25,13 +25,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.features.settings.BackupRequest
 import com.prof18.moneyflow.ui.components.SwitchWithText
@@ -78,7 +79,7 @@ internal fun SettingsScreen(
     createFileURI.value?.let { uri ->
         performBackup(uri)
         // TODO: move this toast from here?
-        Toast.makeText(context, stringResource(R.string.db_export_completed), Toast.LENGTH_SHORT)
+        Toast.makeText(context, stringResource(Res.string.db_export_completed), Toast.LENGTH_SHORT)
             .show()
     }
 
@@ -89,7 +90,7 @@ internal fun SettingsScreen(
     openFileURI.value?.let { uri ->
         performRestore(uri)
         // TODO: move this toast from here??
-        Toast.makeText(context, stringResource(R.string.db_import_completed), Toast.LENGTH_SHORT)
+        Toast.makeText(context, stringResource(Res.string.db_import_completed), Toast.LENGTH_SHORT)
             .show()
     }
 
@@ -119,7 +120,7 @@ private fun SettingsScreenContent(
     Scaffold(
         topBar = {
             Text(
-                text = stringResource(id = R.string.settings_screen),
+                text = stringResource(Res.string.settings_screen),
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier
                     .padding(horizontal = Margins.regular)
@@ -133,7 +134,7 @@ private fun SettingsScreenContent(
             ) {
 
                 Text(
-                    text = stringResource(R.string.security),
+                    text = stringResource(Res.string.security),
                     style = MaterialTheme.typography.caption,
                     modifier = Modifier.padding(start = Margins.regular),
                 )
@@ -141,25 +142,25 @@ private fun SettingsScreenContent(
                 SwitchWithText(
                     onSwitchChanged = onHideSensitiveDataEnabled,
                     switchStatus = hideSensitiveDataState,
-                    title = stringResource(R.string.hide_sensitive_data),
+                    title = stringResource(Res.string.hide_sensitive_data),
                 )
 
                 if (isBiometricSupported) {
                     SwitchWithText(
                         onSwitchChanged = onBiometricEnabled,
                         switchStatus = biometricState,
-                        title = stringResource(R.string.biometric_support),
+                        title = stringResource(Res.string.biometric_support),
                     )
                 }
 
                 Text(
-                    text = stringResource(R.string.database_management),
+                    text = stringResource(Res.string.database_management),
                     style = MaterialTheme.typography.caption,
                     modifier = Modifier.padding(start = Margins.regular),
                 )
 
                 Text(
-                    stringResource(R.string.import_database),
+                    stringResource(Res.string.import_database),
                     style = MaterialTheme.typography.h6,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -168,7 +169,7 @@ private fun SettingsScreenContent(
                 )
                 Divider()
                 Text(
-                    stringResource(R.string.export_database),
+                    stringResource(Res.string.export_database),
                     style = MaterialTheme.typography.h6,
                     modifier = Modifier
                         .fillMaxWidth()

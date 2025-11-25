@@ -1,7 +1,6 @@
 package com.prof18.moneyflow.features.addtransaction.components
 
 import android.content.res.Configuration
-import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.BorderStroke
@@ -27,12 +26,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.R
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
+import org.jetbrains.compose.resources.DrawableResource
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.downArrowCircleColor
@@ -58,15 +59,15 @@ internal fun TransactionTypeTabBar(
         TransactionTab(
             boxColor = upArrowCircleColor(),
             arrowColor = upArrowColor(),
-            iconId = R.drawable.ic_arrow_up_rotate,
-            title = stringResource(id = R.string.transaction_type_income),
+            iconResource = Res.drawable.ic_arrow_up_rotate,
+            title = stringResource(Res.string.transaction_type_income),
             onClick = { onTabSelected(TransactionType.INCOME) },
         )
         TransactionTab(
             boxColor = downArrowCircleColor(),
             arrowColor = downArrowColor(),
-            iconId = R.drawable.ic_arrow_down_rotate,
-            title = stringResource(id = R.string.transaction_type_outcome),
+            iconResource = Res.drawable.ic_arrow_down_rotate,
+            title = stringResource(Res.string.transaction_type_outcome),
             onClick = { onTabSelected(TransactionType.OUTCOME) },
         )
     }
@@ -76,7 +77,7 @@ internal fun TransactionTypeTabBar(
 private fun TransactionTab(
     boxColor: Color,
     arrowColor: Color,
-    @DrawableRes iconId: Int,
+    iconResource: DrawableResource,
     title: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -90,7 +91,7 @@ private fun TransactionTab(
     ) {
         ArrowCircleIcon(
             boxColor = boxColor,
-            iconID = iconId,
+            iconResource = iconResource,
             arrowColor = arrowColor,
             iconSize = 18.dp,
         )

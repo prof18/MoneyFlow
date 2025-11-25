@@ -14,9 +14,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
@@ -44,7 +45,7 @@ fun AuthScreen(
             Spacer(modifier = Modifier.size(Margins.regular))
             Button(onClick = { onRetryClick() }) {
                 Text(
-                    text = stringResource(R.string.retry),
+                    text = stringResource(Res.string.retry),
                     style = MaterialTheme.typography.button,
                 )
             }
@@ -56,9 +57,9 @@ fun AuthScreen(
 private fun AuthState.getAuthMessage(): String {
     return when (this) {
         AuthState.AUTHENTICATED -> ""
-        AuthState.NOT_AUTHENTICATED -> stringResource(R.string.auth_failed)
-        AuthState.AUTH_IN_PROGRESS -> stringResource(R.string.authenticating)
-        AuthState.AUTH_ERROR -> stringResource(R.string.auth_error)
+        AuthState.NOT_AUTHENTICATED -> stringResource(Res.string.auth_failed)
+        AuthState.AUTH_IN_PROGRESS -> stringResource(Res.string.authenticating)
+        AuthState.AUTH_ERROR -> stringResource(Res.string.auth_error)
     }
 }
 

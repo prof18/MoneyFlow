@@ -20,11 +20,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.ui.components.HideableTextField
 import com.prof18.moneyflow.ui.style.Margins
@@ -52,7 +53,7 @@ internal fun HomeRecap(
         ) {
             Text(
                 // TODO: inject the currency the user has chosen from somewhere
-                text = stringResource(R.string.euro_symbol),
+                text = stringResource(Res.string.euro_symbol),
                 style = MaterialTheme.typography.h5,
                 modifier = Modifier.align(Alignment.CenterVertically),
             )
@@ -67,7 +68,7 @@ internal fun HomeRecap(
         }
 
         Text(
-            text = stringResource(R.string.total_balance),
+            text = stringResource(Res.string.total_balance),
             style = MaterialTheme.typography.subtitle2,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
@@ -87,8 +88,8 @@ internal fun HomeRecap(
                         .background(upArrowCircleColor(), shape = CircleShape),
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_up_rotate),
-                        contentDescription = stringResource(R.string.up_arrow_content_desc),
+                        painter = painterResource(Res.drawable.ic_arrow_up_rotate),
+                            contentDescription = stringResource(Res.string.up_arrow_content_desc),
                         modifier = Modifier
                             .padding(Margins.small)
                             .size(24.dp),
@@ -97,13 +98,13 @@ internal fun HomeRecap(
                 }
 
                 Column {
-                    HideableTextField(
-                        text = "${balanceRecap.monthlyIncome} ${stringResource(id = R.string.euro_symbol)}",
+                        HideableTextField(
+                            text = "${balanceRecap.monthlyIncome} ${stringResource(Res.string.euro_symbol)}",
                         hide = hideSensitiveData,
                         style = MaterialTheme.typography.h5,
                     )
-                    Text(
-                        text = stringResource(id = R.string.transaction_type_income),
+                        Text(
+                            text = stringResource(Res.string.transaction_type_income),
                         style = MaterialTheme.typography.subtitle2,
                     )
                 }
@@ -117,8 +118,8 @@ internal fun HomeRecap(
                         .background(downArrowCircleColor(), shape = CircleShape),
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_down_rotate),
-                        contentDescription = stringResource(R.string.down_arrow_content_desc),
+                        painter = painterResource(Res.drawable.ic_arrow_down_rotate),
+                            contentDescription = stringResource(Res.string.down_arrow_content_desc),
                         modifier = Modifier
                             .padding(Margins.small)
                             .size(24.dp),
@@ -133,8 +134,8 @@ internal fun HomeRecap(
                         hide = hideSensitiveData,
                         style = MaterialTheme.typography.h5,
                     )
-                    Text(
-                        text = stringResource(id = R.string.transaction_type_outcome),
+                        Text(
+                            text = stringResource(Res.string.transaction_type_outcome),
                         style = MaterialTheme.typography.subtitle2,
                         modifier = Modifier.align(Alignment.End),
                     )

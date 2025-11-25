@@ -20,15 +20,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.features.addtransaction.components.DatePickerDialog
@@ -36,7 +37,9 @@ import com.prof18.moneyflow.features.addtransaction.components.IconTextClickable
 import com.prof18.moneyflow.features.addtransaction.components.MFTextInput
 import com.prof18.moneyflow.features.addtransaction.components.TransactionTypeTabBar
 import com.prof18.moneyflow.features.categories.data.CategoryUIData
+import com.prof18.moneyflow.features.categories.data.mapToDrawableResource
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
+import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -130,8 +133,8 @@ internal fun AddTransactionScreen(
         scaffoldState = scaffoldState,
         topBar = {
             MFTopBar(
-                topAppBarText = stringResource(id = R.string.add_transaction_screen),
-                actionTitle = stringResource(R.string.save),
+                topAppBarText = stringResource(Res.string.add_transaction_screen),
+                actionTitle = stringResource(Res.string.save),
                 onBackPressed = { navigateUp() },
                 onActionClicked = {
                     keyboardController?.hide()
@@ -165,7 +168,7 @@ internal fun AddTransactionScreen(
                     label = "0.00 EUR",
                     leadingIcon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_money_bill_wave),
+                            painter = painterResource(Res.drawable.ic_money_bill_wave),
                             contentDescription = null,
                         )
                     },
@@ -183,10 +186,10 @@ internal fun AddTransactionScreen(
                 MFTextInput(
                     text = descriptionText ?: "",
                     textStyle = MaterialTheme.typography.body1,
-                    label = stringResource(id = R.string.description),
+                    label = stringResource(Res.string.description),
                     leadingIcon = {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_edit),
+                            painter = painterResource(Res.drawable.ic_edit),
                             contentDescription = null,
                         )
                     },
@@ -204,8 +207,9 @@ internal fun AddTransactionScreen(
                 IconTextClickableRow(
                     onClick = { navigateToCategoryList() },
                     text = categoryState.value?.name
-                        ?: stringResource(id = R.string.select_category),
-                    iconId = categoryState.value?.icon ?: R.drawable.ic_question_circle,
+                        ?: stringResource(Res.string.select_category),
+                    icon = categoryState.value?.icon?.mapToDrawableResource()
+                        ?: Res.drawable.ic_question_circle,
                     isSomethingSelected = categoryState.value?.name != null,
                     modifier = Modifier.padding(
                         start = Margins.regular,
@@ -218,8 +222,8 @@ internal fun AddTransactionScreen(
                     onClick = {
                         setShowedDatePickerDialog(true)
                     },
-                    text = dateLabel ?: stringResource(id = R.string.today),
-                    iconId = R.drawable.ic_calendar,
+                    text = dateLabel ?: stringResource(Res.string.today),
+                    icon = Res.drawable.ic_calendar,
                     modifier = Modifier.padding(
                         start = Margins.regular,
                         end = Margins.regular,
@@ -241,11 +245,11 @@ private fun AddTransactionScreenPreview() {
             AddTransactionScreen(
                 categoryState = remember {
                     mutableStateOf(
-                        CategoryUIData(
-                            id = 1,
-                            name = "Food",
-                            icon = R.drawable.ic_hamburger_solid,
-                        ),
+                CategoryUIData(
+                    id = 1,
+                    name = "Food",
+                    icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                ),
                     )
                 },
                 navigateUp = {},

@@ -60,7 +60,7 @@ fun MoneyFlowTheme(
 ) {
     MaterialTheme(
         colors = if (darkTheme) DarkThemeColors else LightThemeColors,
-        typography = MoneyFlowTypography,
+        typography = MoneyFlowTypography(),
         shapes = MoneyFlowShapes,
         content = content,
     )

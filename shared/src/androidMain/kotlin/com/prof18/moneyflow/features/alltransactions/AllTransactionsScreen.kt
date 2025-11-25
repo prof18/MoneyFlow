@@ -7,13 +7,14 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
@@ -53,7 +54,7 @@ internal fun AllTransactionsScreen(
     Scaffold(
         topBar = {
             MFTopBar(
-                topAppBarText = stringResource(id = R.string.all_transactions),
+                topAppBarText = stringResource(Res.string.all_transactions),
                 onBackPressed = { navigateUp() },
             )
         },

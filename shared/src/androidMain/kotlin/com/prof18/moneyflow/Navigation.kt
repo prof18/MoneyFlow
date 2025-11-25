@@ -1,9 +1,11 @@
 package com.prof18.moneyflow
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.DrawableResource
 
 internal typealias ComposeNavigationFactory = (NavGraphBuilder, NavController) -> Unit
 
@@ -24,36 +26,36 @@ internal sealed class NavigationArguments(val key: String) {
 
 internal data class BottomNavigationItem(
     val screen: Screen,
-    @StringRes val titleResId: Int,
-    @DrawableRes val drawableResId: Int,
+    val titleRes: StringResource,
+    val drawableRes: DrawableResource,
 )
 
 internal val bottomNavigationItems = listOf(
 
     BottomNavigationItem(
         screen = Screen.HomeScreen,
-        titleResId = R.string.home_screen,
-        drawableResId = R.drawable.ic_home_solid,
+        titleRes = Res.string.home_screen,
+        drawableRes = Res.drawable.ic_home_solid,
     ),
 
 //    // Coming Soon
 //    BottomNavigationItem(
 //        screen = Screen.RecapScreen,
-//        titleResId = R.string.recap_screen,
-//        drawableResId = R.drawable.ic_chart_pie_solid
+//        titleRes = Res.string.recap_screen,
+//        drawableRes = Res.drawable.ic_chart_pie_solid
 //    ),
 //
 //    // Coming Soon
 //    BottomNavigationItem(
 //        screen = Screen.BudgetScreen,
-//        titleResId = R.string.budget_screen,
-//        drawableResId = R.drawable.ic_balance_scale_left_solid
+//        titleRes = Res.string.budget_screen,
+//        drawableRes = Res.drawable.ic_balance_scale_left_solid
 //    ),
 
     BottomNavigationItem(
         screen = Screen.SettingsScreen,
-        titleResId = R.string.settings_screen,
-        drawableResId = R.drawable.ic_cog_solid,
+        titleRes = Res.string.settings_screen,
+        drawableRes = Res.drawable.ic_cog_solid,
     ),
 
 )
