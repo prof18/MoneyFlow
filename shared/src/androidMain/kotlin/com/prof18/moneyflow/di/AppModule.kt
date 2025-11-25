@@ -15,7 +15,7 @@ val appModule = module {
     // View Models
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get(), get(), get()) }
-    viewModel { AddTransactionViewModel(get(), get(), get()) }
+    viewModel { AddTransactionViewModel(get(), get()) }
     viewModel { CategoriesViewModel(get(), get()) }
     viewModel { SettingsViewModel(get(), get()) }
     viewModel { AllTransactionsViewModel(get(), get()) }

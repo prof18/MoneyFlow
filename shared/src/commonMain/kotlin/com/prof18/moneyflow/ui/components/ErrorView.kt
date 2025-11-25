@@ -15,6 +15,8 @@ import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.error_add_transaction_message
+import money_flow.shared.generated.resources.error_nerd_message
 import money_flow.shared.generated.resources.shrug
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -40,13 +42,24 @@ internal fun ErrorView(
             )
 
             Text(
-                text = uiErrorMessage.message,
+                text = stringResource(
+                    uiErrorMessage.message,
+                    *uiErrorMessage.messageArgs.toTypedArray(),
+                ),
                 style = MaterialTheme.typography.body1,
             )
-            Text(
-                text = uiErrorMessage.nerdMessage,
-                style = MaterialTheme.typography.caption,
-            )
+            if (uiErrorMessage.nerdMessageArgs.isNotEmpty()) {
+                val nerdMessage = stringResource(
+                    uiErrorMessage.nerdMessage,
+                    *uiErrorMessage.nerdMessageArgs.toTypedArray(),
+                )
+                if (nerdMessage.isNotBlank()) {
+                    Text(
+                        text = nerdMessage,
+                        style = MaterialTheme.typography.caption,
+                    )
+                }
+            }
         }
     }
 }
@@ -54,7 +67,13 @@ internal fun ErrorView(
 @Preview(name = "ErrorView Light")
 @Composable
 private fun ErrorViewPreview() {
-    val message = UIErrorMessage(message = "New error occurred", nerdMessage = "Error code: 101")
+    val message = UIErrorMessage(
+        message = Res.string.error_add_transaction_message,
+        messageKey = "error_add_transaction_message",
+        nerdMessage = Res.string.error_nerd_message,
+        nerdMessageKey = "error_nerd_message",
+        nerdMessageArgs = listOf("101"),
+    )
 
     Surface {
         MoneyFlowTheme {

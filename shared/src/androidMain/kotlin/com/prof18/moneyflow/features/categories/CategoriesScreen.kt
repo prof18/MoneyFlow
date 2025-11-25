@@ -151,8 +151,11 @@ private fun CategoriesScreenErrorPreview() {
                 isFromAddTransaction = true,
                 categoryModel = CategoryModel.Error(
                     uiErrorMessage = UIErrorMessage(
-                        message = "An error happened :(",
-                        nerdMessage = "Error code: 101",
+                        message = Res.string.error_get_categories_message,
+                        messageKey = "error_get_categories_message",
+                        nerdMessage = Res.string.error_nerd_message,
+                        nerdMessageKey = "error_nerd_message",
+                        nerdMessageArgs = listOf("101"),
                     ),
                 ),
             )

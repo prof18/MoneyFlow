@@ -6,13 +6,15 @@ import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.data.MoneyRepository
-import com.prof18.moneyflow.platform.LocalizedStringProvider
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionAction
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
 import com.prof18.moneyflow.utils.logError
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.amount_not_empty_error
+import money_flow.shared.generated.resources.error_nerd_message
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -26,7 +28,6 @@ import kotlinx.datetime.LocalDate
 class AddTransactionViewModel(
     private val moneyRepository: MoneyRepository,
     private val errorMapper: MoneyFlowErrorMapper,
-    private val localizedStringProvider: LocalizedStringProvider,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
@@ -78,8 +79,12 @@ class AddTransactionViewModel(
         val amount = uiState.value.amountText.toDoubleOrNull()
         if (amount == null) {
             val errorMessage = UIErrorMessage(
-                message = localizedStringProvider.get("amount_not_empty_error"),
-                nerdMessage = "",
+                message = Res.string.amount_not_empty_error,
+                messageKey = "amount_not_empty_error",
+                messageArgs = emptyList(),
+                nerdMessage = Res.string.error_nerd_message,
+                nerdMessageKey = "error_nerd_message",
+                nerdMessageArgs = emptyList(),
             )
             _uiState.update { state ->
                 state.copy(addTransactionAction = AddTransactionAction.ShowError(errorMessage))
