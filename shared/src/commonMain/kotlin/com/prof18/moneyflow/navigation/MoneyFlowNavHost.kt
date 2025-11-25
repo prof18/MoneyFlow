@@ -20,6 +20,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.compose.serialization.serializers.SnapshotStateListSerializer
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionScreen
@@ -31,7 +32,8 @@ import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.features.home.HomeViewModel
-import com.prof18.moneyflow.features.settings.SettingsScreen
+import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
+import com.prof18.moneyflow.presentation.settings.SettingsScreen
 import com.prof18.moneyflow.features.settings.SettingsViewModel
 import com.prof18.moneyflow.ui.style.LightAppColors
 import money_flow.shared.generated.resources.Res
@@ -40,8 +42,10 @@ import money_flow.shared.generated.resources.ic_home_solid
 import money_flow.shared.generated.resources.home_screen
 import money_flow.shared.generated.resources.settings_screen
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -100,7 +104,7 @@ private fun BottomBar(
 
 private data class BottomNavigationItem(
     val route: AppRoute,
-    val titleRes: org.jetbrains.compose.resources.StringResource,
+    val titleRes: StringResource,
     val drawableRes: DrawableResource,
 )
 
@@ -119,7 +123,7 @@ private val bottomNavigationItems = listOf(
 
 private fun EntryProviderScope<AppRoute>.screens(
     backStack: MutableList<AppRoute>,
-    categoryState: androidx.compose.runtime.MutableState<CategoryUIData?>,
+    categoryState: MutableState<CategoryUIData?>,
     paddingValues: PaddingValues,
 ) {
     entry<HomeRoute> {
@@ -193,10 +197,10 @@ private fun EntryProviderScope<AppRoute>.screens(
         val viewModel = koinViewModel<SettingsViewModel>()
         val hideDataState by viewModel.hideSensitiveDataState.collectAsState()
         val biometricState by viewModel.biometricState.collectAsState()
+        val biometricAvailabilityChecker: BiometricAvailabilityChecker = koinInject()
 
         SettingsScreen(
-            performBackup = { uri -> viewModel.performBackup(com.prof18.moneyflow.features.settings.BackupRequest(uri)) },
-            performRestore = { uri -> viewModel.performRestore(com.prof18.moneyflow.features.settings.BackupRequest(uri)) },
+            biometricAvailabilityChecker = biometricAvailabilityChecker,
             biometricState = biometricState,
             onBiometricEnabled = viewModel::updateBiometricState,
             hideSensitiveDataState = hideDataState,
