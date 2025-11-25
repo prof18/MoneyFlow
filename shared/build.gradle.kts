@@ -58,8 +58,8 @@ kotlin {
                 implementation(compose.components.uiToolingPreview)
 
                 implementation(libs.androidx.lifecycle.viewmodel)
+                implementation(libs.koin.compose.viewmodel.navigation)
                 implementation(libs.kotlinx.serialization.core)
-//                implementation(libs.androidx.navigation3.runtime)
                 implementation(libs.androidx.navigation3.ui)
                 implementation(libs.androidx.lifecycle.viewmodel.navigation3)
                 implementation(libs.kotlinx.coroutine.core)
@@ -85,9 +85,7 @@ kotlin {
                 api(libs.androidx.activity.compose)
                 api(libs.androidx.lifecycle.viewmodel.ktx)
                 api(libs.androidx.lifecycle.viewmodel.compose)
-                api(libs.androidx.navigation.compose)
                 api(libs.koin.android)
-                api(libs.koin.androidx.compose)
                 api(libs.androidx.biometric.ktx)
                 implementation(libs.sqldelight.android.driver)
             }

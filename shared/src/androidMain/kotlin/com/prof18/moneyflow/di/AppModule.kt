@@ -7,16 +7,19 @@ import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
 import com.prof18.moneyflow.features.settings.SettingsViewModel
 import com.prof18.moneyflow.features.settings.BackupManager
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.module.dsl.factoryOf
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val appModule = module {
-    single { BackupManager(get()) }
+    singleOf(::BackupManager)
+
     // View Models
-    viewModel { MainViewModel(get()) }
-    viewModel { HomeViewModel(get(), get(), get()) }
-    viewModel { AddTransactionViewModel(get(), get()) }
-    viewModel { CategoriesViewModel(get(), get()) }
-    viewModel { SettingsViewModel(get(), get()) }
-    viewModel { AllTransactionsViewModel(get(), get()) }
+    viewModelOf(::MainViewModel)
+    viewModelOf(::HomeViewModel)
+    viewModelOf(::AddTransactionViewModel)
+    viewModelOf(::CategoriesViewModel)
+    viewModelOf(::SettingsViewModel)
+    viewModelOf(::AllTransactionsViewModel)
 }
