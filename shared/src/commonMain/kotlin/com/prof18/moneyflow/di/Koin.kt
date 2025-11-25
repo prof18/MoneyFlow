@@ -5,11 +5,6 @@ import com.prof18.moneyflow.data.SettingsRepository
 import com.prof18.moneyflow.data.settings.SettingsSource
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
-import com.prof18.moneyflow.presentation.addtransaction.AddTransactionUseCase
-import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsUseCase
-import com.prof18.moneyflow.presentation.categories.CategoriesUseCase
-import com.prof18.moneyflow.presentation.main.MainUseCase
-import com.prof18.moneyflow.presentation.settings.SettingsUseCase
 import com.prof18.moneyflow.utils.DispatcherProvider
 import kotlinx.coroutines.Dispatchers
 import org.koin.core.KoinApplication
@@ -34,14 +29,6 @@ private val coreModule = module {
     // Repository
     single { SettingsRepository(get()) }
     single { MoneyRepository(get()) }
-    
-
-    // Use Cases
-    factory { MainUseCase(get()) }
-    factory { AddTransactionUseCase(get(), get()) }
-    factory { SettingsUseCase(get()) }
-    factory { AllTransactionsUseCase(get()) }
-    factory { CategoriesUseCase(get()) }
 }
 
 expect val platformModule: Module
