@@ -1,5 +1,7 @@
 package com.prof18.moneyflow.features.home
 
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,14 +33,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.prof18.moneyflow.ComposeNavigationFactory
-import com.prof18.moneyflow.R
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
@@ -107,7 +108,7 @@ internal fun HomeScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = stringResource(R.string.my_wallet),
+                        text = stringResource(Res.string.my_wallet),
                         style = MaterialTheme.typography.h4,
                         modifier = Modifier
                             .padding(horizontal = Margins.regular)
@@ -125,12 +126,12 @@ internal fun HomeScreen(
                             if (hideSensitiveDataState) {
                                 Icon(
                                     Icons.Rounded.Visibility,
-                                    contentDescription = stringResource(R.string.show_sensitive_data),
+                                    contentDescription = stringResource(Res.string.show_sensitive_data),
                                 )
                             } else {
                                 Icon(
                                     Icons.Rounded.VisibilityOff,
-                                    contentDescription = stringResource(R.string.hide_sensitive_data),
+                                    contentDescription = stringResource(Res.string.hide_sensitive_data),
                                 )
                             }
                         }
@@ -154,7 +155,7 @@ internal fun HomeScreen(
                     hideSensitiveData = hideSensitiveDataState,
                 )
                 HeaderNavigator(
-                    title = stringResource(R.string.latest_transactions),
+                    title = stringResource(Res.string.latest_transactions),
                     onClick = navigateToAllTransactions,
                 )
 
@@ -168,14 +169,14 @@ internal fun HomeScreen(
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
-                                stringResource(id = R.string.shrug),
+                                stringResource(Res.string.shrug),
                                 modifier = Modifier
                                     .padding(bottom = Margins.small),
                                 style = MaterialTheme.typography.h6,
                             )
 
                             Text(
-                                stringResource(R.string.empty_wallet),
+                                stringResource(Res.string.empty_wallet),
                                 style = MaterialTheme.typography.h6,
                             )
                         }
@@ -215,7 +216,7 @@ internal fun HomeScreen(
                                         deleteTransaction(transaction.id)
                                         setShowTransactionMenu(false)
                                     }) {
-                                        Text(stringResource(R.string.delete))
+                                        Text(stringResource(Res.string.delete))
                                     }
                                 }
                             }

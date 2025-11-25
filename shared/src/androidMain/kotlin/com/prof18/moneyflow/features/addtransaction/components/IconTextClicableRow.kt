@@ -21,11 +21,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
+import org.jetbrains.compose.resources.DrawableResource
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
@@ -34,7 +36,7 @@ internal fun IconTextClickableRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     text: String,
-    iconId: Int,
+    icon: DrawableResource,
     isSomethingSelected: Boolean = true,
 ) {
     Column(
@@ -50,8 +52,8 @@ internal fun IconTextClickableRow(
 
         Row {
             Icon(
-                painter = painterResource(id = iconId),
-                contentDescription = "$text ${stringResource(id = R.string.icon_content_desc)}",
+                painter = painterResource(icon),
+                contentDescription = "$text ${stringResource(Res.string.icon_content_desc)}",
                 tint = if (isSystemInDarkTheme()) {
                     Color(color = 0xff888a8f)
                 } else {
@@ -89,7 +91,7 @@ private fun IconTextClickableRowPreview() {
             IconTextClickableRow(
                 onClick = {},
                 text = "Select something",
-                iconId = R.drawable.ic_question_circle,
+                icon = Res.drawable.ic_question_circle,
             )
         }
     }

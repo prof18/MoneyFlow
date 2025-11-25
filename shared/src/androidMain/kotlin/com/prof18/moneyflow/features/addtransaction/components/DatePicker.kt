@@ -26,10 +26,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import java.util.Calendar
 
@@ -51,8 +52,8 @@ internal fun DatePickerDialog(
             onDismissRequest = {
                 setDialogVisible(false)
             },
-            title = {
-                Text(text = stringResource(id = R.string.select_date))
+                title = {
+                    Text(text = stringResource(Res.string.select_date))
             },
             text = {
                 Row(
@@ -92,14 +93,14 @@ internal fun DatePickerDialog(
                     onSave()
                     setDialogVisible(false)
                 }) {
-                    Text(stringResource(id = R.string.confirm))
+                    Text(stringResource(Res.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = {
                     setDialogVisible(false)
                 }) {
-                    Text(stringResource(id = R.string.cancel))
+                    Text(stringResource(Res.string.cancel))
                 }
             },
         )

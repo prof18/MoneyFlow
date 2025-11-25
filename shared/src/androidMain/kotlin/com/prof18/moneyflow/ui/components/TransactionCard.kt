@@ -20,13 +20,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.res.painterResource
+import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.prof18.moneyflow.R
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
-import com.prof18.moneyflow.features.categories.data.mapToAndroidIcon
+import com.prof18.moneyflow.features.categories.data.mapToDrawableResource
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -34,6 +33,8 @@ import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import kotlin.math.abs
 
 @Composable
@@ -73,7 +74,7 @@ internal fun TransactionCard(
                     ),
             ) {
                 Icon(
-                    painter = painterResource(id = transaction.icon.mapToAndroidIcon()),
+                    painter = painterResource(transaction.icon.mapToDrawableResource()),
                     contentDescription = null,
                     modifier = Modifier
                         .padding(Margins.small)
@@ -106,12 +107,12 @@ internal fun TransactionCard(
 
         var boxColor = upArrowCircleColor()
         var arrowColor = upArrowColor()
-        var vectorId = R.drawable.ic_arrow_up_rotate
+        var arrowIconResource = Res.drawable.ic_arrow_up_rotate
 
         if (transaction.type == TransactionTypeUI.EXPENSE) {
             boxColor = downArrowCircleColor()
             arrowColor = downArrowColor()
-            vectorId = R.drawable.ic_arrow_down_rotate
+            arrowIconResource = Res.drawable.ic_arrow_down_rotate
         }
 
         Row(
@@ -120,7 +121,7 @@ internal fun TransactionCard(
 
             ArrowCircleIcon(
                 boxColor = boxColor,
-                iconID = vectorId,
+                iconResource = arrowIconResource,
                 arrowColor = arrowColor,
                 iconSize = 18.dp,
                 modifier = Modifier.align(Alignment.CenterVertically),

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.MutableState
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -20,7 +20,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.prof18.moneyflow.ComposeNavigationFactory
 import com.prof18.moneyflow.NavigationArguments
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.Screen
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.features.categories.components.CategoryCard
@@ -74,9 +75,9 @@ internal fun CategoriesScreen(
 
     Scaffold(
         topBar = {
-            MFTopBar(
-                topAppBarText = stringResource(id = R.string.categories_screen),
-                actionTitle = stringResource(R.string.add),
+                MFTopBar(
+                    topAppBarText = stringResource(Res.string.categories_screen),
+                    actionTitle = stringResource(Res.string.add),
                 onBackPressed = { navigateUp() },
                 onActionClicked = {
                     // TODO: open a new screen to add a new category

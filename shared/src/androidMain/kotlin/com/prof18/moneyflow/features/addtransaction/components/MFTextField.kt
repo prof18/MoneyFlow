@@ -12,12 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
+import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import com.prof18.moneyflow.R
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 // TODO: check padding bottom of the text
@@ -79,7 +80,7 @@ private fun MFTextInputPreviewWithIcon() {
                 textStyle = MaterialTheme.typography.body1,
                 leadingIcon = {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_edit),
+                        painter = painterResource(Res.drawable.ic_edit),
                         contentDescription = null,
                     )
                 },
