@@ -14,8 +14,9 @@ import org.koin.core.Koin
 import org.koin.core.context.stopKoin
 
 
-fun initKoinIos(additionalModules: List<Module> = emptyList()): KoinApplication =
-   initKoin(additionalModules)
+fun initKoinIos(): KoinApplication = initKoin(
+       additionalModules = emptyList()
+   )
 
 
 actual val platformModule: Module = module {
