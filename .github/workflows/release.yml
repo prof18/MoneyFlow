@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Platforms to build for prerelease'
+        required: true
+        type: choice
+        options:
+          - all
+          - android
+          - ios
+        default: 'all'
+  push:
+    tags:
+      - '*-all'
+      - '*-android'
+      - '*-ios'
+
+jobs:
+  android:
+    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.platforms == 'all' || github.event.inputs.platforms == 'android')) || (github.event_name == 'push' && (endsWith(github.ref, '-all') || endsWith(github.ref, '-android')))
+    uses: ./.github/workflows/android-release.yml
+    secrets:
+      GRADLE_CACHE_ENCRYPTION_KEY: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+      KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+      KEYSTORE_PASSPHRASE: ${{ secrets.KEYSTORE_PASSPHRASE }}
+      KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+      KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+      KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+      PLAY_CONFIG: ${{ secrets.PLAY_CONFIG }}
+
+# TODO: add iOS release workflow
+#  ios:
+#    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.platforms == 'all' || github.event.inputs.platforms == 'ios')) || (github.event_name == 'push' && (endsWith(github.ref, '-all') || endsWith(github.ref, '-ios')))
+#    uses: ./.github/workflows/ios-release.yml
+#    secrets:
+#      GRADLE_CACHE_ENCRYPTION_KEY: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+#      FIREBASE_PLIST: ${{ secrets.FIREBASE_PLIST }}
+#      CERTIFICATES_P12: ${{ secrets.CERTIFICATES_P12 }}
+#      CERTIFICATES_PASSWORD: ${{ secrets.CERTIFICATES_PASSWORD }}
+#      BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+#      APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+#      APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+#      APPSTORE_PRIVATE_KEY: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+#      APPSTORE_TEAM_ID: ${{ secrets.APPSTORE_TEAM_ID }}
