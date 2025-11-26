@@ -12,7 +12,6 @@ compose-plugin = "1.10.0-beta01"
 coroutines = "1.10.2"
 agp = "8.10.1"
 detekt = "1.23.8"
-versions-ben-manes = "0.51.0"
 java = "21"
 kermit = "2.0.8"
 koin = "4.1.1"
@@ -25,6 +24,7 @@ kotlinx-serialization = "1.7.3"
 lifecycle = "2.10.0-alpha04"
 sqlDelight = "2.1.0"
 turbine = "1.1.0"
+triplet-play = "3.12.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -70,8 +70,8 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-versionsBenManes = { id = "com.github.ben-manes.versions", version.ref = "versions-ben-manes" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+triplet-play = { id = "com.github.triplet.play", version.ref = "triplet-play" }
