@@ -85,7 +85,6 @@ kotlin {
             dependencies {
                 api(libs.androidx.activity.compose)
                 api(libs.androidx.lifecycle.viewmodel.ktx)
-                api(libs.androidx.lifecycle.viewmodel.compose)
                 api(libs.koin.android)
                 api(libs.androidx.biometric.ktx)
                 implementation(libs.sqldelight.android.driver)

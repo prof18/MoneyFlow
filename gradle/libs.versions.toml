@@ -3,7 +3,6 @@ activity-compose = "1.11.0"
 android-compileSdk = "36"
 android-minSdk = "26"
 android-targetSdk = "36"
-android-crypto = "1.1.0-alpha06"
 androidx-test = "1.6.1"
 androidx-test-runner = "1.6.2"
 androidx-test-ext = "1.2.1"
@@ -15,55 +14,38 @@ agp = "8.10.1"
 detekt = "1.23.8"
 versions-ben-manes = "0.51.0"
 java = "21"
-junit = "4.13.2"
 kermit = "2.0.8"
 koin = "4.1.1"
 kotlin = "2.2.20"
 kotlinx-date-time = "0.6.1"
 multiplatform-settings = "1.3.0"
-nav-compose = "2.9.6"
 lifecycle-navigation3 = "2.10.0-alpha04"
 navigation3 = "1.0.0-alpha05"
 kotlinx-serialization = "1.7.3"
 lifecycle = "2.10.0-alpha04"
 sqlDelight = "2.1.0"
-timber = "5.0.1"
 turbine = "1.1.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version.ref = "biometric" }
-androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "android-crypto" }
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext" }
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test-runner" }
 cashapp-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
-androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
-androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose-androidx" }
-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose-androidx" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "compose-androidx" }
-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "compose-androidx" }
-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose-androidx" }
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-androidx" }
 compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-androidx" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-androidx" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "nav-compose" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
-androidx-navigation3-runtime = { module = "org.jetbrains.androidx.navigation3:navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycle-navigation3" }
-jake-timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
-junit = { module = "junit:junit", version.ref = "junit" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlinx-coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutine-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
@@ -80,8 +62,6 @@ io-gitlab-arturbosch-detekt-formatting = { module = "io.gitlab.arturbosch.detekt
 
 [bundles]
 androidx-test = ["androidx-test-core", "androidx-test-ext-junit", "androidx-test-rules", "androidx-test-runner"]
-compose = ["compose-runtime", "compose-foundation", "compose-material", "compose-material-icons-core", "compose-material-icons-extended", "compose-ui", "compose-ui-test", "compose-ui-tooling", "androidx-navigation-compose"]
-koin = ["koin-android", "koin-compose", "koin-compose-viewmodel-navigation", "koin-core"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -91,7 +71,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 versionsBenManes = { id = "com.github.ben-manes.versions", version.ref = "versions-ben-manes" }
-touchlab-kermit = { id = "co.touchlab.kermit", version.ref = "kermit" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
