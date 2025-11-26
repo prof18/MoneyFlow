@@ -8,7 +8,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import money_flow.shared.generated.resources.Res
 import org.jetbrains.compose.resources.Font
-import money_flow.shared.generated.resources.*
 
 @Composable
 internal fun MoneyFlowTypography(): Typography {

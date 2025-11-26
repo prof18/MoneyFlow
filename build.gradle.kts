@@ -22,19 +22,7 @@ plugins {
 val javaVersion by extra { JavaVersion.VERSION_21 }
 
 
-tasks {
-    val swiftLint by registering {
-        ByteArrayOutputStream().use { outputStream ->
-            exec {
-                workingDir = File("${rootDir.path}/iosApp")
-                commandLine("swiftlint")
-                standardOutput = outputStream
-            }
-            val output = outputStream.toString()
-            println(output)
-        }
-    }
-}
+
 
 allprojects {
     apply {

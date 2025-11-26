@@ -60,7 +60,6 @@ internal fun TransactionCard(
                 )
             },
     ) {
-
         Row {
             Box(
                 modifier = Modifier
@@ -92,7 +91,6 @@ internal fun TransactionCard(
                         end = Margins.regular,
                     ),
             ) {
-
                 Text(
                     text = transaction.title,
                     style = MaterialTheme.typography.subtitle1,
@@ -118,7 +116,6 @@ internal fun TransactionCard(
         Row(
             modifier = Modifier.align(Alignment.CenterVertically),
         ) {
-
             ArrowCircleIcon(
                 boxColor = boxColor,
                 iconResource = arrowIconResource,

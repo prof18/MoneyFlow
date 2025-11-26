@@ -1,8 +1,8 @@
 package com.prof18.moneyflow.di
 
+import com.prof18.moneyflow.AndroidBiometricAvailabilityChecker
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.database.createDatabaseDriver
-import com.prof18.moneyflow.AndroidBiometricAvailabilityChecker
 import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.SharedPreferencesSettings

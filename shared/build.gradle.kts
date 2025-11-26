@@ -97,6 +97,7 @@ kotlin {
                 implementation(libs.kotlin.test.junit)
                 implementation(libs.bundles.androidx.test)
                 implementation(libs.kotlinx.coroutine.test)
+                implementation(libs.sqldelight.sqlite.driver)
             }
         }
         val iosMain by getting {

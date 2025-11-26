@@ -15,32 +15,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.mapToDrawableResource
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun CategoryCard(
     category: Category,
     onClick: ((Category) -> Unit)?,
 ) {
-
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.clickable(onClick = {
             onClick?.invoke(category)
         }, enabled = onClick != null),
     ) {
-
         // TODO is this weight necessary?
         @Suppress("MagicNumber")
         Row(modifier = Modifier.weight(8f)) {
-
             Box(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)

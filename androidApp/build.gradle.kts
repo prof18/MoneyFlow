@@ -23,6 +23,7 @@ android {
     }
 
     buildTypes {
+        // TODO: create a proper release flavor
         release {
             isMinifyEnabled = false
         }

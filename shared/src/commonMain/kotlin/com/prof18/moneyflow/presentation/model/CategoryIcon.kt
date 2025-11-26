@@ -1,4 +1,5 @@
 @file:Suppress("TrailingCommaOnDeclarationSite")
+
 package com.prof18.moneyflow.presentation.model
 
 enum class CategoryIcon(val iconName: String) {

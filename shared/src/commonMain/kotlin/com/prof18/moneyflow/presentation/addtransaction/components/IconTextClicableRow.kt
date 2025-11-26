@@ -20,15 +20,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.prof18.moneyflow.ui.style.Margins
+import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.ic_question_circle
+import money_flow.shared.generated.resources.icon_content_desc
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
-import org.jetbrains.compose.resources.DrawableResource
-import com.prof18.moneyflow.ui.style.Margins
-import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 internal fun IconTextClickableRow(
@@ -48,7 +49,6 @@ internal fun IconTextClickableRow(
             .fillMaxWidth()
             .padding(vertical = 12.dp),
     ) {
-
         Row {
             Icon(
                 painter = painterResource(icon),

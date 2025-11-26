@@ -21,6 +21,7 @@ import money_flow.shared.generated.resources.shrug
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@Suppress("SpreadOperator")
 @Composable
 internal fun ErrorView(
     uiErrorMessage: UIErrorMessage,
@@ -35,7 +36,6 @@ internal fun ErrorView(
                 .fillMaxWidth()
                 .padding(Margins.regular),
         ) {
-
             Text(
                 text = stringResource(Res.string.shrug),
                 style = MaterialTheme.typography.caption,

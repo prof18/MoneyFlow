@@ -11,14 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalFocusManager
-import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.ic_edit
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 // TODO: check padding bottom of the text
 @Composable
@@ -31,7 +31,6 @@ internal fun MFTextInput(
     textStyle: TextStyle,
     leadingIcon: @Composable (() -> Unit)? = null,
 ) {
-
     val focusManager = LocalFocusManager.current
 
     OutlinedTextField(

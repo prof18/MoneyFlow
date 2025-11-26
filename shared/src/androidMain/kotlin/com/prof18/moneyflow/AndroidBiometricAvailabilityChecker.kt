@@ -11,7 +11,10 @@ class AndroidBiometricAvailabilityChecker(
 
     override fun isBiometricSupported(): Boolean {
         val biometricManager = BiometricManager.from(context)
-        return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
+        val authResult = biometricManager.canAuthenticate(
+            BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL,
+        )
+        return when (authResult) {
             BiometricManager.BIOMETRIC_SUCCESS -> true
             else -> {
                 Logger.d { "Biometric not supported or not available on this device." }

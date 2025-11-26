@@ -25,20 +25,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.ui.components.ArrowCircleIcon
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
-import org.jetbrains.compose.resources.DrawableResource
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.ic_arrow_down_rotate
+import money_flow.shared.generated.resources.ic_arrow_up_rotate
+import money_flow.shared.generated.resources.transaction_type_income
+import money_flow.shared.generated.resources.transaction_type_outcome
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun TransactionTypeTabBar(

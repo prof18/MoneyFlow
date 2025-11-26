@@ -2,7 +2,6 @@ package com.prof18.moneyflow.presentation.categories
 
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import org.jetbrains.compose.resources.DrawableResource
 
 @Suppress("LongMethod", "ComplexMethod")
