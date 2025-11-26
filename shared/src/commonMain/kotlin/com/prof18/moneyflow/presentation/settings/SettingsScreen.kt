@@ -8,6 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import com.prof18.moneyflow.ui.components.SwitchWithText
 import com.prof18.moneyflow.ui.style.Margins
@@ -18,7 +19,6 @@ import money_flow.shared.generated.resources.hide_sensitive_data
 import money_flow.shared.generated.resources.security
 import money_flow.shared.generated.resources.settings_screen
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun SettingsScreen(

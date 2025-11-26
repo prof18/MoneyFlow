@@ -14,11 +14,11 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.ic_edit
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 // TODO: check padding bottom of the text
 @Composable

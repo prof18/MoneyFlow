@@ -7,6 +7,10 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.poppins_extra_light
+import money_flow.shared.generated.resources.poppins_light
+import money_flow.shared.generated.resources.poppins_regular
+import money_flow.shared.generated.resources.poppins_semibold
 import org.jetbrains.compose.resources.Font
 
 @Composable

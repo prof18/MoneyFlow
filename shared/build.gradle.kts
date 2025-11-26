@@ -55,7 +55,7 @@ kotlin {
                 api(compose.materialIconsExtended)
                 api(compose.ui)
                 api(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
+                implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.10.0-beta01")
 
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.koin.compose.viewmodel.navigation)

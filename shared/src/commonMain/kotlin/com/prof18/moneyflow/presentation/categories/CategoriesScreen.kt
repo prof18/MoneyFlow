@@ -6,6 +6,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.components.CategoryCard
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
@@ -22,7 +23,6 @@ import money_flow.shared.generated.resources.categories_screen
 import money_flow.shared.generated.resources.error_get_categories_message
 import money_flow.shared.generated.resources.error_nerd_message
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun CategoriesScreen(
