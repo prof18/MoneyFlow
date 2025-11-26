@@ -43,7 +43,7 @@ jobs:
           gradle-cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
 
       - name: Build Android Sample
-        run: ./gradlew :androidApp:assembleGooglePlayDebug
+        run: ./gradlew :androidApp:assembleDebug
 
   build-ios-app:
     name: Build iOS App
@@ -72,4 +72,4 @@ jobs:
       - name: Build iOS Sample
         run: |
           cd iosApp
-          xcodebuild -configuration Debug -scheme MoneyFlow -sdk iphoneos -destination name='iPhone 16 Pro' build | xcbeautify --renderer github-actions
+          xcodebuild -configuration Debug -scheme MoneyFlow -sdk iphoneos -destination name='iPhone 17 Pro' build | xcbeautify --renderer github-actions
