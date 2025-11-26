@@ -8,4 +8,3 @@ data class UIErrorMessage(
     val nerdMessageKey: String,
     val nerdMessageArgs: List<String> = emptyList(),
 )
-

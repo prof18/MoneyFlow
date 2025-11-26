@@ -13,19 +13,18 @@ jobs:
     runs-on: macos-latest
     steps:
 
-      - name: Checkout Repo
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4
+      - uses: actions/checkout@v5
 
       - name: set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: 17
+          java-version: 21
 
-      - uses: gradle/gradle-build-action@v2
+      - uses: gradle/actions/setup-gradle@v5
         with:
-          gradle-home-cache-cleanup: true
-          cache-read-only: false
+          cache-cleanup: on-success
+#          cache-encryption-key: ${{ inputs.gradle-cache-encryption-key }}
 
       - name: Run Check
         run: ./gradlew check

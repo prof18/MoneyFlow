@@ -2,8 +2,8 @@ package com.prof18.moneyflow.features.categories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.data.MoneyRepository
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
 import com.prof18.moneyflow.presentation.categories.CategoryModel
 import com.prof18.moneyflow.utils.logError

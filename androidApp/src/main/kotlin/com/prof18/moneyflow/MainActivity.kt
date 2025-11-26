@@ -17,11 +17,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import co.touchlab.kermit.Logger
+import com.prof18.moneyflow.navigation.MoneyFlowNavHost
 import com.prof18.moneyflow.presentation.auth.AuthScreen
 import com.prof18.moneyflow.presentation.auth.AuthState
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import co.touchlab.kermit.Logger
-import com.prof18.moneyflow.navigation.MoneyFlowNavHost
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : FragmentActivity() {

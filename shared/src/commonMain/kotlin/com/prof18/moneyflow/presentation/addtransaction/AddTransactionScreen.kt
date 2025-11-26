@@ -42,7 +42,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Suppress("LongMethod", "LongParameterList") // TODO: reduce method length
+@Suppress("LongMethod", "LongParameterList", "SpreadOperator") // TODO: reduce method length
 internal fun AddTransactionScreen(
     categoryState: State<CategoryUIData?>,
     navigateUp: () -> Unit,
@@ -62,7 +62,6 @@ internal fun AddTransactionScreen(
     addTransactionAction: AddTransactionAction?,
     resetAction: () -> Unit,
 ) {
-
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
     val scaffoldState = rememberScaffoldState()
@@ -217,11 +216,11 @@ private fun AddTransactionScreenPreview() {
             AddTransactionScreen(
                 categoryState = remember {
                     mutableStateOf(
-                CategoryUIData(
-                    id = 1,
-                    name = "Food",
-                    icon = CategoryIcon.IC_HAMBURGER_SOLID,
-                ),
+                        CategoryUIData(
+                            id = 1,
+                            name = "Food",
+                            icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                        ),
                     )
                 },
                 navigateUp = {},

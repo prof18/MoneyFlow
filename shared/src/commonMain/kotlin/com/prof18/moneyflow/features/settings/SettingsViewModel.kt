@@ -2,8 +2,8 @@ package com.prof18.moneyflow.features.settings
 
 import androidx.lifecycle.ViewModel
 import com.prof18.moneyflow.data.SettingsRepository
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 class SettingsViewModel(

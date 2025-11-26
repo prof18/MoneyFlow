@@ -19,12 +19,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.ui.components.HideableTextField
 import com.prof18.moneyflow.ui.style.Margins
@@ -33,6 +28,18 @@ import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.down_arrow_content_desc
+import money_flow.shared.generated.resources.euro_symbol
+import money_flow.shared.generated.resources.ic_arrow_down_rotate
+import money_flow.shared.generated.resources.ic_arrow_up_rotate
+import money_flow.shared.generated.resources.total_balance
+import money_flow.shared.generated.resources.transaction_type_income
+import money_flow.shared.generated.resources.transaction_type_outcome
+import money_flow.shared.generated.resources.up_arrow_content_desc
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
@@ -40,13 +47,11 @@ internal fun HomeRecap(
     balanceRecap: BalanceRecap,
     hideSensitiveData: Boolean,
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(Margins.regular),
     ) {
-
         Row(
             modifier = Modifier.align(Alignment.CenterHorizontally),
         ) {
@@ -78,7 +83,6 @@ internal fun HomeRecap(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-
             Row {
                 Box(
                     modifier = Modifier
@@ -88,7 +92,7 @@ internal fun HomeRecap(
                 ) {
                     Icon(
                         painter = painterResource(Res.drawable.ic_arrow_up_rotate),
-                            contentDescription = stringResource(Res.string.up_arrow_content_desc),
+                        contentDescription = stringResource(Res.string.up_arrow_content_desc),
                         modifier = Modifier
                             .padding(Margins.small)
                             .size(24.dp),
@@ -97,13 +101,13 @@ internal fun HomeRecap(
                 }
 
                 Column {
-                        HideableTextField(
-                            text = "${balanceRecap.monthlyIncome} ${stringResource(Res.string.euro_symbol)}",
+                    HideableTextField(
+                        text = "${balanceRecap.monthlyIncome} ${stringResource(Res.string.euro_symbol)}",
                         hide = hideSensitiveData,
                         style = MaterialTheme.typography.h5,
                     )
-                        Text(
-                            text = stringResource(Res.string.transaction_type_income),
+                    Text(
+                        text = stringResource(Res.string.transaction_type_income),
                         style = MaterialTheme.typography.subtitle2,
                     )
                 }
@@ -118,7 +122,7 @@ internal fun HomeRecap(
                 ) {
                     Icon(
                         painter = painterResource(Res.drawable.ic_arrow_down_rotate),
-                            contentDescription = stringResource(Res.string.down_arrow_content_desc),
+                        contentDescription = stringResource(Res.string.down_arrow_content_desc),
                         modifier = Modifier
                             .padding(Margins.small)
                             .size(24.dp),
@@ -133,8 +137,8 @@ internal fun HomeRecap(
                         hide = hideSensitiveData,
                         style = MaterialTheme.typography.h5,
                     )
-                        Text(
-                            text = stringResource(Res.string.transaction_type_outcome),
+                    Text(
+                        text = stringResource(Res.string.transaction_type_outcome),
                         style = MaterialTheme.typography.subtitle2,
                         modifier = Modifier.align(Alignment.End),
                     )

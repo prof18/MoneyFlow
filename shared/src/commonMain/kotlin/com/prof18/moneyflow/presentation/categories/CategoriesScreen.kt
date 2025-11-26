@@ -31,12 +31,11 @@ internal fun CategoriesScreen(
     isFromAddTransaction: Boolean,
     categoryModel: CategoryModel,
 ) {
-
     Scaffold(
         topBar = {
-                MFTopBar(
-                    topAppBarText = stringResource(Res.string.categories_screen),
-                    actionTitle = stringResource(Res.string.add),
+            MFTopBar(
+                topAppBarText = stringResource(Res.string.categories_screen),
+                actionTitle = stringResource(Res.string.add),
                 onBackPressed = { navigateUp() },
                 onActionClicked = {
                     // TODO: open a new screen to add a new category

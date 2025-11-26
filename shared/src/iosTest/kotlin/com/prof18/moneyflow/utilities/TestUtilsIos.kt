@@ -1,5 +1,6 @@
 package com.prof18.moneyflow.utilities
 
+import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.db.MoneyFlowDB
@@ -18,5 +19,5 @@ actual fun closeDriver() {
 
 actual fun getDatabaseHelper(): DatabaseHelper = requireNotNull(databaseHelper)
 
-private var driver: app.cash.sqldelight.db.SqlDriver? = null
+private var driver: SqlDriver? = null
 private var databaseHelper: DatabaseHelper? = null

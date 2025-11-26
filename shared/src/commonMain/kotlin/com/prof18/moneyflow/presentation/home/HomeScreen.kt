@@ -1,7 +1,5 @@
 package com.prof18.moneyflow.presentation.home
 
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,9 +28,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
@@ -45,7 +42,18 @@ import com.prof18.moneyflow.ui.components.Loader
 import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import co.touchlab.kermit.Logger
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.delete
+import money_flow.shared.generated.resources.empty_wallet
+import money_flow.shared.generated.resources.error_get_money_summary_message
+import money_flow.shared.generated.resources.error_nerd_message
+import money_flow.shared.generated.resources.hide_sensitive_data
+import money_flow.shared.generated.resources.latest_transactions
+import money_flow.shared.generated.resources.my_wallet
+import money_flow.shared.generated.resources.show_sensitive_data
+import money_flow.shared.generated.resources.shrug
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
@@ -58,13 +66,10 @@ internal fun HomeScreen(
     changeSensitiveDataVisibility: (Boolean) -> Unit = {},
     navigateToAllTransactions: () -> Unit,
 ) {
-
     when (homeModel) {
         is HomeModel.Loading -> Loader()
         is HomeModel.HomeState -> {
-
             Column(modifier = Modifier.padding(Margins.small)) {
-
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -79,7 +84,6 @@ internal fun HomeScreen(
                     )
 
                     Row {
-
                         IconButton(
                             onClick = { changeSensitiveDataVisibility(hideSensitiveDataState.not()) },
                             modifier = Modifier
@@ -123,7 +127,6 @@ internal fun HomeScreen(
                 )
 
                 if (homeModel.latestTransactions.isEmpty()) {
-
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier.fillMaxSize(),
@@ -155,7 +158,6 @@ internal fun HomeScreen(
                                     false,
                                 )
                             }
-
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()

@@ -8,14 +8,17 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
-import money_flow.shared.generated.resources.Res
-import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import com.prof18.moneyflow.ui.components.SwitchWithText
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.biometric_support
+import money_flow.shared.generated.resources.hide_sensitive_data
+import money_flow.shared.generated.resources.security
+import money_flow.shared.generated.resources.settings_screen
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun SettingsScreen(
@@ -58,7 +61,6 @@ private fun SettingsScreenContent(
                 modifier = Modifier
                     .padding(top = Margins.regular),
             ) {
-
                 Text(
                     text = stringResource(Res.string.security),
                     style = MaterialTheme.typography.caption,

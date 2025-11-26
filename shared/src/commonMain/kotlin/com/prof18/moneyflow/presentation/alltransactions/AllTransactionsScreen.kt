@@ -5,7 +5,9 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
+import com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState
 import com.prof18.moneyflow.presentation.model.CategoryIcon
 import com.prof18.moneyflow.ui.components.ErrorView
 import com.prof18.moneyflow.ui.components.Loader
@@ -14,14 +16,15 @@ import com.prof18.moneyflow.ui.components.TransactionCard
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import money_flow.shared.generated.resources.*
+import money_flow.shared.generated.resources.Res
+import money_flow.shared.generated.resources.all_transactions
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun AllTransactionsScreen(
     navigateUp: () -> Unit = {},
-    stateFlow: StateFlow<com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState>,
+    stateFlow: StateFlow<AllTransactionsUiState>,
     loadNextPage: () -> Unit,
 ) {
     Scaffold(
@@ -57,7 +60,11 @@ internal fun AllTransactionsScreen(
                             )
                             Divider()
 
-                            if (index == uiState.transactions.lastIndex && !uiState.endReached && !uiState.isLoadingMore) {
+                            if (
+                                index == uiState.transactions.lastIndex &&
+                                !uiState.endReached &&
+                                !uiState.isLoadingMore
+                            ) {
                                 loadNextPage()
                             }
                         }
@@ -79,7 +86,7 @@ private fun AllTransactionsScreenPreviews() {
         AllTransactionsScreen(
             navigateUp = {},
             stateFlow = MutableStateFlow(
-                _root_ide_package_.com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState(
+                AllTransactionsUiState(
                     transactions = listOf(
                         SampleTransactions.iceCream,
                         SampleTransactions.tip,
@@ -92,7 +99,7 @@ private fun AllTransactionsScreenPreviews() {
 }
 
 private object SampleTransactions {
-    val iceCream = com.prof18.moneyflow.domain.entities.MoneyTransaction(
+    val iceCream = MoneyTransaction(
         id = 0,
         title = "Ice Cream",
         icon = CategoryIcon.IC_ICE_CREAM_SOLID,
@@ -102,7 +109,7 @@ private object SampleTransactions {
         formattedDate = "12 July 2021",
     )
 
-    val tip = com.prof18.moneyflow.domain.entities.MoneyTransaction(
+    val tip = MoneyTransaction(
         id = 1,
         title = "Tip",
         icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,

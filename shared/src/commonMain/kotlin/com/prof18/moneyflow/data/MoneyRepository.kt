@@ -87,7 +87,6 @@ class MoneyRepository(
     }
 
     suspend fun insertTransaction(transactionToSave: TransactionToSave) {
-
         val dateMillis = transactionToSave.dateMillis
         val transactionType = transactionToSave.transactionType
         var amount = transactionToSave.amount
@@ -127,7 +126,6 @@ class MoneyRepository(
     }
 
     suspend fun deleteTransaction(transactionId: Long) {
-
         val transaction = dbSource.getTransaction(transactionId)
         // It should not be null!
         if (transaction != null) {
@@ -176,7 +174,6 @@ class MoneyRepository(
         pageNum: Long,
         pageSize: Long,
     ): List<MoneyTransaction> {
-
         return dbSource.getTransactionsPaginated(
             pageNum = (pageNum * pageSize),
             pageSize = pageSize,
