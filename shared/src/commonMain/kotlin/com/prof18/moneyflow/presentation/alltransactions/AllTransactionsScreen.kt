@@ -5,6 +5,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState
@@ -19,7 +20,6 @@ import kotlinx.coroutines.flow.StateFlow
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.all_transactions
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun AllTransactionsScreen(
@@ -40,10 +40,7 @@ internal fun AllTransactionsScreen(
             LazyColumn {
                 when {
                     uiState.error != null -> {
-                        val errorMessage = uiState.error
-                        if (errorMessage != null) {
-                            item { ErrorView(uiErrorMessage = errorMessage) }
-                        }
+                        item { ErrorView(uiErrorMessage = uiState.error) }
                     }
                     uiState.isLoading -> item { Loader() }
                     else -> {

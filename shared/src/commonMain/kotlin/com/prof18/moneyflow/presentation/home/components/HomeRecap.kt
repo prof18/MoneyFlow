@@ -19,6 +19,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.ui.components.HideableTextField
@@ -39,7 +40,6 @@ import money_flow.shared.generated.resources.transaction_type_outcome
 import money_flow.shared.generated.resources.up_arrow_content_desc
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length

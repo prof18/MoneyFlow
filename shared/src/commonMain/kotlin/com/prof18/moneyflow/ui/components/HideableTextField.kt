@@ -9,8 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 internal fun HideableTextField(

@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import money_flow.shared.generated.resources.Res
@@ -33,7 +34,6 @@ import money_flow.shared.generated.resources.cancel
 import money_flow.shared.generated.resources.confirm
 import money_flow.shared.generated.resources.select_date
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 internal fun getYearList() = (2015..2023).map { it.toString() }
 internal fun getMonthList() = (1..12).map { it.toString() }

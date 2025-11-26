@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.presentation.addtransaction.components.DatePickerDialog
 import com.prof18.moneyflow.presentation.addtransaction.components.IconTextClickableRow
@@ -39,7 +40,6 @@ import money_flow.shared.generated.resources.select_category
 import money_flow.shared.generated.resources.today
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Suppress("LongMethod", "LongParameterList", "SpreadOperator") // TODO: reduce method length
