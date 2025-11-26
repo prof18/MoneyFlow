@@ -15,10 +15,6 @@ on:
         required: true
       KEYSTORE_STORE_PASSWORD:
         required: true
-      DROPBOX_API_KEY:
-        required: true
-      FIREBASE_JSON:
-        required: true
       PLAY_CONFIG:
         required: true
 
