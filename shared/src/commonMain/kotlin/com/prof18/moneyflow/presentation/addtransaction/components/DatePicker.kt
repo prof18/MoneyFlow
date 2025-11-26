@@ -32,12 +32,12 @@ import androidx.compose.ui.unit.dp
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.*
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
-import java.util.Calendar
 
 internal fun getYearList() = (2015..2023).map { it.toString() }
 internal fun getMonthList() = (1..12).map { it.toString() }
 internal fun getDayList() = (1..31).map { it.toString() }
 
+// TODO: replace with a proper date picker
 @Composable
 internal fun DatePickerDialog(
     showDialog: Boolean,
@@ -60,7 +60,7 @@ internal fun DatePickerDialog(
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     DatePickerItemDropdownMenu(
-                        initialText = Calendar.getInstance().get(Calendar.YEAR).toString(),
+                        initialText = "Calendar.getInstance().get(Calendar.YEAR).toString()",
                         itemList = getYearList(),
                         onItemSelected = {
                             onYearSelected(it.toInt())
@@ -70,7 +70,7 @@ internal fun DatePickerDialog(
                     Spacer(modifier = Modifier.width(16.dp))
 
                     DatePickerItemDropdownMenu(
-                        initialText = (Calendar.getInstance().get(Calendar.MONTH) + 1).toString(),
+                        initialText = "(Calendar.getInstance().get(Calendar.MONTH) + 1).toString()",
                         itemList = getMonthList(),
                         onItemSelected = {
                             onMonthSelected(it.toInt())
@@ -80,7 +80,7 @@ internal fun DatePickerDialog(
                     Spacer(modifier = Modifier.width(16.dp))
 
                     DatePickerItemDropdownMenu(
-                        initialText = Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString(),
+                        initialText = "Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()",
                         itemList = getDayList(),
                         onItemSelected = {
                             onDaySelected(it.toInt())

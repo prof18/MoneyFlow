@@ -8,27 +8,17 @@
 import SwiftUI
 import shared
 
+struct ComposeView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UIViewController {
+        MainViewControllerKt.MainViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}
+
 struct ContentView: View {
-
-    @EnvironmentObject var appState: AppState
-
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-
     var body: some View {
-
-        ZStack {
-            if horizontalSizeClass == .compact {
-                AppTabNavigation().environmentObject(appState)
-            } else {
-                AppSidebarNavigation().environmentObject(appState)
-            }
-
-            VStack(spacing: 0) {
-
-                Spacer()
-
-                Snackbar(snackbarData: $appState.snackbarData)
-            }
-        }
+        ComposeView()
+            .ignoresSafeArea()
     }
 }

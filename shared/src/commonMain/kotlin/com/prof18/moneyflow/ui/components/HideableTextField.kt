@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.ui.components
 
-import android.content.res.Configuration
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
