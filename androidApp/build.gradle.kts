@@ -1,3 +1,4 @@
+import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 import java.util.Properties
 
 plugins {
@@ -94,4 +95,6 @@ play {
     // The play_config.json file will be provided on CI
     serviceAccountCredentials.set(file("../play_config.json"))
     track.set("internal")
+    // TODO: delete when having the full app
+    releaseStatus.value(ReleaseStatus.DRAFT)
 }
