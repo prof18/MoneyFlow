@@ -37,3 +37,4 @@ jobs:
             git push
           else
             echo "No snapshot changes to commit."
+          fi
