@@ -23,7 +23,7 @@ navigation3 = "1.0.0-alpha05"
 kotlinx-serialization = "1.7.3"
 lifecycle = "2.10.0-alpha04"
 sqlDelight = "2.1.0"
-turbine = "1.1.0"
+turbine = "1.2.1"
 triplet-play = "3.12.1"
 
 [libraries]
