@@ -1,5 +1,3 @@
-@file:Suppress("DSL_SCOPE_VIOLATION")
-
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -50,13 +48,13 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
-                api(compose.materialIconsExtended)
-                api(compose.ui)
-                api(compose.components.resources)
-                implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.10.0-beta01")
+                api(libs.compose.runtime)
+                api(libs.compose.foundation)
+                api(libs.compose.material)
+                api(libs.compose.material.icons.extended)
+                api(libs.compose.ui)
+                api(libs.compose.components.resources)
+                implementation(libs.jetbrains.ui.tooling.preview)
 
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.koin.compose.viewmodel.navigation)
@@ -111,7 +109,6 @@ kotlin {
                 implementation(libs.sqldelight.native.driver)
             }
         }
-        val iosTest by getting
     }
 }
 

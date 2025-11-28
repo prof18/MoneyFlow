@@ -7,6 +7,7 @@ androidx-test = "1.6.1"
 androidx-test-runner = "1.6.2"
 androidx-test-ext = "1.2.1"
 biometric = "1.2.0-alpha05"
+compose = "1.10.0-beta01"
 compose-androidx = "1.7.5"
 compose-plugin = "1.10.0-beta01"
 coroutines = "1.10.2"
@@ -17,6 +18,7 @@ kermit = "2.0.8"
 koin = "4.1.1"
 kotlin = "2.2.20"
 kotlinx-date-time = "0.6.1"
+composeMaterialIconsExtended = "1.7.3"
 multiplatform-settings = "1.3.0"
 lifecycle-navigation3 = "2.10.0-alpha04"
 navigation3 = "1.0.0-alpha05"
@@ -38,8 +40,11 @@ androidx-test-runner = { module = "androidx.test:runner", version.ref = "android
 cashapp-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose" }
 compose-ui-test = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose-androidx" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-androidx" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+jetbrains-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 androidx-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
 androidx-lifecycle-viewmodel-navigation3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycle-navigation3" }
@@ -52,6 +57,9 @@ kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version
 kotlinx-coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutine-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-date-time" }
+compose-material = { module = "org.jetbrains.compose.material:material", version.ref = "compose" }
+compose-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "composeMaterialIconsExtended" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose" }
 russhwolf-multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatform-settings" }
 russhwolf-multiplatform-settings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatform-settings" }
 sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
@@ -65,6 +73,7 @@ roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = 
 roborazzi-compose = { module = "io.github.takahirom.roborazzi:roborazzi-compose", version.ref = "roborazzi" }
 roborazziJunitRule = { module = "io.github.takahirom.roborazzi:roborazzi-junit-rule", version.ref = "roborazzi" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
 
 [bundles]
 androidx-test = ["androidx-test-core", "androidx-test-ext-junit", "androidx-test-rules", "androidx-test-runner"]

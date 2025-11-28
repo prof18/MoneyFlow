@@ -6,6 +6,32 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		13F46F372EDA1FAC003E22ED /* VersionGenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 13F46F3A2EDA1FAC003E22ED /* Build configuration list for PBXAggregateTarget "VersionGenerator" */;
+			buildPhases = (
+				13F46F3B2EDA1FBE003E22ED /* Generate Version */,
+			);
+			dependencies = (
+			);
+			name = VersionGenerator;
+			packageProductDependencies = (
+			);
+			productName = VersionGenerator;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXContainerItemProxy section */
+		13F46F3C2EDA1FF5003E22ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BCCA59B08481063B39D0DC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13F46F372EDA1FAC003E22ED;
+			remoteInfo = VersionGenerator;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		13F46F0F2ED9A30F003E22ED /* MoneyFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoneyFlow.entitlements; sourceTree = "<group>"; };
 		74302460264A6AC12ABA3020 /* MoneyFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0506720A08F22077D1ED93AA /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
 			buildPhases = (
+				B1ED7E9E2F2C4795BA9C3825 /* Generate Version */,
 				18C25BC25EBD5C0382F00434 /* Compile Kotlin Framework */,
 				2D7CA7880B8FD75751B1FE34 /* Sources */,
 				8EB6971E0154A666A3741BB2 /* Frameworks */,
@@ -81,6 +108,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				13F46F3D2EDA1FF5003E22ED /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				13F46DDE2ED99F2C003E22ED /* Assets */,
@@ -103,6 +131,9 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					13F46F372EDA1FAC003E22ED = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
 					5E0725B4FAD85C89202B3C65 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -123,6 +154,7 @@
 			projectRoot = "";
 			targets = (
 				5E0725B4FAD85C89202B3C65 /* MoneyFlow */,
+				13F46F372EDA1FAC003E22ED /* VersionGenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -138,6 +170,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13F46F3B2EDA1FBE003E22ED /* Generate Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/.scripts/version.sh\n";
+		};
 		18C25BC25EBD5C0382F00434 /* Compile Kotlin Framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -157,6 +207,26 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
+		B1ED7E9E2F2C4795BA9C3825 /* Generate Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Version";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Plist/Prefix",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/.scripts/version.sh\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -169,7 +239,33 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		13F46F3D2EDA1FF5003E22ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13F46F372EDA1FAC003E22ED /* VersionGenerator */;
+			targetProxy = 13F46F3C2EDA1FF5003E22ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		13F46F382EDA1FAC003E22ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7CUB3RNAK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		13F46F392EDA1FAC003E22ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7CUB3RNAK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		49119FB90DF9E7FB34FEBE73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -190,6 +286,8 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_PREFIX_HEADER = Plist/Prefix;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -290,6 +388,8 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_PREFIX_HEADER = Plist/Prefix;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,6 +471,15 @@
 			buildConfigurations = (
 				49119FB90DF9E7FB34FEBE73 /* Debug */,
 				72DCDEE7F3F29D583F48F4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13F46F3A2EDA1FAC003E22ED /* Build configuration list for PBXAggregateTarget "VersionGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13F46F382EDA1FAC003E22ED /* Debug */,
+				13F46F392EDA1FAC003E22ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
