@@ -6,7 +6,7 @@ import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.model.CategoryIcon
-import io.github.takahirom.roborazzi.captureRoboImage
+import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import java.io.File
 
