@@ -35,6 +35,8 @@ import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.ic_arrow_down_rotate
 import money_flow.shared.generated.resources.ic_arrow_up_rotate
@@ -54,7 +56,7 @@ internal fun TransactionTypeTabBar(
         selectedTabIndex = transactionType.ordinal,
         backgroundColor = Color.Transparent,
         indicator = { tabPositions ->
-            TransactionTabIndicator(tabPositions, transactionType)
+            TransactionTabIndicator(tabPositions.toImmutableList(), transactionType)
         },
         divider = { },
     ) {
@@ -104,7 +106,7 @@ private fun TransactionTab(
 
 @Composable
 private fun TransactionTabIndicator(
-    tabPositions: List<TabPosition>,
+    tabPositions: ImmutableList<TabPosition>,
     transactionType: TransactionType,
 ) {
     val transition = updateTransition(transactionType, label = "tab_selection_transition")

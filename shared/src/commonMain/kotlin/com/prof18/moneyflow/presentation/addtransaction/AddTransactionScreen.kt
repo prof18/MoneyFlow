@@ -84,7 +84,7 @@ internal fun AddTransactionScreen(
                 } else {
                     ""
                 }
-                LaunchedEffect(scaffoldState.snackbarHostState) {
+                LaunchedEffect(scaffoldState.snackbarHostState, resetAction) {
                     val message = buildString {
                         append(messageText)
                         if (nerdText.isNotBlank()) {

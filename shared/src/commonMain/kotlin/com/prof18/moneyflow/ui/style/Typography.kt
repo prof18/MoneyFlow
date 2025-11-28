@@ -14,7 +14,7 @@ import money_flow.shared.generated.resources.poppins_semibold
 import org.jetbrains.compose.resources.Font
 
 @Composable
-internal fun MoneyFlowTypography(): Typography {
+internal fun moneyFlowTypography(): Typography {
     val poppins = FontFamily(
         Font(Res.font.poppins_extra_light, FontWeight.ExtraLight),
         Font(Res.font.poppins_light, FontWeight.Light),

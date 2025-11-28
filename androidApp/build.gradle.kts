@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.triplet.play)
+    alias(libs.plugins.kmp.detekt)
 }
 
 apply(from = "../versioning.gradle.kts")

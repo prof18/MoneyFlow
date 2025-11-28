@@ -27,9 +27,10 @@ import org.jetbrains.compose.resources.stringResource
 fun AuthScreen(
     authState: AuthState,
     onRetryClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

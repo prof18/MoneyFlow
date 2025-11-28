@@ -49,13 +49,14 @@ import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun MoneyFlowNavHost() {
+fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
     val backStack = rememberSerializable(serializer = SnapshotStateListSerializer(AppRoute.serializer())) {
         mutableStateListOf<AppRoute>(HomeRoute)
     }
     val categoryState = remember { mutableStateOf<CategoryUIData?>(null) }
 
     Scaffold(
+        modifier = modifier,
         bottomBar = {
             BottomBar(
                 currentRoute = backStack.lastOrNull(),

@@ -34,9 +34,9 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun IconTextClickableRow(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
     text: String,
     icon: DrawableResource,
+    modifier: Modifier = Modifier,
     isSomethingSelected: Boolean = true,
 ) {
     Column(

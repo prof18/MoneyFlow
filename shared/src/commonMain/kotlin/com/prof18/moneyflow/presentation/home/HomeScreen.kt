@@ -58,13 +58,13 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
 internal fun HomeScreen(
+    homeModel: HomeModel,
+    hideSensitiveDataState: Boolean,
+    navigateToAllTransactions: () -> Unit,
     navigateToAddTransaction: () -> Unit = {},
     paddingValues: PaddingValues = PaddingValues(0.dp),
     deleteTransaction: (Long) -> Unit = {},
-    homeModel: HomeModel,
-    hideSensitiveDataState: Boolean,
     changeSensitiveDataVisibility: (Boolean) -> Unit = {},
-    navigateToAllTransactions: () -> Unit,
 ) {
     when (homeModel) {
         is HomeModel.Loading -> Loader()

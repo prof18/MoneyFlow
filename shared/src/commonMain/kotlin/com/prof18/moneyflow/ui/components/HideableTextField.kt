@@ -14,9 +14,9 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 
 @Composable
 internal fun HideableTextField(
-    modifier: Modifier = Modifier,
     text: String,
     hide: Boolean,
+    modifier: Modifier = Modifier,
     style: TextStyle = MaterialTheme.typography.body1,
 ) {
     val hiddenWord: String by remember { mutableStateOf(text.replace("[\\d|.,]".toRegex(), "*")) }

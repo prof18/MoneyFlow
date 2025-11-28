@@ -29,15 +29,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.cancel
 import money_flow.shared.generated.resources.confirm
 import money_flow.shared.generated.resources.select_date
 import org.jetbrains.compose.resources.stringResource
 
-internal fun getYearList() = (2015..2023).map { it.toString() }
-internal fun getMonthList() = (1..12).map { it.toString() }
-internal fun getDayList() = (1..31).map { it.toString() }
+internal fun getYearList(): ImmutableList<String> = (2015..2023).map { it.toString() }.toPersistentList()
+internal fun getMonthList(): ImmutableList<String> = (1..12).map { it.toString() }.toPersistentList()
+internal fun getDayList(): ImmutableList<String> = (1..31).map { it.toString() }.toPersistentList()
 
 // TODO: replace with a proper date picker
 @Composable
@@ -112,7 +114,7 @@ internal fun DatePickerDialog(
 @Composable
 private fun DatePickerItemDropdownMenu(
     initialText: String,
-    itemList: List<String>,
+    itemList: ImmutableList<String>,
     onItemSelected: (String) -> Unit,
 ) {
     val (dropdownText, setDropdownText) = remember { mutableStateOf(initialText) }

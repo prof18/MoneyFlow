@@ -23,9 +23,9 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun AllTransactionsScreen(
-    navigateUp: () -> Unit = {},
     stateFlow: StateFlow<AllTransactionsUiState>,
     loadNextPage: () -> Unit,
+    navigateUp: () -> Unit = {},
 ) {
     Scaffold(
         topBar = {

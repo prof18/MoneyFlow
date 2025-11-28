@@ -26,9 +26,9 @@ internal fun MFTextInput(
     text: String,
     label: String?,
     onTextChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
     keyboardType: KeyboardType,
     textStyle: TextStyle,
+    modifier: Modifier = Modifier,
     leadingIcon: @Composable (() -> Unit)? = null,
 ) {
     val focusManager = LocalFocusManager.current

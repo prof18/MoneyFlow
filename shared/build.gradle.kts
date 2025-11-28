@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.roborazzi)
+    alias(libs.plugins.kmp.detekt)
 }
 
 val javaVersion: JavaVersion by rootProject.extra
@@ -139,7 +140,7 @@ android {
 }
 
 dependencies {
-    debugImplementation(compose.uiTooling)
+    debugImplementation(libs.jetbrains.ui.tooling.preview)
     androidTestImplementation(libs.compose.ui.test)
 }
 
