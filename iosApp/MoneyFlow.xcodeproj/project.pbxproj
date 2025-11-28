@@ -278,7 +278,7 @@
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = Q7CUB3RNAK;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Assets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MoneyFlow;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -382,7 +382,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Q7CUB3RNAK;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Assets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MoneyFlow;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
