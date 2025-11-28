@@ -1,14 +1,18 @@
 package com.prof18.moneyflow
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.presentation.home.HomeModel
 import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(sdk = [33])
 class HomeRoborazziTest : RoborazziTestBase() {
 
     @Test

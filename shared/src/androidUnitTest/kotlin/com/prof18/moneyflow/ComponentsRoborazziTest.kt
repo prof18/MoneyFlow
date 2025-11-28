@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.ui.components.MFTopBar
 import com.prof18.moneyflow.ui.components.TransactionCard
@@ -11,9 +12,12 @@ import money_flow.shared.generated.resources.settings_screen
 import org.jetbrains.compose.resources.stringResource
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(sdk = [33])
 class ComponentsRoborazziTest : RoborazziTestBase() {
 
     @Test
