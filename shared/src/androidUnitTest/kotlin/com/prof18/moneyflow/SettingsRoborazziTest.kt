@@ -1,7 +1,7 @@
 package com.prof18.moneyflow
 
-import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.junit.Test
