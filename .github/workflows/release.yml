@@ -12,6 +12,9 @@ on:
           - android
           - ios
         default: 'all'
+  pull_request_target:
+    types:
+      - labeled
   push:
     tags:
       - '*-all'
@@ -20,7 +23,7 @@ on:
 
 jobs:
   android:
-    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.platforms == 'all' || github.event.inputs.platforms == 'android')) || (github.event_name == 'push' && (endsWith(github.ref, '-all') || endsWith(github.ref, '-android')))
+    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.platforms == 'all' || github.event.inputs.platforms == 'android')) || (github.event_name == 'push' && (endsWith(github.ref, '-all') || endsWith(github.ref, '-android'))) || (github.event_name == 'pull_request_target' && github.event.action == 'labeled' && github.event.label.name == 'Generate Build')
     uses: ./.github/workflows/android-release.yml
     secrets:
       GRADLE_CACHE_ENCRYPTION_KEY: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
@@ -32,7 +35,7 @@ jobs:
       PLAY_CONFIG: ${{ secrets.PLAY_CONFIG_JSON }}
 
   ios:
-    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.platforms == 'all' || github.event.inputs.platforms == 'ios')) || (github.event_name == 'push' && (endsWith(github.ref, '-all') || endsWith(github.ref, '-ios')))
+    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.platforms == 'all' || github.event.inputs.platforms == 'ios')) || (github.event_name == 'push' && (endsWith(github.ref, '-all') || endsWith(github.ref, '-ios'))) || (github.event_name == 'pull_request_target' && github.event.action == 'labeled' && github.event.label.name == 'Generate Build')
     uses: ./.github/workflows/ios-release.yml
     secrets:
       GRADLE_CACHE_ENCRYPTION_KEY: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
