@@ -24,15 +24,7 @@ jobs:
           gradle-cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
 
       - name: Record Roborazzi snapshots
-        run: ./gradlew :shared:testDebugUnitTest --tests "*RoborazziTest" --no-daemon --console=plain
-
-      - name: Upload snapshots for forked PRs
-        if: always() && github.event.pull_request.head.repo.fork
-        uses: actions/upload-artifact@v4
-        with:
-          name: roborazzi-snapshots
-          path: image/roborazzi
-          if-no-files-found: ignore
+        run: ./gradlew recordRoborazziDebug
 
       - name: Commit Roborazzi snapshots
         if: always() && !github.event.pull_request.head.repo.fork

@@ -1,13 +1,17 @@
 package com.prof18.moneyflow
 
 import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(sdk = [33])
 class SettingsRoborazziTest : RoborazziTestBase() {
 
     @Test

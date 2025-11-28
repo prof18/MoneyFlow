@@ -1,24 +1,40 @@
 package com.prof18.moneyflow
 
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.activity.ComponentActivity
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onRoot
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.github.takahirom.roborazzi.RoborazziRule
+import com.github.takahirom.roborazzi.captureRoboImage
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.model.CategoryIcon
-import com.github.takahirom.roborazzi.captureRoboImage
+import org.junit.After
 import org.junit.Rule
 import java.io.File
 
-open class RoborazziTestBase {
+open class RoborazziTestBase(
+    captureType: RoborazziRule.CaptureType = RoborazziRule.CaptureType.None,
+) {
     @get:Rule
-    val composeRule = createComposeRule()
+    val composeRule: AndroidComposeTestRule<ActivityScenarioRule<ComponentActivity>, ComponentActivity> =
+        createAndroidComposeRule()
+
+    @get:Rule
+    val roborazziRule: RoborazziRule = roborazziOf(composeRule, captureType)
 
     private val snapshotDir: File = File(
         System.getProperty("roborazzi.test.record.dir")
-            ?: error("Missing roborazzi.test.record.dir property"),
+            ?: File(System.getProperty("user.dir")).resolve("image/roborazzi").path,
     ).also { directory ->
         directory.mkdirs()
+    }
+
+    @After
+    fun tearDown() {
+        composeRule.activityRule.scenario.recreate()
     }
 
     protected fun capture(name: String) {
