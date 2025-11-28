@@ -3,53 +3,42 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		A9D1B2CA2553E8E100931B2B /* shared in Resources */ = {isa = PBXBuildFile; fileRef = A9D1B2C92553E8E100931B2B /* shared */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A9F6750D24F59E2700F486FE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A9F674F024F59E2500F486FE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A9F674FB24F59E2700F486FE;
-			remoteInfo = "iosApp (iOS)";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		A9D1B2C92553E8E100931B2B /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
-		A9F674FC24F59E2700F486FE /* MoneyFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9F6750C24F59E2700F486FE /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		13F46F0F2ED9A30F003E22ED /* MoneyFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoneyFlow.entitlements; sourceTree = "<group>"; };
+		74302460264A6AC12ABA3020 /* MoneyFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		135EF5E72ED6E5A0005B6043 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		13F46DDF2ED99F4A003E22ED /* Exceptions for "Assets" folder in "MoneyFlow" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Images.xcassets,
+				Info.plist,
 			);
-			target = A9F674FB24F59E2700F486FE /* MoneyFlow */;
+			target = 5E0725B4FAD85C89202B3C65 /* MoneyFlow */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		135EF5DF2ED6E57F005B6043 /* Source */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Source; sourceTree = "<group>"; };
-		135EF5E52ED6E5A0005B6043 /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (135EF5E72ED6E5A0005B6043 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
+		13F46DDE2ED99F2C003E22ED /* Assets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				13F46DDF2ED99F4A003E22ED /* Exceptions for "Assets" folder in "MoneyFlow" target */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		6E007A3526BC97399FEA46B2 /* Source */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Source;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A9F674F924F59E2700F486FE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9F6750924F59E2700F486FE /* Frameworks */ = {
+		8EB6971E0154A666A3741BB2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,116 +48,87 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A9F674EF24F59E2500F486FE = {
+		B7DE119FFFE2D8F48EB1B463 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A9D1B2C92553E8E100931B2B /* shared */,
-				135EF5E52ED6E5A0005B6043 /* Assets */,
-				135EF5DF2ED6E57F005B6043 /* Source */,
-				A9F674FD24F59E2700F486FE /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A9F674FD24F59E2700F486FE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A9F674FC24F59E2700F486FE /* MoneyFlow.app */,
-				A9F6750C24F59E2700F486FE /* Tests.xctest */,
+				74302460264A6AC12ABA3020 /* MoneyFlow.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D9916947448D05C97BC70C16 = {
+			isa = PBXGroup;
+			children = (
+				13F46F0F2ED9A30F003E22ED /* MoneyFlow.entitlements */,
+				13F46DDE2ED99F2C003E22ED /* Assets */,
+				6E007A3526BC97399FEA46B2 /* Source */,
+				B7DE119FFFE2D8F48EB1B463 /* Products */,
+			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A9F674FB24F59E2700F486FE /* MoneyFlow */ = {
+		5E0725B4FAD85C89202B3C65 /* MoneyFlow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A9F6752624F59E2700F486FE /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
+			buildConfigurationList = 0506720A08F22077D1ED93AA /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
 			buildPhases = (
-				135EF5D12ED5FF3D005B6043 /* Compile Kotlin Framework */,
-				A9F674F824F59E2700F486FE /* Sources */,
-				A9F674F924F59E2700F486FE /* Frameworks */,
-				A9F674FA24F59E2700F486FE /* Resources */,
-				8DAC5AF327CC0A5B001F9E86 /* SwiftLint */,
+				18C25BC25EBD5C0382F00434 /* Compile Kotlin Framework */,
+				2D7CA7880B8FD75751B1FE34 /* Sources */,
+				8EB6971E0154A666A3741BB2 /* Frameworks */,
+				9A86C77568EE9331093603CE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				135EF5DF2ED6E57F005B6043 /* Source */,
+				13F46DDE2ED99F2C003E22ED /* Assets */,
+				6E007A3526BC97399FEA46B2 /* Source */,
 			);
 			name = MoneyFlow;
-			productName = "iosApp (iOS)";
-			productReference = A9F674FC24F59E2700F486FE /* MoneyFlow.app */;
+			packageProductDependencies = (
+			);
+			productName = MoneyFlow;
+			productReference = 74302460264A6AC12ABA3020 /* MoneyFlow.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A9F6750B24F59E2700F486FE /* Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A9F6752C24F59E2700F486FE /* Build configuration list for PBXNativeTarget "Tests" */;
-			buildPhases = (
-				A9F6750824F59E2700F486FE /* Sources */,
-				A9F6750924F59E2700F486FE /* Frameworks */,
-				A9F6750A24F59E2700F486FE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A9F6750E24F59E2700F486FE /* PBXTargetDependency */,
-			);
-			name = Tests;
-			productName = "Tests iOS";
-			productReference = A9F6750C24F59E2700F486FE /* Tests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A9F674F024F59E2500F486FE /* Project object */ = {
+		1BCCA59B08481063B39D0DC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1210;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					A9F674FB24F59E2700F486FE = {
-						CreatedOnToolsVersion = 12.0;
-					};
-					A9F6750B24F59E2700F486FE = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = A9F674FB24F59E2700F486FE;
+					5E0725B4FAD85C89202B3C65 = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = A9F674F324F59E2500F486FE /* Build configuration list for PBXProject "MoneyFlow" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = E8BA6EDC49E528ED52578D5F /* Build configuration list for PBXProject "MoneyFlow" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				it,
 			);
-			mainGroup = A9F674EF24F59E2500F486FE;
-			productRefGroup = A9F674FD24F59E2700F486FE /* Products */;
+			mainGroup = D9916947448D05C97BC70C16;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B7DE119FFFE2D8F48EB1B463 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A9F674FB24F59E2700F486FE /* MoneyFlow */,
-				A9F6750B24F59E2700F486FE /* Tests */,
+				5E0725B4FAD85C89202B3C65 /* MoneyFlow */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A9F674FA24F59E2700F486FE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A9D1B2CA2553E8E100931B2B /* shared in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9F6750A24F59E2700F486FE /* Resources */ = {
+		9A86C77568EE9331093603CE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -178,8 +138,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		135EF5D12ED5FF3D005B6043 /* Compile Kotlin Framework */ = {
+		18C25BC25EBD5C0382F00434 /* Compile Kotlin Framework */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -194,37 +155,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n\n";
-		};
-		8DAC5AF327CC0A5B001F9E86 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A9F674F824F59E2700F486FE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9F6750824F59E2700F486FE /* Sources */ = {
+		2D7CA7880B8FD75751B1FE34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -233,24 +169,52 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		A9F6750E24F59E2700F486FE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A9F674FB24F59E2700F486FE /* MoneyFlow */;
-			targetProxy = A9F6750D24F59E2700F486FE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		A9F6752424F59E2700F486FE /* Debug */ = {
+		49119FB90DF9E7FB34FEBE73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = DebugIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoneyFlow.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = Q7CUB3RNAK;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Assets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MoneyFlow;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"-lsqlite3",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow.dev;
+				PRODUCT_NAME = MoneyFlow;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		58BB095DEEA5C79A2751010D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -280,8 +244,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -295,24 +259,62 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		A9F6752524F59E2700F486FE /* Release */ = {
+		72DCDEE7F3F29D583F48F4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MoneyFlow.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = Q7CUB3RNAK;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Assets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MoneyFlow;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"-lsqlite3",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
+				PRODUCT_NAME = MoneyFlow;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E3B514BB52F07F94A4AE1E8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -342,8 +344,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -351,110 +353,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		A9F6752724F59E2700F486FE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q7CUB3RNAK;
-				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
-				INFOPLIST_FILE = Assets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"c++\"",
-					"-framework",
-					"\"shared\"",
-					"-lsqlite3",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
-				PRODUCT_NAME = MoneyFlow;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		A9F6752824F59E2700F486FE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q7CUB3RNAK;
-				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
-				INFOPLIST_FILE = Assets/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"c++\"",
-					"-framework",
-					"\"shared\"",
-					"-lsqlite3",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.prof18.moneyflow;
-				PRODUCT_NAME = MoneyFlow;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A9F6752D24F59E2700F486FE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2LS7B6UW98;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prof18.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "iosApp (iOS)";
-			};
-			name = Debug;
-		};
-		A9F6752E24F59E2700F486FE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2LS7B6UW98;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prof18.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "iosApp (iOS)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -462,34 +366,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A9F674F324F59E2500F486FE /* Build configuration list for PBXProject "MoneyFlow" */ = {
+		0506720A08F22077D1ED93AA /* Build configuration list for PBXNativeTarget "MoneyFlow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A9F6752424F59E2700F486FE /* Debug */,
-				A9F6752524F59E2700F486FE /* Release */,
+				49119FB90DF9E7FB34FEBE73 /* Debug */,
+				72DCDEE7F3F29D583F48F4FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A9F6752624F59E2700F486FE /* Build configuration list for PBXNativeTarget "MoneyFlow" */ = {
+		E8BA6EDC49E528ED52578D5F /* Build configuration list for PBXProject "MoneyFlow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A9F6752724F59E2700F486FE /* Debug */,
-				A9F6752824F59E2700F486FE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A9F6752C24F59E2700F486FE /* Build configuration list for PBXNativeTarget "Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A9F6752D24F59E2700F486FE /* Debug */,
-				A9F6752E24F59E2700F486FE /* Release */,
+				58BB095DEEA5C79A2751010D /* Debug */,
+				E3B514BB52F07F94A4AE1E8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A9F674F024F59E2500F486FE /* Project object */;
+	rootObject = 1BCCA59B08481063B39D0DC7 /* Project object */;
 }

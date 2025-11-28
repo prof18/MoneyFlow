@@ -31,7 +31,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "shared"
+            baseName = "MoneyFlowKit"
             isStatic = true
             linkerOpts += listOf("-lsqlite3")
         }

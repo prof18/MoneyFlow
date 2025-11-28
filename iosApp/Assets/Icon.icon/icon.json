@@ -1,0 +1,38 @@
+{
+  "fill" : {
+    "solid" : "srgb:0.00000,0.58824,0.53333,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "glass" : true,
+          "image-name" : "savings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 2.svg",
+          "name" : "savings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 2",
+          "position" : {
+            "scale" : 40,
+            "translation-in-points" : [
+              32,
+              -14.321617528493562
+            ]
+          }
+        }
+      ],
+      "name" : "Group",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

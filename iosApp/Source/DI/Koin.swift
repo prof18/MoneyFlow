@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import shared
+import MoneyFlowKit
 
 func startKoin() {
     _ = KoinIosKt.doInitKoinIos()
