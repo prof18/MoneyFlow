@@ -26,8 +26,16 @@ jobs:
       - name: Record Roborazzi snapshots
         run: ./gradlew :shared:testDebugUnitTest --tests "*RoborazziTest" --no-daemon --console=plain
 
+      - name: Upload snapshots for forked PRs
+        if: always() && github.event.pull_request.head.repo.fork
+        uses: actions/upload-artifact@v4
+        with:
+          name: roborazzi-snapshots
+          path: image/roborazzi
+          if-no-files-found: ignore
+
       - name: Commit Roborazzi snapshots
-        if: always()
+        if: always() && !github.event.pull_request.head.repo.fork
         run: |
           if git status --porcelain image/roborazzi | grep .; then
             git config user.name "github-actions[bot]"
