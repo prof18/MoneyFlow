@@ -67,6 +67,7 @@ kotlin {
                 implementation(libs.koin.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.russhwolf.multiplatform.settings)
+                implementation(libs.immutable.collections)
                 api(libs.touchlab.kermit)
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutine.extensions)
