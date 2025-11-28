@@ -1,0 +1,39 @@
+name: Roborazzi Snapshots
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+permissions:
+  contents: write
+
+jobs:
+  record-snapshots:
+    name: Record Roborazzi Snapshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-gradle
+        with:
+          gradle-cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+
+      - name: Record Roborazzi snapshots
+        run: ./gradlew :shared:testDebugUnitTest --tests "*RoborazziTest" --no-daemon --console=plain
+
+      - name: Commit Roborazzi snapshots
+        if: always()
+        run: |
+          if git status --porcelain image/roborazzi | grep .; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add image/roborazzi
+            git commit -m "chore: update Roborazzi snapshots"
+            git push
+          else
+            echo "No snapshot changes to commit."
