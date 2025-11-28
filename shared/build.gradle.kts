@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.roborazzi)
 }
 
 val javaVersion: JavaVersion by rootProject.extra
@@ -97,6 +98,11 @@ kotlin {
                 implementation(libs.bundles.androidx.test)
                 implementation(libs.kotlinx.coroutine.test)
                 implementation(libs.sqldelight.sqlite.driver)
+                implementation(libs.roborazzi)
+                implementation(libs.roborazziJunitRule)
+                implementation(libs.roborazzi.compose)
+                implementation(libs.compose.ui.test)
+                implementation(libs.robolectric)
             }
         }
         val iosMain by getting {
@@ -123,6 +129,10 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     compileOptions {
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
@@ -134,6 +144,10 @@ android {
 dependencies {
     debugImplementation(compose.uiTooling)
     androidTestImplementation(libs.compose.ui.test)
+}
+
+tasks.withType<Test>().configureEach {
+    systemProperty("roborazzi.test.record.dir", rootProject.layout.projectDirectory.dir("image/roborazzi").asFile.path)
 }
 
 sqldelight {
