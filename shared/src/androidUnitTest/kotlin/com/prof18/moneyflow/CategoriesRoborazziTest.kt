@@ -1,6 +1,6 @@
 package com.prof18.moneyflow
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material.Scaffold
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.CategoriesScreen
@@ -21,26 +21,28 @@ class CategoriesRoborazziTest : RoborazziTestBase() {
     fun captureCategoriesScreen() {
         composeRule.setContent {
             MoneyFlowTheme {
-                CategoriesScreen(
-                    navigateUp = {},
-                    sendCategoryBack = {},
-                    isFromAddTransaction = true,
-                    categoryModel = CategoryModel.CategoryState(
-                        categories = listOf(
-                            Category(
-                                id = 0,
-                                name = "Food",
-                                icon = CategoryIcon.IC_HAMBURGER_SOLID,
-                            ),
-                            Category(
-                                id = 1,
-                                name = "Drinks",
-                                icon = CategoryIcon.IC_COCKTAIL_SOLID,
+                Scaffold {
+                    CategoriesScreen(
+                        navigateUp = {},
+                        sendCategoryBack = {},
+                        isFromAddTransaction = true,
+                        categoryModel = CategoryModel.CategoryState(
+                            categories = listOf(
+                                Category(
+                                    id = 0,
+                                    name = "Food",
+                                    icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                                ),
+                                Category(
+                                    id = 1,
+                                    name = "Drinks",
+                                    icon = CategoryIcon.IC_COCKTAIL_SOLID,
+                                ),
                             ),
                         ),
-                    ),
-                    paddingValues = PaddingValues(),
-                )
+                        paddingValues = it,
+                    )
+                }
             }
         }
 

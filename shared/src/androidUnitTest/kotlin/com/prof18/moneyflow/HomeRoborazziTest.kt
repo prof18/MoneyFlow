@@ -1,6 +1,6 @@
 package com.prof18.moneyflow
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material.Scaffold
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.presentation.home.HomeModel
@@ -20,19 +20,21 @@ class HomeRoborazziTest : RoborazziTestBase() {
     fun captureHomeScreen() {
         composeRule.setContent {
             MoneyFlowTheme {
-                HomeScreen(
-                    homeModel = HomeModel.HomeState(
-                        balanceRecap = BalanceRecap(
-                            totalBalance = 5000.0,
-                            monthlyIncome = 1000.0,
-                            monthlyExpenses = 50.0,
+                Scaffold {
+                    HomeScreen(
+                        homeModel = HomeModel.HomeState(
+                            balanceRecap = BalanceRecap(
+                                totalBalance = 5000.0,
+                                monthlyIncome = 1000.0,
+                                monthlyExpenses = 50.0,
+                            ),
+                            latestTransactions = RoborazziSampleData.sampleTransactions,
                         ),
-                        latestTransactions = RoborazziSampleData.sampleTransactions,
-                    ),
-                    hideSensitiveDataState = false,
-                    navigateToAllTransactions = {},
-                    paddingValues = PaddingValues(),
-                )
+                        hideSensitiveDataState = false,
+                        navigateToAllTransactions = {},
+                        paddingValues = it,
+                    )
+                }
             }
         }
 
