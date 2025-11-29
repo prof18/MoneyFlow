@@ -1,10 +1,13 @@
 package com.prof18.moneyflow.presentation.alltransactions
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
@@ -25,19 +28,21 @@ import org.jetbrains.compose.resources.stringResource
 internal fun AllTransactionsScreen(
     stateFlow: StateFlow<AllTransactionsUiState>,
     loadNextPage: () -> Unit,
+    paddingValues: PaddingValues,
     navigateUp: () -> Unit = {},
 ) {
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             MFTopBar(
                 topAppBarText = stringResource(Res.string.all_transactions),
                 onBackPressed = { navigateUp() },
             )
         },
-        content = {
+        content = { innerPadding ->
             val uiState = stateFlow.collectAsState().value
 
-            LazyColumn {
+            LazyColumn(modifier = Modifier.padding(innerPadding)) {
                 when {
                     uiState.error != null -> {
                         item { ErrorView(uiErrorMessage = uiState.error) }
@@ -81,7 +86,6 @@ internal fun AllTransactionsScreen(
 private fun AllTransactionsScreenPreviews() {
     MoneyFlowTheme {
         AllTransactionsScreen(
-            navigateUp = {},
             stateFlow = MutableStateFlow(
                 AllTransactionsUiState(
                     transactions = listOf(
@@ -91,6 +95,8 @@ private fun AllTransactionsScreenPreviews() {
                 ),
             ),
             loadNextPage = {},
+            paddingValues = PaddingValues(),
+            navigateUp = {},
         )
     }
 }

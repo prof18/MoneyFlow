@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.compose.material.Scaffold
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsScreen
@@ -19,14 +20,17 @@ class AllTransactionsRoborazziTest : RoborazziTestBase() {
     fun captureAllTransactionsScreen() {
         composeRule.setContent {
             MoneyFlowTheme {
-                AllTransactionsScreen(
-                    stateFlow = MutableStateFlow(
-                        AllTransactionsUiState(
-                            transactions = RoborazziSampleData.sampleTransactions,
+                Scaffold {
+                    AllTransactionsScreen(
+                        stateFlow = MutableStateFlow(
+                            AllTransactionsUiState(
+                                transactions = RoborazziSampleData.sampleTransactions,
+                            ),
                         ),
-                    ),
-                    loadNextPage = {},
-                )
+                        loadNextPage = {},
+                        paddingValues = it,
+                    )
+                }
             }
         }
 

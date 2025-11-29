@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.presentation.addtransaction
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
@@ -61,6 +62,7 @@ internal fun AddTransactionScreen(
     dateLabel: String?,
     addTransactionAction: AddTransactionAction?,
     resetAction: () -> Unit,
+    paddingValues: PaddingValues,
 ) {
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
@@ -102,6 +104,7 @@ internal fun AddTransactionScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         scaffoldState = scaffoldState,
         topBar = {
             MFTopBar(
@@ -115,8 +118,8 @@ internal fun AddTransactionScreen(
                 actionEnabled = categoryState.value?.id != null && amountText.isNotEmpty(),
             )
         },
-        content = {
-            Column {
+        content = { innerPadding ->
+            Column(modifier = Modifier.padding(innerPadding)) {
                 DatePickerDialog(
                     showDatePickerDialog,
                     setShowedDatePickerDialog,
@@ -239,6 +242,7 @@ private fun AddTransactionScreenPreview() {
                 dateLabel = "11 July 2021",
                 addTransactionAction = null,
                 resetAction = {},
+                paddingValues = PaddingValues(),
             )
         }
     }

@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.presentation.settings
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -27,6 +28,7 @@ internal fun SettingsScreen(
     onBiometricEnabled: (Boolean) -> Unit,
     hideSensitiveDataState: Boolean,
     onHideSensitiveDataEnabled: (Boolean) -> Unit,
+    paddingValues: PaddingValues,
 ) {
     SettingsScreenContent(
         isBiometricSupported = biometricAvailabilityChecker.isBiometricSupported(),
@@ -34,6 +36,7 @@ internal fun SettingsScreen(
         onBiometricEnabled = onBiometricEnabled,
         hideSensitiveDataState = hideSensitiveDataState,
         onHideSensitiveDataEnabled = onHideSensitiveDataEnabled,
+        paddingValues = paddingValues,
     )
 }
 
@@ -45,20 +48,25 @@ private fun SettingsScreenContent(
     onBiometricEnabled: (Boolean) -> Unit,
     hideSensitiveDataState: Boolean,
     onHideSensitiveDataEnabled: (Boolean) -> Unit,
+    paddingValues: PaddingValues,
 ) {
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             Text(
                 text = stringResource(Res.string.settings_screen),
                 style = MaterialTheme.typography.h4,
                 modifier = Modifier
+                    .padding(paddingValues)
                     .padding(horizontal = Margins.regular)
                     .padding(top = Margins.regular),
             )
         },
-        content = {
+        content = { innerPadding ->
             Column(
                 modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(innerPadding)
                     .padding(top = Margins.regular),
             ) {
                 Text(
@@ -96,6 +104,7 @@ private fun SettingsScreenPreview() {
                 onBiometricEnabled = {},
                 hideSensitiveDataState = true,
                 onHideSensitiveDataEnabled = {},
+                paddingValues = PaddingValues(),
             )
         }
     }

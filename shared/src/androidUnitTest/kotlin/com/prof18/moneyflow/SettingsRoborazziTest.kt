@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.compose.material.Scaffold
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
@@ -18,15 +19,18 @@ class SettingsRoborazziTest : RoborazziTestBase() {
     fun captureSettingsScreen() {
         composeRule.setContent {
             MoneyFlowTheme {
-                SettingsScreen(
-                    biometricAvailabilityChecker = object : BiometricAvailabilityChecker {
-                        override fun isBiometricSupported(): Boolean = true
-                    },
-                    biometricState = true,
-                    onBiometricEnabled = {},
-                    hideSensitiveDataState = true,
-                    onHideSensitiveDataEnabled = {},
-                )
+                Scaffold {
+                    SettingsScreen(
+                        biometricAvailabilityChecker = object : BiometricAvailabilityChecker {
+                            override fun isBiometricSupported(): Boolean = true
+                        },
+                        biometricState = true,
+                        onBiometricEnabled = {},
+                        hideSensitiveDataState = true,
+                        onHideSensitiveDataEnabled = {},
+                        paddingValues = it,
+                    )
+                }
             }
         }
 
