@@ -25,6 +25,7 @@
 - When modifying or adding UI, add screenshot tests in `androidApp/src/androidTest` following existing patterns to keep visual coverage current.
 - Run `./gradlew :shared:check` for KMP unit coverage;
 - Name tests with intent (e.g., `shouldReturnZeroBalanceWhenEmptyWallet`); group by feature or use-case.
+- When you change the API surface of composables, search for related tests and update them so snapshots and unit coverage stay in sync.
 
 ## Commit & Pull Request Guidelines
 - Commit messages: concise, imperative. Conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`) are welcome and match existing history.

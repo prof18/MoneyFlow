@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.CategoriesScreen
@@ -38,6 +39,7 @@ class CategoriesRoborazziTest : RoborazziTestBase() {
                             ),
                         ),
                     ),
+                    paddingValues = PaddingValues(),
                 )
             }
         }

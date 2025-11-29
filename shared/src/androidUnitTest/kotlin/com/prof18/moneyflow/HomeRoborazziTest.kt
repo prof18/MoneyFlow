@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.presentation.home.HomeModel
@@ -30,6 +31,7 @@ class HomeRoborazziTest : RoborazziTestBase() {
                     ),
                     hideSensitiveDataState = false,
                     navigateToAllTransactions = {},
+                    paddingValues = PaddingValues(),
                 )
             }
         }

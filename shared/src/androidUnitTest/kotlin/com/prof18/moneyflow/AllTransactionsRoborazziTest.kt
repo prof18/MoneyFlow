@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsScreen
@@ -26,6 +27,7 @@ class AllTransactionsRoborazziTest : RoborazziTestBase() {
                         ),
                     ),
                     loadNextPage = {},
+                    paddingValues = PaddingValues(),
                 )
             }
         }

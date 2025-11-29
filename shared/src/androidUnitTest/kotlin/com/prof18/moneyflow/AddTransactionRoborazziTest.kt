@@ -1,5 +1,6 @@
 package com.prof18.moneyflow
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -42,6 +43,7 @@ class AddTransactionRoborazziTest : RoborazziTestBase() {
                     dateLabel = "11 July 2021",
                     addTransactionAction = null,
                     resetAction = {},
+                    paddingValues = PaddingValues(),
                 )
             }
         }
