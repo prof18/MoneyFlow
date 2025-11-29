@@ -60,8 +60,8 @@ internal fun HomeScreen(
     homeModel: HomeModel,
     hideSensitiveDataState: Boolean,
     navigateToAllTransactions: () -> Unit,
-    navigateToAddTransaction: () -> Unit = {},
     paddingValues: PaddingValues,
+    navigateToAddTransaction: () -> Unit = {},
     deleteTransaction: (Long) -> Unit = {},
     changeSensitiveDataVisibility: (Boolean) -> Unit = {},
 ) {

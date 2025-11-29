@@ -1,8 +1,8 @@
 package com.prof18.moneyflow
 
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.material.Scaffold
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import com.prof18.moneyflow.database.model.TransactionType

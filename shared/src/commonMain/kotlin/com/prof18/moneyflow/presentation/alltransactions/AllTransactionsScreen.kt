@@ -1,6 +1,7 @@
 package com.prof18.moneyflow.presentation.alltransactions
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
@@ -27,8 +28,8 @@ import org.jetbrains.compose.resources.stringResource
 internal fun AllTransactionsScreen(
     stateFlow: StateFlow<AllTransactionsUiState>,
     loadNextPage: () -> Unit,
-    navigateUp: () -> Unit = {},
     paddingValues: PaddingValues,
+    navigateUp: () -> Unit = {},
 ) {
     Scaffold(
         modifier = Modifier.padding(paddingValues),
@@ -85,7 +86,6 @@ internal fun AllTransactionsScreen(
 private fun AllTransactionsScreenPreviews() {
     MoneyFlowTheme {
         AllTransactionsScreen(
-            navigateUp = {},
             stateFlow = MutableStateFlow(
                 AllTransactionsUiState(
                     transactions = listOf(
@@ -96,6 +96,7 @@ private fun AllTransactionsScreenPreviews() {
             ),
             loadNextPage = {},
             paddingValues = PaddingValues(),
+            navigateUp = {},
         )
     }
 }
