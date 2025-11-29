@@ -1,3 +1,5 @@
+import java.net.URI
+
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -147,6 +149,23 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     systemProperty("roborazzi.test.record.dir", rootProject.layout.projectDirectory.dir("image/roborazzi").asFile.path)
+
+    listOf(
+        "http" to System.getenv("http_proxy"),
+        "https" to System.getenv("https_proxy"),
+    ).forEach { (scheme, proxyValue) ->
+        proxyValue
+            ?.takeIf { it.isNotBlank() }
+            ?.let(::URI)
+            ?.let { proxyUri ->
+                proxyUri.host?.let { host ->
+                    systemProperty("$scheme.proxyHost", host)
+                }
+                proxyUri.port.takeIf { it != -1 }?.let { port ->
+                    systemProperty("$scheme.proxyPort", port)
+                }
+            }
+    }
 }
 
 sqldelight {
