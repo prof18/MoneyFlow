@@ -29,7 +29,7 @@ sqlDelight = "2.2.1"
 turbine = "1.2.1"
 triplet-play = "3.12.2"
 roborazzi = "1.52.0"
-robolectric = "4.12.2"
+robolectric = "4.16"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
