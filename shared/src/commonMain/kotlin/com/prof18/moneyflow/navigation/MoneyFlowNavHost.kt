@@ -133,13 +133,13 @@ private fun EntryProviderScope<AppRoute>.screens(
         val hideSensitiveData by homeViewModel.hideSensitiveDataState.collectAsState()
 
         HomeScreen(
-            navigateToAddTransaction = { backStack.add(AddTransactionRoute) },
-            paddingValues = paddingValues,
-            deleteTransaction = { id -> homeViewModel.deleteTransaction(id) },
             homeModel = homeModel,
             hideSensitiveDataState = hideSensitiveData,
-            changeSensitiveDataVisibility = { homeViewModel.changeSensitiveDataVisibility(it) },
             navigateToAllTransactions = { backStack.add(AllTransactionsRoute) },
+            paddingValues = paddingValues,
+            navigateToAddTransaction = { backStack.add(AddTransactionRoute) },
+            deleteTransaction = { id -> homeViewModel.deleteTransaction(id) },
+            changeSensitiveDataVisibility = { homeViewModel.changeSensitiveDataVisibility(it) },
         )
     }
 
@@ -165,6 +165,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             dateLabel = uiState.dateLabel,
             addTransactionAction = uiState.addTransactionAction,
             resetAction = viewModel::resetAction,
+            paddingValues = paddingValues,
         )
     }
 
@@ -182,15 +183,17 @@ private fun EntryProviderScope<AppRoute>.screens(
             },
             isFromAddTransaction = route.fromAddTransaction,
             categoryModel = categoryModel,
+            paddingValues = paddingValues,
         )
     }
 
     entry<AllTransactionsRoute> {
         val viewModel = koinViewModel<AllTransactionsViewModel>()
         AllTransactionsScreen(
-            navigateUp = { backStack.removeLastOrNull() },
             stateFlow = viewModel.state,
             loadNextPage = viewModel::loadNextPage,
+            paddingValues = paddingValues,
+            navigateUp = { backStack.removeLastOrNull() },
         )
     }
 
@@ -206,6 +209,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             onBiometricEnabled = viewModel::updateBiometricState,
             hideSensitiveDataState = hideDataState,
             onHideSensitiveDataEnabled = viewModel::updateHideSensitiveDataState,
+            paddingValues = paddingValues,
         )
     }
 }
