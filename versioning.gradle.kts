@@ -24,7 +24,7 @@ fun appVersionCode(): Int {
     return if (ciBuildNumber != null) {
         ciBuildNumber.toInt() + 1000
     } else {
-        2 // Local build version code
+        1016 // Local build version code
     }
 }
 
