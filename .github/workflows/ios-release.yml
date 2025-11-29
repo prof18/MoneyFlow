@@ -119,7 +119,7 @@ jobs:
 
           echo "ipa_path=${RUNNER_TEMP}/Build/Archives/MoneyFlow.xcarchive/MoneyFlow.ipa" >> $GITHUB_ENV
 
-      - uses: Apple-Actions/upload-testflight-build@v3
+      - uses: Apple-Actions/upload-testflight-build@v4
         with:
           app-path: ${{ env.ipa_path }}
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
