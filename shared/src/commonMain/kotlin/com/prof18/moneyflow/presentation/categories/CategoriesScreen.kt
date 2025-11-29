@@ -1,11 +1,13 @@
 package com.prof18.moneyflow.presentation.categories
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.components.CategoryCard
@@ -30,8 +32,10 @@ internal fun CategoriesScreen(
     sendCategoryBack: (CategoryUIData) -> Unit,
     isFromAddTransaction: Boolean,
     categoryModel: CategoryModel,
+    paddingValues: PaddingValues,
 ) {
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             MFTopBar(
                 topAppBarText = stringResource(Res.string.categories_screen),
@@ -43,14 +47,14 @@ internal fun CategoriesScreen(
                 actionEnabled = true,
             )
         },
-        content = {
+        content = { innerPadding ->
             when (categoryModel) {
                 CategoryModel.Loading -> Loader()
                 is CategoryModel.Error -> {
                     ErrorView(uiErrorMessage = categoryModel.uiErrorMessage)
                 }
                 is CategoryModel.CategoryState -> {
-                    LazyColumn {
+                    LazyColumn(modifier = Modifier.padding(innerPadding)) {
                         items(categoryModel.categories) {
                             CategoryCard(
                                 category = it,
@@ -93,6 +97,7 @@ private fun CategoriesScreenPreview() {
                         ),
                     ),
                 ),
+                paddingValues = PaddingValues(),
             )
         }
     }
@@ -116,6 +121,7 @@ private fun CategoriesScreenErrorPreview() {
                         nerdMessageArgs = listOf("101"),
                     ),
                 ),
+                paddingValues = PaddingValues(),
             )
         }
     }

@@ -29,7 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
@@ -62,14 +61,18 @@ internal fun HomeScreen(
     hideSensitiveDataState: Boolean,
     navigateToAllTransactions: () -> Unit,
     navigateToAddTransaction: () -> Unit = {},
-    paddingValues: PaddingValues = PaddingValues(0.dp),
+    paddingValues: PaddingValues,
     deleteTransaction: (Long) -> Unit = {},
     changeSensitiveDataVisibility: (Boolean) -> Unit = {},
 ) {
     when (homeModel) {
         is HomeModel.Loading -> Loader()
         is HomeModel.HomeState -> {
-            Column(modifier = Modifier.padding(Margins.small)) {
+            Column(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .padding(Margins.small),
+            ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -230,6 +233,7 @@ private fun HomeScreenPreview() {
                 ),
                 hideSensitiveDataState = true,
                 navigateToAllTransactions = {},
+                paddingValues = PaddingValues(),
             )
         }
     }
@@ -252,6 +256,7 @@ private fun HomeScreenErrorPreview() {
                 ),
                 hideSensitiveDataState = true,
                 navigateToAllTransactions = {},
+                paddingValues = PaddingValues(),
             )
         }
     }

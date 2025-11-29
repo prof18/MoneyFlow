@@ -165,6 +165,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             dateLabel = uiState.dateLabel,
             addTransactionAction = uiState.addTransactionAction,
             resetAction = viewModel::resetAction,
+            paddingValues = paddingValues,
         )
     }
 
@@ -182,6 +183,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             },
             isFromAddTransaction = route.fromAddTransaction,
             categoryModel = categoryModel,
+            paddingValues = paddingValues,
         )
     }
 
@@ -191,6 +193,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             navigateUp = { backStack.removeLastOrNull() },
             stateFlow = viewModel.state,
             loadNextPage = viewModel::loadNextPage,
+            paddingValues = paddingValues,
         )
     }
 
@@ -206,6 +209,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             onBiometricEnabled = viewModel::updateBiometricState,
             hideSensitiveDataState = hideDataState,
             onHideSensitiveDataEnabled = viewModel::updateHideSensitiveDataState,
+            paddingValues = paddingValues,
         )
     }
 }
