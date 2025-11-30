@@ -1,54 +1,40 @@
 # MoneyFlow
-A money management Android and iOS app wrote with Kotlin Multiplatform, Jetpack Compose and Swift UI.
-
-Coming soon: Desktop App (with Compose for Desktop).
+MoneyFlow is a Kotlin Multiplatform personal finance app targeting Android and iOS with Compose-driven UI.
 
 <div align="center">
   <img src="image/money-flow-light.png">
 </div>
 
-MoneyFlow comes also in dark 🌃:
+## Current direction
 
-<div align="center">
-  <img src="image/money-flow-dark.png">
-</div>
+- The app is in the middle of a rewrite with an updated architecture to better support Compose Multiplatform and keep the Android/iOS shells thin.
+- Expect fast-moving changes while core features are rebuilt.
+- The shared module remains the source of truth, and platform-specific code is being pared back to minimal glue.
 
-## Features roadmap 
+## Project history
 
-🚧 This project is a work in progress, some features are missing and they will arrive in the future.
+- MoneyFlow originally explored several shared-architecture approaches for KMP + Jetpack Compose + SwiftUI; the ongoing rewrite changes direction to simplify the stack and improve maintainability.
+- Legacy articles documenting the earlier architecture remain for context:
+  - [Improving shared architecture for a Kotlin Multiplatform, Jetpack Compose and SwiftUI app](https://www.marcogomiero.com/posts/2022/improved-kmm-shared-app-arch/)
+  - [Choosing the right architecture for a [new] Kotlin Multiplatform, Jetpack Compose and SwiftUI app](https://www.marcogomiero.com/posts/2020/kmm-shared-app-architecture/)
+
+## Feature roadmap
 
 - ✅ Transaction Entry
-- 🏗 Transaction List 
+- 🏗 Transaction List
 - 💭 Edit Transaction
 - 💭 Add custom category
-- 💭 Recap screen with plots 
-- 💭 Budgeting feature  
-- ✅ Database import and export
-- ⚙️ Local database backup/restore
+- 💭 Recap screen with plots
+- 💭 Budgeting feature
 - 💭 Import from CSV
+- 💭 CSV data export
 - 💭 Change currency
 - 🏗 Lock view with biometrics
 
 Legend:
 - ✅ Implemented
-- 💭 Not yet implemented, still in my mind!
-- 🏗 Working on it
-
-
-## How to build:
-
-In order to build the iOS project, you will need to add a `Config.xcconfig` file inside the [iosApp/Assets](https://github.com/prof18/MoneyFlow/tree/main/iosApp/Assets) folder, with the content of the [Config.xcconfig.template](https://github.com/prof18/MoneyFlow/blob/main/iosApp/Assets/Config.xcconfig.template) file. 
-
-### Backups
-
-Database backup and restore are available from the Settings screen on both platforms without any external sync provider.
-
-## Further Readings
-
-I wrote some articles about all the decisions and the thoughts that I’ve made to come up with an architecture for MoneyFlow.
-
-- [Improving shared architecture for a Kotlin Multiplatform, Jetpack Compose and SwiftUI app](https://www.marcogomiero.com/posts/2022/improved-kmm-shared-app-arch/)
-- [Choosing the right architecture for a [new] Kotlin Multiplatform, Jetpack Compose and SwiftUI app](https://www.marcogomiero.com/posts/2020/kmm-shared-app-architecture/)
+- 💭 Not yet implemented
+- 🏗 In progress
 
 ## License 📄
 
