@@ -1,16 +1,23 @@
 package com.prof18.moneyflow.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +43,12 @@ import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
 import com.prof18.moneyflow.ui.style.LightAppColors
+import com.prof18.moneyflow.utils.LocalAppDensity
+import com.prof18.moneyflow.utils.LocalAppLocale
+import com.prof18.moneyflow.utils.LocalAppTheme
+import com.prof18.moneyflow.utils.customAppDensity
+import com.prof18.moneyflow.utils.customAppLocale
+import com.prof18.moneyflow.utils.customAppThemeIsDark
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.home_screen
 import money_flow.shared.generated.resources.ic_cog_solid
@@ -51,30 +64,45 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
     val backStack = rememberSerializable(serializer = SnapshotStateListSerializer(AppRoute.serializer())) {
-        mutableStateListOf<AppRoute>(HomeRoute)
+        mutableStateListOf(HomeRoute)
     }
     val categoryState = remember { mutableStateOf<CategoryUIData?>(null) }
 
-    Scaffold(
-        modifier = modifier,
-        bottomBar = {
-            BottomBar(
-                currentRoute = backStack.lastOrNull(),
-                onNavigate = { destination ->
-                    backStack.clear()
-                    backStack.add(destination)
-                },
-            )
-        },
-    ) { paddingValues ->
-        NavDisplay(
-            backStack = backStack,
-            entryProvider = entryProvider { screens(backStack, categoryState, paddingValues) },
-            entryDecorators = listOf(
-                rememberSaveableStateHolderNavEntryDecorator(),
-                rememberViewModelStoreNavEntryDecorator(),
-            ),
-        )
+    CompositionLocalProvider(
+        LocalAppLocale provides customAppLocale,
+        LocalAppTheme provides customAppThemeIsDark,
+        LocalAppDensity provides customAppDensity,
+    ) {
+        key(customAppLocale) {
+            key(customAppThemeIsDark) {
+                key(customAppDensity) {
+                    Scaffold(
+                        modifier = modifier,
+                        contentWindowInsets = WindowInsets.safeDrawing.only(
+                            WindowInsetsSides.Top + WindowInsetsSides.Horizontal,
+                        ),
+                        bottomBar = {
+                            BottomBar(
+                                currentRoute = backStack.lastOrNull(),
+                                onNavigate = { destination ->
+                                    backStack.clear()
+                                    backStack.add(destination)
+                                },
+                            )
+                        },
+                    ) { paddingValues ->
+                        NavDisplay(
+                            backStack = backStack,
+                            entryProvider = entryProvider { screens(backStack, categoryState, paddingValues) },
+                            entryDecorators = listOf(
+                                rememberSaveableStateHolderNavEntryDecorator(),
+                                rememberViewModelStoreNavEntryDecorator(),
+                            ),
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -84,7 +112,10 @@ private fun BottomBar(
     onNavigate: (AppRoute) -> Unit,
 ) {
     if (currentRoute !is HomeRoute && currentRoute !is SettingsRoute) return
-    BottomNavigation {
+    BottomNavigation(
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.onPrimary,
+    ) {
         bottomNavigationItems.forEach { item ->
             BottomNavigationItem(
                 icon = {
