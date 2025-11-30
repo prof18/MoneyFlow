@@ -1,5 +1,5 @@
 # MoneyFlow
-MoneyFlow is a Kotlin Multiplatform personal finance app targeting Android and iOS with Compose-driven UI.
+MoneyFlow is a Kotlin Multiplatform personal finance app targeting Android and iOS with Compose Multiplatform.
 
 <div align="center">
   <img src="image/money-flow-light.png">
