@@ -8,10 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +45,7 @@ internal fun CategoryCard(
                         Margins.regular,
                     )
                     .background(
-                        MaterialTheme.colorScheme.primary,
+                        MaterialTheme.colors.primary,
                         shape = RoundedCornerShape(Margins.regularCornerRadius),
                     ),
             ) {
@@ -55,7 +55,7 @@ internal fun CategoryCard(
                     modifier = Modifier
                         .padding(Margins.small)
                         .size(28.dp),
-                    tint = MaterialTheme.colorScheme.onPrimary,
+                    tint = MaterialTheme.colors.onPrimary,
                 )
             }
 

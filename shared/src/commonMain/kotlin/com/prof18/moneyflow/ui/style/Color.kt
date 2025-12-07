@@ -1,133 +1,74 @@
 package com.prof18.moneyflow.ui.style
 
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-private val PrimaryPurple = Color(0xFF4E5DDE)
-private val OnPrimaryPurple = Color(0xFFFFFFFF)
-private val PrimaryContainer = Color(0xFFE0E0FF)
-private val OnPrimaryContainer = Color(0xFF10136B)
+internal object LightAppColors {
 
-private val SecondaryTeal = Color(0xFF00A284)
-private val OnSecondaryTeal = Color(0xFFFFFFFF)
-private val SecondaryContainer = Color(0xFFB5FFE7)
-private val OnSecondaryContainer = Color(0xFF002019)
+    val primary = Color(0XFF3E6275)
+    val lightGrey = Color(0XFFF8F5F5)
+    val background = Color(0xFFFAFAFA)
 
-private val TertiaryMagenta = Color(0xFFB02F6E)
-private val OnTertiaryMagenta = Color(0xFFFFFFFF)
-private val TertiaryContainer = Color(0xFFFFD7E8)
-private val OnTertiaryContainer = Color(0xFF3E0025)
+    val red1 = Color(0xFFFF464F)
+    val red2 = Color(0xFFFF575F)
+    val red3 = Color(0xFFFFE5E7)
 
-private val ExpressiveSurface = Color(0xFFFBF8FF)
-private val ExpressiveSurfaceVariant = Color(0xFFE3E1EC)
-private val ExpressiveOnSurface = Color(0xFF1B1B23)
-private val ExpressiveOnSurfaceVariant = Color(0xFF46464F)
-private val ExpressiveOutline = Color(0xFF777680)
-private val ExpressiveOutlineVariant = Color(0xFFC7C6D0)
+    val orange1 = Color(0xFFFF8A34)
+    val orange2 = Color(0xFFFF974A)
+    val orange3 = Color(0xFFFFEFE3)
 
-private val InverseSurface = Color(0xFF302F37)
-private val InverseOnSurface = Color(0xFFF1EFF7)
-private val InversePrimary = Color(0xFFBEC2FF)
+    val yellow1 = Color(0xFFFFBC25)
+    val yellow2 = Color(0xFFFFC542)
+    val yellow3 = Color(0xFFFEF3D9)
 
-private val DarkPrimary = Color(0xFFBEC2FF)
-private val DarkOnPrimary = Color(0xFF1D2275)
-private val DarkPrimaryContainer = Color(0xFF353C9C)
-private val DarkOnPrimaryContainer = Color(0xFFE0E0FF)
+    val green1 = Color(0xFF25C685)
+    val green2 = Color(0xFF3DD598)
+    val green3 = Color(0xFFD4F5E9)
 
-private val DarkSecondary = Color(0xFF5CD3BE)
-private val DarkOnSecondary = Color(0xFF00382C)
-private val DarkSecondaryContainer = Color(0xFF005142)
-private val DarkOnSecondaryContainer = Color(0xFFB5FFE7)
+    val blue1 = Color(0xFF005DF2)
+    val blue2 = Color(0xFF0062FF)
+    val blue3 = Color(0xFFE3EEFF)
 
-private val DarkTertiary = Color(0xFFFFA3D3)
-private val DarkOnTertiary = Color(0xFF5E113D)
-private val DarkTertiaryContainer = Color(0xFF7B2955)
-private val DarkOnTertiaryContainer = Color(0xFFFFD7E8)
+    val purple1 = Color(0xFF6952DC)
+    val purple2 = Color(0xFF755FE2)
+    val purple3 = Color(0xFFEDEAFD)
 
-private val DarkSurface = Color(0xFF12131A)
-private val DarkOnSurface = Color(0xFFE3E1EB)
-private val DarkSurfaceVariant = Color(0xFF46464F)
-private val DarkOnSurfaceVariant = Color(0xFFC7C6D0)
-private val DarkOutline = Color(0xFF91909A)
+    val gray1 = Color(0xFF1A3B34)
+    val gray2 = Color(0xFF899A96)
+    val gray3 = Color(0xFFE4E9F3)
+    val gray4 = Color(0xFFEDF1FA)
+}
 
-private val DarkInverseSurface = Color(0xFFE3E1EB)
-private val DarkInverseOnSurface = Color(0xFF1B1B23)
-private val DarkInversePrimary = Color(0xFF4E5DDE)
+object DarkAppColors {
 
-internal val expressiveLightColorScheme = lightColorScheme(
-    primary = PrimaryPurple,
-    onPrimary = OnPrimaryPurple,
-    primaryContainer = PrimaryContainer,
-    onPrimaryContainer = OnPrimaryContainer,
-    inversePrimary = InversePrimary,
-    secondary = SecondaryTeal,
-    onSecondary = OnSecondaryTeal,
-    secondaryContainer = SecondaryContainer,
-    onSecondaryContainer = OnSecondaryContainer,
-    tertiary = TertiaryMagenta,
-    onTertiary = OnTertiaryMagenta,
-    tertiaryContainer = TertiaryContainer,
-    onTertiaryContainer = OnTertiaryContainer,
-    background = ExpressiveSurface,
-    onBackground = ExpressiveOnSurface,
-    surface = ExpressiveSurface,
-    onSurface = ExpressiveOnSurface,
-    surfaceVariant = ExpressiveSurfaceVariant,
-    onSurfaceVariant = ExpressiveOnSurfaceVariant,
-    surfaceTint = PrimaryPurple,
-    inverseSurface = InverseSurface,
-    inverseOnSurface = InverseOnSurface,
-    error = Color(0xFFBA1A1A),
-    onError = Color(0xFFFFFFFF),
-    errorContainer = Color(0xFFFFDAD6),
-    onErrorContainer = Color(0xFF410002),
-    outline = ExpressiveOutline,
-    outlineVariant = ExpressiveOutlineVariant,
-    scrim = Color(0xFF000000),
-)
+    val primary = Color(0xFF2C4653)
+    val backgroundColor = Color(0XFF303030)
 
-internal val expressiveDarkColorScheme = darkColorScheme(
-    primary = DarkPrimary,
-    onPrimary = DarkOnPrimary,
-    primaryContainer = DarkPrimaryContainer,
-    onPrimaryContainer = DarkOnPrimaryContainer,
-    inversePrimary = DarkInversePrimary,
-    secondary = DarkSecondary,
-    onSecondary = DarkOnSecondary,
-    secondaryContainer = DarkSecondaryContainer,
-    onSecondaryContainer = DarkOnSecondaryContainer,
-    tertiary = DarkTertiary,
-    onTertiary = DarkOnTertiary,
-    tertiaryContainer = DarkTertiaryContainer,
-    onTertiaryContainer = DarkOnTertiaryContainer,
-    background = DarkSurface,
-    onBackground = DarkOnSurface,
-    surface = DarkSurface,
-    onSurface = DarkOnSurface,
-    surfaceVariant = DarkSurfaceVariant,
-    onSurfaceVariant = DarkOnSurfaceVariant,
-    surfaceTint = DarkPrimary,
-    inverseSurface = DarkInverseSurface,
-    inverseOnSurface = DarkInverseOnSurface,
-    error = Color(0xFFFFB4AB),
-    onError = Color(0xFF690005),
-    errorContainer = Color(0xFF93000A),
-    onErrorContainer = Color(0xFFFFDAD6),
-    outline = DarkOutline,
-    outlineVariant = DarkSurfaceVariant,
-    scrim = Color(0xFF000000),
-)
+    val red1 = Color(0xFFFF464F)
+    val red2 = Color(0xFFFF575F)
+    val red3 = Color(0xFF623A42)
 
-internal object ExpressiveExtendedColors {
-    val positive = Color(0xFF24C38E)
-    val positiveContainer = Color(0xFFBDF4DC)
-    val positiveOnContainer = Color(0xFF002116)
+    val orange1 = Color(0xFFFF8A34)
+    val orange2 = Color(0xFFFF974A)
+    val orange3 = Color(0xFF624D3B)
 
-    val negative = Color(0xFFFF5370)
-    val negativeContainer = Color(0xFFFFDAD7)
-    val negativeOnContainer = Color(0xFF410006)
+    val yellow1 = Color(0xFFFFBC25)
+    val yellow2 = Color(0xFFFFC542)
+    val yellow3 = Color(0xFF625B39)
 
-    val neutralOnSurface = ExpressiveOnSurface
-    val neutralSurfaceVariant = ExpressiveSurfaceVariant
+    val green1 = Color(0xFF25C685)
+    val green2 = Color(0xFF3DD598)
+    val green3 = Color(0xFF286053)
+
+    val blue1 = Color(0xFF005DF2)
+    val blue2 = Color(0xFF0062FF)
+    val blue3 = Color(0xFF163E72)
+
+    val purple1 = Color(0xFF6952DC)
+    val purple2 = Color(0xFF755FE2)
+    val purple3 = Color(0xFF393D69)
+
+    val gray1 = Color(0xFFFFFFFF)
+    val gray2 = Color(0xFF96A7AF)
+    val gray3 = Color(0xFF475E69)
+    val gray4 = Color(0xFF30444E)
 }
