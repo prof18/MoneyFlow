@@ -1,67 +1,106 @@
 package com.prof18.moneyflow.ui.style
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.MaterialTheme as Material2Theme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-
-private val LightThemeColors = lightColors(
-    primary = LightAppColors.primary,
-//    primaryVariant = LightAppColors.green2,
-//    secondary = LightAppColors.yellow1,
-//    secondaryVariant = LightAppColors.yellow2,
-
-    background = LightAppColors.background,
-//    surface = LightAppColors.gray4,
-    error = LightAppColors.red1,
-
-    onPrimary = LightAppColors.lightGrey,
-    onSecondary = DarkAppColors.gray4,
-    onBackground = DarkAppColors.gray4,
-    onSurface = DarkAppColors.gray4,
-    onError = DarkAppColors.gray4,
-)
-
-private val DarkThemeColors = darkColors(
-    primary = DarkAppColors.primary,
-//    primaryVariant = DarkAppColors.green2,
-//    secondary = DarkAppColors.yellow1,
-//    secondaryVariant = DarkAppColors.yellow2,
-
-//    background = backgroundColorDark,
-//    surface = primaryBlueDark, // It's for example for the bottom bar
-    error = DarkAppColors.red1,
-
-    onPrimary = LightAppColors.gray4,
-    onSecondary = LightAppColors.gray4,
-    onBackground = LightAppColors.gray4,
-    onSurface = LightAppColors.gray4,
-    onError = LightAppColors.gray4,
-)
+import androidx.compose.ui.text.TextStyle
 
 @Composable
-internal fun upArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.green3 else LightAppColors.green3
+internal fun upArrowCircleColor(): Color = if (isSystemInDarkTheme()) {
+    ExpressiveExtendedColors.positiveContainer
+} else {
+    ExpressiveExtendedColors.positiveContainer
+}
 
 @Composable
-internal fun upArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.green3 else LightAppColors.green1
+internal fun upArrowColor(): Color = if (isSystemInDarkTheme()) {
+    ExpressiveExtendedColors.positiveOnContainer
+} else {
+    ExpressiveExtendedColors.positive
+}
 
 @Composable
-internal fun downArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppColors.red3 else LightAppColors.red3
+internal fun downArrowCircleColor(): Color = if (isSystemInDarkTheme()) {
+    ExpressiveExtendedColors.negativeContainer
+} else {
+    ExpressiveExtendedColors.negativeContainer
+}
 
 @Composable
-internal fun downArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.red3 else LightAppColors.red1
+internal fun downArrowColor(): Color = if (isSystemInDarkTheme()) {
+    ExpressiveExtendedColors.negativeOnContainer
+} else {
+    ExpressiveExtendedColors.negative
+}
 
 @Composable
 fun MoneyFlowTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    MaterialTheme(
-        colors = if (darkTheme) DarkThemeColors else LightThemeColors,
-        typography = moneyFlowTypography(),
-        shapes = MoneyFlowShapes,
-        content = content,
+    val colorScheme = if (darkTheme) expressiveDarkColorScheme else expressiveLightColorScheme
+    val typography = moneyFlowTypography()
+
+    val materialColors = if (darkTheme) {
+        darkColors(
+            primary = colorScheme.primary,
+            primaryVariant = colorScheme.primaryContainer,
+            secondary = colorScheme.secondary,
+            background = colorScheme.background,
+            surface = colorScheme.surface,
+            error = colorScheme.error,
+            onPrimary = colorScheme.onPrimary,
+            onSecondary = colorScheme.onSecondary,
+            onBackground = colorScheme.onBackground,
+            onSurface = colorScheme.onSurface,
+            onError = colorScheme.onError,
+        )
+    } else {
+        lightColors(
+            primary = colorScheme.primary,
+            primaryVariant = colorScheme.primaryContainer,
+            secondary = colorScheme.secondary,
+            background = colorScheme.background,
+            surface = colorScheme.surface,
+            error = colorScheme.error,
+            onPrimary = colorScheme.onPrimary,
+            onSecondary = colorScheme.onSecondary,
+            onBackground = colorScheme.onBackground,
+            onSurface = colorScheme.onSurface,
+            onError = colorScheme.onError,
+        )
+    }
+
+    val materialTypography = androidx.compose.material.Typography(
+        h1 = typography.h1,
+        h2 = typography.h2,
+        h3 = typography.h3,
+        h4 = typography.h4,
+        h5 = typography.h5,
+        h6 = typography.h6,
+        subtitle1 = typography.subtitle1,
+        subtitle2 = typography.subtitle2,
+        body1 = typography.body1,
+        body2 = typography.body2,
+        button = typography.button,
+        caption = typography.caption,
+        overline = typography.overline,
     )
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = typography,
+        shapes = MoneyFlowShapes,
+    ) {
+        Material2Theme(
+            colors = materialColors,
+            typography = materialTypography,
+            shapes = MoneyFlowLegacyShapes,
+            content = content,
+        )
+    }
 }

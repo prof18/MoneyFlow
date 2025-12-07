@@ -6,12 +6,13 @@ import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.MutableState
@@ -42,7 +43,6 @@ import com.prof18.moneyflow.presentation.categories.CategoriesScreen
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
-import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.utils.LocalAppDensity
 import com.prof18.moneyflow.utils.LocalAppLocale
 import com.prof18.moneyflow.utils.LocalAppTheme
@@ -112,12 +112,12 @@ private fun BottomBar(
     onNavigate: (AppRoute) -> Unit,
 ) {
     if (currentRoute !is HomeRoute && currentRoute !is SettingsRoute) return
-    BottomNavigation(
-        backgroundColor = MaterialTheme.colors.primary,
-        contentColor = MaterialTheme.colors.onPrimary,
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.surface,
+        contentColor = MaterialTheme.colorScheme.onSurface,
     ) {
         bottomNavigationItems.forEach { item ->
-            BottomNavigationItem(
+            NavigationBarItem(
                 icon = {
                     Icon(
                         painter = painterResource(item.drawableRes),
@@ -127,8 +127,14 @@ private fun BottomBar(
                 },
                 label = { Text(stringResource(item.titleRes)) },
                 selected = currentRoute::class == item.route::class,
-                unselectedContentColor = LightAppColors.lightGrey.copy(alpha = 0.3f),
                 onClick = { if (currentRoute::class != item.route::class) onNavigate(item.route) },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                ),
             )
         }
     }
