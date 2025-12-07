@@ -1,7 +1,7 @@
 package com.prof18.moneyflow.ui.style
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
+import org.jetbrains.compose.material.Shapes
 import androidx.compose.ui.unit.dp
 
 internal val MoneyFlowShapes = Shapes(

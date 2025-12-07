@@ -1,8 +1,8 @@
 package com.prof18.moneyflow.ui.components
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import org.jetbrains.compose.material.MaterialTheme
+import org.jetbrains.compose.material.Surface
+import org.jetbrains.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

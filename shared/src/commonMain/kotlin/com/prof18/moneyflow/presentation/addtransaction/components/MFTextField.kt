@@ -2,11 +2,11 @@ package com.prof18.moneyflow.presentation.addtransaction.components
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import org.jetbrains.compose.material.Icon
+import org.jetbrains.compose.material.MaterialTheme
+import org.jetbrains.compose.material.OutlinedTextField
+import org.jetbrains.compose.material.Surface
+import org.jetbrains.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha

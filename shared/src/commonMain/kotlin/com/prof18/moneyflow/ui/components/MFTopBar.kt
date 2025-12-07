@@ -2,14 +2,14 @@ package com.prof18.moneyflow.ui.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
+import org.jetbrains.compose.material.Icon
+import org.jetbrains.compose.material.IconButton
+import org.jetbrains.compose.material.MaterialTheme
+import org.jetbrains.compose.material.Text
+import org.jetbrains.compose.material.TextButton
+import org.jetbrains.compose.material.TopAppBar
+import org.jetbrains.compose.material.icons.Icons
+import org.jetbrains.compose.material.icons.rounded.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview

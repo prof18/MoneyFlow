@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.ui.style
 
-import androidx.compose.material.Typography
+import org.jetbrains.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
