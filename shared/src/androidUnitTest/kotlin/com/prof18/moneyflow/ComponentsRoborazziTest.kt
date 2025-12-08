@@ -15,9 +15,14 @@ import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
+import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-@Config(sdk = [33])
+@Config(
+    sdk = [33],
+    qualifiers = RobolectricDeviceQualifiers.Pixel7Pro,
+)
 class ComponentsRoborazziTest : RoborazziTestBase() {
 
     @Test

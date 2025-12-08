@@ -9,14 +9,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.runtime.Composable
@@ -130,7 +130,7 @@ private fun DatePickerItemDropdownMenu(
         ) {
             Text(
                 text = dropdownText,
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge,
             )
             Spacer(Modifier.width(4.dp))
             Icon(
@@ -146,16 +146,19 @@ private fun DatePickerItemDropdownMenu(
             },
         ) {
             itemList.forEach {
-                DropdownMenuItem(onClick = {
-                    setDropdownText(it)
-                    expanded = false
-                    onItemSelected(it)
-                }) {
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.body1,
-                    )
-                }
+                DropdownMenuItem(
+                    text = {
+                        Text(
+                            text = it,
+                            style = MaterialTheme.typography.bodyLarge,
+                        )
+                    },
+                    onClick = {
+                        setDropdownText(it)
+                        expanded = false
+                        onItemSelected(it)
+                    },
+                )
             }
         }
     }

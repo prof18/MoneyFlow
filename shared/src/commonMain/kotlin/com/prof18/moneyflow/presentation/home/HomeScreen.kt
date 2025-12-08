@@ -11,14 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Divider
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Visibility
@@ -80,7 +80,7 @@ internal fun HomeScreen(
                 ) {
                     Text(
                         text = stringResource(Res.string.my_wallet),
-                        style = MaterialTheme.typography.h4,
+                        style = MaterialTheme.typography.headlineLarge,
                         modifier = Modifier
                             .padding(horizontal = Margins.regular)
                             .padding(top = Margins.regular),
@@ -141,12 +141,12 @@ internal fun HomeScreen(
                                 stringResource(Res.string.shrug),
                                 modifier = Modifier
                                     .padding(bottom = Margins.small),
-                                style = MaterialTheme.typography.h6,
+                                style = MaterialTheme.typography.headlineSmall,
                             )
 
                             Text(
                                 stringResource(Res.string.empty_wallet),
-                                style = MaterialTheme.typography.h6,
+                                style = MaterialTheme.typography.headlineSmall,
                             )
                         }
                     }
@@ -180,15 +180,16 @@ internal fun HomeScreen(
                                     expanded = showTransactionMenu,
                                     onDismissRequest = { setShowTransactionMenu(false) },
                                 ) {
-                                    DropdownMenuItem(onClick = {
-                                        deleteTransaction(transaction.id)
-                                        setShowTransactionMenu(false)
-                                    }) {
-                                        Text(stringResource(Res.string.delete))
-                                    }
+                                    DropdownMenuItem(
+                                        text = { Text(stringResource(Res.string.delete)) },
+                                        onClick = {
+                                            deleteTransaction(transaction.id)
+                                            setShowTransactionMenu(false)
+                                        },
+                                    )
                                 }
                             }
-                            Divider()
+                            HorizontalDivider()
                         }
                     }
                 }

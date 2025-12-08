@@ -3,8 +3,8 @@ package com.prof18.moneyflow.presentation.alltransactions
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Divider
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -60,7 +60,7 @@ internal fun AllTransactionsScreen(
                                 onClick = { /*TODO: add click on transaction*/ },
                                 hideSensitiveData = false, // TODO: Hide sensitive data on transaction card
                             )
-                            Divider()
+                            HorizontalDivider()
 
                             if (
                                 index == uiState.transactions.lastIndex &&

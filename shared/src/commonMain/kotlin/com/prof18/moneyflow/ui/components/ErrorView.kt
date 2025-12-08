@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +38,7 @@ internal fun ErrorView(
         ) {
             Text(
                 text = stringResource(Res.string.shrug),
-                style = MaterialTheme.typography.caption,
+                style = MaterialTheme.typography.bodySmall,
             )
 
             Text(
@@ -46,7 +46,7 @@ internal fun ErrorView(
                     uiErrorMessage.message,
                     *uiErrorMessage.messageArgs.toTypedArray(),
                 ),
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge,
             )
             if (uiErrorMessage.nerdMessageArgs.isNotEmpty()) {
                 val nerdMessage = stringResource(
@@ -56,7 +56,7 @@ internal fun ErrorView(
                 if (nerdMessage.isNotBlank()) {
                     Text(
                         text = nerdMessage,
-                        style = MaterialTheme.typography.caption,
+                        style = MaterialTheme.typography.bodySmall,
                     )
                 }
             }

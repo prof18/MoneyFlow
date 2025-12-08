@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.ui.style
 
-import androidx.compose.material.Typography
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -23,79 +23,79 @@ internal fun moneyFlowTypography(): Typography {
     )
 
     return Typography(
-        h1 = TextStyle(
+        displayLarge = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Light,
             fontSize = 96.sp,
             letterSpacing = (-1.5).sp,
         ),
-        h2 = TextStyle(
+        displayMedium = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Light,
             fontSize = 60.sp,
             letterSpacing = (-0.5).sp,
         ),
-        h3 = TextStyle(
+        displaySmall = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 48.sp,
             letterSpacing = 0.sp,
         ),
-        h4 = TextStyle(
+        headlineLarge = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 34.sp,
             letterSpacing = 0.25.sp,
         ),
-        h5 = TextStyle(
+        headlineMedium = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 24.sp,
             letterSpacing = 0.sp,
         ),
-        h6 = TextStyle(
+        headlineSmall = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 20.sp,
             letterSpacing = 0.15.sp,
         ),
-        subtitle1 = TextStyle(
+        titleMedium = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
             letterSpacing = 0.15.sp,
         ),
-        subtitle2 = TextStyle(
+        titleSmall = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Light,
             fontSize = 16.sp,
             letterSpacing = 0.1.sp,
         ),
-        body1 = TextStyle(
+        bodyLarge = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
             letterSpacing = 0.5.sp,
         ),
-        body2 = TextStyle(
+        bodyMedium = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 14.sp,
             letterSpacing = 0.25.sp,
         ),
-        button = TextStyle(
+        labelLarge = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.SemiBold,
             fontSize = 14.sp,
             letterSpacing = 1.25.sp,
         ),
-        caption = TextStyle(
+        bodySmall = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.ExtraLight,
             fontSize = 12.sp,
             letterSpacing = 0.4.sp,
         ),
-        overline = TextStyle(
+        labelSmall = TextStyle(
             fontFamily = poppins,
             fontWeight = FontWeight.Normal,
             fontSize = 10.sp,

@@ -1,6 +1,6 @@
 package com.prof18.moneyflow
 
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -17,7 +17,7 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(
     sdk = [33],
-    qualifiers = RobolectricDeviceQualifiers.Pixel7,
+    qualifiers = RobolectricDeviceQualifiers.Pixel7Pro,
 )
 class AddTransactionRoborazziTest : RoborazziTestBase() {
 

@@ -4,11 +4,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -66,7 +67,7 @@ internal fun AddTransactionScreen(
 ) {
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
-    val scaffoldState = rememberScaffoldState()
+    val snackbarHostState = remember { SnackbarHostState() }
     addTransactionAction?.let {
         when (it) {
             is AddTransactionAction.GoBack -> {
@@ -86,7 +87,7 @@ internal fun AddTransactionScreen(
                 } else {
                     ""
                 }
-                LaunchedEffect(scaffoldState.snackbarHostState, resetAction) {
+                LaunchedEffect(snackbarHostState, resetAction) {
                     val message = buildString {
                         append(messageText)
                         if (nerdText.isNotBlank()) {
@@ -94,7 +95,7 @@ internal fun AddTransactionScreen(
                             append(nerdText)
                         }
                     }
-                    scaffoldState.snackbarHostState.showSnackbar(message)
+                    snackbarHostState.showSnackbar(message)
                     resetAction()
                 }
             }
@@ -105,7 +106,7 @@ internal fun AddTransactionScreen(
 
     Scaffold(
         modifier = Modifier.padding(paddingValues),
-        scaffoldState = scaffoldState,
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             MFTopBar(
                 topAppBarText = stringResource(Res.string.add_transaction_screen),
@@ -138,7 +139,7 @@ internal fun AddTransactionScreen(
 
                 MFTextInput(
                     text = amountText,
-                    textStyle = MaterialTheme.typography.body1,
+                    textStyle = MaterialTheme.typography.bodyLarge,
                     // TODO: inject user currency
                     label = "0.00 EUR",
                     leadingIcon = {
@@ -160,7 +161,7 @@ internal fun AddTransactionScreen(
 
                 MFTextInput(
                     text = descriptionText ?: "",
-                    textStyle = MaterialTheme.typography.body1,
+                    textStyle = MaterialTheme.typography.bodyLarge,
                     label = stringResource(Res.string.description),
                     leadingIcon = {
                         Icon(

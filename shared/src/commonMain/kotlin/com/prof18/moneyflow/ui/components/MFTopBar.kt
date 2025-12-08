@@ -2,12 +2,11 @@ package com.prof18.moneyflow.ui.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.runtime.Composable
@@ -16,6 +15,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MFTopBar(
     topAppBarText: String,
@@ -28,7 +32,7 @@ internal fun MFTopBar(
         title = {
             Text(
                 text = topAppBarText,
-                style = MaterialTheme.typography.h5.copy(fontSize = 20.sp),
+                style = MaterialTheme.typography.headlineSmall.copy(fontSize = 20.sp),
             )
         },
         navigationIcon = if (onBackPressed != null) {
@@ -41,7 +45,7 @@ internal fun MFTopBar(
                 }
             }
         } else {
-            null
+            {}
         },
         actions = {
             if (onActionClicked != null) {
@@ -49,13 +53,17 @@ internal fun MFTopBar(
                 TextButton(onClick = onActionClicked, enabled = actionEnabled) {
                     Text(
                         actionTitle!!.uppercase(),
-                        style = MaterialTheme.typography.subtitle2,
+                        style = MaterialTheme.typography.titleSmall,
                     )
                 }
             }
         },
-        backgroundColor = MaterialTheme.colors.background,
-        elevation = 0.dp,
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.background,
+            titleContentColor = MaterialTheme.colorScheme.onBackground,
+            actionIconContentColor = MaterialTheme.colorScheme.onBackground,
+            navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+        )
     )
 }
 

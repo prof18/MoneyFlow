@@ -12,10 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,7 +58,7 @@ internal fun HomeRecap(
             Text(
                 // TODO: inject the currency the user has chosen from somewhere
                 text = stringResource(Res.string.euro_symbol),
-                style = MaterialTheme.typography.h5,
+                style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.align(Alignment.CenterVertically),
             )
 
@@ -67,13 +67,13 @@ internal fun HomeRecap(
             HideableTextField(
                 text = balanceRecap.totalBalance.toString(),
                 hide = hideSensitiveData,
-                style = MaterialTheme.typography.h3,
+                style = MaterialTheme.typography.displaySmall,
             )
         }
 
         Text(
             text = stringResource(Res.string.total_balance),
-            style = MaterialTheme.typography.subtitle2,
+            style = MaterialTheme.typography.titleSmall,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
 
@@ -104,11 +104,11 @@ internal fun HomeRecap(
                     HideableTextField(
                         text = "${balanceRecap.monthlyIncome} ${stringResource(Res.string.euro_symbol)}",
                         hide = hideSensitiveData,
-                        style = MaterialTheme.typography.h5,
+                        style = MaterialTheme.typography.headlineMedium,
                     )
                     Text(
                         text = stringResource(Res.string.transaction_type_income),
-                        style = MaterialTheme.typography.subtitle2,
+                        style = MaterialTheme.typography.titleSmall,
                     )
                 }
             }
@@ -135,11 +135,11 @@ internal fun HomeRecap(
                         // TODO: inject the currency the user has chosen from somewhere
                         text = "${balanceRecap.monthlyExpenses} €",
                         hide = hideSensitiveData,
-                        style = MaterialTheme.typography.h5,
+                        style = MaterialTheme.typography.headlineMedium,
                     )
                     Text(
                         text = stringResource(Res.string.transaction_type_outcome),
-                        style = MaterialTheme.typography.subtitle2,
+                        style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.align(Alignment.End),
                     )
                 }

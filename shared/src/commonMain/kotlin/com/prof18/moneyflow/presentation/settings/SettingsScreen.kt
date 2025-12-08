@@ -3,10 +3,10 @@ package com.prof18.moneyflow.presentation.settings
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,7 +55,7 @@ private fun SettingsScreenContent(
         topBar = {
             Text(
                 text = stringResource(Res.string.settings_screen),
-                style = MaterialTheme.typography.h4,
+                style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier
                     .padding(paddingValues)
                     .padding(horizontal = Margins.regular)
@@ -71,7 +71,7 @@ private fun SettingsScreenContent(
             ) {
                 Text(
                     text = stringResource(Res.string.security),
-                    style = MaterialTheme.typography.caption,
+                    style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.padding(start = Margins.regular),
                 )
 

@@ -1,6 +1,6 @@
 package com.prof18.moneyflow
 
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.CategoriesScreen
@@ -12,9 +12,14 @@ import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 
+import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
-@Config(sdk = [33])
+@Config(
+    sdk = [33],
+    qualifiers = RobolectricDeviceQualifiers.Pixel7Pro,
+)
 class CategoriesRoborazziTest : RoborazziTestBase() {
 
     @Test

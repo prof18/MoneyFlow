@@ -2,11 +2,11 @@ package com.prof18.moneyflow.presentation.addtransaction.components
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -74,7 +74,7 @@ private fun MFTextInputPreviewWithIcon() {
                 label = null,
                 onTextChange = { },
                 keyboardType = KeyboardType.Text,
-                textStyle = MaterialTheme.typography.body1,
+                textStyle = MaterialTheme.typography.bodyLarge,
                 leadingIcon = {
                     Icon(
                         painter = painterResource(Res.drawable.ic_edit),
@@ -96,7 +96,7 @@ private fun MFTextInputPreview() {
                 label = null,
                 onTextChange = { },
                 keyboardType = KeyboardType.Text,
-                textStyle = MaterialTheme.typography.body1,
+                textStyle = MaterialTheme.typography.bodyLarge,
             )
         }
     }

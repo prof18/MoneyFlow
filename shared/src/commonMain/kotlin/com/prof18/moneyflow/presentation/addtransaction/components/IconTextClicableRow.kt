@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,7 +42,7 @@ internal fun IconTextClickableRow(
     Column(
         modifier = modifier
             .border(
-                BorderStroke(1.dp, MaterialTheme.colors.onSurface.copy(alpha = 0.3f)),
+                BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)),
                 RoundedCornerShape(4.dp),
             )
             .clickable(onClick = onClick)
@@ -72,7 +72,7 @@ internal fun IconTextClickableRow(
 
             Text(
                 text,
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
                     .alpha(alpha)
                     .align(Alignment.CenterVertically),

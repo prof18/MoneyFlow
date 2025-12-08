@@ -53,10 +53,11 @@ kotlin {
             dependencies {
                 api(libs.compose.runtime)
                 api(libs.compose.foundation)
-                api(libs.compose.material)
-                api(libs.compose.material.icons.extended)
+                api(libs.compose.foundation)
+                api(libs.compose.material3)
+                implementation(libs.compose.material.icons.extended)
                 api(libs.compose.ui)
-                api(libs.compose.components.resources)
+                implementation(libs.compose.components.resources)
                 implementation(libs.jetbrains.ui.tooling.preview)
 
                 implementation(libs.androidx.lifecycle.viewmodel)
