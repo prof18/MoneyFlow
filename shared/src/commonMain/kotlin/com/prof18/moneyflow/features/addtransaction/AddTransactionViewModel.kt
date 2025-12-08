@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.time.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
@@ -24,6 +23,7 @@ import kotlinx.datetime.toLocalDateTime
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.amount_not_empty_error
 import money_flow.shared.generated.resources.error_nerd_message
+import kotlin.time.Clock
 
 class AddTransactionViewModel(
     private val moneyRepository: MoneyRepository,

@@ -35,7 +35,6 @@ import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
 import com.prof18.moneyflow.features.categories.CategoriesViewModel
 import com.prof18.moneyflow.features.home.HomeViewModel
-import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 import com.prof18.moneyflow.features.settings.SettingsViewModel
 import com.prof18.moneyflow.presentation.addtransaction.AddTransactionScreen
 import com.prof18.moneyflow.presentation.alltransactions.AllTransactionsScreen
@@ -43,7 +42,6 @@ import com.prof18.moneyflow.presentation.categories.CategoriesScreen
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
-import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.utils.LocalAppDensity
 import com.prof18.moneyflow.utils.LocalAppLocale
 import com.prof18.moneyflow.utils.LocalAppTheme
