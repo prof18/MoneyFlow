@@ -1,9 +1,7 @@
 package com.prof18.moneyflow
 
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
-import com.github.takahirom.roborazzi.RoborazziRule
 import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.data.SettingsRepository
 import com.prof18.moneyflow.data.settings.SettingsSource
@@ -23,7 +21,6 @@ import com.russhwolf.settings.MapSettings
 import com.russhwolf.settings.Settings
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.startKoin
@@ -64,7 +61,7 @@ class MoneyFlowNavHostRoborazziTest : RoborazziTestBase() {
                     viewModel { CategoriesViewModel(get(), get()) }
                     viewModel { AllTransactionsViewModel(get(), get()) }
                     viewModel { SettingsViewModel(get()) }
-                }
+                },
             )
         }
     }

@@ -159,3 +159,10 @@ bin/
 /play_config.json
 /iosApp/buildServer.json
 /build-logic/.kotlin/
+
+# xcode-build-server files
+buildServer.json
+.compile
+
+# Local build artifacts
+.build/

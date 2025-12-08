@@ -44,7 +44,6 @@ class AddTransactionRoborazziTest : RoborazziTestBase() {
                         dateLabel = "11 July 2021",
                         addTransactionAction = null,
                         resetAction = {},
-                        paddingValues = it,
                     )
                 }
             }

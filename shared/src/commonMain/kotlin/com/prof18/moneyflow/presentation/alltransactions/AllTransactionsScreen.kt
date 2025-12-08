@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.presentation.alltransactions
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
@@ -28,11 +27,9 @@ import org.jetbrains.compose.resources.stringResource
 internal fun AllTransactionsScreen(
     stateFlow: StateFlow<AllTransactionsUiState>,
     loadNextPage: () -> Unit,
-    paddingValues: PaddingValues,
     navigateUp: () -> Unit = {},
 ) {
     Scaffold(
-        modifier = Modifier.padding(paddingValues),
         topBar = {
             MFTopBar(
                 topAppBarText = stringResource(Res.string.all_transactions),
@@ -95,7 +92,6 @@ private fun AllTransactionsScreenPreviews() {
                 ),
             ),
             loadNextPage = {},
-            paddingValues = PaddingValues(),
             navigateUp = {},
         )
     }

@@ -57,16 +57,14 @@ private fun SettingsScreenContent(
                 text = stringResource(Res.string.settings_screen),
                 style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier
-                    .padding(paddingValues)
                     .padding(horizontal = Margins.regular)
                     .padding(top = Margins.regular),
             )
         },
-        content = { innerPadding ->
+        content = {
             Column(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(innerPadding)
                     .padding(top = Margins.regular),
             ) {
                 Text(

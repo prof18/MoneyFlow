@@ -2,10 +2,10 @@ package com.prof18.moneyflow.utils
 
 import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
-import kotlin.time.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Instant
 
 internal fun MillisSinceEpoch.generateCurrentMonthId(): CurrentMonthID {
     val instant = Instant.fromEpochMilliseconds(this)

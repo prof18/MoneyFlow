@@ -1,6 +1,5 @@
 package com.prof18.moneyflow.presentation.categories
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -33,10 +32,8 @@ internal fun CategoriesScreen(
     sendCategoryBack: (CategoryUIData) -> Unit,
     isFromAddTransaction: Boolean,
     categoryModel: CategoryModel,
-    paddingValues: PaddingValues,
 ) {
     Scaffold(
-        modifier = Modifier.padding(paddingValues),
         topBar = {
             MFTopBar(
                 topAppBarText = stringResource(Res.string.categories_screen),
@@ -98,7 +95,6 @@ private fun CategoriesScreenPreview() {
                         ),
                     ),
                 ),
-                paddingValues = PaddingValues(),
             )
         }
     }
@@ -122,7 +118,6 @@ private fun CategoriesScreenErrorPreview() {
                         nerdMessageArgs = listOf("101"),
                     ),
                 ),
-                paddingValues = PaddingValues(),
             )
         }
     }

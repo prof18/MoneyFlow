@@ -11,18 +11,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Visibility
+import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.Visibility
-import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -130,25 +130,25 @@ internal fun HomeScreen(
                 )
 
                 if (homeModel.latestTransactions.isEmpty()) {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize(),
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = Margins.regular)
+                            .padding(top = Margins.regular)
+                            .padding(bottom = paddingValues.calculateBottomPadding()),
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                        ) {
-                            Text(
-                                stringResource(Res.string.shrug),
-                                modifier = Modifier
-                                    .padding(bottom = Margins.small),
-                                style = MaterialTheme.typography.headlineSmall,
-                            )
+                        Text(
+                            stringResource(Res.string.shrug),
+                            modifier = Modifier
+                                .padding(bottom = Margins.small),
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
 
-                            Text(
-                                stringResource(Res.string.empty_wallet),
-                                style = MaterialTheme.typography.headlineSmall,
-                            )
-                        }
+                        Text(
+                            stringResource(Res.string.empty_wallet),
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
                     }
                 } else {
                     LazyColumn(

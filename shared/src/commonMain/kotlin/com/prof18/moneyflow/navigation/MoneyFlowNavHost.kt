@@ -43,7 +43,6 @@ import com.prof18.moneyflow.presentation.categories.CategoriesScreen
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
 import com.prof18.moneyflow.presentation.home.HomeScreen
 import com.prof18.moneyflow.presentation.settings.SettingsScreen
-import com.prof18.moneyflow.ui.style.LightAppColors
 import com.prof18.moneyflow.utils.LocalAppDensity
 import com.prof18.moneyflow.utils.LocalAppLocale
 import com.prof18.moneyflow.utils.LocalAppTheme
@@ -203,7 +202,6 @@ private fun EntryProviderScope<AppRoute>.screens(
             dateLabel = uiState.dateLabel,
             addTransactionAction = uiState.addTransactionAction,
             resetAction = viewModel::resetAction,
-            paddingValues = paddingValues,
         )
     }
 
@@ -221,7 +219,6 @@ private fun EntryProviderScope<AppRoute>.screens(
             },
             isFromAddTransaction = route.fromAddTransaction,
             categoryModel = categoryModel,
-            paddingValues = paddingValues,
         )
     }
 
@@ -230,7 +227,6 @@ private fun EntryProviderScope<AppRoute>.screens(
         AllTransactionsScreen(
             stateFlow = viewModel.state,
             loadNextPage = viewModel::loadNextPage,
-            paddingValues = paddingValues,
             navigateUp = { backStack.removeLastOrNull() },
         )
     }
