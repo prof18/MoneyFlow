@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(lipo -info:*)",
-      "Bash(./gradlew:*)"
+      "Bash(./gradlew:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []
