@@ -1,6 +1,5 @@
 package com.prof18.moneyflow
 
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -25,27 +24,25 @@ class AddTransactionRoborazziTest : RoborazziTestBase() {
     fun captureAddTransactionScreen() {
         composeRule.setContent {
             MoneyFlowTheme {
-                Scaffold {
-                    AddTransactionScreen(
-                        categoryState = remember { mutableStateOf(RoborazziSampleData.sampleCategory) },
-                        navigateUp = {},
-                        navigateToCategoryList = {},
-                        addTransaction = {},
-                        amountText = "10.00",
-                        updateAmountText = {},
-                        descriptionText = "Pizza 🍕",
-                        updateDescriptionText = {},
-                        selectedTransactionType = TransactionType.OUTCOME,
-                        updateTransactionType = {},
-                        updateYear = {},
-                        updateMonth = {},
-                        updateDay = {},
-                        saveDate = {},
-                        dateLabel = "11 July 2021",
-                        addTransactionAction = null,
-                        resetAction = {},
-                    )
-                }
+                AddTransactionScreen(
+                    categoryState = remember { mutableStateOf(RoborazziSampleData.sampleCategory) },
+                    navigateUp = {},
+                    navigateToCategoryList = {},
+                    addTransaction = {},
+                    amountText = "10.00",
+                    updateAmountText = {},
+                    descriptionText = "Pizza 🍕",
+                    updateDescriptionText = {},
+                    selectedTransactionType = TransactionType.OUTCOME,
+                    updateTransactionType = {},
+                    updateYear = {},
+                    updateMonth = {},
+                    updateDay = {},
+                    saveDate = {},
+                    dateLabel = "11 July 2021",
+                    addTransactionAction = null,
+                    resetAction = {},
+                )
             }
         }
 
