@@ -25,6 +25,7 @@ kotlin {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_21)
             freeCompilerArgs.add("-opt-in=androidx.compose.ui.ExperimentalComposeUiApi")
+            freeCompilerArgs.add("-Xexpect-actual-classes")
         }
     }
 
@@ -47,6 +48,7 @@ kotlin {
             languageSettings.optIn("com.russhwolf.settings.ExperimentalSettingsImplementation")
             languageSettings.optIn("kotlin.experimental.ExperimentalObjCRefinement")
             languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+            languageSettings.optIn("kotlin.time.ExperimentalTime")
         }
 
         val commonMain by getting {

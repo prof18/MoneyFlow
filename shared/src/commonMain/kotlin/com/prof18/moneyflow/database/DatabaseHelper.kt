@@ -23,8 +23,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.coroutines.CoroutineContext
@@ -246,7 +246,7 @@ class DatabaseHelper(
     private fun generateCurrentMonthId(millisSinceEpoch: Long): Long {
         val dateTime = Instant.fromEpochMilliseconds(millisSinceEpoch)
             .toLocalDateTime(TimeZone.currentSystemDefault())
-        return "${dateTime.year}${dateTime.monthNumber}".toLong()
+        return "${dateTime.year}${dateTime.month.ordinal + 1}".toLong()
     }
 
     companion object {

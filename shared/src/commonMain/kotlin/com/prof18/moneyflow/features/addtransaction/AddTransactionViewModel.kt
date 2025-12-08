@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.atStartOfDayIn
@@ -44,8 +44,8 @@ class AddTransactionViewModel(
     // Private variables
     private var selectedDateMillis: Long = Clock.System.now().toEpochMilliseconds()
     private var yearNumber: Int = currentLocalDate().year
-    private var monthNumber: Int = currentLocalDate().monthNumber - 1
-    private var dayNumber: Int = currentLocalDate().dayOfMonth
+    private var monthNumber: Int = currentLocalDate().month.ordinal
+    private var dayNumber: Int = currentLocalDate().day
 
     init {
         updateDateLabel()
