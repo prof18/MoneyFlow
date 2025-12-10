@@ -39,8 +39,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
+    <key>CADisableMinimumFrameDurationOnPhone</key>
+    <true/>
+    <key>NSFaceIDUsageDescription</key>
+    <string>Unlock your MoneyFlow data with Face ID.</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
 </dict>
