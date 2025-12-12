@@ -1,4 +1,3 @@
-import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 import java.util.Properties
 
 plugins {
@@ -67,7 +66,10 @@ android {
         targetCompatibility = javaVersion
     }
 
-    buildFeatures { compose = true }
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
 
     packaging {
         resources {
@@ -90,7 +92,6 @@ dependencies {
 
     debugImplementation(libs.compose.ui.tooling)
 }
-
 
 play {
     // The play_config.json file will be provided on CI
