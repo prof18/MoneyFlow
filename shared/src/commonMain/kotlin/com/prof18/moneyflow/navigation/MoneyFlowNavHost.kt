@@ -1,5 +1,10 @@
 package com.prof18.moneyflow.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIntoContainer
+import androidx.compose.animation.slideOutOfContainer
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -30,6 +35,7 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import androidx.navigationevent.NavigationEvent
 import androidx.savedstate.compose.serialization.serializers.SnapshotStateListSerializer
 import com.prof18.moneyflow.features.addtransaction.AddTransactionViewModel
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsViewModel
@@ -60,6 +66,8 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+
+private const val DEFAULT_ANIMATION_DURATION_MILLIS = 300
 
 @Composable
 fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
@@ -98,6 +106,37 @@ fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
                                 rememberSaveableStateHolderNavEntryDecorator(),
                                 rememberViewModelStoreNavEntryDecorator(),
                             ),
+                            transitionSpec = {
+                                slideIntoContainer(
+                                    AnimatedContentTransitionScope.SlideDirection.Left,
+                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                ) togetherWith slideOutOfContainer(
+                                    AnimatedContentTransitionScope.SlideDirection.Left,
+                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                )
+                            },
+                            popTransitionSpec = {
+                                slideIntoContainer(
+                                    AnimatedContentTransitionScope.SlideDirection.Right,
+                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                ) togetherWith slideOutOfContainer(
+                                    AnimatedContentTransitionScope.SlideDirection.Right,
+                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                )
+                            },
+                            predictivePopTransitionSpec = { edge ->
+                                if (edge == NavigationEvent.EDGE_LEFT) {
+                                    slideIntoContainer(
+                                        AnimatedContentTransitionScope.SlideDirection.Right,
+                                        tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    ) togetherWith slideOutOfContainer(
+                                        AnimatedContentTransitionScope.SlideDirection.Right,
+                                        tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    )
+                                } else {
+                                    null
+                                }
+                            },
                         )
                     }
                 }
