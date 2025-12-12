@@ -1,8 +1,12 @@
 package com.prof18.moneyflow.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -66,6 +70,23 @@ import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 private const val DEFAULT_ANIMATION_DURATION_MILLIS = 300
+
+private fun bottomSheetForwardTransition() =
+    slideInVertically(
+        animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+        initialOffsetY = { it },
+    ) togetherWith ExitTransition.None
+
+private fun bottomSheetPopTransition() =
+    EnterTransition.None togetherWith slideOutVertically(
+        animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+        targetOffsetY = { it },
+    )
+
+private val bottomSheetTransitionMetadata =
+    NavDisplay.transitionSpec { bottomSheetForwardTransition() } +
+        NavDisplay.popTransitionSpec { bottomSheetPopTransition() } +
+        NavDisplay.predictivePopTransitionSpec { _: Int -> bottomSheetPopTransition() }
 
 @Composable
 fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
@@ -238,7 +259,7 @@ private fun EntryProviderScope<AppRoute>.screens(
         )
     }
 
-    entry<CategoriesRoute> { route ->
+    entry<CategoriesRoute>(metadata = bottomSheetTransitionMetadata) { route ->
         val viewModel = koinViewModel<CategoriesViewModel>()
         val categoryModel by viewModel.categories.collectAsState()
 
@@ -255,7 +276,7 @@ private fun EntryProviderScope<AppRoute>.screens(
         )
     }
 
-    entry<AllTransactionsRoute> {
+    entry<AllTransactionsRoute>(metadata = bottomSheetTransitionMetadata) {
         val viewModel = koinViewModel<AllTransactionsViewModel>()
         AllTransactionsScreen(
             stateFlow = viewModel.state,
