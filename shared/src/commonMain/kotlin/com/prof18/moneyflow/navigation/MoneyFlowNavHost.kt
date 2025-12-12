@@ -1,9 +1,8 @@
 package com.prof18.moneyflow.navigation
 
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideIntoContainer
-import androidx.compose.animation.slideOutOfContainer
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -107,35 +106,31 @@ fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
                                 rememberViewModelStoreNavEntryDecorator(),
                             ),
                             transitionSpec = {
-                                slideIntoContainer(
-                                    AnimatedContentTransitionScope.SlideDirection.Left,
-                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
-                                ) togetherWith slideOutOfContainer(
-                                    AnimatedContentTransitionScope.SlideDirection.Left,
-                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                slideInHorizontally(
+                                    animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    initialOffsetX = { it },
+                                ) togetherWith slideOutHorizontally(
+                                    animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    targetOffsetX = { -it },
                                 )
                             },
                             popTransitionSpec = {
-                                slideIntoContainer(
-                                    AnimatedContentTransitionScope.SlideDirection.Right,
-                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
-                                ) togetherWith slideOutOfContainer(
-                                    AnimatedContentTransitionScope.SlideDirection.Right,
-                                    tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                slideInHorizontally(
+                                    animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    initialOffsetX = { -it },
+                                ) togetherWith slideOutHorizontally(
+                                    animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    targetOffsetX = { it },
                                 )
                             },
                             predictivePopTransitionSpec = { edge ->
-                                if (edge == NavigationEvent.EDGE_LEFT) {
-                                    slideIntoContainer(
-                                        AnimatedContentTransitionScope.SlideDirection.Right,
-                                        tween(DEFAULT_ANIMATION_DURATION_MILLIS),
-                                    ) togetherWith slideOutOfContainer(
-                                        AnimatedContentTransitionScope.SlideDirection.Right,
-                                        tween(DEFAULT_ANIMATION_DURATION_MILLIS),
-                                    )
-                                } else {
-                                    null
-                                }
+                                slideInHorizontally(
+                                    animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    initialOffsetX = { -it },
+                                ) togetherWith slideOutHorizontally(
+                                    animationSpec = tween(DEFAULT_ANIMATION_DURATION_MILLIS),
+                                    targetOffsetX = { it },
+                                )
                             },
                         )
                     }
