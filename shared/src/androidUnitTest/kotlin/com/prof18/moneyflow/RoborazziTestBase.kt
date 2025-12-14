@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onRoot
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.github.takahirom.roborazzi.RoborazziRule
 import com.github.takahirom.roborazzi.captureRoboImage
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
@@ -25,10 +26,13 @@ open class RoborazziTestBase(
     @get:Rule
     val roborazziRule: RoborazziRule = roborazziOf(composeRule, captureType)
 
-    private val snapshotDir: File = File(
-        System.getProperty("roborazzi.test.record.dir")
-            ?: File(System.getProperty("user.dir")).resolve("image/roborazzi").path,
-    ).also { directory ->
+    private val snapshotDir: File = run {
+        val defaultDir = System.getProperty("user.dir")
+            ?.let { File(it).resolve("image/roborazzi").path }
+            ?: "image/roborazzi"
+        val path = System.getProperty("roborazzi.test.record.dir") ?: defaultDir
+        File(path)
+    }.also { directory ->
         directory.mkdirs()
     }
 
@@ -45,6 +49,12 @@ open class RoborazziTestBase(
 }
 
 internal object RoborazziSampleData {
+    val sampleCurrencyConfig = CurrencyConfig(
+        code = "EUR",
+        symbol = "€",
+        decimalPlaces = 2,
+    )
+
     val sampleCategory = CategoryUIData(
         id = 1,
         name = "Food",
@@ -56,7 +66,7 @@ internal object RoborazziSampleData {
             id = 0,
             title = "Ice Cream",
             icon = CategoryIcon.IC_ICE_CREAM_SOLID,
-            amount = 10.0,
+            amountCents = 1_000,
             type = TransactionTypeUI.EXPENSE,
             milliseconds = 0,
             formattedDate = "12 July 2021",
@@ -65,7 +75,7 @@ internal object RoborazziSampleData {
             id = 1,
             title = "Tip",
             icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
-            amount = 50.0,
+            amountCents = 5_000,
             type = TransactionTypeUI.INCOME,
             milliseconds = 0,
             formattedDate = "12 July 2021",

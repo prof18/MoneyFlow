@@ -27,6 +27,7 @@ class AllTransactionsRoborazziTest : RoborazziTestBase() {
                     stateFlow = MutableStateFlow(
                         AllTransactionsUiState(
                             transactions = RoborazziSampleData.sampleTransactions,
+                            currencyConfig = RoborazziSampleData.sampleCurrencyConfig,
                         ),
                     ),
                     loadNextPage = {},

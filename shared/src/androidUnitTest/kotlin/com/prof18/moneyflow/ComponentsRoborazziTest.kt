@@ -49,6 +49,7 @@ class ComponentsRoborazziTest : RoborazziTestBase() {
                     onLongPress = {},
                     onClick = {},
                     hideSensitiveData = true,
+                    currencyConfig = RoborazziSampleData.sampleCurrencyConfig,
                 )
             }
         }

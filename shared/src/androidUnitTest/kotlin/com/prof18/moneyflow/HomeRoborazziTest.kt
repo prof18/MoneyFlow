@@ -28,11 +28,12 @@ class HomeRoborazziTest : RoborazziTestBase() {
                     HomeScreen(
                         homeModel = HomeModel.HomeState(
                             balanceRecap = BalanceRecap(
-                                totalBalance = 5000.0,
-                                monthlyIncome = 1000.0,
-                                monthlyExpenses = 50.0,
+                                totalBalanceCents = 500_000,
+                                monthlyIncomeCents = 100_000,
+                                monthlyExpensesCents = 50_00,
                             ),
                             latestTransactions = RoborazziSampleData.sampleTransactions,
+                            currencyConfig = RoborazziSampleData.sampleCurrencyConfig,
                         ),
                         hideSensitiveDataState = false,
                         navigateToAllTransactions = {},

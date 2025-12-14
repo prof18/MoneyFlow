@@ -2,6 +2,7 @@ package com.prof18.moneyflow
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.CategoriesScreen
 import com.prof18.moneyflow.presentation.categories.CategoryModel
@@ -34,11 +35,15 @@ class CategoriesRoborazziTest : RoborazziTestBase() {
                                 id = 0,
                                 name = "Food",
                                 icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                                type = TransactionType.OUTCOME,
+                                createdAtMillis = 0,
                             ),
                             Category(
                                 id = 1,
                                 name = "Drinks",
                                 icon = CategoryIcon.IC_COCKTAIL_SOLID,
+                                type = TransactionType.OUTCOME,
+                                createdAtMillis = 0,
                             ),
                         ),
                     ),
