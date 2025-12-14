@@ -1,20 +1,30 @@
-import com.prof18.moneyflow.database.model.Currency;
-
 CREATE TABLE AccountTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    currency TEXT AS Currency NOT NULL,
-    amount REAL NOT NULL
+    currencyCode TEXT NOT NULL,
+    currencySymbol TEXT NOT NULL,
+    currencyDecimalPlaces INTEGER NOT NULL,
+    isDefault INTEGER NOT NULL DEFAULT 0,
+    createdAtMillis INTEGER NOT NULL
 );
 
-getAccount:
-SELECT * FROM AccountTable;
+selectDefaultAccount:
+SELECT * FROM AccountTable WHERE isDefault = 1 LIMIT 1;
+
+selectAllAccounts:
+SELECT * FROM AccountTable ORDER BY isDefault DESC, name ASC;
+
+selectAccountById:
+SELECT * FROM AccountTable WHERE id = :id;
 
 insertAccount:
-INSERT INTO AccountTable (name, currency, amount)
-VALUES (?,?,?);
+INSERT INTO AccountTable (name, currencyCode, currencySymbol, currencyDecimalPlaces, isDefault, createdAtMillis)
+VALUES (?, ?, ?, ?, ?, ?);
 
-updateAmount:
+updateAccount:
 UPDATE AccountTable
-SET amount = amount + :newTransaction
-WHERE id = ?;
+SET name = :name, currencyCode = :currencyCode, currencySymbol = :currencySymbol, currencyDecimalPlaces = :decimalPlaces
+WHERE id = :id;
+
+setDefaultAccount:
+UPDATE AccountTable SET isDefault = CASE WHEN id = :id THEN 1 ELSE 0 END;

@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.prof18.moneyflow.database.model.TransactionType
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.presentation.addtransaction.components.DatePickerDialog
 import com.prof18.moneyflow.presentation.addtransaction.components.IconTextClickableRow
 import com.prof18.moneyflow.presentation.addtransaction.components.MFTextInput
@@ -62,6 +63,7 @@ internal fun AddTransactionScreen(
     dateLabel: String?,
     addTransactionAction: AddTransactionAction?,
     resetAction: () -> Unit,
+    currencyConfig: CurrencyConfig?,
 ) {
     val (showDatePickerDialog, setShowedDatePickerDialog) = remember { mutableStateOf(false) }
 
@@ -102,6 +104,15 @@ internal fun AddTransactionScreen(
 
     val keyboardController = LocalSoftwareKeyboardController.current
 
+    val amountLabel = currencyConfig?.let {
+        val decimalPart = if (it.decimalPlaces == 0) {
+            ""
+        } else {
+            ".${"0".repeat(it.decimalPlaces)}"
+        }
+        "${it.symbol} 0$decimalPart"
+    } ?: "€ 0.00"
+
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
@@ -111,7 +122,7 @@ internal fun AddTransactionScreen(
                 onBackPressed = { navigateUp() },
                 onActionClicked = {
                     keyboardController?.hide()
-                    addTransaction(categoryState.value?.id!!)
+                    categoryState.value?.id?.let(addTransaction)
                 },
                 actionEnabled = categoryState.value?.id != null && amountText.isNotEmpty(),
             )
@@ -137,8 +148,7 @@ internal fun AddTransactionScreen(
                 MFTextInput(
                     text = amountText,
                     textStyle = MaterialTheme.typography.bodyLarge,
-                    // TODO: inject user currency
-                    label = "0.00 EUR",
+                    label = amountLabel,
                     leadingIcon = {
                         Icon(
                             painter = painterResource(Res.drawable.ic_money_bill_wave),
@@ -146,7 +156,7 @@ internal fun AddTransactionScreen(
                         )
                     },
                     onTextChange = { updateAmountText(it) },
-                    keyboardType = KeyboardType.Number,
+                    keyboardType = KeyboardType.Decimal,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -240,6 +250,11 @@ private fun AddTransactionScreenPreview() {
                 dateLabel = "11 July 2021",
                 addTransactionAction = null,
                 resetAction = {},
+                currencyConfig = CurrencyConfig(
+                    code = "EUR",
+                    symbol = "€",
+                    decimalPlaces = 2,
+                ),
             )
         }
     }

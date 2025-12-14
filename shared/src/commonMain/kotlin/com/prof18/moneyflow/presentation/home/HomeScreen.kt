@@ -122,6 +122,7 @@ internal fun HomeScreen(
 
                 HomeRecap(
                     balanceRecap = homeModel.balanceRecap,
+                    currencyConfig = homeModel.currencyConfig,
                     hideSensitiveData = hideSensitiveDataState,
                 )
                 HeaderNavigator(
@@ -175,6 +176,7 @@ internal fun HomeScreen(
                                         setShowTransactionMenu(true)
                                     },
                                     hideSensitiveData = hideSensitiveDataState,
+                                    currencyConfig = homeModel.currencyConfig,
                                 )
                                 DropdownMenu(
                                     expanded = showTransactionMenu,
@@ -207,16 +209,16 @@ private fun HomeScreenPreview() {
             HomeScreen(
                 homeModel = HomeModel.HomeState(
                     balanceRecap = BalanceRecap(
-                        totalBalance = 5000.0,
-                        monthlyIncome = 1000.0,
-                        monthlyExpenses = 50.0,
+                        totalBalanceCents = 500_000,
+                        monthlyIncomeCents = 100_000,
+                        monthlyExpensesCents = 5_000,
                     ),
                     latestTransactions = listOf(
                         MoneyTransaction(
                             id = 0,
                             title = "Ice Cream",
                             icon = CategoryIcon.IC_ICE_CREAM_SOLID,
-                            amount = 10.0,
+                            amountCents = 1_000,
                             type = TransactionTypeUI.EXPENSE,
                             milliseconds = 0,
                             formattedDate = "12 July 2021",
@@ -225,11 +227,16 @@ private fun HomeScreenPreview() {
                             id = 1,
                             title = "Tip",
                             icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
-                            amount = 50.0,
+                            amountCents = 5_000,
                             type = TransactionTypeUI.INCOME,
                             milliseconds = 0,
                             formattedDate = "12 July 2021",
                         ),
+                    ),
+                    currencyConfig = com.prof18.moneyflow.domain.entities.CurrencyConfig(
+                        code = "EUR",
+                        symbol = "€",
+                        decimalPlaces = 2,
                     ),
                 ),
                 hideSensitiveDataState = true,

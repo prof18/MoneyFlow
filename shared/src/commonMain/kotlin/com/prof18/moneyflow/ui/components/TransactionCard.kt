@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.categories.mapToDrawableResource
@@ -31,11 +32,11 @@ import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
+import com.prof18.moneyflow.utils.formatAsCurrency
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.ic_arrow_down_rotate
 import money_flow.shared.generated.resources.ic_arrow_up_rotate
 import org.jetbrains.compose.resources.painterResource
-import kotlin.math.abs
 
 @Composable
 @Suppress("LongMethod") // TODO: reduce method length
@@ -44,6 +45,7 @@ internal fun TransactionCard(
     onLongPress: () -> Unit,
     onClick: () -> Unit,
     hideSensitiveData: Boolean,
+    currencyConfig: CurrencyConfig,
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -124,9 +126,13 @@ internal fun TransactionCard(
                 modifier = Modifier.align(Alignment.CenterVertically),
             )
 
+            val signedAmount = if (transaction.type == TransactionTypeUI.EXPENSE) {
+                -transaction.amountCents
+            } else {
+                transaction.amountCents
+            }
             HideableTextField(
-                // TODO: Inject correct currency
-                text = "${abs(transaction.amount)} €",
+                text = signedAmount.formatAsCurrency(currencyConfig),
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
@@ -147,7 +153,7 @@ private fun TransactionCardPreview() {
                     id = 0,
                     title = "Eating out",
                     icon = CategoryIcon.IC_HAMBURGER_SOLID,
-                    amount = 30.0,
+                    amountCents = 3_000,
                     type = TransactionTypeUI.EXPENSE,
                     milliseconds = 0,
                     formattedDate = "12/12/21",
@@ -155,6 +161,11 @@ private fun TransactionCardPreview() {
                 onLongPress = {},
                 onClick = {},
                 hideSensitiveData = true,
+                currencyConfig = CurrencyConfig(
+                    code = "EUR",
+                    symbol = "€",
+                    decimalPlaces = 2,
+                ),
             )
         }
     }

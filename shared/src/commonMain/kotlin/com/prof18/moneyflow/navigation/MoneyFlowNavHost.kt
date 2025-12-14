@@ -256,6 +256,7 @@ private fun EntryProviderScope<AppRoute>.screens(
             dateLabel = uiState.dateLabel,
             addTransactionAction = uiState.addTransactionAction,
             resetAction = viewModel::resetAction,
+            currencyConfig = uiState.currencyConfig,
         )
     }
 

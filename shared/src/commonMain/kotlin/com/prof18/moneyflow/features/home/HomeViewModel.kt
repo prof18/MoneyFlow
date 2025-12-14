@@ -38,10 +38,11 @@ class HomeViewModel(
                     HomeModel.HomeState(
                         balanceRecap = summary.balanceRecap,
                         latestTransactions = summary.latestTransactions,
+                        currencyConfig = summary.currencyConfig,
                     ) as HomeModel
                 }
                 .catch { throwable: Throwable ->
-                    val error = MoneyFlowError.GetCategories(throwable)
+                    val error = MoneyFlowError.GetMoneySummary(throwable)
                     throwable.logError(error)
                     val errorMessage = errorMapper.getUIErrorMessage(error)
                     emit(HomeModel.Error(errorMessage))

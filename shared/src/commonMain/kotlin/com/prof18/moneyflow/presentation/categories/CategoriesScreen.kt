@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.components.CategoryCard
 import com.prof18.moneyflow.presentation.categories.data.CategoryUIData
@@ -87,11 +88,15 @@ private fun CategoriesScreenPreview() {
                             id = 0,
                             name = "Food",
                             icon = CategoryIcon.IC_HAMBURGER_SOLID,
+                            type = TransactionType.OUTCOME,
+                            createdAtMillis = 1,
                         ),
                         Category(
                             id = 0,
                             name = "Drinks",
                             icon = CategoryIcon.IC_COCKTAIL_SOLID,
+                            type = TransactionType.OUTCOME,
+                            createdAtMillis = 1,
                         ),
                     ),
                 ),

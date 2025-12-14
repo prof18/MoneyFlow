@@ -2,36 +2,54 @@ package com.prof18.moneyflow.utils
 
 import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
+import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.format
+import kotlinx.datetime.format.char
+import kotlinx.datetime.plus
 import kotlinx.datetime.toLocalDateTime
+import kotlin.time.Clock
 import kotlin.time.Instant
 
-internal fun MillisSinceEpoch.generateCurrentMonthId(): CurrentMonthID {
-    val instant = Instant.fromEpochMilliseconds(this)
-    val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-    val id = "${dateTime.year}${dateTime.month.ordinal + 1}"
-    return id.toLong()
+// TODO: write tests for some of these functions
+data class MonthRange(
+    val startMillis: Long,
+    val endMillis: Long,
+)
+
+private val dayMonthYearFormatter = LocalDate.Format {
+    day()
+    char('/')
+    monthNumber()
+    char('/')
+    year()
 }
 
-internal fun MillisSinceEpoch.formatDateDayMonthYear(): String {
-    val instant = Instant.fromEpochMilliseconds(this)
-    val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-    return "${dateTime.day}/${dateTime.month.ordinal + 1}/${dateTime.year}"
+internal fun Long.formatDateDayMonthYear(
+    timeZone: TimeZone = TimeZone.currentSystemDefault(),
+): String {
+    val dateTime = toLocalDateTime(timeZone)
+    return dateTime.date.format(dayMonthYearFormatter)
 }
 
-fun MillisSinceEpoch.formatFullDate(): String {
-    val instant = Instant.fromEpochMilliseconds(this)
-    val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-    @Suppress("MaxLineLength")
-    return "${dateTime.day}/${dateTime.month.ordinal + 1}/${dateTime.year} - ${dateTime.hour}:${dateTime.minute}:${dateTime.second}"
+internal fun Long.toMonthRange(timeZone: TimeZone = TimeZone.currentSystemDefault()): MonthRange {
+    val dateTime: LocalDateTime = toLocalDateTime(timeZone)
+    val startDate = LocalDate(dateTime.year, dateTime.month, 1)
+    val startMillis = startDate.atStartOfDayIn(timeZone).toEpochMilliseconds()
+    val endMillis = startDate.plus(DatePeriod(months = 1))
+        .atStartOfDayIn(timeZone)
+        .toEpochMilliseconds()
+    return MonthRange(startMillis = startMillis, endMillis = endMillis)
 }
 
-internal fun Long.formatDateAllData(): String {
-    val instant = Instant.fromEpochMilliseconds(this)
-    val dateTime: LocalDateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-    return "${dateTime.day}/${dateTime.month.ordinal + 1}/${dateTime.year} - ${dateTime.hour}:${dateTime.minute}"
-}
+internal fun currentMonthRange(timeZone: TimeZone = TimeZone.currentSystemDefault()): MonthRange =
+    Clock.System.now().toEpochMilliseconds().toMonthRange(timeZone)
+
+internal fun Long.toLocalDateTime(timeZone: TimeZone = TimeZone.currentSystemDefault()): LocalDateTime =
+    Instant.fromEpochMilliseconds(this).toLocalDateTime(timeZone)
 
 fun Throwable.logError(moneyFlowError: MoneyFlowError, message: String? = null) {
     val logMessage = buildString {

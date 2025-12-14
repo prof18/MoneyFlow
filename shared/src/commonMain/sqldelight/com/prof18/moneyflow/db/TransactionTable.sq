@@ -2,40 +2,71 @@ import com.prof18.moneyflow.database.model.TransactionType;
 
 CREATE TABLE TransactionTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    accountId INTEGER NOT NULL DEFAULT 1 REFERENCES AccountTable(id),
+    categoryId INTEGER NOT NULL REFERENCES CategoryTable(id),
     dateMillis INTEGER NOT NULL,
-    amount REAL NOT NULL,
+    amountCents INTEGER NOT NULL,
     description TEXT,
-    categoryId INTEGER NOT NULL,
-    type TEXT AS TransactionType NOT NULL
+    type TEXT AS TransactionType NOT NULL,
+    createdAtMillis INTEGER NOT NULL
 );
 
+CREATE INDEX idx_transaction_date ON TransactionTable(dateMillis);
+CREATE INDEX idx_transaction_account ON TransactionTable(accountId);
+CREATE INDEX idx_transaction_category ON TransactionTable(categoryId);
+
 selectLatestTransactions:
-SELECT T.id, T.dateMillis, T.amount, T.description, T.type, C.name AS categoryName, C.iconName
+SELECT
+    T.id,
+    T.dateMillis,
+    T.amountCents,
+    T.description,
+    T.type,
+    C.name AS categoryName,
+    C.iconName
 FROM TransactionTable T
-INNER JOIN CategoryTable AS C
-ON T.categoryId = C.id
+INNER JOIN CategoryTable AS C ON T.categoryId = C.id
+WHERE T.accountId = :accountId
 ORDER BY T.dateMillis DESC
-LIMIT 10;
+LIMIT :limit;
 
 selectTransactionsPaginated:
-SELECT T.id, T.dateMillis, T.amount, T.description, T.type, C.name AS categoryName, C.iconName
+SELECT
+    T.id,
+    T.dateMillis,
+    T.amountCents,
+    T.description,
+    T.type,
+    C.name AS categoryName,
+    C.iconName
 FROM TransactionTable T
-INNER JOIN CategoryTable AS C
-ON T.categoryId = C.id
+INNER JOIN CategoryTable AS C ON T.categoryId = C.id
+WHERE T.accountId = :accountId
 ORDER BY T.dateMillis DESC
 LIMIT :pageSize
-OFFSET :pageNum;
-
+OFFSET :offset;
 
 insertTransaction:
-INSERT INTO TransactionTable (dateMillis, amount, description, categoryId, type)
-VALUES (?,?,?,?,?);
+INSERT INTO TransactionTable (accountId, categoryId, dateMillis, amountCents, description, type, createdAtMillis)
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 selectTransaction:
-SELECT *
-FROM TransactionTable
-WHERE id = :transactionId;
+SELECT * FROM TransactionTable WHERE id = :transactionId;
 
 deleteTransaction:
-DELETE FROM TransactionTable
-WHERE id = :transactionId;
+DELETE FROM TransactionTable WHERE id = :transactionId;
+
+selectMonthlyRecap:
+SELECT
+    SUM(CASE WHEN type = 'INCOME' THEN amountCents ELSE 0 END) AS incomeCents,
+    SUM(CASE WHEN type = 'OUTCOME' THEN amountCents ELSE 0 END) AS outcomeCents
+FROM TransactionTable
+WHERE accountId = :accountId
+  AND dateMillis >= :monthStartMillis
+  AND dateMillis < :monthEndMillis;
+
+selectAccountBalance:
+SELECT
+    COALESCE(SUM(CASE WHEN type = 'INCOME' THEN amountCents ELSE -amountCents END), 0) AS balanceCents
+FROM TransactionTable
+WHERE accountId = :accountId;

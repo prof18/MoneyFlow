@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.domain.entities.Category
 import com.prof18.moneyflow.presentation.categories.mapToDrawableResource
 import com.prof18.moneyflow.presentation.model.CategoryIcon
@@ -74,7 +75,13 @@ private fun CategoryCardPreview() {
     MoneyFlowTheme {
         Surface {
             CategoryCard(
-                category = Category(id = 11, name = "Family", icon = CategoryIcon.IC_QUESTION_CIRCLE),
+                category = Category(
+                    id = 11,
+                    name = "Family",
+                    icon = CategoryIcon.IC_QUESTION_CIRCLE,
+                    type = TransactionType.OUTCOME,
+                    createdAtMillis = 1,
+                ),
                 onClick = {},
             )
         }

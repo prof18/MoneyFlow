@@ -4,12 +4,33 @@ CREATE TABLE CategoryTable (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     type TEXT AS TransactionType NOT NULL,
-    iconName TEXT NOT NULL
+    iconName TEXT NOT NULL,
+    isSystem INTEGER NOT NULL DEFAULT 0,
+    createdAtMillis INTEGER NOT NULL
 );
 
+CREATE INDEX idx_category_type ON CategoryTable(type);
+
 selectAll:
-SELECT * FROM CategoryTable;
+SELECT * FROM CategoryTable
+ORDER BY isSystem DESC, name ASC;
+
+selectByType:
+SELECT * FROM CategoryTable
+WHERE type = :type
+ORDER BY isSystem DESC, name ASC;
+
+selectById:
+SELECT * FROM CategoryTable WHERE id = :id;
 
 insertCategory:
-INSERT INTO CategoryTable (name, type, iconName)
-VALUES (?,?,?);
+INSERT INTO CategoryTable (name, type, iconName, isSystem, createdAtMillis)
+VALUES (?, ?, ?, ?, ?);
+
+updateCategory:
+UPDATE CategoryTable
+SET name = :name, iconName = :iconName
+WHERE id = :id AND isSystem = 0;
+
+countTransactionsForCategory:
+SELECT COUNT(*) FROM TransactionTable WHERE categoryId = :categoryId;

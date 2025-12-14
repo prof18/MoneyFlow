@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -22,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.prof18.moneyflow.domain.entities.BalanceRecap
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.ui.components.HideableTextField
 import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
@@ -29,9 +29,9 @@ import com.prof18.moneyflow.ui.style.downArrowCircleColor
 import com.prof18.moneyflow.ui.style.downArrowColor
 import com.prof18.moneyflow.ui.style.upArrowCircleColor
 import com.prof18.moneyflow.ui.style.upArrowColor
+import com.prof18.moneyflow.utils.formatAsCurrency
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.down_arrow_content_desc
-import money_flow.shared.generated.resources.euro_symbol
 import money_flow.shared.generated.resources.ic_arrow_down_rotate
 import money_flow.shared.generated.resources.ic_arrow_up_rotate
 import money_flow.shared.generated.resources.total_balance
@@ -45,6 +45,7 @@ import org.jetbrains.compose.resources.stringResource
 @Suppress("LongMethod") // TODO: reduce method length
 internal fun HomeRecap(
     balanceRecap: BalanceRecap,
+    currencyConfig: CurrencyConfig,
     hideSensitiveData: Boolean,
 ) {
     Column(
@@ -52,20 +53,9 @@ internal fun HomeRecap(
             .fillMaxWidth()
             .padding(Margins.regular),
     ) {
-        Row(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-        ) {
-            Text(
-                // TODO: inject the currency the user has chosen from somewhere
-                text = stringResource(Res.string.euro_symbol),
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.align(Alignment.CenterVertically),
-            )
-
-            Spacer(Modifier.width(Margins.small))
-
+        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             HideableTextField(
-                text = balanceRecap.totalBalance.toString(),
+                text = balanceRecap.totalBalanceCents.formatAsCurrency(currencyConfig),
                 hide = hideSensitiveData,
                 style = MaterialTheme.typography.displaySmall,
             )
@@ -102,7 +92,7 @@ internal fun HomeRecap(
 
                 Column {
                     HideableTextField(
-                        text = "${balanceRecap.monthlyIncome} ${stringResource(Res.string.euro_symbol)}",
+                        text = balanceRecap.monthlyIncomeCents.formatAsCurrency(currencyConfig),
                         hide = hideSensitiveData,
                         style = MaterialTheme.typography.headlineMedium,
                     )
@@ -132,8 +122,7 @@ internal fun HomeRecap(
 
                 Column {
                     HideableTextField(
-                        // TODO: inject the currency the user has chosen from somewhere
-                        text = "${balanceRecap.monthlyExpenses} €",
+                        text = balanceRecap.monthlyExpensesCents.formatAsCurrency(currencyConfig),
                         hide = hideSensitiveData,
                         style = MaterialTheme.typography.headlineMedium,
                     )
@@ -155,9 +144,14 @@ private fun HomeRecapPreview() {
         Surface {
             HomeRecap(
                 balanceRecap = BalanceRecap(
-                    totalBalance = 1200.0,
-                    monthlyIncome = 150.0,
-                    monthlyExpenses = 200.0,
+                    totalBalanceCents = 120_000,
+                    monthlyIncomeCents = 15_000,
+                    monthlyExpensesCents = 20_000,
+                ),
+                currencyConfig = CurrencyConfig(
+                    code = "EUR",
+                    symbol = "€",
+                    decimalPlaces = 2,
                 ),
                 hideSensitiveData = true,
             )

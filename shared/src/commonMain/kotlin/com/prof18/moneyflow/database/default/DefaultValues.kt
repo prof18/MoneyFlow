@@ -1,247 +1,221 @@
 package com.prof18.moneyflow.database.default
 
 import com.prof18.moneyflow.database.model.TransactionType
-import com.prof18.moneyflow.db.CategoryTable
+import kotlin.time.Clock
 
-// TODO: localize?
+internal data class DefaultCategory(
+    val name: String,
+    val type: TransactionType,
+    val iconName: String,
+    val createdAtMillis: Long,
+)
 
+private val seedTimestamp = Clock.System.now().toEpochMilliseconds()
+
+// TODO: localize and set category id directly instead of the name
 internal val defaultCategories = listOf(
-
-    CategoryTable(
-        id = 0,
+    DefaultCategory(
         name = "Accessories",
         type = TransactionType.OUTCOME,
         iconName = "ic_black_tie",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 1,
+    DefaultCategory(
         name = "Bar",
         type = TransactionType.OUTCOME,
         iconName = "ic_cocktail_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 2,
+    DefaultCategory(
         name = "Books",
         type = TransactionType.OUTCOME,
         iconName = "ic_book_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 3,
+    DefaultCategory(
         name = "Clothing",
         type = TransactionType.OUTCOME,
         iconName = "ic_tshirt_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 4,
+    DefaultCategory(
         name = "Eating Out",
         type = TransactionType.OUTCOME,
         iconName = "ic_hamburger_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 5,
+    DefaultCategory(
         name = "Education",
         type = TransactionType.OUTCOME,
         iconName = "ic_graduation_cap_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 6,
+    DefaultCategory(
         name = "Electronics",
         type = TransactionType.OUTCOME,
         iconName = "ic_laptop_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 7,
+    DefaultCategory(
         name = "Entertainment",
         type = TransactionType.OUTCOME,
         iconName = "ic_bowling_ball_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 8,
+    DefaultCategory(
         name = "Extra Income",
         type = TransactionType.INCOME,
         iconName = "ic_donate_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 9,
+    DefaultCategory(
         name = "Family",
         type = TransactionType.OUTCOME,
         iconName = "ic_home_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 10,
+    DefaultCategory(
         name = "Fees",
         type = TransactionType.OUTCOME,
         iconName = "ic_file_invoice_dollar_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 11,
+    DefaultCategory(
         name = "Film",
         type = TransactionType.OUTCOME,
         iconName = "ic_film_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 12,
+    DefaultCategory(
         name = "Food & Beverage",
         type = TransactionType.OUTCOME,
         iconName = "ic_drumstick_bite_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 13,
+    DefaultCategory(
         name = "Footwear",
         type = TransactionType.OUTCOME,
         iconName = "ic_socks_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 14,
+    DefaultCategory(
         name = "Gifts",
         type = TransactionType.OUTCOME,
         iconName = "ic_gift_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 15,
+    DefaultCategory(
         name = "Hairdresser",
         type = TransactionType.OUTCOME,
         iconName = "ic_cut_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 16,
+    DefaultCategory(
         name = "Hotel",
         type = TransactionType.OUTCOME,
         iconName = "ic_building",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 17,
+    DefaultCategory(
         name = "Internet Service",
         type = TransactionType.OUTCOME,
         iconName = "ic_server_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 18,
+    DefaultCategory(
         name = "Love and Friends",
         type = TransactionType.OUTCOME,
         iconName = "ic_user_friends_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 19,
+    DefaultCategory(
         name = "Medical",
         type = TransactionType.OUTCOME,
         iconName = "ic_hospital",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 20,
+    DefaultCategory(
         name = "Music",
         type = TransactionType.OUTCOME,
         iconName = "ic_headphones_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 21,
+    DefaultCategory(
         name = "Other",
         type = TransactionType.OUTCOME,
         iconName = "ic_dollar_sign",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 22,
+    DefaultCategory(
         name = "Parking Fees",
         type = TransactionType.OUTCOME,
         iconName = "ic_parking_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 23,
+    DefaultCategory(
         name = "Petrol",
         type = TransactionType.OUTCOME,
         iconName = "ic_charging_station_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 24,
+    DefaultCategory(
         name = "Phone",
         type = TransactionType.OUTCOME,
         iconName = "ic_phone_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 25,
+    DefaultCategory(
         name = "Plane",
         type = TransactionType.OUTCOME,
         iconName = "ic_plane_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 26,
+    DefaultCategory(
         name = "Salary",
         type = TransactionType.INCOME,
         iconName = "ic_money_check_alt_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 27,
+    DefaultCategory(
         name = "Selling",
         type = TransactionType.INCOME,
         iconName = "ic_dolly_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 28,
+    DefaultCategory(
         name = "Software",
         type = TransactionType.OUTCOME,
         iconName = "ic_file_code",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 29,
+    DefaultCategory(
         name = "Sport",
         type = TransactionType.OUTCOME,
         iconName = "ic_basketball_ball_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 30,
+    DefaultCategory(
         name = "Train",
         type = TransactionType.OUTCOME,
         iconName = "ic_train_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 31,
+    DefaultCategory(
         name = "Transportation",
         type = TransactionType.OUTCOME,
         iconName = "ic_bus_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 32,
+    DefaultCategory(
         name = "Travel",
         type = TransactionType.OUTCOME,
         iconName = "ic_globe_solid",
+        createdAtMillis = seedTimestamp,
     ),
-
-    CategoryTable(
-        id = 33,
+    DefaultCategory(
         name = "Videogames",
         type = TransactionType.OUTCOME,
         iconName = "ic_gamepad_solid",
+        createdAtMillis = seedTimestamp,
     ),
 )

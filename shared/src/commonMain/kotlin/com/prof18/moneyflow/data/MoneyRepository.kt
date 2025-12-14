@@ -2,23 +2,23 @@ package com.prof18.moneyflow.data
 
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.database.model.TransactionType
-import com.prof18.moneyflow.db.AccountTable
-import com.prof18.moneyflow.db.CategoryTable
-import com.prof18.moneyflow.db.MonthlyRecapTable
-import com.prof18.moneyflow.db.SelectLatestTransactions
 import com.prof18.moneyflow.domain.entities.BalanceRecap
 import com.prof18.moneyflow.domain.entities.Category
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
+import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneySummary
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.CategoryIcon
+import com.prof18.moneyflow.utils.currentMonthRange
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
-import com.prof18.moneyflow.utils.generateCurrentMonthId
+import com.prof18.moneyflow.utils.logError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlin.math.abs
 
@@ -28,37 +28,60 @@ class MoneyRepository(
 
     companion object {
         const val DEFAULT_PAGE_SIZE = 30L
+        private const val LATEST_TRANSACTIONS_LIMIT = 10L
     }
 
-    private var allTransactions: Flow<List<SelectLatestTransactions>> = emptyFlow()
-    private var allCategories: Flow<List<CategoryTable>> = emptyFlow()
-    private var monthlyRecap: Flow<MonthlyRecapTable> = emptyFlow()
-    private var account: Flow<AccountTable> = emptyFlow()
+    private val account = dbSource.selectDefaultAccount()
 
-    init {
-        allTransactions = dbSource.selectLatestTransactions().catch {
+    private val currentMonthRange = currentMonthRange()
+
+    private val allTransactions: Flow<List<com.prof18.moneyflow.db.SelectLatestTransactions>> =
+        account.flatMapLatest { selectedAccount ->
+            dbSource.selectLatestTransactions(
+                accountId = selectedAccount.id,
+                limit = LATEST_TRANSACTIONS_LIMIT,
+            )
         }
-        allCategories = dbSource.selectAllCategories()
-        monthlyRecap = dbSource.selectCurrentMonthlyRecap()
-        account = dbSource.selectCurrentAccount()
-    }
+            .catch { throwable ->
+                val error = MoneyFlowError.GetAllTransaction(throwable)
+                throwable.logError(error)
+                emit(emptyList())
+            }
 
-    fun getMoneySummary(): Flow<MoneySummary> {
-        return getLatestTransactions().combine(getBalanceRecap()) { transactions, balanceRecap ->
+    private val allCategories = dbSource.selectAllCategories()
+
+    fun getMoneySummary(): Flow<MoneySummary> =
+        combine(
+            getLatestTransactions(),
+            getBalanceRecap(),
+            getCurrencyConfig(),
+        ) { transactions, balanceRecap, currencyConfig ->
             MoneySummary(
                 balanceRecap = balanceRecap,
                 latestTransactions = transactions,
+                currencyConfig = currencyConfig,
             )
         }
-    }
 
     fun getBalanceRecap(): Flow<BalanceRecap> {
-        return monthlyRecap.combine(account) { monthlyRecap: MonthlyRecapTable, account: AccountTable ->
-            BalanceRecap(
-                totalBalance = account.amount,
-                monthlyIncome = monthlyRecap.incomeAmount,
-                monthlyExpenses = monthlyRecap.outcomeAmount,
+        return account.flatMapLatest { selectedAccount ->
+            val monthRange = currentMonthRange
+            val recap = dbSource.selectMonthlyRecap(
+                accountId = selectedAccount.id,
+                monthStartMillis = monthRange.startMillis,
+                monthEndMillis = monthRange.endMillis,
             )
+            val balance = dbSource.selectAccountBalance(selectedAccount.id)
+            combine(
+                balance,
+                recap,
+            ) { totalBalanceCents, monthlyRecap ->
+                BalanceRecap(
+                    totalBalanceCents = totalBalanceCents,
+                    monthlyIncomeCents = monthlyRecap.incomeCents ?: 0L,
+                    monthlyExpensesCents = monthlyRecap.outcomeCents ?: 0L,
+                )
+            }
         }
     }
 
@@ -77,7 +100,7 @@ class MoneyRepository(
                     id = transaction.id,
                     title = transactionTitle,
                     icon = CategoryIcon.fromValue(transaction.iconName),
-                    amount = transaction.amount,
+                    amountCents = transaction.amountCents,
                     type = transactionTypeUI,
                     milliseconds = transaction.dateMillis,
                     formattedDate = transaction.dateMillis.formatDateDayMonthYear(),
@@ -87,75 +110,21 @@ class MoneyRepository(
     }
 
     suspend fun insertTransaction(transactionToSave: TransactionToSave) {
-        val dateMillis = transactionToSave.dateMillis
-        val transactionType = transactionToSave.transactionType
-        var amount = transactionToSave.amount
-        // From the UI, it arrives always positive, no matter what
-        if (transactionType == TransactionType.OUTCOME) {
-            amount = -amount
-        }
-
-        val description = transactionToSave.description
-        val categoryId = transactionToSave.categoryId
-        val monthId = dateMillis.generateCurrentMonthId()
-
-        val monthlyRecap = dbSource.getMonthlyRecap(monthId)
-        var monthlyIncomeAmount = monthlyRecap.incomeAmount
-        var monthlyOutcomeAmount = monthlyRecap.outcomeAmount
-
-        when (transactionType) {
-            TransactionType.INCOME -> {
-                monthlyIncomeAmount += amount
-            }
-            TransactionType.OUTCOME -> {
-                // We keep the count positive. We know that it is an outcome
-                monthlyOutcomeAmount += abs(amount)
-            }
-        }
-
+        val accountId = account.first().id
+        val amountCents = abs(transactionToSave.amountCents)
         dbSource.insertTransaction(
-            dateMillis,
-            amount,
-            description,
-            categoryId,
-            transactionType,
-            monthId,
-            monthlyIncomeAmount,
-            monthlyOutcomeAmount,
+            accountId = accountId,
+            dateMillis = transactionToSave.dateMillis,
+            amountCents = amountCents,
+            description = transactionToSave.description,
+            categoryId = transactionToSave.categoryId,
+            transactionType = transactionToSave.transactionType,
         )
     }
 
     suspend fun deleteTransaction(transactionId: Long) {
-        val transaction = dbSource.getTransaction(transactionId)
-        // It should not be null!
-        if (transaction != null) {
-            val transactionType = transaction.type
-            val monthId = transaction.dateMillis.generateCurrentMonthId()
-            var transactionAmountToUpdate = transaction.amount
-            val monthlyRecap = dbSource.getMonthlyRecap(monthId)
-            var monthlyIncomeAmount = monthlyRecap.incomeAmount
-            var monthlyOutcomeAmount = monthlyRecap.outcomeAmount
-
-            when (transactionType) {
-                TransactionType.INCOME -> {
-                    // Since it is an income, we need to subtract it from the amount
-                    monthlyIncomeAmount -= transactionAmountToUpdate
-                    transactionAmountToUpdate = -transactionAmountToUpdate
-                }
-                TransactionType.OUTCOME -> {
-                    monthlyOutcomeAmount -= abs(transactionAmountToUpdate)
-                    transactionAmountToUpdate = abs(transactionAmountToUpdate)
-                }
-            }
-            dbSource.deleteTransaction(
-                transactionId,
-                transactionType,
-                transactionAmountToUpdate,
-                monthId,
-                monthlyIncomeAmount,
-                monthlyOutcomeAmount,
-            )
-        }
+        val transaction = dbSource.getTransaction(transactionId) ?: return
+        dbSource.deleteTransaction(transaction.id)
     }
 
     fun getCategories(): Flow<List<Category>> {
@@ -165,6 +134,8 @@ class MoneyRepository(
                     id = category.id,
                     name = category.name,
                     icon = CategoryIcon.fromValue(category.iconName),
+                    type = category.type,
+                    createdAtMillis = category.createdAtMillis,
                 )
             }
         }
@@ -174,8 +145,10 @@ class MoneyRepository(
         pageNum: Long,
         pageSize: Long,
     ): List<MoneyTransaction> {
+        val accountId = account.first().id
         return dbSource.getTransactionsPaginated(
-            pageNum = (pageNum * pageSize),
+            accountId = accountId,
+            pageNum = pageNum,
             pageSize = pageSize,
         )
             .map { transaction ->
@@ -194,11 +167,41 @@ class MoneyRepository(
                     id = transaction.id,
                     title = transactionTitle,
                     icon = CategoryIcon.fromValue(transaction.iconName),
-                    amount = transaction.amount,
+                    amountCents = transaction.amountCents,
                     type = transactionTypeUI,
                     milliseconds = transaction.dateMillis,
                     formattedDate = transaction.dateMillis.formatDateDayMonthYear(),
                 )
             }
+    }
+
+    fun getCurrencyConfig(): Flow<CurrencyConfig> =
+        account.map { account ->
+            CurrencyConfig(
+                code = account.currencyCode,
+                symbol = account.currencySymbol,
+                decimalPlaces = account.currencyDecimalPlaces.toInt(),
+            )
+        }
+
+    suspend fun addCategory(
+        name: String,
+        type: TransactionType,
+        iconName: String,
+    ) {
+        dbSource.insertCategory(
+            name = name,
+            type = type,
+            iconName = iconName,
+            isSystem = false,
+        )
+    }
+
+    suspend fun updateCategory(category: Category) {
+        dbSource.updateCategory(
+            id = category.id,
+            name = category.name,
+            iconName = category.icon.iconName,
+        )
     }
 }

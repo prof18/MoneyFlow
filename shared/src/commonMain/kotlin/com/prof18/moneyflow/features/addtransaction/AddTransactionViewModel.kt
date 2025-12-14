@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof18.moneyflow.data.MoneyRepository
 import com.prof18.moneyflow.database.model.TransactionType
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.domain.entities.MoneyFlowError
 import com.prof18.moneyflow.domain.entities.MoneyFlowResult
 import com.prof18.moneyflow.presentation.MoneyFlowErrorMapper
@@ -12,8 +13,10 @@ import com.prof18.moneyflow.presentation.addtransaction.TransactionToSave
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 import com.prof18.moneyflow.utils.formatDateDayMonthYear
 import com.prof18.moneyflow.utils.logError
+import com.prof18.moneyflow.utils.toAmountCents
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
@@ -37,6 +40,7 @@ class AddTransactionViewModel(
             descriptionText = null,
             dateLabel = null,
             addTransactionAction = null,
+            currencyConfig = null,
         ),
     )
     val uiState: StateFlow<AddTransactionUiState> = _uiState
@@ -49,6 +53,17 @@ class AddTransactionViewModel(
 
     init {
         updateDateLabel()
+        observeCurrencyConfig()
+    }
+
+    private fun observeCurrencyConfig() {
+        viewModelScope.launch {
+            moneyRepository.getCurrencyConfig().collectLatest { config ->
+                _uiState.update { state ->
+                    state.copy(currencyConfig = config)
+                }
+            }
+        }
     }
 
     fun setYearNumber(yearNumber: Int) {
@@ -76,8 +91,9 @@ class AddTransactionViewModel(
     }
 
     fun addTransaction(categoryId: Long) {
-        val amount = uiState.value.amountText.toDoubleOrNull()
-        if (amount == null) {
+        val currencyConfig = uiState.value.currencyConfig ?: CurrencyConfig("EUR", "€", 2)
+        val amountCents = uiState.value.amountText.toAmountCents(currencyConfig)
+        if (amountCents == null) {
             val errorMessage = UIErrorMessage(
                 message = Res.string.amount_not_empty_error,
                 messageKey = "amount_not_empty_error",
@@ -97,7 +113,7 @@ class AddTransactionViewModel(
                 moneyRepository.insertTransaction(
                     TransactionToSave(
                         dateMillis = selectedDateMillis,
-                        amount = amount,
+                        amountCents = amountCents,
                         description = uiState.value.descriptionText,
                         categoryId = categoryId,
                         transactionType = uiState.value.selectedTransactionType,
@@ -153,4 +169,5 @@ data class AddTransactionUiState(
     val descriptionText: String?,
     val dateLabel: String?,
     val addTransactionAction: AddTransactionAction?,
+    val currencyConfig: CurrencyConfig?,
 )

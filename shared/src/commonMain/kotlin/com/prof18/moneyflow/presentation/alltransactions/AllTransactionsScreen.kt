@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.domain.entities.TransactionTypeUI
 import com.prof18.moneyflow.features.alltransactions.AllTransactionsUiState
@@ -38,6 +39,7 @@ internal fun AllTransactionsScreen(
         },
         content = { innerPadding ->
             val uiState = stateFlow.collectAsState().value
+            val currencyConfig = uiState.currencyConfig
 
             LazyColumn(modifier = Modifier.padding(innerPadding)) {
                 when {
@@ -56,6 +58,7 @@ internal fun AllTransactionsScreen(
                                 onLongPress = { /*TODO: add long press on transaction*/ },
                                 onClick = { /*TODO: add click on transaction*/ },
                                 hideSensitiveData = false, // TODO: Hide sensitive data on transaction card
+                                currencyConfig = currencyConfig,
                             )
                             HorizontalDivider()
 
@@ -89,6 +92,7 @@ private fun AllTransactionsScreenPreviews() {
                         SampleTransactions.iceCream,
                         SampleTransactions.tip,
                     ),
+                    currencyConfig = CurrencyConfig("EUR", "€", 2),
                 ),
             ),
             loadNextPage = {},
@@ -102,7 +106,7 @@ private object SampleTransactions {
         id = 0,
         title = "Ice Cream",
         icon = CategoryIcon.IC_ICE_CREAM_SOLID,
-        amount = 10.0,
+        amountCents = 1_000,
         type = TransactionTypeUI.EXPENSE,
         milliseconds = 0,
         formattedDate = "12 July 2021",
@@ -112,7 +116,7 @@ private object SampleTransactions {
         id = 1,
         title = "Tip",
         icon = CategoryIcon.IC_MONEY_CHECK_ALT_SOLID,
-        amount = 50.0,
+        amountCents = 5_000,
         type = TransactionTypeUI.INCOME,
         milliseconds = 0,
         formattedDate = "12 July 2021",

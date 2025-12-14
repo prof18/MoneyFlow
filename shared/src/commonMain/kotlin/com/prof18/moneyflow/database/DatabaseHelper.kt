@@ -8,13 +8,12 @@ import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOneOrDefault
 import app.cash.sqldelight.db.SqlDriver
 import com.prof18.moneyflow.database.default.defaultCategories
-import com.prof18.moneyflow.database.model.Currency
 import com.prof18.moneyflow.database.model.TransactionType
 import com.prof18.moneyflow.db.AccountTable
 import com.prof18.moneyflow.db.CategoryTable
 import com.prof18.moneyflow.db.MoneyFlowDB
-import com.prof18.moneyflow.db.MonthlyRecapTable
 import com.prof18.moneyflow.db.SelectLatestTransactions
+import com.prof18.moneyflow.db.SelectMonthlyRecap
 import com.prof18.moneyflow.db.SelectTransactionsPaginated
 import com.prof18.moneyflow.db.TransactionTable
 import kotlinx.coroutines.CoroutineDispatcher
@@ -23,23 +22,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
 import kotlin.coroutines.CoroutineContext
 import kotlin.time.Clock
-import kotlin.time.Instant
 
 class DatabaseHelper(
-    private val sqlDriver: SqlDriver,
+    sqlDriver: SqlDriver,
     dispatcher: CoroutineDispatcher? = null,
 ) {
     private val backgroundDispatcher: CoroutineDispatcher = dispatcher ?: Dispatchers.Default
 
     private val dbRef: MoneyFlowDB = MoneyFlowDB(
         driver = sqlDriver,
-        AccountTableAdapter = AccountTable.Adapter(
-            currencyAdapter = EnumColumnAdapter(),
-        ),
         CategoryTableAdapter = CategoryTable.Adapter(
             typeAdapter = EnumColumnAdapter(),
         ),
@@ -52,13 +45,15 @@ class DatabaseHelper(
         seedDefaultsIfNeeded()
     }
 
-    fun close() {
-        sqlDriver.close()
-    }
-
-    fun selectLatestTransactions(): Flow<List<SelectLatestTransactions>> =
+    fun selectLatestTransactions(
+        accountId: Long,
+        limit: Long,
+    ): Flow<List<SelectLatestTransactions>> =
         dbRef.transactionTableQueries
-            .selectLatestTransactions()
+            .selectLatestTransactions(
+                accountId = accountId,
+                limit = limit,
+            )
             .asFlow()
             .mapToList(backgroundDispatcher)
             .flowOn(backgroundDispatcher)
@@ -70,128 +65,84 @@ class DatabaseHelper(
             .mapToList(backgroundDispatcher)
             .flowOn(backgroundDispatcher)
 
-    fun selectCurrentMonthlyRecap(): Flow<MonthlyRecapTable> {
-        val current = Clock.System.now().toEpochMilliseconds()
-        val id = generateCurrentMonthId(current)
-        return dbRef.monthlyRecapTableQueries
-            .selectCurrentMonthlyRecap(id)
+    fun selectCategoriesByType(type: TransactionType): Flow<List<CategoryTable>> =
+        dbRef.categoryTableQueries
+            .selectByType(type)
+            .asFlow()
+            .mapToList(backgroundDispatcher)
+            .flowOn(backgroundDispatcher)
+
+    fun selectDefaultAccount(): Flow<AccountTable> =
+        dbRef.accountTableQueries
+            .selectDefaultAccount()
             .asFlow()
             .mapToOneOrDefault(
-                MonthlyRecapTable(
-                    id = id,
-                    incomeAmount = 0.0,
-                    outcomeAmount = 0.0,
+                AccountTable(
+                    id = 1.toLong(),
+                    name = "Default Account",
+                    currencyCode = "EUR",
+                    currencySymbol = "€",
+                    currencyDecimalPlaces = 2.toLong(),
+                    isDefault = 1.toLong(),
+                    createdAtMillis = Clock.System.now().toEpochMilliseconds(),
                 ),
                 backgroundDispatcher,
             )
             .flowOn(backgroundDispatcher)
-    }
 
-    fun selectCurrentAccount(): Flow<AccountTable> =
-        dbRef.accountTableQueries
-            .getAccount()
+    fun selectAccountBalance(accountId: Long): Flow<Long> =
+        dbRef.transactionTableQueries
+            .selectAccountBalance(accountId)
+            .asFlow()
+            .mapToOneOrDefault(0L, backgroundDispatcher)
+            .flowOn(backgroundDispatcher)
+
+    fun selectMonthlyRecap(
+        accountId: Long,
+        monthStartMillis: Long,
+        monthEndMillis: Long,
+    ): Flow<SelectMonthlyRecap> =
+        dbRef.transactionTableQueries
+            .selectMonthlyRecap(accountId, monthStartMillis, monthEndMillis)
             .asFlow()
             .mapToOneOrDefault(
-                AccountTable(
-                    id = 1,
-                    name = "Default Account",
-                    currency = Currency.EURO,
-                    amount = 0.0,
+                SelectMonthlyRecap(
+                    incomeCents = 0L,
+                    outcomeCents = 0L,
                 ),
                 backgroundDispatcher,
             )
             .flowOn(backgroundDispatcher)
 
     suspend fun insertTransaction(
+        accountId: Long,
         dateMillis: Long,
-        amount: Double,
+        amountCents: Long,
         description: String?,
         categoryId: Long,
         transactionType: TransactionType,
-        monthId: Long,
-        monthlyIncomeAmount: Double,
-        monthlyOutcomeAmount: Double,
     ) {
+        val createdAtMillis = Clock.System.now().toEpochMilliseconds()
         dbRef.transactionWithContext(backgroundDispatcher) {
             dbRef.transactionTableQueries.insertTransaction(
+                accountId = accountId,
                 dateMillis = dateMillis,
-                amount = amount,
+                amountCents = amountCents,
                 description = description,
                 categoryId = categoryId,
                 type = transactionType,
+                createdAtMillis = createdAtMillis,
             )
-
-            dbRef.accountTableQueries.updateAmount(
-                newTransaction = amount,
-                id = 1, // no multi-account support for now
-            )
-
-            when (transactionType) {
-                TransactionType.INCOME -> {
-                    dbRef.monthlyRecapTableQueries.updateIncome(
-                        income = monthlyIncomeAmount,
-                        id = monthId,
-                    )
-                }
-
-                TransactionType.OUTCOME -> {
-                    dbRef.monthlyRecapTableQueries.updateOutcome(
-                        outcome = monthlyOutcomeAmount,
-                        id = monthId,
-                    )
-                }
-            }
         }
     }
 
     suspend fun deleteTransaction(
         transactionId: Long,
-        transactionType: TransactionType,
-        transactionAmountToUpdate: Double,
-        monthId: Long,
-        monthlyIncomeAmount: Double,
-        monthlyOutcomeAmount: Double,
     ) {
         dbRef.transactionWithContext(backgroundDispatcher) {
             dbRef.transactionTableQueries.deleteTransaction(transactionId)
-
-            dbRef.accountTableQueries.updateAmount(
-                newTransaction = transactionAmountToUpdate,
-                id = 1, // No multi-account support
-            )
-
-            when (transactionType) {
-                TransactionType.INCOME -> {
-                    dbRef.monthlyRecapTableQueries.updateIncome(
-                        income = monthlyIncomeAmount,
-                        id = monthId,
-                    )
-                }
-
-                TransactionType.OUTCOME -> {
-                    dbRef.monthlyRecapTableQueries.updateOutcome(
-                        outcome = monthlyOutcomeAmount,
-                        id = monthId,
-                    )
-                }
-            }
         }
     }
-
-    suspend fun getMonthlyRecap(currentMonthID: Long): MonthlyRecapTable =
-        withContext(backgroundDispatcher) {
-            var recap = dbRef.monthlyRecapTableQueries.selectCurrentMonthlyRecap(currentMonthID)
-                .executeAsList().firstOrNull()
-            if (recap == null) {
-                dbRef.monthlyRecapTableQueries.insertMonthRecap(
-                    id = currentMonthID,
-                    incomeAmount = 0.0,
-                    outcomeAmount = 0.0,
-                )
-                recap = MonthlyRecapTable(currentMonthID, 0.0, 0.0)
-            }
-            return@withContext recap
-        }
 
     suspend fun getTransaction(transactionId: Long): TransactionTable? =
         withContext(backgroundDispatcher) {
@@ -200,21 +151,63 @@ class DatabaseHelper(
         }
 
     suspend fun getTransactionsPaginated(
+        accountId: Long,
         pageNum: Long,
         pageSize: Long,
     ): List<SelectTransactionsPaginated> = withContext(backgroundDispatcher) {
+        val offset = pageNum * pageSize
         return@withContext dbRef.transactionTableQueries
-            .selectTransactionsPaginated(pageSize = pageSize, pageNum = pageNum)
+            .selectTransactionsPaginated(
+                accountId = accountId,
+                pageSize = pageSize,
+                offset = offset,
+            )
             .executeAsList()
     }
 
+    suspend fun insertCategory(
+        name: String,
+        type: TransactionType,
+        iconName: String,
+        isSystem: Boolean,
+        createdAtMillis: Long = Clock.System.now().toEpochMilliseconds(),
+    ) = withContext(backgroundDispatcher) {
+        dbRef.categoryTableQueries.insertCategory(
+            name = name,
+            type = type,
+            iconName = iconName,
+            isSystem = if (isSystem) 1L else 0L,
+            createdAtMillis = createdAtMillis,
+        )
+    }
+
+    suspend fun updateCategory(
+        id: Long,
+        name: String,
+        iconName: String,
+    ) = withContext(backgroundDispatcher) {
+        dbRef.categoryTableQueries.updateCategory(
+            id = id,
+            name = name,
+            iconName = iconName,
+        )
+    }
+
+    suspend fun countTransactionsForCategory(categoryId: Long): Long = withContext(backgroundDispatcher) {
+        return@withContext dbRef.categoryTableQueries.countTransactionsForCategory(categoryId)
+            .executeAsOne()
+    }
+
     private fun seedDefaultsIfNeeded() = runBlocking(backgroundDispatcher) {
-        val account = dbRef.accountTableQueries.getAccount().executeAsOneOrNull()
+        val account = dbRef.accountTableQueries.selectDefaultAccount().executeAsOneOrNull()
         if (account == null) {
             dbRef.accountTableQueries.insertAccount(
                 name = "Default Account",
-                currency = Currency.EURO,
-                amount = 0.0,
+                currencyCode = "EUR",
+                currencySymbol = "€",
+                currencyDecimalPlaces = 2.toLong(),
+                isDefault = 1.toLong(),
+                createdAtMillis = Clock.System.now().toEpochMilliseconds(),
             )
         }
 
@@ -225,6 +218,8 @@ class DatabaseHelper(
                         name = category.name,
                         type = category.type,
                         iconName = category.iconName,
+                        isSystem = 1.toLong(),
+                        createdAtMillis = category.createdAtMillis,
                     )
                 }
             }
@@ -241,12 +236,6 @@ class DatabaseHelper(
                 body()
             }
         }
-    }
-
-    private fun generateCurrentMonthId(millisSinceEpoch: Long): Long {
-        val dateTime = Instant.fromEpochMilliseconds(millisSinceEpoch)
-            .toLocalDateTime(TimeZone.currentSystemDefault())
-        return "${dateTime.year}${dateTime.month.ordinal + 1}".toLong()
     }
 
     companion object {
