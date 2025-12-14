@@ -10,21 +10,12 @@ import money_flow.shared.generated.resources.error_delete_transaction_message
 import money_flow.shared.generated.resources.error_get_all_transaction_message
 import money_flow.shared.generated.resources.error_get_categories_message
 import money_flow.shared.generated.resources.error_get_money_summary_message
-import money_flow.shared.generated.resources.error_nerd_message
 import org.jetbrains.compose.resources.StringResource
 
 internal fun uiErrorMessageFromKeys(
     messageKey: String,
-    nerdMessageKey: String,
-    messageArgs: List<String> = emptyList(),
-    nerdMessageArgs: List<String> = emptyList(),
 ): UIErrorMessage = UIErrorMessage(
     message = messageKey.toStringResource(),
-    messageKey = messageKey,
-    messageArgs = messageArgs,
-    nerdMessage = nerdMessageKey.toStringResource(),
-    nerdMessageKey = nerdMessageKey,
-    nerdMessageArgs = nerdMessageArgs,
 )
 
 internal fun String.toStringResource(): StringResource = when (this) {
@@ -37,6 +28,5 @@ internal fun String.toStringResource(): StringResource = when (this) {
     "error_database_export" -> Res.string.error_database_export
     "error_database_import" -> Res.string.error_database_import
     "database_file_not_found" -> Res.string.database_file_not_found
-    "error_nerd_message" -> Res.string.error_nerd_message
     else -> Res.string.error_get_money_summary_message
 }

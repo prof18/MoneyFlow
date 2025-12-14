@@ -25,7 +25,6 @@ import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.toLocalDateTime
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.amount_not_empty_error
-import money_flow.shared.generated.resources.error_nerd_message
 import kotlin.time.Clock
 
 internal class AddTransactionViewModel(
@@ -96,11 +95,6 @@ internal class AddTransactionViewModel(
         if (amountCents == null) {
             val errorMessage = UIErrorMessage(
                 message = Res.string.amount_not_empty_error,
-                messageKey = "amount_not_empty_error",
-                messageArgs = emptyList(),
-                nerdMessage = Res.string.error_nerd_message,
-                nerdMessageKey = "error_nerd_message",
-                nerdMessageArgs = emptyList(),
             )
             _uiState.update { state ->
                 state.copy(addTransactionAction = AddTransactionAction.ShowError(errorMessage))

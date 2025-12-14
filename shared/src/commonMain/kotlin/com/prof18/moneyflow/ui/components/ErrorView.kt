@@ -17,11 +17,9 @@ import com.prof18.moneyflow.ui.style.Margins
 import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.error_add_transaction_message
-import money_flow.shared.generated.resources.error_nerd_message
 import money_flow.shared.generated.resources.shrug
 import org.jetbrains.compose.resources.stringResource
 
-@Suppress("SpreadOperator")
 @Composable
 internal fun ErrorView(
     uiErrorMessage: UIErrorMessage,
@@ -42,24 +40,9 @@ internal fun ErrorView(
             )
 
             Text(
-                text = stringResource(
-                    uiErrorMessage.message,
-                    *uiErrorMessage.messageArgs.toTypedArray(),
-                ),
+                text = stringResource(uiErrorMessage.message),
                 style = MaterialTheme.typography.bodyLarge,
             )
-            if (uiErrorMessage.nerdMessageArgs.isNotEmpty()) {
-                val nerdMessage = stringResource(
-                    uiErrorMessage.nerdMessage,
-                    *uiErrorMessage.nerdMessageArgs.toTypedArray(),
-                )
-                if (nerdMessage.isNotBlank()) {
-                    Text(
-                        text = nerdMessage,
-                        style = MaterialTheme.typography.bodySmall,
-                    )
-                }
-            }
         }
     }
 }
@@ -69,10 +52,6 @@ internal fun ErrorView(
 private fun ErrorViewPreview() {
     val message = UIErrorMessage(
         message = Res.string.error_add_transaction_message,
-        messageKey = "error_add_transaction_message",
-        nerdMessage = Res.string.error_nerd_message,
-        nerdMessageKey = "error_nerd_message",
-        nerdMessageArgs = listOf("101"),
     )
 
     Surface {

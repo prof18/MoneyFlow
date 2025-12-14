@@ -46,7 +46,6 @@ import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.delete
 import money_flow.shared.generated.resources.empty_wallet
 import money_flow.shared.generated.resources.error_get_money_summary_message
-import money_flow.shared.generated.resources.error_nerd_message
 import money_flow.shared.generated.resources.hide_sensitive_data
 import money_flow.shared.generated.resources.latest_transactions
 import money_flow.shared.generated.resources.my_wallet
@@ -256,10 +255,6 @@ private fun HomeScreenErrorPreview() {
                 homeModel = HomeModel.Error(
                     UIErrorMessage(
                         message = Res.string.error_get_money_summary_message,
-                        messageKey = "error_get_money_summary_message",
-                        nerdMessage = Res.string.error_nerd_message,
-                        nerdMessageKey = "error_nerd_message",
-                        nerdMessageArgs = listOf("101"),
                     ),
                 ),
                 hideSensitiveDataState = true,

@@ -19,18 +19,12 @@ import money_flow.shared.generated.resources.error_delete_transaction_message
 import money_flow.shared.generated.resources.error_get_all_transaction_message
 import money_flow.shared.generated.resources.error_get_categories_message
 import money_flow.shared.generated.resources.error_get_money_summary_message
-import money_flow.shared.generated.resources.error_nerd_message
 
 internal class MoneyFlowErrorMapper {
 
     fun getUIErrorMessage(error: MoneyFlowError): UIErrorMessage {
         return UIErrorMessage(
             message = error.getErrorMessageRes(),
-            messageKey = error.getErrorMessageKey(),
-            messageArgs = emptyList(),
-            nerdMessage = Res.string.error_nerd_message,
-            nerdMessageKey = "error_nerd_message",
-            nerdMessageArgs = listOf(error.code.toString()),
         )
     }
 
@@ -43,16 +37,5 @@ internal class MoneyFlowErrorMapper {
         is DatabaseExport -> Res.string.error_database_export
         is DatabaseImport -> Res.string.error_database_import
         is DatabaseNotFound -> Res.string.database_file_not_found
-    }
-
-    private fun MoneyFlowError.getErrorMessageKey() = when (this) {
-        is AddTransaction -> "error_add_transaction_message"
-        is DeleteTransaction -> "error_delete_transaction_message"
-        is GetAllTransaction -> "error_get_all_transaction_message"
-        is GetCategories -> "error_get_categories_message"
-        is GetMoneySummary -> "error_get_money_summary_message"
-        is DatabaseExport -> "error_database_export"
-        is DatabaseImport -> "error_database_import"
-        is DatabaseNotFound -> "database_file_not_found"
     }
 }

@@ -44,7 +44,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-@Suppress("LongMethod", "LongParameterList", "SpreadOperator") // TODO: reduce method length
+@Suppress("LongMethod", "LongParameterList") // TODO: reduce method length
 internal fun AddTransactionScreen(
     categoryState: State<CategoryUIData?>,
     navigateUp: () -> Unit,
@@ -75,27 +75,9 @@ internal fun AddTransactionScreen(
                 resetAction()
             }
             is AddTransactionAction.ShowError -> {
-                val messageText = stringResource(
-                    it.uiErrorMessage.message,
-                    *it.uiErrorMessage.messageArgs.toTypedArray(),
-                )
-                val nerdText = if (it.uiErrorMessage.nerdMessageArgs.isNotEmpty()) {
-                    stringResource(
-                        it.uiErrorMessage.nerdMessage,
-                        *it.uiErrorMessage.nerdMessageArgs.toTypedArray(),
-                    )
-                } else {
-                    ""
-                }
+                val messageText = stringResource(it.uiErrorMessage.message)
                 LaunchedEffect(snackbarHostState, resetAction) {
-                    val message = buildString {
-                        append(messageText)
-                        if (nerdText.isNotBlank()) {
-                            append("\n")
-                            append(nerdText)
-                        }
-                    }
-                    snackbarHostState.showSnackbar(message)
+                    snackbarHostState.showSnackbar(messageText)
                     resetAction()
                 }
             }

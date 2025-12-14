@@ -24,7 +24,6 @@ import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.add
 import money_flow.shared.generated.resources.categories_screen
 import money_flow.shared.generated.resources.error_get_categories_message
-import money_flow.shared.generated.resources.error_nerd_message
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -117,10 +116,6 @@ private fun CategoriesScreenErrorPreview() {
                 categoryModel = CategoryModel.Error(
                     uiErrorMessage = UIErrorMessage(
                         message = Res.string.error_get_categories_message,
-                        messageKey = "error_get_categories_message",
-                        nerdMessage = Res.string.error_nerd_message,
-                        nerdMessageKey = "error_nerd_message",
-                        nerdMessageArgs = listOf("101"),
                     ),
                 ),
             )
