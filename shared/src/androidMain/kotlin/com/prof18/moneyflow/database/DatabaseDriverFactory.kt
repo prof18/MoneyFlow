@@ -5,7 +5,7 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.prof18.moneyflow.db.MoneyFlowDB
 
-fun createDatabaseDriver(context: Context, useDebugDatabaseName: Boolean = false): SqlDriver {
+internal fun createDatabaseDriver(context: Context, useDebugDatabaseName: Boolean = false): SqlDriver {
     return AndroidSqliteDriver(
         schema = MoneyFlowDB.Schema,
         context = context,

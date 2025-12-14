@@ -24,7 +24,7 @@ import money_flow.shared.generated.resources.retry
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun AuthScreen(
+internal fun AuthScreen(
     authState: AuthState,
     onRetryClick: () -> Unit,
     modifier: Modifier = Modifier,

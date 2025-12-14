@@ -13,7 +13,7 @@ import money_flow.shared.generated.resources.error_get_money_summary_message
 import money_flow.shared.generated.resources.error_nerd_message
 import org.jetbrains.compose.resources.StringResource
 
-fun uiErrorMessageFromKeys(
+internal fun uiErrorMessageFromKeys(
     messageKey: String,
     nerdMessageKey: String,
     messageArgs: List<String> = emptyList(),
@@ -27,7 +27,7 @@ fun uiErrorMessageFromKeys(
     nerdMessageArgs = nerdMessageArgs,
 )
 
-fun String.toStringResource(): StringResource = when (this) {
+internal fun String.toStringResource(): StringResource = when (this) {
     "amount_not_empty_error" -> Res.string.amount_not_empty_error
     "error_add_transaction_message" -> Res.string.error_add_transaction_message
     "error_delete_transaction_message" -> Res.string.error_delete_transaction_message

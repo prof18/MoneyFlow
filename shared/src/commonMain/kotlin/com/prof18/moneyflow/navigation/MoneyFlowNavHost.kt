@@ -89,7 +89,7 @@ private val bottomSheetTransitionMetadata =
         NavDisplay.predictivePopTransitionSpec { _: Int -> bottomSheetPopTransition() }
 
 @Composable
-fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
+internal fun MoneyFlowNavHost(modifier: Modifier = Modifier) {
     val backStack = rememberSerializable(serializer = SnapshotStateListSerializer(AppRoute.serializer())) {
         mutableStateListOf(HomeRoute)
     }

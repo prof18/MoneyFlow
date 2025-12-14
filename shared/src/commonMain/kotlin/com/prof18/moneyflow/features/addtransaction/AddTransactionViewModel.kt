@@ -28,7 +28,7 @@ import money_flow.shared.generated.resources.amount_not_empty_error
 import money_flow.shared.generated.resources.error_nerd_message
 import kotlin.time.Clock
 
-class AddTransactionViewModel(
+internal class AddTransactionViewModel(
     private val moneyRepository: MoneyRepository,
     private val errorMapper: MoneyFlowErrorMapper,
 ) : ViewModel() {
@@ -163,7 +163,7 @@ class AddTransactionViewModel(
         Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
 }
 
-data class AddTransactionUiState(
+internal data class AddTransactionUiState(
     val selectedTransactionType: TransactionType,
     val amountText: String,
     val descriptionText: String?,

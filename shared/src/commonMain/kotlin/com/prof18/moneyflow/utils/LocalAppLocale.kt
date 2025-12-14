@@ -6,9 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
-var customAppLocale by mutableStateOf<String?>(null)
+internal var customAppLocale by mutableStateOf<String?>(null)
 
-expect object LocalAppLocale {
+internal expect object LocalAppLocale {
     val current: String @Composable get
 
     @Composable

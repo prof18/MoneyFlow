@@ -4,7 +4,7 @@ import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import kotlin.math.abs
 
 // TODO: write tests for all these functions
-fun Long.formatAsCurrency(config: CurrencyConfig): String {
+internal fun Long.formatAsCurrency(config: CurrencyConfig): String {
     val factor = tenFactor(config.decimalPlaces)
     val absoluteValue = abs(this)
     val wholePart = absoluteValue / factor
@@ -20,7 +20,7 @@ fun Long.formatAsCurrency(config: CurrencyConfig): String {
 }
 
 @Suppress("ReturnCount")
-fun String.toAmountCents(config: CurrencyConfig): Long? {
+internal fun String.toAmountCents(config: CurrencyConfig): Long? {
     val normalized = trim()
     if (normalized.isEmpty()) return null
 

@@ -8,9 +8,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
 
-var customAppDensity by mutableStateOf<Density?>(null)
+internal var customAppDensity by mutableStateOf<Density?>(null)
 
-object LocalAppDensity {
+internal object LocalAppDensity {
     val current: Density
         @Composable get() = LocalDensity.current
 

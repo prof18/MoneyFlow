@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalResources
 import java.util.Locale
 
-actual object LocalAppLocale {
+internal actual object LocalAppLocale {
     private var default: Locale? = null
     actual val current: String
         @Composable get() = Locale.getDefault().toString()

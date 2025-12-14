@@ -10,11 +10,13 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import platform.Foundation.NSUserDefaults
 
-fun initKoinIos(): KoinApplication = initKoin(
+public fun initKoinIos(): KoinApplication = initKoin(
     additionalModules = emptyList(),
 )
 
-actual val platformModule: Module = module {
+public fun doInitKoinIos(): KoinApplication = initKoinIos()
+
+internal actual val platformModule: Module = module {
     single<Settings> { NSUserDefaultsSettings(NSUserDefaults.standardUserDefaults) }
     single { createDatabaseDriver(useDebugDatabaseName = false) }
     single<BiometricAvailabilityChecker> { IosBiometricAvailabilityChecker() }

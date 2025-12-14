@@ -5,7 +5,7 @@ import com.prof18.moneyflow.domain.entities.CurrencyConfig
 import com.prof18.moneyflow.domain.entities.MoneyTransaction
 import com.prof18.moneyflow.presentation.model.UIErrorMessage
 
-sealed class HomeModel {
+internal sealed class HomeModel {
     data object Loading : HomeModel()
     data class Error(val uiErrorMessage: UIErrorMessage) : HomeModel()
     data class HomeState(

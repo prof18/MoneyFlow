@@ -1,7 +1,7 @@
 package com.prof18.moneyflow.domain.entities
 
 @Suppress("MagicNumber")
-sealed class MoneyFlowError(val code: Int, val throwable: Throwable) {
+internal sealed class MoneyFlowError(val code: Int, val throwable: Throwable) {
     class GetMoneySummary(throwable: Throwable) : MoneyFlowError(100, throwable)
     class DeleteTransaction(throwable: Throwable) : MoneyFlowError(101, throwable)
     class AddTransaction(throwable: Throwable) : MoneyFlowError(102, throwable)

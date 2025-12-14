@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 import kotlin.time.Clock
 
-class DatabaseHelper(
+internal class DatabaseHelper(
     sqlDriver: SqlDriver,
     dispatcher: CoroutineDispatcher? = null,
 ) {

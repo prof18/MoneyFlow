@@ -21,7 +21,7 @@ import com.prof18.moneyflow.ui.style.MoneyFlowTheme
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun MoneyFlowApp(
+public fun MoneyFlowApp(
     biometricAuthenticator: BiometricAuthenticator,
     modifier: Modifier = Modifier,
 ) {

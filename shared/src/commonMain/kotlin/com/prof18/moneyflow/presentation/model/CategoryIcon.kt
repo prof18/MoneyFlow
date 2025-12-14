@@ -2,7 +2,7 @@
 
 package com.prof18.moneyflow.presentation.model
 
-enum class CategoryIcon(val iconName: String) {
+internal enum class CategoryIcon(val iconName: String) {
     IC_ADDRESS_BOOK("ic_address_book"),
     IC_ADDRESS_CARD("ic_address_card"),
     IC_ADJUST_SOLID("ic_adjust_solid"),

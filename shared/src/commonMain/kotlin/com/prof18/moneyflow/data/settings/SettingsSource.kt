@@ -8,7 +8,7 @@ internal enum class SettingsFields {
     HIDE_SENSITIVE_DATA,
 }
 
-class SettingsSource(private val settings: Settings) {
+internal class SettingsSource(private val settings: Settings) {
 
     fun getUseBiometric(): Boolean = settings.getBoolean(SettingsFields.USE_BIOMETRIC.name, false)
     fun setUseBiometric(value: Boolean) = settings.set(SettingsFields.USE_BIOMETRIC.name, value)

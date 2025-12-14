@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ProvidedValue
 import androidx.compose.ui.platform.LocalConfiguration
 
-actual object LocalAppTheme {
+internal actual object LocalAppTheme {
     actual val current: Boolean
         @Composable get() = (LocalConfiguration.current.uiMode and UI_MODE_NIGHT_MASK) == UI_MODE_NIGHT_YES
 

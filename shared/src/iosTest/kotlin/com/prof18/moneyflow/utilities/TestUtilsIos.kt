@@ -5,19 +5,19 @@ import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.prof18.moneyflow.database.DatabaseHelper
 import com.prof18.moneyflow.db.MoneyFlowDB
 
-actual fun createDriver() {
+internal actual fun createDriver() {
     val nativeDriver = NativeSqliteDriver(MoneyFlowDB.Schema, name = "moneydb.db")
     databaseHelper = DatabaseHelper(nativeDriver)
     driver = nativeDriver
 }
 
-actual fun closeDriver() {
+internal actual fun closeDriver() {
     driver?.close()
     driver = null
     databaseHelper = null
 }
 
-actual fun getDatabaseHelper(): DatabaseHelper = requireNotNull(databaseHelper)
+internal actual fun getDatabaseHelper(): DatabaseHelper = requireNotNull(databaseHelper)
 
 private var driver: SqlDriver? = null
 private var databaseHelper: DatabaseHelper? = null

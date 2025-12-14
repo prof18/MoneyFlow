@@ -21,7 +21,7 @@ import money_flow.shared.generated.resources.error_get_categories_message
 import money_flow.shared.generated.resources.error_get_money_summary_message
 import money_flow.shared.generated.resources.error_nerd_message
 
-class MoneyFlowErrorMapper {
+internal class MoneyFlowErrorMapper {
 
     fun getUIErrorMessage(error: MoneyFlowError): UIErrorMessage {
         return UIErrorMessage(

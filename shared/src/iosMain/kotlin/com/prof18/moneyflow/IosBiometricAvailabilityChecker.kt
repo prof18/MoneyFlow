@@ -6,7 +6,7 @@ import platform.LocalAuthentication.LAContext
 import platform.LocalAuthentication.LAPolicyDeviceOwnerAuthenticationWithBiometrics
 
 @OptIn(ExperimentalForeignApi::class)
-class IosBiometricAvailabilityChecker : BiometricAvailabilityChecker {
+internal class IosBiometricAvailabilityChecker : BiometricAvailabilityChecker {
     override fun isBiometricSupported(): Boolean {
         val context = LAContext()
         return context.canEvaluatePolicy(LAPolicyDeviceOwnerAuthenticationWithBiometrics, null)

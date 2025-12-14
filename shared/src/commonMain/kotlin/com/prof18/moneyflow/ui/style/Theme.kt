@@ -43,7 +43,7 @@ internal fun downArrowCircleColor(): Color = if (isSystemInDarkTheme()) DarkAppC
 internal fun downArrowColor(): Color = if (isSystemInDarkTheme()) LightAppColors.red3 else LightAppColors.red1
 
 @Composable
-fun MoneyFlowTheme(
+internal fun MoneyFlowTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

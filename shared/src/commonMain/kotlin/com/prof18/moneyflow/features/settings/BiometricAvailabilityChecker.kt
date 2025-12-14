@@ -1,5 +1,5 @@
 package com.prof18.moneyflow.features.settings
 
-interface BiometricAvailabilityChecker {
+internal interface BiometricAvailabilityChecker {
     fun isBiometricSupported(): Boolean
 }

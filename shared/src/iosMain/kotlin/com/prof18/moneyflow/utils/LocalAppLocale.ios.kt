@@ -10,7 +10,7 @@ import platform.Foundation.preferredLanguages
 
 @OptIn(InternalComposeUiApi::class)
 @Suppress("CompositionLocalAllowlist")
-actual object LocalAppLocale {
+internal actual object LocalAppLocale {
     private const val LANG_KEY = "AppleLanguages"
     private val default = NSLocale.preferredLanguages.first() as String
 

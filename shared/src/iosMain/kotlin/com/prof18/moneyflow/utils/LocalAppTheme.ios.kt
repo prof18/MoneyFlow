@@ -7,7 +7,7 @@ import androidx.compose.ui.LocalSystemTheme
 import androidx.compose.ui.SystemTheme
 
 @OptIn(InternalComposeUiApi::class)
-actual object LocalAppTheme {
+internal actual object LocalAppTheme {
     actual val current: Boolean
         @Composable get() = LocalSystemTheme.current == SystemTheme.Dark
 

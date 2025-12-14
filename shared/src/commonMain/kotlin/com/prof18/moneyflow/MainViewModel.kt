@@ -8,13 +8,13 @@ import com.prof18.moneyflow.presentation.auth.AuthState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class MainViewModel(
+public class MainViewModel internal constructor(
     private val settingsRepository: SettingsRepository,
     private val biometricAvailabilityChecker: BiometricAvailabilityChecker,
 ) : ViewModel() {
 
     private val _authState = MutableStateFlow(initialState())
-    val authState: StateFlow<AuthState> = _authState
+    internal val authState: StateFlow<AuthState> = _authState
 
     fun performAuthentication(biometricAuthenticator: BiometricAuthenticator) {
         if (!shouldUseBiometrics(biometricAuthenticator)) {

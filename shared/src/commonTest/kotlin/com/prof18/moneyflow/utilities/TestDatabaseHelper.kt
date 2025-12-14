@@ -5,11 +5,11 @@ import com.prof18.moneyflow.database.DatabaseHelper
 /**
  * Init driver for each platform. Should *always* be called to setup test
  */
-expect fun createDriver()
+internal expect fun createDriver()
 
 /**
  * Close driver for each platform. Should *always* be called to tear down test
  */
-expect fun closeDriver()
+internal expect fun closeDriver()
 
-expect fun getDatabaseHelper(): DatabaseHelper
+internal expect fun getDatabaseHelper(): DatabaseHelper

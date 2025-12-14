@@ -38,7 +38,7 @@ internal object LightAppColors {
     val gray4 = Color(0xFFEDF1FA)
 }
 
-object DarkAppColors {
+internal object DarkAppColors {
 
     val primary = Color(0xFF2C4653)
     val backgroundColor = Color(0XFF303030)

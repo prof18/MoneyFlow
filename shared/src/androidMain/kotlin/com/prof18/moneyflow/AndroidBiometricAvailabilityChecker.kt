@@ -5,7 +5,7 @@ import androidx.biometric.BiometricManager
 import co.touchlab.kermit.Logger
 import com.prof18.moneyflow.features.settings.BiometricAvailabilityChecker
 
-class AndroidBiometricAvailabilityChecker(
+internal class AndroidBiometricAvailabilityChecker(
     private val context: Context,
 ) : BiometricAvailabilityChecker {
 

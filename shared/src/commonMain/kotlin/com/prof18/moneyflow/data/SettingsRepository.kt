@@ -4,7 +4,7 @@ import com.prof18.moneyflow.data.settings.SettingsSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class SettingsRepository(
+internal class SettingsRepository(
     private val settingsSource: SettingsSource,
 ) {
 

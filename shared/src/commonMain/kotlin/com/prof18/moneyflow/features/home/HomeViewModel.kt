@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+internal class HomeViewModel(
     private val moneyRepository: MoneyRepository,
     private val settingsRepository: SettingsRepository,
     private val errorMapper: MoneyFlowErrorMapper,

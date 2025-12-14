@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class AllTransactionsViewModel(
+internal class AllTransactionsViewModel(
     private val moneyRepository: MoneyRepository,
     private val errorMapper: MoneyFlowErrorMapper,
 ) : ViewModel() {
@@ -122,7 +122,7 @@ class AllTransactionsViewModel(
     }
 }
 
-data class AllTransactionsUiState(
+internal data class AllTransactionsUiState(
     val transactions: List<MoneyTransaction> = emptyList(),
     val isLoading: Boolean = false,
     val isLoadingMore: Boolean = false,

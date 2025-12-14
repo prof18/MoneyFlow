@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class SettingsViewModel(
+internal class SettingsViewModel(
     private val settingsRepository: SettingsRepository,
 ) : ViewModel() {
 

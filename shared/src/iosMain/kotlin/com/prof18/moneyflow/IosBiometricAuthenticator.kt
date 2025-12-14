@@ -8,7 +8,7 @@ import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
 
 @OptIn(ExperimentalForeignApi::class)
-class IosBiometricAuthenticator : BiometricAuthenticator {
+internal class IosBiometricAuthenticator : BiometricAuthenticator {
 
     override fun canAuthenticate(): Boolean {
         val context = LAContext()

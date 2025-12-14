@@ -15,7 +15,7 @@ import kotlin.time.Clock
 import kotlin.time.Instant
 
 // TODO: write tests for some of these functions
-data class MonthRange(
+internal data class MonthRange(
     val startMillis: Long,
     val endMillis: Long,
 )
@@ -51,7 +51,7 @@ internal fun currentMonthRange(timeZone: TimeZone = TimeZone.currentSystemDefaul
 internal fun Long.toLocalDateTime(timeZone: TimeZone = TimeZone.currentSystemDefault()): LocalDateTime =
     Instant.fromEpochMilliseconds(this).toLocalDateTime(timeZone)
 
-fun Throwable.logError(moneyFlowError: MoneyFlowError, message: String? = null) {
+internal fun Throwable.logError(moneyFlowError: MoneyFlowError, message: String? = null) {
     val logMessage = buildString {
         append("Error code: ${moneyFlowError.code}")
         message?.let {

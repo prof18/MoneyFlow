@@ -1,7 +1,8 @@
 package com.prof18.moneyflow.domain.entities
 
 import com.prof18.moneyflow.presentation.model.CategoryIcon
-data class MoneyTransaction(
+
+internal data class MoneyTransaction(
     val id: Long,
     val title: String,
     val icon: CategoryIcon,

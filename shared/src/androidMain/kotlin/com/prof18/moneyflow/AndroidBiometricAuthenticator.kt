@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.prof18.moneyflow.features.authentication.BiometricAuthenticator
 
-class AndroidBiometricAuthenticator(
+public class AndroidBiometricAuthenticator(
     private val activity: FragmentActivity,
 ) : BiometricAuthenticator {
 

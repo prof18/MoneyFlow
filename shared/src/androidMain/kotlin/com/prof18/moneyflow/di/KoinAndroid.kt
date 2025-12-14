@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-actual val platformModule: Module = module {
+internal actual val platformModule: Module = module {
 
     single { createDatabaseDriver(get()) }
 

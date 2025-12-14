@@ -1,6 +1,6 @@
 package com.prof18.moneyflow.features.authentication
 
-interface BiometricAuthenticator {
+public interface BiometricAuthenticator {
     fun canAuthenticate(): Boolean
 
     fun authenticate(

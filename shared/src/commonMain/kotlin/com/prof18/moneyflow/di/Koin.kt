@@ -19,7 +19,7 @@ import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
-fun initKoin(additionalModules: List<Module>): KoinApplication {
+public fun initKoin(additionalModules: List<Module>): KoinApplication {
     return startKoin {
         modules(additionalModules + platformModule + coreModule)
     }
@@ -45,4 +45,4 @@ private val coreModule = module {
     viewModelOf(::AllTransactionsViewModel)
 }
 
-expect val platformModule: Module
+internal expect val platformModule: Module

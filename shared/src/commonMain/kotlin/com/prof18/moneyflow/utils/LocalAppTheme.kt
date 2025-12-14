@@ -6,9 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
-var customAppThemeIsDark by mutableStateOf<Boolean?>(null)
+internal var customAppThemeIsDark by mutableStateOf<Boolean?>(null)
 
-expect object LocalAppTheme {
+internal expect object LocalAppTheme {
     val current: Boolean @Composable get
 
     @Composable
