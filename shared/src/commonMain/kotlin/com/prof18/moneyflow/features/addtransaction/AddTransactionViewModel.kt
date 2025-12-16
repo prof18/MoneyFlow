@@ -19,10 +19,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.atStartOfDayIn
-import kotlinx.datetime.toLocalDateTime
 import money_flow.shared.generated.resources.Res
 import money_flow.shared.generated.resources.amount_not_empty_error
 import kotlin.time.Clock
@@ -32,26 +28,22 @@ internal class AddTransactionViewModel(
     private val errorMapper: MoneyFlowErrorMapper,
 ) : ViewModel() {
 
+    private val initialSelectedDateMillis: Long = Clock.System.now().toEpochMilliseconds()
+
     private val _uiState = MutableStateFlow(
         AddTransactionUiState(
             selectedTransactionType = TransactionType.INCOME,
             amountText = "",
             descriptionText = null,
-            dateLabel = null,
+            dateLabel = initialSelectedDateMillis.formatDateDayMonthYear(),
             addTransactionAction = null,
             currencyConfig = null,
+            selectedDateMillis = initialSelectedDateMillis,
         ),
     )
     val uiState: StateFlow<AddTransactionUiState> = _uiState
 
-    // Private variables
-    private var selectedDateMillis: Long = Clock.System.now().toEpochMilliseconds()
-    private var yearNumber: Int = currentLocalDate().year
-    private var monthNumber: Int = currentLocalDate().month.ordinal
-    private var dayNumber: Int = currentLocalDate().day
-
     init {
-        updateDateLabel()
         observeCurrencyConfig()
     }
 
@@ -65,27 +57,12 @@ internal class AddTransactionViewModel(
         }
     }
 
-    fun setYearNumber(yearNumber: Int) {
-        this.yearNumber = yearNumber
-    }
-
-    fun setMonthNumber(monthNumber: Int) {
-        this.monthNumber = monthNumber - 1
-    }
-
-    fun setDayNumber(dayNumber: Int) {
-        this.dayNumber = dayNumber
-    }
-
-    fun saveDate() {
-        val localDate = LocalDate(yearNumber, monthNumber + 1, dayNumber)
-        selectedDateMillis = localDate.atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds()
-        updateDateLabel()
-    }
-
-    private fun updateDateLabel() {
+    fun updateSelectedDate(selectedDateMillis: Long) {
         _uiState.update { state ->
-            state.copy(dateLabel = selectedDateMillis.formatDateDayMonthYear())
+            state.copy(
+                dateLabel = selectedDateMillis.formatDateDayMonthYear(),
+                selectedDateMillis = selectedDateMillis,
+            )
         }
     }
 
@@ -106,7 +83,7 @@ internal class AddTransactionViewModel(
             val result = try {
                 moneyRepository.insertTransaction(
                     TransactionToSave(
-                        dateMillis = selectedDateMillis,
+                        dateMillis = uiState.value.selectedDateMillis,
                         amountCents = amountCents,
                         description = uiState.value.descriptionText,
                         categoryId = categoryId,
@@ -152,9 +129,6 @@ internal class AddTransactionViewModel(
             state.copy(selectedTransactionType = transactionType)
         }
     }
-
-    private fun currentLocalDate(): LocalDate =
-        Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
 }
 
 internal data class AddTransactionUiState(
@@ -164,4 +138,5 @@ internal data class AddTransactionUiState(
     val dateLabel: String?,
     val addTransactionAction: AddTransactionAction?,
     val currencyConfig: CurrencyConfig?,
+    val selectedDateMillis: Long,
 )
