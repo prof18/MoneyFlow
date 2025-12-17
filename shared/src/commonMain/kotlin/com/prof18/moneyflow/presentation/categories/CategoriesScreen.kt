@@ -59,6 +59,7 @@ internal fun CategoriesScreen(
                                 onClick = { category ->
                                     if (isFromAddTransaction) {
                                         sendCategoryBack(category.toCategoryUIData())
+                                    } else {
                                         navigateUp()
                                     }
                                 },
