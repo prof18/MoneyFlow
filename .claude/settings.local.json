@@ -3,7 +3,9 @@
     "allow": [
       "Bash(lipo -info:*)",
       "Bash(./gradlew:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
